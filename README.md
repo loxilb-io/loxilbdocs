@@ -33,9 +33,32 @@ loxilb aims to provide the following :
 
 - [What is eBPF](docs/ebpf.md)
 - [What is service type - external Load-Balancer](docs/lb.md)
-- [loxilb Architecture in brief](docs/arch.md)
+- [loxilb arch in brief](docs/arch.md)
+- [loxilb code organization](docs/code.md)
+- [loxilb howto run](docs/run.md)
+- [loxilb ccm plugin howto](docs/ccm.md)
+- [loxilb debugging](docs/debugging.md)
+- [loxilb cmd guide](docs/cmd.md)
+- [loxilb api guide](docs/api.md)
+- [loxilb performance](docs/perf.md)
+- [loxilb roadmap](docs/roadmap.md)
+- [loxilb contribute](docs/contribute.md)
 
+### Host OS requirements
+To install Loxilight software packages, you need the 64-bit version of one of these OS versions:
+* Ubuntu Focal 20.04(LTS)
+* Ubuntu Hirsute 21.04
+* RockyOS
+* Enterprise Redhat (Planned)
+* Windows Server(Planned)
 
+### Linux Kernel Requirements
+* Linux Kernel Version >= 5.1.0
 
+### Compatible Kubernetes Versions
+* Kubernetes 1.19
+* Kubernetes 1.20
+* Kubernetes 1.21
+* Kubernetes 1.22
 
 
