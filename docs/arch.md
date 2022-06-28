@@ -14,6 +14,8 @@ loxilb consists of the following modules :
   eBPF kernel module implements the data-plane of loxilb which provides complete kernel bypass. It is a fully self contained and feature-rich stack able to process packets from rx to tx without invoking linux native kernel networking.
   
 - goBGP 
-  Although goBGP is a separate project, loxilb has adopted and integrated with goBGP as its routing stack of choice. We also hope to develop features for this awesome project in the future 
+  Although goBGP is a separate project, loxilb has adopted and integrated with goBGP as its routing stack of choice. We also hope to develop features for this awesome project in the future
+  
+The following is a typical loxilb deployment topology (Currently HA implementation is in development) : 
 
 ![loxilb topology](photos/arch.png)
