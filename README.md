@@ -32,7 +32,7 @@ loxilb aims to provide the following :
 ## Documentation
 
 - [What is eBPF](docs/ebpf.md)
-- [What is service type - external Load-Balancer](docs/lb.md)
+- [What is service type - external load-balancer](docs/lb.md)
 - [loxilb arch in brief](docs/arch.md)
 - [loxilb code organization](docs/code.md)
 - [loxilb howto run](docs/run.md)
