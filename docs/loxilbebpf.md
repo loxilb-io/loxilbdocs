@@ -27,7 +27,15 @@ To unload:
 ```
 ntc filter del dev eth1 ingress
 ```
--- Please not that ntc is the customized tc tool from iproute2 package which can be found in loxilb's repository
+
+To check:
+```
+root@nd2:/home/llb# tc filter show dev hs2 ingress
+filter protocol all pref 49152 bpf chain 0 
+filter protocol all pref 49152 bpf chain 0 handle 0x1 llb_ebpf_main.o:[tc_packet_parser] direct-action not_in_hw id 8715 tag 43a829222e969bce jited 
+```
+
+*Please not that ntc is the customized tc tool from iproute2 package which can be found in loxilb's repository*
 
 ## Entry points of loxilb eBPF
 
@@ -42,10 +50,114 @@ loxilb's eBPF code is usually divided into two program sections with the followi
 - xdp_packet_func\
   This is the entry point for packet processing when hook point is XDP instead of TC eBPF
   
-  ## Pinned Maps of loxilb eBPF
+## Pinned Maps of loxilb eBPF
   
-  All maps used by loxilb eBPF are mounted as below :
-  
+All maps used by loxilb eBPF are mounted as below :
+
+```
+root@nd2:/home/llb/loxilb# ls -lart /opt/loxilb/dp/
+total 4
+drwxrwxrwt 3 root root    0  6?? 20 11:17 .
+drwxr-xr-x 3 root root 4096  6?? 29 10:19 ..
+drwx------ 3 root root    0  6?? 29 10:19 bpf
+root@nd2:/home/llb/loxilb# mount | grep bpf
+none on /opt/netlox/loxilb type bpf (rw,relatime)
+
+root@nd2:/home/llb/loxilb# ls -lart /opt/loxilb/dp/bpf/
+total 0
+drwxrwxrwt 3 root root 0  6?? 20 11:17 ..
+lrwxrwxrwx 1 root root 0  6?? 20 11:17 xdp -> /opt/loxilb/dp/bpf//tc/
+drwx------ 3 root root 0  6?? 20 11:17 tc
+lrwxrwxrwx 1 root root 0  6?? 20 11:17 ip -> /opt/loxilb/dp/bpf//tc/
+-rw------- 1 root root 0  6?? 29 10:19 xfis
+-rw------- 1 root root 0  6?? 29 10:19 xfck
+-rw------- 1 root root 0  6?? 29 10:19 xctk
+-rw------- 1 root root 0  6?? 29 10:19 tx_intf_stats_map
+-rw------- 1 root root 0  6?? 29 10:19 tx_intf_map
+-rw------- 1 root root 0  6?? 29 10:19 tx_bd_stats_map
+-rw------- 1 root root 0  6?? 29 10:19 tmac_stats_map
+-rw------- 1 root root 0  6?? 29 10:19 tmac_map
+-rw------- 1 root root 0  6?? 29 10:19 smac_map
+-rw------- 1 root root 0  6?? 29 10:19 rt_v6_stats_map
+-rw------- 1 root root 0  6?? 29 10:19 rt_v4_stats_map
+-rw------- 1 root root 0  6?? 29 10:19 rt_v4_map
+-rw------- 1 root root 0  6?? 29 10:19 polx_map
+-rw------- 1 root root 0  6?? 29 10:19 pkts
+-rw------- 1 root root 0  6?? 29 10:19 pkt_ring
+-rw------- 1 root root 0  6?? 29 10:19 pgm_tbl
+-rw------- 1 root root 0  6?? 29 10:19 nh_map
+-rw------- 1 root root 0  6?? 29 10:19 nat_v4_map
+-rw------- 1 root root 0  6?? 29 10:19 mirr_map
+-rw------- 1 root root 0  6?? 29 10:19 intf_stats_map
+-rw------- 1 root root 0  6?? 29 10:19 intf_map
+-rw------- 1 root root 0  6?? 29 10:19 fc_v4_stats_map
+-rw------- 1 root root 0  6?? 29 10:19 fc_v4_map
+-rw------- 1 root root 0  6?? 29 10:19 fcas
+-rw------- 1 root root 0  6?? 29 10:19 dmac_map
+-rw------- 1 root root 0  6?? 29 10:19 ct_v4_map
+-rw------- 1 root root 0  6?? 29 10:19 bd_stats_map
+-rw------- 1 root root 0  6?? 29 10:19 acl_v6_stats_map
+-rw------- 1 root root 0  6?? 29 10:19 acl_v4_stats_map
+-rw------- 1 root root 0  6?? 29 10:19 acl_v4_map
+```
+
+Using bpftool, it is easy to check state of these maps as follows :
+
+```
+root@nd2:/home/llb# bpftool map dump pinned /opt/loxilb/dp/bpf/intf_map 
+[{
+        "key": {
+            "ifindex": 2,
+            "ing_vid": 0,
+            "pad": 0
+        },
+        "value": {
+            "ca": {
+                "act_type": 11,
+                "ftrap": 0,
+                "oif": 0,
+                "cidx": 0
+            },
+            "": {
+                "set_ifi": {
+                    "xdp_ifidx": 1,
+                    "zone": 0,
+                    "bd": 3801,
+                    "mirr": 0,
+                    "polid": 0,
+                    "r": [0,0,0,0,0,0
+                    ]
+                }
+            }
+        }
+    },{
+        "key": {
+            "ifindex": 3,
+            "ing_vid": 0,
+            "pad": 0
+        },
+        "value": {
+            "ca": {
+                "act_type": 11,
+                "ftrap": 0,
+                "oif": 0,
+                "cidx": 0
+            },
+            "": {
+                "set_ifi": {
+                    "xdp_ifidx": 3,
+                    "zone": 0,
+                    "bd": 3803,
+                    "mirr": 0,
+                    "polid": 0,
+                    "r": [0,0,0,0,0,0
+                    ]
+                }
+            }
+        }
+    }
+]
+```
 
 
 
