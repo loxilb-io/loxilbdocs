@@ -28,6 +28,7 @@ loxilb aims to provide the following :
 -  Seamless integration with goBGP based routing stack
 -  Easily cuztomizable to run in DPU environments
    - *goLang based easy to use APIs/Interfaces*
+-  Cloud-native Network Functions (CNF) form-factor by default
 
 ## Documentation
 
