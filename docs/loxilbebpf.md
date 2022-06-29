@@ -32,12 +32,12 @@ ntc filter del dev eth1 ingress
 
 To check:
 ```
-root@nd2:/home/llb# tc filter show dev hs2 ingress
+root@nd2:/home/llb# ntc filter show dev hs2 ingress
 filter protocol all pref 49152 bpf chain 0 
 filter protocol all pref 49152 bpf chain 0 handle 0x1 llb_ebpf_main.o:[tc_packet_parser] direct-action not_in_hw id 8715 tag 43a829222e969bce jited 
 ```
 
-*Please not that ntc is the customized tc tool from iproute2 package which can be found in loxilb's repository*
+*Please not that <b>ntc</b> is the customized tc tool from iproute2 package which can be found in loxilb's repository*
 
 ## Entry points of loxilb eBPF
 
