@@ -12,13 +12,13 @@ drwxrwxrwt 3 root root    0  6?? 20 11:17 dp
 
 As the name suggests and based on hook point, *xdp* version does XDP packet processing while *ebpf* version is used at TC layer for TC eBPF processing. Interesting enough, the packet forwarding code is largely agnostic of its final hook point due to usage of a light abstraction layer to hide differences between eBPF and XDP layer.
 
-Now this beckons the question why separate hook points and how does it all work together ? loxilb does bulk of its processing at TC eBPF layer as this layer is most optimized for doing L4+ processing needed for loxilb operation. XDP's frame format is different than what is used by skb (linux kernel's generic socket buffer). This makes in very difficult (if not impossible) to do tcp checksum offload and other such features used by linux networking stack for ages. In short if we need to do such operations XDP performance will be inherently slow. XDP as such is perfect for quick operations at l2 layer. loxilb uses XDP to do certain operations like mirroring. Due to how TC eBPF works, it is difficult to work with multiple packet copies and loxilb's TC eBPF offloads some functinality to XDP layer in such special cases.
+Now this beckons the question why separate hook points and how does it all work together ? loxilb does bulk of its processing at TC eBPF layer as this layer is most optimized for doing L4+ processing needed for loxilb operation. XDP's frame format is different than what is used by skb (linux kernel's generic socket buffer). This makes it very difficult (if not impossible) to do tcp checksum offload and other such features used by linux networking stack for quite some time now. In short, if we need to do such operations, XDP performance will be inherently slow. XDP as such is perfect for quick operations at l2 layer. loxilb uses XDP to do certain operations like mirroring. Due to how TC eBPF works, it is difficult to work with multiple packet copies and loxilb's TC eBPF offloads some functinality to XDP layer in such special cases.
 
 ![base](photos/base.png)
 
 ## Loading of loxilb eBPF program
 
-loxilb's go agent by default loads the loxilb ebpf programs to all the interfaces(only physical/real/bond/wireguard) available  in the system. As loxilb is designed to run in its own container, this is convienient for users who dont want to have to manually load/unload eBPF programs. However, it is still possible to do so manually :
+loxilb's goLang based agent by default loads the loxilb ebpf programs in all the interfaces(only physical/real/bond/wireguard) available in the system. As loxilb is designed to run in its own docker/container, this is convenient for users who dont want to have to manually load/unload eBPF programs. However, it is still possible to do so manually if need arises :
 
 To load :
 ```
@@ -49,13 +49,15 @@ loxilb's eBPF code is usually divided into two program sections with the followi
 - tc_packet_func_slow\
   This is responsible mainly for doing NAT lookup and stateful conntrack implementation. Once conntrack entry transitions to established state, the forwarding then can happen directly from tc_packet_fn
   
+loxilb's XDP code is contained in the following section :
+
 - xdp_packet_func\
   This is the entry point for packet processing when hook point is XDP instead of TC eBPF
   
   
 ## Pinned Maps of loxilb eBPF
   
-All maps used by loxilb eBPF are mounted as below :
+All maps used by loxilb eBPF are mounted in the file-system as below :
 
 ```
 root@nd2:/home/llb/loxilb# ls -lart /opt/loxilb/dp/
@@ -162,10 +164,15 @@ root@nd2:/home/llb# bpftool map dump pinned /opt/loxilb/dp/bpf/intf_map
 ]
 ```
 
+As our development progresses, we will keep updating details about these map's internals
+
+
 ## loxilb eBPF pipeline at a glance
 
 The following figure shows a very high-level diagram of packet flow through loxilb  eBPF pipeline :
 
 ![base](photos/pipe.png)
+
+We use eBPF tail calls to jump from one section to another majorly due to the fact that there is clear separation for CT (conntrack) functionality and packet-forwarding logic. At the same time, kernel's built in eBPF-verifier imposes a maximum code size limit for a single program.
 
 
