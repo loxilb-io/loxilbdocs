@@ -14,6 +14,8 @@ As the name suggests and based on hook point, *xdp* version does XDP packet proc
 
 Now this beckons the question why separate hook points and how does it all work together ? loxilb does bulk of its processing at TC eBPF layer as this layer is most optimized for doing L4+ processing needed for loxilb operation. XDP's frame format is different than what is used by skb (linux kernel's generic socket buffer). This makes in very difficult (if not impossible) to do tcp checksum offload and other such features used by linux networking stack for ages. In short if we need to do such operations XDP performance will be inherently slow. XDP as such is perfect for quick operations at l2 layer. loxilb uses XDP to do certain operations like mirroring. Due to how TC eBPF works, it is difficult to work with multiple packet copies and loxilb's TC eBPF offloads some functinality to XDP layer in such special cases.
 
+![base](photos/base.png)
+
 ## Loading of loxilb eBPF program
 
 loxilb's go agent by default loads the loxilb ebpf programs to all the interfaces(only physical/real/bond/wireguard) available  in the system. As loxilb is designed to run in its own container, this is convienient for users who dont want to have to manually load/unload eBPF programs. However, it is still possible to do so manually :
@@ -49,6 +51,7 @@ loxilb's eBPF code is usually divided into two program sections with the followi
   
 - xdp_packet_func\
   This is the entry point for packet processing when hook point is XDP instead of TC eBPF
+  
   
 ## Pinned Maps of loxilb eBPF
   
@@ -159,7 +162,10 @@ root@nd2:/home/llb# bpftool map dump pinned /opt/loxilb/dp/bpf/intf_map
 ]
 ```
 
+## loxilb eBPF pipeline at a glance
 
+The following figure shows a very high-level diagram of packet flow through loxilb  eBPF pipeline :
 
+![base](photos/pipe.png)
 
 
