@@ -36,7 +36,7 @@ loxilb aims to provide the following :
 - [What is service type - external load-balancer](docs/lb.md)
 - [loxilb arch in brief](docs/arch.md)
 - [loxilb code organization](docs/code.md)
-- [loxilb eBPF internals](docs/loxilbebpf.md)
+- [loxilb eBPF/XDP internals](docs/loxilbebpf.md)
 - [howto run](docs/run.md)
 - [ccm plugin howto](docs/ccm.md)
 - [loxilb debugging](docs/debugging.md)
