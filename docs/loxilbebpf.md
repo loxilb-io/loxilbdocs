@@ -47,7 +47,7 @@ loxilb's eBPF code is usually divided into two program sections with the followi
   This alongwith the consequent code does majority of the packet processing. If conntrack entries are in established state, this is also responsible for packet tx. However if conntrack entry for a particular packet flow is not established, it makes a bpf tail call to the *tc_packet_func_slow*
   
 - tc_packet_func_slow\
-  This is responsible mainly for doing NAT lookup and stateful conntrack implementation. Once conntrack entry transitions to established state, the forwarding then can happen directly from tc_packet_fn
+  This is responsible mainly for doing NAT lookup and stateful conntrack implementation. Once conntrack entry transitions to established state, the forwarding then can happen directly from tc_packet_func
   
 loxilb's XDP code is contained in the following section :
 
