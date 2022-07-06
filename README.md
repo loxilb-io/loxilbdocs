@@ -34,17 +34,18 @@ loxilb aims to provide the following :
 
 - [What is eBPF](docs/ebpf.md)
 - [What is service type - external load-balancer](docs/lb.md)
-- [loxilb arch in brief](docs/arch.md)
-- [loxilb code organization](docs/code.md)
-- [loxilb eBPF/XDP internals](docs/loxilbebpf.md)
-- [howto run](docs/run.md)
-- [ccm plugin howto](docs/ccm.md)
-- [loxilb debugging](docs/debugging.md)
+- [Architecture in brief](docs/arch.md)
+- [Code organization](docs/code.md)
+- [eBPF/XDP internals of loxilb](docs/loxilbebpf.md)
+- [Howto - run/use](docs/run.md)
+- [Howto - ccm plugin](docs/ccm.md)
+- [Howto - debug](docs/debugging.md)
 - [Cmd guide](docs/cmd.md)
 - [Api guide](docs/api.md)
 - [Performance](docs/perf.md)
-- [loxilb roadmap](docs/roadmap.md)
+- [Development Roadmap](docs/roadmap.md)
 - [Contribute](docs/contribute.md)
+- [FAQs](docs/faq.md)
 
 ### Host OS requirements
 To install Loxilight software packages, you need the 64-bit version of one of these OS versions:
