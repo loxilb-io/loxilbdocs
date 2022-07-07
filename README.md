@@ -40,7 +40,7 @@ loxilb aims to provide the following :
 - [Howto - run/use](docs/run.md)
 - [Howto - ccm plugin](docs/ccm.md)
 - [Howto - debug](docs/debugging.md)
-- [Cmd guide](docs/cmd.md)
+- [Cmd/Config guide](docs/cmd.md)
 - [Api guide](docs/api.md)
 - [Performance](docs/perf.md)
 - [Development Roadmap](docs/roadmap.md)
