@@ -34,13 +34,20 @@ sudo ./loxilb
 
 ```
 docker pull loxilbio/loxilb:beta
-docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --name loxilb loxilbio/loxilb:beta
 ```
 
-* Run loxilb 
+* To run loxilb docker, we can use the following commands :
+
 ```
+docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --entrypoint /root/loxilb-io/loxilb/loxilb --name loxilb loxilbio/loxilb:beta
+```
+OR
+
+```
+docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --name loxilb loxilbio/loxilb:beta
 docker exec -it loxilb bash
 cd /root/loxilb-io/loxilb
 ./loxilb 
 ```
+The latter option is useful for those who are open to experiment/explore
 
