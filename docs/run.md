@@ -24,6 +24,9 @@ git clone https://github.com/loxilb-io/loxilb.git
 cd loxilb
 ./ebpf/utils/mkllb_bpffs.sh
 make
+cd ebpf/libbpf/src
+sudo make install
+cd -
 sudo ./loxilb 
 
 ```
