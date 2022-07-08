@@ -28,7 +28,11 @@ cd ebpf/libbpf/src
 sudo make install
 cd -
 sudo ./loxilb 
+```
+* To run with integrated api-server, we can use the following :
 
+```
+./loxilb --tls-key=api/certification/server.key --tls-certificate=api/certification/server.crt --host=0.0.0.0 --port=11111 --tls-port=8091 -a
 ```
 
 ## From docker (easy)
