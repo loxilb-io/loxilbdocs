@@ -69,5 +69,11 @@ docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -
 # If we still want to connect loxilb docker additionally to docker's default network or more macvlan networks
 docker network connect bridge loxilb
 ```
-*Note - While working with macvlan interfaces, the parent/underlying interface should be put in promiscous mode*
+  *Note - While working with macvlan interfaces, the parent/underlying interface should be put in promiscous mode*
+
+* Finally, to run loxilb docker with all modules loaded, the following command can be used :
+
+```
+docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log -v /var/run/:/var/run --net=llbnet --ip=172.30.1.193 --entrypoint /root/loxilb-io/loxilb/loxilb --name loxilb loxilbio/loxilb:beta "--tls-key=api/certification/server.key --tls-certificate=api/certification/server.crt --host=0.0.0.0 --port=11111 --tls-port=8091 -a"
+```
 
