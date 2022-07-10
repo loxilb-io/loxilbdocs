@@ -20,6 +20,15 @@ At this point of time, loxilb-team is working hard to provide a high-quality ope
 
 Very much so. loxilb can run in a standalone mode. Please follow various guides available in loxilb repo to run loxilb in a standalone mode.
 
+* <b>How loxilb ensures conformance wtih Kubernetes ?</b>
+
+loxilb uses kubetest/kubetest2 plus various  other test-utilities as part of its CI/CD workflows. We are also planning to get ourselves officially supported by distros like  RedHat Openshift
+
+* <b>Where is loxilb deployed so far ?</b>
+
+loxilb is currently used in academia for R&D and various organizations are in process of using it for PoCs. We will update the list of deployments as and when they are officially known
+
+
 
 
 
