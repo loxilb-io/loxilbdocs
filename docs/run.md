@@ -74,6 +74,6 @@ docker network connect bridge loxilb
 * Finally, to run loxilb docker with all modules loaded, the following command can be used :
 
 ```
-docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log -v /var/run/:/var/run --net=llbnet --ip=172.30.1.193 --entrypoint /root/loxilb-io/loxilb/loxilb --name loxilb loxilbio/loxilb:beta --tls-key=api/certification/server.key --tls-certificate=api/certification/server.crt --host=0.0.0.0 --port=11111 --tls-port=8091 -a
+docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log -v /var/run/:/var/run --net=llbnet --ip=172.30.1.193 --entrypoint /root/loxilb-io/loxilb/loxilb --name loxilb loxilbio/loxilb:beta --tls-key=/root/loxilb-io/loxilb/api/certification/server.key --tls-certificate=/root/loxilb-io/loxilb/api/certification/server.crt --host=0.0.0.0 --port=11111 --tls-port=8091 -a
 ```
 
