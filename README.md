@@ -19,7 +19,7 @@ loxilb aims to provide the following :
    - *K8s CCM compliance*
 -  Optimized SRv6 implementation in eBPF 
 -  Make GTP tunnels first class citizens of the Linux world 
-   - *Avoid multiple hops to do GTP & Load-balancing etc*  
+   - *Support for QFI and other extension headers*  
 -  eBPF/XDP based kernel forwarding (GPLv2 license)
    - *Complete kernel bypass with built-in advanced features like conntrack, QoS etc*
    - *Highly scalable with low-latency & high througput*
