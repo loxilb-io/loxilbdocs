@@ -29,11 +29,6 @@ sudo make install
 cd -
 sudo ./loxilb 
 ```
-* To run with integrated api-server, we can use the following :
-
-```
-./loxilb --tls-key=api/certification/server.key --tls-certificate=api/certification/server.crt --host=0.0.0.0 --port=11111 --tls-port=8091 -a
-```
 
 ## From docker (easy)
 
@@ -46,7 +41,7 @@ docker pull loxilbio/loxilb:beta
 * To run loxilb docker, we can use the following commands :
 
 ```
-docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log -v /var/run/:/var/run --name loxilb loxilbio/loxilb:beta
+docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --name loxilb loxilbio/loxilb:beta
 ```
 
 * To drop in to a shell of loxilb doker :
@@ -64,16 +59,10 @@ docker exec -it loxilb bash
 docker network create -d macvlan -o parent=enp0s3   --subnet 172.30.1.0/24   --gateway 172.30.1.254 --aux-address 'host=172.30.1.193’ llbnet
 
 # Run loxilb docker with the created macvlan 
-docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log -v /var/run/:/var/run --net=llbnet --ip=172.30.1.193 --name loxilb loxilbio/loxilb:beta
+docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --net=llbnet --ip=172.30.1.193 --name loxilb loxilbio/loxilb:beta
 
 # If we still want to connect loxilb docker additionally to docker's default network or more macvlan networks
 docker network connect bridge loxilb
 ```
   *Note - While working with macvlan interfaces, the parent/underlying interface should be put in promiscous mode*
-
-* Finally, to run loxilb docker with all modules loaded, the following command can be used :
-
-```
-docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log -v /var/run/:/var/run --net=llbnet --ip=172.30.1.193 --entrypoint /root/loxilb-io/loxilb/loxilb --name loxilb loxilbio/loxilb:beta --tls-key=/root/loxilb-io/loxilb/api/certification/server.key --tls-certificate=/root/loxilb-io/loxilb/api/certification/server.crt --host=0.0.0.0 --port=11111 --tls-port=8091 -a
-```
 
