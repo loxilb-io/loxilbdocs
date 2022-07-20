@@ -38,7 +38,7 @@ loxilb aims to provide the following :
 - [Code organization](docs/code.md)
 - [eBPF/XDP internals of loxilb](docs/loxilbebpf.md)
 - [Howto - build/run](docs/run.md)
-- [Howto - ccm plugin](docs/ccm.md)
+- [Howto - ccm plugin](docs/run_loxi_ccm.md)
 - [Howto - debug](docs/debugging.md)
 - [Cmd/Config guide](docs/cmd.md)
 - [Api guide](docs/api.md)
