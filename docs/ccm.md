@@ -1,9 +1,9 @@
 Howto - ccm plugin
 ======
-loxi-ccm is a [cloud-controller-manager][ccmLink] that provides kubernetes with loxilb load balancer.
-kubernetes provides the [cloud-provider interface][cloudProviderLink] for the implementation of external cloud provider-specific control logic, and loxi-ccm is an implementation of the cloud-provider interface.
+loxi-ccm is a [cloud-manager][ccmLink] that provides kubernetes with loxilb load balancer.
+kubernetes provides the [cloud-provider interface][cloudProviderLink] for the implementation of external cloud provider-specific  logic, and loxi-ccm is an implementation of the cloud-provider interface.
 
-[ccmLink]: https://kubernetes.io/docs/concepts/architecture/cloud-controller/ "k8s Cloud Controller Manager concept"
+[ccmLink]: https://kubernetes.io/docs/concepts/architecture/cloud-controller/ "k8s Cloud Manager concept"
 [cloudProviderLink]: https://github.com/kubernetes/cloud-provider "k8s cloud-provider github page"
 
 Typical loxi-ccm deployment topology
