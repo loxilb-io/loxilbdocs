@@ -3,7 +3,7 @@
 ## loxilb Background 
 loxilb started as a project to ease deployments of cloud-native/kubernetes workloads for the edge. When we deploy services in public clouds like AWS/GCP, the services becomes easily accessible or exported to the outside world. The public cloud providers, usually by default, associate load-balancer instances for incoming requests to these services to ensure everything is quite smooth. 
 
-However, for on-prem and edge deployments, there is no *service type - external load balancer* provider by default. For a long time, MetalLB from google was the only choice for the needy. But edge services are a different ball game altogether due to the fact that there are so many exotic protocols in play like GTP, SCTP, SRv6 etc and integrating everything into a seamlessly working solution has been quite difficult.
+However, for on-prem and edge deployments, there is no *service type - external load balancer* provider by default. For a long time, [MetalLB](https://metallb.universe.tf/) from Google was the only choice for the needy. But edge services are a different ball game altogether due to the fact that there are so many exotic protocols in play like GTP, SCTP, SRv6 etc and integrating everything into a seamlessly working solution has been quite difficult.
 
 loxilb dev team was approached by many people who wanted to solve this problem. As a first step to solve the problem, it became apparent that networking stack provided by Linux kernel, although very solid,  really lacked the development process agility to quickly provide the permutations and combinations of protocols and the necessary encap, decap and stateful load-balancing. Our search led us to the awesome tech developed by the Linux community - eBPF. The flexibility to introduce new functionality into Kernel as a sandbox program was a complete fit to our design philosophy. Although we did consider DPDK for a while, but the fact that it needs dedicated cores/CPUs really defeats the whole purpose of making energy-efficient edge architectures.
 
@@ -21,9 +21,9 @@ loxilb aims to provide the following :
 -  Make GTP tunnels first class citizens of the Linux world 
    - *Support for QFI and other extension headers*  
 -  eBPF/XDP based kernel forwarding (GPLv2 license)
-   - *Complete kernel bypass with built-in advanced features like conntrack, QoS etc*
+   - *Complete kernel bypass with home-grown stack for advanced features like [Conntrack](https://thermalcircle.de/doku.php?id=blog:linux:connection_tracking_1_modules_and_hooks), QoS etc*
    - *Highly scalable with low-latency & high througput*
-   - *Hybrid stack utilizing both XDP and TC-eBPF* 
+   - *Mainly uses TC-eBPF hooks* 
 -  goLang based control plane components (Apache license)
 -  Seamless integration with goBGP based routing stack
 -  Easily cuztomizable to run in DPU environments
@@ -36,7 +36,7 @@ loxilb aims to provide the following :
 - [What is service type - external load-balancer](docs/lb.md)
 - [Architecture in brief](docs/arch.md)
 - [Code organization](docs/code.md)
-- [eBPF/XDP internals of loxilb](docs/loxilbebpf.md)
+- [eBPF internals of loxilb](docs/loxilbebpf.md)
 - [Howto - build/run](docs/run.md)
 - [Howto - ccm plugin](docs/ccm.md)
 - [Howto - debug](docs/debugging.md)
@@ -63,5 +63,8 @@ To install Loxilight software packages, you need the 64-bit version of one of th
 * Kubernetes 1.20
 * Kubernetes 1.21
 * Kubernetes 1.22
+
+### Hardware Requirements
+* None as long as above criteria are met
 
 
