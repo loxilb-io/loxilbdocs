@@ -50,12 +50,12 @@ docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -
 docker exec -it loxilb bash
 ```
 
-* For load-balancing to effetively work in a bare-metal environment, we need multiple interfaces assigned to the docker (external and internal connectivitiy) 
+* For load-balancing to effectively work in a bare-metal environment, we need multiple interfaces assigned to the docker (external and internal connectivitiy) 
 
   loxilb docker relies on docker's macvlan driver for achieving this. The following is an example of creating macvlan network and using with loxilb
 
 ```
-# Create a mac-vlan (on an underlying interface enp0s3)
+# Create a mac-vlan (on an underlying interface e.g. enp0s3)
 docker network create -d macvlan -o parent=enp0s3   --subnet 172.30.1.0/24   --gateway 172.30.1.254 --aux-address 'host=172.30.1.193’ llbnet
 
 # Run loxilb docker with the created macvlan 
