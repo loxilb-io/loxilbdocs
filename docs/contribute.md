@@ -17,7 +17,7 @@ Please note we have a code of conduct, please follow it in all your interactions
    do not have permission to do that, you may request the second reviewer to merge it for you.
 5. For Pull Requests to be successfully merged to main branch :
    - It has to be code-reviewed by the maintainer(s)
-   - Integrated Travis-CI run shoud pass without errors
+   - Integrated Travis-CI runs should pass without errors
    
 *  Detailed instructions to help new developers setup the development/test environment can be found [here](https://github.com/loxilb-io/loxilbdocs/blob/main/docs/run.md)
 *  Alternatively, they can email developers at [loxilb-devel@netlox.io]. , checkout existing issues in [github](https://github.com/loxilb-io/loxilb/issues) , visit the loxilb [forum](https://www.loxilb.io/forum) or loxilb [slack channel](https://netlox.slack.com/archives/C03J0JSGBAN)
