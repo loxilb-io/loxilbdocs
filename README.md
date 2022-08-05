@@ -19,7 +19,8 @@ loxilb aims to provide the following :
    - *L4/NAT stateful loadbalancer*
    - *High-availability support*
    - *K8s CCM compliance*
--  Optimized SRv6 implementation in eBPF 
+-  Optimized SRv6 implementation in eBPF
+-  L7 Proxy support
 -  Make GTP tunnels first class citizens of the Linux world 
    - *Support for QFI and other extension headers*  
 -  eBPF based kernel forwarding (GPLv2 license)
