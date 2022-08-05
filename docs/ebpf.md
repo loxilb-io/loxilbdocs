@@ -1,6 +1,6 @@
 # What is eBPF ??
 
-eBPF has been making quite some news lately.  An elegant way to extend the linux kernel (or windows)  has far reaching implications. Although initially, eBPF was used to enhance system observability beyond existing tools, we will explore in this post how eBPF can be used for enhancing Linux networking performance. 
+eBPF has been making quite some news lately.  An elegant way to extend the linux kernel (or windows)  has far reaching implications. Although initially, eBPF was used to enhance system observability beyond existing tools, we will explore in this post how eBPF can be used for enhancing Linux networking performance. There are a lot of additional resources about eBPF in the eBPF [project page](https://ebpf.io).
 
 ## A quick recap
 
