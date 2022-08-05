@@ -41,5 +41,5 @@ Initial release of loxilb
   - OpenShift Integration
   
 * **DPU Support**:
-  - Nvidia BF2 Support
+  - Nvidia BF2 Support (Depends on community/public demand)
 
