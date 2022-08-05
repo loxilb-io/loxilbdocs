@@ -66,7 +66,7 @@ Requests/sec:  46894.07
 Transfer/sec:  3.35MB
 ```
 
-Based on the above tests loxilb performs at 98% of the baseline numbers.
+Based on the above tests, loxilb performs at 98% of the baseline numbers in requests/sec and latency actually improves by 20% with loxilb.
 
 ## Multi node performance (real topology)
 
