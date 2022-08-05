@@ -43,7 +43,7 @@ loxilb aims to provide the following :
 - [Howto - ccm plugin](docs/ccm.md)
 - [Howto - debug](docs/debugging.md)
 - [Cmd/Config guide](docs/cmd.md)
-- [Api guide](docs/api.md)
+- [Api usage/dev guide](docs/api.md)
 - [Performance](docs/perf.md)
 - [Development Roadmap](docs/roadmap.md)
 - [Contribute](docs/contribute.md)
@@ -68,5 +68,3 @@ To install Loxilight software packages, you need the 64-bit version of one of th
 
 ### Hardware Requirements
 * None as long as above criteria are met
-
-
