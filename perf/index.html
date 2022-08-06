@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/perf/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Performance - LoxiLB Documentations</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Performance";
+        var mkdocs_page_input_path = "perf.md";
+        var mkdocs_page_url = "/loxilbdocs/perf/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-21G7NBL2BN"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-21G7NBL2BN');
+      </script>
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> LoxiLB Documentations
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="" href="../index.md">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ebpf/">What is eBPF</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../lb/">What is service type - external load-balancer</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../arch/">Architecture in brief</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../code/">Code organization</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../loxilbebpf/">eBPF internals of loxilb</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../run/">Howto - build/run</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ccm/">Howto - ccm plugin</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../debugging/">Howto - debug</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cmd/">Cmd/Config guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api/">Api usage/dev guide</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Performance</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#single-node-performance-simple">Single node performance (simple)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#multi-node-performance-real-topology">Multi node performance (real topology)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#comparision-with-lvs">Comparision with LVS</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../roadmap/">Development Roadmap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../contribute/">Contribute</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../faq/">FAQs</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">LoxiLB Documentations</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Performance</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="loxilb-performance">loxilb Performance</h1>
+<h2 id="single-node-performance-simple">Single node performance (simple)</h2>
+<p>loxilb is run as a docker inside a VM. The VM is assigned the following resources :  </p>
+<p><em>Intel(R) Core(TM) i7-4770HQ CPU @ 2.20GHz - 2 core RAM 4GB</em></p>
+<p>All the other hosts are simulated with docker pods inside the same VM. The following command can be used to configure lb for the given topology:</p>
+<pre><code># loxicmd create lb 20.20.20.1 --tcp=2020:5001 --endpoints=31.31.31.1:1,32.32.32.1:1,17.17.17.1:1
+</code></pre>
+<pre><code class="language-mermaid">graph LR;
+    A[100.100.100.1]--&gt;B[loxilb];
+    B--&gt;C[31.31.31.1];
+    B--&gt;D[32.32.32.1];
+    B--&gt;E[17.17.17.1];
+</code></pre>
+<p>A go webserver with an empty response is used for benchmark purposes. The code is as following :</p>
+<pre><code>import (
+        &quot;log&quot;
+        &quot;net/http&quot;
+)
+
+func main() {
+        http.HandleFunc(&quot;/&quot;, func(w http.ResponseWriter, r *http.Request) {
+
+        })
+        if err := http.ListenAndServe(&quot;:5001&quot;, nil); err != nil {
+                log.Fatal(&quot;ListenAndServe: &quot;, err)
+        }
+}
+</code></pre>
+<p>The above code is run in each of the load-balancer end-points.</p>
+<p>We use <a href="https://github.com/wg/wrk">wrk</a> HTTP benchmarking tool for this test. This is run inside the client "100.100.100.1" host. </p>
+<pre><code>root@loxilb:/home/loxilb # wrk -t8 -c400 -d30s http://20.20.20.1:2020/
+Running 30s test @ http://20.20.20.1:2020/
+  8 threads and 400 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    11.93ms   13.66ms 164.26ms   86.43%
+    Req/Sec     5.82k     0.99k   14.19k    70.55%
+  1391123 requests in 30.09s, 99.50MB read
+Requests/sec:  46232.45
+Transfer/sec:  3.31MB
+</code></pre>
+<p>As a baseline, we compare the numbers with loopback test i.e running <em>wrk</em> in the same host as the webserver</p>
+<pre><code>root@loxilb:/home/loxilb # wrk -t8 -c400 -d30s http://127.0.0.1:5001/
+Running 30s test @ http://127.0.0.1:5001/
+  8 threads and 400 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    15.20ms   19.81ms 240.03ms   86.30%
+    Req/Sec     5.90k     3.74k   24.39k    74.35%
+  1410741 requests in 30.08s, 100.90MB read
+Requests/sec:  46894.07
+Transfer/sec:  3.35MB
+</code></pre>
+<p>Based on the above tests, loxilb performs at 98% of the baseline numbers in requests/sec and latency actually improves by 20% with loxilb.</p>
+<h2 id="multi-node-performance-real-topology">Multi node performance (real topology)</h2>
+<p>The topology for this test is similar to the above case. However, all the hosts (client and load-balancer end-points) as well as loxilb run in separate dedicated systems. All other configurations remain the same</p>
+<p><em>Perf numbers to be updated</em></p>
+<h2 id="comparision-with-lvs">Comparision with <a href="https://en.wikipedia.org/wiki/Linux_Virtual_Server">LVS</a></h2>
+<p>LVS is based on linux kernel networking and is a popular open-source load-balancer. Comparision with LVS will show us how eBPF can improve on linux kernel networking</p>
+<p><em>To be done and updated</em></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../api/" class="btn btn-neutral float-left" title="Api usage/dev guide"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../roadmap/" class="btn btn-neutral float-right" title="Development Roadmap">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../api/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../roadmap/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

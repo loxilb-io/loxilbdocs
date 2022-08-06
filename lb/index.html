@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/lb/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>What is service type - external load-balancer - LoxiLB Documentations</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "What is service type - external load-balancer";
+        var mkdocs_page_input_path = "lb.md";
+        var mkdocs_page_url = "/loxilbdocs/lb/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-21G7NBL2BN"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-21G7NBL2BN');
+      </script>
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> LoxiLB Documentations
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="" href="../index.md">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ebpf/">What is eBPF</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">What is service type - external load-balancer</a>
+    <ul class="current">
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../arch/">Architecture in brief</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../code/">Code organization</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../loxilbebpf/">eBPF internals of loxilb</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../run/">Howto - build/run</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ccm/">Howto - ccm plugin</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../debugging/">Howto - debug</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cmd/">Cmd/Config guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api/">Api usage/dev guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../perf/">Performance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../roadmap/">Development Roadmap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../contribute/">Contribute</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../faq/">FAQs</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">LoxiLB Documentations</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>What is service type - external load-balancer</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="what-is-service-type-external-load-balancer-in-kubernetes">What is service type external load-balancer in Kubernetes ?</h1>
+<p>There are many different types of services like NodePort, ClusterIP etc. However, service type external load-balancer provides a way of exposing your application internally and/or externally in the perspective of the k8s cluster. Usually, Kubernetes CCM provider ensures that a load balancer of some sort is created, deleted and updated in your cloud. For on-prem or edge deployments however, organziations need to provide their own CCM load-balancer functions. MetalLB has been the choice for such cases for long. </p>
+<p><img alt="load_balancer" src="../photos/ExternalLB.png" /></p>
+<p>But edge services need to support so many exotic protocols in play like GTP, SCTP, SRv6 etc and integrating everything into a seamlessly working solution has been quite difficult. This is an area where loxilb aims to play a pivotal role.</p>
+<p>The following is a simple yaml config file which needs to be applied to create a service type load-balancer :</p>
+<p><code>"type": "LoadBalancer"
+ {
+      "kind": "Service",
+      "apiVersion": "v1",
+      "metadata": {
+        "name": "sample-service"
+      },
+      "spec": {
+        "ports": [{
+          "port": 9001,
+          "targetPort": 5001
+        }],
+        "selector": {
+          "app": "sample"
+        },
+        "type": "LoadBalancer"
+      }
+    }</code></p>
+<p>However, if there is no K8s CCM plugin implementing external service load-balancer, such services won't be created and remain in pending state forever.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../ebpf/" class="btn btn-neutral float-left" title="What is eBPF"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../arch/" class="btn btn-neutral float-right" title="Architecture in brief">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../ebpf/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../arch/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

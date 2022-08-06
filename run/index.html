@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/run/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Howto - build/run - LoxiLB Documentations</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Howto - build/run";
+        var mkdocs_page_input_path = "run.md";
+        var mkdocs_page_url = "/loxilbdocs/run/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-21G7NBL2BN"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-21G7NBL2BN');
+      </script>
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> LoxiLB Documentations
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="" href="../index.md">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ebpf/">What is eBPF</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../lb/">What is service type - external load-balancer</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../arch/">Architecture in brief</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../code/">Code organization</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../loxilbebpf/">eBPF internals of loxilb</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Howto - build/run</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#right-from-code-difficult">Right from code (difficult)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#from-docker-easy">From docker (easy)</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ccm/">Howto - ccm plugin</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../debugging/">Howto - debug</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cmd/">Cmd/Config guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api/">Api usage/dev guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../perf/">Performance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../roadmap/">Development Roadmap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../contribute/">Contribute</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../faq/">FAQs</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">LoxiLB Documentations</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Howto - build/run</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="loxilb-how-to-buildrun">loxilb - How to build/run</h1>
+<h2 id="right-from-code-difficult">Right from code (difficult)</h2>
+<ul>
+<li>Build custom iproute2 package </li>
+</ul>
+<pre><code>git clone https://github.com/loxilb-io/iproute2.git
+cd iproute2
+cd libbpf/src/
+mkdir build
+DESTDIR=build make install
+cd ../../
+export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:`pwd`/libbpf/src/
+LIBBPF_FORCE=on LIBBPF_DIR=`pwd`/libbpf/src/build ./configure
+make
+sudo cp -f tc/tc /usr/local/sbin/ntc
+</code></pre>
+<ul>
+<li>Build and run loxilb </li>
+</ul>
+<pre><code>git clone https://github.com/loxilb-io/loxilb.git
+cd loxilb
+./ebpf/utils/mkllb_bpffs.sh
+make
+cd ebpf/libbpf/src
+sudo make install
+cd -
+sudo ./loxilb 
+</code></pre>
+<h2 id="from-docker-easy">From docker (easy)</h2>
+<ul>
+<li>Get the loxilb official docker image </li>
+</ul>
+<pre><code>docker pull loxilbio/loxilb:beta
+</code></pre>
+<ul>
+<li>To run loxilb docker, we can use the following commands :</li>
+</ul>
+<pre><code>docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --name loxilb loxilbio/loxilb:beta
+</code></pre>
+<ul>
+<li>To drop in to a shell of loxilb doker :</li>
+</ul>
+<pre><code>docker exec -it loxilb bash
+</code></pre>
+<ul>
+<li>For load-balancing to effectively work in a bare-metal environment, we need multiple interfaces assigned to the docker (external and internal connectivitiy) </li>
+</ul>
+<p>loxilb docker relies on docker's macvlan driver for achieving this. The following is an example of creating macvlan network and using with loxilb</p>
+<pre><code># Create a mac-vlan (on an underlying interface e.g. enp0s3)
+docker network create -d macvlan -o parent=enp0s3   --subnet 172.30.1.0/24   --gateway 172.30.1.254 --aux-address 'host=172.30.1.193’ llbnet
+
+# Run loxilb docker with the created macvlan 
+docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --net=llbnet --ip=172.30.1.193 --name loxilb loxilbio/loxilb:beta
+
+# If we still want to connect loxilb docker additionally to docker's default network or more macvlan networks
+docker network connect bridge loxilb
+</code></pre>
+<p><em>Note - While working with macvlan interfaces, the parent/underlying interface should be put in promiscous mode</em></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../loxilbebpf/" class="btn btn-neutral float-left" title="eBPF internals of loxilb"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../ccm/" class="btn btn-neutral float-right" title="Howto - ccm plugin">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../loxilbebpf/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../ccm/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/faq/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>FAQs - LoxiLB Documentations</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "FAQs";
+        var mkdocs_page_input_path = "faq.md";
+        var mkdocs_page_url = "/loxilbdocs/faq/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-21G7NBL2BN"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-21G7NBL2BN');
+      </script>
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> LoxiLB Documentations
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="" href="../index.md">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ebpf/">What is eBPF</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../lb/">What is service type - external load-balancer</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../arch/">Architecture in brief</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../code/">Code organization</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../loxilbebpf/">eBPF internals of loxilb</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../run/">Howto - build/run</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ccm/">Howto - ccm plugin</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../debugging/">Howto - debug</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cmd/">Cmd/Config guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api/">Api usage/dev guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../perf/">Performance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../roadmap/">Development Roadmap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../contribute/">Contribute</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">FAQs</a>
+    <ul class="current">
+    </ul>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">LoxiLB Documentations</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>FAQs</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="loxilb-faqs">loxilb FAQs</h1>
+<ul>
+<li><b>Does loxilb depend on what kind of CNI is deployed in the cluster ?</b></li>
+</ul>
+<p>Yes, loxilb configuration and operation might be related to which CNI (Calico, Cilium etc) is in use. loxilb just needs a way to find a route to its end-points. This also  depends on how the network topology is laid out. For example, if a separated network for nodePort and external LB services is in effect or not. We will have a detailed guide on best practices for loxilb deployment soon. In the meantime, kindly reach out to us via github or <a href="www.loxilb.io">loxilb forum</a></p>
+<ul>
+<li><b>Can loxilb be possibly run outside the released docker image ?</b></li>
+</ul>
+<p>Yes, loxilb  can be run outside the provided docker image. Docker image gives it good portability across various linux like OS's without any performance impact. However, if need is to run outside its own docker, kindly follow README of various loxilb-io repositories.</p>
+<ul>
+<li><b>Can loxilb also act as a CNI ?</b></li>
+</ul>
+<p>loxilb supports many functionalities of a CNI but loxilb dev team is happy solving external LB and related connectivity problems for the time being. If there is a future requirement not met by currently available CNIs, we might work chip in as well</p>
+<ul>
+<li><b>Is there a commercially supported version of loxilb ?</b></li>
+</ul>
+<p>At this point of time, loxilb-team is working hard to provide a high-quality open-source product. If users need commercial support, kindly get in touch with us</p>
+<ul>
+<li><b>Can loxilb run in a standalone mode (without Kubernetes) ?</b></li>
+</ul>
+<p>Very much so. loxilb can run in a standalone mode. Please follow various guides available in loxilb repo to run loxilb in a standalone mode.</p>
+<ul>
+<li><b>How loxilb ensures conformance wtih Kubernetes ?</b></li>
+</ul>
+<p>loxilb uses kubetest/kubetest2 plus various  other test-utilities as part of its CI/CD workflows. We are also planning to get ourselves officially supported by distros like  RedHat Openshift</p>
+<ul>
+<li><b>Where is loxilb deployed so far ?</b></li>
+</ul>
+<p>loxilb is currently used in academia for R&amp;D and various organizations are in process of using it for PoCs. We will update the list of deployments as and when they are officially known</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../contribute/" class="btn btn-neutral float-left" title="Contribute"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../contribute/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

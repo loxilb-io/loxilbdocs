@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/loxilbebpf/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>eBPF internals of loxilb - LoxiLB Documentations</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "eBPF internals of loxilb";
+        var mkdocs_page_input_path = "loxilbebpf.md";
+        var mkdocs_page_url = "/loxilbdocs/loxilbebpf/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-21G7NBL2BN"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-21G7NBL2BN');
+      </script>
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> LoxiLB Documentations
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="" href="../index.md">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ebpf/">What is eBPF</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../lb/">What is service type - external load-balancer</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../arch/">Architecture in brief</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../code/">Code organization</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">eBPF internals of loxilb</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#loading-of-loxilb-ebpf-program">Loading of loxilb eBPF program</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#entry-points-of-loxilb-ebpf">Entry points of loxilb eBPF</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pinned-maps-of-loxilb-ebpf">Pinned Maps of loxilb eBPF</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#loxilb-ebpf-pipeline-at-a-glance">loxilb eBPF pipeline at a glance</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../run/">Howto - build/run</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ccm/">Howto - ccm plugin</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../debugging/">Howto - debug</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cmd/">Cmd/Config guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api/">Api usage/dev guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../perf/">Performance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../roadmap/">Development Roadmap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../contribute/">Contribute</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../faq/">FAQs</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">LoxiLB Documentations</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>eBPF internals of loxilb</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="loxilb-ebpf-implementation-details">loxilb eBPF implementation details</h1>
+<p>In this section, we will look into details of loxilb ebpf implementation in little details and try to check what goes on under the hood. When loxilb is build, it builds two object files as follows :</p>
+<pre><code>llb@nd2:~/loxilb$ ls -l /opt/loxilb/
+total 396
+drwxrwxrwt 3 root root    0  6?? 20 11:17 dp
+-rw-rw-r-- 1 llb llb 305536  6?? 29 09:39 llb_ebpf_main.o
+-rw-rw-r-- 1 llb llb  95192  6?? 29 09:39 llb_xdp_main.o
+</code></pre>
+<p>As the name suggests and based on hook point, <em>xdp</em> version does XDP packet processing while <em>ebpf</em> version is used at TC layer for TC eBPF processing. Interesting enough, the packet forwarding code is largely agnostic of its final hook point due to usage of a light abstraction layer to hide differences between eBPF and XDP layer.</p>
+<p>Now this beckons the question why separate hook points and how does it all work together ? loxilb does bulk of its processing at TC eBPF layer as this layer is most optimized for doing L4+ processing needed for loxilb operation. XDP's frame format is different than what is used by skb (linux kernel's generic socket buffer). This makes it very difficult (if not impossible) to do tcp checksum offload and other such features used by linux networking stack for quite some time now. In short, if we need to do such operations, XDP performance will be inherently slow. XDP as such is perfect for quick operations at l2 layer. loxilb uses XDP to do certain operations like mirroring. Due to how TC eBPF works, it is difficult to work with multiple packet copies and loxilb's TC eBPF offloads some functinality to XDP layer in such special cases.</p>
+<p><img alt="base" src="../photos/base.png" /></p>
+<h2 id="loading-of-loxilb-ebpf-program">Loading of loxilb eBPF program</h2>
+<p>loxilb's goLang based agent by default loads the loxilb ebpf programs in all the interfaces(only physical/real/bond/wireguard) available in the system. As loxilb is designed to run in its own docker/container, this is convenient for users who dont want to have to manually load/unload eBPF programs. However, it is still possible to do so manually if need arises :</p>
+<p>To load :</p>
+<pre><code>ntc filter add dev eth1 ingress bpf da obj /opt/loxilb/llb_ebpf_main.o sec tc_packet_parser
+</code></pre>
+<p>To unload:</p>
+<pre><code>ntc filter del dev eth1 ingress
+</code></pre>
+<p>To check:</p>
+<pre><code>root@nd2:/home/llb# ntc filter show dev hs2 ingress
+filter protocol all pref 49152 bpf chain 0 
+filter protocol all pref 49152 bpf chain 0 handle 0x1 llb_ebpf_main.o:[tc_packet_parser] direct-action not_in_hw id 8715 tag 43a829222e969bce jited 
+</code></pre>
+<p><em>Please not that <b>ntc</b> is the customized tc tool from iproute2 package which can be found in loxilb's repository</em></p>
+<h2 id="entry-points-of-loxilb-ebpf">Entry points of loxilb eBPF</h2>
+<p>loxilb's eBPF code is usually divided into two program sections with the following entry functions :</p>
+<ul>
+<li>tc_packet_func</li>
+</ul>
+<p>This alongwith the consequent code does majority of the packet processing. If conntrack entries are in established state, this is also responsible for packet tx. However if conntrack entry for a particular packet flow is not established, it makes a bpf tail call to the <em>tc_packet_func_slow</em></p>
+<ul>
+<li>tc_packet_func_slow</li>
+</ul>
+<p>This is responsible mainly for doing NAT lookup and stateful conntrack implementation. Once conntrack entry transitions to established state, the forwarding then can happen directly from tc_packet_func</p>
+<p>loxilb's XDP code is contained in the following section :</p>
+<ul>
+<li>xdp_packet_func</li>
+</ul>
+<p>This is the entry point for packet processing when hook point is XDP instead of TC eBPF</p>
+<h2 id="pinned-maps-of-loxilb-ebpf">Pinned Maps of loxilb eBPF</h2>
+<p>All maps used by loxilb eBPF are mounted in the file-system as below :</p>
+<pre><code>root@nd2:/home/llb/loxilb# ls -lart /opt/loxilb/dp/
+total 4
+drwxrwxrwt 3 root root    0  6?? 20 11:17 .
+drwxr-xr-x 3 root root 4096  6?? 29 10:19 ..
+drwx------ 3 root root    0  6?? 29 10:19 bpf
+root@nd2:/home/llb/loxilb# mount | grep bpf
+none on /opt/netlox/loxilb type bpf (rw,relatime)
+
+root@nd2:/home/llb/loxilb# ls -lart /opt/loxilb/dp/bpf/
+total 0
+drwxrwxrwt 3 root root 0  6?? 20 11:17 ..
+lrwxrwxrwx 1 root root 0  6?? 20 11:17 xdp -&gt; /opt/loxilb/dp/bpf//tc/
+drwx------ 3 root root 0  6?? 20 11:17 tc
+lrwxrwxrwx 1 root root 0  6?? 20 11:17 ip -&gt; /opt/loxilb/dp/bpf//tc/
+-rw------- 1 root root 0  6?? 29 10:19 xfis
+-rw------- 1 root root 0  6?? 29 10:19 xfck
+-rw------- 1 root root 0  6?? 29 10:19 xctk
+-rw------- 1 root root 0  6?? 29 10:19 tx_intf_stats_map
+-rw------- 1 root root 0  6?? 29 10:19 tx_intf_map
+-rw------- 1 root root 0  6?? 29 10:19 tx_bd_stats_map
+-rw------- 1 root root 0  6?? 29 10:19 tmac_stats_map
+-rw------- 1 root root 0  6?? 29 10:19 tmac_map
+-rw------- 1 root root 0  6?? 29 10:19 smac_map
+-rw------- 1 root root 0  6?? 29 10:19 rt_v6_stats_map
+-rw------- 1 root root 0  6?? 29 10:19 rt_v4_stats_map
+-rw------- 1 root root 0  6?? 29 10:19 rt_v4_map
+-rw------- 1 root root 0  6?? 29 10:19 polx_map
+-rw------- 1 root root 0  6?? 29 10:19 pkts
+-rw------- 1 root root 0  6?? 29 10:19 pkt_ring
+-rw------- 1 root root 0  6?? 29 10:19 pgm_tbl
+-rw------- 1 root root 0  6?? 29 10:19 nh_map
+-rw------- 1 root root 0  6?? 29 10:19 nat_v4_map
+-rw------- 1 root root 0  6?? 29 10:19 mirr_map
+-rw------- 1 root root 0  6?? 29 10:19 intf_stats_map
+-rw------- 1 root root 0  6?? 29 10:19 intf_map
+-rw------- 1 root root 0  6?? 29 10:19 fc_v4_stats_map
+-rw------- 1 root root 0  6?? 29 10:19 fc_v4_map
+-rw------- 1 root root 0  6?? 29 10:19 fcas
+-rw------- 1 root root 0  6?? 29 10:19 dmac_map
+-rw------- 1 root root 0  6?? 29 10:19 ct_v4_map
+-rw------- 1 root root 0  6?? 29 10:19 bd_stats_map
+-rw------- 1 root root 0  6?? 29 10:19 acl_v6_stats_map
+-rw------- 1 root root 0  6?? 29 10:19 acl_v4_stats_map
+-rw------- 1 root root 0  6?? 29 10:19 acl_v4_map
+</code></pre>
+<p>Using bpftool, it is easy to check state of these maps as follows :</p>
+<pre><code>root@nd2:/home/llb# bpftool map dump pinned /opt/loxilb/dp/bpf/intf_map 
+[{
+        &quot;key&quot;: {
+            &quot;ifindex&quot;: 2,
+            &quot;ing_vid&quot;: 0,
+            &quot;pad&quot;: 0
+        },
+        &quot;value&quot;: {
+            &quot;ca&quot;: {
+                &quot;act_type&quot;: 11,
+                &quot;ftrap&quot;: 0,
+                &quot;oif&quot;: 0,
+                &quot;cidx&quot;: 0
+            },
+            &quot;&quot;: {
+                &quot;set_ifi&quot;: {
+                    &quot;xdp_ifidx&quot;: 1,
+                    &quot;zone&quot;: 0,
+                    &quot;bd&quot;: 3801,
+                    &quot;mirr&quot;: 0,
+                    &quot;polid&quot;: 0,
+                    &quot;r&quot;: [0,0,0,0,0,0
+                    ]
+                }
+            }
+        }
+    },{
+        &quot;key&quot;: {
+            &quot;ifindex&quot;: 3,
+            &quot;ing_vid&quot;: 0,
+            &quot;pad&quot;: 0
+        },
+        &quot;value&quot;: {
+            &quot;ca&quot;: {
+                &quot;act_type&quot;: 11,
+                &quot;ftrap&quot;: 0,
+                &quot;oif&quot;: 0,
+                &quot;cidx&quot;: 0
+            },
+            &quot;&quot;: {
+                &quot;set_ifi&quot;: {
+                    &quot;xdp_ifidx&quot;: 3,
+                    &quot;zone&quot;: 0,
+                    &quot;bd&quot;: 3803,
+                    &quot;mirr&quot;: 0,
+                    &quot;polid&quot;: 0,
+                    &quot;r&quot;: [0,0,0,0,0,0
+                    ]
+                }
+            }
+        }
+    }
+]
+</code></pre>
+<p>As our development progresses, we will keep updating details about these map's internals</p>
+<h2 id="loxilb-ebpf-pipeline-at-a-glance">loxilb eBPF pipeline at a glance</h2>
+<p>The following figure shows a very high-level diagram of packet flow through loxilb  eBPF pipeline :</p>
+<p><img alt="base" src="../photos/pipe.png" /></p>
+<p>We use eBPF tail calls to jump from one section to another majorly due to the fact that there is clear separation for CT (conntrack) functionality and packet-forwarding logic. At the same time, kernel's built in eBPF-verifier imposes a maximum code size limit for a single program.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../code/" class="btn btn-neutral float-left" title="Code organization"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../run/" class="btn btn-neutral float-right" title="Howto - build/run">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../code/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../run/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/cmd/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Cmd/Config guide - LoxiLB Documentations</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Cmd/Config guide";
+        var mkdocs_page_input_path = "cmd.md";
+        var mkdocs_page_url = "/loxilbdocs/cmd/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-21G7NBL2BN"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-21G7NBL2BN');
+      </script>
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> LoxiLB Documentations
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="" href="../index.md">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ebpf/">What is eBPF</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../lb/">What is service type - external load-balancer</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../arch/">Architecture in brief</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../code/">Code organization</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../loxilbebpf/">eBPF internals of loxilb</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../run/">Howto - build/run</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ccm/">Howto - ccm plugin</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../debugging/">Howto - debug</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Cmd/Config guide</a>
+    <ul class="current">
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api/">Api usage/dev guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../perf/">Performance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../roadmap/">Development Roadmap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../contribute/">Contribute</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../faq/">FAQs</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">LoxiLB Documentations</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Cmd/Config guide</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="what-is-loxicmd">What is loxicmd</h2>
+<p>loxicmd is command tools for loxilb. loxicmd provide the following :</p>
+<ul>
+<li>Add/Delete/Get about the service type external load-balancer </li>
+<li>Get Port(interface) dump</li>
+<li>Get Connection track information</li>
+</ul>
+<p>loxicmd aim to provide all of the configuation for the loxilb.</p>
+<h2 id="how-to-build">How to build</h2>
+<ol>
+<li>Install package dependencies </li>
+</ol>
+<pre><code>go get .
+</code></pre>
+<ol>
+<li>Make loxicmd</li>
+</ol>
+<pre><code>make
+</code></pre>
+<h2 id="how-to-run">How to run</h2>
+<ol>
+<li>Run loxicmd with getting lb information</li>
+</ol>
+<pre><code>./loxicmd get lb
+</code></pre>
+<ol>
+<li>Run loxicmd with getting lb information in the different API server(ex. 192.168.18.10) and ports(ex. 8099).</li>
+</ol>
+<pre><code>./loxicmd get lb -s 192.168.18.10 -p 8099
+</code></pre>
+<ol>
+<li>Run loxicmd with getting lb information as json output format</li>
+</ol>
+<pre><code>./loxicmd get lb -o json
+</code></pre>
+<ol>
+<li>Run loxicmd with adding lb information</li>
+</ol>
+<pre><code>./loxicmd create lb 1.1.1.1 --tcp=1828:1920 --endpoints=2.2.3.4:18
+</code></pre>
+<ol>
+<li>Run loxicmd with deleting lb information</li>
+</ol>
+<pre><code>./loxicmd delete lb 1.1.1.1 --tcp=1828 
+</code></pre>
+<ol>
+<li>Run loxicmd with getting connection track information</li>
+</ol>
+<pre><code>./loxicmd get conntrack
+</code></pre>
+<ol>
+<li>Run loxicmd with getting port dumps</li>
+</ol>
+<pre><code>./loxicmd get port
+</code></pre>
+<p>More information use help option!</p>
+<pre><code>./loxicmd help
+</code></pre>
+<h2 id="loxicmd-development-guide">loxicmd development guide</h2>
+<p>It will provide a guide for development. Please develop it according to the guidelines. The guide is divided into three main stages: design, development, and testing, and the details are as follows.</p>
+<ol>
+<li>API check and command design
+Before developing Command, we need to check if the API of the necessary functions is provided. Check the official API document of LoxiLB to see if the required API is provided. Afterwards, the GET, POST, and DELETE methods are designed with get, create, and delete commands according to the API provided.</li>
+</ol>
+<pre><code>loxicmd$ tree
+.
+├── AUTHORS
+├── cmd
+│   ├── create
+│   │   ├── create.go
+│   │   └── create_loadbalancer.go
+│   ├── delete
+│   │   ├── delete.go
+│   │   └── delete_loadbalancer.go
+│   ├── get
+│   │   ├── get.go
+│   │   ├── get_loadbalancer.go
+│   └── root.go
+├── go.mod
+├── go.sum
+├── LICENSE
+├── main.go
+├── Makefile
+├── pkg
+│   └── api
+│       ├── client.go
+│       ├── common.go
+│       ├── loadBalancer.go
+│       └── rest.go
+└── README.md
+
+</code></pre>
+<p>Add the code in the ./cmd/get, ./cmd/delete, ./cmd/create, and ./pkg/api directories to add functionality.</p>
+<ol>
+<li>Add structure in pkg/api and register method (example of connection track API)</li>
+<li>CommonAPI embedding
+Using embedding the CommonAPI for the Methods and variables, to use in the Connecttrack structure.</li>
+</ol>
+<pre><code>type Conntrack struct {
+    CommonAPI
+}
+</code></pre>
+<ul>
+<li>Add Structure Configuration and JSON Structure
+Define the structure for JSON Unmashal.</li>
+</ul>
+<pre><code>type CtInformationGet struct {
+    CtInfo []ConntrackInformation `json:&quot;ctAttr&quot;`
+}
+
+type ConntrackInformation struct {
+    Dip    string `json:&quot;destinationIP&quot;`
+    Sip    string `json:&quot;sourceIP&quot;`
+    Dport  uint16 `json:&quot;destinationPort&quot;`
+    Sport  uint16 `json:&quot;sourcePort&quot;`
+    Proto  string `json:&quot;protocol&quot;`
+    CState string `json:&quot;conntrackState&quot;`
+    CAct   string `json:&quot;conntrackAct&quot;`
+}
+</code></pre>
+<ul>
+<li>Define Method Functions in pkg/api/client.go
+Define the URL in the Resource constant.
+Defines the function to be used in the command.</li>
+</ul>
+<pre><code>const (
+    …
+    loxiConntrackResource    = &quot;config/conntrack/all&quot;
+)
+
+
+func (l *LoxiClient) Conntrack() *Conntrack {
+    return &amp;Conntrack{
+        CommonAPI: CommonAPI{
+            restClient: &amp;l.restClient,
+            requestInfo: RequestInfo{
+                provider:   loxiProvider,
+                apiVersion: loxiApiVersion,
+                resource:   loxiConntrackResource,
+            },
+        },
+    }
+}
+
+</code></pre>
+<ol>
+<li>Add get, create, delete functions within cmd
+Use the Cobra library to define commands, Alise, descriptions, options, and callback functions, and then create a function that returns.
+Create a function such as PrintGetCTReturn and add logic when the status code is 200.</li>
+</ol>
+<pre><code>func NewGetConntrackCmd(restOptions *api.RESTOptions) *cobra.Command {
+    var GetctCmd = &amp;cobra.Command{
+        Use:     &quot;conntrack&quot;,
+        Aliases: []string{&quot;ct&quot;, &quot;conntracks&quot;, &quot;cts&quot;},
+        Short:   &quot;Get a Conntrack&quot;,
+        Long:    `It shows connection track Information`,
+        Run: func(cmd *cobra.Command, args []string) {
+            client := api.NewLoxiClient(restOptions)
+            ctx := context.TODO()
+            var cancel context.CancelFunc
+            if restOptions.Timeout &gt; 0 {
+                ctx, cancel = context.WithTimeout(context.TODO(), time.Duration(restOptions.Timeout)*time.Second)
+                defer cancel()
+            }
+            resp, err := client.Conntrack().Get(ctx)
+            if err != nil {
+                fmt.Printf(&quot;Error: %s\n&quot;, err.Error())
+                return
+            }
+            if resp.StatusCode == http.StatusOK {
+                PrintGetCTResult(resp, *restOptions)
+                return
+            }
+
+        },
+    }
+
+    return GetctCmd
+}
+
+</code></pre>
+<ol>
+<li>Register command in cmd
+Register Cobra as defined in 3.</li>
+</ol>
+<pre><code>func GetCmd(restOptions *api.RESTOptions) *cobra.Command {
+    var GetCmd = &amp;cobra.Command{
+        Use:   &quot;get&quot;,
+        Short: &quot;A brief description of your command&quot;,
+        Long: `A longer description that spans multiple lines and likely contains examples
+    and usage of using your command. For example:
+
+    Cobra is a CLI library for Go that empowers applications.
+    This application is a tool to generate the needed files
+    to quickly Get a Cobra application.`,
+        Run: func(cmd *cobra.Command, args []string) {
+            fmt.Println(&quot;Get called&quot;)
+        },
+    }
+    GetCmd.AddCommand(NewGetLoadBalancerCmd(restOptions))
+    GetCmd.AddCommand(NewGetConntrackCmd(restOptions))
+    return GetCmd
+}
+</code></pre>
+<ol>
+<li>Build &amp; Test</li>
+</ol>
+<pre><code>make
+</code></pre>
+<p>Test the command as you want!</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../debugging/" class="btn btn-neutral float-left" title="Howto - debug"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../api/" class="btn btn-neutral float-right" title="Api usage/dev guide">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../debugging/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../api/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/api/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Api usage/dev guide - LoxiLB Documentations</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Api usage/dev guide";
+        var mkdocs_page_input_path = "api.md";
+        var mkdocs_page_url = "/loxilbdocs/api/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-21G7NBL2BN"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-21G7NBL2BN');
+      </script>
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> LoxiLB Documentations
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="" href="../index.md">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ebpf/">What is eBPF</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../lb/">What is service type - external load-balancer</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../arch/">Architecture in brief</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../code/">Code organization</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../loxilbebpf/">eBPF internals of loxilb</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../run/">Howto - build/run</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ccm/">Howto - ccm plugin</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../debugging/">Howto - debug</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cmd/">Cmd/Config guide</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Api usage/dev guide</a>
+    <ul class="current">
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../perf/">Performance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../roadmap/">Development Roadmap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../contribute/">Contribute</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../faq/">FAQs</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">LoxiLB Documentations</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Api usage/dev guide</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="api-server">API server</h1>
+<p>Generic library for building a LoxiLB API server.</p>
+<h1 id="usage">Usage</h1>
+<p>현재 API 서버는 HTTP, HTTPS모두 지원하며, Loxilb 실행시 -a 혹은 --api 옵션을 추가해서 실행이 가능하다.
+API에 사용되는 옵션은 다음과 같다. 보안을 위해 HTTPS 옵션 --tls-key, --tls-certificate를 모두 주어야만 실행이 가능하다.</p>
+<p>Currently, the API server supports both HTTP and HTTPS, and can be run by adding -a or --api options when running Loxilb. The options used in the API are as follows. For security purposes, HTTPS options --tls-key, --tls-certificate must be given to run.</p>
+<pre><code>      --host=            the IP to listen on (default: localhost) [$HOST]
+      --port=            the port to listen on for insecure connections, defaults to a random value [$PORT]
+      --tls-host=        the IP to listen on for tls, when not specified it's the same as --host [$TLS_HOST]
+      --tls-port=        the port to listen on for secure connections, defaults to a random value [$TLS_PORT]
+      --tls-certificate= the certificate to use for secure connections [$TLS_CERTIFICATE]
+      --tls-key=         the private key to use for secure connections [$TLS_PRIVATE_KEY]
+</code></pre>
+<p>실제 사용하는 예시는 다음과 같다.</p>
+<p>Examples of practical use are as follows.</p>
+<pre><code> ./loxilb --tls-key=api/certification/server.key --tls-certificate=api/certification/server.crt --host=0.0.0.0 --port=8081 --tls-port=8091 -a
+</code></pre>
+<h1 id="api-list">API list</h1>
+<p>현재 API는 Load balancer 에 대한 Create, Delete, Read API가 있다.
+Currently, the API has Create, Delete, and Read APIs for Load balancer.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>URL</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td>/netlox/v1/config/loadbalancer/all</td>
+<td>Get the load balancer information</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/netlox/v1/config/loadbalancer</td>
+<td>Add the load balancer information to LoxiLB</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>/netlox/v1/config/loadbalancer/externalipaddress/{IPaddress}/port/{#Port}/protocol/{protocol}</td>
+<td>Delete the load balacer infomation from LoxiLB</td>
+</tr>
+</tbody>
+</table>
+<p>더 자세한 정보( Param, Body 등)은 Swagger문서를 참조한다.</p>
+<p>See Swagger documentation for more information (Param, Body, etc.).</p>
+<h1 id="loxilb-api-development-guide">LoxiLB API development guide</h1>
+<h2 id="api-source-architecture">API source Architecture</h2>
+<pre><code>.
+├── certification
+│   ├── serverca.crt
+│   └── serverkey.pem
+├── cmd
+│   └── loxilb_rest_api-server
+│       └── main.go
+├── ….
+├── models
+│   ├── error.go
+│   ├── …..
+├── restapi
+│   ├── configure_loxilb_rest_api.go
+│   ├── …..
+│   ├── handler
+│   │   ├── common.go
+│   │   └──…..
+│   ├── operations
+│   │   ├── get_config_conntrack_all.go
+│   │   └── ….
+│   └── server.go
+└── swagger.yml
+
+</code></pre>
+<ul>
+<li>Except for the ./api/restapi/handler and ./api/certification directories, the rest of the contents are automatically created.</li>
+<li>Add the logic for the function to the handler directory.</li>
+<li>
+<p>Add logic to file ./api/restapi/configure_loxilb_rest_api.go</p>
+</li>
+<li>
+<p>Swagger.yml file update</p>
+</li>
+</ul>
+<pre><code>paths:
+  '/additional/url/{param}':
+    get:
+      summary: Test Swagger API Server.
+      description: Check Swagger API server. This basic information or architecture is for the later applications.
+      parameters:
+        - name: param
+          in: path
+          required: true
+          type: string
+          format: string
+          description: Description of the additional url
+      responses:
+        '204':
+          description: OK
+        '400':
+          description: Malformed arguments for API call
+          schema:
+            $ref: '#/definitions/Error'
+        '401':
+          description: Invalid authentication credentials
+
+</code></pre>
+<ul>
+<li>path.{Set path and parameter URL}.{get,post,etc RESTful setting}.{Description}</li>
+<li>{Set path and parameter URL}
+Set the path used in the RESTful API.
+It begins with "config/" and is defined as a sub-category from a large category.
+Define the parameters using the symbol {param}. The parameters are defined in the description section.</li>
+<li>{get,post,etc RESTful setting}
+Use get, post, delete, and patch to define queries, registrations, deletions, and modifications.</li>
+<li>
+<p>{Description}
+Summary description of API
+Detailed description of API
+Parameters
+Set the name, path, etc.
+Define the content of the response</p>
+</li>
+<li>
+<p>Creating Additional Parts with Swagger</p>
+</li>
+</ul>
+<pre><code># alias swagger='docker run --rm -it  --user $(id -u):$(id -g) -e GOPATH=$(go env GOPATH):/go -v $HOME:$HOME -w $(pwd) quay.io/goswagger/swagger'
+# swagger generate server
+</code></pre>
+<ol>
+<li>Development of Additional Partial Handlers</li>
+</ol>
+<pre><code>package handler
+
+import (
+    &quot;fmt&quot;
+
+    &quot;github.com/go-openapi/runtime/middleware&quot;
+
+    &quot;testswagger.com/restapi/operations&quot;
+)
+
+func ConfigAdditionalUrl(params operations.GetAdditionalUrlParams) middleware.Responder {
+    /////////////////////////////////////////////
+    //             Add logic Here              //
+    ////////////////////////////////////////////.
+    return &amp;ResultResponse{Result: fmt.Sprintf(&quot;params.param : %s&quot;, params.param)}
+}
+
+</code></pre>
+<ul>
+<li>
+<p>Select the logic required for the ConfigAdditionalUrl portion of the handler directory. The required parameters come from operations.GetAdditionalUrlParams.</p>
+</li>
+<li>
+<p>Additional Partial Handler Registration</p>
+</li>
+</ul>
+<pre><code>func configureAPI(api *operations.LoxilbRestAPIAPI) http.Handler {
+    ...... 
+    // Change it by putting a function here
+    api.GetAdditionalUrlHandler = operations.GetAdditionalUrlHandlerFunc(handler.ConfigAdditionalUrl)
+ ….
+}
+</code></pre>
+<ul>
+<li>if api.{REST}...The Handler form is automatically generated, where if nil is erased and a handler is added to the operation function.</li>
+<li>In many cases, additional generation is not possible. In that case, you can add the function by entering it separately. The name of the function consists of a combination of Method, URL, and Parameter.</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../cmd/" class="btn btn-neutral float-left" title="Cmd/Config guide"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../perf/" class="btn btn-neutral float-right" title="Performance">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../cmd/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../perf/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
