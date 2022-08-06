@@ -40,7 +40,10 @@
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
           <a href=".." class="icon icon-home"> LoxiLB Documentations
-        </a><div role="search">
+        </a>
+        <div class="version">
+          0.9.0 (Latest)
+        </div><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
@@ -138,24 +141,25 @@
 <p><img alt="load_balancer" src="../photos/ExternalLB.png" /></p>
 <p>But edge services need to support so many exotic protocols in play like GTP, SCTP, SRv6 etc and integrating everything into a seamlessly working solution has been quite difficult. This is an area where loxilb aims to play a pivotal role.</p>
 <p>The following is a simple yaml config file which needs to be applied to create a service type load-balancer :</p>
-<p><code>"type": "LoadBalancer"
+<pre><code> &quot;type&quot;: &quot;LoadBalancer&quot;
  {
-      "kind": "Service",
-      "apiVersion": "v1",
-      "metadata": {
-        "name": "sample-service"
+      &quot;kind&quot;: &quot;Service&quot;,
+      &quot;apiVersion&quot;: &quot;v1&quot;,
+      &quot;metadata&quot;: {
+        &quot;name&quot;: &quot;sample-service&quot;
       },
-      "spec": {
-        "ports": [{
-          "port": 9001,
-          "targetPort": 5001
+      &quot;spec&quot;: {
+        &quot;ports&quot;: [{
+          &quot;port&quot;: 9001,
+          &quot;targetPort&quot;: 5001
         }],
-        "selector": {
-          "app": "sample"
+        &quot;selector&quot;: {
+          &quot;app&quot;: &quot;sample&quot;
         },
-        "type": "LoadBalancer"
+        &quot;type&quot;: &quot;LoadBalancer&quot;
       }
-    }</code></p>
+    }
+</code></pre>
 <p>However, if there is no K8s CCM plugin implementing external service load-balancer, such services won't be created and remain in pending state forever.</p>
               
             </div>
