@@ -1,7 +1,8 @@
 name: LoxiLB Documentations 
 on:
   push:
-    branches: [ master ]
+    branches:
+      - main
   workflow_dispatch:
 jobs:
   build:
