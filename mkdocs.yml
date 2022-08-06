@@ -1,0 +1,22 @@
+site_name: LoxiLB Documentations
+site_url: https://loxilb-io.github.io/loxilbdocs 
+theme:
+    name: readthedocs
+    analytics:
+        gtag: G-21G7NBL2BN 
+nav:
+  - Home: index.md
+  - What is eBPF: ebpf.md
+  - What is service type - external load-balancer: lb.md
+  - Architecture in brief: arch.md
+  - Code organization: code.md
+  - eBPF internals of loxilb: loxilbebpf.md
+  - Howto - build/run: run.md
+  - Howto - ccm plugin: ccm.md
+  - Howto - debug: debugging.md
+  - Cmd/Config guide: cmd.md
+  - Api usage/dev guide: api.md
+  - Performance: perf.md
+  - Development Roadmap: roadmap.md 
+  - Contribute: contribute.md
+  - FAQs: faq.md
