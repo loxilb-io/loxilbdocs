@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="None" /><link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>LoxiLB Documentations</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Home";
+        var mkdocs_page_input_path = "index.md";
+        var mkdocs_page_url = "/loxilbdocs/";
+      </script>
+    
+    <script src="js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-21G7NBL2BN"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-21G7NBL2BN');
+      </script>
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="." class="icon icon-home"> LoxiLB Documentations
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href=".">Home</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#loxilb-background">loxilb Background</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#loxilb-aimgoals">loxilb Aim/Goals</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#documentation">Documentation</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#host-os-requirements">Host OS requirements</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#linux-kernel-requirements">Linux Kernel Requirements</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#compatible-kubernetes-versions">Compatible Kubernetes Versions</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#hardware-requirements">Hardware Requirements</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="ebpf/">What is eBPF</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="lb/">What is service type - external load-balancer</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="arch/">Architecture in brief</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="code/">Code organization</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="loxilbebpf/">eBPF internals of loxilb</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="run/">Howto - build/run</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="ccm/">Howto - ccm plugin</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="debugging/">Howto - debug</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="cmd/">Cmd/Config guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="api/">Api usage/dev guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="perf/">Performance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="roadmap/">Development Roadmap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="contribute/">Contribute</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="faq/">FAQs</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href=".">LoxiLB Documentations</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Home</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="loxilbdocs-documentation-about-loxilb">loxilbdocs - Documentation about loxilb</h1>
+<h2 id="loxilb-background">loxilb Background</h2>
+<p>loxilb started as a project to ease deployments of cloud-native/kubernetes workloads for the edge. When we deploy services in public clouds like AWS/GCP, the services becomes easily accessible or exported to the outside world. The public cloud providers, usually by default, associate load-balancer instances for incoming requests to these services to ensure everything is quite smooth. </p>
+<p>However, for on-prem and edge deployments, there is no <em>service type - external load balancer</em> provider by default. For a long time, <a href="https://metallb.universe.tf/">MetalLB</a> from Google was the only choice for the needy. But edge services are a different ball game altogether due to the fact that there are so many exotic protocols in play like GTP, SCTP, SRv6 etc and integrating everything into a seamlessly working solution has been quite difficult.</p>
+<p>loxilb dev team was approached by many people who wanted to solve this problem. As a first step to solve the problem, it became apparent that networking stack provided by Linux kernel, although very solid,  really lacked the development process agility to quickly provide support for a wide variety of permutations and combinations of protocols and stateful load-balancing on them. Our search led us to the awesome tech developed by the Linux community - eBPF. The flexibility to introduce new functionality into Kernel as a sandbox program was a complete fit to our design philosophy. Although we did consider DPDK for a while, but the fact that it needs dedicated cores/CPUs really defeats the whole purpose of making energy-efficient edge architectures.</p>
+<p>During the journey of loxilb's development, we developed many other generic networking/security/visibility features in it using eBPF which can be used for various other purposes not specific to load-balancer only. But we decided to stick our original name <em>loxilb</em>. loxilb team hopes the open-source community finds it helpful.</p>
+<h2 id="loxilb-aimgoals">loxilb Aim/Goals</h2>
+<p>loxilb aims to provide the following :</p>
+<ul>
+<li>Service type external load-balancer for kubernetes (hence the name loxilb)</li>
+<li><em>L4/NAT stateful loadbalancer</em></li>
+<li><em>High-availability support</em></li>
+<li><em>K8s CCM compliance</em></li>
+<li>Optimized SRv6 implementation in eBPF</li>
+<li>L7 Proxy support</li>
+<li>Make GTP tunnels first class citizens of the Linux world </li>
+<li><em>Support for QFI and other extension headers</em>  </li>
+<li>eBPF based kernel forwarding (GPLv2 license)</li>
+<li><em>Complete kernel bypass with home-grown stack for advanced features like <a href="https://thermalcircle.de/doku.php?id=blog:linux:connection_tracking_1_modules_and_hooks">Conntrack</a>, QoS etc</em></li>
+<li><em>Highly scalable with low-latency &amp; high througput</em></li>
+<li><em>Mainly uses TC-eBPF hooks</em> </li>
+<li>goLang based control plane components (Apache license)</li>
+<li>Seamless integration with goBGP based routing stack</li>
+<li>Easily cuztomizable to run in DPU environments</li>
+<li><em>goLang based easy to use APIs/Interfaces</em></li>
+<li>Cloud-Native Network Function (CNF) form-factor by default</li>
+</ul>
+<h2 id="documentation">Documentation</h2>
+<ul>
+<li><a href="ebpf/">What is eBPF</a></li>
+<li><a href="lb/">What is service type - external load-balancer</a></li>
+<li><a href="arch/">Architecture in brief</a></li>
+<li><a href="code/">Code organization</a></li>
+<li><a href="loxilbebpf/">eBPF internals of loxilb</a></li>
+<li><a href="run/">Howto - build/run</a></li>
+<li><a href="ccm/">Howto - ccm plugin</a></li>
+<li><a href="debugging/">Howto - debug</a></li>
+<li><a href="cmd/">Cmd/Config guide</a></li>
+<li><a href="api/">Api usage/dev guide</a></li>
+<li><a href="perf/">Performance</a></li>
+<li><a href="roadmap/">Development Roadmap</a></li>
+<li><a href="contribute/">Contribute</a></li>
+<li><a href="faq/">FAQs</a></li>
+</ul>
+<h3 id="host-os-requirements">Host OS requirements</h3>
+<p>To install Loxilight software packages, you need the 64-bit version of one of these OS versions:
+* Ubuntu Focal 20.04(LTS)
+* Ubuntu Hirsute 21.04
+* RockyOS
+* Enterprise Redhat (Planned)
+* Windows Server(Planned)</p>
+<h3 id="linux-kernel-requirements">Linux Kernel Requirements</h3>
+<ul>
+<li>Linux Kernel Version &gt;= 5.1.0</li>
+</ul>
+<h3 id="compatible-kubernetes-versions">Compatible Kubernetes Versions</h3>
+<ul>
+<li>Kubernetes 1.19</li>
+<li>Kubernetes 1.20</li>
+<li>Kubernetes 1.21</li>
+<li>Kubernetes 1.22</li>
+</ul>
+<h3 id="hardware-requirements">Hardware Requirements</h3>
+<ul>
+<li>None as long as above criteria are met</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="ebpf/" class="btn btn-neutral float-right" title="What is eBPF">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+      <span><a href="ebpf/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="js/theme_extra.js" defer></script>
+    <script src="js/theme.js" defer></script>
+      <script src="search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 1.3.1
+Build Date UTC : 2022-08-06 05:42:10.502748+00:00
+-->
