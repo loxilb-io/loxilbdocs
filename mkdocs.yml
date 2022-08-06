@@ -20,3 +20,6 @@ nav:
   - Development Roadmap: roadmap.md 
   - Contribute: contribute.md
   - FAQs: faq.md
+
+extra:
+    version: 0.9.0 (Latest)

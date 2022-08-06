@@ -28,6 +28,6 @@ The following is a simple yaml config file which needs to be applied to create a
         "type": "LoadBalancer"
       }
     }
- ```
- 
+```
+
 However, if there is no K8s CCM plugin implementing external service load-balancer, such services won't be created and remain in pending state forever.
