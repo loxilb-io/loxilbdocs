@@ -1,6 +1,6 @@
 # Release Notes
 
-## 0.0.1 beta (Jul, 2021)
+## 0.7.0 beta (Aug, 2021)
 
 Initial release of loxilb 
 
@@ -26,7 +26,7 @@ Initial release of loxilb
   - loxidump support : Config export and import utility
 
 
-## 0.0.2 (Oct, 2022) - Planned
+## 0.8.0 (Oct, 2022) - Planned
 
 * **Major functions**: 
   - Enhanced load-balancer support upto 32 end-points
