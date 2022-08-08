@@ -23,6 +23,8 @@ graph LR;
 A go webserver with an empty response is used for benchmark purposes. The code is as following :
 
 ```
+package main
+
 import (
         "log"
         "net/http"
