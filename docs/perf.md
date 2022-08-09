@@ -55,7 +55,7 @@ Requests/sec:  46232.45
 Transfer/sec:  3.31MB
 ```
 
-As a baseline, we compare the numbers with loopback test i.e running *wrk* in the same host as the webserver
+As a baseline, we compare the numbers with loopback test i.e running *wrk* in the same host as the webserver.
 ```
 root@loxilb:/home/loxilb # wrk -t8 -c400 -d30s http://127.0.0.1:5001/
 Running 30s test @ http://127.0.0.1:5001/
@@ -72,9 +72,44 @@ Based on the above tests, loxilb performs at 98% of the baseline numbers in requ
 
 ## Multi node performance (real topology)
 
-The topology for this test is similar to the above case. However, all the hosts (client and load-balancer end-points) as well as loxilb run in separate dedicated systems. All other configurations remain the same
+The topology for this test is similar to the above case. However, all the services run in one system and loxilb run in separate dedicated system. All other configurations remain the same.
 
-*Perf numbers to be updated*
+```mermaid
+    
+sequenceDiagram
+    participant ServiceA1
+    participant ServiceA2
+    participant ServiceA3
+    participant loxilb
+    participant ServiceB_PodX
+    participant ServiceB_PodY
+    participant ServiceB_PodZ
+    ServiceA1->>loxilb: 100.100.100.1->20.20.20.1
+    ServiceA2->>loxilb: 101.101.101.1->20.20.20.1
+    ServiceA3->>loxilb: 102.102.102.1->20.20.20.1
+    Note right of loxilb: Distribute the traffic in Round Robin fashion(default)!
+    loxilb-->>ServiceB_PodX: 100.100.100.1->31.31.31.1
+    loxilb-->>ServiceB_PodY: 101.101.101.1->32.32.32.1
+    loxilb-->>ServiceB_PodZ: 102.102.102.1->17.17.17.1
+    
+```
+
+We use wrk HTTP benchmarking tool for this test as well. This is run inside the client "100.100.100.1" host.
+
+loxilb server specs is as follows :  
+*Intel(R) Xeon(R) Silver 4210R CPU @ 2.40GHz - 40 core RAM 125GB*
+
+```
+root@loxilb:/home/loxilb # wrk -t8 -c400 -d30s http://20.20.20.1:2020/
+Running 30s test @ http://20.20.20.1:2020/
+  8 threads and 400 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     2.44ms   10.58ms 222.86ms   99.14%
+    Req/Sec    39.06k     4.90k   57.34k    64.62%
+  9331956 requests in 30.07s, 667.47MB read
+Requests/sec: 310364.26
+Transfer/sec:     22.20MB
+```
 
 ## Comparision with [LVS](https://en.wikipedia.org/wiki/Linux_Virtual_Server)
 
