@@ -2,7 +2,7 @@
 
 * <b>Does loxilb depend on what kind of CNI is deployed in the cluster ?</b>
 
-Yes, loxilb configuration and operation might be related to which CNI (Calico, Cilium etc) is in use. loxilb just needs a way to find a route to its end-points. This also  depends on how the network topology is laid out. For example, if a separated network for nodePort and external LB services is in effect or not. We will have a detailed guide on best practices for loxilb deployment soon. In the meantime, kindly reach out to us via github or [loxilb forum](www.loxilb.io)
+Yes, loxilb configuration and operation might be related to which CNI (Calico, Cilium etc) is in use. loxilb just needs a way to find a route to its end-points. This also  depends on how the network topology is laid out. For example, if a separated network for nodePort and external LB services is in effect or not. We will have a detailed guide on best practices for loxilb deployment soon. In the meantime, kindly reach out to us via github or [loxilb forum](https://github.com/loxilb-io/loxilb/discussions)
 
 * <b>Can loxilb be possibly run outside the released docker image ?</b>
 
