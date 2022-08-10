@@ -4,7 +4,7 @@
 
 Initial release of loxilb 
 
-* **Major functions**: 
+- **Major functions**:  
   - Two-Arm Load-Balancer (NAT+Routed mode)
     - 16 end-points (arms) support
   - Load-balancer selection policy
@@ -17,18 +17,17 @@ Initial release of loxilb
   - Support for Calico CNI
   - Extended visibility and statistics 
 
-* **CCM Support**: 
+- **CCM Support**: 
   - IP allocation policy
   - Kubernetes 1.20 base support
  
-* **Utilities**:
+- **Utilities**:  
   - loxicmd support : Configuration utlity with the look and feel of kubectl
   - loxidump support : Config export and import utility
 
-
 ## 0.8.0 (Oct, 2022) - Planned
 
-* **Major functions**: 
+- **Major functions**: 
   - Enhanced load-balancer support upto 32 end-points
   - Integrated Firewall support
   - Extended conntrack - SCTP support
@@ -37,9 +36,9 @@ Initial release of loxilb
   - HA support
   - Grafana based dashboard
   
-* **CCM Support**: 
+- **CCM Support**: 
   - OpenShift Integration
   
-* **DPU Support**:
+- **DPU Support**:  
   - Nvidia BF2 Support (Depends on community/public demand)
 
