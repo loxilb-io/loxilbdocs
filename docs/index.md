@@ -50,22 +50,28 @@ loxilb aims to provide the following :
 - [Contribute](contribute.md)
 - [FAQs](faq.md)
 
-### Host OS requirements
-To install LoxiLB software packages, you need the 64-bit version of one of these OS versions:
+## Host OS requirements  
+
+To install LoxiLB software packages, you need the 64-bit version of one of these OS versions:  
+
 * Ubuntu Focal 20.04(LTS)  
 * Ubuntu Hirsute 21.04  
 * RockyOS  
 * Enterprise Redhat (Planned)  
 * Windows Server(Planned)  
 
-### Linux Kernel Requirements
-* Linux Kernel Version >= 5.1.0
+## Kernel Requirements  
 
-### Compatible Kubernetes Versions
+* Linux Kernel Version >= 5.1.0  
+* Windows (TBD)  
+
+## Compatible Kubernetes Versions  
+
 * Kubernetes 1.19  
 * Kubernetes 1.20  
 * Kubernetes 1.21  
 * Kubernetes 1.22  
 
-### Hardware Requirements
+### Hardware Requirements  
+
 * None as long as above criteria are met  
