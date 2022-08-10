@@ -18,20 +18,20 @@ loxilb aims to provide the following :
 
 - Service type external load-balancer for kubernetes (hence the name loxilb)  
 - L4/NAT stateful loadbalancer  
-   - *High-availability support*  
-   - *K8s CCM compliance*  
+    - *High-availability support*  
+    - *K8s CCM compliance*  
 -  Optimized SRv6 implementation in eBPF  
 -  L7 Proxy support  
 -  Make GTP tunnels first class citizens of the Linux world  
-   - *Support for QFI and other extension headers*    
+    - *Support for QFI and other extension headers*    
 -  eBPF based kernel forwarding (GPLv2 license)  
-   - *Complete kernel bypass with home-grown stack for advanced features like [Conntrack](https://thermalcircle.de/doku.php?id=blog:linux:connection_tracking_1_modules_and_hooks), QoS etc*  
-   - *Highly scalable with low-latency & high througput*  
-   - *Mainly uses TC-eBPF hooks*   
+    - *Complete kernel bypass with home-grown stack for advanced features like [Conntrack](https://thermalcircle.de/doku.php?id=blog:linux:connection_tracking_1_modules_and_hooks), QoS etc*  
+    - *Highly scalable with low-latency & high througput*  
+    - *Mainly uses TC-eBPF hooks*   
 -  goLang based control plane components (Apache license)  
 -  Seamless integration with goBGP based routing stack  
 -  Easily cuztomizable to run in DPU environments  
-   - *goLang based easy to use APIs/Interfaces*  
+    - *goLang based easy to use APIs/Interfaces*  
 -  Cloud-Native Network Function (CNF) form-factor by default  
 
 ## Documentation
