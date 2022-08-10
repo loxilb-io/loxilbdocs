@@ -19,8 +19,7 @@ graph LR;
     B-->D[32.32.32.1];
     B-->E[17.17.17.1];
 ```
-
-A go webserver with an empty response is used for benchmark purposes. The code is as following :
+To create the above topology for testing loxilb, users can follow this [guide](simple_topo.md). A go webserver with an empty response is used for benchmark purposes. The code is as following :
 
 ```
 package main
