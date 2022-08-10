@@ -51,7 +51,7 @@ loxilb aims to provide the following :
 - [FAQs](docs/faq.md)
 
 ### Host OS requirements
-To install Loxilight software packages, you need the 64-bit version of one of these OS versions:
+To install LoxiLB software packages, you need the 64-bit version of one of these OS versions:
 * Ubuntu Focal 20.04(LTS)
 * Ubuntu Hirsute 21.04
 * RockyOS
