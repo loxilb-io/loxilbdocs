@@ -72,6 +72,6 @@ To install LoxiLB software packages, you need the 64-bit version of one of these
 * Kubernetes 1.21  
 * Kubernetes 1.22  
 
-### Hardware Requirements  
+## Hardware Requirements  
 
 * None as long as above criteria are met  
