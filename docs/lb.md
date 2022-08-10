@@ -1,7 +1,7 @@
 # What is service type external load-balancer in Kubernetes ?
 
 
-There are many different types of services like NodePort, ClusterIP etc. However, service type external load-balancer provides a way of exposing your application internally and/or externally in the perspective of the k8s cluster. Usually, Kubernetes CCM provider ensures that a load balancer of some sort is created, deleted and updated in your cloud. For on-prem or edge deployments however, organziations need to provide their own CCM load-balancer functions. MetalLB has been the choice for such cases for long. 
+There are many different types of Kubernetes services like NodePort, ClusterIP etc. However, service type external load-balancer provides a way of exposing your application internally and/or externally in the perspective of the k8s cluster. Usually, Kubernetes CCM provider ensures that a load balancer of some sort is created, deleted and updated in your cloud. For on-prem or edge deployments however, organziations need to provide their own CCM load-balancer functions. MetalLB has been the choice for such cases for long. 
 
 ![load_balancer](photos/ExternalLB.png)
 
