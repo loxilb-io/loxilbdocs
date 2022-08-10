@@ -65,4 +65,6 @@ docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -
 docker network connect bridge loxilb
 ```
   *Note - While working with macvlan interfaces, the parent/underlying interface should be put in promiscous mode*
+  
+<b>To create a simple and self-contained topology for testing loxilb, users can follow this [guide](simple_topo.md)</b>
 
