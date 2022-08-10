@@ -1,5 +1,7 @@
 # loxilbdocs - Documentation about loxilb
 
+[![LoxiLB Build Status](https://app.travis-ci.com/loxilb-io/loxilb.svg?branch=main)](https://app.travis-ci.com/loxilb-io/loxilb)
+
 ## loxilb Background 
 loxilb started as a project to ease deployments of cloud-native/kubernetes workloads for the edge. When we deploy services in public clouds like AWS/GCP, the services becomes easily accessible or exported to the outside world. The public cloud providers, usually by default, associate load-balancer instances for incoming requests to these services to ensure everything is quite smooth. 
 
@@ -49,21 +51,21 @@ loxilb aims to provide the following :
 - [FAQs](faq.md)
 
 ### Host OS requirements
-To install Loxilight software packages, you need the 64-bit version of one of these OS versions:
-* Ubuntu Focal 20.04(LTS)
-* Ubuntu Hirsute 21.04
-* RockyOS
-* Enterprise Redhat (Planned)
-* Windows Server(Planned)
+To install LoxiLB software packages, you need the 64-bit version of one of these OS versions:
+* Ubuntu Focal 20.04(LTS)  
+* Ubuntu Hirsute 21.04  
+* RockyOS  
+* Enterprise Redhat (Planned)  
+* Windows Server(Planned)  
 
 ### Linux Kernel Requirements
 * Linux Kernel Version >= 5.1.0
 
 ### Compatible Kubernetes Versions
-* Kubernetes 1.19
-* Kubernetes 1.20
-* Kubernetes 1.21
-* Kubernetes 1.22
+* Kubernetes 1.19  
+* Kubernetes 1.20  
+* Kubernetes 1.21  
+* Kubernetes 1.22  
 
 ### Hardware Requirements
-* None as long as above criteria are met
+* None as long as above criteria are met  
