@@ -5,7 +5,7 @@ theme:
     analytics:
         gtag: G-21G7NBL2BN 
 nav:
-  - Home: index.md
+  - Home: README.md
   - What is eBPF: ebpf.md
   - What is service type - external load-balancer: lb.md
   - Architecture in brief: arch.md
