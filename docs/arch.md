@@ -1,9 +1,10 @@
 # loxilb architecture and modules
 
-loxilb consists of the following modules :
+loxilb consists of the following modules :  
+
 - <b>loxilb CCM plugin</b>
 
-  It fully implements K8s CCM load-balancer interface and talks to goLang based loxilb process using Restful APIs. Although loxilb CCM is logically shown as part of loxilb cluster nodes, it will usually run in the worker/master nodes of the K8s cluster.
+    It fully implements K8s CCM load-balancer interface and talks to goLang based loxilb process using Restful APIs. Although loxilb CCM is logically shown as part of loxilb cluster nodes, it will usually run in the worker/master nodes of the K8s cluster. LoxiCCM can easily used as part of any CCM operator implementaition
   
 - <b>loxicmd</b>
 
