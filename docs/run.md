@@ -29,6 +29,15 @@ sudo make install
 cd -
 sudo ./loxilb 
 ```
+* Build and use loxicmd 
+
+```
+git clone https://github.com/loxilb-io/loxicmd.git
+cd loxicmd
+go get .
+make
+```
+loxicmd usage guide can be found [here](https://github.com/loxilb-io/loxilbdocs/blob/main/docs/cmd.md)
 
 ## From docker (easy)
 
