@@ -36,7 +36,7 @@ loxilb aims to provide the following :
 ## Documentation
 
 - [What is eBPF](docs/ebpf.md)
-- [What is service type - external load-balancer](docs/lb.md)
+- [What is k8s service type - external load-balancer](docs/lb.md)
 - [Architecture in brief](docs/arch.md)
 - [Code organization](docs/code.md)
 - [eBPF internals of loxilb](docs/loxilbebpf.md)
