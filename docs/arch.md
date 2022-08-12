@@ -4,11 +4,11 @@ loxilb consists of the following modules :
 
 - <b>loxilb CCM plugin</b>
 
-    It fully implements K8s CCM load-balancer interface and talks to goLang based loxilb process using Restful APIs. Although loxilb CCM is logically shown as part of loxilb cluster nodes, it will usually run in the worker/master nodes of the K8s cluster. LoxiCCM can easily used as part of any CCM operator implementaition
+    It fully implements K8s CCM load-balancer interface and talks to goLang based loxilb process using Restful APIs. Although loxilb CCM is logically shown as part of loxilb cluster nodes, it will usually run in the worker/master nodes of the K8s cluster. LoxiCCM can easily be used as part of any CCM operator implementation.
   
 - <b>loxicmd</b>
 
-  loxicmd is command line tool  to configure and dump loxilb information which is based on same foundation as the wildly popular kubectl tools
+  loxicmd is command line tool  to configure and dump loxilb information which is based on same foundation as the wildly popular kubectl tools.
   
 - <b>loxilb</b>
 
