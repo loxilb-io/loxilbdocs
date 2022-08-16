@@ -179,14 +179,14 @@ make
 <p>loxicmd usage guide can be found <a href="https://github.com/loxilb-io/loxilbdocs/blob/main/docs/cmd.md">here</a></p>
 <h2 id="from-docker-easy">From docker (easy)</h2>
 <ul>
-<li>Get the loxilb official docker image </li>
+<li>Get the latest loxilb official docker image </li>
 </ul>
-<pre><code>docker pull loxilbio/loxilb:beta
+<pre><code>docker pull ghcr.io/loxilb-io/loxilb:latest
 </code></pre>
 <ul>
 <li>To run loxilb docker, we can use the following commands :</li>
 </ul>
-<pre><code>docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --name loxilb loxilbio/loxilb:beta
+<pre><code>docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --name loxilb ghcr.io/loxilb-io/loxilb:latest
 </code></pre>
 <ul>
 <li>To drop in to a shell of loxilb doker :</li>
@@ -201,7 +201,7 @@ make
 docker network create -d macvlan -o parent=enp0s3   --subnet 172.30.1.0/24   --gateway 172.30.1.254 --aux-address 'host=172.30.1.193’ llbnet
 
 # Run loxilb docker with the created macvlan 
-docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --net=llbnet --ip=172.30.1.193 --name loxilb loxilbio/loxilb:beta
+docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --net=llbnet --ip=172.30.1.193 --name loxilb ghcr.io/loxilb-io/loxilb:latest
 
 # If we still want to connect loxilb docker additionally to docker's default network or more macvlan networks
 docker network connect bridge loxilb
