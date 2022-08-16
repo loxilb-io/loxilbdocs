@@ -174,7 +174,7 @@ As our development progresses, we will keep updating details about these map's i
 
 The following figure shows a very high-level diagram of packet flow through loxilb  eBPF pipeline :
 
-![base](photos/pipe.png)
+![base](photos/pipe.png|width=400px)
 
 We use eBPF tail calls to jump from one section to another majorly due to the fact that there is clear separation for CT (conntrack) functionality and packet-forwarding logic. At the same time, kernel's built in eBPF-verifier imposes a maximum code size limit for a single program.
 
