@@ -289,7 +289,7 @@ lrwxrwxrwx 1 root root 0  6?? 20 11:17 ip -&gt; /opt/loxilb/dp/bpf//tc/
 <p>As our development progresses, we will keep updating details about these map's internals</p>
 <h2 id="loxilb-ebpf-pipeline-at-a-glance">loxilb eBPF pipeline at a glance</h2>
 <p>The following figure shows a very high-level diagram of packet flow through loxilb  eBPF pipeline :</p>
-<p><img alt="base" src="photos/pipe.png" /></p>
+<p><img alt="base" src="../photos/pipe.png" /></p>
 <p>We use eBPF tail calls to jump from one section to another majorly due to the fact that there is clear separation for CT (conntrack) functionality and packet-forwarding logic. At the same time, kernel's built in eBPF-verifier imposes a maximum code size limit for a single program.</p>
               
             </div>
