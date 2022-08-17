@@ -2,6 +2,18 @@
 
 ## Right from code (difficult)
 
+* Install GoLang > v1.17
+
+```
+wget https://go.dev/dl/go1.18.linux-amd64.tar.gz && tar -xzf go1.18.linux-amd64.tar.gz --directory /usr/local/
+export PATH="${PATH}:/usr/local/go/bin"
+```
+
+* Install standard packages
+```
+apt install -y clang llvm libelf-dev gcc-multilib libpcap-dev vim net-tools linux-tools-$(uname -r) elfutils dwarves git libbsd-dev bridge-utils wget unzip build-essential bison flex iproute2
+```
+
 * Build custom iproute2 package 
 
 ```
