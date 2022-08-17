@@ -83,6 +83,6 @@ docker exec -it loxilb bash
 root@8b74b5ddc4d2:/# loxicmd create lb 20.20.20.1 --tcp=2020:5001 --endpoints=31.31.31.1:1,32.32.32.1:1,17.17.17.1:1
 ```
 
-So, we now have loxilb running as a docker with 4 hosts connected to it. 3 of the hosts act as load-balancer arms and 1 of them act as a client. We can run any workloads as we which inside the host containers and start testing loxilb
+So, we now have loxilb running as a docker with 4 hosts connected to it. 3 of the hosts act as load-balancer arms and 1 of them act as a client. We can run any workloads as we wish inside the host containers and start testing loxilb
 
 
