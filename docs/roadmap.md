@@ -6,7 +6,7 @@ Initial release of loxilb
 
 - **Major functions**:  
     - Two-Arm Load-Balancer (NAT+Routed mode)
-        - 16 end-points (arms) support
+        - Upto 16 end-points support
     - Load-balancer selection policy
         -  Round-robin, traffic-hash (fallback to RR if hash fails)
     - Conntrack support in eBPF - TCP/UDP/ICMP profiles
