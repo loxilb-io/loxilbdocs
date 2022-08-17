@@ -16,7 +16,7 @@ Prequesities :
 * Docker should be preinstalled
 * Pull and run loxilb docker 
 ```
-# docker pull loxilbio/loxilb:beta
+# docker pull ghcr.io/loxilb-io/loxilb:latest
 # docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --name loxilb loxilbio/loxilb:beta
 ```
 
