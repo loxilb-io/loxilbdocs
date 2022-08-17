@@ -143,6 +143,17 @@
                 <h1 id="loxilb-how-to-buildrun">loxilb - How to build/run</h1>
 <h2 id="right-from-code-difficult">Right from code (difficult)</h2>
 <ul>
+<li>Install GoLang &gt; v1.17</li>
+</ul>
+<pre><code>wget https://go.dev/dl/go1.18.linux-amd64.tar.gz &amp;&amp; tar -xzf go1.18.linux-amd64.tar.gz --directory /usr/local/
+export PATH=&quot;${PATH}:/usr/local/go/bin&quot;
+</code></pre>
+<ul>
+<li>Install standard packages</li>
+</ul>
+<pre><code>apt install -y clang llvm libelf-dev gcc-multilib libpcap-dev vim net-tools linux-tools-$(uname -r) elfutils dwarves git libbsd-dev bridge-utils wget unzip build-essential bison flex iproute2
+</code></pre>
+<ul>
 <li>Build custom iproute2 package </li>
 </ul>
 <pre><code>git clone https://github.com/loxilb-io/iproute2.git
