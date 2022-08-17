@@ -50,15 +50,17 @@ sudo ip -n l3e1 link set eth0 mtu 7000 up
 $LBHCMD ip addr add 31.31.31.254/24 dev enp1
 $HCMD l3e1 ifconfig eth0 31.31.31.1/24 up
 $HCMD l3e1 ip route add default via 31.31.31.254
+$HCMD l3e1 lo up
 
 
 ## Configure load-balancer end-point l3e2
 sudo ip -n loxilb link add enp2 type veth peer name eth0 netns l3e2
 sudo ip -n loxilb link set enp2 mtu 9000 up
 sudo ip -n l3e2 link set eth0 mtu 7000 up
-$LBHCMD ip addr add 31.31.31.254/24 dev enp2
-$HCMD l3e2 ifconfig eth0 31.31.31.1/24 up
-$HCMD l3e2 ip route add default via 31.31.31.254
+$LBHCMD ip addr add 32.32.32.254/24 dev enp2
+$HCMD l3e2 ifconfig eth0 32.32.32.2/24 up
+$HCMD l3e2 ip route add default via 32.32.32.254
+$HCMD l3e2 lo up
 
 ## Configure load-balancer end-point l3e3
 sudo ip -n loxilb link add enp3 type veth peer name eth0 netns l3e3
@@ -67,6 +69,7 @@ sudo ip -n l3e3 link set eth0 mtu 7000 up
 $LBHCMD ip addr add 17.17.17.254/24 dev enp3
 $HCMD l3e3 ifconfig eth0 17.17.17.1/24 up
 $HCMD l3e3 ip route add default via 17.17.17.254
+$HCMD l3e3 lo up
 
 ## Configure load-balancer end-point l3c1
 sudo ip -n loxilb link add enp4 type veth peer name eth0 netns l3c1
@@ -75,6 +78,7 @@ sudo ip -n l3c1 link set eth0 mtu 7000 up
 $LBHCMD ip addr add 100.100.100.254/24 dev enp4
 $HCMD l3c1 ifconfig eth0 100.100.100.1/24 up
 $HCMD l3c1 ip route add default via 100.100.100.254
+$HCMD l3c1 lo up
 ```
 
 Finally, we need to configure load-balancer rule inside loxilb docker as follows :
