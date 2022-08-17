@@ -43,11 +43,7 @@
         </a>
         <div class="version">
           0.9.2 (Latest)
-        </div><div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
-  </form>
-</div>
+        </div>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
@@ -289,7 +285,7 @@ lrwxrwxrwx 1 root root 0  6?? 20 11:17 ip -&gt; /opt/loxilb/dp/bpf//tc/
 <p>As our development progresses, we will keep updating details about these map's internals</p>
 <h2 id="loxilb-ebpf-pipeline-at-a-glance">loxilb eBPF pipeline at a glance</h2>
 <p>The following figure shows a very high-level diagram of packet flow through loxilb  eBPF pipeline :</p>
-<p><img src="photos/pipe.png" width="400" height="600"></p>
+<p><img alt="pipe" src="../photos/pipe.png" /></p>
 <p>We use eBPF tail calls to jump from one section to another majorly due to the fact that there is clear separation for CT (conntrack) functionality and packet-forwarding logic. At the same time, since kernel's built in eBPF-verifier imposes a maximum code size limit for a single program/section, it also helps to circumvent this issue.</p>
               
             </div>
@@ -329,7 +325,6 @@ lrwxrwxrwx 1 root root 0  6?? 20 11:17 ip -&gt; /opt/loxilb/dp/bpf//tc/
     <script>var base_url = '..';</script>
     <script src="../js/theme_extra.js" defer></script>
     <script src="../js/theme.js" defer></script>
-      <script src="../search/main.js" defer></script>
     <script defer>
         window.onload = function () {
             SphinxRtdTheme.Navigation.enable(true);
