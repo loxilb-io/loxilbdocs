@@ -131,10 +131,12 @@
     B--&gt;D[32.32.32.1];
     B--&gt;E[17.17.17.1];
 </div>
-<p>Prequesities :
-* The system should be x86 based (bare-metal or virtual)
-* Docker should be preinstalled
-* Pull and run loxilb docker </p>
+<p>Prerequisites :  </p>
+<ul>
+<li>The system should be x86 based (bare-metal or virtual)  </li>
+<li>Docker should be preinstalled  </li>
+<li>Pull and run loxilb docker  </li>
+</ul>
 <pre><code># docker pull ghcr.io/loxilb-io/loxilb:latest
 # docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --name loxilb loxilbio/loxilb:beta
 </code></pre>
