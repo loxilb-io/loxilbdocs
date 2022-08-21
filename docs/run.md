@@ -14,7 +14,7 @@ export PATH="${PATH}:/usr/local/go/bin"
 apt install -y clang llvm libelf-dev gcc-multilib libpcap-dev vim net-tools linux-tools-$(uname -r) elfutils dwarves git libbsd-dev bridge-utils wget unzip build-essential bison flex iproute2
 ```
 
-* Build custom iproute2 package 
+* Build custom iproute2 package. (loxilb  requires a special version of [iproute2](https://github.com/shemminger/iproute2) tool for its operation. The customized repository can be found [here](https://github.com/loxilb-io/iproute2). loxilb needs some patches to iproute's tc module to properly load/unload its ebpf modules
 
 ```
 git clone https://github.com/loxilb-io/iproute2.git
