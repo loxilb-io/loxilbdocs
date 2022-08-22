@@ -37,10 +37,9 @@
 │  │              ├── blacklist
 │  │              ├── whitelist
 │  ├── utils
-├── loxilib
 ├── loxinet
-├── loxinlp
 ├── options
+├── loxilib
 ```
 
 ## api
@@ -56,13 +55,10 @@ It defines functions for configuring networking and load balancing rules in the 
 ## ebpf
 This directory contains source code for loxilb eBPF datapath.
 
-## loxilib
-This directory contains common libraries for logging, statistics and other utilities.
-
-## loxinlp
-This directory implements the package for reading and writing the network information through linux's netlink interface.
-
 ## options
 This directory contains files for managing the command line options.
 
+## loxilib
+[This package contains common routines for logging, statistics and other utilities.
+](https://github.com/loxilb-io/loxilib)
 
