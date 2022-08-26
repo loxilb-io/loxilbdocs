@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/integrate_bgp_eng/" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Integrate bgp eng - LoxiLB Documentations</title>
+    <title>Howto - loxib with calico bgp - LoxiLB Documentations</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Integrate bgp eng";
+        var mkdocs_page_name = "Howto - loxib with calico bgp";
         var mkdocs_page_input_path = "integrate_bgp_eng.md";
         var mkdocs_page_url = "/loxilbdocs/integrate_bgp_eng/";
       </script>
@@ -83,6 +83,42 @@
                 <li class="toctree-l1"><a class="reference internal" href="../debugging/">Howto - debug</a>
                 </li>
               </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Howto - loxib with calico bgp</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#setup">Setup</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#1-loxilb-setup">1. loxilb setup</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#11-docker-network-setup">1.1 docker network setup</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#12-loxilb-docker-setup">1.2 loxilb docker setup</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-loxi-ccm-setup-in-kubernetes">2. loxi-ccm setup in kubernetes</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3basic-load-balancer-test">3.Basic load-balancer test</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4-calico-bgp-loxilb-setup">4. calico BGP &amp; loxilb setup</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#41-loxilb-bgp-mode-setup">4.1 loxilb BGP mode setup</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#42-gobgp_loxilbyaml-file-setup">4.2 gobgp_loxilb.yaml file setup</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#43-add-router-id-to-the-lo-interface-of-the-loxilb-container">4.3 Add router-id to the lo interface of the loxilb container</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#44-loxilb-docker-restart">4.4 loxilb docker restart</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#45-setup-bgp-peer-information-in-calico">4.5 Setup BGP Peer information in Calico</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#46-check-bgp-status">4.6 Check BGP status</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../cmd/">Cmd/Config guide</a>
                 </li>
@@ -121,7 +157,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>Integrate bgp eng</li>
+      <li>Howto - loxib with calico bgp</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -344,6 +380,10 @@ We can check the route information of calico with the gobgp global rib command.<
               
             </div>
           </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../debugging/" class="btn btn-neutral float-left" title="Howto - debug"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../cmd/" class="btn btn-neutral float-right" title="Cmd/Config guide">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
 
   <hr/>
 
@@ -365,6 +405,10 @@ We can check the route information of calico with the gobgp global rib command.<
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
+      <span><a href="../debugging/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../cmd/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
