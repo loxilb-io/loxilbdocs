@@ -47,11 +47,12 @@ root@loxilb:/home/loxilb # wrk -t8 -c400 -d30s http://20.20.20.1:2020/
 Running 30s test @ http://20.20.20.1:2020/
   8 threads and 400 connections
   Thread Stats   Avg      Stdev     Max   +/- Stdev
-    Latency    11.93ms   13.66ms 164.26ms   86.43%
-    Req/Sec     5.82k     0.99k   14.19k    70.55%
-  1391123 requests in 30.09s, 99.50MB read
-Requests/sec:  46232.45
-Transfer/sec:  3.31MB
+    Latency     8.56ms   11.24ms 137.41ms   86.54%
+    Req/Sec     5.05k     1.04k   10.30k    71.89%
+  1204823 requests in 30.08s, 86.18MB read
+Requests/sec:  40057.34
+Transfer/sec:  2.87MB
+
 ```
 
 As a baseline, we compare the numbers with loopback test i.e running *wrk* in the same host as the webserver.
@@ -60,14 +61,14 @@ root@loxilb:/home/loxilb # wrk -t8 -c400 -d30s http://127.0.0.1:5001/
 Running 30s test @ http://127.0.0.1:5001/
   8 threads and 400 connections
   Thread Stats   Avg      Stdev     Max   +/- Stdev
-    Latency    15.20ms   19.81ms 240.03ms   86.30%
-    Req/Sec     5.90k     3.74k   24.39k    74.35%
-  1410741 requests in 30.08s, 100.90MB read
-Requests/sec:  46894.07
-Transfer/sec:  3.35MB
+    Latency    15.34ms   18.61ms 166.29ms   85.05%
+    Req/Sec     5.37k     2.98k   19.82k    70.09%
+  1282161 requests in 30.09s, 91.71MB read
+Requests/sec:  42612.30
+Transfer/sec:  3.05MB
 ```
 
-Based on the above tests, loxilb performs at 98% of the baseline numbers in requests/sec and latency actually improves by 20% with loxilb.
+Based on the above tests, loxilb performs at 95% of the baseline numbers in requests/sec and latency actually improves by ~50% with loxilb.
 
 ## Multi node performance (real topology)
 
