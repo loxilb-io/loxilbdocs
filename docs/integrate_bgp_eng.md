@@ -1,10 +1,10 @@
-How to use loxilb with calico CNI in BGP mode
+How to run loxilb with calico CNI in BGP mode
 ========
 This article describes how to integrate loxilb using calico CNI in Kubernetes.
 
 Setup
 --------
-For this example kubernetes and loxilb are setup as follows:
+For this example, kubernetes and loxilb are setup as follows:
 <img src="photos/integrate_bgp.png" width="700px" height="300px" title="example topology" alt="example topology"></img><br/>
 
 Kubernetes uses a single master cluster for simplicity, all clusters use the same 192.168.57.0/24 subnet.
@@ -42,7 +42,7 @@ sudo docker network create -d macvlan -o parent=eno8 \
   --gateway 192.168.20.1 llbnet
 ```
 
-You can check the network created with the docker network list command.
+We can check the network created with the docker network list command.
 
 ```
 netlox@nd8:~$ sudo docker network list
@@ -55,8 +55,8 @@ NETWORK ID     NAME      DRIVER    SCOPE
 ```
 
 ### 1.2 loxilb docker setup
-The loxilb container image is provided at [github][loxilbContainerImageUrl].
-To download the docker image, use the following command.
+The loxilb container image is provided at [github][loxilbContainerImageUrl]. To download the docker image, use the following command.  
+
 ```
 docker pull ghcr.io/loxilb-io/loxilb:latest
 ```
@@ -69,14 +69,14 @@ sudo docker run -u root --cap-add SYS_ADMIN --restart unless-stopped \
   --net=k8snet --ip=192.168.57.4 --name loxilb ghcr.io/loxilb-io/loxilb:latest \
   --host=0.0.0.0
 ```
-The options you need to specify are:
+The options that need to specified are:
 |Options|Description|
 |----|----|
 |--net=k8snet|Network to connect to container|
 |--ip=192.168.57.4|Specifies the IP address the container will use. If not specified, use any IP within the network subnet range|
 |--name loxilb|Set container name|
 
-You can check the docker created with the docker ps command.
+We can check the docker created with the docker ps command.
 ```
 netlox@nd8:~$ sudo docker ps
 CONTAINER ID   IMAGE                  COMMAND                  CREATED       STATUS       PORTS       NAMES
@@ -87,7 +87,7 @@ Since we only connected the kubernetes network (k8snet) when running the docker 
 sudo docker network connect llbnet loxilb
 ```
 
-Once the connection is complete, you can see the container's 2 interfaces as follows:
+Once the connection is complete, we can see the docker container's interfaces as follows:
 
 ```
 netlox@netlox:~$ sudo docker exec -ti loxilb ip route
@@ -107,7 +107,8 @@ Refer to [the relevant document] [loxiCcmHowTo], change the apiServerURL of conf
 
 ## 3.Basic load-balancer test 
 
-If you have completed item 2 above, you can now give an External IP when you create a LoadBalancer type service in kubernetes. Create a test-nginx-svc.yaml file for testing as follows:
+We can now give an External IP when you create a LoadBalancer type service in kubernetes. Create a test-nginx-svc.yaml file for testing as follows:
+
 ```
 apiVersion: v1
 kind: Pod
@@ -167,7 +168,7 @@ netlox@nd8:~$ sudo docker exec -ti loxilb loxicmd get lb
 If calico configures the network in BGP mode, loxilb must also operate in BGP mode. loxilb supports BGP functions based on goBGP. The following description assumes that calico is already set to use BGP mode.
 
 ### 4.1 loxilb BGP mode setup
-If you create a loxilb container with the following command, it will run in BGP mode. The -b option at the end of the command is to enable BGP mode in loxilb.
+If we create a loxilb container with the following command, it will run in BGP mode. The -b option at the end of the command is to enable BGP mode in loxilb.
   
 ```
 sudo docker run -u root --cap-add SYS_ADMIN --restart unless-stopped \
@@ -197,7 +198,7 @@ BGP information such as as-id and router-id of the loxilb container must be regi
 The neighbors item need info about the IP address and as-id information of the BGP router peering with loxilb. In this example, calico's BGP information (192.168.57.101) and external BGP information (129.168.20.55) were registered.
 
 ### 4.3 Add router-id to the lo interface of the loxilb container
-You need to add the IP registered as loxilb router-id in the gobgp_loxilb.yaml file to the lo interface of loxilb docker.   
+We need to add the IP registered as loxilb router-id in the gobgp_loxilb.yaml file to the lo interface of loxilb docker.   
 ```
 sudo docker exec -ti loxilb ip addr add 172.1.0.2/32 dev lo
 ```
@@ -210,7 +211,7 @@ sudo docker start loxilb
 ```
 
 ### 4.5 Setup BGP Peer information in Calico
-You also need to add loxilb's BGP peer information to calico. Create the calico-bgp-config.yaml file as follows:   
+We also need to add loxilb's BGP peer information to calico. Create the calico-bgp-config.yaml file as follows:   
 ```
 apiVersion: projectcalico.org/v3
 kind: BGPPeer
@@ -236,7 +237,7 @@ Peer              AS  Up/Down State       |#Received  Accepted
 ```
 
 If the connection is successful, the State will  be shown as "Established".
-You can check the route information of calico with the gobgp global rib command.
+We can check the route information of calico with the gobgp global rib command.
 ```
 netlox@nd8:~$ sudo docker exec -ti loxilb3 gobgp global rib
    Network              Next Hop             AS_PATH              Age        Attrs
