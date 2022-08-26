@@ -169,8 +169,8 @@
                 <h1 id="how-to-run-loxilb-with-calico-cni-in-bgp-mode">How to run loxilb with calico CNI in BGP mode</h1>
 <p>This article describes how to integrate loxilb using calico CNI in Kubernetes.</p>
 <h2 id="setup">Setup</h2>
-<p>For this example, kubernetes and loxilb are setup as follows:
-<img src="photos/integrate_bgp.png" width="700px" height="300px" title="example topology" alt="example topology"></img><br/></p>
+<p>For this example, kubernetes and loxilb are setup as follows:</p>
+<p><img alt="setup" src="../photos/integrate_bgp.png" /></p>
 <p>Kubernetes uses a single master cluster for simplicity, all clusters use the same 192.168.57.0/24 subnet.
 The load balancer node where the loxilb container is running is also connected to the same subnet as kubernetes. Externally, all kubernetes connections are configured to go through the "loxilb" load balancer node.</p>
 <p>This example uses docker to run the loxilb container.
