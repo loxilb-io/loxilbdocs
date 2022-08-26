@@ -19,7 +19,7 @@ Prerequisites :
 
 ```
 # docker pull ghcr.io/loxilb-io/loxilb:latest
-# docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --name loxilb loxilbio/loxilb:beta
+# docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --name loxilb ghcr.io/loxilb-io/loxilb:latest
 ```
 
 Next step is to run the following script to create and configure the above topology :
