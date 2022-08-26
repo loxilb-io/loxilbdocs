@@ -51,6 +51,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://loxilb-io.github.io/loxilbdocs/integrate_bgp/</loc>
+         <lastmod>2022-08-26</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://loxilb-io.github.io/loxilbdocs/lb/</loc>
          <lastmod>2022-08-26</lastmod>
          <changefreq>daily</changefreq>

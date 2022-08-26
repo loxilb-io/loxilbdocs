@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/integrate_bgp/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Integrate bgp - LoxiLB Documentations</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Integrate bgp";
+        var mkdocs_page_input_path = "integrate_bgp.md";
+        var mkdocs_page_url = "/loxilbdocs/integrate_bgp/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-21G7NBL2BN"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-21G7NBL2BN');
+      </script>
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> LoxiLB Documentations
+        </a>
+        <div class="version">
+          0.9.2 (Latest)
+        </div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ebpf/">What is eBPF</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../lb/">What is service type - external load-balancer</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../arch/">Architecture in brief</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../code/">Code organization</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../loxilbebpf/">eBPF internals of loxilb</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../run/">Howto - build/run</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ccm/">Howto - ccm plugin</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../debugging/">Howto - debug</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cmd/">Cmd/Config guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api/">Api usage/dev guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../perf/">Performance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../roadmap/">Development Roadmap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../contribute/">Contribute</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../faq/">FAQs</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">LoxiLB Documentations</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Integrate bgp</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="loxilb-calico-bgp">loxilb &amp; calico BGP 연동</h1>
+<p>이 문서에서는 calico CNI를 사용하는 kubernetes와 loxilb를 연동하는 방법을 설명합니다.</p>
+<h2 id="_1">환경</h2>
+<p>이 예제에서는 kubernetes와 loxilb가 다음과 같이 연결되어 있다고 가정합니다.
+kubernetes는 단순함을 위해서 단일 마스터 클러스터를 사용하며 모든 클러스터는 192.168.57.0/24 동일한 서브넷을 사용합니다.
+loxilb 컨테이너가 실행중인 로드밸런서 노드 역시 kubernetes와 동일한 서브넷에 연결되어 있습니다. 외부에서 kubernetes접속은 모두 로드밸런서 노드와 loxilb를 거치도록 설정했습니다.</p>
+<p>해당 예제에서는 docker를 사용해 loxilb 컨테이너를 실행합니다.
+해당 예제에서는 kubernetes &amp; calico는 이미 설치되어 있다고 가정하고 설명합니다.</p>
+<h2 id="1-loxilb-container">1. loxilb container 생성</h2>
+<h3 id="11-docker-network">1.1 docker network 생성</h3>
+<p>우선 loxilb와 kubernetes 연동을 위해서는 서로 통신할 수 있어야 합니다. 
+kubernetes &amp; 로드밸런서 노드가 연결되어 있는 네트워크에 loxilb 컨테이너도 연결되도록 docker network를 생성합니다. 현재 로드밸런서 노드는 eno6 인터페이스를 통해 kubernetes와 연결되어 있습니다. 따라서 eno6 인터페이스를 parent로 사용하는 macvlan 타입 docker network 만들어서 loxilb 컨테이너에 제공하도록 하겠습니다.
+다음 명령어로 docker network를 생성합니다.</p>
+<pre><code>sudo docker network create -d macvlan -o parent=eno6 \
+  --subnet 192.168.57.0/24 \
+  --gateway 192.168.57.1 \
+  --aux-address 'cp1=192.168.57.101' \
+  --aux-address 'cp2=192.168.57.102' \
+  --aux-address 'cp3=192.168.57.103' k8snet
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>옵션</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-d macvlan</td>
+<td>네트워크 타입을 macvlan으로 지정</td>
+</tr>
+<tr>
+<td>-o parent=eno6</td>
+<td>eno6 인터페이스를 parent로 사용해서 macvlan type 네트워크 생성</td>
+</tr>
+<tr>
+<td>--subnet 192.168.57.0/24</td>
+<td>네트워크 서브넷 지정</td>
+</tr>
+<tr>
+<td>--gateway 192.168.57.1</td>
+<td>게이트웨이 설정(생략 가능)</td>
+</tr>
+<tr>
+<td>--aux-address 'serverName=serverIP'</td>
+<td>해당 네트워크에서 이미 사용중인 IP 주소들이 중복으로 컨테이너에 할당되지 않도록 미리 등록하는 옵션</td>
+</tr>
+<tr>
+<td>k8snet</td>
+<td>네트워크 이름을 k8snet으로 지정</td>
+</tr>
+</tbody>
+</table>
+<p>외부에서 kubernetes 서비스로 접근하는 트래픽 역시 loxilb를 거치도록, 외부와 통신이 가능한 docker network 역시 생성합니다. 로드밸런서 노드는 eno8을 통해 외부와 연결되어 있습니다.</p>
+<pre><code>sudo docker network create -d macvlan -o parent=eno8 \
+  --subnet 192.168.20.0/24 \
+  --gateway 192.168.20.1 llbnet
+</code></pre>
+<p>docker network list 명령어로 생성한 네트워크를 확인할 수 있습니다.</p>
+<pre><code>netlox@nd8:~$ sudo docker network list
+NETWORK ID     NAME      DRIVER    SCOPE
+5c97ae74fc32   bridge    bridge    local
+6142f53e8be6   host      host      local
+24ee7dbd7707   k8snet    macvlan   local
+81c96ceda375   llbnet    macvlan   local
+7bcd1738501b   none      null      local
+</code></pre>
+<h3 id="12-loxilb-container">1.2 loxilb container 생성</h3>
+<p>loxilb container 이미지는 <a href="https://github.com/loxilb-io/loxilb/pkgs/container/loxilb">github</a>에서 제공되고 있습니다.
+컨테이너 이미지만 먼저 다운로드하고 싶을 경우 다음 명령어를 사용합니다.</p>
+<pre><code>docker pull ghcr.io/loxilb-io/loxilb:latest
+</code></pre>
+<p>다음 명령어로 loxilb 컨테이너를 생성할 수 있습니다.</p>
+<pre><code>sudo docker run -u root --cap-add SYS_ADMIN --restart unless-stopped \
+  --privileged -dit -v /dev/log:/dev/log \
+  --net=k8snet --ip=192.168.57.4 --name loxilb ghcr.io/loxilb-io/loxilb:latest \
+  --host=0.0.0.0
+</code></pre>
+<p>사용자가 지정해야 하는 옵션은 다음과 같습니다.
+|옵션|설명|
+|----|----|
+|--net=k8snet|컨테이너를 연결할 네트워크|
+|--ip=192.168.57.4|컨테이너가 사용할 IP address 지정. 지정하지 않을 경우 network 서브냇 범위 내에서 임의의 IP 사용|
+|--name loxilb|컨테이너 이름 설정|</p>
+<p>docker ps 명령어로 생성한 컨테이너를 확인할 수 있습니다.</p>
+<pre><code>netlox@nd8:~$ sudo docker ps
+CONTAINER ID   IMAGE                  COMMAND                  CREATED       STATUS       PORTS       NAMES
+eae349a283ae   loxilbio/loxilb:beta   &quot;/root/loxilb-io/lox…&quot;   11 days ago   Up 11 days               loxilb
+</code></pre>
+<p>위에서 컨테이너 생성할 때 kubernetes 네트워크만 연결했기 때문에, 외부 통신용 docker network와도 연결해야 합니다.
+다음 명령어로 컨테이너에 네트워크를 주가로 연결할 수 있습니다.</p>
+<pre><code>sudo docker network connect llbnet loxilb
+</code></pre>
+<p>연결이 완료되면 다음과 같이 컨테이너의 인터페이스 2개를 확인할 수 있습니다</p>
+<pre><code>netlox@netlox:~$ sudo docker exec -ti loxilb ip route
+default via 192.168.20.1 dev eth0
+192.168.20.0/24 dev eth0 proto kernel scope link src 192.168.20.4
+192.168.30.0/24 dev eth1 proto kernel scope link src 192.168.30.2
+</code></pre>
+<h2 id="2-kubernetes-loxi-ccm">2. kubernetes에 loxi-ccm 설치</h2>
+<p>loxi-ccm은 loxilb 로드밸런서를 kubernetes에게 제공하기 위한 <a href="https://kubernetes.io/ko/docs/concepts/architecture/cloud-controller/">cloud-controller-manager</a> 로서, kubernetes와 loxilb 연동에 반드시 필요합니다.
+<a href="https://github.com/loxilb-io/loxilbdocs/blob/main/docs/ccm.md">해당 문서</a>를 참고해서, configMap의 apiServerURL을 위에서 생성한 loxilb의 IP 주소로 변경한 후 kubernetes에 설치하시면 됩니다.
+loxi-ccm까지 정상적으로 설치되었다면 연동 작업이 완료됩니다.</p>
+<h2 id="3">3. 기본 연동 확인</h2>
+<p>2번 항목까지 완료되었다면, 이제 kubernetes에서 LoadBalancer 타입 서비스를 생성하면 External IP가 부여됩니다.
+다음과 같이 테스트용으로 test-nginx-svc.yaml 파일을 생성합니다.</p>
+<pre><code>apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    app.kubernetes.io/name: proxy
+spec:
+  containers:
+  - name: nginx
+    image: nginx:latest
+    ports:
+      - containerPort: 80
+        name: http-web-svc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  type: LoadBalancer
+  selector:
+    app.kubernetes.io/name: proxy
+  ports:
+  - name: name-of-service-port
+    protocol: TCP
+    port: 8888
+    targetPort: http-web-svc
+</code></pre>
+<p>파일을 생성한 다음, 아래 명령으로 nginx pod와 LoadBalancer 서비스를 생성합니다.</p>
+<pre><code>kubectl apply -f test-nginx-svc.yaml
+</code></pre>
+<p>서비스 nginx-service가 LoadBalancer 타입으로 생성되었고 External IP를 할당받았음을 확인할 수 있습니다. <br />
+이제 IP 123.123.123.15와 port 8888을 사용해 외부에서 kubernetes 서비스로 접근이 가능합니다.</p>
+<pre><code>vagrant@node1:~$ sudo kubectl get svc
+NAME            TYPE           CLUSTER-IP      EXTERNAL-IP      PORT(S)          AGE
+kubernetes      ClusterIP      10.233.0.1      &lt;none&gt;           443/TCP          28d
+nginx-service   LoadBalancer   10.233.21.235   123.123.123.15   8888:31655/TCP   3s
+</code></pre>
+<p>LoadBalancer 룰은 loxilb 컨테이너에도 생성됩니다. 로드밸런서 노드에서 다음과 같이 확인할 수 있습니다.</p>
+<pre><code>netlox@nd8:~$ sudo docker exec -ti loxilb loxicmd get lb
+|  EXTERNAL IP   | PORT | PROTOCOL | SELECT | # OF ENDPOINTS |
+|----------------|------|----------|--------|----------------|
+| 123.123.123.15 | 8888 | tcp      |      0 |              2 |
+</code></pre>
+<h2 id="4-calico-bgp-loxilb">4. calico BGP &amp; loxilb 연동</h2>
+<p>calico에서 BGP 모드로 네트워크를 구성할 경우, loxilb 역시 BGP 모드로 동작해야 합니다. loxilb는 goBGP 기반으로 BGP 네트워크 기능을 지원합니다.
+이하 내용은 calico가 BGP mode로 설정되어 있다고 가정하고 설명합니다.</p>
+<h3 id="41-loxilb-bgp">4.1 loxilb BGP 모드로 실행</h3>
+<p>다음 명령어로 loxilb 컨테이너를 생성하면 BGP 모드로 실행됩니다. 명령어 마지막의 -b 옵션이 BGP 모드 옵션입니다.</p>
+<pre><code>sudo docker run -u root --cap-add SYS_ADMIN --restart unless-stopped \
+  --privileged -dit -v /dev/log:/dev/log \
+  --net=k8snet --ip=192.168.57.4 --name loxilb ghcr.io/loxilb-io/loxilb:latest \
+  --host=0.0.0.0 -b
+</code></pre>
+<h3 id="42-gobgp_loxilbyaml">4.2 gobgp_loxilb.yaml 파일 생성</h3>
+<p>loxilb 컨테이너의 /opt/loxilb/ 디렉토리에 gobgp_loxilb.yaml 파일을 생성합니다.</p>
+<pre><code>global:
+    config:
+        as: 65002
+        router-id: 172.1.0.2
+neighbors:
+    - config:
+        neighbor-address: 192.168.57.101
+        peer-as: 64512
+    - config:
+        neighbor-address: 192.168.20.55
+        peer-as: 64001
+</code></pre>
+<p>global 항목에는 loxilb 컨테이너의 as-id와 router-id 등 BGP 정보를 등록해야 합니다.
+neighbors는 loxilb와 Peering되는 BGP 라우터의 IP 주소 및 as-id 정보를 등록합니다. 해당 예제에서는 calico의 BGP 정보(192.168.57.101)와 외부 BGP 정보(129.168.20.55) 를 등록했습니다.</p>
+<h3 id="43-loxilb-lo-router-id">4.3 loxilb 컨테이너의 lo 인터페이스에 router-id 추가</h3>
+<p>gobgp_loxilb.yaml 파일에서 router-id로 등록한 IP를 lo 인터페이스에 추가해야 합니다.</p>
+<pre><code>sudo docker exec -ti loxilb ip addr add 172.1.0.2/32 dev lo
+</code></pre>
+<h3 id="44-loxilb">4.4 loxilb 컨테이너 재시작</h3>
+<p>gobgp_loxilb.yaml에 작성한 설정이 적용되도록 컨테이너를 재시작합니다.</p>
+<pre><code>sudo docker stop loxilb
+sudo docker start loxilb
+</code></pre>
+<h3 id="45-calico-bgp-peer">4.5 calico에 BGP Peer 정보 추가</h3>
+<p>calico에도 loxilb의 BGP Peer 정보를 추가해야 합니다. 다음과 같이 calico-bgp-config.yaml 파일을 생성합니다.</p>
+<pre><code>apiVersion: projectcalico.org/v3
+kind: BGPPeer
+metadata:
+  name: my-global-peers2
+spec:
+  peerIP: 192.168.57.4
+  asNumber: 65002
+</code></pre>
+<p>peerIP에 loxilb의 IP 주소를 입력합니다. asNumber에는 위에서 설정한 loxilb BGP의 as-ID를 입력합니다.
+파일을 생성한 다음, 아래 명령어로 calico에 BGP Peer 정보를 추가합니다.</p>
+<pre><code>sudo calicoctl apply -f calico-bgp-config.yaml
+</code></pre>
+<h3 id="46-bgp">4.6 BGP 설정 확인</h3>
+<p>이제 다음과 같이 loxilb 컨테이너에서 BGP 연결을 확인할 수 있습니다.</p>
+<pre><code>netlox@nd8:~$ sudo docker exec -ti loxilb3 gobgp neigh
+Peer              AS  Up/Down State       |#Received  Accepted
+192.168.57.101 64512 00:00:59 Establ      |        4         4
+</code></pre>
+<p>정상적으로 연결되었다면 State가 Establish로 표시됩니다. <br />
+gobgp global rib 명령으로 calico의 route 정보를 확인할 수 있습니다.</p>
+<pre><code>netlox@nd8:~$ sudo docker exec -ti loxilb3 gobgp global rib
+   Network              Next Hop             AS_PATH              Age        Attrs
+*&gt; 10.233.71.0/26       192.168.57.101       64512                01:02:03   [{Origin: i}]
+*&gt; 10.233.74.64/26      192.168.57.101       64512                01:02:03   [{Origin: i}]
+*&gt; 10.233.75.0/26       192.168.57.101       64512                01:02:03   [{Origin: i}]
+*&gt; 10.233.102.128/26    192.168.57.101       64512                01:02:03   [{Origin: i}]
+</code></pre>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
