@@ -5,6 +5,7 @@ loxilb & calico BGP 연동
 환경
 --------
 이 예제에서는 kubernetes와 loxilb가 다음과 같이 연결되어 있다고 가정합니다.
+<img src="photos/integrate_bgp.png" width="700px" height="300px" title="example topology" alt="example topology"></img><br/>
 kubernetes는 단순함을 위해서 단일 마스터 클러스터를 사용하며 모든 클러스터는 192.168.57.0/24 동일한 서브넷을 사용합니다.
 loxilb 컨테이너가 실행중인 로드밸런서 노드 역시 kubernetes와 동일한 서브넷에 연결되어 있습니다. 외부에서 kubernetes접속은 모두 로드밸런서 노드와 loxilb를 거치도록 설정했습니다.
 
