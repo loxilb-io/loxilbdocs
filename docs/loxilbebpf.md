@@ -22,7 +22,7 @@ loxilb's goLang based agent by default loads the loxilb ebpf programs in all the
 
 To load :
 ```
-ntc filter add dev eth1 ingress bpf da obj /opt/loxilb/llb_ebpf_main.o sec tc_packet_parser
+ntc filter add dev eth1 ingress bpf da obj /opt/loxilb/llb_ebpf_main.o sec tc_packet_hook0
 ```
 
 To unload:
@@ -32,9 +32,9 @@ ntc filter del dev eth1 ingress
 
 To check:
 ```
-root@nd2:/home/llb# ntc filter show dev hs2 ingress
+root@nd2:/home/llb# ntc filter show dev eth1 ingress
 filter protocol all pref 49152 bpf chain 0 
-filter protocol all pref 49152 bpf chain 0 handle 0x1 llb_ebpf_main.o:[tc_packet_parser] direct-action not_in_hw id 8715 tag 43a829222e969bce jited 
+filter protocol all pref 49152 bpf chain 0 handle 0x1 llb_ebpf_main.o:[tc_packet_hook0] direct-action not_in_hw id 8715 tag 43a829222e969bce jited 
 ```
 
 *Please not that <b>ntc</b> is the customized tc tool from iproute2 package which can be found in loxilb's repository*
