@@ -46,6 +46,7 @@ loxilb aims to provide the following :
 - [Howto - build/run](run.md)
 - [Howto - ccm plugin](ccm.md)
 - [Howto - debug](debugging.md)
+- [Howto - loxilb with calico bgp](docs/integrate_bgp_eng.md)
 - [Cmd/Config guide](cmd.md)
 - [Api usage/dev guide](api.md)
 - [Performance](perf.md)
