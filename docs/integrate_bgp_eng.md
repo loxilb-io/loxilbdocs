@@ -5,7 +5,8 @@ This article describes how to integrate loxilb using calico CNI in Kubernetes.
 Setup
 --------
 For this example, kubernetes and loxilb are setup as follows:
-<img src="photos/integrate_bgp.png" width="700px" height="300px" title="example topology" alt="example topology"></img><br/>
+
+![setup](photos/integrate_bgp.png)
 
 Kubernetes uses a single master cluster for simplicity, all clusters use the same 192.168.57.0/24 subnet.
 The load balancer node where the loxilb container is running is also connected to the same subnet as kubernetes. Externally, all kubernetes connections are configured to go through the "loxilb" load balancer node.
