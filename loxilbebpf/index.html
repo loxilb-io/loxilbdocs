@@ -154,15 +154,15 @@ drwxrwxrwt 3 root root    0  6?? 20 11:17 dp
 <h2 id="loading-of-loxilb-ebpf-program">Loading of loxilb eBPF program</h2>
 <p>loxilb's goLang based agent by default loads the loxilb ebpf programs in all the interfaces(only physical/real/bond/wireguard) available in the system. As loxilb is designed to run in its own docker/container, this is convenient for users who dont want to have to manually load/unload eBPF programs. However, it is still possible to do so manually if need arises :</p>
 <p>To load :</p>
-<pre><code>ntc filter add dev eth1 ingress bpf da obj /opt/loxilb/llb_ebpf_main.o sec tc_packet_parser
+<pre><code>ntc filter add dev eth1 ingress bpf da obj /opt/loxilb/llb_ebpf_main.o sec tc_packet_hook0
 </code></pre>
 <p>To unload:</p>
 <pre><code>ntc filter del dev eth1 ingress
 </code></pre>
 <p>To check:</p>
-<pre><code>root@nd2:/home/llb# ntc filter show dev hs2 ingress
+<pre><code>root@nd2:/home/llb# ntc filter show dev eth1 ingress
 filter protocol all pref 49152 bpf chain 0 
-filter protocol all pref 49152 bpf chain 0 handle 0x1 llb_ebpf_main.o:[tc_packet_parser] direct-action not_in_hw id 8715 tag 43a829222e969bce jited 
+filter protocol all pref 49152 bpf chain 0 handle 0x1 llb_ebpf_main.o:[tc_packet_hook0] direct-action not_in_hw id 8715 tag 43a829222e969bce jited 
 </code></pre>
 <p><em>Please not that <b>ntc</b> is the customized tc tool from iproute2 package which can be found in loxilb's repository</em></p>
 <h2 id="entry-points-of-loxilb-ebpf">Entry points of loxilb eBPF</h2>
