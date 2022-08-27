@@ -1,4 +1,4 @@
-name: LoxiLB Documentations 
+name: LoxiLB-Docs 
 on:
   push:
     branches:
