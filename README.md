@@ -1,8 +1,9 @@
-# loxilbdocs - Documentation about loxilb
+# loxilb Documentation
+[![eBPF Emerging Project](https://raw.githubusercontent.com/loxilb-io/loxilbdocs/main/docs/photos/ebpflogo.png)](https://ebpf.io/projects#loxilb)  
 
-![build workflow](https://github.com/loxilb-io/loxilb/actions/workflows/docker-image.yml/badge.svg) ![sanity workflow](https://github.com/loxilb-io/loxilb/actions/workflows/basic-sanity.yml/badge.svg)
+![build workflow](https://github.com/loxilb-io/loxilb/actions/workflows/docker-image.yml/badge.svg) ![sanity workflow](https://github.com/loxilb-io/loxilb/actions/workflows/basic-sanity.yml/badge.svg) ![sanity workflow](https://github.com/loxilb-io/loxilbdocs/actions/workflows/documentation.yml/badge.svg)    
 
-[![eBPF Emerging Project](docs/photos/ebpflogo.png)](https://ebpf.io/projects#loxilb)
+![apache](https://img.shields.io/badge/license-Apache-blue.svg) ![bsd](https://img.shields.io/badge/license-BSD-blue.svg) ![gpl](https://img.shields.io/badge/license-GPL-blue.svg)
 
 ## loxilb Background 
 loxilb started as a project to ease deployments of cloud-native/kubernetes workloads for the edge. When we deploy services in public clouds like AWS/GCP, the services becomes easily accessible or exported to the outside world. The public cloud providers, usually by default, associate load-balancer instances for incoming requests to these services to ensure everything is quite smooth. 
