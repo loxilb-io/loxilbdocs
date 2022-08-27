@@ -1,7 +1,5 @@
 # loxilb Documentation
-[![eBPF Emerging Project](https://raw.githubusercontent.com/loxilb-io/loxilbdocs/main/docs/photos/ebpflogo.png)](https://ebpf.io/projects#loxilb)  
-
-![build workflow](https://github.com/loxilb-io/loxilb/actions/workflows/docker-image.yml/badge.svg) ![sanity workflow](https://github.com/loxilb-io/loxilb/actions/workflows/basic-sanity.yml/badge.svg) ![sanity workflow](https://github.com/loxilb-io/loxilbdocs/actions/workflows/documentation.yml/badge.svg)    
+[![eBPF Emerging Project](https://img.shields.io/badge/ebpf.io-Emerging--Project-success)](https://ebpf.io/projects#loxilb) ![build workflow](https://github.com/loxilb-io/loxilb/actions/workflows/docker-image.yml/badge.svg) ![sanity workflow](https://github.com/loxilb-io/loxilb/actions/workflows/basic-sanity.yml/badge.svg) ![sanity workflow](https://github.com/loxilb-io/loxilbdocs/actions/workflows/documentation.yml/badge.svg)    
 
 ![apache](https://img.shields.io/badge/license-Apache-blue.svg) ![bsd](https://img.shields.io/badge/license-BSD-blue.svg) ![gpl](https://img.shields.io/badge/license-GPL-blue.svg)
 
