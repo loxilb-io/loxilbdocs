@@ -9,7 +9,7 @@ Initial release of loxilb
         - Upto 16 end-points support
     - Load-balancer selection policy
         -  Round-robin, traffic-hash (fallback to RR if hash fails)
-    - Conntrack support in eBPF - TCP/UDP/ICMP profiles
+    - Conntrack support in eBPF - TCP/UDP/ICMP/SCTP profiles
     - GTP with QFI extension support
         - UL/CL classifier support for MEC
     - Extended QoS support (SRTCM/TRTCM)
@@ -29,10 +29,10 @@ Initial release of loxilb
 - **Major functions**: 
     - Enhanced load-balancer support upto 32 end-points
     - Integrated Firewall support
-    - Extended conntrack - SCTP support
     - One-ARM LB mode support
     - SRv6 support
-    - HA support
+    - HA support  
+    - Integration with Linux egress TC QoS
     - Grafana based dashboard
   
 - **CCM Support**: 
