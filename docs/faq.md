@@ -10,7 +10,7 @@ Yes, loxilb  can be run outside the provided docker image. Docker image gives it
 
 * <b>Can loxilb also act as a CNI ?</b>
 
-loxilb supports many functionalities of a CNI but loxilb dev team is happy solving external LB and related connectivity problems for the time being. If there is a future requirement not met by currently available CNIs, we might work chip in as well
+loxilb supports many functionalities of a CNI but loxilb dev team is happy solving external LB and related connectivity problems for the time being. If there is a future requirement not met by currently available CNIs, we might chip in as well
 
 * <b>Is there a commercially supported version of loxilb ?</b>
 
