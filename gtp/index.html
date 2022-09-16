@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+
+<html class="writer-html5" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://loxilb-io.github.io/loxilbdocs/gtp/" rel="canonical"/>
+<link href="../img/favicon.ico" rel="shortcut icon"/>
+<title>Creating a simple test topology for loxilb - LoxiLB Documentations</title>
+<link href="../css/theme.css" rel="stylesheet"/>
+<link href="../css/theme_extra.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" rel="stylesheet"/>
+<script>
+        // Current page data
+        var mkdocs_page_name = "Creating a simple test topology for loxilb";
+        var mkdocs_page_input_path = "gtp.md";
+        var mkdocs_page_url = "/loxilbdocs/gtp/";
+      </script>
+<script defer="" src="../js/jquery-3.6.0.min.js"></script>
+<!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-21G7NBL2BN"></script>
+<script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-21G7NBL2BN');
+      </script>
+</head>
+<body class="wy-body-for-nav" role="document">
+<div class="wy-grid-for-nav">
+<nav class="wy-nav-side stickynav" data-toggle="wy-nav-shift">
+<div class="wy-side-scroll">
+<div class="wy-side-nav-search">
+<a class="icon icon-home" href=".."> LoxiLB Documentations
+        </a>
+<div class="version">
+          0.9.2 (Latest)
+        </div>
+</div>
+<div aria-label="Navigation menu" class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ebpf/">What is eBPF</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../lb/">What is service type - external load-balancer</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../arch/">Architecture in brief</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../code/">Code organization</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../loxilbebpf/">eBPF internals of loxilb</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../run/">Howto - build/run</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ccm/">Howto - ccm plugin</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../debugging/">Howto - debug</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../integrate_bgp_eng/">Howto - loxib with calico bgp</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cmd/">Cmd/Config guide</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/">Api usage/dev guide</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../perf/">Performance</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../roadmap/">Development Roadmap</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contribute/">Contribute</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../faq/">FAQs</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<section class="wy-nav-content-wrap" data-toggle="wy-nav-shift">
+<nav aria-label="Mobile navigation menu" class="wy-nav-top" role="navigation">
+<i class="fa fa-bars" data-toggle="wy-nav-top"></i>
+<a href="..">LoxiLB Documentations</a>
+</nav>
+<div class="wy-nav-content">
+<div class="rst-content"><div aria-label="breadcrumbs navigation" role="navigation">
+<ul class="wy-breadcrumbs">
+<li><a alt="Docs" class="icon icon-home" href=".."></a> »</li>
+<li>Creating a simple test topology for loxilb</li>
+<li class="wy-breadcrumbs-aside">
+</li>
+</ul>
+<hr/>
+</div>
+<div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
+<div class="section" itemprop="articleBody">
+<h1 id="creating-a-simple-test-topology-for-loxilb">Creating a simple test topology for loxilb</h1>
+<p>To test loxilb in a completely virtual environment, it is possible to quickly create a virtual test topology. We will explain the steps required to create a very simple topology (more complex topologies can be built using this example) :</p>
+<div class="mermaid">graph LR;
+    UE1[UE1&lt;br&gt;32.32.32.1]--&gt;B[llb1&lt;br&gt;10.10.10.59/24];
+    UE2[UE2&lt;br&gt;31.31.31.1]--&gt;B;
+    B-- GTP Tunnel ---C[llb2&lt;br&gt;10.10.10.56/24]
+    C--&gt;D[EP1&lt;br&gt;31.31.31.1];
+    C--&gt;E[EP2&lt;br&gt;32.32.32.1];
+    C--&gt;F[EP3&lt;br&gt;17.17.17.1];
+</div>
+<p>Prerequisites :  </p>
+<ul>
+<li>The system should be x86 based (bare-metal or virtual)  </li>
+<li>Docker should be preinstalled  </li>
+</ul>
+<pre><code>
+Next step is to run the following script to create and configure the above topology. 
+
+</code></pre>
+<p>Please refer scenario3 in loxilb/cicd <a href="https://github.com/loxilb-io/loxilb/blob/main/cicd/scenario3/config.sh">script</a></p>
+<p>Script will spawn dockers for UEs, loxilbs and endpoints. </p>
+<p>In the script, We are creating sessions and configuring load-balancer rule inside loxilb docker as follows :</p>
+<pre><code>dexec="docker exec -it "
+##llb1 config
+#ue1
+$dexec llb1 loxicmd create session user1 88.88.88.88 --accessNetworkTunnel 1:10.10.10.56 --coreNetworkTunnel=1:10.10.10.59
+
+$dexec llb1 loxicmd create sessionulcl user1 --ulclArgs=11:32.32.32.1
+
+#ue2
+$dexec llb1 loxicmd create session user2 88.88.88.88 --accessNetworkTunnel 2:10.10.10.56 --coreNetworkTunnel=2:10.10.10.59
+
+$dexec llb1 loxicmd create sessionulcl user2 --ulclArgs=12:31.31.31.1
+
+##llb2 config
+#ue1
+$dexec llb2 loxicmd create session user1 32.32.32.1 --accessNetworkTunnel 1:10.10.10.59 --coreNetworkTunnel=1:10.10.10.56
+
+
+$dexec llb2 loxicmd create sessionulcl user1 --ulclArgs=11:88.88.88.88
+
+#ue2
+$dexec llb2 loxicmd create session user2 31.31.31.1 --accessNetworkTunnel 2:10.10.10.59 --coreNetworkTunnel=2:10.10.10.56
+
+$dexec llb2 loxicmd create sessionulcl user2 --ulclArgs=12:88.88.88.88
+
+
+##Create LB rule
+$dexec llb2 loxicmd create lb 88.88.88.88 --tcp=2020:8080 --endpoints=25.25.25.1:1,26.26.26.1:1,27.27.27.1:1
+</code></pre>
+<p>So, we now have two instances loxilb running as a docker.
+First instance of loxilb, llb1 is simulated as gNB as it is used to encap the incoming traffic from UE1 or UE2. Breakout, forward or loadbalancer rule can be configured on second instance llb2
+We can run any workloads as we wish inside the host containers and start testing loxilb.</p>
+</div>
+</div><footer>
+<hr/>
+<div role="contentinfo">
+<!-- Copyright etc -->
+</div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+</div>
+</div>
+</section>
+</div>
+<div aria-label="Versions" class="rst-versions" role="note">
+<span class="rst-current-version" data-toggle="rst-current-version">
+</span>
+</div>
+<script>var base_url = '..';</script>
+<script defer="" src="../js/theme_extra.js"></script>
+<script defer="" src="../js/theme.js"></script>
+<script defer="">
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+<script src="https://unpkg.com/mermaid@8.8.0/dist/mermaid.min.js"></script><script>mermaid.initialize({});</script></body>
+</html>
