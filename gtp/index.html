@@ -6,13 +6,13 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://loxilb-io.github.io/loxilbdocs/gtp/" rel="canonical"/>
 <link href="../img/favicon.ico" rel="shortcut icon"/>
-<title>Creating a simple test topology for loxilb - LoxiLB Documentations</title>
+<title>Creating a simple test topology for testing GTP with loxilb - LoxiLB Documentations</title>
 <link href="../css/theme.css" rel="stylesheet"/>
 <link href="../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Creating a simple test topology for loxilb";
+        var mkdocs_page_name = "Creating a simple test topology for testing GTP with loxilb";
         var mkdocs_page_input_path = "gtp.md";
         var mkdocs_page_url = "/loxilbdocs/gtp/";
       </script>
@@ -119,7 +119,7 @@
 <div class="rst-content"><div aria-label="breadcrumbs navigation" role="navigation">
 <ul class="wy-breadcrumbs">
 <li><a alt="Docs" class="icon icon-home" href=".."></a> »</li>
-<li>Creating a simple test topology for loxilb</li>
+<li>Creating a simple test topology for testing GTP with loxilb</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -127,7 +127,7 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="creating-a-simple-test-topology-for-loxilb">Creating a simple test topology for loxilb</h1>
+<h1 id="creating-a-simple-test-topology-for-testing-gtp-with-loxilb">Creating a simple test topology for testing GTP with loxilb</h1>
 <p>To test loxilb in a completely virtual environment, it is possible to quickly create a virtual test topology. We will explain the steps required to create a very simple topology (more complex topologies can be built using this example) :</p>
 <div class="mermaid">graph LR;
     UE1[UE1&lt;br&gt;32.32.32.1]--&gt;B[llb1&lt;br&gt;10.10.10.59/24];
@@ -142,35 +142,36 @@
 <li>The system should be x86 based (bare-metal or virtual)  </li>
 <li>Docker should be preinstalled  </li>
 </ul>
-<pre><code>
-Next step is to run the following script to create and configure the above topology. 
-
-</code></pre>
+<h2 id="next-step-is-to-run-the-following-script-to-create-and-configure-the-above-topology">Next step is to run the following script to create and configure the above topology.</h2>
 <p>Please refer scenario3 in loxilb/cicd <a href="https://github.com/loxilb-io/loxilb/blob/main/cicd/scenario3/config.sh">script</a></p>
 <p>Script will spawn dockers for UEs, loxilbs and endpoints. </p>
-<p>In the script, We are creating sessions and configuring load-balancer rule inside loxilb docker as follows :</p>
+<p>In the script, UEs will try to access service IP(88.88.88.88). We are creating sessions and configuring load-balancer rule inside loxilb docker as follows :</p>
 <pre><code>dexec="docker exec -it "
 ##llb1 config
-#ue1
+
+#Creating session for ue1
 $dexec llb1 loxicmd create session user1 88.88.88.88 --accessNetworkTunnel 1:10.10.10.56 --coreNetworkTunnel=1:10.10.10.59
 
+#Creating ULCL filter with ue1 IP
 $dexec llb1 loxicmd create sessionulcl user1 --ulclArgs=11:32.32.32.1
 
-#ue2
+#Creating session for ue2
 $dexec llb1 loxicmd create session user2 88.88.88.88 --accessNetworkTunnel 2:10.10.10.56 --coreNetworkTunnel=2:10.10.10.59
 
+#Creating ULCL filter with ue2 IP
 $dexec llb1 loxicmd create sessionulcl user2 --ulclArgs=12:31.31.31.1
 
 ##llb2 config
-#ue1
+#Creating session for ue1
 $dexec llb2 loxicmd create session user1 32.32.32.1 --accessNetworkTunnel 1:10.10.10.59 --coreNetworkTunnel=1:10.10.10.56
 
-
+#Creating ULCL filter with service IP for ue1
 $dexec llb2 loxicmd create sessionulcl user1 --ulclArgs=11:88.88.88.88
 
-#ue2
+#Creating session for ue1
 $dexec llb2 loxicmd create session user2 31.31.31.1 --accessNetworkTunnel 2:10.10.10.59 --coreNetworkTunnel=2:10.10.10.56
 
+#Creating ULCL filter with service IP for ue2
 $dexec llb2 loxicmd create sessionulcl user2 --ulclArgs=12:88.88.88.88
 
 
