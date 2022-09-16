@@ -1,4 +1,4 @@
-# Creating a simple test topology for loxilb
+# Creating a simple test topology for testing GTP with loxilb
 
 To test loxilb in a completely virtual environment, it is possible to quickly create a virtual test topology. We will explain the steps required to create a very simple topology (more complex topologies can be built using this example) :
 
@@ -19,39 +19,40 @@ Prerequisites :
 * Docker should be preinstalled  
 
 
-```
+## Next step is to run the following script to create and configure the above topology. 
 
-Next step is to run the following script to create and configure the above topology. 
-
-```
 Please refer scenario3 in loxilb/cicd [script](https://github.com/loxilb-io/loxilb/blob/main/cicd/scenario3/config.sh)
 
 Script will spawn dockers for UEs, loxilbs and endpoints. 
 
-In the script, We are creating sessions and configuring load-balancer rule inside loxilb docker as follows :
+In the script, UEs will try to access service IP(88.88.88.88). We are creating sessions and configuring load-balancer rule inside loxilb docker as follows :
 ```
 dexec="docker exec -it "
 ##llb1 config
-#ue1
+
+#Creating session for ue1
 $dexec llb1 loxicmd create session user1 88.88.88.88 --accessNetworkTunnel 1:10.10.10.56 --coreNetworkTunnel=1:10.10.10.59
- 
+
+#Creating ULCL filter with ue1 IP
 $dexec llb1 loxicmd create sessionulcl user1 --ulclArgs=11:32.32.32.1
  
-#ue2
+#Creating session for ue2
 $dexec llb1 loxicmd create session user2 88.88.88.88 --accessNetworkTunnel 2:10.10.10.56 --coreNetworkTunnel=2:10.10.10.59
- 
+
+#Creating ULCL filter with ue2 IP
 $dexec llb1 loxicmd create sessionulcl user2 --ulclArgs=12:31.31.31.1
 
 ##llb2 config
-#ue1
+#Creating session for ue1
 $dexec llb2 loxicmd create session user1 32.32.32.1 --accessNetworkTunnel 1:10.10.10.59 --coreNetworkTunnel=1:10.10.10.56
  
-
+#Creating ULCL filter with service IP for ue1
 $dexec llb2 loxicmd create sessionulcl user1 --ulclArgs=11:88.88.88.88
 
-#ue2
+#Creating session for ue1
 $dexec llb2 loxicmd create session user2 31.31.31.1 --accessNetworkTunnel 2:10.10.10.59 --coreNetworkTunnel=2:10.10.10.56
- 
+
+#Creating ULCL filter with service IP for ue2
 $dexec llb2 loxicmd create sessionulcl user2 --ulclArgs=12:88.88.88.88
 
 
