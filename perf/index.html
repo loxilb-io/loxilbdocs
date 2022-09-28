@@ -228,7 +228,8 @@ Transfer/sec:     22.20MB
 <h2 id="comparision-with-lvs">Comparision with <a href="https://en.wikipedia.org/wiki/Linux_Virtual_Server">LVS</a></h2>
 <p>LVS is based on linux kernel networking and is a popular open-source load-balancer. Comparision with LVS will show us how eBPF can improve on linux kernel networking</p>
 <p>ipvsadm configuration(Check <a href="https://debugged.it/blog/ipvs-the-linux-load-balancer/">here</a> for more details)</p>
-<pre><code>root@1167483bd551:/# ipvsadm -A -t 20.20.20.1:2020 -s rr
+<pre><code>root@1167483bd551:/# ip addr add 20.20.20.1/32 dev lo
+root@1167483bd551:/# ipvsadm -A -t 20.20.20.1:2020 -s rr
 root@1167483bd551:/# ipvsadm -a -t 20.20.20.1:2020 -r 17.17.17.1:5001 -m
 root@1167483bd551:/# ipvsadm -a -t 20.20.20.1:2020 -r 31.31.31.1:5001 -m
 root@1167483bd551:/# ipvsadm -a -t 20.20.20.1:2020 -r 32.32.32.1:5001 -m
