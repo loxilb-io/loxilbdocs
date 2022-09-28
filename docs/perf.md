@@ -117,6 +117,7 @@ LVS is based on linux kernel networking and is a popular open-source load-balanc
 
 ipvsadm configuration(Check [here](https://debugged.it/blog/ipvs-the-linux-load-balancer/) for more details)
 ```
+root@1167483bd551:/# ip addr add 20.20.20.1/32 dev lo
 root@1167483bd551:/# ipvsadm -A -t 20.20.20.1:2020 -s rr
 root@1167483bd551:/# ipvsadm -a -t 20.20.20.1:2020 -r 17.17.17.1:5001 -m
 root@1167483bd551:/# ipvsadm -a -t 20.20.20.1:2020 -r 31.31.31.1:5001 -m
