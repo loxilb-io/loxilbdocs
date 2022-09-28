@@ -139,7 +139,7 @@
 <div class="section" itemprop="articleBody">
 <h1 id="loxilb-performance">loxilb Performance</h1>
 <h2 id="single-node-performance-simple">Single node performance (simple)</h2>
-<p>loxilb is run as a docker inside a VM. The VM is assigned the following resources :  </p>
+<p>loxilb is running as a docker inside a VM. The VM is assigned the following resources :  </p>
 <p><em>Intel(R) Core(TM) i7-4770HQ CPU @ 2.20GHz - 2 core RAM 4GB</em></p>
 <p>All the other hosts are simulated with docker pods inside the same VM. The following command can be used to configure lb for the given topology:</p>
 <pre><code># loxicmd create lb 20.20.20.1 --tcp=2020:5001 --endpoints=31.31.31.1:1,32.32.32.1:1,17.17.17.1:1
@@ -167,7 +167,7 @@ func main() {
         }
 }
 </code></pre>
-<p>The above code is run in each of the load-balancer end-points.</p>
+<p>The above code runs in each of the load-balancer end-points.</p>
 <p>We use <a href="https://github.com/wg/wrk">wrk</a> HTTP benchmarking tool for this test. This is run inside the client "100.100.100.1" host. </p>
 <pre><code>root@loxilb:/home/loxilb # wrk -t8 -c400 -d30s http://20.20.20.1:2020/
 Running 30s test @ http://20.20.20.1:2020/
