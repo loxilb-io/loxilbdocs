@@ -2,7 +2,7 @@
 
 ## Single node performance (simple)
 
-loxilb is run as a docker inside a VM. The VM is assigned the following resources :  
+loxilb is running as a docker inside a VM. The VM is assigned the following resources :  
 
 *Intel(R) Core(TM) i7-4770HQ CPU @ 2.20GHz - 2 core RAM 4GB*
 
@@ -38,7 +38,7 @@ func main() {
         }
 }
 ```
-The above code is run in each of the load-balancer end-points.
+The above code runs in each of the load-balancer end-points.
 
 We use [wrk](https://github.com/wg/wrk) HTTP benchmarking tool for this test. This is run inside the client "100.100.100.1" host. 
 
