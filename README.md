@@ -28,10 +28,9 @@ loxilb aims to provide the following :
     - *Complete kernel bypass with home-grown stack for advanced features like [Conntrack](https://thermalcircle.de/doku.php?id=blog:linux:connection_tracking_1_modules_and_hooks), QoS etc*
     - *Highly scalable with low-latency & high througput*
     - *Mainly uses TC-eBPF hooks* 
--  goLang based control plane components (Apache license)
+-  GoLang based control plane components (Apache license)
 -  Seamless integration with goBGP based routing stack
--  Easily cuztomizable to run in DPU environments
-    - *goLang based easy to use APIs/Interfaces*
+-  Easy to use APIs/Interfaces for developers
 -  Cloud-Native Network Function (CNF) form-factor by default
 
 ## Documentation
