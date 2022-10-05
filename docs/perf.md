@@ -115,7 +115,7 @@ Transfer/sec:     22.20MB
 
 LVS is based on linux kernel networking and is a popular open-source load-balancer. Comparision with LVS will show us how eBPF can improve on linux kernel networking
 
-ipvsadm configuration(Check [here](https://debugged.it/blog/ipvs-the-linux-load-balancer/) for more details)
+ipvsadm configuration(Check [here](https://dev.to/douglasmakey/how-to-setup-simple-load-balancing-with-ipvs-demo-with-docker-4j1d) for more details)
 ```
 root@1167483bd551:/# ip addr add 20.20.20.1/32 dev lo
 root@1167483bd551:/# ipvsadm -A -t 20.20.20.1:2020 -s rr
