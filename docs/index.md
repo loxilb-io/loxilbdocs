@@ -32,8 +32,7 @@ loxilb aims to provide the following :
     - *Mainly uses TC-eBPF hooks*   
 -  goLang based control plane components (Apache license)  
 -  Seamless integration with goBGP based routing stack  
--  Easily cuztomizable to run in DPU environments  
-    - *goLang based easy to use APIs/Interfaces*  
+-  Easy to use APIs/Interfaces for developers
 -  Cloud-Native Network Function (CNF) form-factor by default  
 
 ## Documentation
