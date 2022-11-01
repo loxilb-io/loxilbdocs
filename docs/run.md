@@ -32,7 +32,7 @@ sudo cp -f tc/tc /usr/local/sbin/ntc
 * Build and run loxilb 
 
 ```
-git --recurse-submodules clone https://github.com/loxilb-io/loxilb.git
+git clone --recurse-submodules https://github.com/loxilb-io/loxilb.git
 cd loxilb
 ./loxilb-ebpf/utils/mkllb_bpffs.sh
 make
