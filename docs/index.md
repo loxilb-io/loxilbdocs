@@ -56,8 +56,9 @@ loxilb aims to provide the following :
 
 To install LoxiLB software packages, you need the 64-bit version of one of these OS versions:  
 
-* Ubuntu Focal 20.04(LTS)  
-* Ubuntu Hirsute 21.04  
+* Ubuntu 20.04(LTS)   
+* Ubuntu 22.04(LTS)   
+* Fedora 36   
 * RockyOS  
 * Enterprise Redhat (Planned)  
 * Windows Server(Planned)  
