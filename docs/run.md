@@ -48,6 +48,7 @@ git clone https://github.com/loxilb-io/loxicmd.git
 cd loxicmd
 go get .
 make
+sudo cp -f loxicmd /usr/local/sbin/
 ```
 loxicmd usage guide can be found [here](https://github.com/loxilb-io/loxilbdocs/blob/main/docs/cmd.md)
 
