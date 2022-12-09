@@ -324,7 +324,7 @@ nginx-service   LoadBalancer   10.233.21.235   123.123.123.15   8888:31655/TCP  
   --host=0.0.0.0 -b
 </code></pre>
 <h3 id="42-gobgp_loxilbyaml-file-setup">4.2 gobgp_loxilb.yaml file setup</h3>
-<p>Create a gobgp_loxilb.yaml file in the /opt/loxilb/ directory of the loxilb container.   </p>
+<p>Create a gobgp_loxilb.yaml file in the /etc/gobgp/ directory of the loxilb container.   </p>
 <pre><code>global:
     config:
         as: 65002
