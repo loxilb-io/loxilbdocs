@@ -179,7 +179,7 @@ sudo docker run -u root --cap-add SYS_ADMIN --restart unless-stopped \
 ```
 
 ### 4.2 gobgp_loxilb.yaml file setup
-Create a gobgp_loxilb.yaml file in the /opt/loxilb/ directory of the loxilb container.   
+Create a gobgp_loxilb.yaml file in the /etc/gobgp/ directory of the loxilb container.   
 
 ```
 global:
