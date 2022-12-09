@@ -39,6 +39,8 @@ make
 cd loxilb-ebpf/libbpf/src
 sudo make install
 cd -
+mkdir -p /opt/loxilb/cert/
+cp api/certification/server.* /opt/loxilb/cert/
 sudo ./loxilb 
 ```
 * Build and use loxicmd 
