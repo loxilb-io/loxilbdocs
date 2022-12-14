@@ -19,7 +19,7 @@ loxilb aims to provide the following :
 
 
 - Service type external load-balancer for kubernetes (hence the name loxilb)  
-- L4/NAT stateful loadbalancer  
+- L4/NAT44/NAT66/NAT64 stateful loadbalancer  
     - *High-availability support*  
     - *K8s CCM compliance*  
 -  Optimized SRv6 implementation in eBPF  
