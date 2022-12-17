@@ -1,12 +1,6 @@
 ## What is loxicmd
 
-loxicmd is command tools for loxilb. loxicmd provide the following :
-
-- Add/Delete/Get about the service type external load-balancer 
-- Get Port(interface) dump
-- Get Connection track information
-
-loxicmd aim to provide all of the configuation for the loxilb.
+loxicmd is command tool for loxilb's configuration. loxicmd aims to provide all configuation related to loxilb and is based on kubectl's look and feel. 
 
 ## How to build
 
@@ -26,8 +20,14 @@ make
 
 1. Run loxicmd with getting lb information
 
+- Get basic information
 ```
 ./loxicmd get lb
+```
+
+- Get detailed information
+```
+./loxicmd get lb -o wide
 ```
 
 2. Run loxicmd with getting lb information in the different API server(ex. 192.168.18.10) and ports(ex. 8099).
@@ -40,10 +40,51 @@ make
 ./loxicmd get lb -o json
 ```
 
-4. Run loxicmd with adding lb information
+4. Run loxicmd to configure load-balancer
+
+**- Simple NAT44 tcp (round-robin) load-balancer**
 ```
-./loxicmd create lb 1.1.1.1 --tcp=1828:1920 --endpoints=2.2.3.4:18
+./loxicmd create lb 1.1.1.1 --tcp=1828:1920 --endpoints=2.2.3.4:1
 ```
+** Please note that round-robin is default mode in loxilb    
+** End-point format is specified as &lt;CIDR:weight&gt;. For round-robin, weight has no significance.
+
+**- NAT66 (round-robin) load-balancer**
+```
+./loxicmd create lb  2001::1 --tcp=2020:8080 --endpoints=4ffe::1:1,5ffe::1:1,6ffe::1:1
+```
+
+**- NAT64 (round-robin) load-balancer**
+```
+./loxicmd create lb  2001::1 --tcp=2020:8080 --endpoints=31.31.31.1:1,32.32.32.1:1,33.33.33.1:1
+```
+
+**- WRR (Weighted round-robin) load-balancer (Divide traffic in 40%, 40% and 20% ratio among end-points)**
+```
+./loxicmd create lb 20.20.20.1 --select=priority --tcp=2020:8080 --endpoints=31.31.31.1:40,32.32.32.1:40,33.33.33.1:20
+```
+
+**- Hash based load-balancer (select end-points based on traffic hash)**
+```
+./loxicmd create lb 20.20.20.1 --select=hash --tcp=2020:8080 --endpoints=31.31.31.1:40,32.32.32.1:40,33.33.33.1:20
+```
+
+**- Load-balancer with forceful tcp-reset session timeout after inactivity of 30s**
+```
+./loxicmd create lb 20.20.20.1 --tcp=2020:8080 --endpoints=31.31.31.1:1,32.32.32.1:1,33.33.33.1:1 --inatimeout=30
+```
+
+**- Load-balancer with one-arm mode**
+```
+./loxicmd create lb 20.20.20.1 --tcp=2020:8080 --endpoints=100.100.100.2:1,100.100.100.3:1,100.100.100.4:1 --mode=onearm
+```
+
+**- Load-balancer with fullnat mode**
+```
+./loxicmd create lb 88.88.88.1 --sctp=38412:38412 --endpoints=192.168.70.3:1 --mode=fullnat
+```
+** For more information on  one-arm and full-nat mode, please check this [post](https://github.com/loxilb-io/loxilb/discussions/107#discussioncomment-4318418
+)
 
 5. Run loxicmd with deleting lb information
 ```
@@ -60,7 +101,7 @@ make
 ./loxicmd get port
 ```
 
-More information use help option!
+For more information, use help option!
 ```
 ./loxicmd help
 ```
