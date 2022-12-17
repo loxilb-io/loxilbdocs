@@ -47,7 +47,7 @@ make
 ./loxicmd create lb 1.1.1.1 --tcp=1828:1920 --endpoints=2.2.3.4:1
 ```
 ** Please note that round-robin is default mode in loxilb    
-** End-point format is specified as &lt;CIDR:weight&gt;. For round-robin, weight has no significance.
+** End-point format is specified as &lt;CIDR:weight&gt;. For round-robin, weight(1) has no significance.
 
 **- NAT66 (round-robin) load-balancer**
 ```
@@ -66,7 +66,7 @@ make
 
 **- Hash based load-balancer (select end-points based on traffic hash)**
 ```
-./loxicmd create lb 20.20.20.1 --select=hash --tcp=2020:8080 --endpoints=31.31.31.1:40,32.32.32.1:40,33.33.33.1:20
+./loxicmd create lb 20.20.20.1 --select=hash --tcp=2020:8080 --endpoints=31.31.31.1:1,32.32.32.1:1,33.33.33.1:1
 ```
 
 **- Load-balancer with forceful tcp-reset session timeout after inactivity of 30s**
