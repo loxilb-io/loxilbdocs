@@ -1,12 +1,12 @@
 # loxilb Performance
 
-## Single node performance (simple)
+## Single node performance
 
-loxilb is running as a docker inside a VM. The VM is assigned the following resources :  
+loxilb is running as a docker in bare metal server :  
 
-*Intel(R) Core(TM) i7-4770HQ CPU @ 2.20GHz - 2 core RAM 4GB*
+*Intel(R) Xeon(R) Silver 4210R CPU @ 2.40GHz- 40 core RAM 124GB*
 
-All the other hosts are simulated with docker pods inside the same VM. The following command can be used to configure lb for the given topology:
+All hosts/LB nodes are simulated with docker pods inside a single node. The following command can be used to configure lb for the given topology:
 
 ```
 # loxicmd create lb 20.20.20.1 --tcp=2020:5001 --endpoints=31.31.31.1:1,32.32.32.1:1,17.17.17.1:1
@@ -14,7 +14,7 @@ All the other hosts are simulated with docker pods inside the same VM. The follo
 
 ```mermaid
 graph LR;
-    A[100.100.100.1]-->B[loxilb];
+    A[20.20.20.1]-->B[loxilb];
     B-->C[31.31.31.1];
     B-->D[32.32.32.1];
     B-->E[17.17.17.1];
@@ -38,39 +38,34 @@ func main() {
         }
 }
 ```
-The above code runs in each of the load-balancer end-points.
+The above code runs in each of the load-balancer end-points as following :
 
-We use [wrk](https://github.com/wg/wrk) HTTP benchmarking tool for this test. This is run inside the client "100.100.100.1" host. 
+```
+go run ./webserver.go
+```
+
+We use [wrk](https://github.com/wg/wrk) HTTP benchmarking tool for this test. This tool is run with the following parameters:
 
 ```
 root@loxilb:/home/loxilb # wrk -t8 -c400 -d30s http://20.20.20.1:2020/
-Running 30s test @ http://20.20.20.1:2020/
-  8 threads and 400 connections
-  Thread Stats   Avg      Stdev     Max   +/- Stdev
-    Latency     8.56ms   11.24ms 137.41ms   86.54%
-    Req/Sec     5.05k     1.04k   10.30k    71.89%
-  1204823 requests in 30.08s, 86.18MB read
-Requests/sec:  40057.34
-Transfer/sec:  2.87MB
-
 ```
 
-As a baseline, we compare the numbers with loopback test i.e running *wrk* in the same host as the webserver.
-```
-root@loxilb:/home/loxilb # wrk -t8 -c400 -d30s http://127.0.0.1:5001/
-Running 30s test @ http://127.0.0.1:5001/
-  8 threads and 400 connections
-  Thread Stats   Avg      Stdev     Max   +/- Stdev
-    Latency    15.34ms   18.61ms 166.29ms   85.05%
-    Req/Sec     5.37k     2.98k   19.82k    70.09%
-  1282161 requests in 30.09s, 91.71MB read
-Requests/sec:  42612.30
-Transfer/sec:  3.05MB
-```
+We also run other popular tools like iperf, qperf along with wrk for the above topology. The results are as follows :
 
-Based on the above tests, loxilb performs at 95% of the baseline numbers in requests/sec and latency actually improves by ~50% with loxilb.
+| Tool  |loopback   |loxilb   |ipvs   |
+|---|---|---|---|
+|wrk(RPS) |406953| 421746  | 388021  |
+|wrk(CPS)| n/a  | 45064  |  24400 |
+|iperf   | 34Gbps  |32Gbps   | 29Gbps  |
+|qperf(BW)|35.68Gbps   | 32Gbps  |29.3Gbps    |
+|qperf(LAT)|6.91 us  |7.89us   |  8.75us  |
 
-## Multi node performance (real topology)
+* loxilb provides ~10% increase in most of the performance parameters while there is a gain of around 50% in CPS
+* loxilb's CPS is limited only by the fact that this is a single node scenario with shared resources
+* loopback here refers to client and server running in the same docker/container
+* Please refer to this [article](https://community.f5.com/t5/technical-articles/understanding-performance-metrics-and-network-traffic/ta-p/286109) for a good explanation of performance metrics
+
+## Multi node performance
 
 The topology for this test is similar to the above case. However, all the services run in one system and loxilb run in separate dedicated system. All other configurations remain the same.
 
