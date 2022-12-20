@@ -2,15 +2,7 @@
 
 ## Single node performance
 
-loxilb is running as a docker in bare metal server :  
-
-*Intel(R) Xeon(R) Silver 4210R CPU @ 2.40GHz- 40 core RAM 124GB*
-
-All hosts/LB nodes are simulated with docker pods inside a single node. The following command can be used to configure lb for the given topology:
-
-```
-# loxicmd create lb 20.20.20.1 --tcp=2020:5001 --endpoints=31.31.31.1:1,32.32.32.1:1,17.17.17.1:1
-```
+All hosts/loxiLB/end-point nodes are simulated with docker pods inside a single node. The topology is as follows :
 
 ```mermaid
 graph LR;
@@ -19,6 +11,13 @@ graph LR;
     B-->D[32.32.32.1];
     B-->E[17.17.17.1];
 ```
+
+The following command can be used to configure lb for the given topology:
+
+```
+# loxicmd create lb 20.20.20.1 --tcp=2020:5001 --endpoints=31.31.31.1:1,32.32.32.1:1,17.17.17.1:1
+```
+
 To create the above topology for testing loxilb, users can follow this [guide](simple_topo.md). A go webserver with an empty response is used for benchmark purposes. The code is as following :
 
 ```
@@ -49,20 +48,31 @@ We use [wrk](https://github.com/wg/wrk) HTTP benchmarking tool for this test. Th
 ```
 root@loxilb:/home/loxilb # wrk -t8 -c400 -d30s http://20.20.20.1:2020/
 ```
+- where t: No. of threads, c: No. of connections. d: Duration of test
 
 We also run other popular tools like iperf, qperf along with wrk for the above topology. The results are as follows :
+
+1. System Configuration - Intel(R) Core(TM) i7-4770HQ CPU @ 2.20GHz , 3-Core,  6GB RAM
+
+| Tool  |loopback   |loxilb   |ipvs   |
+|---|---|---|---|
+|wrk(RPS) |38040| 44833  | 40012  |
+|wrk(CPS)| n/a  | 7020  |  6048 |
+|iperf   | 21Gbps  |19.5Gbps   | 16Gbps  |
+|qperf(LAT)|12.31 us  |15.9us   |  24.75us  |
+
+2. System Configuration - Intel(R) Xeon(R) Silver 4210R CPU @ 2.40GHz, 40-core, 124GB RAM
 
 | Tool  |loopback   |loxilb   |ipvs   |
 |---|---|---|---|
 |wrk(RPS) |406953| 421746  | 388021  |
 |wrk(CPS)| n/a  | 45064  |  24400 |
 |iperf   | 34Gbps  |32Gbps   | 29Gbps  |
-|qperf(BW)|35.68Gbps   | 32Gbps  |29.3Gbps    |
 |qperf(LAT)|6.91 us  |7.89us   |  8.75us  |
 
-* loxilb provides ~10% increase in most of the performance parameters while there is a gain of around 50% in CPS
+* loxilb provides ~10% increase in most of the performance parameters while there is a big gain in CPS
 * loxilb's CPS is limited only by the fact that this is a single node scenario with shared resources
-* loopback here refers to client and server running in the same docker/container
+* "loopback" here refers to client and server running in the same docker/container. There is only a single end-point in this scenario, so the RPS measurements are lower.
 * Please refer to this [article](https://community.f5.com/t5/technical-articles/understanding-performance-metrics-and-network-traffic/ta-p/286109) for a good explanation of performance metrics
 
 ## Multi node performance
