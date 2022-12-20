@@ -139,17 +139,16 @@
 <div class="section" itemprop="articleBody">
 <h1 id="loxilb-performance">loxilb Performance</h1>
 <h2 id="single-node-performance">Single node performance</h2>
-<p>loxilb is running as a docker in bare metal server :  </p>
-<p><em>Intel(R) Xeon(R) Silver 4210R CPU @ 2.40GHz- 40 core RAM 124GB</em></p>
-<p>All hosts/LB nodes are simulated with docker pods inside a single node. The following command can be used to configure lb for the given topology:</p>
-<pre><code># loxicmd create lb 20.20.20.1 --tcp=2020:5001 --endpoints=31.31.31.1:1,32.32.32.1:1,17.17.17.1:1
-</code></pre>
+<p>All hosts/loxiLB/end-point nodes are simulated with docker pods inside a single node. The topology is as follows :</p>
 <div class="mermaid">graph LR;
     A[20.20.20.1]--&gt;B[loxilb];
     B--&gt;C[31.31.31.1];
     B--&gt;D[32.32.32.1];
     B--&gt;E[17.17.17.1];
 </div>
+<p>The following command can be used to configure lb for the given topology:</p>
+<pre><code># loxicmd create lb 20.20.20.1 --tcp=2020:5001 --endpoints=31.31.31.1:1,32.32.32.1:1,17.17.17.1:1
+</code></pre>
 <p>To create the above topology for testing loxilb, users can follow this <a href="../simple_topo/">guide</a>. A go webserver with an empty response is used for benchmark purposes. The code is as following :</p>
 <pre><code>package main
 
@@ -173,7 +172,52 @@ func main() {
 <p>We use <a href="https://github.com/wg/wrk">wrk</a> HTTP benchmarking tool for this test. This tool is run with the following parameters:</p>
 <pre><code>root@loxilb:/home/loxilb # wrk -t8 -c400 -d30s http://20.20.20.1:2020/
 </code></pre>
+<ul>
+<li>where t: No. of threads, c: No. of connections. d: Duration of test</li>
+</ul>
 <p>We also run other popular tools like iperf, qperf along with wrk for the above topology. The results are as follows :</p>
+<ol>
+<li>System Configuration - Intel(R) Core(TM) i7-4770HQ CPU @ 2.20GHz , 3-Core,  6GB RAM</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>loopback</th>
+<th>loxilb</th>
+<th>ipvs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>wrk(RPS)</td>
+<td>38040</td>
+<td>44833</td>
+<td>40012</td>
+</tr>
+<tr>
+<td>wrk(CPS)</td>
+<td>n/a</td>
+<td>7020</td>
+<td>6048</td>
+</tr>
+<tr>
+<td>iperf</td>
+<td>21Gbps</td>
+<td>19.5Gbps</td>
+<td>16Gbps</td>
+</tr>
+<tr>
+<td>qperf(LAT)</td>
+<td>12.31 us</td>
+<td>15.9us</td>
+<td>24.75us</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>System Configuration - Intel(R) Xeon(R) Silver 4210R CPU @ 2.40GHz, 40-core, 124GB RAM</li>
+</ol>
 <table>
 <thead>
 <tr>
@@ -203,12 +247,6 @@ func main() {
 <td>29Gbps</td>
 </tr>
 <tr>
-<td>qperf(BW)</td>
-<td>35.68Gbps</td>
-<td>32Gbps</td>
-<td>29.3Gbps</td>
-</tr>
-<tr>
 <td>qperf(LAT)</td>
 <td>6.91 us</td>
 <td>7.89us</td>
@@ -217,9 +255,9 @@ func main() {
 </tbody>
 </table>
 <ul>
-<li>loxilb provides ~10% increase in most of the performance parameters while there is a gain of around 50% in CPS</li>
+<li>loxilb provides ~10% increase in most of the performance parameters while there is a big gain in CPS</li>
 <li>loxilb's CPS is limited only by the fact that this is a single node scenario with shared resources</li>
-<li>loopback here refers to client and server running in the same docker/container</li>
+<li>"loopback" here refers to client and server running in the same docker/container. There is only a single end-point in this scenario, so the RPS measurements are lower.</li>
 <li>Please refer to this <a href="https://community.f5.com/t5/technical-articles/understanding-performance-metrics-and-network-traffic/ta-p/286109">article</a> for a good explanation of performance metrics</li>
 </ul>
 <h2 id="multi-node-performance">Multi node performance</h2>
