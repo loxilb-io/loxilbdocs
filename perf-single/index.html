@@ -130,7 +130,7 @@
 <h2 id="single-node-all-in-one-virtual-performance">Single-node (all-in-one virtual) performance</h2>
 <p>All hosts/loxiLB/end-point nodes are simulated with docker pods inside a single node. The topology is as follows :</p>
 <div class="mermaid">graph LR;
-    A[VIP-20.20.20.1]--&gt;B[loxilb];
+    A[100.100.100.1]--&gt;B[loxilb VIP-20.20.20.1];
     B--&gt;C[31.31.31.1];
     B--&gt;D[32.32.32.1];
     B--&gt;E[17.17.17.1];
