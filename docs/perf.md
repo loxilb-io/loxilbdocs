@@ -63,12 +63,11 @@ We also run other popular tools like iperf, qperf along with wrk for the above t
 
 2. System Configuration - Intel(R) Xeon(R) Silver 4210R CPU @ 2.40GHz, 40-core, 124GB RAM
 
-| Tool  |loopback   |loxilb   |ipvs   |
-|---|---|---|---|
-|wrk(RPS) |406953| 421746  | 388021  |
-|wrk(CPS)| n/a  | 45064  |  24400 |
-|iperf   | 34Gbps  |32Gbps   | 29Gbps  |
-|qperf(LAT)|6.91 us  |7.89us   |  8.75us  |
+| Tool  |loopback   |loxilb   |ipvs   |haproxy   |
+|---|---|---|---|---|
+|wrk(RPS) |406953| 421746  | 388021  |217004  |
+|wrk(CPS)| n/a  | 45064  |  24400 |22000 |
+|iperf   | 34Gbps  |32Gbps   | 29Gbps  |12.5Gbps  |
 
 * loxilb provides ~10% increase in most of the performance parameters while there is a big gain in CPS
 * loxilb's CPS is limited only by the fact that this is a single node scenario with shared resources
