@@ -192,7 +192,7 @@
 <p><strong>- WRR (Weighted round-robin) load-balancer (Divide traffic in 40%, 40% and 20% ratio among end-points)</strong></p>
 <pre><code>./loxicmd create lb 20.20.20.1 --select=priority --tcp=2020:8080 --endpoints=31.31.31.1:40,32.32.32.1:40,33.33.33.1:20
 </code></pre>
-<p><strong>- Hash based load-balancer (select end-points based on traffic hash)</strong></p>
+<p><strong>- Sticky end-point selection load-balancer (select end-points based on traffic hash)</strong></p>
 <pre><code>./loxicmd create lb 20.20.20.1 --select=hash --tcp=2020:8080 --endpoints=31.31.31.1:1,32.32.32.1:1,33.33.33.1:1
 </code></pre>
 <p><strong>- Load-balancer with forceful tcp-reset session timeout after inactivity of 30s</strong></p>
@@ -211,7 +211,7 @@
 <pre><code>./loxicmd delete lb 1.1.1.1 --tcp=1828 
 </code></pre>
 <ol>
-<li>Run loxicmd with getting connection track information</li>
+<li>Run loxicmd with getting live connection track information</li>
 </ol>
 <pre><code>./loxicmd get conntrack
 </code></pre>
