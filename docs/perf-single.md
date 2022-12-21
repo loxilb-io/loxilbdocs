@@ -4,7 +4,7 @@ All hosts/loxiLB/end-point nodes are simulated with docker pods inside a single 
 
 ```mermaid
 graph LR;
-    A[VIP-20.20.20.1]-->B[loxilb];
+    A[100.100.100.1]-->B[loxilb VIP-20.20.20.1];
     B-->C[31.31.31.1];
     B-->D[32.32.32.1];
     B-->E[17.17.17.1];
