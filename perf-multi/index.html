@@ -130,12 +130,13 @@
 <h2 id="bare-metal-performance">Bare-Metal Performance</h2>
 <p>The topology for this test is as follows :</p>
 <div class="mermaid">graph LR;
-    A[VIP-20.20.20.1]--&gt;B[loxilb];
+    A[100.100.100.1]--&gt;B[loxilb VIP-20.20.20.1];
     B--&gt;C[31.31.31.1];
     B--&gt;D[32.32.32.1];
     B--&gt;E[17.17.17.1];
 </div>
-<p>All the services (hosts and end-points) run in one server and loxilb runs in a separate dedicated server. The description of test-tools and usage can be found <a href="docs/perf-single.md">here</a>. The following command can be used to configure lb for the given topology:</p>
+<p>All the services (hosts and end-points) run in one server and loxilb runs in a separate dedicated server. loxilb server specs used - 
+<em>Intel(R) Xeon(R) Silver 4210R CPU @ 2.40GHz - 40 core RAM 125GB</em>. The description of test-tools and usage can be found <a href="docs/perf-single.md">here</a>. The following command can be used to configure lb for the given topology:</p>
 <pre><code># loxicmd create lb 20.20.20.1 --tcp=2020:5001 --endpoints=31.31.31.1:1,32.32.32.1:1,17.17.17.1:1
 </code></pre>
 <p>In default RR mode of LoxiLB, the traffic distribution will be as follows:</p>
@@ -157,8 +158,6 @@ sequenceDiagram
     loxilb--&gt;&gt;ServiceB_PodZ: 102.102.102.1-&gt;17.17.17.1
 
 </div>
-<p>loxilb server specs is as follows :<br/>
-<em>Intel(R) Xeon(R) Silver 4210R CPU @ 2.40GHz - 40 core RAM 125GB</em></p>
 <p>We use wrk HTTP benchmarking tool for this test as well. This is run inside the client "100.100.100.1" host.</p>
 <pre><code>root@loxilb:/home/loxilb # wrk -t8 -c400 -d30s http://20.20.20.1:2020/
 Running 30s test @ http://20.20.20.1:2020/
