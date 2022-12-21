@@ -4,13 +4,14 @@ The topology for this test is as follows :
 
 ```mermaid
 graph LR;
-    A[VIP-20.20.20.1]-->B[loxilb];
+    A[100.100.100.1]-->B[loxilb VIP-20.20.20.1];
     B-->C[31.31.31.1];
     B-->D[32.32.32.1];
     B-->E[17.17.17.1];
 ```
 
- All the services (hosts and end-points) run in one server and loxilb runs in a separate dedicated server. The description of test-tools and usage can be found [here](docs/perf-single.md). The following command can be used to configure lb for the given topology:
+ All the services (hosts and end-points) run in one server and loxilb runs in a separate dedicated server. loxilb server specs used - 
+*Intel(R) Xeon(R) Silver 4210R CPU @ 2.40GHz - 40 core RAM 125GB*. The description of test-tools and usage can be found [here](docs/perf-single.md). The following command can be used to configure lb for the given topology:
 
 ```
 # loxicmd create lb 20.20.20.1 --tcp=2020:5001 --endpoints=31.31.31.1:1,32.32.32.1:1,17.17.17.1:1
@@ -37,10 +38,6 @@ sequenceDiagram
     loxilb-->>ServiceB_PodZ: 102.102.102.1->17.17.17.1
     
 ```
-
-loxilb server specs is as follows :  
-*Intel(R) Xeon(R) Silver 4210R CPU @ 2.40GHz - 40 core RAM 125GB*
-
 
 We use wrk HTTP benchmarking tool for this test as well. This is run inside the client "100.100.100.1" host.
 ```
