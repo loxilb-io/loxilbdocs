@@ -1,6 +1,4 @@
-# loxilb Performance
-
-## Single node performance
+## Single-node (all-in-one virtual) performance 
 
 All hosts/loxiLB/end-point nodes are simulated with docker pods inside a single node. The topology is as follows :
 
