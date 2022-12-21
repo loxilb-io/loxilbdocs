@@ -64,7 +64,7 @@ make
 ./loxicmd create lb 20.20.20.1 --select=priority --tcp=2020:8080 --endpoints=31.31.31.1:40,32.32.32.1:40,33.33.33.1:20
 ```
 
-**- Hash based load-balancer (select end-points based on traffic hash)**
+**- Sticky end-point selection load-balancer (select end-points based on traffic hash)**
 ```
 ./loxicmd create lb 20.20.20.1 --select=hash --tcp=2020:8080 --endpoints=31.31.31.1:1,32.32.32.1:1,33.33.33.1:1
 ```
@@ -91,7 +91,7 @@ make
 ./loxicmd delete lb 1.1.1.1 --tcp=1828 
 ```
 
-6. Run loxicmd with getting connection track information
+6. Run loxicmd with getting live connection track information
 ```
 ./loxicmd get conntrack
 ```
