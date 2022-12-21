@@ -4,7 +4,7 @@ The topology for this test is as follows :
 
 ```mermaid
 graph LR;
-    A[20.20.20.1]-->B[loxilb];
+    A[VIP-20.20.20.1]-->B[loxilb];
     B-->C[31.31.31.1];
     B-->D[32.32.32.1];
     B-->E[17.17.17.1];
