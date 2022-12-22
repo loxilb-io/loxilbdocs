@@ -86,6 +86,11 @@ make
 ** For more information on  one-arm and full-nat mode, please check this [post](https://github.com/loxilb-io/loxilb/discussions/107#discussioncomment-4318418
 )
 
+**- Load-balancer config in DSR(direct-server return) mode**
+```
+./loxicmd create lb 20.20.20.1 --tcp=2020:8080 --endpoints=31.31.31.1:1,32.32.32.1:1 --mode=dsr
+```
+
 5. Run loxicmd with deleting lb information
 ```
 ./loxicmd delete lb 1.1.1.1 --tcp=1828 
