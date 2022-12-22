@@ -17,11 +17,12 @@ During the journey of loxilb's development, we developed many other generic netw
 
 loxilb aims to provide the following :
 
-
-- Service type external load-balancer for kubernetes (hence the name loxilb)  
-- L4/NAT44/NAT66/NAT64 stateful loadbalancer  
-    - *High-availability support*  
-    - *K8s CCM compliance*  
+- Service type external load-balancer for kubernetes
+- L4/NAT stateful loadbalancer
+   - *NAT44, NAT66, NAT64 with One-ARM, FullNAT, DSR etc*
+   - *High-availability support*
+   - *K8s CCM compliance*
+   - *High perf drop-in replacement for iptables/ipvs based infra*
 -  Optimized SRv6 implementation in eBPF  
 -  L7 Proxy support  
 -  Make GTP tunnels first class citizens of the Linux world  
