@@ -104,7 +104,9 @@
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#070-beta-aug-2022">0.7.0 beta (Aug, 2022)</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#080-nov-2022-planned">0.8.0 (Nov, 2022) - Planned</a>
+    <li class="toctree-l2"><a class="reference internal" href="#080-dec-2022-planned">0.8.0 (Dec, 2022) - Planned</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#090-mar-2023-planned">0.9.0 (Mar, 2023) - Planned</a>
     </li>
     </ul>
                 </li>
@@ -145,7 +147,7 @@
 <p>Initial release of loxilb </p>
 <ul>
 <li>
-<p><strong>Major functions</strong>:  </p>
+<p><strong>Functional Features</strong>:</p>
 <ul>
 <li>Two-Arm Load-Balancer (NAT+Routed mode)<ul>
 <li>Upto 16 end-points support</li>
@@ -157,10 +159,10 @@
 </li>
 <li>Conntrack support in eBPF - TCP/UDP/ICMP/SCTP profiles</li>
 <li>GTP with QFI extension support<ul>
-<li>UL/CL classifier support for MEC</li>
+<li>ULCL classifier support</li>
 </ul>
 </li>
-<li>Extended QoS support (SRTCM/TRTCM)</li>
+<li>Native QoS-Policer support (SRTCM/TRTCM)</li>
 <li>Support for GoBGP</li>
 <li>Support for Calico CNI</li>
 <li>Extended visibility and statistics </li>
@@ -180,30 +182,54 @@
 </ul>
 </li>
 </ul>
-<h2 id="080-nov-2022-planned">0.8.0 (Nov, 2022) - Planned</h2>
+<h2 id="080-dec-2022-planned">0.8.0 (Dec, 2022) - Planned</h2>
 <ul>
 <li>
-<p><strong>Major functions</strong>: </p>
+<p><strong>Functional Features</strong>:</p>
 <ul>
-<li>Enhanced load-balancer support upto 32 end-points</li>
+<li>Enhanced load-balancer support including SCTP statefulness, WRR distribution</li>
 <li>Integrated Firewall support</li>
-<li>One-ARM LB mode support</li>
-<li>SRv6 support</li>
-<li>HA support  </li>
-<li>Integration with Linux egress TC QoS</li>
+<li>Integrated end-point health-checks</li>
+<li>One-ARM, FullNAT, DSR LB mode support</li>
+<li>NAT66/NAT64 support</li>
+<li>Clustering support  </li>
+<li>Integration with Linux egress TC hooks</li>
 <li>Grafana based dashboard</li>
 </ul>
 </li>
 <li>
 <p><strong>CCM Support</strong>: </p>
 <ul>
-<li>OpenShift Integration</li>
+<li>Kubernetes 1.25 Integration</li>
 </ul>
 </li>
 <li>
-<p><strong>DPU Support</strong>:  </p>
+<p><strong>Utilities</strong>:  </p>
 <ul>
-<li>Nvidia BF2 Support (Depends on community/public demand)</li>
+<li>loxicmd support : Data-Store support, more commands</li>
+</ul>
+</li>
+</ul>
+<h2 id="090-mar-2023-planned">0.9.0 (Mar, 2023) - Planned</h2>
+<ul>
+<li>
+<p><strong>Functional Features</strong>:  </p>
+<ul>
+<li>Hardened NAT Support - CGNAT'ish </li>
+<li>SRv6 Support</li>
+<li>Transition to libbpf v1.0.1</li>
+<li>SCTP multihoming support</li>
+<li>Integration with Linux native QoS</li>
+<li>Support for Cilium CNI</li>
+</ul>
+</li>
+<li>
+<p><strong>CCM Support</strong>: </p>
+<ul>
+<li>OpenShift Integration</li>
+<li>Kubernetes 1.26 (with LoadBalancer Class support)</li>
+<li>Operator support</li>
+<li>AWS support</li>
 </ul>
 </li>
 </ul>
