@@ -83,10 +83,11 @@ docker exec -it loxilb bash
 docker network create -d macvlan -o parent=enp0s3   --subnet 172.30.1.0/24   --gateway 172.30.1.254 --aux-address 'host=172.30.1.193’ llbnet
 
 # Run loxilb docker with the created macvlan 
-docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --net=llbnet --ip=172.30.1.193 --name loxilb ghcr.io/loxilb-io/loxilb:latest
+docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --net=llbnet --ip=172.30.1.195 --name loxilb ghcr.io/loxilb-io/loxilb:latest
 
-# If we still want to connect loxilb docker additionally to docker's default network or more macvlan networks
+# If we still want to connect loxilb docker additionally to docker's default "bridge" network or more macvlan networks
 docker network connect bridge loxilb
+docker network connect llbnet2 loxilb --ip=172.30.2.195
 ```
   *Note - While working with macvlan interfaces, the parent/underlying interface should be put in promiscous mode*
   
