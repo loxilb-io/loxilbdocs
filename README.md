@@ -62,7 +62,7 @@ To install LoxiLB software packages, you need the 64-bit version of one of these
 * Windows Server(Planned)
 
 ### Linux Kernel Requirements
-* Linux Kernel Version >= 5.1.0
+* Linux Kernel Version >= 5.4.0
 
 ### Compatible Kubernetes Versions
 * Kubernetes 1.19
