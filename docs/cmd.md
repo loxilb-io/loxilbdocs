@@ -4,111 +4,117 @@ loxicmd is command tool for loxilb's configuration. loxicmd aims to provide all 
 
 ## How to build
 
-1. Install package dependencies 
+Note - loxilb docker has this built-in
+
+Install package dependencies 
 
 ```
 go get .
 ```
 
-2. Make loxicmd
+Make loxicmd
 
 ```
 make
 ```
 
-## How to run
+Install loxicmd
 
-1. Run loxicmd with getting lb information
-
-- Get basic information
 ```
-./loxicmd get lb
+sudo cp -f ./loxicmd /usr/local/sbin
 ```
 
-- Get detailed information
+## How to run and configure loxilb
+
+### Get load-balancer rules
+
+Get basic information
 ```
-./loxicmd get lb -o wide
+loxicmd get lb
 ```
 
-2. Run loxicmd with getting lb information in the different API server(ex. 192.168.18.10) and ports(ex. 8099).
+Get detailed information
 ```
-./loxicmd get lb -s 192.168.18.10 -p 8099
+loxicmd get lb -o wide
 ```
-
-3. Run loxicmd with getting lb information as json output format
+Get info in json
 ```
-./loxicmd get lb -o json
+loxicmd get lb -o json
 ```
-
-4. Run loxicmd to configure load-balancer
-
-**- Simple NAT44 tcp (round-robin) load-balancer**
+### Configure load-balancer rule
+Simple NAT44 tcp (round-robin) load-balancer
 ```
-./loxicmd create lb 1.1.1.1 --tcp=1828:1920 --endpoints=2.2.3.4:1
+loxicmd create lb 1.1.1.1 --tcp=1828:1920 --endpoints=2.2.3.4:1
 ```
 ** Please note that round-robin is default mode in loxilb    
 ** End-point format is specified as &lt;CIDR:weight&gt;. For round-robin, weight(1) has no significance.
 
-**- NAT66 (round-robin) load-balancer**
+NAT66 (round-robin) load-balancer
 ```
-./loxicmd create lb  2001::1 --tcp=2020:8080 --endpoints=4ffe::1:1,5ffe::1:1,6ffe::1:1
-```
-
-**- NAT64 (round-robin) load-balancer**
-```
-./loxicmd create lb  2001::1 --tcp=2020:8080 --endpoints=31.31.31.1:1,32.32.32.1:1,33.33.33.1:1
+loxicmd create lb  2001::1 --tcp=2020:8080 --endpoints=4ffe::1:1,5ffe::1:1,6ffe::1:1
 ```
 
-**- WRR (Weighted round-robin) load-balancer (Divide traffic in 40%, 40% and 20% ratio among end-points)**
+NAT64 (round-robin) load-balancer
 ```
-./loxicmd create lb 20.20.20.1 --select=priority --tcp=2020:8080 --endpoints=31.31.31.1:40,32.32.32.1:40,33.33.33.1:20
-```
-
-**- Sticky end-point selection load-balancer (select end-points based on traffic hash)**
-```
-./loxicmd create lb 20.20.20.1 --select=hash --tcp=2020:8080 --endpoints=31.31.31.1:1,32.32.32.1:1,33.33.33.1:1
+loxicmd create lb  2001::1 --tcp=2020:8080 --endpoints=31.31.31.1:1,32.32.32.1:1,33.33.33.1:1
 ```
 
-**- Load-balancer with forceful tcp-reset session timeout after inactivity of 30s**
+WRR (Weighted round-robin) load-balancer (Divide traffic in 40%, 40% and 20% ratio among end-points)
 ```
-./loxicmd create lb 20.20.20.1 --tcp=2020:8080 --endpoints=31.31.31.1:1,32.32.32.1:1,33.33.33.1:1 --inatimeout=30
-```
-
-**- Load-balancer with one-arm mode**
-```
-./loxicmd create lb 20.20.20.1 --tcp=2020:8080 --endpoints=100.100.100.2:1,100.100.100.3:1,100.100.100.4:1 --mode=onearm
+loxicmd create lb 20.20.20.1 --select=priority --tcp=2020:8080 --endpoints=31.31.31.1:40,32.32.32.1:40,33.33.33.1:20
 ```
 
-**- Load-balancer with fullnat mode**
+Sticky end-point selection load-balancer (select end-points based on traffic hash)
 ```
-./loxicmd create lb 88.88.88.1 --sctp=38412:38412 --endpoints=192.168.70.3:1 --mode=fullnat
+loxicmd create lb 20.20.20.1 --select=hash --tcp=2020:8080 --endpoints=31.31.31.1:1,32.32.32.1:1,33.33.33.1:1
+```
+
+Load-balancer with forceful tcp-reset session timeout after inactivity of 30s
+```
+loxicmd create lb 20.20.20.1 --tcp=2020:8080 --endpoints=31.31.31.1:1,32.32.32.1:1,33.33.33.1:1 --inatimeout=30
+```
+
+Load-balancer with one-arm mode
+```
+loxicmd create lb 20.20.20.1 --tcp=2020:8080 --endpoints=100.100.100.2:1,100.100.100.3:1,100.100.100.4:1 --mode=onearm
+```
+
+Load-balancer with fullnat mode
+```
+loxicmd create lb 88.88.88.1 --sctp=38412:38412 --endpoints=192.168.70.3:1 --mode=fullnat
 ```
 ** For more information on  one-arm and full-nat mode, please check this [post](https://github.com/loxilb-io/loxilb/discussions/107#discussioncomment-4318418
 )
 
-**- Load-balancer config in DSR(direct-server return) mode**
+Load-balancer config in DSR(direct-server return) mode
 ```
-./loxicmd create lb 20.20.20.1 --tcp=2020:8080 --endpoints=31.31.31.1:1,32.32.32.1:1 --mode=dsr
+loxicmd create lb 20.20.20.1 --tcp=2020:8080 --endpoints=31.31.31.1:1,32.32.32.1:1 --mode=dsr
 ```
+### Delete a load-balancer rule
+```
+loxicmd delete lb 1.1.1.1 --tcp=1828 
+```
+### Get live connection-track information
+```
+loxicmd get conntrack
+```
+### Get load-balancer end-point health information
+```
+loxicmd get ep
+```
+### Get port-dump information
+```
+loxicmd get port
+```
+### Save all loxilb's operational information in DBStore
+```
+loxicmd save -a
+```
+** This will ensure that whenever loxilb restarts, it will start with last saved state from DBStore
 
-5. Run loxicmd with deleting lb information
+There are tons of other commands, use help option!
 ```
-./loxicmd delete lb 1.1.1.1 --tcp=1828 
-```
-
-6. Run loxicmd with getting live connection track information
-```
-./loxicmd get conntrack
-```
-
-7. Run loxicmd with getting port dumps
-```
-./loxicmd get port
-```
-
-For more information, use help option!
-```
-./loxicmd help
+loxicmd help
 ```
 
 ## loxicmd development guide
