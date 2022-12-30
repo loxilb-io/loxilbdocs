@@ -139,92 +139,76 @@
                 <h2 id="what-is-loxicmd">What is loxicmd</h2>
 <p>loxicmd is command tool for loxilb's configuration. loxicmd aims to provide all configuation related to loxilb and is based on kubectl's look and feel. </p>
 <h2 id="how-to-build">How to build</h2>
-<ol>
-<li>Install package dependencies </li>
-</ol>
+<p>Note - loxilb docker has this built-in</p>
+<p>Install package dependencies </p>
 <pre><code>go get .
 </code></pre>
-<ol>
-<li>Make loxicmd</li>
-</ol>
+<p>Make loxicmd</p>
 <pre><code>make
 </code></pre>
-<h2 id="how-to-run">How to run</h2>
-<ol>
-<li>
-<p>Run loxicmd with getting lb information</p>
-</li>
-<li>
+<p>Install loxicmd</p>
+<pre><code>sudo cp -f ./loxicmd /usr/local/sbin
+</code></pre>
+<h2 id="how-to-run-and-configure-loxilb">How to run and configure loxilb</h2>
+<h3 id="get-load-balancer-rules">Get load-balancer rules</h3>
 <p>Get basic information</p>
-</li>
-</ol>
-<pre><code>./loxicmd get lb
+<pre><code>loxicmd get lb
 </code></pre>
-<ul>
-<li>Get detailed information</li>
-</ul>
-<pre><code>./loxicmd get lb -o wide
+<p>Get detailed information</p>
+<pre><code>loxicmd get lb -o wide
 </code></pre>
-<ol>
-<li>Run loxicmd with getting lb information in the different API server(ex. 192.168.18.10) and ports(ex. 8099).</li>
-</ol>
-<pre><code>./loxicmd get lb -s 192.168.18.10 -p 8099
+<p>Get info in json</p>
+<pre><code>loxicmd get lb -o json
 </code></pre>
-<ol>
-<li>Run loxicmd with getting lb information as json output format</li>
-</ol>
-<pre><code>./loxicmd get lb -o json
-</code></pre>
-<ol>
-<li>Run loxicmd to configure load-balancer</li>
-</ol>
-<p><strong>- Simple NAT44 tcp (round-robin) load-balancer</strong></p>
-<pre><code>./loxicmd create lb 1.1.1.1 --tcp=1828:1920 --endpoints=2.2.3.4:1
+<h3 id="configure-load-balancer-rule">Configure load-balancer rule</h3>
+<p>Simple NAT44 tcp (round-robin) load-balancer</p>
+<pre><code>loxicmd create lb 1.1.1.1 --tcp=1828:1920 --endpoints=2.2.3.4:1
 </code></pre>
 <p><strong> Please note that round-robin is default mode in loxilb  <br />
 </strong> End-point format is specified as &lt;CIDR:weight&gt;. For round-robin, weight(1) has no significance.</p>
-<p><strong>- NAT66 (round-robin) load-balancer</strong></p>
-<pre><code>./loxicmd create lb  2001::1 --tcp=2020:8080 --endpoints=4ffe::1:1,5ffe::1:1,6ffe::1:1
+<p>NAT66 (round-robin) load-balancer</p>
+<pre><code>loxicmd create lb  2001::1 --tcp=2020:8080 --endpoints=4ffe::1:1,5ffe::1:1,6ffe::1:1
 </code></pre>
-<p><strong>- NAT64 (round-robin) load-balancer</strong></p>
-<pre><code>./loxicmd create lb  2001::1 --tcp=2020:8080 --endpoints=31.31.31.1:1,32.32.32.1:1,33.33.33.1:1
+<p>NAT64 (round-robin) load-balancer</p>
+<pre><code>loxicmd create lb  2001::1 --tcp=2020:8080 --endpoints=31.31.31.1:1,32.32.32.1:1,33.33.33.1:1
 </code></pre>
-<p><strong>- WRR (Weighted round-robin) load-balancer (Divide traffic in 40%, 40% and 20% ratio among end-points)</strong></p>
-<pre><code>./loxicmd create lb 20.20.20.1 --select=priority --tcp=2020:8080 --endpoints=31.31.31.1:40,32.32.32.1:40,33.33.33.1:20
+<p>WRR (Weighted round-robin) load-balancer (Divide traffic in 40%, 40% and 20% ratio among end-points)</p>
+<pre><code>loxicmd create lb 20.20.20.1 --select=priority --tcp=2020:8080 --endpoints=31.31.31.1:40,32.32.32.1:40,33.33.33.1:20
 </code></pre>
-<p><strong>- Sticky end-point selection load-balancer (select end-points based on traffic hash)</strong></p>
-<pre><code>./loxicmd create lb 20.20.20.1 --select=hash --tcp=2020:8080 --endpoints=31.31.31.1:1,32.32.32.1:1,33.33.33.1:1
+<p>Sticky end-point selection load-balancer (select end-points based on traffic hash)</p>
+<pre><code>loxicmd create lb 20.20.20.1 --select=hash --tcp=2020:8080 --endpoints=31.31.31.1:1,32.32.32.1:1,33.33.33.1:1
 </code></pre>
-<p><strong>- Load-balancer with forceful tcp-reset session timeout after inactivity of 30s</strong></p>
-<pre><code>./loxicmd create lb 20.20.20.1 --tcp=2020:8080 --endpoints=31.31.31.1:1,32.32.32.1:1,33.33.33.1:1 --inatimeout=30
+<p>Load-balancer with forceful tcp-reset session timeout after inactivity of 30s</p>
+<pre><code>loxicmd create lb 20.20.20.1 --tcp=2020:8080 --endpoints=31.31.31.1:1,32.32.32.1:1,33.33.33.1:1 --inatimeout=30
 </code></pre>
-<p><strong>- Load-balancer with one-arm mode</strong></p>
-<pre><code>./loxicmd create lb 20.20.20.1 --tcp=2020:8080 --endpoints=100.100.100.2:1,100.100.100.3:1,100.100.100.4:1 --mode=onearm
+<p>Load-balancer with one-arm mode</p>
+<pre><code>loxicmd create lb 20.20.20.1 --tcp=2020:8080 --endpoints=100.100.100.2:1,100.100.100.3:1,100.100.100.4:1 --mode=onearm
 </code></pre>
-<p><strong>- Load-balancer with fullnat mode</strong></p>
-<pre><code>./loxicmd create lb 88.88.88.1 --sctp=38412:38412 --endpoints=192.168.70.3:1 --mode=fullnat
+<p>Load-balancer with fullnat mode</p>
+<pre><code>loxicmd create lb 88.88.88.1 --sctp=38412:38412 --endpoints=192.168.70.3:1 --mode=fullnat
 </code></pre>
 <p>** For more information on  one-arm and full-nat mode, please check this <a href="https://github.com/loxilb-io/loxilb/discussions/107#discussioncomment-4318418">post</a></p>
-<p><strong>- Load-balancer config in DSR(direct-server return) mode</strong></p>
-<pre><code>./loxicmd create lb 20.20.20.1 --tcp=2020:8080 --endpoints=31.31.31.1:1,32.32.32.1:1 --mode=dsr
+<p>Load-balancer config in DSR(direct-server return) mode</p>
+<pre><code>loxicmd create lb 20.20.20.1 --tcp=2020:8080 --endpoints=31.31.31.1:1,32.32.32.1:1 --mode=dsr
 </code></pre>
-<ol>
-<li>Run loxicmd with deleting lb information</li>
-</ol>
-<pre><code>./loxicmd delete lb 1.1.1.1 --tcp=1828 
+<h3 id="delete-a-load-balancer-rule">Delete a load-balancer rule</h3>
+<pre><code>loxicmd delete lb 1.1.1.1 --tcp=1828 
 </code></pre>
-<ol>
-<li>Run loxicmd with getting live connection track information</li>
-</ol>
-<pre><code>./loxicmd get conntrack
+<h3 id="get-live-connection-track-information">Get live connection-track information</h3>
+<pre><code>loxicmd get conntrack
 </code></pre>
-<ol>
-<li>Run loxicmd with getting port dumps</li>
-</ol>
-<pre><code>./loxicmd get port
+<h3 id="get-load-balancer-end-point-health-information">Get load-balancer end-point health information</h3>
+<pre><code>loxicmd get ep
 </code></pre>
-<p>For more information, use help option!</p>
-<pre><code>./loxicmd help
+<h3 id="get-port-dump-information">Get port-dump information</h3>
+<pre><code>loxicmd get port
+</code></pre>
+<h3 id="save-all-loxilbs-operational-information-in-dbstore">Save all loxilb's operational information in DBStore</h3>
+<pre><code>loxicmd save -a
+</code></pre>
+<p>** This will ensure that whenever loxilb restarts, it will start with last saved state from DBStore</p>
+<p>There are tons of other commands, use help option!</p>
+<pre><code>loxicmd help
 </code></pre>
 <h2 id="loxicmd-development-guide">loxicmd development guide</h2>
 <p>It will provide a guide for development. Please develop it according to the guidelines. The guide is divided into three main stages: design, development, and testing, and the details are as follows.</p>
