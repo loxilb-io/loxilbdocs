@@ -173,7 +173,7 @@ data:
 <h3 id="2-deploy-loxi-ccm">2. Deploy loxi-ccm</h3>
 <p>Once you have modified ConfigMap, you can deploy loxi-ccm using the loxi-ccm.yaml manifest file.
 Run the following command on the kubernetes you want to deploy.</p>
-<pre><code>kubectl apply -f loxi-ccm.yaml
+<pre><code>kubectl apply -f https://github.com/loxilb-io/loxi-ccm/raw/master/manifests/loxi-ccm.yaml
 </code></pre>
 <p>After entering the command, check whether loxi-cloud-controller-manager is created in the daemonset of the kube-system namespace.</p>
 <h1 id="manual-build">Manual build</h1>
