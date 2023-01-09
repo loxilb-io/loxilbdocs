@@ -50,7 +50,7 @@ apiServerURL and externalIPcidr must be modified according to the environment of
 Once you have modified ConfigMap, you can deploy loxi-ccm using the loxi-ccm.yaml manifest file.
 Run the following command on the kubernetes you want to deploy.
 ```
-kubectl apply -f loxi-ccm.yaml
+kubectl apply -f https://github.com/loxilb-io/loxi-ccm/raw/master/manifests/loxi-ccm.yaml
 ```
 After entering the command, check whether loxi-cloud-controller-manager is created in the daemonset of the kube-system namespace.
 
