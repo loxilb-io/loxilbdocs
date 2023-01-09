@@ -21,7 +21,7 @@ loxilb aims to provide the following :
 - L4/NAT stateful loadbalancer
    - *NAT44, NAT66, NAT64 with One-ARM, FullNAT, DSR etc*
    - *High-availability support*
-   - *K8s CCM compliance*
+   - *Full compliance for K8s loadbalancer Spec*
    - *High perf drop-in replacement for iptables/ipvs based infra*
 -  Optimized SRv6 implementation in eBPF  
 -  L7 Proxy support  
