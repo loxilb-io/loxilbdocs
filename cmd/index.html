@@ -90,6 +90,154 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="./">Cmd/Config guide</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#what-is-loxicmd">What is loxicmd</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#how-to-build">How to build</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#how-to-run-and-configure-loxilb">How to run and configure loxilb</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#load-balancer">Load Balancer</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#get-load-balancer-rules">Get load-balancer rules</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#configure-load-balancer-rule">Configure load-balancer rule</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#delete-a-load-balancer-rule">Delete a load-balancer rule</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#endpoint">Endpoint</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#get-load-balancer-end-point-health-information">Get load-balancer end-point health information</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#create-end-point-information">Create end-point information</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#delete-end-point-informtion">Delete end-point informtion</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#session">Session</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#get-session-information">Get Session information</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#create-session-information">Create Session information</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#delete-session-information">Delete Session information</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#sessionulcl">SessionUlCl</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#get-sessionulcl-information">Get SessionUlCl information</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#create-sessionulcl-information">Create SessionUlCl information</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#delete-sessionulcl-information">Delete SessionUlCl information</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ipaddress">IPaddress</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#get-ipaddress-information">Get IPaddress information</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#create-ipaddress-information">Create IPaddress information</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#delete-ipaddress-information">Delete IPaddress information</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#fdb">FDB</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#get-fdb-information">Get FDB information</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#create-fdb-information">Create FDB information</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#delete-fdb-information">Delete FDB information</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#route">Route</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#get-route-information">Get Route information</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#create-route-information">Create Route information</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#delete-route-information">Delete Route information</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#neighbor">Neighbor</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#get-neighbor-information">Get Neighbor information</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#create-neighbor-information">Create Neighbor information</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#delete-neighbor-information">Delete Neighbor information</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#vlan">Vlan</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#get-vlan-and-vlan-member-information">Get Vlan and Vlan Member information</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#create-vlan-and-vlan-member-information">Create Vlan and Vlan Member information</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#delete-vlan-and-vlan-member-information">Delete Vlan and Vlan Member information</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#vxlan">Vxlan</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#get-vxlan-and-vxlan-peer-information">Get Vxlan and Vxlan Peer information</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#create-vxlan-and-vxlan-peer-information">Create Vxlan and Vxlan Peer information</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#delete-vxlan-and-vxlan-peer-information">Delete Vxlan and Vxlan Peer  information</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#firewall">Firewall</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#get-firewall-information">Get Firewall information</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#create-firewall-information">Create Firewall information</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#delete-firewall-information">Delete Firewall information</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#mirror">Mirror</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#get-mirror-information">Get Mirror information</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#create-mirror-information">Create Mirror information</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#delete-mirror-information">Delete Mirror information</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#policy">Policy</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#get-policy-information">Get Policy information</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#create-policy-information">Create Policy information</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#delete-policy-information">Delete Policy information</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#get-live-connection-track-information">Get live connection-track information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#get-port-dump-information">Get port-dump information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#save-all-loxilbs-operational-information-in-dbstore">Save all loxilb's operational information in DBStore</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#configure-loxicmd-with-yaml">Configure loxicmd with yaml</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#loxicmd-development-guide">loxicmd development guide</a>
+    </li>
     </ul>
                 </li>
               </ul>
@@ -136,7 +284,29 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h2 id="what-is-loxicmd">What is loxicmd</h2>
+                <h1 id="table-of-contents">Table of Contents</h1>
+<ul>
+<li><a href="./#what-is-loxicmd">What is loxicmd</a></li>
+<li><a href="./#how-to-build">How to build</a></li>
+<li><a href="./#how-to-run-and-configure-loxilb">How to run and configure loxilb</a><ul>
+<li><a href="./#load-balancer">Load balancer</a></li>
+<li><a href="./#endpoint">Endpoint</a></li>
+<li><a href="./#session">Session</a></li>
+<li><a href="./#sessionulcl">SessionUlCl</a></li>
+<li><a href="./#ipaddress">IPaddress</a></li>
+<li><a href="./#fdb">FDB</a></li>
+<li><a href="./#route">Route</a></li>
+<li><a href="./#neighbor">Neighbor</a></li>
+<li><a href="./#vlan">Vlan</a></li>
+<li><a href="./#vxlan">Vxlan</a></li>
+<li><a href="./#firewall">Firewall</a></li>
+<li><a href="./#mirror">Mirror</a></li>
+<li><a href="./#policy">Policy</a></li>
+</ul>
+</li>
+<li><a href="./#loxicmd-development-guide">loxicmd development guide</a></li>
+</ul>
+<h2 id="what-is-loxicmd">What is loxicmd</h2>
 <p>loxicmd is command tool for loxilb's configuration. loxicmd aims to provide all configuation related to loxilb and is based on kubectl's look and feel. </p>
 <h2 id="how-to-build">How to build</h2>
 <p>Note - loxilb docker has this built-in</p>
@@ -150,7 +320,8 @@
 <pre><code>sudo cp -f ./loxicmd /usr/local/sbin
 </code></pre>
 <h2 id="how-to-run-and-configure-loxilb">How to run and configure loxilb</h2>
-<h3 id="get-load-balancer-rules">Get load-balancer rules</h3>
+<h3 id="load-balancer">Load Balancer</h3>
+<h4 id="get-load-balancer-rules">Get load-balancer rules</h4>
 <p>Get basic information</p>
 <pre><code>loxicmd get lb
 </code></pre>
@@ -160,7 +331,7 @@
 <p>Get info in json</p>
 <pre><code>loxicmd get lb -o json
 </code></pre>
-<h3 id="configure-load-balancer-rule">Configure load-balancer rule</h3>
+<h4 id="configure-load-balancer-rule">Configure load-balancer rule</h4>
 <p>Simple NAT44 tcp (round-robin) load-balancer</p>
 <pre><code>loxicmd create lb 1.1.1.1 --tcp=1828:1920 --endpoints=2.2.3.4:1
 </code></pre>
@@ -191,14 +362,245 @@
 <p>Load-balancer config in DSR(direct-server return) mode</p>
 <pre><code>loxicmd create lb 20.20.20.1 --tcp=2020:8080 --endpoints=31.31.31.1:1,32.32.32.1:1 --mode=dsr
 </code></pre>
-<h3 id="delete-a-load-balancer-rule">Delete a load-balancer rule</h3>
+<h4 id="delete-a-load-balancer-rule">Delete a load-balancer rule</h4>
 <pre><code>loxicmd delete lb 1.1.1.1 --tcp=1828 
 </code></pre>
+<hr />
+<h3 id="endpoint">Endpoint</h3>
+<h4 id="get-load-balancer-end-point-health-information">Get load-balancer end-point health information</h4>
+<pre><code>loxicmd get ep
+</code></pre>
+<h4 id="create-end-point-information">Create end-point information</h4>
+<pre><code># loxicmd create endpoint IP [--desc=&lt;desc&gt;] [--probetype=&lt;probetype&gt;] [--req=&lt;probereq&gt;] [--resp=&lt;proberesp&gt;] [--l4port=&lt;port&gt;] [--period=&lt;period&gt;] [--retries=&lt;retries&gt;]
+loxicmd create endpoint 32.32.32.1 --desc=zone1host --probetype=http --l4port=8080 --period=60 --retries=2
+</code></pre>
+<p>IP(string) : Endpoint target IPaddress\
+desc(string) : Description of and end-point\
+probetype(string): Probe-type:ping,http,connect-udp,connect-tcp,connect-sctp,none\
+req(string): If probe is http, one can specify additional uri path\
+resp(string): If probe is http, one can specify custom response string\
+l4port(int): If probe is http,tcp,udp,sctp one can specify custom l4port to use\
+period(int): Period of probing\
+retries(int): Number of retries before marking endPoint inactive\</p>
+<h4 id="delete-end-point-informtion">Delete end-point informtion</h4>
+<pre><code>loxicmd delete endpoint 31.31.31.31
+</code></pre>
+<hr />
+<h3 id="session">Session</h3>
+<h4 id="get-session-information">Get Session information</h4>
+<pre><code>loxicmd get session
+</code></pre>
+<h4 id="create-session-information">Create Session information</h4>
+<pre><code>#loxicmd create session &lt;userID&gt; &lt;sessionIP&gt; --accessNetworkTunnel=&lt;TeID&gt;:&lt;TunnelIP&gt; --coreNetworkTunnel=&lt;TeID&gt;:&lt;TunnelIP&gt;
+loxicmd create session user1 192.168.20.1 --accessNetworkTunnel=1:1.232.16.1 coreNetworkTunnel=1:1.233.16.1
+</code></pre>
+<p>userID(string): User Ident\
+sessionIP(string): Session IPaddress\
+accessNetworkTunnel(string): accessNetworkTunnel has pairs that can be specified as 'TeID:IP'\
+coreNetworkTunnel(string): coreNetworkTunnel has pairs that can be specified as 'TeID:IP'\</p>
+<h4 id="delete-session-information">Delete Session information</h4>
+<pre><code>loxicmd delete session user1
+</code></pre>
+<hr />
+<h3 id="sessionulcl">SessionUlCl</h3>
+<h4 id="get-sessionulcl-information">Get SessionUlCl information</h4>
+<pre><code>loxicmd get sessionulcl
+</code></pre>
+<h4 id="create-sessionulcl-information">Create SessionUlCl information</h4>
+<pre><code>#loxicmd create sessionulcl &lt;userID&gt; --ulclArgs=&lt;QFI&gt;:&lt;ulclIP&gt;,...
+loxicmd create sessionulcl user1 --ulclArgs=16:192.33.125.1
+</code></pre>
+<p>userID(string): User Ident\
+ulclArgs(string): Port pairs can be specified as 'QFI:UlClIP'\</p>
+<h4 id="delete-sessionulcl-information">Delete SessionUlCl information</h4>
+<pre><code>loxicmd delete sessionulcl --ulclArgs=192.33.125.1
+</code></pre>
+<p>ulclArgs(string): UlCl IP address can be specified as 'UlClIP'. It don't need QFI.</p>
+<hr />
+<h3 id="ipaddress">IPaddress</h3>
+<h4 id="get-ipaddress-information">Get IPaddress information</h4>
+<pre><code>loxicmd get ip
+</code></pre>
+<h4 id="create-ipaddress-information">Create IPaddress information</h4>
+<pre><code>#loxicmd create ip &lt;DeviceIPNet&gt; &lt;device&gt;
+loxicmd create ip 192.168.0.1/24 eno7
+</code></pre>
+<p>DeviceIPNet(string): Actual IP address with mask\
+device(string): name of the related device\</p>
+<h4 id="delete-ipaddress-information">Delete IPaddress information</h4>
+<pre><code>#loxicmd delete ip &lt;DeviceIPNet&gt; &lt;device&gt;
+loxicmd delete ip 192.168.0.1/24 eno7
+</code></pre>
+<hr />
+<h3 id="fdb">FDB</h3>
+<h4 id="get-fdb-information">Get FDB information</h4>
+<pre><code>loxicmd get fdb
+</code></pre>
+<h4 id="create-fdb-information">Create FDB information</h4>
+<pre><code>#loxicmd create fdb &lt;MacAddress&gt; &lt;DeviceName&gt;
+loxicmd create fdb aa:aa:aa:aa:bb:bb eno7
+</code></pre>
+<p>MacAddress(string): mac address\
+DeviceName(string): name of the related device\</p>
+<h4 id="delete-fdb-information">Delete FDB information</h4>
+<pre><code>#loxicmd delete fdb &lt;MacAddress&gt; &lt;DeviceName&gt;
+loxicmd delete fdb aa:aa:aa:aa:bb:bb eno7
+</code></pre>
+<hr />
+<h3 id="route">Route</h3>
+<h4 id="get-route-information">Get Route information</h4>
+<pre><code>loxicmd get route
+</code></pre>
+<h4 id="create-route-information">Create Route information</h4>
+<pre><code>#loxicmd create route &lt;DestinationIPNet&gt; &lt;gateway&gt;
+loxicmd create route 192.168.212.0/24 172.17.0.254
+</code></pre>
+<p>DestinationIPNet(string): Actual IP address route with mask\
+gateway(string): gateway information if any\</p>
+<h4 id="delete-route-information">Delete Route information</h4>
+<pre><code>#loxicmd delete route &lt;DestinationIPNet&gt;
+loxicmd delete route 192.168.212.0/24 
+</code></pre>
+<hr />
+<h3 id="neighbor">Neighbor</h3>
+<h4 id="get-neighbor-information">Get Neighbor information</h4>
+<pre><code>loxicmd get neighbor
+</code></pre>
+<h4 id="create-neighbor-information">Create Neighbor information</h4>
+<pre><code>#loxicmd create neighbor &lt;DeviceIP&gt; &lt;DeviceName&gt; [--macAddress=aa:aa:aa:aa:aa:aa]
+loxicmd create neighbor 192.168.0.1 eno7 --macAddress=aa:aa:aa:aa:aa:aa
+</code></pre>
+<p>DeviceIP(string): The IP address\
+DeviceName(string): name of the related device\
+macAddress(string): resolved hardware address if any\</p>
+<h4 id="delete-neighbor-information">Delete Neighbor information</h4>
+<pre><code>#loxicmd delete neighbor &lt;DeviceIP&gt; &lt;device&gt;
+loxicmd delete neighbor 192.168.0.1 eno7
+</code></pre>
+<hr />
+<h3 id="vlan">Vlan</h3>
+<h4 id="get-vlan-and-vlan-member-information">Get Vlan and Vlan Member information</h4>
+<pre><code>loxicmd get vlan
+</code></pre>
+<pre><code>loxicmd get vlanmember
+</code></pre>
+<h4 id="create-vlan-and-vlan-member-information">Create Vlan and Vlan Member information</h4>
+<pre><code>#loxicmd create vlan &lt;Vid&gt;
+loxicmd create vlan 100
+</code></pre>
+<p>Vid(int): vlan identifier</p>
+<pre><code>
+#loxicmd create vlanmember &lt;Vid&gt; &lt;DeviceName&gt; --tagged=&lt;Tagged&gt;
+loxicmd create vlanmember 100 eno7 --tagged=true
+loxicmd create vlanmember 100 eno7
+</code></pre>
+<p>Vid(int): vlan identifier\
+DeviceName(string): name of the related device\
+tagged(boolean): tagged or not (default is false)\</p>
+<h4 id="delete-vlan-and-vlan-member-information">Delete Vlan and Vlan Member information</h4>
+<pre><code>#loxicmd delete vlan &lt;Vid&gt;
+loxicmd delete vlan 100
+</code></pre>
+<pre><code>#loxicmd delete vlanmember &lt;Vid&gt; &lt;DeviceName&gt; --tagged=&lt;Tagged&gt;
+loxicmd delete vlanmember 100 eno7 --tagged=true
+loxicmd delete vlanmember 100 eno7
+</code></pre>
+<hr />
+<h3 id="vxlan">Vxlan</h3>
+<h4 id="get-vxlan-and-vxlan-peer-information">Get Vxlan and Vxlan Peer information</h4>
+<pre><code>loxicmd get vxlan
+</code></pre>
+<pre><code>loxicmd get vxlanpeer
+</code></pre>
+<h4 id="create-vxlan-and-vxlan-peer-information">Create Vxlan and Vxlan Peer information</h4>
+<pre><code>#loxicmd create vxlan &lt;VxlanID&gt; &lt;EndpointDeviceName&gt;
+loxicmd create vxlan 100 eno7
+</code></pre>
+<p>VxlanID(int): Vxlan Identifier\
+EndpointDeviceName(string): VTEP Device name(It must have own IP address for peering.)\</p>
+<pre><code>#loxicmd create vxlanpeer &lt;VxlanID&gt; &lt;PeerIP&gt;
+loxicmd create vxlan-peer 100 30.1.3.1
+</code></pre>
+<p>VxlanID(int):  Vxlan Identifier\
+PeerIP(string): Vxlan peer device IP address\</p>
+<h4 id="delete-vxlan-and-vxlan-peer-information">Delete Vxlan and Vxlan Peer  information</h4>
+<pre><code>#loxicmd delete vxlan &lt;VxlanID&gt;
+loxicmd delete vxlan 100
+</code></pre>
+<pre><code>#loxicmd delete vxlanpeer &lt;VxlanID&gt; &lt;PeerIP&gt;
+loxicmd delete vxlan-peer 100 30.1.3.1
+</code></pre>
+<hr />
+<h3 id="firewall">Firewall</h3>
+<h4 id="get-firewall-information">Get Firewall information</h4>
+<pre><code>loxicmd get firewall
+</code></pre>
+<h4 id="create-firewall-information">Create Firewall information</h4>
+<pre><code>#loxicmd create firewall --firewallRule=&lt;ruleKey&gt;:&lt;ruleValue&gt;, [--allow] [--drop] [--trap] [--redirect=&lt;PortName&gt;] [--setmark=&lt;FwMark&gt;
+loxicmd create firewall --firewallRule=&quot;sourceIP:1.2.3.2/32,destinationIP:2.3.1.2/32,preference:200&quot; --allow
+loxicmd create firewall --firewallRule=&quot;sourceIP:1.2.3.2/32,destinationIP:2.3.1.2/32,preference:200&quot; --allow --setmark=10
+loxicmd create firewall --firewallRule=&quot;sourceIP:1.2.3.2/32,destinationIP:2.3.1.2/32,preference:200&quot; --drop
+loxicmd create firewall --firewallRule=&quot;sourceIP:1.2.3.2/32,destinationIP:2.3.1.2/32,preference:200&quot; --trap
+loxicmd create firewall --firewallRule=&quot;sourceIP:1.2.3.2/32,destinationIP:2.3.1.2/32,preference:200&quot; --redirect=hs1
+</code></pre>
+<p><strong>firewallRule</strong>
+sourceIP(string) - Source IP in CIDR notation\
+destinationIP(string) - Destination IP in CIDR notation\
+minSourcePort(int) - Minimum source port range\
+maxSourcePort(int) - Maximum source port range\
+minDestinationPort(int) - Minimum destination port range\
+maxDestinationPort(int) - Maximum source port range\
+protocol(int) - the protocol\
+portName(string) - the incoming port\
+preference(int) - User preference for ordering\</p>
+<h4 id="delete-firewall-information">Delete Firewall information</h4>
+<pre><code>#loxicmd delete firewall --firewallRule=&lt;ruleKey&gt;:&lt;ruleValue&gt;
+loxicmd delete firewall --firewallRule=&quot;sourceIP:1.2.3.2/32,destinationIP:2.3.1.2/32,preference:200
+</code></pre>
+<hr />
+<h3 id="mirror">Mirror</h3>
+<h4 id="get-mirror-information">Get Mirror information</h4>
+<pre><code>loxicmd get mirror
+</code></pre>
+<h4 id="create-mirror-information">Create Mirror information</h4>
+<pre><code>#loxicmd create mirror &lt;mirrorIdent&gt; --mirrorInfo=&lt;InfoOption&gt;:&lt;InfoValue&gt;,... --targetObject=attachement:&lt;port1,rule2&gt;,mirrObjName:&lt;ObjectName&gt;
+loxicmd create mirror mirr-1 --mirrorInfo=&quot;type:0,port:hs0&quot; --targetObject=&quot;attachement:1,mirrObjName:hs1
+</code></pre>
+<p>mirrorIdent(string): Mirror identifier\
+type(int) : Mirroring type as like 0 == SPAN, 1 == RSPAN, 2 == ERSPAN\
+port(string) : The port where mirrored traffic needs to be sent\
+vlan(int) : for RSPAN we may need to send tagged mirror traffic\
+remoteIP(string) : For ERSPAN we may need to send tunnelled mirror traffic\
+sourceIP(string): For ERSPAN we may need to send tunnelled mirror traffic\
+tunnelID(int): For ERSPAN we may need to send tunnelled mirror traffic\</p>
+<h4 id="delete-mirror-information">Delete Mirror information</h4>
+<pre><code>#loxicmd delete mirror &lt;mirrorIdent&gt;
+loxicmd delete mirror mirr-1
+</code></pre>
+<hr />
+<h3 id="policy">Policy</h3>
+<h4 id="get-policy-information">Get Policy information</h4>
+<pre><code>loxicmd get policy
+</code></pre>
+<h4 id="create-policy-information">Create Policy information</h4>
+<pre><code>#loxicmd create policy IDENT --rate=&lt;Peak&gt;:&lt;Commited&gt; --target=&lt;ObjectName&gt;:&lt;Attachment&gt; [--block-size=&lt;Excess&gt;:&lt;Committed&gt;] [--color] [--pol-type=&lt;policy type&gt;]
+loxicmd create policy pol-hs0 --rate=100:100 --target=hs0:1
+loxicmd create policy pol-hs1 --rate=100:100 --target=hs0:1 --block-size=12000:6000
+loxicmd create policy pol-hs1 --rate=100:100 --target=hs0:1 --color
+loxicmd create policy pol-hs1 --rate=100:100 --target=hs0:1 --color --pol-type 0
+</code></pre>
+<p>rate(string): Rate pairs can be specified as 'Peak:Commited'. <em>rate unit : Mbps\
+block-size(string): Block Size pairs can be specified as 'Excess:Committed'. </em>block-size unit : bps\
+target(string): Target Interface pairs can be specified as 'ObjectName:Attachment'\
+color(boolean): Policy color enbale or not\
+pol-type(int): Policy traffic control type. 0 : TrTCM, 1 : SrTCM\</p>
+<h4 id="delete-policy-information">Delete Policy information</h4>
+<pre><code>#loxicmd delete policy &lt;Polident&gt;
+loxicmd delete policy pol-hs1
+</code></pre>
+<hr />
 <h3 id="get-live-connection-track-information">Get live connection-track information</h3>
 <pre><code>loxicmd get conntrack
-</code></pre>
-<h3 id="get-load-balancer-end-point-health-information">Get load-balancer end-point health information</h3>
-<pre><code>loxicmd get ep
 </code></pre>
 <h3 id="get-port-dump-information">Get port-dump information</h3>
 <pre><code>loxicmd get port
@@ -210,6 +612,8 @@
 <p>There are tons of other commands, use help option!</p>
 <pre><code>loxicmd help
 </code></pre>
+<h2 id="configure-loxicmd-with-yaml">Configure loxicmd with yaml</h2>
+<p>TBD</p>
 <h2 id="loxicmd-development-guide">loxicmd development guide</h2>
 <p>It will provide a guide for development. Please develop it according to the guidelines. The guide is divided into three main stages: design, development, and testing, and the details are as follows.</p>
 <ol>
