@@ -53,6 +53,11 @@ loxilb aims to provide the following :
 - [Contribute](contribute.md)
 - [FAQs](faq.md)
 
+## Blogs
+- [5G SCTP LoadBalancer Using LoxiLB](https://futuredon.medium.com/5g-sctp-loadbalancer-using-loxilb-b525198a9103)
+- [5G Uplink Classifier Using Loxilb](https://futuredon.medium.com/5g-uplink-classifier-using-loxilb-7593a4d66f4c)
+- [K3s: Using loxilb as external service lb](https://cloudybytes.medium.com/k3s-using-loxilb-as-external-service-lb-2ea4ce61e159)
+
 ## Host OS requirements  
 
 To install LoxiLB software packages, you need the 64-bit version of one of these OS versions:  
