@@ -1,3 +1,23 @@
+# Table of Contents
+
+ - [What is loxicmd](./cmd.md#what-is-loxicmd)
+ - [How to build](./cmd.md#how-to-build)
+ - [How to run and configure loxilb](./cmd.md#how-to-run-and-configure-loxilb)
+	 - [Load balancer](./cmd.md#load-balancer)
+	 - [Endpoint](./cmd.md#endpoint)
+	 - [Session](./cmd.md#session)
+	 - [SessionUlCl](./cmd.md#sessionulcl)
+	 - [IPaddress](./cmd.md#ipaddress)
+	 - [FDB](./cmd.md#fdb)
+	 - [Route](./cmd.md#route)
+	 - [Neighbor](./cmd.md#neighbor)
+	 - [Vlan](./cmd.md#vlan)
+	 - [Vxlan](./cmd.md#vxlan)
+	 - [Firewall](./cmd.md#firewall)
+	 - [Mirror](./cmd.md#mirror)
+	 - [Policy](./cmd.md#policy)
+- [loxicmd development guide](./cmd.md#loxicmd-development-guide)
+
 ## What is loxicmd
 
 loxicmd is command tool for loxilb's configuration. loxicmd aims to provide all configuation related to loxilb and is based on kubectl's look and feel. 
@@ -24,9 +44,11 @@ Install loxicmd
 sudo cp -f ./loxicmd /usr/local/sbin
 ```
 
+
 ## How to run and configure loxilb
 
-### Get load-balancer rules
+### Load Balancer
+#### Get load-balancer rules
 
 Get basic information
 ```
@@ -41,7 +63,7 @@ Get info in json
 ```
 loxicmd get lb -o json
 ```
-### Configure load-balancer rule
+#### Configure load-balancer rule
 Simple NAT44 tcp (round-robin) load-balancer
 ```
 loxicmd create lb 1.1.1.1 --tcp=1828:1920 --endpoints=2.2.3.4:1
@@ -90,18 +112,307 @@ Load-balancer config in DSR(direct-server return) mode
 ```
 loxicmd create lb 20.20.20.1 --tcp=2020:8080 --endpoints=31.31.31.1:1,32.32.32.1:1 --mode=dsr
 ```
-### Delete a load-balancer rule
+#### Delete a load-balancer rule
 ```
 loxicmd delete lb 1.1.1.1 --tcp=1828 
 ```
+---
+
+### Endpoint
+#### Get load-balancer end-point health information
+```
+loxicmd get ep
+```
+#### Create end-point information
+```
+# loxicmd create endpoint IP [--desc=<desc>] [--probetype=<probetype>] [--req=<probereq>] [--resp=<proberesp>] [--l4port=<port>] [--period=<period>] [--retries=<retries>]
+loxicmd create endpoint 32.32.32.1 --desc=zone1host --probetype=http --l4port=8080 --period=60 --retries=2
+```
+IP(string) : Endpoint target IPaddress\
+desc(string) : Description of and end-point\
+probetype(string): Probe-type:ping,http,connect-udp,connect-tcp,connect-sctp,none\
+req(string): If probe is http, one can specify additional uri path\
+resp(string): If probe is http, one can specify custom response string\
+l4port(int): If probe is http,tcp,udp,sctp one can specify custom l4port to use\
+period(int): Period of probing\
+retries(int): Number of retries before marking endPoint inactive\
+#### Delete end-point informtion
+```
+loxicmd delete endpoint 31.31.31.31
+```
+---
+### Session
+#### Get Session information
+```
+loxicmd get session
+```
+#### Create Session information
+```
+#loxicmd create session <userID> <sessionIP> --accessNetworkTunnel=<TeID>:<TunnelIP> --coreNetworkTunnel=<TeID>:<TunnelIP>
+loxicmd create session user1 192.168.20.1 --accessNetworkTunnel=1:1.232.16.1 coreNetworkTunnel=1:1.233.16.1
+```
+userID(string): User Ident\
+sessionIP(string): Session IPaddress\
+accessNetworkTunnel(string): accessNetworkTunnel has pairs that can be specified as 'TeID:IP'\
+coreNetworkTunnel(string): coreNetworkTunnel has pairs that can be specified as 'TeID:IP'\
+
+#### Delete Session information
+```
+loxicmd delete session user1
+```
+---
+### SessionUlCl
+#### Get SessionUlCl information
+```
+loxicmd get sessionulcl
+```
+#### Create SessionUlCl information
+```
+#loxicmd create sessionulcl <userID> --ulclArgs=<QFI>:<ulclIP>,...
+loxicmd create sessionulcl user1 --ulclArgs=16:192.33.125.1
+```
+userID(string): User Ident\
+ulclArgs(string): Port pairs can be specified as 'QFI:UlClIP'\
+
+#### Delete SessionUlCl information
+```
+loxicmd delete sessionulcl --ulclArgs=192.33.125.1
+```
+ulclArgs(string): UlCl IP address can be specified as 'UlClIP'. It don't need QFI.
+
+
+---
+### IPaddress
+#### Get IPaddress information
+```
+loxicmd get ip
+```
+#### Create IPaddress information
+```
+#loxicmd create ip <DeviceIPNet> <device>
+loxicmd create ip 192.168.0.1/24 eno7
+```
+DeviceIPNet(string): Actual IP address with mask\
+device(string): name of the related device\
+
+#### Delete IPaddress information
+```
+#loxicmd delete ip <DeviceIPNet> <device>
+loxicmd delete ip 192.168.0.1/24 eno7
+```
+---
+### FDB
+#### Get FDB information
+```
+loxicmd get fdb
+```
+#### Create FDB information
+```
+#loxicmd create fdb <MacAddress> <DeviceName>
+loxicmd create fdb aa:aa:aa:aa:bb:bb eno7
+```
+MacAddress(string): mac address\
+DeviceName(string): name of the related device\
+
+#### Delete FDB information
+```
+#loxicmd delete fdb <MacAddress> <DeviceName>
+loxicmd delete fdb aa:aa:aa:aa:bb:bb eno7
+```
+
+---
+### Route
+#### Get Route information
+```
+loxicmd get route
+```
+#### Create Route information
+```
+#loxicmd create route <DestinationIPNet> <gateway>
+loxicmd create route 192.168.212.0/24 172.17.0.254
+```
+DestinationIPNet(string): Actual IP address route with mask\
+gateway(string): gateway information if any\
+
+#### Delete Route information
+```
+#loxicmd delete route <DestinationIPNet>
+loxicmd delete route 192.168.212.0/24 
+```
+---
+### Neighbor
+#### Get Neighbor information
+```
+loxicmd get neighbor
+```
+#### Create Neighbor information
+```
+#loxicmd create neighbor <DeviceIP> <DeviceName> [--macAddress=aa:aa:aa:aa:aa:aa]
+loxicmd create neighbor 192.168.0.1 eno7 --macAddress=aa:aa:aa:aa:aa:aa
+```
+DeviceIP(string): The IP address\
+DeviceName(string): name of the related device\
+macAddress(string): resolved hardware address if any\
+#### Delete Neighbor information
+```
+#loxicmd delete neighbor <DeviceIP> <device>
+loxicmd delete neighbor 192.168.0.1 eno7
+```
+
+---
+### Vlan
+#### Get Vlan and Vlan Member information
+```
+loxicmd get vlan
+```
+```
+loxicmd get vlanmember
+```
+#### Create Vlan and Vlan Member information
+```
+#loxicmd create vlan <Vid>
+loxicmd create vlan 100
+```
+Vid(int): vlan identifier
+```
+
+#loxicmd create vlanmember <Vid> <DeviceName> --tagged=<Tagged>
+loxicmd create vlanmember 100 eno7 --tagged=true
+loxicmd create vlanmember 100 eno7
+```
+Vid(int): vlan identifier\
+DeviceName(string): name of the related device\
+tagged(boolean): tagged or not (default is false)\
+
+#### Delete Vlan and Vlan Member information
+```
+#loxicmd delete vlan <Vid>
+loxicmd delete vlan 100
+```
+```
+#loxicmd delete vlanmember <Vid> <DeviceName> --tagged=<Tagged>
+loxicmd delete vlanmember 100 eno7 --tagged=true
+loxicmd delete vlanmember 100 eno7
+```
+---
+### Vxlan
+#### Get Vxlan and Vxlan Peer information
+```
+loxicmd get vxlan
+```
+```
+loxicmd get vxlanpeer
+```
+#### Create Vxlan and Vxlan Peer information
+```
+#loxicmd create vxlan <VxlanID> <EndpointDeviceName>
+loxicmd create vxlan 100 eno7
+```
+VxlanID(int): Vxlan Identifier\
+EndpointDeviceName(string): VTEP Device name(It must have own IP address for peering.)\
+```
+#loxicmd create vxlanpeer <VxlanID> <PeerIP>
+loxicmd create vxlan-peer 100 30.1.3.1
+```
+VxlanID(int):  Vxlan Identifier\
+PeerIP(string): Vxlan peer device IP address\
+
+#### Delete Vxlan and Vxlan Peer  information
+```
+#loxicmd delete vxlan <VxlanID>
+loxicmd delete vxlan 100
+```
+```
+#loxicmd delete vxlanpeer <VxlanID> <PeerIP>
+loxicmd delete vxlan-peer 100 30.1.3.1
+```
+---
+### Firewall
+#### Get Firewall information
+```
+loxicmd get firewall
+```
+#### Create Firewall information
+```
+#loxicmd create firewall --firewallRule=<ruleKey>:<ruleValue>, [--allow] [--drop] [--trap] [--redirect=<PortName>] [--setmark=<FwMark>
+loxicmd create firewall --firewallRule="sourceIP:1.2.3.2/32,destinationIP:2.3.1.2/32,preference:200" --allow
+loxicmd create firewall --firewallRule="sourceIP:1.2.3.2/32,destinationIP:2.3.1.2/32,preference:200" --allow --setmark=10
+loxicmd create firewall --firewallRule="sourceIP:1.2.3.2/32,destinationIP:2.3.1.2/32,preference:200" --drop
+loxicmd create firewall --firewallRule="sourceIP:1.2.3.2/32,destinationIP:2.3.1.2/32,preference:200" --trap
+loxicmd create firewall --firewallRule="sourceIP:1.2.3.2/32,destinationIP:2.3.1.2/32,preference:200" --redirect=hs1
+```
+**firewallRule**
+sourceIP(string) - Source IP in CIDR notation\
+destinationIP(string) - Destination IP in CIDR notation\
+minSourcePort(int) - Minimum source port range\
+maxSourcePort(int) - Maximum source port range\
+minDestinationPort(int) - Minimum destination port range\
+maxDestinationPort(int) - Maximum source port range\
+protocol(int) - the protocol\
+portName(string) - the incoming port\
+preference(int) - User preference for ordering\
+#### Delete Firewall information
+```
+#loxicmd delete firewall --firewallRule=<ruleKey>:<ruleValue>
+loxicmd delete firewall --firewallRule="sourceIP:1.2.3.2/32,destinationIP:2.3.1.2/32,preference:200
+```
+---
+### Mirror
+#### Get Mirror information
+```
+loxicmd get mirror
+```
+#### Create Mirror information
+```
+#loxicmd create mirror <mirrorIdent> --mirrorInfo=<InfoOption>:<InfoValue>,... --targetObject=attachement:<port1,rule2>,mirrObjName:<ObjectName>
+loxicmd create mirror mirr-1 --mirrorInfo="type:0,port:hs0" --targetObject="attachement:1,mirrObjName:hs1
+```
+mirrorIdent(string): Mirror identifier\
+type(int) : Mirroring type as like 0 == SPAN, 1 == RSPAN, 2 == ERSPAN\
+port(string) : The port where mirrored traffic needs to be sent\
+vlan(int) : for RSPAN we may need to send tagged mirror traffic\
+remoteIP(string) : For ERSPAN we may need to send tunnelled mirror traffic\
+sourceIP(string): For ERSPAN we may need to send tunnelled mirror traffic\
+tunnelID(int): For ERSPAN we may need to send tunnelled mirror traffic\
+#### Delete Mirror information
+```
+#loxicmd delete mirror <mirrorIdent>
+loxicmd delete mirror mirr-1
+```
+
+---
+### Policy
+#### Get Policy information
+```
+loxicmd get policy
+```
+#### Create Policy information
+```
+#loxicmd create policy IDENT --rate=<Peak>:<Commited> --target=<ObjectName>:<Attachment> [--block-size=<Excess>:<Committed>] [--color] [--pol-type=<policy type>]
+loxicmd create policy pol-hs0 --rate=100:100 --target=hs0:1
+loxicmd create policy pol-hs1 --rate=100:100 --target=hs0:1 --block-size=12000:6000
+loxicmd create policy pol-hs1 --rate=100:100 --target=hs0:1 --color
+loxicmd create policy pol-hs1 --rate=100:100 --target=hs0:1 --color --pol-type 0
+```
+rate(string): Rate pairs can be specified as 'Peak:Commited'. *rate unit : Mbps\
+block-size(string): Block Size pairs can be specified as 'Excess:Committed'. *block-size unit : bps\
+target(string): Target Interface pairs can be specified as 'ObjectName:Attachment'\
+color(boolean): Policy color enbale or not\
+pol-type(int): Policy traffic control type. 0 : TrTCM, 1 : SrTCM\
+
+#### Delete Policy information
+```
+#loxicmd delete policy <Polident>
+loxicmd delete policy pol-hs1
+```
+---
+
+
 ### Get live connection-track information
 ```
 loxicmd get conntrack
 ```
-### Get load-balancer end-point health information
-```
-loxicmd get ep
-```
+
 ### Get port-dump information
 ```
 loxicmd get port
@@ -116,6 +427,8 @@ There are tons of other commands, use help option!
 ```
 loxicmd help
 ```
+## Configure loxicmd with yaml
+TBD
 
 ## loxicmd development guide
 It will provide a guide for development. Please develop it according to the guidelines. The guide is divided into three main stages: design, development, and testing, and the details are as follows.
@@ -267,5 +580,3 @@ func GetCmd(restOptions *api.RESTOptions) *cobra.Command {
 make
 ```
 Test the command as you want!
-
-
