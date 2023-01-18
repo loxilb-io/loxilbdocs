@@ -21,7 +21,7 @@ loxilb aims to provide the following :
    - *NAT44, NAT66, NAT64 with One-ARM, FullNAT, DSR etc*
    - *High-availability support*
    - *Full compliance for K8s loadbalancer Spec*
-   - *High perf drop-in replacement for iptables/ipvs based infra*
+   - *High perf drop-in replacement for iptables/ipvs*
 -  Optimized SRv6 implementation in eBPF
 -  L7 Proxy support
 -  Make GTP tunnels first class citizens of the Linux world 
