@@ -22,7 +22,7 @@ loxilb aims to provide the following :
    - *NAT44, NAT66, NAT64 with One-ARM, FullNAT, DSR etc*
    - *High-availability support*
    - *Full compliance for K8s loadbalancer Spec*
-   - *High perf drop-in replacement for iptables/ipvs based infra*
+   - *High perf drop-in replacement for iptables/ipvs*
 -  Optimized SRv6 implementation in eBPF  
 -  L7 Proxy support  
 -  Make GTP tunnels first class citizens of the Linux world  
@@ -57,6 +57,7 @@ loxilb aims to provide the following :
 - [5G SCTP LoadBalancer Using LoxiLB](https://futuredon.medium.com/5g-sctp-loadbalancer-using-loxilb-b525198a9103)
 - [5G Uplink Classifier Using Loxilb](https://futuredon.medium.com/5g-uplink-classifier-using-loxilb-7593a4d66f4c)
 - [K3s: Using loxilb as external service lb](https://cloudybytes.medium.com/k3s-using-loxilb-as-external-service-lb-2ea4ce61e159)
+- [K8s - Deploying "hitless" Load-balancing](https://www.loxilb.io/post/k8s-deploying-hitless-and-ha-load-balancing)
 
 ## Host OS requirements  
 
