@@ -34,10 +34,14 @@ Initial release of loxilb
     - NAT66/NAT64 support
     - Clustering support  
     - Integration with Linux egress TC hooks
-    - Grafana based dashboard
   
 - **CCM Support**: 
-    - Kubernetes 1.25 Integration
+    - Kubernetes 1.25 Integration 
+    
+- **LB Spec**:
+    - Stand-alone mode support [kube-loxilb](https://github.com/loxilb-io/kube-loxilb)
+    - Load-balancer class support
+    - Advanced IPAM for ipv4/ipv6 with shared/exclusive mode
 
 - **Utilities**:  
     - loxicmd support : Data-Store support, more commands
@@ -51,9 +55,10 @@ Initial release of loxilb
     - SCTP multihoming support
     - Integration with Linux native QoS
     - Support for Cilium CNI
+    - Grafana based dashboard
 
 - **CCM Support**: 
     - OpenShift Integration
-    - Kubernetes 1.26 (with LoadBalancer Class support)
+    - Kubernetes 1.26 
     - Operator support
     - AWS support
