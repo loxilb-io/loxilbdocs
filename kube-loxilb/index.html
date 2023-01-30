@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/kube-loxilb/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Kube loxilb - LoxiLB Documentations</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Kube loxilb";
+        var mkdocs_page_input_path = "kube-loxilb.md";
+        var mkdocs_page_url = "/loxilbdocs/kube-loxilb/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-21G7NBL2BN"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-21G7NBL2BN');
+      </script>
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> LoxiLB Documentations
+        </a>
+        <div class="version">
+          0.9.3 (Latest)
+        </div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ebpf/">What is eBPF</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../lb/">What is service type - external load-balancer</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../arch/">Architecture in brief</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../code/">Code organization</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../loxilbebpf/">eBPF internals of loxilb</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../run/">Howto - build/run</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ccm/">Howto - ccm plugin</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../debugging/">Howto - debug</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../integrate_bgp_eng/">Howto - loxib with calico bgp</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cmd/">Cmd/Config guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api/">Api usage/dev guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../perf/">Performance</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../roadmap/">Development Roadmap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../contribute/">Contribute</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../faq/">FAQs</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">LoxiLB Documentations</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Kube loxilb</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="what-is-kube-loxilb">What is kube-loxilb ?</h2>
+<p>kube-loxilb is loxilb's implementation of kubernetes service load-balancer spec which includes support for load-balancer class, advanced IPAM (shared or exclusive) etc. kube-loxilb runs as a deloyment set in kube-system namespace. It therefore should be run in a kubernetes control node.</p>
+<h2 id="how-is-kube-loxilb-different-from-loxi-ccm">How is kube-loxilb different from loxi-ccm ?</h2>
+<p>Another loxilb component known ass <a href="https://github.com/loxilb-io/loxi-ccm">loxi-ccm</a> also provides implementation of kubernetes load-balancer spec but it runs as a part of cloud-provider and provides load-balancer life-cycle management as part of it. If one does not need a cloud-provider or wants to integrate loxilb with their existing cloud-provider, one can use or include loxi-ccm as a part of it. If not kube-loxilb is the right component to use.</p>
+<p>kube-loxilb is a standalone implementation of kubernetes load-balancer spec which does not depend on cloud-provider. It runs as a kube-system deployment and provisions load-balancer based on load-balancer class. It only acts on load-balancers for the LB classes that is provided by itself. This also allows us to have different load-balancers working together in the same K8s environment.</p>
+<h2 id="how-to-use-kube-loxilb">How to use kube-loxilb ?</h2>
+<p>1.Make sure loxilb docker is downloaded and installed properly. One can follow guides <a href="https://github.com/loxilb-io/loxilbdocs/blob/main/docs/run.md#from-docker-easy">here</a> or refer to various other <a href="https://github.com/loxilb-io/loxilbdocs">documentation</a></p>
+<p>2.Download the loxilb config yaml :</p>
+<pre><code>wget https://github.com/loxilb-io/kube-loxilb/raw/main/manifest/kube-loxilb.yaml
+</code></pre>
+<p>3.Modify arguments as per user's needs :</p>
+<pre><code>args:
+        - --loxiURL=http://12.12.12.1:11111
+        - --externalCIDR=123.123.123.1/24
+        #- --setBGP=false
+        #- --setLBMode=1
+        #- --setUniqueIP=false
+</code></pre>
+<p>The arguments have the following meaning :
+* loxiURL: API server address of loxilb. This is the docker IP address loxilb docker of Step 1. 
+* externalCIDR : CIDR or IPAddress range to allocate addresses from. By default address allocated are shared for different services(Shared Mode) 
+* setBGP : Use BGP to advertise this service (default :false). Please check <a href="https://github.com/loxilb-io/loxilbdocs/blob/main/docs/integrate_bgp_eng.md">here</a> how it works.
+* setLBMode : 0, 1, 2, 
+  0 - default (only DNAT, preserves source-IP) 
+  1 - onearm (source IP is changed to load balancer’s interface IP) 
+  2 - fullNAT (sourceIP is changed to virtual IP)
+* setUniqueIP : Allocate unique service-IP per LB service (default : false)</p>
+<ol>
+<li>Apply the following :</li>
+</ol>
+<pre><code>kubectl apply -f kube-loxilb.yaml
+</code></pre>
+<ol>
+<li>The above should make sure kube-loxilb is successfully running. Check kube-loxilb is running :</li>
+</ol>
+<pre><code>kubectl get pods -A | grep kube-loxilb
+</code></pre>
+<ol>
+<li>Finally to create service LB, we can use and apply the following template yaml 
+(<b>Note</b> -  Check <em>loadBalancerClass</em> annotation) :</li>
+</ol>
+<pre><code>apiVersion: v1
+kind: Service
+metadata:
+  name: iperf-service
+spec:
+  loadBalancerClass: loxilb.io/loxilb
+  selector:
+    what: perf-test
+  ports:
+    - port: 55001
+      targetPort: 5001
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: iperf1
+  labels:
+    what: perf-test
+spec:
+  containers:
+    - name: iperf
+      image: eyes852/ubuntu-iperf-test:0.5
+      command:
+        - iperf
+        - &quot;-s&quot;
+      ports:
+        - containerPort: 5001
+</code></pre>
+<p>Users can change the above as per their needs.</p>
+<ol>
+<li>Verify LB service is created</li>
+</ol>
+<pre><code>kubectl get svc
+</code></pre>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
