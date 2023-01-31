@@ -1,6 +1,6 @@
 ## What is kube-loxilb ?
 
-kube-loxilb is loxilb's implementation of kubernetes service load-balancer spec which includes support for load-balancer class, advanced IPAM (shared or exclusive) etc. kube-loxilb runs as a deloyment set in kube-system namespace. It therefore should be run in a kubernetes control node.
+kube-loxilb is loxilb's implementation of kubernetes service load-balancer spec which includes support for load-balancer class, advanced IPAM (shared or exclusive) etc. kube-loxilb runs as a deloyment set in kube-system namespace. 
 
 ## How is kube-loxilb different from loxi-ccm ?
 
