@@ -135,7 +135,7 @@
             <div class="section" itemprop="articleBody">
               
                 <h2 id="what-is-kube-loxilb">What is kube-loxilb ?</h2>
-<p>kube-loxilb is loxilb's implementation of kubernetes service load-balancer spec which includes support for load-balancer class, advanced IPAM (shared or exclusive) etc. kube-loxilb runs as a deloyment set in kube-system namespace. It therefore should be run in a kubernetes control node.</p>
+<p>kube-loxilb is loxilb's implementation of kubernetes service load-balancer spec which includes support for load-balancer class, advanced IPAM (shared or exclusive) etc. kube-loxilb runs as a deloyment set in kube-system namespace. </p>
 <h2 id="how-is-kube-loxilb-different-from-loxi-ccm">How is kube-loxilb different from loxi-ccm ?</h2>
 <p>Another loxilb component known ass <a href="https://github.com/loxilb-io/loxi-ccm">loxi-ccm</a> also provides implementation of kubernetes load-balancer spec but it runs as a part of cloud-provider and provides load-balancer life-cycle management as part of it. If one does not need a cloud-provider or wants to integrate loxilb with their existing cloud-provider, one can use or include loxi-ccm as a part of it. If not kube-loxilb is the right component to use.</p>
 <p>kube-loxilb is a standalone implementation of kubernetes load-balancer spec which does not depend on cloud-provider. It runs as a kube-system deployment and provisions load-balancer based on load-balancer class. It only acts on load-balancers for the LB classes that is provided by itself. This also allows us to have different load-balancers working together in the same K8s environment.</p>
