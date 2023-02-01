@@ -1,6 +1,6 @@
 ## NAT modes in loxilb 
 
-loxilb implements a variety of NAT modes for achieving load-balancing for different scenarios as far as L4 load-balancing is concerned. These NAT modes have subtle differences and this guide will shed light on these details
+loxilb implements a variety of NAT modes to achieve load-balancing for different scenarios as far as L4 load-balancing is concerned. These NAT modes have subtle differences and this guide will shed light on these details
 
 ### 1. Normal NAT 
 
@@ -24,6 +24,6 @@ In the full-NAT mode, loxilb replaces the source-IP of an incoming request to a 
 
 ### 4. DSR mode
 
-In DSR (direct server return) mode, loxilb performs load-balancing operation but without changing any IP addresses. It just updates the layer2 header as per end-point selected. Also, in DSR mode, loxilb does not need statefulness and end-point can choose a different return path not involving loxilb. This maybe advantageous for certain scenarios where there is a need to reduce load in LB nodes by allowing return traffic to bypass the LB.
+In DSR (direct server return) mode, loxilb performs load-balancing operation but without changing any IP addresses. It just updates the layer2 header as per selected end-point. Also in DSR mode, loxilb does not need statefulness and end-point can choose a different return path not involving loxilb. This maybe advantageous for certain scenarios where there is a need to reduce load in LB nodes by allowing return traffic to bypass the LB.
 
 
