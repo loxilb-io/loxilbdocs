@@ -43,6 +43,7 @@ loxilb aims to provide the following :
 - [Code organization](code.md)
 - [eBPF internals of loxilb](loxilbebpf.md)
 - [Howto - build/run](run.md)
+- [Howto - kube-loxilb](docs/kube-loxilb.md)
 - [Howto - ccm plugin](ccm.md)
 - [Howto - debug](debugging.md)
 - [Howto - loxilb with calico bgp](integrate_bgp_eng.md)
