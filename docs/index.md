@@ -47,6 +47,7 @@ loxilb aims to provide the following :
 - [Howto - ccm plugin](ccm.md)
 - [Howto - debug](debugging.md)
 - [Howto - loxilb with calico bgp](integrate_bgp_eng.md)
+- [What are loxilb NAT Modes](nat.md)
 - [Cmd/Config guide](cmd.md)
 - [Api usage/dev guide](api.md)
 - [Performance](perf.md)
