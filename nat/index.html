@@ -138,7 +138,7 @@
 <p>loxilb implements a variety of NAT modes for achieving load-balancing for different scenarios as far as L4 load-balancing is concerned. These NAT modes have subtle differences and this guide will shed light on these details</p>
 <h3 id="1-normal-nat">1. Normal NAT</h3>
 <p>This is basic NAT mode used by loxilb. In this mode, loxilb employs simple DNAT for incoming packets i.e destination IP (which is also the service IP) is changed to the chosed end-point IP. For the outgoing packets it does the exactly opposite. Since loxilb relies on statefulness, it is necessary that return packets also traverse through loxilb. The following figure illustrates this operation</p>
-<p><img alt="normal nat" src="photos/dnat.png" /></p>
+<p><img alt="normal nat" src="../photos/dnat1.png" /></p>
 <p>In this mode, original source IP is preserved till the end-point and provides best visibility for anyone needing it. Finally, this also means the end-points should know how to reach the source.</p>
 <h3 id="2-one-arm-nat">2. One-ARM NAT</h3>
 <p>Traditionally one-arm NAT mode meant that the LB node used to have a single arm (or connection) to the LAN instead of separate ingress and egress networks. loxilb's one-arm NAT mode is a little extended version of the traditional one-arm mode. In one-arm mode, loxilb chooses its LAN IP as source-IP when sending incoming requests towards end-points nodes. Even if the originating source is not on the same LAN, this is loxilb's behaviour for one arm mode</p>
