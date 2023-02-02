@@ -69,6 +69,7 @@ loxilb works in tandem with gobgp when bgp services  are required. As a first st
 
 Copy this file to actual config file used by gobgp :   
 ```
+sudo mkdir -p /etc/gobgp/
 sudo gobgp.conf cp -f /etc/gobgp/gobgp.conf
 ```
 
