@@ -179,7 +179,8 @@ ip addr add 33.33.33.254/24 dev enp0s5
     peer-as = 64512
 </code></pre>
 <p>Copy this file to actual config file used by gobgp :   </p>
-<pre><code>sudo gobgp.conf cp -f /etc/gobgp/gobgp.conf
+<pre><code>sudo mkdir -p /etc/gobgp/
+sudo gobgp.conf cp -f /etc/gobgp/gobgp.conf
 </code></pre>
 <p>The gobgp daemon should pick the configuration. The neighbors can be verified by :</p>
 <pre><code>gobgp neighbor
