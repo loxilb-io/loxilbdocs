@@ -105,8 +105,7 @@ Load-balancer with fullnat mode
 ```
 loxicmd create lb 88.88.88.1 --sctp=38412:38412 --endpoints=192.168.70.3:1 --mode=fullnat
 ```
-** For more information on  one-arm and full-nat mode, please check this [post](https://github.com/loxilb-io/loxilb/discussions/107#discussioncomment-4318418
-)
+** For more information on  one-arm and full-nat mode, please check this [post](https://github.com/loxilb-io/loxilbdocs/blob/main/docs/nat.md)
 
 Load-balancer config in DSR(direct-server return) mode
 ```
