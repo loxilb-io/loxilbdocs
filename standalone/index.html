@@ -160,7 +160,7 @@ sudo dpkg -i loxilb_0.8.2-amd64.deb
 ip addr add 2001::1/128 dev lo   ## Not 2001::1 is the LB service VIP
 ip addr add 33.33.33.254/24 dev enp0s5
 </code></pre>
-<p>Create a LB entry by using the command:   </p>
+<p>Any other required configuration can be done in a similar way. Now, let's create a LB entry by using the command:   </p>
 <pre><code>loxicmd create lb 2001::1 --tcp=2020:8080 --endpoints=33.33.33.1:1
 </code></pre>
 <p>Validate entry is created using the command:   </p>
