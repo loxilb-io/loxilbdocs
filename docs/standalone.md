@@ -41,8 +41,7 @@ ip addr add 3ffe::1/64 dev enp0s3
 ip addr add 2001::1/128 dev lo   ## Not 2001::1 is the LB service VIP
 ip addr add 33.33.33.254/24 dev enp0s5
 ```
-
-Create a LB entry by using the command:   
+Any other required configuration can be done in a similar way. Now, let's create a LB entry by using the command:   
 ```
 loxicmd create lb 2001::1 --tcp=2020:8080 --endpoints=33.33.33.1:1
 ```
