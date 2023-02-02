@@ -1,6 +1,6 @@
 ## How to run loxilb in standalone mode
 
-This guide will let users run loxilb in a standalone mode decoupled from kubernetes.
+This guide will help users to run loxilb in a standalone mode decoupled from kubernetes.
 
 ### Pre-requisites 
 
