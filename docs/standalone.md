@@ -91,7 +91,7 @@ To save the created rules across reboots, one can use the following command:
 
 ```
 sudo mkdir -p /etc/loxilb/
-loxicmd save --lb
+sudo loxicmd save --lb
 ```
 
 
