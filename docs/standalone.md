@@ -4,7 +4,7 @@ This guide will help users to run loxilb in a standalone mode decoupled from kub
 
 ### Pre-requisites 
 
-*This guide uses Ubuntu 20.04.4 LTS as the base operating system*
+*This guide uses Ubuntu 20.04.5 LTS as the base operating system*
 
 #### Install golang    
 ```
