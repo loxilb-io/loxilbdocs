@@ -124,17 +124,25 @@ loxicmd get ep
 ```
 #### Create end-point information
 ```
-# loxicmd create endpoint IP [--desc=<desc>] [--probetype=<probetype>] [--req=<probereq>] [--resp=<proberesp>] [--l4port=<port>] [--period=<period>] [--retries=<retries>]
-loxicmd create endpoint 32.32.32.1 --desc=zone1host --probetype=http --l4port=8080 --period=60 --retries=2
+# loxicmd create endpoint IP [--desc=<desc>] [--probetype=<probetype>] [--probereq=<probereq>] [--proberesp=<proberesp>] [--probeport=<port>] [--period=<period>] [--retries=<retries>]
+loxicmd create endpoint 32.32.32.1 --desc=zone1host --probetype=http --probeport=8080 --period=60 --retries=2
 ```
 IP(string) : Endpoint target IPaddress\
 desc(string) : Description of and end-point\
-probetype(string): Probe-type:ping,http,connect-udp,connect-tcp,connect-sctp,none\
-req(string): If probe is http, one can specify additional uri path\
-resp(string): If probe is http, one can specify custom response string\
-l4port(int): If probe is http,tcp,udp,sctp one can specify custom l4port to use\
+probetype(string): Probe-type:ping,http,https,connect-udp,connect-tcp,connect-sctp,none\
+probereq(string): If probe is http/https, one can specify additional uri path\
+proberesp(string): If probe is http/https, one can specify custom response string\
+probeport(int): If probe is http,https,tcp,udp,sctp one can specify custom l4port to use\
 period(int): Period of probing\
 retries(int): Number of retries before marking endPoint inactive\
+#### Create end-point with https probing information
+```
+# loxicmd create endpoint IP [--desc=<desc>] [--probetype=<probetype>] [--probereq=<probereq>] [--proberesp=<proberesp>] [--probeport=<port>] [--period=<period>] [--retries=<retries>]
+loxicmd create endpoint 32.32.32.1 --desc=zone1host --probetype=https --probeport=8080 --probereq="health" --proberesp="OK" --period=60 --retries=2
+```
+***Note:*** loxilb requires CA certificate for HTTPS connection. Admin can keep a common(default) CA certificate for all the endpoints at "/opt/loxilb/cert/rootCACert.pem" or per-endpoint certificates can be kept as "/opt/loxilb/cert/\<IP\>/rootCACert.pem"
+Please see [Minica](https://github.com/jsha/minica) or [Certstrap](https://github.com/square/certstrap) to know how to generate certificates.
+	
 #### Delete end-point informtion
 ```
 loxicmd delete endpoint 31.31.31.31
