@@ -118,7 +118,7 @@
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#get-load-balancer-end-point-health-information">Get load-balancer end-point health information</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#create-end-point-information">Create end-point information</a>
+    <li class="toctree-l4"><a class="reference internal" href="#create-end-point-for-health-probing">Create end-point for health probing</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#create-end-point-with-https-probing-information">Create end-point with https probing information</a>
     </li>
@@ -389,7 +389,7 @@
 <h4 id="get-load-balancer-end-point-health-information">Get load-balancer end-point health information</h4>
 <pre><code>loxicmd get ep
 </code></pre>
-<h4 id="create-end-point-information">Create end-point information</h4>
+<h4 id="create-end-point-for-health-probing">Create end-point for health probing</h4>
 <pre><code># loxicmd create endpoint IP [--desc=&lt;desc&gt;] [--probetype=&lt;probetype&gt;] [--probereq=&lt;probereq&gt;] [--proberesp=&lt;proberesp&gt;] [--probeport=&lt;port&gt;] [--period=&lt;period&gt;] [--retries=&lt;retries&gt;]
 loxicmd create endpoint 32.32.32.1 --desc=zone1host --probetype=http --probeport=8080 --period=60 --retries=2
 </code></pre>
@@ -406,7 +406,7 @@ retries(int): Number of retries before marking endPoint inactive\</p>
 loxicmd create endpoint 32.32.32.1 --desc=zone1host --probetype=https --probeport=8080 --probereq=&quot;health&quot; --proberesp=&quot;OK&quot; --period=60 --retries=2
 </code></pre>
 <p><strong><em>Note:</em></strong> loxilb requires CA certificate for HTTPS connection. Admin can keep a common(default) CA certificate for all the endpoints at "/opt/loxilb/cert/rootCACert.pem" or per-endpoint certificates can be kept as "/opt/loxilb/cert/\&lt;IP>/rootCACert.pem"
-Please see <a href="https://github.com/jsha/minica">Minica</a> or <a href="https://github.com/square/certstrap">Certstrap</a> to know how to generate certificates.</p>
+Please see <a href="https://github.com/jsha/minica">Minica</a> or <a href="https://github.com/square/certstrap">Certstrap</a> to know how to generate certificates. Currently, the https probe does not support mTLS and the server is not able to reverse validate loxilb's identity.</p>
 <h4 id="delete-end-point-informtion">Delete end-point informtion</h4>
 <pre><code>loxicmd delete endpoint 31.31.31.31
 </code></pre>
