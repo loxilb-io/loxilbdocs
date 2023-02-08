@@ -49,7 +49,10 @@ Initial release of loxilb
 ## 0.9.0 (Mar, 2023) - Planned   
 
 - **Functional Features**:  
-    - Hardened NAT Support - CGNAT'ish 
+    - Hardened NAT Support - CGNAT'ish
+    - L3 DSR mode Support
+    - Https end-point health monitoring probes
+    - Consistent Hash support for end-point selection
     - SRv6 Support
     - Transition to libbpf v1.0.1
     - SCTP multihoming support
