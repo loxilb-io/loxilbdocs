@@ -120,6 +120,8 @@
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#create-end-point-information">Create end-point information</a>
     </li>
+    <li class="toctree-l4"><a class="reference internal" href="#create-end-point-with-https-probing-information">Create end-point with https probing information</a>
+    </li>
     <li class="toctree-l4"><a class="reference internal" href="#delete-end-point-informtion">Delete end-point informtion</a>
     </li>
         </ul>
@@ -379,17 +381,23 @@
 <pre><code>loxicmd get ep
 </code></pre>
 <h4 id="create-end-point-information">Create end-point information</h4>
-<pre><code># loxicmd create endpoint IP [--desc=&lt;desc&gt;] [--probetype=&lt;probetype&gt;] [--req=&lt;probereq&gt;] [--resp=&lt;proberesp&gt;] [--l4port=&lt;port&gt;] [--period=&lt;period&gt;] [--retries=&lt;retries&gt;]
-loxicmd create endpoint 32.32.32.1 --desc=zone1host --probetype=http --l4port=8080 --period=60 --retries=2
+<pre><code># loxicmd create endpoint IP [--desc=&lt;desc&gt;] [--probetype=&lt;probetype&gt;] [--probereq=&lt;probereq&gt;] [--proberesp=&lt;proberesp&gt;] [--probeport=&lt;port&gt;] [--period=&lt;period&gt;] [--retries=&lt;retries&gt;]
+loxicmd create endpoint 32.32.32.1 --desc=zone1host --probetype=http --probeport=8080 --period=60 --retries=2
 </code></pre>
 <p>IP(string) : Endpoint target IPaddress\
 desc(string) : Description of and end-point\
-probetype(string): Probe-type:ping,http,connect-udp,connect-tcp,connect-sctp,none\
-req(string): If probe is http, one can specify additional uri path\
-resp(string): If probe is http, one can specify custom response string\
-l4port(int): If probe is http,tcp,udp,sctp one can specify custom l4port to use\
+probetype(string): Probe-type:ping,http,https,connect-udp,connect-tcp,connect-sctp,none\
+probereq(string): If probe is http/https, one can specify additional uri path\
+proberesp(string): If probe is http/https, one can specify custom response string\
+probeport(int): If probe is http,https,tcp,udp,sctp one can specify custom l4port to use\
 period(int): Period of probing\
 retries(int): Number of retries before marking endPoint inactive\</p>
+<h4 id="create-end-point-with-https-probing-information">Create end-point with https probing information</h4>
+<pre><code># loxicmd create endpoint IP [--desc=&lt;desc&gt;] [--probetype=&lt;probetype&gt;] [--probereq=&lt;probereq&gt;] [--proberesp=&lt;proberesp&gt;] [--probeport=&lt;port&gt;] [--period=&lt;period&gt;] [--retries=&lt;retries&gt;]
+loxicmd create endpoint 32.32.32.1 --desc=zone1host --probetype=https --probeport=8080 --probereq=&quot;health&quot; --proberesp=&quot;OK&quot; --period=60 --retries=2
+</code></pre>
+<p><strong><em>Note:</em></strong> loxilb requires CA certificate for HTTPS connection. Admin can keep a common(default) CA certificate for all the endpoints at "/opt/loxilb/cert/rootCACert.pem" or per-endpoint certificates can be kept as "/opt/loxilb/cert/\&lt;IP>/rootCACert.pem"
+Please see <a href="https://github.com/jsha/minica">Minica</a> or <a href="https://github.com/square/certstrap">Certstrap</a> to know how to generate certificates.</p>
 <h4 id="delete-end-point-informtion">Delete end-point informtion</h4>
 <pre><code>loxicmd delete endpoint 31.31.31.31
 </code></pre>
