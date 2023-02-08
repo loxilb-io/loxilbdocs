@@ -424,7 +424,7 @@ loxilb will record any connection track entry which matches this policy (even fo
 ```
 tcpdump -i llb0 -n
 ```
-Any valid tcpdump option can be used   
+Any valid tcpdump option can be used including saving to a pcap file
 
 ---
 
