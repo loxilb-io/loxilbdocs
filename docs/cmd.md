@@ -123,7 +123,7 @@ loxicmd delete lb 1.1.1.1 --tcp=1828
 ```
 loxicmd get ep
 ```
-#### Create end-point information
+#### Create end-point for health probing
 ```
 # loxicmd create endpoint IP [--desc=<desc>] [--probetype=<probetype>] [--probereq=<probereq>] [--proberesp=<proberesp>] [--probeport=<port>] [--period=<period>] [--retries=<retries>]
 loxicmd create endpoint 32.32.32.1 --desc=zone1host --probetype=http --probeport=8080 --period=60 --retries=2
@@ -142,7 +142,7 @@ retries(int): Number of retries before marking endPoint inactive\
 loxicmd create endpoint 32.32.32.1 --desc=zone1host --probetype=https --probeport=8080 --probereq="health" --proberesp="OK" --period=60 --retries=2
 ```
 ***Note:*** loxilb requires CA certificate for HTTPS connection. Admin can keep a common(default) CA certificate for all the endpoints at "/opt/loxilb/cert/rootCACert.pem" or per-endpoint certificates can be kept as "/opt/loxilb/cert/\<IP\>/rootCACert.pem"
-Please see [Minica](https://github.com/jsha/minica) or [Certstrap](https://github.com/square/certstrap) to know how to generate certificates.
+Please see [Minica](https://github.com/jsha/minica) or [Certstrap](https://github.com/square/certstrap) to know how to generate certificates. Currently, the https probe does not support mTLS and the server is not able to reverse validate loxilb's identity.
 	
 #### Delete end-point informtion
 ```
