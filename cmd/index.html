@@ -628,6 +628,7 @@ loxicmd delete policy pol-hs1
 <h4 id="set-n-tuple-policy-for-recording">Set n-tuple policy for recording</h4>
 <pre><code>loxicmd create firewall --firewallRule=&quot;destinationIP:31.31.31.0/24,preference:200&quot; --allow --record
 </code></pre>
+<p>loxilb will record any connection track entry which matches this policy (even for reverse direction) as a way to provide extended visibility for debugging   </p>
 <h4 id="check-or-record-with-tcpdump">Check or record with tcpdump</h4>
 <pre><code>tcpdump -i llb0 -n
 </code></pre>
