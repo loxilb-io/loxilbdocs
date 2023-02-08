@@ -419,6 +419,7 @@ loxicmd delete policy pol-hs1
 ```
 loxicmd create firewall --firewallRule="destinationIP:31.31.31.0/24,preference:200" --allow --record
 ```
+loxilb will record any connection track entry which matches this policy (even for reverse direction) as a way to provide extended visibility for debugging   
 #### Check or record with tcpdump
 ```
 tcpdump -i llb0 -n
