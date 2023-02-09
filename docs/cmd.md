@@ -16,7 +16,7 @@
 	 - [Firewall](./cmd.md#firewall)
 	 - [Mirror](./cmd.md#mirror)
 	 - [Policy](./cmd.md#policy)
-	 - [PCAP Recorder](./cmd.md#pcap-recording)
+	 - [Session Recorder](./cmd.md#session-recorder)
 - [loxicmd development guide](./cmd.md#loxicmd-development-guide)
 
 ## What is loxicmd
@@ -414,7 +414,7 @@ pol-type(int): Policy traffic control type. 0 : TrTCM, 1 : SrTCM\
 loxicmd delete policy pol-hs1
 ```
 ---   
-### PCAP Recording
+### Session Recorder
 #### Set n-tuple policy for recording
 ```
 loxicmd create firewall --firewallRule="destinationIP:31.31.31.0/24,preference:200" --allow --record
