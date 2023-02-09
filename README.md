@@ -32,7 +32,7 @@ loxilb aims to provide the following :
 -  GoLang based control plane components (Apache license)
 -  Seamless integration with goBGP based routing stack
 -  Easy to use APIs/Interfaces for developers
--  Cloud-Native Network Function (CNF) form-factor by default
+-  Cloud-Native Network Function (CNF)
 
 ## Documentation
 
@@ -42,13 +42,13 @@ loxilb aims to provide the following :
 - [Code organization](docs/code.md)
 - [eBPF internals of loxilb](docs/loxilbebpf.md)
 - [Howto - build/run](docs/run.md)
+- [Cmd/Config guide](docs/cmd.md)
 - [Howto - kube-loxilb](docs/kube-loxilb.md)
 - [Howto - ccm plugin](docs/ccm.md)
 - [Howto - debug](docs/debugging.md)
 - [Howto - loxilb with calico bgp](docs/integrate_bgp_eng.md)
 - [Howto - loxilb in standalone mode](docs/standalone.md)
 - [What are loxilb NAT Modes](docs/nat.md)
-- [Cmd/Config guide](docs/cmd.md)
 - [Api usage/dev guide](docs/api.md)
 - [Performance](docs/perf.md)
 - [Development Roadmap](docs/roadmap.md)
