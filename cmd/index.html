@@ -236,7 +236,7 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#pcap-recording">PCAP Recording</a>
+    <li class="toctree-l3"><a class="reference internal" href="#session-recorder">Session Recorder</a>
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#set-n-tuple-policy-for-recording">Set n-tuple policy for recording</a>
     </li>
@@ -320,7 +320,7 @@
 <li><a href="./#firewall">Firewall</a></li>
 <li><a href="./#mirror">Mirror</a></li>
 <li><a href="./#policy">Policy</a></li>
-<li><a href="./#pcap-recording">PCAP Recorder</a></li>
+<li><a href="./#session-recorder">Session Recorder</a></li>
 </ul>
 </li>
 <li><a href="./#loxicmd-development-guide">loxicmd development guide</a></li>
@@ -624,7 +624,7 @@ pol-type(int): Policy traffic control type. 0 : TrTCM, 1 : SrTCM\</p>
 loxicmd delete policy pol-hs1
 </code></pre>
 <hr />
-<h3 id="pcap-recording">PCAP Recording</h3>
+<h3 id="session-recorder">Session Recorder</h3>
 <h4 id="set-n-tuple-policy-for-recording">Set n-tuple policy for recording</h4>
 <pre><code>loxicmd create firewall --firewallRule=&quot;destinationIP:31.31.31.0/24,preference:200&quot; --allow --record
 </code></pre>
