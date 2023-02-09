@@ -100,7 +100,9 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#3-full-nat">3. Full-NAT</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#4-dsr-mode">4. DSR mode</a>
+    <li class="toctree-l2"><a class="reference internal" href="#4-l2-dsr-mode">4. L2-DSR mode</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4-l3-dsr-mode">4. L3-DSR mode</a>
     </li>
     </ul>
                 </li>
@@ -164,8 +166,12 @@
 <h3 id="3-full-nat">3. Full-NAT</h3>
 <p>In the full-NAT mode, loxilb replaces the source-IP of an incoming request to a special instance IP. This instance IP is associated with each instance in a cluster deployment and maintained internally by loxilb. In this mode, various instances of loxilb cluster will have unique instance IPs and each of them will be advertised by BGP towards the end-point to set the return PATH accordingly. This helps in optimal distribution and spread of traffic in case an active-active clustering mode is desired.</p>
 <p><img alt="normal nat" src="../photos/fullnat.png" /></p>
-<h3 id="4-dsr-mode">4. DSR mode</h3>
-<p>In DSR (direct server return) mode, loxilb performs load-balancing operation but without changing any IP addresses. It just updates the layer2 header as per selected end-point. Also in DSR mode, loxilb does not need statefulness and end-point can choose a different return path not involving loxilb. This maybe advantageous for certain scenarios where there is a need to reduce load in LB nodes by allowing return traffic to bypass the LB.</p>
+<h3 id="4-l2-dsr-mode">4. L2-DSR mode</h3>
+<p>In L2-DSR (direct server return) mode, loxilb performs load-balancing operation but without changing any IP addresses. It just updates the layer2 header as per selected end-point. Also in DSR mode, loxilb does not need statefulness and end-point can choose a different return path not involving loxilb. This maybe advantageous for certain scenarios where there is a need to reduce load in LB nodes by allowing return traffic to bypass the LB.</p>
+<p><img alt="l2dsr" src="../photos/l2dsr.png" /></p>
+<h3 id="4-l3-dsr-mode">4. L3-DSR mode</h3>
+<p>In L3-DSR (direct server return) mode, loxilb performs load-balancing operation but encapsulates the original payload with an IPinIP tunnel towards the end-points. Also like L2-DSR mode, loxilb does not need statefulness and end-point can choose a different/direct return path not involving loxilb.</p>
+<p><img alt="l3dsr" src="../photos/l3dsr.png" /></p>
               
             </div>
           </div><footer>
