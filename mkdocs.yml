@@ -1,4 +1,4 @@
-site_name: LoxiLB Documentations
+site_name: loxilb
 site_url: https://loxilb-io.github.io/loxilbdocs 
 theme:
     name: readthedocs
@@ -7,17 +7,18 @@ theme:
 nav:
   - Home: index.md
   - What is eBPF: ebpf.md
-  - What is service type - external load-balancer: lb.md
+  - What is k8s service type - load-balancer: lb.md
   - Architecture in brief: arch.md
   - Code organization: code.md
   - eBPF internals of loxilb: loxilbebpf.md
   - Howto - build/run: run.md
+  - Cmd/Config guide: cmd.md
+  - Howto - kube-loxilb: kube-loxilb.md
   - Howto - ccm plugin: ccm.md
   - Howto - debug: debugging.md
   - Howto - loxib with calico bgp: integrate_bgp_eng.md
   - Howto - loxilb in standalone mode: standalone.md
   - What are loxilb NAT Modes: nat.md
-  - Cmd/Config guide: cmd.md
   - Api usage/dev guide: api.md
   - Performance: perf.md
   - Development Roadmap: roadmap.md 
@@ -25,7 +26,7 @@ nav:
   - FAQs: faq.md
 
 extra:
-    version: v0.8.2 (Latest)
+    version: v0.8.3 (Latest)
 
 plugins:
   - mermaid2
