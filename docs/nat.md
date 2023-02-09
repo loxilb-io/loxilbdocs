@@ -28,7 +28,7 @@ In L2-DSR (direct server return) mode, loxilb performs load-balancing operation 
 
 ![l2dsr](photos/l2dsr.png)
 
-### 4. L3-DSR mode
+### 5. L3-DSR mode
 
 In L3-DSR (direct server return) mode, loxilb performs load-balancing operation but encapsulates the original payload with an IPinIP tunnel towards the end-points. Also like L2-DSR mode, loxilb does not need statefulness and end-point can choose a different/direct return path not involving loxilb.
 
