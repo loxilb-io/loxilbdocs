@@ -16,7 +16,7 @@ During the journey of loxilb's development, we developed many other generic netw
 
 loxilb aims to provide the following :
 
--  Service type external load-balancer for kubernetes
+-  Service type load-balancer for kubernetes
 -  L4/NAT stateful loadbalancer
    - *NAT44, NAT66, NAT64 with One-ARM, FullNAT, DSR etc*
    - *High-availability support*
@@ -37,7 +37,7 @@ loxilb aims to provide the following :
 ## Documentation
 
 - [What is eBPF](docs/ebpf.md)
-- [What is k8s service type - external load-balancer](docs/lb.md)
+- [What is k8s service type - load-balancer](docs/lb.md)
 - [Architecture in brief](docs/arch.md)
 - [Code organization](docs/code.md)
 - [eBPF internals of loxilb](docs/loxilbebpf.md)
