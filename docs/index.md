@@ -1,4 +1,4 @@
-# loxilbdocs - Documentation about loxilb
+# loxilb Documentation
 
 [![eBPF Emerging Project](https://img.shields.io/badge/ebpf.io-Emerging--Project-success)](https://ebpf.io/projects#loxilb) [![Go Report Card](https://goreportcard.com/badge/github.com/loxilb-io/loxilb)](https://goreportcard.com/report/github.com/loxilb-io/loxilb) ![build workflow](https://github.com/loxilb-io/loxilb/actions/workflows/docker-image.yml/badge.svg) ![sanity workflow](https://github.com/loxilb-io/loxilb/actions/workflows/basic-sanity.yml/badge.svg) ![apache](https://img.shields.io/badge/license-Apache-blue.svg) ![gpl](https://img.shields.io/badge/license-GPL-blue.svg)  
 
@@ -43,13 +43,13 @@ loxilb aims to provide the following :
 - [Code organization](code.md)
 - [eBPF internals of loxilb](loxilbebpf.md)
 - [Howto - build/run](run.md)
+- [Cmd/Config guide](cmd.md)
 - [Howto - kube-loxilb](docs/kube-loxilb.md)
 - [Howto - ccm plugin](ccm.md)
 - [Howto - debug](debugging.md)
 - [Howto - loxilb with calico bgp](integrate_bgp_eng.md)
 - [Howto - loxilb in standalone mode](standalone.md)
 - [What are loxilb NAT Modes](nat.md)
-- [Cmd/Config guide](cmd.md)
 - [Api usage/dev guide](api.md)
 - [Performance](perf.md)
 - [Development Roadmap](roadmap.md)
