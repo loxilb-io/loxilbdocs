@@ -35,5 +35,8 @@ nav:
 extra:
     version: v0.8.3 (Latest)
 
+extra_css:
+  - stylesheets/extra.css
+
 plugins:
   - mermaid2
