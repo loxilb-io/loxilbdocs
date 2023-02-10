@@ -212,10 +212,8 @@
 <p>This guide should help developers extend and enhance loxicmd. The guide is divided into three main stages: design, development, and testing. Start with cloning the loxicmd git:</p>
 <pre><code>git clone git@github.com:loxilb-io/loxicmd.git
 </code></pre>
-<ol>
-<li>API check and command design
-Before developing Command, we need to check if the API of the necessary functions is provided. Check the official API document of LoxiLB to see if the required API is provided. Afterwards, the GET, POST, and DELETE methods are designed with get, create, and delete commands according to the API provided.</li>
-</ol>
+<h3 id="api-check-and-command-design">API check and command design</h3>
+<p>Before developing Command, we need to check if the API of the necessary functions is provided. Check the official API document of LoxiLB to see if the required API is provided. Afterwards, the GET, POST, and DELETE methods are designed with get, create, and delete commands according to the API provided.</p>
 <pre><code>loxicmd$ tree
 .
 ├── AUTHORS
@@ -245,11 +243,11 @@ Before developing Command, we need to check if the API of the necessary function
 
 </code></pre>
 <p>Add the code in the ./cmd/get, ./cmd/delete, ./cmd/create, and ./pkg/api directories to add functionality.</p>
-<ol>
-<li>Add structure in pkg/api and register method (example of connection track API)</li>
+<h3 id="add-structure-in-pkgapi-and-register-method-example-of-connection-track-api">Add structure in pkg/api and register method (example of connection track API)</h3>
+<ul>
 <li>CommonAPI embedding
 Using embedding the CommonAPI for the Methods and variables, to use in the Connecttrack structure.</li>
-</ol>
+</ul>
 <pre><code>type Conntrack struct {
     CommonAPI
 }
@@ -297,11 +295,9 @@ func (l *LoxiClient) Conntrack() *Conntrack {
 }
 
 </code></pre>
-<ol>
-<li>Add get, create, delete functions within cmd
-Use the Cobra library to define commands, Alise, descriptions, options, and callback functions, and then create a function that returns.
-Create a function such as PrintGetCTReturn and add logic when the status code is 200.</li>
-</ol>
+<h3 id="add-get-create-delete-functions-within-cmd">Add get, create, delete functions within cmd</h3>
+<p>Use the Cobra library to define commands, Alise, descriptions, options, and callback functions, and then create a function that returns.
+Create a function such as PrintGetCTReturn and add logic when the status code is 200.</p>
 <pre><code>func NewGetConntrackCmd(restOptions *api.RESTOptions) *cobra.Command {
     var GetctCmd = &amp;cobra.Command{
         Use:     &quot;conntrack&quot;,
@@ -333,10 +329,8 @@ Create a function such as PrintGetCTReturn and add logic when the status code is
 }
 
 </code></pre>
-<ol>
-<li>Register command in cmd
-Register Cobra as defined in 3.</li>
-</ol>
+<h3 id="register-command-in-cmd">Register command in cmd</h3>
+<p>Register Cobra as defined in 3.</p>
 <pre><code>func GetCmd(restOptions *api.RESTOptions) *cobra.Command {
     var GetCmd = &amp;cobra.Command{
         Use:   &quot;get&quot;,
@@ -356,9 +350,7 @@ Register Cobra as defined in 3.</li>
     return GetCmd
 }
 </code></pre>
-<ol>
-<li>Build &amp; Test</li>
-</ol>
+<h3 id="build-test">Build &amp; Test</h3>
 <pre><code>make
 </code></pre></div>
             </div>
