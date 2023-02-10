@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/cmd/" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Table of Contents - loxilb</title>
+    <title>How-To - configuration - loxilb</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Table of Contents";
+        var mkdocs_page_name = "How-To - configuration";
         var mkdocs_page_input_path = "cmd.md";
         var mkdocs_page_url = "/loxilbdocs/cmd/";
       </script>
@@ -51,6 +51,252 @@
                 <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
                 </li>
               </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../run/">How-To - build/run</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">How-To - configuration</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#what-is-loxicmd">What is loxicmd</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#how-to-build">How to build</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#how-to-run-and-configure-loxilb">How to run and configure loxilb</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#load-balancer">Load Balancer</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#get-load-balancer-rules">Get load-balancer rules</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#configure-load-balancer-rule">Configure load-balancer rule</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#delete-a-load-balancer-rule">Delete a load-balancer rule</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#endpoint">Endpoint</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#get-load-balancer-end-point-health-information">Get load-balancer end-point health information</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#create-end-point-for-health-probing">Create end-point for health probing</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#create-end-point-with-https-probing-information">Create end-point with https probing information</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#delete-end-point-informtion">Delete end-point informtion</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#session">Session</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#get-session-information">Get Session information</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#create-session-information">Create Session information</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#delete-session-information">Delete Session information</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#sessionulcl">SessionUlCl</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#get-sessionulcl-information">Get SessionUlCl information</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#create-sessionulcl-information">Create SessionUlCl information</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#delete-sessionulcl-information">Delete SessionUlCl information</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ipaddress">IPaddress</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#get-ipaddress-information">Get IPaddress information</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#create-ipaddress-information">Create IPaddress information</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#delete-ipaddress-information">Delete IPaddress information</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#fdb">FDB</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#get-fdb-information">Get FDB information</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#create-fdb-information">Create FDB information</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#delete-fdb-information">Delete FDB information</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#route">Route</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#get-route-information">Get Route information</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#create-route-information">Create Route information</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#delete-route-information">Delete Route information</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#neighbor">Neighbor</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#get-neighbor-information">Get Neighbor information</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#create-neighbor-information">Create Neighbor information</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#delete-neighbor-information">Delete Neighbor information</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#vlan">Vlan</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#get-vlan-and-vlan-member-information">Get Vlan and Vlan Member information</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#create-vlan-and-vlan-member-information">Create Vlan and Vlan Member information</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#delete-vlan-and-vlan-member-information">Delete Vlan and Vlan Member information</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#vxlan">Vxlan</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#get-vxlan-and-vxlan-peer-information">Get Vxlan and Vxlan Peer information</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#create-vxlan-and-vxlan-peer-information">Create Vxlan and Vxlan Peer information</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#delete-vxlan-and-vxlan-peer-information">Delete Vxlan and Vxlan Peer  information</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#firewall">Firewall</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#get-firewall-information">Get Firewall information</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#create-firewall-information">Create Firewall information</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#delete-firewall-information">Delete Firewall information</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#mirror">Mirror</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#get-mirror-information">Get Mirror information</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#create-mirror-information">Create Mirror information</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#delete-mirror-information">Delete Mirror information</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#policy">Policy</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#get-policy-information">Get Policy information</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#create-policy-information">Create Policy information</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#delete-policy-information">Delete Policy information</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#session-recorder">Session Recorder</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#set-n-tuple-policy-for-recording">Set n-tuple policy for recording</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#check-or-record-with-tcpdump">Check or record with tcpdump</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#get-live-connection-track-information">Get live connection-track information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#get-port-dump-information">Get port-dump information</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#save-all-loxilbs-operational-information-in-dbstore">Save all loxilb's operational information in DBStore</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#configure-loxicmd-with-yamlbeta">Configure loxicmd with yaml(Beta)</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#command">Command</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#file-examplelbyaml">File example(lb.yaml)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#more-information">More information</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../kube-loxilb/">How-To - kube-loxilb</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ccm/">How-To - ccm plugin</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../debugging/">How-To - debug</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../integrate_bgp_eng/">How-To - loxilb with calico bgp</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../standalone/">How-To - loxilb in standalone mode</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ebpf/">What is eBPF</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../lb/">What is k8s service - load-balancer</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../arch/">Architecture in brief</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../code/">Code organization</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../loxilbebpf/">eBPF internals</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../nat/">NAT Modes of loxilb</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../cmd-dev/">Developer's guide to loxicmd</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../api-dev/">Developer's guide to loxilb API</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../perf/">Performance Report</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../roadmap/">Development Roadmap</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../contribute/">Contribution Guide</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../requirments.md">System Requirements</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../faq/">Frequenctly Asked Questions- FAQs</a>
+                </li>
+              </ul>
       </div>
     </div>
     </nav>
@@ -65,7 +311,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>Table of Contents</li>
+      <li>How-To - configuration</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -700,6 +946,10 @@ spec:
               
             </div>
           </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../run/" class="btn btn-neutral float-left" title="How-To - build/run"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../kube-loxilb/" class="btn btn-neutral float-right" title="How-To - kube-loxilb">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
 
   <hr/>
 
@@ -721,6 +971,10 @@ spec:
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
+      <span><a href="../run/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../kube-loxilb/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
