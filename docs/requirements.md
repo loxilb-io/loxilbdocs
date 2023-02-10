@@ -1,6 +1,6 @@
 ## LoxiLB system requirements
 
-To run loxilb, we need to the following -
+To run loxilb, we need to have the following -
 
 ### Host OS requirements  
 
