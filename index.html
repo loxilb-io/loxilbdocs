@@ -148,18 +148,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h2 id="welcome-to-loxilb-docs"><p align="center">Welcome to loxilb-docs </p></h2>
-<div align="center">
-<p align="center" width="20%">
-    <img width="7%" src="https://github.com/loxilb-io/loxilbdocs/blob/main/docs/photos/loxilb-logo.png">
-</p>
-
-[![eBPF Emerging App](https://img.shields.io/badge/ebpf.io-Emerging--App-success)](https://ebpf.io/projects#loxilb) [![Go Report Card](https://goreportcard.com/badge/github.com/loxilb-io/loxilb)](https://goreportcard.com/report/github.com/loxilb-io/loxilb) ![build workflow](https://github.com/loxilb-io/loxilb/actions/workflows/docker-image.yml/badge.svg) ![sanity workflow](https://github.com/loxilb-io/loxilb/actions/workflows/basic-sanity.yml/badge.svg) ![apache](https://img.shields.io/badge/license-Apache-blue.svg) ![gpl](https://img.shields.io/badge/license-GPL-blue.svg)  [![Stargazers][stars-shield]][stars-url]
-
-[![eBPF Emerging Project](photos/ebpflogo.png)](https://ebpf.io/projects#loxilb)
-
-</div>
-
+                <h2 id="welcome-to-loxilb-docs">Welcome to loxilb-docs</h2>
+<p><a href="https://ebpf.io/projects#loxilb"><img alt="eBPF Emerging App" src="https://img.shields.io/badge/ebpf.io-Emerging--App-success" /></a> <a href="https://goreportcard.com/report/github.com/loxilb-io/loxilb"><img alt="Go Report Card" src="https://goreportcard.com/badge/github.com/loxilb-io/loxilb" /></a> <img alt="build workflow" src="https://github.com/loxilb-io/loxilb/actions/workflows/docker-image.yml/badge.svg" /> <img alt="sanity workflow" src="https://github.com/loxilb-io/loxilb/actions/workflows/basic-sanity.yml/badge.svg" /> <img alt="apache" src="https://img.shields.io/badge/license-Apache-blue.svg" /> <img alt="gpl" src="https://img.shields.io/badge/license-GPL-blue.svg" />  <a href="https://github.com/loxilb-io/loxilb/stargazers"><img alt="Stargazers" src="https://img.shields.io/github/stars/loxilb-io??style=for-the-badge&amp;logo=appveyor" /></a></p>
+<p><a href="https://ebpf.io/projects#loxilb"><img alt="eBPF Emerging Project" src="photos/ebpflogo.png" /></a></p>
 <h2 id="background">Background</h2>
 <p>loxilb started as a project to ease deployments of cloud-native/kubernetes workloads for the edge. When we deploy services in public clouds like AWS/GCP, the services becomes easily accessible or exported to the outside world. The public cloud providers, usually by default, associate load-balancer instances for incoming requests to these services to ensure everything is quite smooth. </p>
 <p>However, for on-prem and edge deployments, there is no <em>service type - external load balancer</em> provider by default. For a long time, <a href="https://metallb.universe.tf/">MetalLB</a> from Google was the only choice for the needy. But edge services are a different ball game altogether due to the fact that there are so many exotic protocols in play like GTP, SCTP, SRv6 etc and integrating everything into a seamlessly working solution has been quite difficult.</p>
@@ -213,7 +204,8 @@
 <li><a href="perf/">Performance</a></li>
 <li><a href="roadmap/">Development Roadmap</a></li>
 <li><a href="contribute/">Contribute</a></li>
-<li><a href="faq/">FAQs</a></li>
+<li><a href="requirments.md">System Requirements</a></li>
+<li><a href="faq/">Frequenctly Asked Questions- FAQs</a></li>
 </ul>
 <h2 id="blogs">Blogs</h2>
 <ul>
@@ -222,29 +214,6 @@
 <li><a href="https://cloudybytes.medium.com/k3s-using-loxilb-as-external-service-lb-2ea4ce61e159">K3s: Using loxilb as external service lb</a></li>
 <li><a href="https://www.loxilb.io/post/k8s-deploying-hitless-and-ha-load-balancing">K8s - Deploying "hitless" Load-balancing</a></li>
 <li><a href="https://www.loxilb.io/post/k8s-exposing-ipv4-services-externally-as-ipv6">Ipv6 migration in Kubernetes made easy</a>   </li>
-</ul>
-<h2 id="host-os-requirements">Host OS requirements</h2>
-<p>To install LoxiLB software packages, you need the 64-bit version of one of these OS versions:  </p>
-<ul>
-<li>Ubuntu 20.04(LTS)   </li>
-<li>Ubuntu 22.04(LTS)   </li>
-<li>Fedora 36   </li>
-<li>RockyOS  </li>
-<li>Enterprise Redhat (Planned)  </li>
-<li>Windows Server(Planned)  </li>
-</ul>
-<h2 id="kernel-requirements">Kernel Requirements</h2>
-<ul>
-<li>Linux Kernel Version &gt;= 5.1.0  </li>
-<li>Windows (TBD)  </li>
-</ul>
-<h2 id="compatible-kubernetes-versions">Compatible Kubernetes Versions</h2>
-<ul>
-<li>Kubernetes 1.19  ~ 1.24</li>
-</ul>
-<h2 id="hardware-requirements">Hardware Requirements</h2>
-<ul>
-<li>None as long as above criteria are met  </li>
 </ul>
               
             </div>
@@ -292,5 +261,5 @@
 
 <!--
 MkDocs version : 1.4.2
-Build Date UTC : 2023-02-10 01:48:27.710836+00:00
+Build Date UTC : 2023-02-10 01:51:50.254053+00:00
 -->
