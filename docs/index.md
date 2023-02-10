@@ -60,7 +60,7 @@ loxilb aims to provide the following :
 - [Performance](perf.md)
 - [Development Roadmap](roadmap.md)
 - [Contribute](contribute.md)
-- [System Requirements](requirments.md)
+- [System Requirements](requirements.md)
 - [Frequenctly Asked Questions- FAQs](faq.md)
 
 ## Blogs
