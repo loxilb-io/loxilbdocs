@@ -3,18 +3,18 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/api/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/api-dev/" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Api usage/dev guide - loxilb</title>
+    <title>loxilb API Development Guide - loxilb</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Api usage/dev guide";
-        var mkdocs_page_input_path = "api.md";
-        var mkdocs_page_url = "/loxilbdocs/api/";
+        var mkdocs_page_name = "loxilb API Development Guide";
+        var mkdocs_page_input_path = "api-dev.md";
+        var mkdocs_page_url = "/loxilbdocs/api-dev/";
       </script>
     
     <script src="../js/jquery-3.6.0.min.js" defer></script>
@@ -103,10 +103,8 @@
                 <li class="toctree-l1"><a class="reference internal" href="../nat/">What are loxilb NAT Modes</a>
                 </li>
               </ul>
-              <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">Api usage/dev guide</a>
-    <ul class="current">
-    </ul>
+              <ul>
+                <li class="toctree-l1"><a class="" href="../api.md">Api usage/dev guide</a>
                 </li>
               </ul>
               <ul>
@@ -139,7 +137,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>Api usage/dev guide</li>
+      <li>loxilb API Development Guide</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -148,55 +146,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="api-server">API server</h1>
-<p>Generic library for building a LoxiLB API server.</p>
-<h1 id="usage">Usage</h1>
-<p>현재 API 서버는 HTTP, HTTPS모두 지원하며, Loxilb 실행시 -a 혹은 --api 옵션을 추가해서 실행이 가능하다.
-API에 사용되는 옵션은 다음과 같다. 보안을 위해 HTTPS 옵션 --tls-key, --tls-certificate를 모두 주어야만 실행이 가능하다.</p>
-<p>Currently, the API server supports both HTTP and HTTPS, and can be run by adding -a or --api options when running Loxilb. The options used in the API are as follows. For security purposes, HTTPS options --tls-key, --tls-certificate must be given to run.</p>
-<pre><code>      --host=            the IP to listen on (default: localhost) [$HOST]
-      --port=            the port to listen on for insecure connections, defaults to a random value [$PORT]
-      --tls-host=        the IP to listen on for tls, when not specified it's the same as --host [$TLS_HOST]
-      --tls-port=        the port to listen on for secure connections, defaults to a random value [$TLS_PORT]
-      --tls-certificate= the certificate to use for secure connections [$TLS_CERTIFICATE]
-      --tls-key=         the private key to use for secure connections [$TLS_PRIVATE_KEY]
-</code></pre>
-<p>실제 사용하는 예시는 다음과 같다.</p>
-<p>Examples of practical use are as follows.</p>
-<pre><code> ./loxilb --tls-key=api/certification/server.key --tls-certificate=api/certification/server.crt --host=0.0.0.0 --port=8081 --tls-port=8091 -a
-</code></pre>
-<h1 id="api-list">API list</h1>
-<p>현재 API는 Load balancer 에 대한 Create, Delete, Read API가 있다.
-Currently, the API has Create, Delete, and Read APIs for Load balancer.</p>
-<table>
-<thead>
-<tr>
-<th>Method</th>
-<th>URL</th>
-<th>Role</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>GET</td>
-<td>/netlox/v1/config/loadbalancer/all</td>
-<td>Get the load balancer information</td>
-</tr>
-<tr>
-<td>POST</td>
-<td>/netlox/v1/config/loadbalancer</td>
-<td>Add the load balancer information to LoxiLB</td>
-</tr>
-<tr>
-<td>DELETE</td>
-<td>/netlox/v1/config/loadbalancer/externalipaddress/{IPaddress}/port/{#Port}/protocol/{protocol}</td>
-<td>Delete the load balacer infomation from LoxiLB</td>
-</tr>
-</tbody>
-</table>
-<p>더 자세한 정보( Param, Body 등)은 Swagger문서를 참조한다.</p>
-<p>See Swagger documentation for more information (Param, Body, etc.).</p>
-<h1 id="loxilb-api-development-guide">LoxiLB API development guide</h1>
+                <h1 id="loxilb-api-development-guide">loxilb API Development Guide</h1>
+<p>For building and extending LoxiLB API server.</p>
 <h2 id="api-source-architecture">API source Architecture</h2>
 <pre><code>.
 ├── certification
@@ -321,10 +272,6 @@ func ConfigAdditionalUrl(params operations.GetAdditionalUrlParams) middleware.Re
               
             </div>
           </div><footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../nat/" class="btn btn-neutral float-left" title="What are loxilb NAT Modes"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../perf/" class="btn btn-neutral float-right" title="Performance">Next <span class="icon icon-circle-arrow-right"></span></a>
-    </div>
 
   <hr/>
 
@@ -346,10 +293,6 @@ func ConfigAdditionalUrl(params operations.GetAdditionalUrlParams) middleware.Re
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../nat/" style="color: #fcfcfc">&laquo; Previous</a></span>
-    
-    
-      <span><a href="../perf/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
