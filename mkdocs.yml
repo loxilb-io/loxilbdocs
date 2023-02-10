@@ -6,28 +6,26 @@ theme:
         gtag: G-21G7NBL2BN 
 nav:
   - Home: index.md
-  #- How-To Guides:
-        - How-To - build/run: run.md
-        - How-To - configuration: cmd.md
-        - How-To - kube-loxilb: kube-loxilb.md
-        - How-To - ccm plugin: ccm.md
-        - How-To - debug: debugging.md
-        - How-To - loxilb with calico bgp: integrate_bgp_eng.md
-        - How-To - loxilb in standalone mode: standalone.md
-   #- Knowledge-Base:
-        - What is eBPF: ebpf.md
-        - What is k8s service - load-balancer: lb.md
-        - Architecture in brief: arch.md
-        - Code organization: code.md
-        - eBPF internals: loxilbebpf.md
-        - NAT Modes of loxilb: nat.md
-        - Developer's guide to loxicmd: cmd-dev.md
-        - Developer's guide to loxilb API: api-dev.md
-        - Performance Report: perf.md
-        - Development Roadmap: roadmap.md
-        - Contribution Guide: contribute.md
-        - System Requirements: requirments.md
-        - Frequenctly Asked Questions- FAQs: faq.md
+  - How-To - build/run: run.md
+  - How-To - configuration: cmd.md
+  - How-To - kube-loxilb: kube-loxilb.md
+  - How-To - ccm plugin: ccm.md
+  - How-To - debug: debugging.md
+  - How-To - loxilb with calico bgp: integrate_bgp_eng.md
+  - How-To - loxilb in standalone mode: standalone.md
+  - What is eBPF: ebpf.md
+  - What is k8s service - load-balancer: lb.md
+  - Architecture in brief: arch.md
+  - Code organization: code.md
+  - eBPF internals: loxilbebpf.md
+  - NAT Modes of loxilb: nat.md
+  - Developer's guide to loxicmd: cmd-dev.md
+  - Developer's guide to loxilb API: api-dev.md
+  - Performance Report: perf.md
+  - Development Roadmap: roadmap.md
+  - Contribution Guide: contribute.md
+  - System Requirements: requirments.md
+  - Frequenctly Asked Questions- FAQs: faq.md
 
 extra:
     version: v0.8.3 (Latest)
