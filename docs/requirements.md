@@ -1,4 +1,4 @@
-## LoxiLB dependecy matrix
+## LoxiLB system requirements
 
 To run loxilb, we need to the following -
 
@@ -16,7 +16,7 @@ To install LoxiLB software packages, you need the 64-bit version of one of these
 ### Kernel Requirements  
 
 * Linux Kernel Version >= 5.1.0  
-* Windows (TBD)  
+* Windows (Planned)  
 
 ### Compatible Kubernetes Versions  
 
