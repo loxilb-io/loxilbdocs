@@ -6,7 +6,7 @@ theme:
         gtag: G-21G7NBL2BN 
 nav:
   - Home: index.md
-  - How-To Guides:
+  #- How-To Guides:
         - How-To - build/run: run.md
         - How-To - configuration: cmd.md
         - How-To - kube-loxilb: kube-loxilb.md
@@ -14,7 +14,7 @@ nav:
         - How-To - debug: debugging.md
         - How-To - loxilb with calico bgp: integrate_bgp_eng.md
         - How-To - loxilb in standalone mode: standalone.md
-   - Knowledge-Base:
+   #- Knowledge-Base:
         - What is eBPF: ebpf.md
         - What is k8s service - load-balancer: lb.md
         - Architecture in brief: arch.md
