@@ -42,7 +42,7 @@ loxilb aims to provide the following :
 
 - [How-To : build/run](run.md)
 - [How-To : configuration](cmd.md)
-- [How-To : kube-loxilb](docs/kube-loxilb.md)
+- [How-To : kube-loxilb](kube-loxilb.md)
 - [How-To : ccm plugin](ccm.md)
 - [How-To : debug](debugging.md)
 - [How-To : loxilb with calico bgp](integrate_bgp_eng.md)
