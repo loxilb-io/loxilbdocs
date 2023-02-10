@@ -30,7 +30,7 @@ nav:
       - Performance Report: perf.md
       - Development Roadmap: roadmap.md
       - Contribution Guide: contribute.md
-      - System Requirements: requirments.md
+      - System Requirements: requirements.md
       - Frequenctly Asked Questions- FAQs: faq.md
   - Blogs:
       - Getting started with loxilb on Amazon EKS: https://www.loxilb.io/post/loxilb-load-balancer-setup-on-eks
