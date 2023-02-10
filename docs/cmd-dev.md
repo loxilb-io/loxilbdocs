@@ -7,7 +7,7 @@ This guide should help developers extend and enhance loxicmd. The guide is divid
 git clone git@github.com:loxilb-io/loxicmd.git
 ```
 
-1. API check and command design
+### API check and command design
 Before developing Command, we need to check if the API of the necessary functions is provided. Check the official API document of LoxiLB to see if the required API is provided. Afterwards, the GET, POST, and DELETE methods are designed with get, create, and delete commands according to the API provided.
 
 ```
@@ -41,7 +41,7 @@ loxicmd$ tree
 ```
 Add the code in the ./cmd/get, ./cmd/delete, ./cmd/create, and ./pkg/api directories to add functionality.
 
-2. Add structure in pkg/api and register method (example of connection track API)
+### Add structure in pkg/api and register method (example of connection track API)
   * CommonAPI embedding
 Using embedding the CommonAPI for the Methods and variables, to use in the Connecttrack structure.
 ```
@@ -91,7 +91,7 @@ func (l *LoxiClient) Conntrack() *Conntrack {
 }
 
 ```
-3. Add get, create, delete functions within cmd
+### Add get, create, delete functions within cmd
 Use the Cobra library to define commands, Alise, descriptions, options, and callback functions, and then create a function that returns.
 Create a function such as PrintGetCTReturn and add logic when the status code is 200.
 ```
@@ -126,7 +126,7 @@ func NewGetConntrackCmd(restOptions *api.RESTOptions) *cobra.Command {
 }
 
 ```
-4. Register command in cmd
+### Register command in cmd
 Register Cobra as defined in 3.
 ```
 func GetCmd(restOptions *api.RESTOptions) *cobra.Command {
@@ -149,7 +149,7 @@ func GetCmd(restOptions *api.RESTOptions) *cobra.Command {
 }
 ```
 
-5. Build & Test
+### Build & Test
 ```
 make
 ```
