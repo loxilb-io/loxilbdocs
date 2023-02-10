@@ -1,6 +1,6 @@
 ## What is kube-loxilb ?
 
-kube-loxilb is loxilb's implementation of kubernetes service load-balancer spec which includes support for load-balancer class, advanced IPAM (shared or exclusive) etc. kube-loxilb runs as a deloyment set in kube-system namespace. 
+[kube-loxilb](https://github.com/loxilb-io/kube-loxilb) is loxilb's implementation of kubernetes service load-balancer spec which includes support for load-balancer class, advanced IPAM (shared or exclusive) etc. kube-loxilb runs as a deloyment set in kube-system namespace. 
 
 ## How is kube-loxilb different from loxi-ccm ?
 
@@ -10,7 +10,7 @@ kube-loxilb is a standalone implementation of kubernetes load-balancer spec whic
 
 ## How to use kube-loxilb ?
 
-1.Make sure loxilb docker is downloaded and installed properly. One can follow guides [here](https://github.com/loxilb-io/loxilbdocs/blob/main/docs/run.md#from-docker-easy) or refer to various other [documentation](https://github.com/loxilb-io/loxilbdocs)
+1.Make sure loxilb docker is downloaded and installed properly. One can follow guides [here](https://loxilb-io.github.io/loxilbdocs/run/) or refer to various other [documentation](https://loxilb-io.github.io/loxilbdocs/#how-to-guides)
 
 2.Download the loxilb config yaml :
 
