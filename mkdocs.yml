@@ -1,4 +1,4 @@
-site_name: loxilb
+site_name: loxilb v0.8.3
 site_url: https://loxilb-io.github.io/loxilbdocs 
 theme:
     name: mkdocs
