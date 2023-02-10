@@ -17,7 +17,6 @@
 	 - [Mirror](./cmd.md#mirror)
 	 - [Policy](./cmd.md#policy)
 	 - [Session Recorder](./cmd.md#session-recorder)
-- [loxicmd development guide](./cmd.md#loxicmd-development-guide)
 
 ## What is loxicmd
 
@@ -25,7 +24,7 @@ loxicmd is command tool for loxilb's configuration. loxicmd aims to provide all 
 
 ## How to build
 
-Note - loxilb docker has this built-in
+Note - loxilb docker has this built-in and there is no need to build it when using loxilb docker
 
 Install package dependencies 
 
@@ -45,113 +44,7 @@ Install loxicmd
 sudo cp -f ./loxicmd /usr/local/sbin
 ```
 
-
 ## How to run and configure loxilb
-### Configure loxicmd with yaml(Beta)
-The loxicmd support yaml based configuration. The format is same as Kubernetes. This beta version support only one configuraion per one file. That means "Do not use `---` in yaml file." . It will be supported at next release.
-
-#### Command 
-```
-#loxicmd apply -f <file.yaml>
-#loxicmd delete -f <file.yaml>
-loxicmd apply -f lb.yaml
-loxicmd delete -f lb.yaml
-```
-#### File example(lb.yaml)
-```
-apiVersion: netlox/v1
-kind: Loadbalancer
-metadata:
-  name: load
-spec:
-  serviceArguments:
-    externalIP: 123.123.123.1
-    port: 80
-    protocol: tcp
-    sel: 0
-  endpoints:
-  - endpointIP: 4.3.2.1
-    weight: 1
-    targetPort: 8080
-  - endpointIP: 4.3.2.2
-    weight: 1
-    targetPort: 8080
-  - endpointIP: 4.3.2.3
-    weight: 1
-    targetPort: 8080
-```
-It reuse API's json body as a "Spec". If the API URL has no param, it don't need to use "metadata". For example, The body of load Balancer rule is shown below.
-
-```
-{
-  "serviceArguments": {
-    "externalIP": "123.123.123.1",
-    "port": 80,
-    "protocol": "tcp",
-    "sel": 0
-  },
-  "endpoints": [
-    {
-      "endpointIP": "4.3.2.1",
-      "weight": 1,
-      "targetPort": 8080
-    },
-    {
-      "endpointIP": "4.3.2.2",
-      "weight": 1,
-      "targetPort": 8080
-    },
-    {
-      "endpointIP": "4.3.2.3",
-      "weight": 1,
-      "targetPort": 8080
-    }
-}
-```
-This json format can be converted Yaml format as shown below.
-```
-  serviceArguments:
-    externalIP: 123.123.123.1
-    port: 80
-    protocol: tcp
-    sel: 0
-  endpoints:
-  - endpointIP: 4.3.2.1
-    weight: 1
-    targetPort: 8080
-  - endpointIP: 4.3.2.2
-    weight: 1
-    targetPort: 8080
-  - endpointIP: 4.3.2.3
-    weight: 1
-    targetPort: 8080
-```
-Finally, this is located in the Spec of the entire configuration file as [File example(lb.yaml)](https://github.com/loxilb-io/loxilbdocs/edit/main/docs/cmd.md#file-examplelbyaml)
-
-If you want to add Vlan bridge, IPaddress or something else. Just change the Kind value from Loadbalancer to VlanBridge, IPaddress as like below example. 
-```
-apiVersion: netlox/v1
-kind: IPaddress
-metadata:
-  name: test
-spec:
-  dev: eno8
-  ipAddress: 192.168.23.1/32
-```
-
-If the URL has param such as adding vlanmember, it must have `metadata`. 
-```
-apiVersion: netlox/v1
-kind: VlanMember
-metadata:
-  name: test
-  vid: 100
-spec:
-  dev: eno8
-  Tagged: true
-```
-The example of all the settings below, so please refer to it.
-
 
 ### Load Balancer
 #### Get load-balancer rules
@@ -755,159 +648,117 @@ loxicmd save -a
 ```
 ** This will ensure that whenever loxilb restarts, it will start with last saved state from DBStore
 
+### Configure loxicmd with yaml(Beta)
+The loxicmd support yaml based configuration. The format is same as Kubernetes. This beta version support only one configuraion per one file. That means "Do not use `---` in yaml file." . It will be supported at next release.
+
+#### Command 
+```
+#loxicmd apply -f <file.yaml>
+#loxicmd delete -f <file.yaml>
+loxicmd apply -f lb.yaml
+loxicmd delete -f lb.yaml
+```
+#### File example(lb.yaml)
+```
+apiVersion: netlox/v1
+kind: Loadbalancer
+metadata:
+  name: load
+spec:
+  serviceArguments:
+    externalIP: 123.123.123.1
+    port: 80
+    protocol: tcp
+    sel: 0
+  endpoints:
+  - endpointIP: 4.3.2.1
+    weight: 1
+    targetPort: 8080
+  - endpointIP: 4.3.2.2
+    weight: 1
+    targetPort: 8080
+  - endpointIP: 4.3.2.3
+    weight: 1
+    targetPort: 8080
+```
+It reuse API's json body as a "Spec". If the API URL has no param, it don't need to use "metadata". For example, The body of load Balancer rule is shown below.
+
+```
+{
+  "serviceArguments": {
+    "externalIP": "123.123.123.1",
+    "port": 80,
+    "protocol": "tcp",
+    "sel": 0
+  },
+  "endpoints": [
+    {
+      "endpointIP": "4.3.2.1",
+      "weight": 1,
+      "targetPort": 8080
+    },
+    {
+      "endpointIP": "4.3.2.2",
+      "weight": 1,
+      "targetPort": 8080
+    },
+    {
+      "endpointIP": "4.3.2.3",
+      "weight": 1,
+      "targetPort": 8080
+    }
+}
+```
+This json format can be converted Yaml format as shown below.
+```
+  serviceArguments:
+    externalIP: 123.123.123.1
+    port: 80
+    protocol: tcp
+    sel: 0
+  endpoints:
+  - endpointIP: 4.3.2.1
+    weight: 1
+    targetPort: 8080
+  - endpointIP: 4.3.2.2
+    weight: 1
+    targetPort: 8080
+  - endpointIP: 4.3.2.3
+    weight: 1
+    targetPort: 8080
+```
+Finally, this is located in the Spec of the entire configuration file as [File example(lb.yaml)](https://github.com/loxilb-io/loxilbdocs/edit/main/docs/cmd.md#file-examplelbyaml)
+
+If you want to add Vlan bridge, IPaddress or something else. Just change the Kind value from Loadbalancer to VlanBridge, IPaddress as like below example. 
+```
+apiVersion: netlox/v1
+kind: IPaddress
+metadata:
+  name: test
+spec:
+  dev: eno8
+  ipAddress: 192.168.23.1/32
+```
+
+If the URL has param such as adding vlanmember, it must have `metadata`. 
+```
+apiVersion: netlox/v1
+kind: VlanMember
+metadata:
+  name: test
+  vid: 100
+spec:
+  dev: eno8
+  Tagged: true
+```
+The example of all the settings below, so please refer to it.
+
+### More information
+
 There are tons of other commands, use help option!
 ```
 loxicmd help
 ```
 
 
-## loxicmd development guide
-It will provide a guide for development. Please develop it according to the guidelines. The guide is divided into three main stages: design, development, and testing, and the details are as follows.
 
-1. API check and command design
-Before developing Command, we need to check if the API of the necessary functions is provided. Check the official API document of LoxiLB to see if the required API is provided. Afterwards, the GET, POST, and DELETE methods are designed with get, create, and delete commands according to the API provided.
-
-```
-loxicmd$ tree
-.
-├── AUTHORS
-├── cmd
-│   ├── create
-│   │   ├── create.go
-│   │   └── create_loadbalancer.go
-│   ├── delete
-│   │   ├── delete.go
-│   │   └── delete_loadbalancer.go
-│   ├── get
-│   │   ├── get.go
-│   │   ├── get_loadbalancer.go
-│   └── root.go
-├── go.mod
-├── go.sum
-├── LICENSE
-├── main.go
-├── Makefile
-├── pkg
-│   └── api
-│       ├── client.go
-│       ├── common.go
-│       ├── loadBalancer.go
-│       └── rest.go
-└── README.md
-
-```
-Add the code in the ./cmd/get, ./cmd/delete, ./cmd/create, and ./pkg/api directories to add functionality.
-
-2. Add structure in pkg/api and register method (example of connection track API)
-  * CommonAPI embedding
-Using embedding the CommonAPI for the Methods and variables, to use in the Connecttrack structure.
-```
-type Conntrack struct {
-    CommonAPI
-}
-```
-
-* Add Structure Configuration and JSON Structure
-Define the structure for JSON Unmashal.
-```
-type CtInformationGet struct {
-    CtInfo []ConntrackInformation `json:"ctAttr"`
-}
-
-type ConntrackInformation struct {
-    Dip    string `json:"destinationIP"`
-    Sip    string `json:"sourceIP"`
-    Dport  uint16 `json:"destinationPort"`
-    Sport  uint16 `json:"sourcePort"`
-    Proto  string `json:"protocol"`
-    CState string `json:"conntrackState"`
-    CAct   string `json:"conntrackAct"`
-}
-```
-* Define Method Functions in pkg/api/client.go
-Define the URL in the Resource constant.
-Defines the function to be used in the command.
-```
-const (
-    …
-    loxiConntrackResource    = "config/conntrack/all"
-)
-
-
-func (l *LoxiClient) Conntrack() *Conntrack {
-    return &Conntrack{
-        CommonAPI: CommonAPI{
-            restClient: &l.restClient,
-            requestInfo: RequestInfo{
-                provider:   loxiProvider,
-                apiVersion: loxiApiVersion,
-                resource:   loxiConntrackResource,
-            },
-        },
-    }
-}
-
-```
-3. Add get, create, delete functions within cmd
-Use the Cobra library to define commands, Alise, descriptions, options, and callback functions, and then create a function that returns.
-Create a function such as PrintGetCTReturn and add logic when the status code is 200.
-```
-func NewGetConntrackCmd(restOptions *api.RESTOptions) *cobra.Command {
-	var GetctCmd = &cobra.Command{
-		Use:     "conntrack",
-		Aliases: []string{"ct", "conntracks", "cts"},
-		Short:   "Get a Conntrack",
-		Long:    `It shows connection track Information`,
-		Run: func(cmd *cobra.Command, args []string) {
-			client := api.NewLoxiClient(restOptions)
-			ctx := context.TODO()
-			var cancel context.CancelFunc
-			if restOptions.Timeout > 0 {
-				ctx, cancel = context.WithTimeout(context.TODO(), time.Duration(restOptions.Timeout)*time.Second)
-				defer cancel()
-			}
-			resp, err := client.Conntrack().Get(ctx)
-			if err != nil {
-				fmt.Printf("Error: %s\n", err.Error())
-				return
-			}
-			if resp.StatusCode == http.StatusOK {
-				PrintGetCTResult(resp, *restOptions)
-				return
-			}
-
-		},
-	}
-
-	return GetctCmd
-}
-
-```
-4. Register command in cmd
-Register Cobra as defined in 3.
-```
-func GetCmd(restOptions *api.RESTOptions) *cobra.Command {
-    var GetCmd = &cobra.Command{
-        Use:   "get",
-        Short: "A brief description of your command",
-        Long: `A longer description that spans multiple lines and likely contains examples
-    and usage of using your command. For example:
-   
-    Cobra is a CLI library for Go that empowers applications.
-    This application is a tool to generate the needed files
-    to quickly Get a Cobra application.`,
-        Run: func(cmd *cobra.Command, args []string) {
-            fmt.Println("Get called")
-        },
-    }
-    GetCmd.AddCommand(NewGetLoadBalancerCmd(restOptions))
-    GetCmd.AddCommand(NewGetConntrackCmd(restOptions))
-    return GetCmd
-}
-```
-
-5. Build & Test
-```
-make
-```
-Test the command as you want!
