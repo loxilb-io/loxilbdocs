@@ -1,16 +1,9 @@
-## <p align="center">Welcome to loxilb-docs </p>
-
-<div align="center">
-<p align="center" width="20%">
-    <img width="7%" src="https://github.com/loxilb-io/loxilbdocs/blob/main/docs/photos/loxilb-logo.png">
-</p>
+## Welcome to loxilb-docs
 
 [![eBPF Emerging App](https://img.shields.io/badge/ebpf.io-Emerging--App-success)](https://ebpf.io/projects#loxilb) [![Go Report Card](https://goreportcard.com/badge/github.com/loxilb-io/loxilb)](https://goreportcard.com/report/github.com/loxilb-io/loxilb) ![build workflow](https://github.com/loxilb-io/loxilb/actions/workflows/docker-image.yml/badge.svg) ![sanity workflow](https://github.com/loxilb-io/loxilb/actions/workflows/basic-sanity.yml/badge.svg) ![apache](https://img.shields.io/badge/license-Apache-blue.svg) ![gpl](https://img.shields.io/badge/license-GPL-blue.svg)  [![Stargazers][stars-shield]][stars-url]
 
 [![eBPF Emerging Project](photos/ebpflogo.png)](https://ebpf.io/projects#loxilb)
    
-</div>
-
 [stars-shield]: https://img.shields.io/github/stars/loxilb-io??style=for-the-badge&logo=appveyor
 [stars-url]: https://github.com/loxilb-io/loxilb/stargazers
 
@@ -67,7 +60,8 @@ loxilb aims to provide the following :
 - [Performance](perf.md)
 - [Development Roadmap](roadmap.md)
 - [Contribute](contribute.md)
-- [FAQs](faq.md)
+- [System Requirements](requirments.md)
+- [Frequenctly Asked Questions- FAQs](faq.md)
 
 ## Blogs
 - [5G SCTP LoadBalancer Using LoxiLB](https://futuredon.medium.com/5g-sctp-loadbalancer-using-loxilb-b525198a9103)
@@ -75,27 +69,3 @@ loxilb aims to provide the following :
 - [K3s: Using loxilb as external service lb](https://cloudybytes.medium.com/k3s-using-loxilb-as-external-service-lb-2ea4ce61e159)
 - [K8s - Deploying "hitless" Load-balancing](https://www.loxilb.io/post/k8s-deploying-hitless-and-ha-load-balancing)
 - [Ipv6 migration in Kubernetes made easy](https://www.loxilb.io/post/k8s-exposing-ipv4-services-externally-as-ipv6)   
-
-## Host OS requirements  
-
-To install LoxiLB software packages, you need the 64-bit version of one of these OS versions:  
-
-* Ubuntu 20.04(LTS)   
-* Ubuntu 22.04(LTS)   
-* Fedora 36   
-* RockyOS  
-* Enterprise Redhat (Planned)  
-* Windows Server(Planned)  
-
-## Kernel Requirements  
-
-* Linux Kernel Version >= 5.1.0  
-* Windows (TBD)  
-
-## Compatible Kubernetes Versions  
-
-* Kubernetes 1.19  ~ 1.24
-
-## Hardware Requirements  
-
-* None as long as above criteria are met  
