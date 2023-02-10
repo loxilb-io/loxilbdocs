@@ -1,7 +1,7 @@
 site_name: loxilb
 site_url: https://loxilb-io.github.io/loxilbdocs 
 theme:
-    name: readthedocs
+    name: mkdocs
     features:
         - navigation.sections
     analytics:
