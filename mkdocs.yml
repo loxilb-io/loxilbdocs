@@ -6,24 +6,6 @@ theme:
         gtag: G-21G7NBL2BN 
 nav:
   - Home: index.md
-  - What is eBPF: ebpf.md
-  - What is k8s service type - load-balancer: lb.md
-  - Architecture in brief: arch.md
-  - Code organization: code.md
-  - eBPF internals of loxilb: loxilbebpf.md
-  - Howto - build/run: run.md
-  - Cmd/Config guide: cmd.md
-  - Howto - kube-loxilb: kube-loxilb.md
-  - Howto - ccm plugin: ccm.md
-  - Howto - debug: debugging.md
-  - Howto - loxib with calico bgp: integrate_bgp_eng.md
-  - Howto - loxilb in standalone mode: standalone.md
-  - What are loxilb NAT Modes: nat.md
-  - Api usage/dev guide: api.md
-  - Performance: perf.md
-  - Development Roadmap: roadmap.md 
-  - Contribute: contribute.md
-  - FAQs: faq.md
 
 extra:
     version: v0.8.3 (Latest)
