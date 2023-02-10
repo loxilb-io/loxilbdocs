@@ -1,136 +1,174 @@
 <!DOCTYPE html>
 
-<html class="writer-html5" lang="en">
+<html lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://loxilb-io.github.io/loxilbdocs/perf-multi/" rel="canonical"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://loxilb-io.github.io/loxilbdocs/perf-multi/" rel="canonical"/>
 <link href="../img/favicon.ico" rel="shortcut icon"/>
 <title>Perf multi - loxilb</title>
-<link href="../css/theme.css" rel="stylesheet"/>
-<link href="../css/theme_extra.css" rel="stylesheet"/>
+<link href="../css/bootstrap.min.css" rel="stylesheet"/>
+<link href="../css/font-awesome.min.css" rel="stylesheet"/>
+<link href="../css/base.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" rel="stylesheet"/>
 <link href="../stylesheets/extra.css" rel="stylesheet"/>
-<script>
-        // Current page data
-        var mkdocs_page_name = "Perf multi";
-        var mkdocs_page_input_path = "perf-multi.md";
-        var mkdocs_page_url = "/loxilbdocs/perf-multi/";
-      </script>
-<script defer="" src="../js/jquery-3.6.0.min.js"></script>
-<!--[if lt IE 9]>
-      <script src="../js/html5shiv.min.js"></script>
-    <![endif]-->
+<script defer="" src="../js/jquery-1.10.2.min.js"></script>
+<script defer="" src="../js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-21G7NBL2BN"></script>
 <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
 
-        gtag('config', 'G-21G7NBL2BN');
-      </script>
+          gtag('config', 'G-21G7NBL2BN');
+        </script>
 </head>
-<body class="wy-body-for-nav" role="document">
-<div class="wy-grid-for-nav">
-<nav class="wy-nav-side stickynav" data-toggle="wy-nav-shift">
-<div class="wy-side-scroll">
-<div class="wy-side-nav-search">
-<a class="icon icon-home" href=".."> loxilb
-        </a>
-<div class="version">
-          v0.8.3 (Latest)
-        </div>
+<body>
+<div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+<div class="container">
+<a class="navbar-brand" href="..">loxilb</a>
+<!-- Expander button -->
+<button class="navbar-toggler" data-target="#navbar-collapse" data-toggle="collapse" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<!-- Expanded navigation -->
+<div class="navbar-collapse collapse" id="navbar-collapse">
+<!-- Main navigation -->
+<ul class="nav navbar-nav">
+<li class="navitem">
+<a class="nav-link" href="..">Home</a>
+</li>
+<li class="dropdown">
+<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">How-To Guides <b class="caret"></b></a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../run/">How-To - build/run</a>
+</li>
+<li>
+<a class="dropdown-item" href="../cmd/">How-To - configuration</a>
+</li>
+<li>
+<a class="dropdown-item" href="../kube-loxilb/">How-To - kube-loxilb</a>
+</li>
+<li>
+<a class="dropdown-item" href="../ccm/">How-To - ccm plugin</a>
+</li>
+<li>
+<a class="dropdown-item" href="../debugging/">How-To - debug</a>
+</li>
+<li>
+<a class="dropdown-item" href="../integrate_bgp_eng/">How-To - loxilb with calico bgp</a>
+</li>
+<li>
+<a class="dropdown-item" href="../standalone/">How-To - loxilb in standalone mode</a>
+</li>
+<li>
+<a class="dropdown-item" href="../api/">How-To - loxilb Web-APIs</a>
+</li>
+</ul>
+</li>
+<li class="dropdown">
+<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Knowledge Base <b class="caret"></b></a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../ebpf/">What is eBPF</a>
+</li>
+<li>
+<a class="dropdown-item" href="../lb/">What is k8s service - load-balancer</a>
+</li>
+<li>
+<a class="dropdown-item" href="../arch/">Architecture in brief</a>
+</li>
+<li>
+<a class="dropdown-item" href="../code/">Code organization</a>
+</li>
+<li>
+<a class="dropdown-item" href="../loxilbebpf/">eBPF internals</a>
+</li>
+<li>
+<a class="dropdown-item" href="../nat/">NAT Modes of loxilb</a>
+</li>
+<li>
+<a class="dropdown-item" href="../cmd-dev/">Developer's guide to loxicmd</a>
+</li>
+<li>
+<a class="dropdown-item" href="../api-dev/">Developer's guide to loxilb API</a>
+</li>
+<li>
+<a class="dropdown-item" href="../perf/">Performance Report</a>
+</li>
+<li>
+<a class="dropdown-item" href="../roadmap/">Development Roadmap</a>
+</li>
+<li>
+<a class="dropdown-item" href="../contribute/">Contribution Guide</a>
+</li>
+<li>
+<a class="dropdown-item" href="../requirements/">System Requirements</a>
+</li>
+<li>
+<a class="dropdown-item" href="../faq/">Frequenctly Asked Questions- FAQs</a>
+</li>
+</ul>
+</li>
+<li class="dropdown">
+<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Blogs <b class="caret"></b></a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="https://www.loxilb.io/post/loxilb-load-balancer-setup-on-eks">Getting started with loxilb on Amazon EKS</a>
+</li>
+<li>
+<a class="dropdown-item" href="https://futuredon.medium.com/5g-sctp-loadbalancer-using-loxilb-b525198a9103">5G SCTP LoadBalancer Using loxilb</a>
+</li>
+<li>
+<a class="dropdown-item" href="https://futuredon.medium.com/5g-uplink-classifier-using-loxilb-7593a4d66f4c">5G Uplink Classifier Using loxilb</a>
+</li>
+<li>
+<a class="dropdown-item" href="https://cloudybytes.medium.com/k3s-using-loxilb-as-external-service-lb-2ea4ce61e159">K3s - Using loxilb as external service lb</a>
+</li>
+<li>
+<a class="dropdown-item" href="https://www.loxilb.io/post/k8s-deploying-hitless-and-ha-load-balancing">K8s - Deploying hitless Load-Balancing</a>
+</li>
+<li>
+<a class="dropdown-item" href="https://www.loxilb.io/post/k8s-exposing-ipv4-services-externally-as-ipv6">Ipv6 migration in Kubernetes made easy</a>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="nav navbar-nav ml-auto">
+</ul>
 </div>
-<div aria-label="Navigation menu" class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="..">Home</a>
-</li>
+</div>
+</div>
+<div class="container">
+<div class="row">
+<div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+<div class="navbar-header">
+<button class="navbar-toggler collapsed" data-target="#toc-collapse" data-toggle="collapse" title="Table of Contents" type="button">
+<span class="fa fa-angle-down"></span>
+</button>
+</div>
+<div class="navbar-collapse collapse card bg-secondary" id="toc-collapse">
+<ul class="nav flex-column">
+<li class="nav-item" data-level="2"><a class="nav-link" href="#bare-metal-performance">Bare-Metal Performance</a>
+<ul class="nav flex-column">
 </ul>
-<p class="caption"><span class="caption-text">How-To Guides</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../run/">How-To - build/run</a>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../cmd/">How-To - configuration</a>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../kube-loxilb/">How-To - kube-loxilb</a>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../ccm/">How-To - ccm plugin</a>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../debugging/">How-To - debug</a>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../integrate_bgp_eng/">How-To - loxilb with calico bgp</a>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../standalone/">How-To - loxilb in standalone mode</a>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../api/">How-To - loxilb Web-APIs</a>
-</li>
+<li class="nav-item" data-level="2"><a class="nav-link" href="#comparision-with-lvs">Comparision with LVS</a>
+<ul class="nav flex-column">
 </ul>
-<p class="caption"><span class="caption-text">Knowledge Base</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../ebpf/">What is eBPF</a>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../lb/">What is k8s service - load-balancer</a>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../arch/">Architecture in brief</a>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../code/">Code organization</a>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../loxilbebpf/">eBPF internals</a>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../nat/">NAT Modes of loxilb</a>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../cmd-dev/">Developer's guide to loxicmd</a>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../api-dev/">Developer's guide to loxilb API</a>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../perf/">Performance Report</a>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../roadmap/">Development Roadmap</a>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../contribute/">Contribution Guide</a>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../requirements/">System Requirements</a>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../faq/">Frequenctly Asked Questions- FAQs</a>
-</li>
+<li class="nav-item" data-level="2"><a class="nav-link" href="#conclusion">Conclusion</a>
+<ul class="nav flex-column">
 </ul>
-<p class="caption"><span class="caption-text">Blogs</span></p>
-<ul>
-<li class="toctree-l1"><a class="" href="https://www.loxilb.io/post/loxilb-load-balancer-setup-on-eks">Getting started with loxilb on Amazon EKS</a>
-</li>
-<li class="toctree-l1"><a class="" href="https://futuredon.medium.com/5g-sctp-loadbalancer-using-loxilb-b525198a9103">5G SCTP LoadBalancer Using loxilb</a>
-</li>
-<li class="toctree-l1"><a class="" href="https://futuredon.medium.com/5g-uplink-classifier-using-loxilb-7593a4d66f4c">5G Uplink Classifier Using loxilb</a>
-</li>
-<li class="toctree-l1"><a class="" href="https://cloudybytes.medium.com/k3s-using-loxilb-as-external-service-lb-2ea4ce61e159">K3s - Using loxilb as external service lb</a>
-</li>
-<li class="toctree-l1"><a class="" href="https://www.loxilb.io/post/k8s-deploying-hitless-and-ha-load-balancing">K8s - Deploying hitless Load-Balancing</a>
-</li>
-<li class="toctree-l1"><a class="" href="https://www.loxilb.io/post/k8s-exposing-ipv4-services-externally-as-ipv6">Ipv6 migration in Kubernetes made easy</a>
 </li>
 </ul>
 </div>
-</div>
-</nav>
-<section class="wy-nav-content-wrap" data-toggle="wy-nav-shift">
-<nav aria-label="Mobile navigation menu" class="wy-nav-top" role="navigation">
-<i class="fa fa-bars" data-toggle="wy-nav-top"></i>
-<a href="..">loxilb</a>
-</nav>
-<div class="wy-nav-content">
-<div class="rst-content"><div aria-label="breadcrumbs navigation" role="navigation">
-<ul class="wy-breadcrumbs">
-<li><a alt="Docs" class="icon icon-home" href=".."></a> »</li>
-<li>Perf multi</li>
-<li class="wy-breadcrumbs-aside">
-</li>
-</ul>
-<hr/>
-</div>
-<div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
-<div class="section" itemprop="articleBody">
+</div></div>
+<div class="col-md-9" role="main">
 <h2 id="bare-metal-performance">Bare-Metal Performance</h2>
 <p>The topology for this test is as follows :</p>
 <div class="mermaid">graph LR;
@@ -204,31 +242,57 @@ TCP  20.20.20.1:2020                   401  8939187  8953980  830843K    1135M
   -&gt; 32.32.32.1:5001                   134  2953608  2958191  274518K  375034K
 </code></pre>
 <h2 id="conclusion">Conclusion</h2>
-<p>loxilb's latency is 2.44 ms which is much less as compared to 3.81 ms in case of LVS. Number of Requests handled per second is 39.06K with loxilb, better than 37.35K with LVS.</p>
+<p>loxilb's latency is 2.44 ms which is much less as compared to 3.81 ms in case of LVS. Number of Requests handled per second is 39.06K with loxilb, better than 37.35K with LVS.</p></div>
 </div>
-</div><footer>
+</div>
+<footer class="col-md-12">
 <hr/>
-<div role="contentinfo">
-<!-- Copyright etc -->
-</div>
-
-  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+<p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
 </footer>
+<script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+<script defer="" src="../js/base.js"></script>
+<div aria-hidden="true" aria-labelledby="keyboardModalLabel" class="modal" id="mkdocs_keyboard_modal" role="dialog" tabindex="-1">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+<button class="close" data-dismiss="modal" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+</div>
+<div class="modal-body">
+<table class="table">
+<thead>
+<tr>
+<th style="width: 20%;">Keys</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="help shortcut"><kbd>?</kbd></td>
+<td>Open this help</td>
+</tr>
+<tr>
+<td class="next shortcut"><kbd>n</kbd></td>
+<td>Next page</td>
+</tr>
+<tr>
+<td class="prev shortcut"><kbd>p</kbd></td>
+<td>Previous page</td>
+</tr>
+<tr>
+<td class="search shortcut"><kbd>s</kbd></td>
+<td>Search</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="modal-footer">
 </div>
 </div>
-</section>
 </div>
-<div aria-label="Versions" class="rst-versions" role="note">
-<span class="rst-current-version" data-toggle="rst-current-version">
-</span>
 </div>
-<script>var base_url = '..';</script>
-<script defer="" src="../js/theme_extra.js"></script>
-<script defer="" src="../js/theme.js"></script>
-<script defer="">
-        window.onload = function () {
-            SphinxRtdTheme.Navigation.enable(true);
-        };
-    </script>
 <script src="https://unpkg.com/mermaid@8.8.0/dist/mermaid.min.js"></script><script>mermaid.initialize({});</script></body>
 </html>
