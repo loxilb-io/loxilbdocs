@@ -52,7 +52,7 @@ go get .
 make
 sudo cp -f loxicmd /usr/local/sbin/
 ```
-loxicmd usage guide can be found [here](https://github.com/loxilb-io/loxilbdocs/blob/main/docs/cmd.md)
+loxicmd usage guide can be found [here](https://loxilb-io.github.io/loxilbdocs/cmd/)
 
 ## From docker (easy)
 
