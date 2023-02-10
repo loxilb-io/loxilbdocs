@@ -1,6 +1,7 @@
 ## Welcome to loxilb-docs
 
-[![eBPF Emerging App](https://img.shields.io/badge/ebpf.io-Emerging--App-success)](https://ebpf.io/projects#loxilb) [![Go Report Card](https://goreportcard.com/badge/github.com/loxilb-io/loxilb)](https://goreportcard.com/report/github.com/loxilb-io/loxilb) ![build workflow](https://github.com/loxilb-io/loxilb/actions/workflows/docker-image.yml/badge.svg) ![sanity workflow](https://github.com/loxilb-io/loxilb/actions/workflows/basic-sanity.yml/badge.svg) ![apache](https://img.shields.io/badge/license-Apache-blue.svg) ![gpl](https://img.shields.io/badge/license-BSD-blue.svg)  [![Stargazers][stars-shield]][stars-url]
+[![eBPF Emerging App](https://img.shields.io/badge/ebpf.io-Emerging--App-success)](https://ebpf.io/projects#loxilb) [![Go Report Card](https://goreportcard.com/badge/github.com/loxilb-io/loxilb)](https://goreportcard.com/report/github.com/loxilb-io/loxilb) ![build workflow](https://github.com/loxilb-io/loxilb/actions/workflows/docker-image.yml/badge.svg) ![sanity workflow](https://github.com/loxilb-io/loxilb/actions/workflows/basic-sanity.yml/badge.svg)   
+![apache](https://img.shields.io/badge/license-Apache-blue.svg) ![gpl](https://img.shields.io/badge/license-BSD-blue.svg)  [![Stargazers][stars-shield]][stars-url]
 
 [![eBPF Emerging Project](photos/ebpflogo.png)](https://ebpf.io/projects#loxilb)
    
@@ -57,7 +58,7 @@ loxilb aims to provide the following :
 - [What are loxilb NAT Modes](nat.md)
 - [Developer's guide to loxicmd](cmd-dev.md)
 - [Developer's guide to loxilb API](api-dev.md)
-- [Performance](perf.md)
+- [Performance Report](perf.md)
 - [Development Roadmap](roadmap.md)
 - [Contribute](contribute.md)
 - [System Requirements](requirements.md)
