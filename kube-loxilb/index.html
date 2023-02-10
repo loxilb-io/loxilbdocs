@@ -219,12 +219,12 @@
                     <div class="col-md-9" role="main">
 
 <h2 id="what-is-kube-loxilb">What is kube-loxilb ?</h2>
-<p>kube-loxilb is loxilb's implementation of kubernetes service load-balancer spec which includes support for load-balancer class, advanced IPAM (shared or exclusive) etc. kube-loxilb runs as a deloyment set in kube-system namespace. </p>
+<p><a href="https://github.com/loxilb-io/kube-loxilb">kube-loxilb</a> is loxilb's implementation of kubernetes service load-balancer spec which includes support for load-balancer class, advanced IPAM (shared or exclusive) etc. kube-loxilb runs as a deloyment set in kube-system namespace. </p>
 <h2 id="how-is-kube-loxilb-different-from-loxi-ccm">How is kube-loxilb different from loxi-ccm ?</h2>
 <p>Another loxilb component known ass <a href="https://github.com/loxilb-io/loxi-ccm">loxi-ccm</a> also provides implementation of kubernetes load-balancer spec but it runs as a part of cloud-provider and provides load-balancer life-cycle management as part of it. If one does not need a cloud-provider or wants to integrate loxilb with their existing cloud-provider, one can use or include loxi-ccm as a part of it. If not kube-loxilb is the right component to use.</p>
 <p>kube-loxilb is a standalone implementation of kubernetes load-balancer spec which does not depend on cloud-provider. It runs as a kube-system deployment and provisions load-balancer based on load-balancer class. It only acts on load-balancers for the LB classes that is provided by itself. This also allows us to have different load-balancers working together in the same K8s environment.</p>
 <h2 id="how-to-use-kube-loxilb">How to use kube-loxilb ?</h2>
-<p>1.Make sure loxilb docker is downloaded and installed properly. One can follow guides <a href="https://github.com/loxilb-io/loxilbdocs/blob/main/docs/run.md#from-docker-easy">here</a> or refer to various other <a href="https://github.com/loxilb-io/loxilbdocs">documentation</a></p>
+<p>1.Make sure loxilb docker is downloaded and installed properly. One can follow guides <a href="https://loxilb-io.github.io/loxilbdocs/run/">here</a> or refer to various other <a href="https://loxilb-io.github.io/loxilbdocs/#how-to-guides">documentation</a></p>
 <p>2.Download the loxilb config yaml :</p>
 <pre><code>wget https://github.com/loxilb-io/kube-loxilb/raw/main/manifest/kube-loxilb.yaml
 </code></pre>
