@@ -50,22 +50,6 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href=".">Home</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#loxilb-background">loxilb Background</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#loxilb-aimgoals">loxilb Aim/Goals</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#documentation">Documentation</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#blogs">Blogs</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#host-os-requirements">Host OS requirements</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#kernel-requirements">Kernel Requirements</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#compatible-kubernetes-versions">Compatible Kubernetes Versions</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#hardware-requirements">Hardware Requirements</a>
-    </li>
     </ul>
                 </li>
               </ul>
@@ -164,15 +148,24 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="loxilb-documentation">loxilb Documentation</h1>
-<p><a href="https://ebpf.io/projects#loxilb"><img alt="eBPF Emerging Project" src="https://img.shields.io/badge/ebpf.io-Emerging--Project-success" /></a> <a href="https://goreportcard.com/report/github.com/loxilb-io/loxilb"><img alt="Go Report Card" src="https://goreportcard.com/badge/github.com/loxilb-io/loxilb" /></a> <img alt="build workflow" src="https://github.com/loxilb-io/loxilb/actions/workflows/docker-image.yml/badge.svg" /> <img alt="sanity workflow" src="https://github.com/loxilb-io/loxilb/actions/workflows/basic-sanity.yml/badge.svg" /> <img alt="apache" src="https://img.shields.io/badge/license-Apache-blue.svg" /> <img alt="gpl" src="https://img.shields.io/badge/license-GPL-blue.svg" />  </p>
-<p><a href="https://ebpf.io/projects#loxilb"><img alt="eBPF Emerging Project" src="photos/ebpflogo.png" /></a></p>
-<h2 id="loxilb-background">loxilb Background</h2>
+                <h2 id="welcome-to-loxilb-docs"><p align="center">Welcome to loxilb-docs </p></h2>
+<div align="center">
+<p align="center" width="20%">
+    <img width="7%" src="https://github.com/loxilb-io/loxilbdocs/blob/main/docs/photos/loxilb-logo.png">
+</p>
+
+[![eBPF Emerging App](https://img.shields.io/badge/ebpf.io-Emerging--App-success)](https://ebpf.io/projects#loxilb) [![Go Report Card](https://goreportcard.com/badge/github.com/loxilb-io/loxilb)](https://goreportcard.com/report/github.com/loxilb-io/loxilb) ![build workflow](https://github.com/loxilb-io/loxilb/actions/workflows/docker-image.yml/badge.svg) ![sanity workflow](https://github.com/loxilb-io/loxilb/actions/workflows/basic-sanity.yml/badge.svg) ![apache](https://img.shields.io/badge/license-Apache-blue.svg) ![gpl](https://img.shields.io/badge/license-GPL-blue.svg)  [![Stargazers][stars-shield]][stars-url]
+
+[![eBPF Emerging Project](photos/ebpflogo.png)](https://ebpf.io/projects#loxilb)
+
+</div>
+
+<h2 id="background">Background</h2>
 <p>loxilb started as a project to ease deployments of cloud-native/kubernetes workloads for the edge. When we deploy services in public clouds like AWS/GCP, the services becomes easily accessible or exported to the outside world. The public cloud providers, usually by default, associate load-balancer instances for incoming requests to these services to ensure everything is quite smooth. </p>
 <p>However, for on-prem and edge deployments, there is no <em>service type - external load balancer</em> provider by default. For a long time, <a href="https://metallb.universe.tf/">MetalLB</a> from Google was the only choice for the needy. But edge services are a different ball game altogether due to the fact that there are so many exotic protocols in play like GTP, SCTP, SRv6 etc and integrating everything into a seamlessly working solution has been quite difficult.</p>
 <p>loxilb dev team was approached by many people who wanted to solve this problem. As a first step to solve the problem, it became apparent that networking stack provided by Linux kernel, although very solid,  really lacked the development process agility to quickly provide support for a wide variety of permutations and combinations of protocols and stateful load-balancing on them. Our search led us to the awesome tech developed by the Linux community - eBPF. The flexibility to introduce new functionality into Kernel as a sandbox program was a complete fit to our design philosophy. Although we did consider DPDK for a while, but the fact that it needs dedicated cores/CPUs really defeats the whole purpose of making energy-efficient edge architectures.</p>
 <p>During the journey of loxilb's development, we developed many other generic networking/security/visibility features in it using eBPF which can be used for various other purposes not specific to load-balancer only. But we decided to stick our original name <em>loxilb</em> as load-balancing will continue to be its main purpose in the forseeable future. loxilb team hopes the open-source community finds it helpful.</p>
-<h2 id="loxilb-aimgoals">loxilb Aim/Goals</h2>
+<h2 id="aimgoals">Aim/Goals</h2>
 <p>loxilb aims to provide the following :</p>
 <ul>
 <li>Service type external load-balancer for kubernetes</li>
@@ -197,22 +190,26 @@
 <li>Easy to use APIs/Interfaces for developers</li>
 <li>Cloud-Native Network Function (CNF) form-factor by default  </li>
 </ul>
-<h2 id="documentation">Documentation</h2>
+<h2 id="how-to-guides">How-To Guides</h2>
+<ul>
+<li><a href="run/">How-To : build/run</a></li>
+<li><a href="cmd/">How-To : configuration</a></li>
+<li><a href="docs/kube-loxilb.md">How-To : kube-loxilb</a></li>
+<li><a href="ccm/">How-To : ccm plugin</a></li>
+<li><a href="debugging/">How-To : debug</a></li>
+<li><a href="integrate_bgp_eng/">How-To : loxilb with calico bgp</a></li>
+<li><a href="standalone/">How-To : loxilb in standalone mode</a></li>
+</ul>
+<h2 id="knowledge-base">Knowledge-Base</h2>
 <ul>
 <li><a href="ebpf/">What is eBPF</a></li>
-<li><a href="lb/">What is service type - external load-balancer</a></li>
+<li><a href="lb/">What is k8s service - load-balancer</a></li>
 <li><a href="arch/">Architecture in brief</a></li>
 <li><a href="code/">Code organization</a></li>
 <li><a href="loxilbebpf/">eBPF internals of loxilb</a></li>
-<li><a href="run/">Howto - build/run</a></li>
-<li><a href="cmd/">Cmd/Config guide</a></li>
-<li><a href="docs/kube-loxilb.md">Howto - kube-loxilb</a></li>
-<li><a href="ccm/">Howto - ccm plugin</a></li>
-<li><a href="debugging/">Howto - debug</a></li>
-<li><a href="integrate_bgp_eng/">Howto - loxilb with calico bgp</a></li>
-<li><a href="standalone/">Howto - loxilb in standalone mode</a></li>
 <li><a href="nat/">What are loxilb NAT Modes</a></li>
-<li><a href="api.md">Api usage/dev guide</a></li>
+<li><a href="cmd-dev/">Developer's guide to loxicmd</a></li>
+<li><a href="api-dev/">Developer's guide to loxilb API</a></li>
 <li><a href="perf/">Performance</a></li>
 <li><a href="roadmap/">Development Roadmap</a></li>
 <li><a href="contribute/">Contribute</a></li>
@@ -243,10 +240,7 @@
 </ul>
 <h2 id="compatible-kubernetes-versions">Compatible Kubernetes Versions</h2>
 <ul>
-<li>Kubernetes 1.19  </li>
-<li>Kubernetes 1.20  </li>
-<li>Kubernetes 1.21  </li>
-<li>Kubernetes 1.22  </li>
+<li>Kubernetes 1.19  ~ 1.24</li>
 </ul>
 <h2 id="hardware-requirements">Hardware Requirements</h2>
 <ul>
@@ -298,5 +292,5 @@
 
 <!--
 MkDocs version : 1.4.2
-Build Date UTC : 2023-02-10 00:36:30.403941+00:00
+Build Date UTC : 2023-02-10 01:13:20.310257+00:00
 -->
