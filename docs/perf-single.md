@@ -72,3 +72,8 @@ We also run other popular tools like iperf, qperf along with wrk for the above t
 * "loopback" here refers to client and server running in the same docker/container. This is supposed to be the best case scenario but there is only a single end-point, so the RPS measurements are lower.
 * Please refer to this [article](https://community.f5.com/t5/technical-articles/understanding-performance-metrics-and-network-traffic/ta-p/286109) for a good explanation of performance metrics
 * iperf is run with 100 threads
+
+### Watch the video
+
+[![Watch the video](https://img.youtube.com/vi/lXMCtrN7e7s/maxresdefault.jpg)](https://www.youtube.com/watch?v=lXMCtrN7e7s)
+
