@@ -1,4 +1,4 @@
-## Single-node (all-in-one virtual) performance 
+## Single-node (all-in-one cnf) performance 
 
 All hosts/loxiLB/end-point nodes are simulated with docker pods inside a single node. The topology is as follows :
 
@@ -56,8 +56,8 @@ We also run other popular tools like iperf, qperf along with wrk for the above t
 |---|---|---|---|
 |wrk(RPS) |38040| 44833  | 40012  |
 |wrk(CPS)| n/a  | 7020  |  6048 |
-|iperf   | 21Gbps  |19.5Gbps   | 16Gbps  |
 |qperf(LAT)|12.31 us  |15.9us   |  24.75us  |
+|iperf   | 43.5Gbps  |41.2Gbps   | 34.4Gbps  |
 
 2. System Configuration - Intel(R) Xeon(R) Silver 4210R CPU @ 2.40GHz, 40-core, 124GB RAM
 
@@ -65,9 +65,10 @@ We also run other popular tools like iperf, qperf along with wrk for the above t
 |---|---|---|---|---|
 |wrk(RPS) |406953| 421746  | 388021  |217004  |
 |wrk(CPS)| n/a  | 45064  |  24400 |22000 |
-|iperf   | 34Gbps  |32Gbps   | 29Gbps  |12.5Gbps  |
+|iperf   | 456Gbps  |402Gbps   | 374Gbps  |91Gbps  |
 
 * loxilb provides ~10% increase in most of the performance parameters while there is a big gain in CPS
 * loxilb's CPS is limited only by the fact that this is a single node scenario with shared resources
-* "loopback" here refers to client and server running in the same docker/container. There is only a single end-point in this scenario, so the RPS measurements are lower.
+* "loopback" here refers to client and server running in the same docker/container. This is supposed to be the best case scenario but there is only a single end-point, so the RPS measurements are lower.
 * Please refer to this [article](https://community.f5.com/t5/technical-articles/understanding-performance-metrics-and-network-traffic/ta-p/286109) for a good explanation of performance metrics
+* iperf is run with 100 threads
