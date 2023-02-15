@@ -153,7 +153,7 @@
 </div>
 <div class="navbar-collapse collapse card bg-secondary" id="toc-collapse">
 <ul class="nav flex-column">
-<li class="nav-item" data-level="2"><a class="nav-link" href="#single-node-all-in-one-virtual-performance">Single-node (all-in-one virtual) performance</a>
+<li class="nav-item" data-level="2"><a class="nav-link" href="#single-node-all-in-one-cnf-performance">Single-node (all-in-one cnf) performance</a>
 <ul class="nav flex-column">
 </ul>
 </li>
@@ -161,7 +161,7 @@
 </div>
 </div></div>
 <div class="col-md-9" role="main">
-<h2 id="single-node-all-in-one-virtual-performance">Single-node (all-in-one virtual) performance</h2>
+<h2 id="single-node-all-in-one-cnf-performance">Single-node (all-in-one cnf) performance</h2>
 <p>All hosts/loxiLB/end-point nodes are simulated with docker pods inside a single node. The topology is as follows :</p>
 <div class="mermaid">graph LR;
     A[100.100.100.1]--&gt;B[loxilb VIP-20.20.20.1];
@@ -225,16 +225,16 @@ func main() {
 <td>6048</td>
 </tr>
 <tr>
-<td>iperf</td>
-<td>21Gbps</td>
-<td>19.5Gbps</td>
-<td>16Gbps</td>
-</tr>
-<tr>
 <td>qperf(LAT)</td>
 <td>12.31 us</td>
 <td>15.9us</td>
 <td>24.75us</td>
+</tr>
+<tr>
+<td>iperf</td>
+<td>43.5Gbps</td>
+<td>41.2Gbps</td>
+<td>34.4Gbps</td>
 </tr>
 </tbody>
 </table>
@@ -268,18 +268,19 @@ func main() {
 </tr>
 <tr>
 <td>iperf</td>
-<td>34Gbps</td>
-<td>32Gbps</td>
-<td>29Gbps</td>
-<td>12.5Gbps</td>
+<td>456Gbps</td>
+<td>402Gbps</td>
+<td>374Gbps</td>
+<td>91Gbps</td>
 </tr>
 </tbody>
 </table>
 <ul>
 <li>loxilb provides ~10% increase in most of the performance parameters while there is a big gain in CPS</li>
 <li>loxilb's CPS is limited only by the fact that this is a single node scenario with shared resources</li>
-<li>"loopback" here refers to client and server running in the same docker/container. There is only a single end-point in this scenario, so the RPS measurements are lower.</li>
+<li>"loopback" here refers to client and server running in the same docker/container. This is supposed to be the best case scenario but there is only a single end-point, so the RPS measurements are lower.</li>
 <li>Please refer to this <a href="https://community.f5.com/t5/technical-articles/understanding-performance-metrics-and-network-traffic/ta-p/286109">article</a> for a good explanation of performance metrics</li>
+<li>iperf is run with 100 threads</li>
 </ul></div>
 </div>
 </div>
