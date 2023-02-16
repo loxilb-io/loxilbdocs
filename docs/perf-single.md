@@ -75,5 +75,5 @@ We also run other popular tools like iperf, qperf along with wrk for the above t
 
 ### Watch the video
 
-[![Watch the video](https://img.youtube.com/vi/lXMCtrN7e7s/maxresdefault.jpg)](https://www.youtube.com/watch?v=lXMCtrN7e7s)
+[![Watch the video](https://img.youtube.com/vi/MJXcM0x6IeQ/maxresdefault.jpg)](https://www.youtube.com/watch?v=MJXcM0x6IeQ)
 
