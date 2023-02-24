@@ -354,8 +354,8 @@ retries(int): Number of retries before marking endPoint inactive\</p>
 <pre><code># loxicmd create endpoint IP [--desc=&lt;desc&gt;] [--probetype=&lt;probetype&gt;] [--probereq=&lt;probereq&gt;] [--proberesp=&lt;proberesp&gt;] [--probeport=&lt;port&gt;] [--period=&lt;period&gt;] [--retries=&lt;retries&gt;]
 loxicmd create endpoint 32.32.32.1 --desc=zone1host --probetype=https --probeport=8080 --probereq=&quot;health&quot; --proberesp=&quot;OK&quot; --period=60 --retries=2
 </code></pre>
-<p><strong><em>Note:</em></strong> loxilb requires CA certificate for HTTPS connection. Admin can keep a common(default) CA certificate for all the endpoints at "/opt/loxilb/cert/rootCACert.pem" or per-endpoint certificates can be kept as "/opt/loxilb/cert/\&lt;IP>/rootCACert.pem"
-Please see <a href="https://github.com/jsha/minica">Minica</a> or <a href="https://github.com/square/certstrap">Certstrap</a> to know how to generate certificates. Currently, the https probe does not support mTLS and the server is not able to reverse validate loxilb's identity.</p>
+<p><strong><em>Note:</em></strong> loxilb requires CA certificate for TLS connection and private certificate and private key for mTLS connection. Admin can keep a common(default) CA certificate for all the endpoints at "/opt/loxilb/cert/rootCA.crt" or per-endpoint certificates can be kept as "/opt/loxilb/cert/\&lt;IP>/rootCA.crt", private key must be kept at "/opt/loxilb/cert/server.key" and private certificate at "/opt/loxilb/cert/server.crt".
+Please see <a href="https://github.com/jsha/minica">Minica</a> or <a href="https://github.com/square/certstrap">Certstrap</a> or <a href="https://github.com/loxilb-io/loxilb/tree/main/cicd/httpsep">this</a> CICD test case to know how to generate certificates.</p>
 <h5 id="endpoint-yaml-example">Endpoint yaml example</h5>
 <pre><code>apiVersion: netlox/v1
 kind: Endpoint
