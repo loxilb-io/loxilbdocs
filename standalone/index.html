@@ -241,7 +241,7 @@ sudo dpkg -i loxilb_0.8.3-amd64.deb
 <p><img alt="standalone" src="../photos/standalone.png" /></p>
 <p>The configuration can be simply done as follows:   </p>
 <pre><code>ip addr add 3ffe::1/64 dev enp0s3
-ip addr add 2001::1/128 dev lo   ## Not 2001::1 is the LB service VIP
+ip addr add 2001::1/128 dev lo   ## Note 2001::1 is the LB service VIP
 ip addr add 33.33.33.254/24 dev enp0s5
 </code></pre>
 <p>Any other required configuration can be done in a similar way. Now, let's create a LB entry by using the command:   </p>
@@ -264,7 +264,7 @@ ip addr add 33.33.33.254/24 dev enp0s5
 </code></pre>
 <p>Copy this file to actual config file used by gobgp :   </p>
 <pre><code>sudo mkdir -p /etc/gobgp/
-sudo gobgp.conf cp -f /etc/gobgp/gobgp.conf
+sudo cp -f gobgp.conf /etc/gobgp/gobgp.conf
 </code></pre>
 <p>The gobgp daemon should pick the configuration. The neighbors can be verified by :</p>
 <pre><code>gobgp neighbor
