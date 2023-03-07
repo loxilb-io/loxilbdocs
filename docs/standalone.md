@@ -38,7 +38,7 @@ In this example, the loxilb node has two interfaces -  enp0s3 and enp0s5. “enp
 The configuration can be simply done as follows:   
 ```
 ip addr add 3ffe::1/64 dev enp0s3
-ip addr add 2001::1/128 dev lo   ## Not 2001::1 is the LB service VIP
+ip addr add 2001::1/128 dev lo   ## Note 2001::1 is the LB service VIP
 ip addr add 33.33.33.254/24 dev enp0s5
 ```
 Any other required configuration can be done in a similar way. Now, let's create a LB entry by using the command:   
@@ -70,7 +70,7 @@ loxilb works in tandem with gobgp when bgp services  are required. As a first st
 Copy this file to actual config file used by gobgp :   
 ```
 sudo mkdir -p /etc/gobgp/
-sudo gobgp.conf cp -f /etc/gobgp/gobgp.conf
+sudo cp -f gobgp.conf /etc/gobgp/gobgp.conf
 ```
 
 The gobgp daemon should pick the configuration. The neighbors can be verified by :
