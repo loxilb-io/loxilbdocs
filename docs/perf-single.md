@@ -1,6 +1,6 @@
-## Single-node (all-in-one cnf) performance 
+## Single-node performance 
 
-All hosts/loxiLB/end-point nodes are simulated with docker pods inside a single node. The topology is as follows :
+The hosts/LB/end-points are run in docker pods inside a single node. The topology is as follows :
 
 ```mermaid
 graph LR;
@@ -52,7 +52,7 @@ We also run other popular tools like netperf, iperf along with wrk for the above
 
 **RPS** - requests per seconds. Given a fixed number of connections, this denotes how many requests/message per second can be supported    
 **CPS** - connections per second. This denotes how many new TCP connection setup/teardowns can be supported per second and hence one of the most important indicators of load-balancer performance     
-**CRR** - connect/request/response. This is same as CPS but netperf tool uses this term as part of its test scenario       
+**CRR** - connect/request/response. This is same as CPS but netperf tool uses this term to refer to CPS as part of its test scenario       
 **RR** - request/response. This is another netperf test option. We used it to measure min and mean latency   
 
 The results are as follows :
