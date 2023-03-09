@@ -53,7 +53,7 @@ We also run other popular tools like netperf, iperf along with wrk for the above
 **RPS** - requests per seconds. Given a fixed number of connections, this denotes how many requests/message per second can be supported    
 **CPS** - connections per second. This denotes how many new TCP connection setup/teardowns can be supported per second and hence one of the most important indicators of load-balancer performance     
 **CRR** - connect/request/response. This is same as CPS but netperf tool uses this term to refer to CPS as part of its test scenario       
-**RR** - request/response. This is another netperf test option. We used it to measure min and mean latency   
+**RR** - request/response. This is another netperf test option. We used it to measure min and avg latency   
 
 The results are as follows :
 
@@ -65,7 +65,7 @@ The results are as follows :
 |wrk(CPS)| n/a  | 7020  |  6048 |
 |netperf(CRR)| n/a| 11674 | 9901|
 |netperf(RR min)|12.31 us  |15.2us   |  19.75us  |
-|netperf(RR mean)|61.27 us  |78.1us   |  131us  |
+|netperf(RR avg)|61.27 us  |78.1us   |  131us  |
 |iperf   | 43.5Gbps  |41.2Gbps   | 34.4Gbps  |
 
 #### Case 2. System Configuration - Intel(R) Xeon(R) Silver 4210R CPU @ 2.40GHz, 40-core, 124GB RAM, Kernel 5.15.0-52-generic
