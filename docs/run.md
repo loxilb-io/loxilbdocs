@@ -5,7 +5,7 @@
 * Install GoLang > v1.17
 
 ```
-wget https://go.dev/dl/go1.18.linux-amd64.tar.gz && tar -xzf go1.18.linux-amd64.tar.gz --directory /usr/local/
+wget https://go.dev/dl/go1.18.linux-amd64.tar.gz && sudo tar -xzf go1.18.linux-amd64.tar.gz --directory /usr/local/
 export PATH="${PATH}:/usr/local/go/bin"
 ```
 
