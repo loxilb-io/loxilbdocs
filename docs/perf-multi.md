@@ -39,56 +39,31 @@ sequenceDiagram
     
 ```
 
-We use wrk HTTP benchmarking tool for this test as well. This is run inside the client "100.100.100.1" host.
-```
-root@loxilb:/home/loxilb # wrk -t8 -c400 -d30s http://20.20.20.1:2020/
-Running 30s test @ http://20.20.20.1:2020/
-  8 threads and 400 connections
-  Thread Stats   Avg      Stdev     Max   +/- Stdev
-    Latency     2.44ms   10.58ms 222.86ms   99.14%
-    Req/Sec    39.06k     4.90k   57.34k    64.62%
-  9331956 requests in 30.07s, 667.47MB read
-Requests/sec: 310364.26
-Transfer/sec:     22.20MB
-```
+We run popular tool **netperf** for the above topology. A quick explanation of terminologies used :
 
-## Comparision with [LVS](https://en.wikipedia.org/wiki/Linux_Virtual_Server)
+**RPS** - requests per seconds. Given a fixed number of connections, this denotes how many requests/message per second can be supported    
+**CPS** - connections per second. This denotes how many new TCP connection setup/teardowns can be supported per second and hence one of the most important indicators of load-balancer performance     
+**CRR** - connect/request/response. This is same as CPS but netperf tool uses this term to refer to CPS as part of its test scenario       
+**RR** - request/response. This is another netperf test option. We used it to measure min and avg latency   
 
-LVS is based on linux kernel networking and is a popular open-source load-balancer. Comparision with LVS will show us how eBPF can improve on linux kernel networking
+We are comparing **loxilb** with **ipvs** and **haproxy**. The results are as follows :
+System Configuration - Intel(R) Xeon(R) Silver 4210R CPU @ 2.40GHz, 40-core, 124GB RAM, Kernel 5.15.0-52-generic
 
-ipvsadm configuration(Check [here](https://dev.to/douglasmakey/how-to-setup-simple-load-balancing-with-ipvs-demo-with-docker-4j1d) for more details)
-```
-root@1167483bd551:/# ip addr add 20.20.20.1/32 dev lo
-root@1167483bd551:/# ipvsadm -A -t 20.20.20.1:2020 -s rr
-root@1167483bd551:/# ipvsadm -a -t 20.20.20.1:2020 -r 17.17.17.1:5001 -m
-root@1167483bd551:/# ipvsadm -a -t 20.20.20.1:2020 -r 31.31.31.1:5001 -m
-root@1167483bd551:/# ipvsadm -a -t 20.20.20.1:2020 -r 32.32.32.1:5001 -m
-```
+### Connections per second (TCP_CRR)
+![Connections per second](photos/netperf_cps.png)
 
-We use wrk HTTP benchmarking tool for this test as well. This is run inside the client "100.100.100.1" host.
-```
-root@loxilb:/home/loxilb # wrk -t8 -c400 -d30s http://20.20.20.1:2020/
-Running 30s test @ http://20.20.20.1:2020/
-  8 threads and 400 connections
-  Thread Stats   Avg      Stdev     Max   +/- Stdev
-    Latency     3.81ms   17.66ms 222.32ms   98.02%
-    Req/Sec    37.35k     3.72k  115.09k    72.18%
-  8925647 requests in 30.10s, 638.41MB read
-Requests/sec: 296537.63
-Transfer/sec:     21.21MB
-```
+### Requests per second (TCP_RR)
+![Requests per second](photos/netperf_rps.png)
 
-ipvsadm statistics
-```
-root@1167483bd551:/# ipvsadm -l --stats
-IP Virtual Server version 1.2.1 (size=4096)
-Prot LocalAddress:Port               Conns   InPkts  OutPkts  InBytes OutBytes
-  -> RemoteAddress:Port
-TCP  20.20.20.1:2020                   401  8939187  8953980  830843K    1135M
-  -> 17.17.17.1:5001                   134  3026088  3031335  281255K  384268K
-  -> 1.31.31.31.dyn.idknet.com:50      133  2959491  2964454  275069K  375809K
-  -> 32.32.32.1:5001                   134  2953608  2958191  274518K  375034K
-```
+### Minimum Latency
+![Minimum Latency](photos/netperf_min_lat.png)
 
-## Conclusion
-loxilb's latency is 2.44 ms which is much less as compared to 3.81 ms in case of LVS. Number of Requests handled per second is 39.06K with loxilb, better than 37.35K with LVS.
+### Average Latency
+![Average Latency](photos/netperf_avg_lat.png)
+
+#### Conclusion/Notes -   
+
+* loxilb provides enhanced performance across the spectrum of tests.  There is a noticeable gain in CPS.
+* loxilb's CPS scales linearly with number of cores
+* haproxy version used - 2.0.29
+* netperf test scripts can be found [here](https://github.com/loxilb-io/loxilb/tree/main/cicd/tcplbcps)
