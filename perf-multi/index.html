@@ -177,7 +177,7 @@
     B--&gt;D[32.32.32.1];
     B--&gt;E[17.17.17.1];
 </div>
-<p>All the services (hosts and end-points) run in one server and loxilb runs in a separate dedicated server. loxilb server specs used - 
+<p>All the services (hosts and end-points) run in separate servers and loxilb runs in a separate dedicated server. loxilb server specs used - 
 <em>Intel(R) Xeon(R) Silver 4210R CPU @ 2.40GHz - 40 core RAM 125GB</em>. The description of test-tools and usage can be found <a href="docs/perf-single.md">here</a>. The following command can be used to configure lb for the given topology:</p>
 <pre><code># loxicmd create lb 20.20.20.1 --tcp=2020:5001 --endpoints=31.31.31.1:1,32.32.32.1:1,17.17.17.1:1
 </code></pre>
@@ -205,8 +205,8 @@ sequenceDiagram
 <strong>CPS</strong> - connections per second. This denotes how many new TCP connection setup/teardowns can be supported per second and hence one of the most important indicators of load-balancer performance   <br/>
 <strong>CRR</strong> - connect/request/response. This is same as CPS but netperf tool uses this term to refer to CPS as part of its test scenario     <br/>
 <strong>RR</strong> - request/response. This is another netperf test option. We used it to measure min and avg latency   </p>
-<p>We are comparing <strong>loxilb</strong> with <strong>ipvs</strong> and <strong>haproxy</strong>. The results are as follows :
-System Configuration - Intel(R) Xeon(R) Silver 4210R CPU @ 2.40GHz, 40-core, 124GB RAM, Kernel 5.15.0-52-generic</p>
+<p>We are comparing <strong>loxilb</strong> with <strong>ipvs</strong> and <strong>haproxy</strong>.</p>
+<p>The results are as follows :</p>
 <h3 id="connections-per-second-tcp_crr">Connections per second (TCP_CRR)</h3>
 <p><img alt="Connections per second" src="../photos/netperf_cps.png"/></p>
 <h3 id="requests-per-second-tcp_rr">Requests per second (TCP_RR)</h3>
