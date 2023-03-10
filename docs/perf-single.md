@@ -75,6 +75,8 @@ The results are as follows :
 |wrk(RPS) |406953| 421746  | 388021  |217004  |
 |wrk(CPS)| n/a  | 45064  |  24400 |22000 |
 |netperf(CRR)| n/a| 375k | 174k| 21k|
+|netperf(RR min)| n/a | 12 us  |15us   |  27us  |
+|netperf(RR avg)| n/a | 15.78 us  |18.25us   |  35.76us  |
 |iperf   | 456Gbps  |402Gbps   | 374Gbps  |91Gbps  |
 
 #### Conclusion/Notes -   
