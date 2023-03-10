@@ -165,14 +165,6 @@
 <ul class="nav flex-column">
 </ul>
 </li>
-<li class="nav-item" data-level="2"><a class="nav-link" href="#comparision-with-lvs">Comparision with LVS</a>
-<ul class="nav flex-column">
-</ul>
-</li>
-<li class="nav-item" data-level="2"><a class="nav-link" href="#conclusion">Conclusion</a>
-<ul class="nav flex-column">
-</ul>
-</li>
 </ul>
 </div>
 </div></div>
@@ -208,49 +200,28 @@ sequenceDiagram
     loxilb--&gt;&gt;ServiceB_PodZ: 102.102.102.1-&gt;17.17.17.1
 
 </div>
-<p>We use wrk HTTP benchmarking tool for this test as well. This is run inside the client "100.100.100.1" host.</p>
-<pre><code>root@loxilb:/home/loxilb # wrk -t8 -c400 -d30s http://20.20.20.1:2020/
-Running 30s test @ http://20.20.20.1:2020/
-  8 threads and 400 connections
-  Thread Stats   Avg      Stdev     Max   +/- Stdev
-    Latency     2.44ms   10.58ms 222.86ms   99.14%
-    Req/Sec    39.06k     4.90k   57.34k    64.62%
-  9331956 requests in 30.07s, 667.47MB read
-Requests/sec: 310364.26
-Transfer/sec:     22.20MB
-</code></pre>
-<h2 id="comparision-with-lvs">Comparision with <a href="https://en.wikipedia.org/wiki/Linux_Virtual_Server">LVS</a></h2>
-<p>LVS is based on linux kernel networking and is a popular open-source load-balancer. Comparision with LVS will show us how eBPF can improve on linux kernel networking</p>
-<p>ipvsadm configuration(Check <a href="https://dev.to/douglasmakey/how-to-setup-simple-load-balancing-with-ipvs-demo-with-docker-4j1d">here</a> for more details)</p>
-<pre><code>root@1167483bd551:/# ip addr add 20.20.20.1/32 dev lo
-root@1167483bd551:/# ipvsadm -A -t 20.20.20.1:2020 -s rr
-root@1167483bd551:/# ipvsadm -a -t 20.20.20.1:2020 -r 17.17.17.1:5001 -m
-root@1167483bd551:/# ipvsadm -a -t 20.20.20.1:2020 -r 31.31.31.1:5001 -m
-root@1167483bd551:/# ipvsadm -a -t 20.20.20.1:2020 -r 32.32.32.1:5001 -m
-</code></pre>
-<p>We use wrk HTTP benchmarking tool for this test as well. This is run inside the client "100.100.100.1" host.</p>
-<pre><code>root@loxilb:/home/loxilb # wrk -t8 -c400 -d30s http://20.20.20.1:2020/
-Running 30s test @ http://20.20.20.1:2020/
-  8 threads and 400 connections
-  Thread Stats   Avg      Stdev     Max   +/- Stdev
-    Latency     3.81ms   17.66ms 222.32ms   98.02%
-    Req/Sec    37.35k     3.72k  115.09k    72.18%
-  8925647 requests in 30.10s, 638.41MB read
-Requests/sec: 296537.63
-Transfer/sec:     21.21MB
-</code></pre>
-<p>ipvsadm statistics</p>
-<pre><code>root@1167483bd551:/# ipvsadm -l --stats
-IP Virtual Server version 1.2.1 (size=4096)
-Prot LocalAddress:Port               Conns   InPkts  OutPkts  InBytes OutBytes
-  -&gt; RemoteAddress:Port
-TCP  20.20.20.1:2020                   401  8939187  8953980  830843K    1135M
-  -&gt; 17.17.17.1:5001                   134  3026088  3031335  281255K  384268K
-  -&gt; 1.31.31.31.dyn.idknet.com:50      133  2959491  2964454  275069K  375809K
-  -&gt; 32.32.32.1:5001                   134  2953608  2958191  274518K  375034K
-</code></pre>
-<h2 id="conclusion">Conclusion</h2>
-<p>loxilb's latency is 2.44 ms which is much less as compared to 3.81 ms in case of LVS. Number of Requests handled per second is 39.06K with loxilb, better than 37.35K with LVS.</p></div>
+<p>We run popular tool <strong>netperf</strong> for the above topology. A quick explanation of terminologies used :</p>
+<p><strong>RPS</strong> - requests per seconds. Given a fixed number of connections, this denotes how many requests/message per second can be supported  <br/>
+<strong>CPS</strong> - connections per second. This denotes how many new TCP connection setup/teardowns can be supported per second and hence one of the most important indicators of load-balancer performance   <br/>
+<strong>CRR</strong> - connect/request/response. This is same as CPS but netperf tool uses this term to refer to CPS as part of its test scenario     <br/>
+<strong>RR</strong> - request/response. This is another netperf test option. We used it to measure min and avg latency   </p>
+<p>We are comparing <strong>loxilb</strong> with <strong>ipvs</strong> and <strong>haproxy</strong>. The results are as follows :
+System Configuration - Intel(R) Xeon(R) Silver 4210R CPU @ 2.40GHz, 40-core, 124GB RAM, Kernel 5.15.0-52-generic</p>
+<h3 id="connections-per-second-tcp_crr">Connections per second (TCP_CRR)</h3>
+<p><img alt="Connections per second" src="../photos/netperf_cps.png"/></p>
+<h3 id="requests-per-second-tcp_rr">Requests per second (TCP_RR)</h3>
+<p><img alt="Requests per second" src="../photos/netperf_rps.png"/></p>
+<h3 id="minimum-latency">Minimum Latency</h3>
+<p><img alt="Minimum Latency" src="../photos/netperf_min_lat.png"/></p>
+<h3 id="average-latency">Average Latency</h3>
+<p><img alt="Average Latency" src="../photos/netperf_avg_lat.png"/></p>
+<h4 id="conclusionnotes-">Conclusion/Notes -</h4>
+<ul>
+<li>loxilb provides enhanced performance across the spectrum of tests.  There is a noticeable gain in CPS.</li>
+<li>loxilb's CPS scales linearly with number of cores</li>
+<li>haproxy version used - 2.0.29</li>
+<li>netperf test scripts can be found <a href="https://github.com/loxilb-io/loxilb/tree/main/cicd/tcplbcps">here</a></li>
+</ul></div>
 </div>
 </div>
 <footer class="col-md-12">
