@@ -10,7 +10,7 @@ graph LR;
     B-->E[17.17.17.1];
 ```
 
- All the services (hosts and end-points) run in one server and loxilb runs in a separate dedicated server. loxilb server specs used - 
+ All the services (hosts and end-points) run in separate servers and loxilb runs in a separate dedicated server. loxilb server specs used - 
 *Intel(R) Xeon(R) Silver 4210R CPU @ 2.40GHz - 40 core RAM 125GB*. The description of test-tools and usage can be found [here](docs/perf-single.md). The following command can be used to configure lb for the given topology:
 
 ```
@@ -46,8 +46,9 @@ We run popular tool **netperf** for the above topology. A quick explanation of t
 **CRR** - connect/request/response. This is same as CPS but netperf tool uses this term to refer to CPS as part of its test scenario       
 **RR** - request/response. This is another netperf test option. We used it to measure min and avg latency   
 
-We are comparing **loxilb** with **ipvs** and **haproxy**. The results are as follows :
-System Configuration - Intel(R) Xeon(R) Silver 4210R CPU @ 2.40GHz, 40-core, 124GB RAM, Kernel 5.15.0-52-generic
+We are comparing **loxilb** with **ipvs** and **haproxy**.
+
+The results are as follows :
 
 ### Connections per second (TCP_CRR)
 ![Connections per second](photos/netperf_cps.png)
