@@ -1,220 +1,236 @@
 <!DOCTYPE html>
-
 <html lang="en">
-<head>
-<meta charset="utf-8"/>
-<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<link href="https://loxilb-io.github.io/loxilbdocs/perf-multi/" rel="canonical"/>
-<link href="../img/favicon.ico" rel="shortcut icon"/>
-<title>Perf multi - loxilb v0.8.3</title>
-<link href="../css/bootstrap.min.css" rel="stylesheet"/>
-<link href="../css/font-awesome.min.css" rel="stylesheet"/>
-<link href="../css/base.css" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" rel="stylesheet"/>
-<link href="../stylesheets/extra.css" rel="stylesheet"/>
-<script defer="" src="../js/jquery-1.10.2.min.js"></script>
-<script defer="" src="../js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-21G7NBL2BN"></script>
-<script>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/perf-multi/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Perf multi - loxilb v0.8.3</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link href="../stylesheets/extra.css" rel="stylesheet">
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-21G7NBL2BN"></script>
+        <script>
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
 
           gtag('config', 'G-21G7NBL2BN');
-        </script>
-</head>
-<body>
-<div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
-<div class="container">
-<a class="navbar-brand" href="..">loxilb v0.8.3</a>
-<!-- Expander button -->
-<button class="navbar-toggler" data-target="#navbar-collapse" data-toggle="collapse" type="button">
-<span class="navbar-toggler-icon"></span>
-</button>
-<!-- Expanded navigation -->
-<div class="navbar-collapse collapse" id="navbar-collapse">
-<!-- Main navigation -->
-<ul class="nav navbar-nav">
-<li class="navitem">
-<a class="nav-link" href="..">Home</a>
-</li>
-<li class="dropdown">
-<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">How-To Guides <b class="caret"></b></a>
-<ul class="dropdown-menu">
+        </script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">loxilb v0.8.3</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">How-To Guides <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
 <li>
-<a class="dropdown-item" href="../run/">How-To - build/run</a>
+    <a href="../run/" class="dropdown-item">How-To - build/run</a>
 </li>
+                                    
 <li>
-<a class="dropdown-item" href="../cmd/">How-To - configuration</a>
+    <a href="../cmd/" class="dropdown-item">How-To - configuration</a>
 </li>
+                                    
 <li>
-<a class="dropdown-item" href="../kube-loxilb/">How-To - kube-loxilb</a>
+    <a href="../kube-loxilb/" class="dropdown-item">How-To - kube-loxilb</a>
 </li>
+                                    
 <li>
-<a class="dropdown-item" href="../ccm/">How-To - ccm plugin</a>
+    <a href="../ccm/" class="dropdown-item">How-To - ccm plugin</a>
 </li>
+                                    
 <li>
-<a class="dropdown-item" href="../debugging/">How-To - debug</a>
+    <a href="../debugging/" class="dropdown-item">How-To - debug</a>
 </li>
+                                    
 <li>
-<a class="dropdown-item" href="../integrate_bgp_eng/">How-To - loxilb with calico bgp</a>
+    <a href="../integrate_bgp_eng/" class="dropdown-item">How-To - loxilb with calico bgp</a>
 </li>
+                                    
 <li>
-<a class="dropdown-item" href="../standalone/">How-To - loxilb in standalone mode</a>
+    <a href="../standalone/" class="dropdown-item">How-To - loxilb in standalone mode</a>
 </li>
+                                    
 <li>
-<a class="dropdown-item" href="../api/">How-To - loxilb Web-APIs</a>
+    <a href="../api/" class="dropdown-item">How-To - loxilb Web-APIs</a>
 </li>
-</ul>
-</li>
-<li class="dropdown">
-<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Knowledge Base <b class="caret"></b></a>
-<ul class="dropdown-menu">
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Knowledge Base <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
 <li>
-<a class="dropdown-item" href="../ebpf/">What is eBPF</a>
+    <a href="../ebpf/" class="dropdown-item">What is eBPF</a>
 </li>
+                                    
 <li>
-<a class="dropdown-item" href="../lb/">What is k8s service - load-balancer</a>
+    <a href="../lb/" class="dropdown-item">What is k8s service - load-balancer</a>
 </li>
+                                    
 <li>
-<a class="dropdown-item" href="../arch/">Architecture in brief</a>
+    <a href="../arch/" class="dropdown-item">Architecture in brief</a>
 </li>
+                                    
 <li>
-<a class="dropdown-item" href="../code/">Code organization</a>
+    <a href="../code/" class="dropdown-item">Code organization</a>
 </li>
+                                    
 <li>
-<a class="dropdown-item" href="../loxilbebpf/">eBPF internals</a>
+    <a href="../loxilbebpf/" class="dropdown-item">eBPF internals</a>
 </li>
+                                    
 <li>
-<a class="dropdown-item" href="../nat/">NAT Modes of loxilb</a>
+    <a href="../nat/" class="dropdown-item">NAT Modes of loxilb</a>
 </li>
+                                    
 <li>
-<a class="dropdown-item" href="../cmd-dev/">Developer's guide to loxicmd</a>
+    <a href="../cmd-dev/" class="dropdown-item">Developer's guide to loxicmd</a>
 </li>
+                                    
 <li>
-<a class="dropdown-item" href="../api-dev/">Developer's guide to loxilb API</a>
+    <a href="../api-dev/" class="dropdown-item">Developer's guide to loxilb API</a>
 </li>
+                                    
 <li>
-<a class="dropdown-item" href="../perf/">Performance Report</a>
+    <a href="../perf/" class="dropdown-item">Performance Report</a>
 </li>
+                                    
 <li>
-<a class="dropdown-item" href="../roadmap/">Development Roadmap</a>
+    <a href="../roadmap/" class="dropdown-item">Development Roadmap</a>
 </li>
+                                    
 <li>
-<a class="dropdown-item" href="../contribute/">Contribution Guide</a>
+    <a href="../contribute/" class="dropdown-item">Contribution Guide</a>
 </li>
+                                    
 <li>
-<a class="dropdown-item" href="../requirements/">System Requirements</a>
+    <a href="../requirements/" class="dropdown-item">System Requirements</a>
 </li>
+                                    
 <li>
-<a class="dropdown-item" href="../faq/">Frequenctly Asked Questions- FAQs</a>
+    <a href="../faq/" class="dropdown-item">Frequenctly Asked Questions- FAQs</a>
 </li>
-</ul>
-</li>
-<li class="dropdown">
-<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Blogs <b class="caret"></b></a>
-<ul class="dropdown-menu">
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Blogs <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
 <li>
-<a class="dropdown-item" href="https://www.loxilb.io/post/loxilb-anycast-service-load-balancing-with-high-availability">Hyperscale anycast load balancing with HA</a>
+    <a href="https://www.loxilb.io/post/loxilb-anycast-service-load-balancing-with-high-availability" class="dropdown-item">Hyperscale anycast load balancing with HA</a>
 </li>
+                                    
 <li>
-<a class="dropdown-item" href="https://www.loxilb.io/post/loxilb-load-balancer-setup-on-eks">Getting started with loxilb on Amazon EKS</a>
+    <a href="https://www.loxilb.io/post/loxilb-load-balancer-setup-on-eks" class="dropdown-item">Getting started with loxilb on Amazon EKS</a>
 </li>
+                                    
 <li>
-<a class="dropdown-item" href="https://www.loxilb.io/post/k8s-deploying-hitless-and-ha-load-balancing">K8s - Deploying hitless Load-Balancing</a>
+    <a href="https://www.loxilb.io/post/k8s-deploying-hitless-and-ha-load-balancing" class="dropdown-item">K8s - Deploying hitless Load-Balancing</a>
 </li>
+                                    
 <li>
-<a class="dropdown-item" href="https://www.loxilb.io/post/k8s-exposing-ipv4-services-externally-as-ipv6">Ipv6 migration in Kubernetes made easy</a>
+    <a href="https://www.loxilb.io/post/k8s-exposing-ipv4-services-externally-as-ipv6" class="dropdown-item">Ipv6 migration in Kubernetes made easy</a>
 </li>
-<li class="dropdown-submenu">
-<a class="dropdown-item" href="#">Community Posts</a>
-<ul class="dropdown-menu">
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Community Posts</a>
+    <ul class="dropdown-menu">
+            
 <li>
-<a class="dropdown-item" href="https://futuredon.medium.com/5g-sctp-loadbalancer-using-loxilb-b525198a9103">5G SCTP LoadBalancer Using loxilb</a>
+    <a href="https://futuredon.medium.com/5g-sctp-loadbalancer-using-loxilb-b525198a9103" class="dropdown-item">5G SCTP LoadBalancer Using loxilb</a>
 </li>
+            
 <li>
-<a class="dropdown-item" href="https://futuredon.medium.com/5g-uplink-classifier-using-loxilb-7593a4d66f4c">5G Uplink Classifier Using loxilb</a>
+    <a href="https://futuredon.medium.com/5g-uplink-classifier-using-loxilb-7593a4d66f4c" class="dropdown-item">5G Uplink Classifier Using loxilb</a>
 </li>
+            
 <li>
-<a class="dropdown-item" href="https://cloudybytes.medium.com/k3s-using-loxilb-as-external-service-lb-2ea4ce61e159">K3s - Using loxilb as external service lb</a>
+    <a href="https://cloudybytes.medium.com/k3s-using-loxilb-as-external-service-lb-2ea4ce61e159" class="dropdown-item">K3s - Using loxilb as external service lb</a>
 </li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<ul class="nav navbar-nav ml-auto">
-</ul>
-</div>
-</div>
-</div>
-<div class="container">
-<div class="row">
-<div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
-<div class="navbar-header">
-<button class="navbar-toggler collapsed" data-target="#toc-collapse" data-toggle="collapse" title="Table of Contents" type="button">
-<span class="fa fa-angle-down"></span>
-</button>
-</div>
-<div class="navbar-collapse collapse card bg-secondary" id="toc-collapse">
-<ul class="nav flex-column">
-<li class="nav-item" data-level="2"><a class="nav-link" href="#bare-metal-performance">Bare-Metal Performance</a>
-<ul class="nav flex-column">
-</ul>
-</li>
-</ul>
-</div>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="2"><a href="#bare-metal-performance" class="nav-link">Bare-Metal Performance</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
 </div></div>
-<div class="col-md-9" role="main">
+                    <div class="col-md-9" role="main">
+
 <h2 id="bare-metal-performance">Bare-Metal Performance</h2>
 <p>The topology for this test is as follows :</p>
-<div class="mermaid">graph LR;
-    A[100.100.100.1]--&gt;B[loxilb VIP-20.20.20.1];
-    B--&gt;C[31.31.31.1];
-    B--&gt;D[32.32.32.1];
-    B--&gt;E[33.33.33.1];
-</div>
-<p>In this test, all the hosts, end-points and load-balancer run in separate dedicated servers. Server specs used - 
+<p><img alt="LB Test" src="../photos/LBTest.png" /></p>
+<p>In this test, all the hosts, end-points and load-balancer run in separate dedicated servers/nodes. Server specs used - 
 <em>Intel(R) Xeon(R) Silver 4210R CPU @ 2.40GHz - 40 core RAM 125GB, Kernel 5.15.0-52-generic</em>. The following command can be used to configure loxilb for the given topology:</p>
 <pre><code># loxicmd create lb 20.20.20.1 --tcp=2020:5001 --endpoints=31.31.31.1:1,32.32.32.1:1,33.33.33.1:1
 </code></pre>
-<p>The default mode of LoxiLB is RR(round-robin) and the traffic distribution will be as follows:</p>
-<div class="mermaid">
-sequenceDiagram
-    participant ClientB1
-    participant ClientB2
-    participant ClientB3
-    participant loxilb
-    participant ServiceB_PodX
-    participant ServiceB_PodY
-    participant ServiceB_PodZ
-    ClientB1-&gt;&gt;loxilb: 100.100.100.1-&gt;20.20.20.1
-    ClientB2-&gt;&gt;loxilb: 101.101.101.1-&gt;20.20.20.1
-    ClientB3-&gt;&gt;loxilb: 102.102.102.1-&gt;20.20.20.1
-    Note right of loxilb: Distribute the traffic in Round Robin fashion(default)!
-    loxilb--&gt;&gt;ServiceB_PodX: 100.100.100.1-&gt;31.31.31.1
-    loxilb--&gt;&gt;ServiceB_PodY: 101.101.101.1-&gt;32.32.32.1
-    loxilb--&gt;&gt;ServiceB_PodZ: 102.102.102.1-&gt;33.33.33.1
-
-</div>
+<p>The default mode of LoxiLB is RR(round-robin) while other popular distribution modes such as consistent hash(<a href="https://medium.com/swlh/deep-dive-into-maglev-googles-load-balancer-f5fa943d578c">Maglev</a>), <a href="https://en.wikipedia.org/wiki/Weighted_round_robin">WRR</a> etc are also supported.</p>
 <p>We run popular tool <strong><a href="https://github.com/HewlettPackard/netperf">netperf</a></strong> for the above topology. A quick explanation of terminologies used :</p>
-<p><strong>RPS</strong> - requests per seconds. Given a fixed number of connections, this denotes how many requests/message per second can be supported  <br/>
-<strong>CPS</strong> - connections per second. This denotes how many new TCP connection setup/teardowns can be supported per second and hence one of the most important indicators of load-balancer performance   <br/>
-<strong>CRR</strong> - connect/request/response. This is same as CPS but netperf tool uses this term to refer to CPS as part of its test scenario     <br/>
+<p><strong>RPS</strong> - requests per seconds. Given a fixed number of connections, this denotes how many requests/message per second can be supported  <br />
+<strong>CPS</strong> - connections per second. This denotes how many new TCP connection setup/teardowns can be supported per second and hence one of the most important indicators of load-balancer performance   <br />
+<strong>CRR</strong> - connect/request/response. This is same as CPS but netperf tool uses this term to refer to CPS as part of its test scenario     <br />
 <strong>RR</strong> - request/response. This is another netperf test option. We used it to measure min and avg latency   </p>
 <p>We are comparing <strong>loxilb</strong> with <strong>ipvs</strong> and <strong>haproxy</strong>. </p>
 <p>The results are as follows :</p>
 <h3 id="connections-per-second-tcp_crr">Connections per second (TCP_CRR)</h3>
-<p><img alt="Connections per second" src="../photos/netperf_cps.png"/></p>
+<p><img alt="Connections per second" src="../photos/netperf_cps.png" /></p>
 <h3 id="requests-per-second-tcp_rr">Requests per second (TCP_RR)</h3>
-<p><img alt="Requests per second" src="../photos/netperf_rps.png"/></p>
+<p><img alt="Requests per second" src="../photos/netperf_rps.png" /></p>
 <h3 id="minimum-latency">Minimum Latency</h3>
-<p><img alt="Minimum Latency" src="../photos/netperf_min_lat.png"/></p>
+<p><img alt="Minimum Latency" src="../photos/netperf_min_lat.png" /></p>
 <h3 id="average-latency">Average Latency</h3>
-<p><img alt="Average Latency" src="../photos/netperf_avg_lat.png"/></p>
+<p><img alt="Average Latency" src="../photos/netperf_avg_lat.png" /></p>
 <h4 id="conclusionnotes-">Conclusion/Notes -</h4>
 <ul>
 <li>loxilb provides enhanced performance across the spectrum of tests.  There is a noticeable gain in CPS.</li>
@@ -222,56 +238,59 @@ sequenceDiagram
 <li>haproxy version used - 2.0.29</li>
 <li>netperf test scripts can be found <a href="https://github.com/loxilb-io/loxilb/tree/main/cicd/tcplbcps">here</a></li>
 </ul></div>
-</div>
-</div>
-<footer class="col-md-12">
-<hr/>
-<p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
-</footer>
-<script>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
             var base_url = "..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-<script defer="" src="../js/base.js"></script>
-<div aria-hidden="true" aria-labelledby="keyboardModalLabel" class="modal" id="mkdocs_keyboard_modal" role="dialog" tabindex="-1">
-<div class="modal-dialog">
-<div class="modal-content">
-<div class="modal-header">
-<h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
-<button class="close" data-dismiss="modal" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+        <script src="../js/base.js" defer></script>
+
+        <div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
 </div>
-<div class="modal-body">
-<table class="table">
-<thead>
-<tr>
-<th style="width: 20%;">Keys</th>
-<th>Action</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="help shortcut"><kbd>?</kbd></td>
-<td>Open this help</td>
-</tr>
-<tr>
-<td class="next shortcut"><kbd>n</kbd></td>
-<td>Next page</td>
-</tr>
-<tr>
-<td class="prev shortcut"><kbd>p</kbd></td>
-<td>Previous page</td>
-</tr>
-<tr>
-<td class="search shortcut"><kbd>s</kbd></td>
-<td>Search</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="modal-footer">
-</div>
-</div>
-</div>
-</div>
-<script src="https://unpkg.com/mermaid@8.8.0/dist/mermaid.min.js"></script><script>mermaid.initialize({});</script></body>
+
+    </body>
 </html>
