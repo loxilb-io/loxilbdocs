@@ -41,14 +41,14 @@ The above code runs in each of the load-balancer end-points as following :
 go run ./webserver.go
 ```
 
-We use [wrk](https://github.com/wg/wrk) HTTP benchmarking tool for this test. This tool is run with the following parameters:
+[wrk](https://github.com/wg/wrk) based HTTP benchmarking is one of the tools used in this test. This tool is run with the following parameters:
 
 ```
 root@loxilb:/home/loxilb # wrk -t8 -c400 -d30s http://20.20.20.1:2020/
 ```
 - where t: No. of threads, c: No. of connections. d: Duration of test
 
-We also run other popular tools like netperf, iperf along with wrk for the above topology. A quick explanation of terminologies used :
+We also run other popular performance testing tools like [netperf](https://github.com/HewlettPackard/netperf), [iperf](https://iperf.fr/) along with wrk for the above topology. A quick explanation of terminologies used :
 
 **RPS** - requests per seconds. Given a fixed number of connections, this denotes how many requests/message per second can be supported    
 **CPS** - connections per second. This denotes how many new TCP connection setup/teardowns can be supported per second and hence one of the most important indicators of load-balancer performance     
