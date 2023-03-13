@@ -2,42 +2,15 @@
 
 The topology for this test is as follows :
 
-```mermaid
-graph LR;
-    A[100.100.100.1]-->B[loxilb VIP-20.20.20.1];
-    B-->C[31.31.31.1];
-    B-->D[32.32.32.1];
-    B-->E[33.33.33.1];
-```
+![LB Test](photos/LBTest.png)
 
- In this test, all the hosts, end-points and load-balancer run in separate dedicated servers. Server specs used - 
+In this test, all the hosts, end-points and load-balancer run in separate dedicated servers/nodes. Server specs used - 
 *Intel(R) Xeon(R) Silver 4210R CPU @ 2.40GHz - 40 core RAM 125GB, Kernel 5.15.0-52-generic*. The following command can be used to configure loxilb for the given topology:
 
 ```
 # loxicmd create lb 20.20.20.1 --tcp=2020:5001 --endpoints=31.31.31.1:1,32.32.32.1:1,33.33.33.1:1
 ```
-
-The default mode of LoxiLB is RR(round-robin) and the traffic distribution will be as follows:
-
-```mermaid
-    
-sequenceDiagram
-    participant ClientB1
-    participant ClientB2
-    participant ClientB3
-    participant loxilb
-    participant ServiceB_PodX
-    participant ServiceB_PodY
-    participant ServiceB_PodZ
-    ClientB1->>loxilb: 100.100.100.1->20.20.20.1
-    ClientB2->>loxilb: 101.101.101.1->20.20.20.1
-    ClientB3->>loxilb: 102.102.102.1->20.20.20.1
-    Note right of loxilb: Distribute the traffic in Round Robin fashion(default)!
-    loxilb-->>ServiceB_PodX: 100.100.100.1->31.31.31.1
-    loxilb-->>ServiceB_PodY: 101.101.101.1->32.32.32.1
-    loxilb-->>ServiceB_PodZ: 102.102.102.1->33.33.33.1
-    
-```
+The default mode of LoxiLB is RR(round-robin) while other popular distribution modes such as consistent hash([Maglev](https://medium.com/swlh/deep-dive-into-maglev-googles-load-balancer-f5fa943d578c)), [WRR](https://en.wikipedia.org/wiki/Weighted_round_robin) etc are also supported.
 
 We run popular tool **[netperf](https://github.com/HewlettPackard/netperf)** for the above topology. A quick explanation of terminologies used :
 
