@@ -1,22 +1,15 @@
 ## Single-node performance 
 
-The hosts/LB/end-points are run in docker pods inside a single node. The topology is as follows :
+The hosts/LB/end-points are run as docker pods inside a single server/node. The topology is as follows :
 
-```mermaid
-graph LR;
-    A[100.100.100.1]-->B[loxilb VIP-20.20.20.1];
-    B-->C[31.31.31.1];
-    B-->D[32.32.32.1];
-    B-->E[33.33.33.1];
-```
+![LB Single Test](photos/LBSingleTest.png)
 
-The testing is done with full stateful connection tracking enabled (non dsr mode). The following command can be used to configure lb for the given topology:
+The following command can be used to configure lb for the given topology:
 
 ```
 # loxicmd create lb 20.20.20.1 --tcp=2020:5001 --endpoints=31.31.31.1:1,32.32.32.1:1,33.33.33.1:1
 ```
-
-To create the above topology for testing loxilb, users can follow this [guide](simple_topo.md). A go webserver with an empty response is used for benchmark purposes. The code is as following :
+The testing is done with full stateful connection tracking enabled (non dsr mode).  To create the above topology for testing loxilb, users can follow this [guide](simple_topo.md). A go webserver with an empty response is used for benchmark purposes. The code is as following :
 
 ```
 package main
