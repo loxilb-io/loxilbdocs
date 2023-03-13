@@ -175,37 +175,37 @@
     A[100.100.100.1]--&gt;B[loxilb VIP-20.20.20.1];
     B--&gt;C[31.31.31.1];
     B--&gt;D[32.32.32.1];
-    B--&gt;E[17.17.17.1];
+    B--&gt;E[33.33.33.1];
 </div>
-<p>All the services (hosts and end-points) run in separate servers and loxilb runs in a separate dedicated server. loxilb server specs used - 
-<em>Intel(R) Xeon(R) Silver 4210R CPU @ 2.40GHz - 40 core RAM 125GB</em>. The description of test-tools and usage can be found <a href="docs/perf-single.md">here</a>. The following command can be used to configure lb for the given topology:</p>
-<pre><code># loxicmd create lb 20.20.20.1 --tcp=2020:5001 --endpoints=31.31.31.1:1,32.32.32.1:1,17.17.17.1:1
+<p>In this test, all the hosts, end-points and load-balancer run in separate dedicated servers. Server specs used - 
+<em>Intel(R) Xeon(R) Silver 4210R CPU @ 2.40GHz - 40 core RAM 125GB, Kernel 5.15.0-52-generic</em>. The following command can be used to configure loxilb for the given topology:</p>
+<pre><code># loxicmd create lb 20.20.20.1 --tcp=2020:5001 --endpoints=31.31.31.1:1,32.32.32.1:1,33.33.33.1:1
 </code></pre>
-<p>In default RR mode of LoxiLB, the traffic distribution will be as follows:</p>
+<p>The default mode of LoxiLB is RR(round-robin) and the traffic distribution will be as follows:</p>
 <div class="mermaid">
 sequenceDiagram
-    participant ServiceA1
-    participant ServiceA2
-    participant ServiceA3
+    participant ClientB1
+    participant ClientB2
+    participant ClientB3
     participant loxilb
     participant ServiceB_PodX
     participant ServiceB_PodY
     participant ServiceB_PodZ
-    ServiceA1-&gt;&gt;loxilb: 100.100.100.1-&gt;20.20.20.1
-    ServiceA2-&gt;&gt;loxilb: 101.101.101.1-&gt;20.20.20.1
-    ServiceA3-&gt;&gt;loxilb: 102.102.102.1-&gt;20.20.20.1
+    ClientB1-&gt;&gt;loxilb: 100.100.100.1-&gt;20.20.20.1
+    ClientB2-&gt;&gt;loxilb: 101.101.101.1-&gt;20.20.20.1
+    ClientB3-&gt;&gt;loxilb: 102.102.102.1-&gt;20.20.20.1
     Note right of loxilb: Distribute the traffic in Round Robin fashion(default)!
     loxilb--&gt;&gt;ServiceB_PodX: 100.100.100.1-&gt;31.31.31.1
     loxilb--&gt;&gt;ServiceB_PodY: 101.101.101.1-&gt;32.32.32.1
-    loxilb--&gt;&gt;ServiceB_PodZ: 102.102.102.1-&gt;17.17.17.1
+    loxilb--&gt;&gt;ServiceB_PodZ: 102.102.102.1-&gt;33.33.33.1
 
 </div>
-<p>We run popular tool <strong>netperf</strong> for the above topology. A quick explanation of terminologies used :</p>
+<p>We run popular tool <strong><a href="https://github.com/HewlettPackard/netperf">netperf</a></strong> for the above topology. A quick explanation of terminologies used :</p>
 <p><strong>RPS</strong> - requests per seconds. Given a fixed number of connections, this denotes how many requests/message per second can be supported  <br/>
 <strong>CPS</strong> - connections per second. This denotes how many new TCP connection setup/teardowns can be supported per second and hence one of the most important indicators of load-balancer performance   <br/>
 <strong>CRR</strong> - connect/request/response. This is same as CPS but netperf tool uses this term to refer to CPS as part of its test scenario     <br/>
 <strong>RR</strong> - request/response. This is another netperf test option. We used it to measure min and avg latency   </p>
-<p>We are comparing <strong>loxilb</strong> with <strong>ipvs</strong> and <strong>haproxy</strong>.</p>
+<p>We are comparing <strong>loxilb</strong> with <strong>ipvs</strong> and <strong>haproxy</strong>. </p>
 <p>The results are as follows :</p>
 <h3 id="connections-per-second-tcp_crr">Connections per second (TCP_CRR)</h3>
 <p><img alt="Connections per second" src="../photos/netperf_cps.png"/></p>
