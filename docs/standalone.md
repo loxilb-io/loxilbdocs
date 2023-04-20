@@ -25,8 +25,8 @@ sysctl net.ipv6.conf.default.disable_ipv6=0
 ### Install loxilb 
 
 ```
-wget https://github.com/loxilb-io/loxilb/releases/download/v0.8.3/loxilb_0.8.3-amd64.deb
-sudo dpkg -i loxilb_0.8.3-amd64.deb
+wget https://github.com/loxilb-io/loxilb/releases/download/v0.8.4/loxilb_0.8.4-amd64.deb
+sudo dpkg -i loxilb_0.8.4-amd64.deb
 ```
 
 ### Setup and Configuration
