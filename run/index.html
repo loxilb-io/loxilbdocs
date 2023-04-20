@@ -307,7 +307,8 @@ docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -
 docker network connect bridge loxilb
 docker network connect llbnet2 loxilb --ip=172.30.2.195
 </code></pre>
-<p><em>Note - While working with macvlan interfaces, the parent/underlying interface should be put in promiscous mode</em></p>
+<p><em>Note1 - While working with macvlan interfaces, the parent/underlying interface should be put in promiscous mode</em> <br />
+<em>Note2 - One can further use docker-compose to automate attaching multiple networks to loxilb docker or use --net=host as per requirement</em>   </p>
 <p><b>To create a simple and self-contained topology for testing loxilb, users can follow this <a href="../simple_topo/">guide</a></b></p></div>
             </div>
         </div>
