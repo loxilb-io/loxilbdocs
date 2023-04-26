@@ -5,13 +5,18 @@
 * Install GoLang > v1.17
 
 ```
-wget https://go.dev/dl/go1.18.linux-amd64.tar.gz && sudo tar -xzf go1.18.linux-amd64.tar.gz --directory /usr/local/
+wget https://go.dev/dl/go1.19.linux-amd64.tar.gz && sudo tar -xzf go1.19.linux-amd64.tar.gz --directory /usr/local/
 export PATH="${PATH}:/usr/local/go/bin"
 ```
 
 * Install standard packages
 ```
-apt install -y clang llvm libelf-dev gcc-multilib libpcap-dev vim net-tools linux-tools-$(uname -r) elfutils dwarves git libbsd-dev bridge-utils wget unzip build-essential bison flex iproute2
+sudo apt install -y clang llvm libelf-dev gcc-multilib libpcap-dev vim net-tools linux-tools-$(uname -r) elfutils dwarves git libbsd-dev bridge-utils wget unzip build-essential bison flex iproute2
+```
+
+For Ubuntu 22.04 users:
+```
+sudo apt install -y clang-13
 ```
 
 * Build custom iproute2 package. (loxilb  requires a special version of [iproute2](https://github.com/shemminger/iproute2) tool for its operation. The customized repository can be found [here](https://github.com/loxilb-io/iproute2). loxilb needs some patches to iproute's tc module to properly load/unload its ebpf modules
@@ -39,8 +44,8 @@ make
 cd loxilb-ebpf/libbpf/src
 sudo make install
 cd -
-mkdir -p /opt/loxilb/cert/
-cp api/certification/server.* /opt/loxilb/cert/
+sudo mkdir -p /opt/loxilb/cert/
+sudo cp api/certification/server.* /opt/loxilb/cert/
 sudo ./loxilb 
 ```
 * Build and use loxicmd 
