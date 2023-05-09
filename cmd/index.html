@@ -315,10 +315,11 @@
 <p>Load-balancer config with active endpoint monitoring</p>
 <pre><code>loxicmd create lb 20.20.20.1 --tcp=2020:8080 --endpoints=31.31.31.1:1,32.32.32.1:1 --monitor
 </code></pre>
-<p><strong> By default loxilb does not do active endpoint monitoring i.e it will continue to select end-points which might be inactive <br />
-</strong> This is due to the fact kubernetes also has its own service monitoring mechanism  <br />
-<strong> Based on user's requirements, one can specify active endpoint checks using "--monitor" flag <br />
-</strong> loxilb has extensive endpoint monitoring methods. Further details can be found in endpoint <a href="&quot;https://github.com/loxilb-io/loxilbdocs/edit/main/docs/cmd.md#endpoint">section</a>   </p>
+<p><strong>Note:</strong> 
+- By default loxilb does not do active endpoint monitoring i.e it will continue to select end-points which might be inactive <br />
+- This is due to the fact kubernetes also has its own service monitoring mechanism and it can notify loxilb of any such endpoint health state  <br />
+- Based on user's requirements, one can specify active endpoint checks using "--monitor" flag <br />
+- loxilb has extensive endpoint monitoring methods. Further details can be found in endpoint <a href="&quot;https://github.com/loxilb-io/loxilbdocs/edit/main/docs/cmd.md#endpoint">section</a>   </p>
 <h5 id="load-balancer-yaml-example">Load-balancer yaml example</h5>
 <pre><code>apiVersion: netlox/v1
 kind: Loadbalancer
