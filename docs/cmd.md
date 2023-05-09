@@ -110,6 +110,17 @@ Load-balancer config in DSR(direct-server return) mode
 ```
 loxicmd create lb 20.20.20.1 --tcp=2020:8080 --endpoints=31.31.31.1:1,32.32.32.1:1 --mode=dsr
 ```
+
+Load-balancer config with active endpoint monitoring
+```
+loxicmd create lb 20.20.20.1 --tcp=2020:8080 --endpoints=31.31.31.1:1,32.32.32.1:1 --monitor
+```    
+** By default loxilb does not do active endpoint monitoring i.e it will continue to select end-points which might be inactive   
+** This is due to the fact kubernetes also has its own service monitoring mechanism    
+** Based on user's requirements, one can specify active endpoint checks using "--monitor" flag   
+** loxilb has extensive endpoint monitoring methods. Further details can be found in endpoint [section]("https://github.com/loxilb-io/loxilbdocs/edit/main/docs/cmd.md#endpoint)   
+
+
 ##### Load-balancer yaml example
 ```
 apiVersion: netlox/v1
@@ -149,14 +160,15 @@ loxicmd get ep
 # loxicmd create endpoint IP [--desc=<desc>] [--probetype=<probetype>] [--probereq=<probereq>] [--proberesp=<proberesp>] [--probeport=<port>] [--period=<period>] [--retries=<retries>]
 loxicmd create endpoint 32.32.32.1 --desc=zone1host --probetype=http --probeport=8080 --period=60 --retries=2
 ```
-IP(string) : Endpoint target IPaddress\
-desc(string) : Description of and end-point\
-probetype(string): Probe-type:ping,http,https,connect-udp,connect-tcp,connect-sctp,none\
-probereq(string): If probe is http/https, one can specify additional uri path\
-proberesp(string): If probe is http/https, one can specify custom response string\
-probeport(int): If probe is http,https,tcp,udp,sctp one can specify custom l4port to use\
-period(int): Period of probing\
-retries(int): Number of retries before marking endPoint inactive\
+IP(string) : Endpoint target IPaddress   
+desc(string) : Description of and end-point   
+probetype(string): Probe-type:ping,http,https,connect-udp,connect-tcp,connect-sctp,none   
+probereq(string): If probe is http/https, one can specify additional uri path   
+proberesp(string): If probe is http/https, one can specify custom response string   
+probeport(int): If probe is http,https,tcp,udp,sctp one can specify custom l4port to use   
+period(int): Period of probing   
+retries(int): Number of retries before marking endPoint inactive   
+
 #### Create end-point with https probing information
 ```
 # loxicmd create endpoint IP [--desc=<desc>] [--probetype=<probetype>] [--probereq=<probereq>] [--proberesp=<proberesp>] [--probeport=<port>] [--period=<period>] [--retries=<retries>]
@@ -196,10 +208,10 @@ loxicmd get session
 #loxicmd create session <userID> <sessionIP> --accessNetworkTunnel=<TeID>:<TunnelIP> --coreNetworkTunnel=<TeID>:<TunnelIP>
 loxicmd create session user1 192.168.20.1 --accessNetworkTunnel=1:1.232.16.1 coreNetworkTunnel=1:1.233.16.1
 ```
-userID(string): User Ident\
-sessionIP(string): Session IPaddress\
-accessNetworkTunnel(string): accessNetworkTunnel has pairs that can be specified as 'TeID:IP'\
-coreNetworkTunnel(string): coreNetworkTunnel has pairs that can be specified as 'TeID:IP'\
+userID(string): User Identifier   
+sessionIP(string): Session IPaddress   
+accessNetworkTunnel(string): accessNetworkTunnel has pairs that can be specified as 'TeID:IP'   
+coreNetworkTunnel(string): coreNetworkTunnel has pairs that can be specified as 'TeID:IP'   
 
 ##### Session yaml example
 ```
@@ -233,8 +245,8 @@ loxicmd get sessionulcl
 #loxicmd create sessionulcl <userID> --ulclArgs=<QFI>:<ulclIP>,...
 loxicmd create sessionulcl user1 --ulclArgs=16:192.33.125.1
 ```
-userID(string): User Ident\
-ulclArgs(string): Port pairs can be specified as 'QFI:UlClIP'\
+userID(string): User Identifier   
+ulclArgs(string): Port pairs can be specified as 'QFI:UlClIP'   
 
 ##### SessionUlCl yaml example
 ```
@@ -266,8 +278,8 @@ loxicmd get ip
 #loxicmd create ip <DeviceIPNet> <device>
 loxicmd create ip 192.168.0.1/24 eno7
 ```
-DeviceIPNet(string): Actual IP address with mask\
-device(string): name of the related device\
+DeviceIPNet(string): Actual IP address with mask   
+device(string): name of the related device   
 
 ##### IPaddress yaml example
 ```
@@ -296,8 +308,8 @@ loxicmd get fdb
 #loxicmd create fdb <MacAddress> <DeviceName>
 loxicmd create fdb aa:aa:aa:aa:bb:bb eno7
 ```
-MacAddress(string): mac address\
-DeviceName(string): name of the related device\
+MacAddress(string): mac address   
+DeviceName(string): name of the related device   
 
 ##### FDB yaml example
 ```
@@ -326,8 +338,8 @@ loxicmd get route
 #loxicmd create route <DestinationIPNet> <gateway>
 loxicmd create route 192.168.212.0/24 172.17.0.254
 ```
-DestinationIPNet(string): Actual IP address route with mask\
-gateway(string): gateway information if any\
+DestinationIPNet(string): Actual IP address route with mask   
+gateway(string): gateway information if any   
 
 ##### Route yaml example
 ```
@@ -356,9 +368,9 @@ loxicmd get neighbor
 #loxicmd create neighbor <DeviceIP> <DeviceName> [--macAddress=aa:aa:aa:aa:aa:aa]
 loxicmd create neighbor 192.168.0.1 eno7 --macAddress=aa:aa:aa:aa:aa:aa
 ```
-DeviceIP(string): The IP address\
-DeviceName(string): name of the related device\
-macAddress(string): resolved hardware address if any\
+DeviceIP(string): The IP address   
+DeviceName(string): name of the related device   
+macAddress(string): resolved hardware address if any   
 
 ##### Neighbor yaml example
 ```
@@ -399,9 +411,10 @@ Vid(int): vlan identifier
 loxicmd create vlanmember 100 eno7 --tagged=true
 loxicmd create vlanmember 100 eno7
 ```
-Vid(int): vlan identifier\
-DeviceName(string): name of the related device\
-tagged(boolean): tagged or not (default is false)\
+Vid(int): vlan identifier   
+DeviceName(string): name of the related device   
+tagged(boolean): tagged or not (default is false)   
+
 ##### Vlan yaml example
 ```
 apiVersion: netlox/v1
@@ -446,16 +459,16 @@ loxicmd get vxlanpeer
 #loxicmd create vxlan <VxlanID> <EndpointDeviceName>
 loxicmd create vxlan 100 eno7
 ```
-VxlanID(int): Vxlan Identifier\
-EndpointDeviceName(string): VTEP Device name(It must have own IP address for peering.)\
+VxlanID(int): Vxlan Identifier   
+EndpointDeviceName(string): VTEP Device name(It must have own IP address for peering)   
 
 
 ```
 #loxicmd create vxlanpeer <VxlanID> <PeerIP>
 loxicmd create vxlan-peer 100 30.1.3.1
 ```
-VxlanID(int):  Vxlan Identifier\
-PeerIP(string): Vxlan peer device IP address\
+VxlanID(int):  Vxlan Identifier   
+PeerIP(string): Vxlan peer device IP address   
 
 ##### Vxlan yaml example
 ```
@@ -500,18 +513,19 @@ loxicmd create firewall --firewallRule="sourceIP:1.2.3.2/32,destinationIP:2.3.1.
 loxicmd create firewall --firewallRule="sourceIP:1.2.3.2/32,destinationIP:2.3.1.2/32,preference:200" --allow --setmark=10
 loxicmd create firewall --firewallRule="sourceIP:1.2.3.2/32,destinationIP:2.3.1.2/32,preference:200" --drop
 loxicmd create firewall --firewallRule="sourceIP:1.2.3.2/32,destinationIP:2.3.1.2/32,preference:200" --trap
-loxicmd create firewall --firewallRule="sourceIP:1.2.3.2/32,destinationIP:2.3.1.2/32,preference:200" --redirect=hs1
+loxicmd create firewall --firewallRule="sourceIP:1.2.3.2/32,destinationIP:2.3.1.2/32,preference:200" --redirect=ensp0
 ```
 **firewallRule**
-sourceIP(string) - Source IP in CIDR notation\
-destinationIP(string) - Destination IP in CIDR notation\
-minSourcePort(int) - Minimum source port range\
-maxSourcePort(int) - Maximum source port range\
-minDestinationPort(int) - Minimum destination port range\
-maxDestinationPort(int) - Maximum source port range\
-protocol(int) - the protocol\
-portName(string) - the incoming port\
-preference(int) - User preference for ordering\
+sourceIP(string) - Source IP in CIDR notation   
+destinationIP(string) - Destination IP in CIDR notation   
+minSourcePort(int) - Minimum source port range   
+maxSourcePort(int) - Maximum source port range   
+minDestinationPort(int) - Minimum destination port range   
+maxDestinationPort(int) - Maximum source port range   
+protocol(int) - the protocol   
+portName(string) - the incoming port   
+preference(int) - User preference for ordering   
+
 ##### Firewall yaml example
 ```
 apiVersion: netlox/v1
@@ -541,15 +555,15 @@ loxicmd get mirror
 #### Create Mirror information
 ```
 #loxicmd create mirror <mirrorIdent> --mirrorInfo=<InfoOption>:<InfoValue>,... --targetObject=attachement:<port1,rule2>,mirrObjName:<ObjectName>
-loxicmd create mirror mirr-1 --mirrorInfo="type:0,port:hs0" --targetObject="attachement:1,mirrObjName:hs1
+loxicmd create mirror mirr-1 --mirrorInfo="type:0,port:ensp0" --targetObject="attachement:1,mirrObjName:ensp1
 ```
-mirrorIdent(string): Mirror identifier\
-type(int) : Mirroring type as like 0 == SPAN, 1 == RSPAN, 2 == ERSPAN\
-port(string) : The port where mirrored traffic needs to be sent\
-vlan(int) : for RSPAN we may need to send tagged mirror traffic\
-remoteIP(string) : For ERSPAN we may need to send tunnelled mirror traffic\
-sourceIP(string): For ERSPAN we may need to send tunnelled mirror traffic\
-tunnelID(int): For ERSPAN we may need to send tunnelled mirror traffic\
+mirrorIdent(string): Mirror identifier   
+type(int) : Mirroring type as like 0 == SPAN, 1 == RSPAN, 2 == ERSPAN    
+port(string) : The port where mirrored traffic needs to be sent   
+vlan(int) : for RSPAN we may need to send tagged mirror traffic   
+remoteIP(string) : For ERSPAN we may need to send tunnelled mirror traffic   
+sourceIP(string): For ERSPAN we may need to send tunnelled mirror traffic   
+tunnelID(int): For ERSPAN we may need to send tunnelled mirror traffic   
 
 ##### Mirror yaml example
 ```
@@ -583,16 +597,16 @@ loxicmd get policy
 #### Create Policy information
 ```
 #loxicmd create policy IDENT --rate=<Peak>:<Commited> --target=<ObjectName>:<Attachment> [--block-size=<Excess>:<Committed>] [--color] [--pol-type=<policy type>]
-loxicmd create policy pol-hs0 --rate=100:100 --target=hs0:1
-loxicmd create policy pol-hs1 --rate=100:100 --target=hs0:1 --block-size=12000:6000
-loxicmd create policy pol-hs1 --rate=100:100 --target=hs0:1 --color
-loxicmd create policy pol-hs1 --rate=100:100 --target=hs0:1 --color --pol-type 0
+loxicmd create policy pol-0 --rate=100:100 --target=ensp0:1
+loxicmd create policy pol-1 --rate=100:100 --target=ensp0:1 --block-size=12000:6000
+loxicmd create policy pol-1 --rate=100:100 --target=ensp0:1 --color
+loxicmd create policy pol-1 --rate=100:100 --target=ensp0:1 --color --pol-type 0
 ```
-rate(string): Rate pairs can be specified as 'Peak:Commited'. *rate unit : Mbps\
-block-size(string): Block Size pairs can be specified as 'Excess:Committed'. *block-size unit : bps\
-target(string): Target Interface pairs can be specified as 'ObjectName:Attachment'\
-color(boolean): Policy color enbale or not\
-pol-type(int): Policy traffic control type. 0 : TrTCM, 1 : SrTCM\
+rate(string): Rate pairs can be specified as 'Peak:Commited'. *rate unit : Mbps   
+block-size(string): Block Size pairs can be specified as 'Excess:Committed'. *block-size unit : bps   
+target(string): Target Interface pairs can be specified as 'ObjectName:Attachment'   
+color(boolean): Policy color enbale or not   
+pol-type(int): Policy traffic control type. 0 : TrTCM, 1 : SrTCM   
 
 ##### Policy yaml example
 ```
@@ -615,7 +629,7 @@ spec:
 #### Delete Policy information
 ```
 #loxicmd delete policy <Polident>
-loxicmd delete policy pol-hs1
+loxicmd delete policy pol-1
 ```
 ---   
 ### Session Recorder
@@ -740,7 +754,7 @@ spec:
   ipAddress: 192.168.23.1/32
 ```
 
-If the URL has param such as adding vlanmember, it must have `metadata`. 
+If the URL has param such as adding vlan-member, it must have `metadata`. 
 ```
 apiVersion: netlox/v1
 kind: VlanMember
@@ -758,7 +772,4 @@ The example of all the settings below, so please refer to it.
 There are tons of other commands, use help option!
 ```
 loxicmd help
-```
-
-
-
+```   
