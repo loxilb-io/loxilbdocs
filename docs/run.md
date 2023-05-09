@@ -67,6 +67,11 @@ loxicmd usage guide can be found [here](https://loxilb-io.github.io/loxilbdocs/c
 docker pull ghcr.io/loxilb-io/loxilb:latest
 ```
 
+For Ubuntu 22.04 users:    
+```
+docker pull ghcr.io/loxilb-io/loxilb:latestu22
+```
+
 * To run loxilb docker, we can use the following commands :
 
 ```
