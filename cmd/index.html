@@ -285,8 +285,9 @@
 <p>Simple NAT44 tcp (round-robin) load-balancer</p>
 <pre><code>loxicmd create lb 1.1.1.1 --tcp=1828:1920 --endpoints=2.2.3.4:1
 </code></pre>
-<p><strong> Please note that round-robin is default mode in loxilb  <br />
-</strong> End-point format is specified as &lt;CIDR:weight&gt;. For round-robin, weight(1) has no significance.</p>
+<p><strong><em>Note:</em></strong> <br />
+- Round-robin is default mode in loxilb  <br />
+- End-point format is specified as &lt;CIDR:weight&gt;. For round-robin, weight(1) has no significance.</p>
 <p>NAT66 (round-robin) load-balancer</p>
 <pre><code>loxicmd create lb  2001::1 --tcp=2020:8080 --endpoints=4ffe::1:1,5ffe::1:1,6ffe::1:1
 </code></pre>
@@ -308,14 +309,16 @@
 <p>Load-balancer with fullnat mode</p>
 <pre><code>loxicmd create lb 88.88.88.1 --sctp=38412:38412 --endpoints=192.168.70.3:1 --mode=fullnat
 </code></pre>
-<p>** For more information on  one-arm and full-nat mode, please check this <a href="https://github.com/loxilb-io/loxilbdocs/blob/main/docs/nat.md">post</a></p>
+<ul>
+<li>For more information on  one-arm and full-nat mode, please check this <a href="https://github.com/loxilb-io/loxilbdocs/blob/main/docs/nat.md">post</a></li>
+</ul>
 <p>Load-balancer config in DSR(direct-server return) mode</p>
 <pre><code>loxicmd create lb 20.20.20.1 --tcp=2020:8080 --endpoints=31.31.31.1:1,32.32.32.1:1 --mode=dsr
 </code></pre>
 <p>Load-balancer config with active endpoint monitoring</p>
 <pre><code>loxicmd create lb 20.20.20.1 --tcp=2020:8080 --endpoints=31.31.31.1:1,32.32.32.1:1 --monitor
 </code></pre>
-<p><strong>Note:</strong> 
+<p><strong><em>Note:</em></strong>  <br />
 - By default loxilb does not do active endpoint monitoring i.e it will continue to select end-points which might be inactive <br />
 - This is due to the fact kubernetes also has its own service monitoring mechanism and it can notify loxilb of any such endpoint health state  <br />
 - Based on user's requirements, one can specify active endpoint checks using "--monitor" flag <br />
