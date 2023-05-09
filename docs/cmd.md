@@ -67,8 +67,9 @@ Simple NAT44 tcp (round-robin) load-balancer
 ```
 loxicmd create lb 1.1.1.1 --tcp=1828:1920 --endpoints=2.2.3.4:1
 ```
-** Please note that round-robin is default mode in loxilb    
-** End-point format is specified as &lt;CIDR:weight&gt;. For round-robin, weight(1) has no significance.
+***Note:***   
+- Round-robin is default mode in loxilb    
+- End-point format is specified as &lt;CIDR:weight&gt;. For round-robin, weight(1) has no significance.
 
 NAT66 (round-robin) load-balancer
 ```
@@ -104,7 +105,7 @@ Load-balancer with fullnat mode
 ```
 loxicmd create lb 88.88.88.1 --sctp=38412:38412 --endpoints=192.168.70.3:1 --mode=fullnat
 ```
-** For more information on  one-arm and full-nat mode, please check this [post](https://github.com/loxilb-io/loxilbdocs/blob/main/docs/nat.md)
+- For more information on  one-arm and full-nat mode, please check this [post](https://github.com/loxilb-io/loxilbdocs/blob/main/docs/nat.md)
 
 Load-balancer config in DSR(direct-server return) mode
 ```
@@ -115,7 +116,7 @@ Load-balancer config with active endpoint monitoring
 ```
 loxicmd create lb 20.20.20.1 --tcp=2020:8080 --endpoints=31.31.31.1:1,32.32.32.1:1 --monitor
 ```    
-**Note:** 
+***Note:***    
 - By default loxilb does not do active endpoint monitoring i.e it will continue to select end-points which might be inactive   
 - This is due to the fact kubernetes also has its own service monitoring mechanism and it can notify loxilb of any such endpoint health state    
 - Based on user's requirements, one can specify active endpoint checks using "--monitor" flag   
