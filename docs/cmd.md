@@ -159,11 +159,11 @@ loxicmd get ep
 ```
 #### Create end-point for health probing
 ```
-# loxicmd create endpoint IP [--desc=<desc>] [--probetype=<probetype>] [--probereq=<probereq>] [--proberesp=<proberesp>] [--probeport=<port>] [--period=<period>] [--retries=<retries>]
-loxicmd create endpoint 32.32.32.1 --desc=zone1host --probetype=http --probeport=8080 --period=60 --retries=2
+# loxicmd create endpoint IP [--name=<id>] [--probetype=<probetype>] [--probereq=<probereq>] [--proberesp=<proberesp>] [--probeport=<port>] [--period=<period>] [--retries=<retries>]
+loxicmd create endpoint 32.32.32.1 --probetype=http --probeport=8080 --period=60 --retries=2
 ```
 IP(string) : Endpoint target IPaddress   
-desc(string) : Description of and end-point   
+name(string) : Endpoint Identifier   
 probetype(string): Probe-type:ping,http,https,connect-udp,connect-tcp,connect-sctp,none   
 probereq(string): If probe is http/https, one can specify additional uri path   
 proberesp(string): If probe is http/https, one can specify custom response string   
@@ -171,10 +171,30 @@ probeport(int): If probe is http,https,tcp,udp,sctp one can specify custom l4por
 period(int): Period of probing   
 retries(int): Number of retries before marking endPoint inactive   
 
+***Note:*** "name" is not required when endpoint is created initially. loxilb will allocate the name which can be checked with "loxicmd get ep". "name" can be given as an Identifier when user wants to modify endpoint probe parameters.
+```
+loxicmd create endpoint 32.32.32.1 --probetype=http --probeport=8080 --period=60 --retries=2
+
+loxicmd get ep
+|    HOST    |         NAME         | PTYPE | PORT | DURATION | RETRIES | MINDELAY | AVGDELAY | MAXDELAY | STATE |
+|------------|----------------------|-------|------|----------|---------|----------|----------|----------|-------|
+| 32.32.32.1 | 32.32.32.1_http_8080 | http: | 8080 |       60 |       2 | 0s       | 0s       | 0s       | ok    |
+
+# Modify duration and retry count using name
+
+loxicmd create endpoint 32.32.32.1 --name=32.32.32.1_http_8080 --probetype=http --probeport=8080 --period=40 --retries=4
+
+loxicmd get ep
+|    HOST    |         NAME         | PTYPE | PORT | DURATION | RETRIES | MINDELAY | AVGDELAY  | MAXDELAY  | STATE |
+|------------|----------------------|-------|------|----------|---------|----------|-----------|-----------|-------|
+| 32.32.32.1 | 32.32.32.1_http_8080 | http: | 8080 |       40 |       4 | 0s       | 0s        | 0s        | ok    |
+
+```
+
 #### Create end-point with https probing information
 ```
-# loxicmd create endpoint IP [--desc=<desc>] [--probetype=<probetype>] [--probereq=<probereq>] [--proberesp=<proberesp>] [--probeport=<port>] [--period=<period>] [--retries=<retries>]
-loxicmd create endpoint 32.32.32.1 --desc=zone1host --probetype=https --probeport=8080 --probereq="health" --proberesp="OK" --period=60 --retries=2
+# loxicmd create endpoint IP [--name=<id>] [--probetype=<probetype>] [--probereq=<probereq>] [--proberesp=<proberesp>] [--probeport=<port>] [--period=<period>] [--retries=<retries>]
+loxicmd create endpoint 32.32.32.1 --probetype=https --probeport=8080 --probereq="health" --proberesp="OK" --period=60 --retries=2
 ```
 ***Note:*** loxilb requires CA certificate for TLS connection and private certificate and private key for mTLS connection. Admin can keep a common(default) CA certificate for all the endpoints at "/opt/loxilb/cert/rootCA.crt" or per-endpoint certificates can be kept as "/opt/loxilb/cert/\<IP\>/rootCA.crt", private key must be kept at "/opt/loxilb/cert/server.key" and private certificate at "/opt/loxilb/cert/server.crt".
 Please see [Minica](https://github.com/jsha/minica) or [Certstrap](https://github.com/square/certstrap) or [this](https://github.com/loxilb-io/loxilb/tree/main/cicd/httpsep) CICD test case to know how to generate certificates.
