@@ -30,15 +30,15 @@ args:
 ```
 
 The arguments have the following meaning :    
-* loxiURL : API server address of loxilb. This is the docker IP address loxilb docker of Step 1.   
-* externalCIDR : CIDR or IPAddress range to allocate addresses from. By default address allocated are shared for different services(Shared Mode)    
-* monitor : Enable liveness probe for the LB end-points (default : unset)    
-* setBGP : Use BGP to advertise this service (default :false). Please check [here](https://github.com/loxilb-io/loxilbdocs/blob/main/docs/integrate_bgp_eng.md) how it works.    
-* setLBMode : 0, 1, 2   
+- loxiURL : API server address of loxilb. This is the docker IP address loxilb docker of Step 1.   
+- externalCIDR : CIDR or IPAddress range to allocate addresses from. By default address allocated are shared for different services(Shared Mode)    
+- monitor : Enable liveness probe for the LB end-points (default : unset)    
+- setBGP : Use BGP to advertise this service (default :false). Please check [here](https://github.com/loxilb-io/loxilbdocs/blob/main/docs/integrate_bgp_eng.md) how it works.    
+- setLBMode : 0, 1, 2   
   0 - default (only DNAT, preserves source-IP)       
   1 - onearm (source IP is changed to load balancer’s interface IP)     
   2 - fullNAT (sourceIP is changed to virtual IP)    
-* setUniqueIP : Allocate unique service-IP per LB service (default : false)   
+- setUniqueIP : Allocate unique service-IP per LB service (default : false)   
 
 4. Apply the following :
 ```
