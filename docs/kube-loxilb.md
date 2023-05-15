@@ -29,7 +29,7 @@ args:
         #- --setUniqueIP=false
 ```
 
-The arguments have the following meaning :
+The arguments have the following meaning :    
 * loxiURL : API server address of loxilb. This is the docker IP address loxilb docker of Step 1.   
 * externalCIDR : CIDR or IPAddress range to allocate addresses from. By default address allocated are shared for different services(Shared Mode)    
 * monitor : Enable liveness probe for the LB end-points (default : unset)    
