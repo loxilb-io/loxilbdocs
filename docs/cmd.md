@@ -164,7 +164,7 @@ loxicmd create endpoint 32.32.32.1 --probetype=http --probeport=8080 --period=60
 ```
 IP(string) : Endpoint target IPaddress   
 name(string) : Endpoint Identifier   
-probetype(string): Probe-type:ping,http,https,connect-udp,connect-tcp,connect-sctp,none   
+probetype(string): Probe-type:ping,http,https,udp,tcp,sctp,none   
 probereq(string): If probe is http/https, one can specify additional uri path   
 proberesp(string): If probe is http/https, one can specify custom response string   
 probeport(int): If probe is http,https,tcp,udp,sctp one can specify custom l4port to use   
