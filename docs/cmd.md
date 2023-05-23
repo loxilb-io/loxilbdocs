@@ -171,7 +171,19 @@ probeport(int): If probe is http,https,tcp,udp,sctp one can specify custom l4por
 period(int): Period of probing   
 retries(int): Number of retries before marking endPoint inactive   
 
-***Note:*** "name" is not required when endpoint is created initially. loxilb will allocate the name which can be checked with "loxicmd get ep". "name" can be given as an Identifier when user wants to modify endpoint probe parameters.
+***Notes:***   
+- "name" is not required when endpoint is created initially. loxilb will allocate the name which can be checked with "loxicmd get ep". "name" can be given as an Identifier when user wants to modify endpoint probe parameters    
+- Initial state of endpoint will be decided within 15 seconds of rule addition (We cant be sure if service is immediately up so this is the init liveness check timeout. It is not configurable at this time)    
+- After init liveness check, probes will be done as per default (60s) or whatever value is set by the user    
+- When endpoint is inactive we have internal logic and timeouts to minimize blocking calls and maintain stability. Only when endpoint is active, we use probe timeout given by user    
+- For UDP end-points and probe-type, there are two ways to check end-point health currently:    
+  - If the service can respond to probe requests with pre-defined responses sent over UDP, we can use the following :
+    ```
+    loxicmd create endpoint 172.1.217.133 --name="udpep1" --probetype=udp --probeport=32031 --period=60 --retries=2 --probereq="probe" --proberesp="hello"
+    ```
+  - If the services cannot support the above mechanism, loxilb will try to check for "ICMP Port unreachable" after sending UDP probes. If an "ICMP Port unreachable" is received, it means the endpoint is not up. 
+
+#### Examples :   
 ```
 loxicmd create endpoint 32.32.32.1 --probetype=http --probeport=8080 --period=60 --retries=2
 
