@@ -1,4 +1,4 @@
-site_name: loxilb v0.8.4
+site_name: loxilb v0.8.6
 site_url: https://loxilb-io.github.io/loxilbdocs 
 theme:
     name: mkdocs
@@ -44,7 +44,7 @@ nav:
         - K3s - Using loxilb as external service lb: https://cloudybytes.medium.com/k3s-using-loxilb-as-external-service-lb-2ea4ce61e159
   
 extra:
-    version: v0.8.4 (Latest)
+    version: v0.8.6 (Latest)
 
 extra_css:
   - stylesheets/extra.css
