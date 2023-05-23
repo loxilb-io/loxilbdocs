@@ -177,13 +177,13 @@ retries(int): Number of retries before marking endPoint inactive
 - After init liveness check, probes will be done as per default (60s) or whatever value is set by the user    
 - When endpoint is inactive we have internal logic and timeouts to minimize blocking calls and maintain stability. Only when endpoint is active, we use probe timeout given by user    
 - For UDP end-points and probe-type, there are two ways to check end-point health currently:    
-  - If the service can respond to probe requests with pre-defined responses sent over UDP, we can use the following :
+  - If the service can respond to probe requests with pre-defined responses sent over UDP, we can use the following :    
     ```
     loxicmd create endpoint 172.1.217.133 --name="udpep1" --probetype=udp --probeport=32031 --period=60 --retries=2 --probereq="probe" --proberesp="hello"
-    ```
+    ```    
   - If the services cannot support the above mechanism, loxilb will try to check for "ICMP Port unreachable" after sending UDP probes. If an "ICMP Port unreachable" is received, it means the endpoint is not up. 
 
-#### Examples :   
+##### Examples :   
 ```
 loxicmd create endpoint 32.32.32.1 --probetype=http --probeport=8080 --period=60 --retries=2
 
