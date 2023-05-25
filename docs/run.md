@@ -61,16 +61,19 @@ loxicmd usage guide can be found [here](https://loxilb-io.github.io/loxilbdocs/c
 
 ## From docker (easy)
 
-* Get the latest loxilb official docker image 
-
+#### Get the loxilb official docker image    
+* Stable Image   
+```
+docker pull ghcr.io/loxilb-io/loxilb:v0.8.6
+```   
+* Latest dev image (possibly unstable)
 ```
 docker pull ghcr.io/loxilb-io/loxilb:latest
-```
-
-For Ubuntu 22.04 users:    
+```   
+* Latest Ubuntu 22.04 image   
 ```
 docker pull ghcr.io/loxilb-io/loxilb:latestu22
-```
+```   
 
 * To run loxilb docker, we can use the following commands :
 
