@@ -27,6 +27,7 @@ args:
         #- --setBGP=false
         #- --setLBMode=1
         #- --setUniqueIP=false
+        #- --externalSecondaryCIDRs=124.124.124.1/24,125.125.125.1/24
 ```
 
 The arguments have the following meaning :    
@@ -39,6 +40,7 @@ The arguments have the following meaning :
   1 - onearm (source IP is changed to load balancer’s interface IP)     
   2 - fullNAT (sourceIP is changed to virtual IP)    
 - setUniqueIP : Allocate unique service-IP per LB service (default : false)   
+- externalSecondaryCIDRs: Secondary CIDR or IPAddress ranges to allocate addresses from in case of multi-homing support    
 
 4. Apply the following :
 ```
