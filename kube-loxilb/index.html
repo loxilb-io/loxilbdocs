@@ -250,6 +250,7 @@
         #- --setBGP=false
         #- --setLBMode=1
         #- --setUniqueIP=false
+        #- --externalSecondaryCIDRs=124.124.124.1/24,125.125.125.1/24
 </code></pre>
 <p>The arguments have the following meaning :  <br />
 - loxiURL : API server address of loxilb. This is the docker IP address loxilb docker of Step 1. <br />
@@ -260,7 +261,8 @@
   0 - default (only DNAT, preserves source-IP)     <br />
   1 - onearm (source IP is changed to load balancer’s interface IP)   <br />
   2 - fullNAT (sourceIP is changed to virtual IP)  <br />
-- setUniqueIP : Allocate unique service-IP per LB service (default : false)   </p>
+- setUniqueIP : Allocate unique service-IP per LB service (default : false) <br />
+- externalSecondaryCIDRs: Secondary CIDR or IPAddress ranges to allocate addresses from in case of multi-homing support    </p>
 <ol>
 <li>Apply the following :</li>
 </ol>
