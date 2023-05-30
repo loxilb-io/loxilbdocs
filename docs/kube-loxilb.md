@@ -55,12 +55,17 @@ kubectl get pods -A | grep kube-loxilb
 
 
 6. Finally to create service LB, we can use and apply the following template yaml 
-(<b>Note</b> -  Check *loadBalancerClass* annotation) :
+(<b>Note</b> -  Check *loadBalancerClass* and other *loxilb* specific annotation) :
 ```
 apiVersion: v1
 kind: Service
 metadata:
   name: iperf-service
+  annotations:
+   # If there is a need to do liveness check from loxilb
+   loxilb.io/liveness: "yes"
+   # Specify LB mode - one of default, onearm or fullnat 
+   loxilb.io/lbmode: "default"
 spec:
   loadBalancerClass: loxilb.io/loxilb
   selector:
