@@ -98,6 +98,9 @@ Users can change the above as per their needs.
 kubectl get svc
 ```
 
+For more example yaml templates, kindly refer to kube-loxilb's manifest [directory](https://github.com/loxilb-io/kube-loxilb/tree/main/manifest)   
+
+
 
 
 
