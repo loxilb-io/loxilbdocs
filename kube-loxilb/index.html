@@ -275,12 +275,17 @@
 </code></pre>
 <ol>
 <li>Finally to create service LB, we can use and apply the following template yaml 
-(<b>Note</b> -  Check <em>loadBalancerClass</em> annotation) :</li>
+(<b>Note</b> -  Check <em>loadBalancerClass</em> and other <em>loxilb</em> specific annotation) :</li>
 </ol>
 <pre><code>apiVersion: v1
 kind: Service
 metadata:
   name: iperf-service
+  annotations:
+   # If there is a need to do liveness check from loxilb
+   loxilb.io/liveness: &quot;yes&quot;
+   # Specify LB mode - one of default, onearm or fullnat 
+   loxilb.io/lbmode: &quot;default&quot;
 spec:
   loadBalancerClass: loxilb.io/loxilb
   selector:
