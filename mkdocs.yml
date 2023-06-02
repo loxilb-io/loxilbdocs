@@ -33,6 +33,7 @@ nav:
       - System Requirements: requirements.md
       - Frequenctly Asked Questions- FAQs: faq.md
   - Blogs:
+      - K8s - Introducing SCTP Multihoming with LoxiLB: https://www.loxilb.io/post/k8s-introducing-sctp-multihoming-functionality-with-loxilb
       - Hyperscale anycast load balancing with HA: https://www.loxilb.io/post/loxilb-anycast-service-load-balancing-with-high-availability
       - Getting started with loxilb on Amazon EKS: https://www.loxilb.io/post/loxilb-load-balancer-setup-on-eks
       - K8s - Deploying hitless Load-Balancing: https://www.loxilb.io/post/k8s-deploying-hitless-and-ha-load-balancing
