@@ -290,6 +290,11 @@ metadata:
    loxilb.io/liveness: &quot;yes&quot;
    # Specify LB mode - one of default, onearm or fullnat 
    loxilb.io/lbmode: &quot;default&quot;
+   # Specify loxilb IPAM mode - one of ipv4, ipv6 or ipv6to4 
+   loxilb.io/ipam: &quot;ipv4&quot;
+   # Specify number of secondary networks for multi-homing
+   # Only valid for SCTP currently
+   # loxilb.io/num-secondary-networks: &quot;2
 spec:
   loadBalancerClass: loxilb.io/loxilb
   selector:
