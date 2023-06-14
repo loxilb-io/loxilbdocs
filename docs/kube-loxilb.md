@@ -44,6 +44,8 @@ The arguments have the following meaning :
 - setUniqueIP : Allocate unique service-IP per LB service (default : false)   
 - externalSecondaryCIDRs: Secondary CIDR or IPAddress ranges to allocate addresses from in case of multi-homing support    
 
+Many of the above flags and arguments can be overriden on a per-service basis based on loxilb specific annotation as mentioned in section 6 below.      
+
 4. Apply the following :
 ```
 kubectl apply -f kube-loxilb.yaml
@@ -56,7 +58,7 @@ kubectl get pods -A | grep kube-loxilb
 ```
 
 
-6. Finally to create service LB, we can use and apply the following template yaml 
+6. Finally to create service LB, we can use and apply the following template yaml    
 (<b>Note</b> -  Check *loadBalancerClass* and other *loxilb* specific annotation) :
 ```
 apiVersion: v1
