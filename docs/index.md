@@ -12,31 +12,36 @@ loxilb started as a project to ease deployments of cloud-native/kubernetes workl
 
 However, for on-prem and edge deployments, there is no *service type - external load balancer* provider by default. For a long time, **MetalLB** originating from Google was the only choice for the needy. But edge services are a different ball game altogether due to the fact that there are so many exotic protocols in play like GTP, SCTP, SRv6 etc and integrating everything into a seamlessly working solution has been quite difficult.
 
-loxilb dev team was approached by many people who wanted to solve this problem. As a first step to solve the problem, it became apparent that networking stack provided by Linux kernel, although very solid,  really lacked the development process agility to quickly provide support for a wide variety of permutations and combinations of protocols and stateful load-balancing on them. Our search led us to the awesome tech developed by the Linux community - eBPF. The flexibility to introduce new functionality into Kernel as a sandbox program was a complete fit to our design philosophy. Although we did consider DPDK for a while, but the fact that it needs dedicated cores/CPUs really defeats the whole purpose of making energy-efficient edge architectures.
+loxilb dev team was approached by many people who wanted to solve this problem. As a first step to solve the problem, it became apparent that networking stack provided by Linux kernel, although very solid,  really lacked the development process agility to quickly provide support for a wide variety of permutations and combinations of protocols and stateful load-balancing on them. Our search led us to the awesome tech developed by the Linux community - eBPF. The flexibility to introduce new functionality into Kernel as a sandbox program was a complete fit to our design philosophy. Although we did consider DPDK for a while, but the fact that it needs dedicated cores/CPUs really defeats the whole purpose of making energy-efficient edge architectures.   
 
-During the journey of loxilb's development, we developed many other advanced connectivity/security/visibility features in it using eBPF which can be used for various other purposes not specific to load-balancer only. But we decided to stick our original name *loxilb* as load-balancing will continue to be its main purpose in the forseeable future. loxilb team hopes the open-source community finds it helpful.
+## What is loxilb
 
-## Aim/Goals
+loxilb is an open source hyper-scale software load-balancer for cloud-native workloads. It uses eBPF as its core-engine and is based on Golang. It is designed to power on-premise, edge and public-cloud Kubernetes cluster deployments.   
 
-loxilb aims to provide the following :
+###  🚀 loxilb aims to provide the following :   
 
-- Service type external load-balancer for kubernetes
-- L4/NAT stateful loadbalancer
-   - *NAT44, NAT66, NAT64 with One-ARM, FullNAT, DSR etc*
-   - *High-availability support*
-   - *Full compliance for K8s loadbalancer Spec*
-   - *High perf drop-in replacement for iptables/ipvs*
--  Optimized SRv6 implementation in eBPF  
--  L7 Proxy support  
--  Make GTP tunnels first class citizens of the Linux world  
-    - *Support for QFI and other extension headers*    
--  eBPF based data-path forwarding (Dual BSD/GPLv2 license)
-    - *Complete kernel networking bypass with home-grown stack for advanced features like [Conntrack](https://thermalcircle.de/doku.php?id=blog:linux:connection_tracking_1_modules_and_hooks), QoS etc* 
-    - *Highly scalable with low-latency & high througput*    
--  goLang based control plane components (Apache license)  
--  Seamless integration with goBGP based routing stack  
--  Easy to use APIs/Interfaces for developers
--  Cloud-Native Network Function (CNF) form-factor by default  
+- Service type external load-balancer for kubernetes   
+   * L4/NAT stateful loadbalancer   
+   * NAT44, NAT66, NAT64 with One-ARM, FullNAT, DSR etc   
+   * Support for TCP, UDP, SCTP (w/ multi-homing), FTP, TFTP etc   
+   * High-availability support with hitless/maglev clustering   
+   * Full compliance for K8s loadbalancer Spec   
+-  Extensive and scalable liveness probes for cloud-native environments
+-  High-perf replacement for the *aging* iptables/ipvs   
+-  L7 proxy support
+-  Telco/5G/6G friendly features
+   * GTP tunnels as first class citizens     
+   * Optimized SRv6 implementation   
+   * Support for UL-CL with LB, QFI and other extensions     
+
+### 🧿 loxilb is powered by :   
+- Bespoke GoLang based control plane components     
+- [eBPF](https://ebpf.io/) based data-path forwarding   
+   * Home-grown stack with advanced features like [Conntrack](https://thermalcircle.de/doku.php?id=blog:linux:connection_tracking_1_modules_and_hooks), QoS etc
+   * Complete kernel networking bypass    
+   * Highly scalable with low-latency & high throughput   
+- GoLang based easy to use APIs/Interfaces for developers   
+- Seamless integration with goBGP based routing stack    
 
 ## How-To Guides
 
