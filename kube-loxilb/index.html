@@ -269,6 +269,7 @@
   2 - fullNAT (sourceIP is changed to virtual IP)  <br />
 - setUniqueIP : Allocate unique service-IP per LB service (default : false) <br />
 - externalSecondaryCIDRs: Secondary CIDR or IPAddress ranges to allocate addresses from in case of multi-homing support    </p>
+<p>Many of the above flags and arguments can be overriden on a per-service basis based on loxilb specific annotation as mentioned in section 6 below.      </p>
 <ol>
 <li>Apply the following :</li>
 </ol>
@@ -280,7 +281,7 @@
 <pre><code>kubectl get pods -A | grep kube-loxilb
 </code></pre>
 <ol>
-<li>Finally to create service LB, we can use and apply the following template yaml 
+<li>Finally to create service LB, we can use and apply the following template yaml  <br />
 (<b>Note</b> -  Check <em>loadBalancerClass</em> and other <em>loxilb</em> specific annotation) :</li>
 </ol>
 <pre><code>apiVersion: v1
