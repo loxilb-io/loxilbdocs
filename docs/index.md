@@ -20,18 +20,19 @@ loxilb is an open source hyper-scale software load-balancer for cloud-native wor
 
 ###  🚀 loxilb aims to provide the following :   
 
-- Service type external load-balancer for kubernetes   
+- Service type load-balancer for kubernetes   
     * L4/NAT stateful loadbalancer   
     * NAT44, NAT66, NAT64 with One-ARM, FullNAT, DSR etc   
     * Support for TCP, UDP, SCTP (w/ multi-homing), FTP, TFTP etc   
     * High-availability support with hitless/maglev clustering   
-    * Full compliance for K8s loadbalancer Spec   
--  Extensive and scalable liveness probes for cloud-native environments
+    * Full compliance for K8s loadbalancer Spec
+    * Multi-cluster support      
+-  Extensive and scalable liveness probes for cloud-native environments    
 -  High-perf replacement for the *aging* iptables/ipvs   
--  L7 proxy support
--  Telco/5G/6G friendly features
+-  L7 proxy support   
+-  Telco/5G/6G friendly features    
     * GTP tunnels as first class citizens     
-    * Optimized SRv6 implementation   
+    * Optimized SRv6 implementation    
     * Support for UL-CL with LB, QFI and other extensions     
 
 ### 🧿 loxilb is powered by :   
