@@ -227,7 +227,11 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#090-mar-2023-planned" class="nav-link">0.9.0 (Mar, 2023) - Planned</a>
+            <li class="nav-item" data-level="2"><a href="#090-july-2023-planned" class="nav-link">0.9.0 (July, 2023) - Planned</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#095-oct-2023-planned" class="nav-link">0.9.5 (Oct, 2023) - Planned</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -240,70 +244,65 @@
 
 <h1 id="release-notes">Release Notes</h1>
 <h2 id="070-beta-aug-2022">0.7.0 beta (Aug, 2022)</h2>
-<p>Initial release of loxilb </p>
+<p>Initial release of loxilb     </p>
 <ul>
 <li>
-<p><strong>Functional Features</strong>:</p>
+<p><strong>Functional Features</strong>:    </p>
 <ul>
-<li>Two-Arm Load-Balancer (NAT+Routed mode)<ul>
-<li>Upto 16 end-points support</li>
+<li>Two-Arm Load-Balancer (NAT+Routed mode)     <ul>
+<li>Upto 16 end-points support    </li>
 </ul>
 </li>
-<li>Load-balancer selection policy<ul>
-<li>Round-robin, traffic-hash (fallback to RR if hash fails)</li>
+<li>Load-balancer selection policy    <ul>
+<li>Round-robin, traffic-hash (fallback to RR if hash fails)    </li>
 </ul>
 </li>
-<li>Conntrack support in eBPF - TCP/UDP/ICMP/SCTP profiles</li>
-<li>GTP with QFI extension support<ul>
-<li>ULCL classifier support</li>
+<li>Conntrack support in eBPF - TCP/UDP/ICMP/SCTP profiles    </li>
+<li>GTP with QFI extension support    <ul>
+<li>ULCL classifier support    </li>
 </ul>
 </li>
-<li>Native QoS-Policer support (SRTCM/TRTCM)</li>
-<li>Support for GoBGP</li>
-<li>Support for Calico CNI</li>
-<li>Extended visibility and statistics </li>
+<li>Native QoS-Policer support (SRTCM/TRTCM)    </li>
+<li>GoBGP Integration          </li>
+<li>Extended visibility and statistics     </li>
 </ul>
 </li>
 <li>
-<p><strong>CCM Support</strong>: </p>
+<p><strong>LB Spec Support</strong>:     </p>
 <ul>
-<li>IP allocation policy</li>
+<li>IP allocation policy    </li>
 <li>Kubernetes 1.20 base support</li>
+<li>Support for Calico CNI  </li>
 </ul>
 </li>
 <li>
-<p><strong>Utilities</strong>:  </p>
+<p><strong>Utilities</strong>:     </p>
 <ul>
-<li>loxicmd support : Configuration utlity with the look and feel of kubectl</li>
+<li>loxicmd support : Configuration utlity with the look and feel of kubectl    </li>
 </ul>
 </li>
 </ul>
 <h2 id="080-dec-2022-planned">0.8.0 (Dec, 2022) - Planned</h2>
 <ul>
 <li>
-<p><strong>Functional Features</strong>:</p>
+<p><strong>Functional Features</strong>:    </p>
 <ul>
-<li>Enhanced load-balancer support including SCTP statefulness, WRR distribution</li>
-<li>Integrated Firewall support</li>
-<li>Integrated end-point health-checks</li>
-<li>One-ARM, FullNAT, DSR LB mode support</li>
-<li>NAT66/NAT64 support</li>
-<li>Clustering support  </li>
-<li>Integration with Linux egress TC hooks</li>
+<li>Enhanced load-balancer support including SCTP statefulness, WRR distribution    </li>
+<li>Integrated Firewall support    </li>
+<li>Integrated end-point health-checks    </li>
+<li>One-ARM, FullNAT, DSR LB mode support    </li>
+<li>NAT66/NAT64 support    </li>
+<li>Clustering support      </li>
+<li>Integration with Linux egress TC hooks    </li>
 </ul>
 </li>
 <li>
-<p><strong>CCM Support</strong>: </p>
+<p><strong>LB Spec</strong>:    </p>
 <ul>
-<li>Kubernetes 1.25 Integration </li>
-</ul>
-</li>
-<li>
-<p><strong>LB Spec</strong>:</p>
-<ul>
-<li>Stand-alone mode support <a href="https://github.com/loxilb-io/kube-loxilb">kube-loxilb</a></li>
-<li>Load-balancer class support</li>
-<li>Advanced IPAM for ipv4/ipv6 with shared/exclusive mode</li>
+<li>Stand-alone mode to support LB Spec <a href="https://github.com/loxilb-io/kube-loxilb">kube-loxilb</a>    </li>
+<li>Load-balancer class support    </li>
+<li>Advanced IPAM for ipv4/ipv6 with shared/exclusive mode    </li>
+<li>Kubernetes 1.25 Integration     </li>
 </ul>
 </li>
 <li>
@@ -313,30 +312,53 @@
 </ul>
 </li>
 </ul>
-<h2 id="090-mar-2023-planned">0.9.0 (Mar, 2023) - Planned</h2>
+<h2 id="090-july-2023-planned">0.9.0 (July, 2023) - Planned</h2>
 <ul>
 <li>
 <p><strong>Functional Features</strong>:  </p>
 <ul>
-<li>Hardened NAT Support - CGNAT'ish</li>
-<li>L3 DSR mode Support</li>
-<li>Https end-point health monitoring probes</li>
-<li>Consistent Hash support for end-point selection</li>
-<li>SRv6 Support</li>
-<li>Transition to libbpf v1.0.1</li>
-<li>SCTP multihoming support</li>
-<li>Integration with Linux native QoS</li>
-<li>Support for Cilium CNI</li>
-<li>Grafana based dashboard</li>
+<li>Hardened NAT Support - CGNAT'ish   </li>
+<li>L3 DSR mode Support   </li>
+<li>Https end-point liveness probes   </li>
+<li>Maglev clustering  </li>
+<li>Transition to libbpf v1.0.1   </li>
+<li>SCTP multihoming support   </li>
+<li>Integration with Linux native QoS   </li>
+<li>Support for Cilium, Weave CNI   </li>
+<li>Grafana based dashboard   </li>
 </ul>
 </li>
 <li>
-<p><strong>CCM Support</strong>: </p>
+<p><strong>kube-loxilb/LB Spec Support</strong>: </p>
 <ul>
-<li>OpenShift Integration</li>
-<li>Kubernetes 1.26 </li>
-<li>Operator support</li>
-<li>AWS support</li>
+<li>OpenShift Integration    </li>
+<li>Support for per-service liveness-checks, IPAM type, multi-homing annotations   </li>
+<li>Kubernetes 1.26 (k0s, k3s, k8s )   </li>
+<li>Operator support   </li>
+<li>AWS EKS support   </li>
+</ul>
+</li>
+</ul>
+<h2 id="095-oct-2023-planned">0.9.5 (Oct, 2023) - Planned</h2>
+<ul>
+<li>
+<p><strong>Functional Features</strong>:</p>
+<ul>
+<li>SRv6 support  </li>
+<li>Rolling upgrades   </li>
+<li>L7 proxy   </li>
+<li>URL Filtering       </li>
+<li>DNS caching   </li>
+<li>IPSEC/Wireguard support    </li>
+</ul>
+</li>
+<li>
+<p><strong>kube-loxilb Support</strong>: </p>
+<ul>
+<li>Kubernetes 1.27    </li>
+<li>BGP Mesh support    </li>
+<li>Multi-cluster support   </li>
+<li>ULCL filter integration       </li>
 </ul>
 </li>
 </ul></div>
