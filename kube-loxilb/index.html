@@ -231,6 +231,11 @@
               </ul>
             </li>
             
+            <li class="nav-item" data-level="2"><a href="#overall-topology" class="nav-link">Overall topology</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
             <li class="nav-item" data-level="2"><a href="#how-to-use-kube-loxilb" class="nav-link">How to use kube-loxilb ?</a>
               <ul class="nav flex-column">
               </ul>
@@ -241,12 +246,16 @@
                     <div class="col-md-9" role="main">
 
 <h2 id="what-is-kube-loxilb">What is kube-loxilb ?</h2>
-<p><a href="https://github.com/loxilb-io/kube-loxilb">kube-loxilb</a> is loxilb's implementation of kubernetes service load-balancer spec which includes support for load-balancer class, advanced IPAM (shared or exclusive) etc. kube-loxilb runs as a deloyment set in kube-system namespace. </p>
+<p><a href="https://github.com/loxilb-io/kube-loxilb">kube-loxilb</a> is loxilb's implementation of kubernetes service load-balancer spec which includes support for load-balancer class, advanced IPAM (shared or exclusive) etc. kube-loxilb runs as a deloyment set in kube-system namespace. This component runs inside k8s cluster to gather information about k8s nodes/reachability/LB services etc but in itself does not implement packet/session load-balancing. It is done by <a href="https://github.com/loxilb-io/loxilb">loxilb</a> which usually runs outside the cluster as an external-LB. </p>
+<p>Many users frequently ask us whether it is possible to run the actual packet/session load-balancing inside the cluster (in worker-nodes or master-nodes). The answer is "yes" but it is not our preferred way. So, there is a lack of documentation regarding this. The preferred way is to run <b>kube-loxilb</b> component inside the cluster and provision <b>loxilb</b> docker in any external node/vm as mentioned in this guide. The rationale is to provide users a similar look and feel to public-cloud environments which run external load-balancers/firewalls to provide a seamless and safe environment for the cluster workloads.</p>
 <h2 id="how-is-kube-loxilb-different-from-loxi-ccm">How is kube-loxilb different from loxi-ccm ?</h2>
-<p>Another loxilb component known as <a href="https://github.com/loxilb-io/loxi-ccm">loxi-ccm</a> also provides implementation of kubernetes load-balancer spec but it runs as a part of cloud-provider and provides load-balancer life-cycle management as part of it. If one needs to integrate loxilb with their existing cloud-provider implementation, they can use or include loxi-ccm as a part of it. Else, kube-loxilb is the right component to use for all scenarios. It also has the latest loxilb features as development is currently focused on it.   </p>
-<p>kube-loxilb is a standalone implementation of kubernetes load-balancer spec which does not depend on cloud-provider. It runs as a kube-system deployment and provisions load-balancer based on load-balancer class. It only acts on load-balancers for the LB classes that is provided by itself. This also allows us to have different load-balancers working together in the same K8s environment. In future, loxi-ccm and kube-loxilb will share the same code base but currently they are maintained separately.   </p>
+<p>Another loxilb component known as <a href="https://github.com/loxilb-io/loxi-ccm">loxi-ccm</a> also provides implementation of kubernetes load-balancer spec but it runs as a part of cloud-provider and provides load-balancer life-cycle management as part of it. If one needs to integrate loxilb with their existing cloud-provider implementation, they can use or include loxi-ccm as a part of it. Else, kube-loxilb is the right component to use for all scenarios. It also has the latest loxilb features integrated as development is currently focused on it.   </p>
+<p>kube-loxilb is a standalone implementation of kubernetes load-balancer spec which does not depend on cloud-provider. It runs as a kube-system deployment and provisions load-balancer rules in loxilb based on load-balancer class. It only acts on load-balancers services for the LB classes that is provided by itself. This also allows us to have different load-balancers working together in the same K8s environment. In future, loxi-ccm and kube-loxilb will share the same code base but currently they are maintained separately.   </p>
+<h2 id="overall-topology">Overall topology</h2>
+<p>The overall topology including all components should be similar to the following :</p>
+<p><img alt="loxilb topology" src="../photos/kube-loxilb.png" />   </p>
 <h2 id="how-to-use-kube-loxilb">How to use kube-loxilb ?</h2>
-<p>1.Make sure loxilb docker is downloaded and installed properly. One can follow guides <a href="https://loxilb-io.github.io/loxilbdocs/run/">here</a> or refer to various other <a href="https://loxilb-io.github.io/loxilbdocs/#how-to-guides">documentation</a></p>
+<p>1.Make sure loxilb docker is downloaded and installed properly in a node external to your cluster. One can follow guides <a href="https://loxilb-io.github.io/loxilbdocs/run/">here</a> or refer to various other <a href="https://loxilb-io.github.io/loxilbdocs/#how-to-guides">documentation</a> . It is important to have network connectivity from this node to the master nodes of k8s cluster (where kube-loxilb will eventually run) as seen in the above figure.</p>
 <p>2.Download the loxilb config yaml :</p>
 <pre><code>wget https://github.com/loxilb-io/kube-loxilb/raw/main/manifest/kube-loxilb.yaml
 </code></pre>
@@ -262,7 +271,7 @@
         #- --externalSecondaryCIDRs=124.124.124.1/24,125.125.125.1/24
 </code></pre>
 <p>The arguments have the following meaning :  <br />
-- loxiURL : API server address of loxilb. This is the docker IP address loxilb docker of Step 1. <br />
+- loxiURL : API server address of loxilb. This is the mgmt IP address of loxilb docker of Step 1. (Can be a comma separated list got multiple loxilb instances)   <br />
 - externalCIDR : CIDR or IPAddress range to allocate addresses from. By default address allocated are shared for different services(shared Mode)  <br />
 - externalCIDR6 : Ipv6 CIDR or IPAddress range to allocate addresses from. By default address allocated are shared for different services(shared Mode)  <br />
 - monitor : Enable liveness probe for the LB end-points (default : unset)  <br />
