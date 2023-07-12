@@ -29,7 +29,7 @@ wget https://github.com/loxilb-io/kube-loxilb/raw/main/manifest/kube-loxilb.yaml
 3.Modify arguments as per user's needs :
 ```
 args:
-        - --loxiURL=http://12.12.12.1:11111
+        - --loxiURL=http://192.168.20.2:11111
         - --externalCIDR=123.123.123.1/24
         - --externalCIDR6=3ffe::1/96
         #- --monitor
