@@ -1,16 +1,24 @@
 ## What is kube-loxilb ?
 
-[kube-loxilb](https://github.com/loxilb-io/kube-loxilb) is loxilb's implementation of kubernetes service load-balancer spec which includes support for load-balancer class, advanced IPAM (shared or exclusive) etc. kube-loxilb runs as a deloyment set in kube-system namespace. 
+[kube-loxilb](https://github.com/loxilb-io/kube-loxilb) is loxilb's implementation of kubernetes service load-balancer spec which includes support for load-balancer class, advanced IPAM (shared or exclusive) etc. kube-loxilb runs as a deloyment set in kube-system namespace. This component runs inside k8s cluster to gather information about k8s nodes/reachability/LB services etc but in itself does not implement packet/session load-balancing. It is done by [loxilb](https://github.com/loxilb-io/loxilb) which usually runs outside the cluster as an external-LB. 
+
+Many users frequently ask us whether it is possible to run the actual packet/session load-balancing inside the cluster (in worker-nodes or master-nodes). The answer is "yes" but it is not our preferred way. So, there is a lack of documentation regarding this. The preferred way is to run <b>kube-loxilb</b> component inside the cluster and provision <b>loxilb</b> docker in any external node/vm as mentioned in this guide. The rationale is to provide users a similar look and feel to public-cloud environments which run external load-balancers/firewalls to provide a seamless and safe environment for the cluster workloads.
 
 ## How is kube-loxilb different from loxi-ccm ?
 
-Another loxilb component known as [loxi-ccm](https://github.com/loxilb-io/loxi-ccm) also provides implementation of kubernetes load-balancer spec but it runs as a part of cloud-provider and provides load-balancer life-cycle management as part of it. If one needs to integrate loxilb with their existing cloud-provider implementation, they can use or include loxi-ccm as a part of it. Else, kube-loxilb is the right component to use for all scenarios. It also has the latest loxilb features as development is currently focused on it.   
+Another loxilb component known as [loxi-ccm](https://github.com/loxilb-io/loxi-ccm) also provides implementation of kubernetes load-balancer spec but it runs as a part of cloud-provider and provides load-balancer life-cycle management as part of it. If one needs to integrate loxilb with their existing cloud-provider implementation, they can use or include loxi-ccm as a part of it. Else, kube-loxilb is the right component to use for all scenarios. It also has the latest loxilb features integrated as development is currently focused on it.   
 
-kube-loxilb is a standalone implementation of kubernetes load-balancer spec which does not depend on cloud-provider. It runs as a kube-system deployment and provisions load-balancer based on load-balancer class. It only acts on load-balancers for the LB classes that is provided by itself. This also allows us to have different load-balancers working together in the same K8s environment. In future, loxi-ccm and kube-loxilb will share the same code base but currently they are maintained separately.   
+kube-loxilb is a standalone implementation of kubernetes load-balancer spec which does not depend on cloud-provider. It runs as a kube-system deployment and provisions load-balancer rules in loxilb based on load-balancer class. It only acts on load-balancers services for the LB classes that is provided by itself. This also allows us to have different load-balancers working together in the same K8s environment. In future, loxi-ccm and kube-loxilb will share the same code base but currently they are maintained separately.   
+
+## Overall topology   
+
+The overall topology including all components should be similar to the following :
+
+![loxilb topology](photos/kube-loxilb.png)   
 
 ## How to use kube-loxilb ?
 
-1.Make sure loxilb docker is downloaded and installed properly. One can follow guides [here](https://loxilb-io.github.io/loxilbdocs/run/) or refer to various other [documentation](https://loxilb-io.github.io/loxilbdocs/#how-to-guides)
+1.Make sure loxilb docker is downloaded and installed properly in a node external to your cluster. One can follow guides [here](https://loxilb-io.github.io/loxilbdocs/run/) or refer to various other [documentation](https://loxilb-io.github.io/loxilbdocs/#how-to-guides) . It is important to have network connectivity from this node to the master nodes of k8s cluster (where kube-loxilb will eventually run) as seen in the above figure.
 
 2.Download the loxilb config yaml :
 
@@ -32,7 +40,7 @@ args:
 ```
 
 The arguments have the following meaning :    
-- loxiURL : API server address of loxilb. This is the docker IP address loxilb docker of Step 1.   
+- loxiURL : API server address of loxilb. This is the mgmt IP address of loxilb docker of Step 1. (Can be a comma separated list got multiple loxilb instances)     
 - externalCIDR : CIDR or IPAddress range to allocate addresses from. By default address allocated are shared for different services(shared Mode)    
 - externalCIDR6 : Ipv6 CIDR or IPAddress range to allocate addresses from. By default address allocated are shared for different services(shared Mode)    
 - monitor : Enable liveness probe for the LB end-points (default : unset)    
