@@ -8,7 +8,7 @@ Many users frequently ask us whether it is possible to run the actual packet/ses
 
 Another loxilb component known as [loxi-ccm](https://github.com/loxilb-io/loxi-ccm) also provides implementation of kubernetes load-balancer spec but it runs as a part of cloud-provider and provides load-balancer life-cycle management as part of it. If one needs to integrate loxilb with their existing cloud-provider implementation, they can use or include loxi-ccm as a part of it. Else, kube-loxilb is the right component to use for all scenarios. It also has the latest loxilb features integrated as development is currently focused on it.   
 
-kube-loxilb is a standalone implementation of kubernetes load-balancer spec which does not depend on cloud-provider. It runs as a kube-system deployment and provisions load-balancer rules in loxilb based on load-balancer class. It only acts on load-balancers services for the LB classes that is provided by itself. This also allows us to have different load-balancers working together in the same K8s environment. In future, loxi-ccm and kube-loxilb will share the same code base but currently they are maintained separately.   
+kube-loxilb is a standalone implementation of kubernetes load-balancer spec which does not depend on cloud-provider. It runs as a kube-system deployment and provisions load-balancer rules in loxilb based on load-balancer class. It only acts on load-balancers services for the LB classes that is provided by itself. This along with loxilb's modularized architecture also allows us to have different load-balancers working together in the same K8s environment. In future, loxi-ccm and kube-loxilb will share the same code base but currently they are maintained separately.   
 
 ## Overall topology   
 
