@@ -20,7 +20,7 @@
 
 ## What is loxicmd
 
-loxicmd is command tool for loxilb's configuration. loxicmd aims to provide all configuation related to loxilb and is based on kubectl's look and feel. 
+loxicmd is command tool for loxilb's configuration. loxicmd aims to provide all configuation related to loxilb and is based on kubectl's look and feel. When running k8s,  [kube-loxilb](https://github.com/loxilb-io/loxilbdocs/blob/main/docs/kube-loxilb.md) usually takes care of loxilb configuration but nonetheless loxicmd can be used to enhanced debugging and observability of loxilb.    
 
 ## How to build
 
