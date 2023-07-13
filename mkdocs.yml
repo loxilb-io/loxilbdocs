@@ -13,7 +13,6 @@ nav:
       - How-To - build/run: run.md
       - How-To - configuration: cmd.md
       - How-To - kube-loxilb: kube-loxilb.md
-      - How-To - ccm plugin: ccm.md
       - How-To - debug: debugging.md
       - How-To - loxilb with calico bgp: integrate_bgp_eng.md
       - How-To - loxilb in standalone mode: standalone.md
