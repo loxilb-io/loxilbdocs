@@ -61,7 +61,7 @@ loxicmd usage guide can be found [here](https://loxilb-io.github.io/loxilbdocs/c
 
 ## 2. From docker (easy)
 
-#### Get the loxilb official docker image    
+Get the loxilb official docker image 
 * Stable Image   
 ```
 docker pull ghcr.io/loxilb-io/loxilb:v0.8.8
@@ -75,19 +75,19 @@ docker pull ghcr.io/loxilb-io/loxilb:latest
 docker pull ghcr.io/loxilb-io/loxilb:latestu22
 ```   
 
-* To run loxilb docker, we can use the following commands :
+To run loxilb docker, we can use the following commands :
 
 ```
 docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --name loxilb ghcr.io/loxilb-io/loxilb:latest
 ```
 
-* To drop in to a shell of loxilb doker :
+To drop in to a shell of loxilb doker :
 
 ```
 docker exec -it loxilb bash
 ```
 
-* For load-balancing to effectively work in a bare-metal environment, we need multiple interfaces assigned to the docker (external and internal connectivitiy) 
+For load-balancing to effectively work in a bare-metal environment, we need multiple interfaces assigned to the docker (external and internal connectivitiy) 
 
   loxilb docker relies on docker's macvlan driver for achieving this. The following is an example of creating macvlan network and using with loxilb
 
@@ -102,10 +102,10 @@ docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -
 docker network connect bridge loxilb
 docker network connect llbnet2 loxilb --ip=172.30.2.195
 ```
-  *Note1 - While working with macvlan interfaces, the parent/underlying interface should be put in promiscous mode*   
-  *Note2 - One can further use docker-compose to automate attaching multiple networks to loxilb docker or use --net=host as per requirement*   
-  
-* <b>To create a simple and self-contained topology for testing loxilb, users can follow this [guide](simple_topo.md)</b>
 
+Notes:    
+* <b>While working with macvlan interfaces, the parent/underlying interface should be put in promiscous mode</b>     
+* <b>One can further use docker-compose to automate attaching multiple networks to loxilb docker or use --net=host as per requirement</b>
+* <b>To create a simple and self-contained topology for testing loxilb, users can follow this [guide](simple_topo.md)</b>
 * <b>For running in K8s environment, kindly follow [kube-loxilb](https://github.com/loxilb-io/loxilbdocs/blob/main/docs/kube-loxilb.md) guide</b> 
 
