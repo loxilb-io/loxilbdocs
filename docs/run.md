@@ -1,6 +1,6 @@
 # loxilb - How to build/run
 
-## Right from code (difficult)
+## 1. Right from code (difficult)
 
 * Install GoLang > v1.17
 
@@ -59,12 +59,12 @@ sudo cp -f loxicmd /usr/local/sbin/
 ```
 loxicmd usage guide can be found [here](https://loxilb-io.github.io/loxilbdocs/cmd/)
 
-## From docker (easy)
+## 2. From docker (easy)
 
 #### Get the loxilb official docker image    
 * Stable Image   
 ```
-docker pull ghcr.io/loxilb-io/loxilb:v0.8.6
+docker pull ghcr.io/loxilb-io/loxilb:v0.8.8
 ```   
 * Latest dev image (possibly unstable)
 ```
