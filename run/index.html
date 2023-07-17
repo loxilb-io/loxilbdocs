@@ -289,10 +289,8 @@ sudo cp -f loxicmd /usr/local/sbin/
 </code></pre>
 <p>loxicmd usage guide can be found <a href="https://loxilb-io.github.io/loxilbdocs/cmd/">here</a></p>
 <h2 id="2-from-docker-easy">2. From docker (easy)</h2>
-<h4 id="get-the-loxilb-official-docker-image">Get the loxilb official docker image</h4>
-<ul>
-<li>Stable Image   </li>
-</ul>
+<p>Get the loxilb official docker image 
+* Stable Image   </p>
 <pre><code>docker pull ghcr.io/loxilb-io/loxilb:v0.8.8
 </code></pre>
 <ul>
@@ -305,19 +303,13 @@ sudo cp -f loxicmd /usr/local/sbin/
 </ul>
 <pre><code>docker pull ghcr.io/loxilb-io/loxilb:latestu22
 </code></pre>
-<ul>
-<li>To run loxilb docker, we can use the following commands :</li>
-</ul>
+<p>To run loxilb docker, we can use the following commands :</p>
 <pre><code>docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --name loxilb ghcr.io/loxilb-io/loxilb:latest
 </code></pre>
-<ul>
-<li>To drop in to a shell of loxilb doker :</li>
-</ul>
+<p>To drop in to a shell of loxilb doker :</p>
 <pre><code>docker exec -it loxilb bash
 </code></pre>
-<ul>
-<li>For load-balancing to effectively work in a bare-metal environment, we need multiple interfaces assigned to the docker (external and internal connectivitiy) </li>
-</ul>
+<p>For load-balancing to effectively work in a bare-metal environment, we need multiple interfaces assigned to the docker (external and internal connectivitiy) </p>
 <p>loxilb docker relies on docker's macvlan driver for achieving this. The following is an example of creating macvlan network and using with loxilb</p>
 <pre><code># Create a mac-vlan (on an underlying interface e.g. enp0s3)
 docker network create -d macvlan -o parent=enp0s3   --subnet 172.30.1.0/24   --gateway 172.30.1.254 --aux-address 'host=172.30.1.193’ llbnet
@@ -329,16 +321,11 @@ docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -
 docker network connect bridge loxilb
 docker network connect llbnet2 loxilb --ip=172.30.2.195
 </code></pre>
-<p><em>Note1 - While working with macvlan interfaces, the parent/underlying interface should be put in promiscous mode</em> <br />
-<em>Note2 - One can further use docker-compose to automate attaching multiple networks to loxilb docker or use --net=host as per requirement</em>   </p>
-<ul>
-<li>
-<p><b>To create a simple and self-contained topology for testing loxilb, users can follow this <a href="../simple_topo/">guide</a></b></p>
-</li>
-<li>
-<p><b>For running in K8s environment, kindly follow <a href="https://github.com/loxilb-io/loxilbdocs/blob/main/docs/kube-loxilb.md">kube-loxilb</a> guide</b> </p>
-</li>
-</ul></div>
+<p>Notes:  <br />
+<em> <b>While working with macvlan interfaces, the parent/underlying interface should be put in promiscous mode</b>   <br />
+</em> <b>One can further use docker-compose to automate attaching multiple networks to loxilb docker or use --net=host as per requirement</b>
+* <b>To create a simple and self-contained topology for testing loxilb, users can follow this <a href="../simple_topo/">guide</a></b>
+* <b>For running in K8s environment, kindly follow <a href="https://github.com/loxilb-io/loxilbdocs/blob/main/docs/kube-loxilb.md">kube-loxilb</a> guide</b> </p></div>
             </div>
         </div>
 
