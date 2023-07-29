@@ -2,9 +2,12 @@
 
 [kube-loxilb](https://github.com/loxilb-io/kube-loxilb) is loxilb's implementation of kubernetes service load-balancer spec which includes support for load-balancer class, advanced IPAM (shared or exclusive) etc. kube-loxilb runs as a deloyment set in kube-system namespace. This component runs inside k8s cluster to gather information about k8s nodes/reachability/LB services etc but in itself does not implement packet/session load-balancing. It is done by [loxilb](https://github.com/loxilb-io/loxilb) which usually runs outside the cluster as an external-LB. 
 
-Many users frequently ask us whether it is possible to run the actual packet/session load-balancing inside the cluster (in worker-nodes or master-nodes). The answer is "yes" but it is not our preferred way. So, there is a lack of documentation regarding this. The preferred way is to run <b>kube-loxilb</b> component inside the cluster and provision <b>loxilb</b> docker in any external node/vm as mentioned in this guide. The rationale is to provide users a similar look and feel whether running loxilb in an on-prem or public cloud environment. And public-cloud environments usually run load-balancers/firewalls externally in order to provide a seamless and safe environment for the cloud-native workloads. 
+Many users frequently ask us whether it is possible to run the actual packet/session load-balancing inside the cluster (in worker-nodes or master-nodes). The answer is "yes". loxilb can be run in-cluster or as an external entity. The preferred way is to run <b>kube-loxilb</b> component inside the cluster and provision <b>loxilb</b> docker in any external node/vm as mentioned in this guide. The rationale is to provide users a similar look and feel whether running loxilb in an on-prem or public cloud environment. Public-cloud environments usually run load-balancers/firewalls externally in order to provide a seamless and safe environment for the cloud-native workloads. But users are free to choose any mode (in-cluster mode or external mode) as per convenience and their system architecture. The following blogs give detailed steps for :
 
-This usually leads to another query - Who will be responsible for managing the external node ? On public cloud(s), it is as simple as spawning a new instance in your VPC and launch loxilb docker in it. For on-prem cases, you need to run loxilb docker in a spare node/vm as applicable. loxilb docker is a self-contained entity and easily managed with well-known tools like docker, containerd, podman etc. It can be independently restarted/upgraded anytime and kube-loxilb will make sure all the k8s LB services are properly configured each time. 
+1. [Running loxilb in external node with AWS EKS](https://www.loxilb.io/post/loxilb-load-balancer-setup-on-eks)
+2. [Running in-cluster LB with K3s for on-prem use-cases](https://www.loxilb.io/post/k8s-nuances-of-in-cluster-external-service-lb-with-loxilb)
+
+This usually leads to another query - Who will be responsible for managing the external node ? On public cloud(s), it is as simple as spawning a new instance in your VPC and launch loxilb docker in it. For on-prem cases, you need to run loxilb docker in a spare node/vm as applicable. loxilb docker is a self-contained entity and easily managed with well-known tools like docker, containerd, podman etc. It can be independently restarted/upgraded anytime and kube-loxilb will make sure all the k8s LB services are properly configured each time. When deploying in-cluster mode, everything is managed by Kubernetes itself with little to no manual intervention.   
 
 ## How is kube-loxilb different from loxi-ccm ?
 
@@ -14,9 +17,15 @@ kube-loxilb is a standalone implementation of kubernetes load-balancer spec whic
 
 ## Overall topology   
 
-The overall topology including all components should be similar to the following :
+* For external mode, the overall topology including all components should be similar to the following :
 
 ![loxilb topology](photos/kube-loxilb.png)   
+
+
+* For in-cluster mode, the overall topology including all components should be similar to the following :
+
+![loxilb topology](photos/kube-loxilb-int.png)   
+
 
 ## How to use kube-loxilb ?
 
@@ -31,28 +40,32 @@ wget https://github.com/loxilb-io/kube-loxilb/raw/main/manifest/kube-loxilb.yaml
 3.Modify arguments as per user's needs :
 ```
 args:
-        - --loxiURL=http://192.168.20.2:11111
+        - --loxiURL=http://12.12.12.1:11111
         - --externalCIDR=123.123.123.1/24
-        - --externalCIDR6=3ffe::1/96
+        #- --externalSecondaryCIDRs=124.124.124.1/24,125.125.125.1/24
+        #- --externalCIDR6=3ffe::1/96
         #- --monitor
-        #- --setBGP=false
+        #- --setBGP=65100
+        #- --extBGPPeers=50.50.50.1:65101,51.51.51.1:65102
+        #- --setRoles
         #- --setLBMode=1
         #- --setUniqueIP=false
-        #- --externalSecondaryCIDRs=124.124.124.1/24,125.125.125.1/24
 ```
 
 The arguments have the following meaning :    
-- loxiURL : API server address of loxilb. This is the mgmt IP address of loxilb docker of Step 1. (Can be a comma separated list got multiple loxilb instances)     
+- loxiURL : API server address of loxilb. This is the docker IP address loxilb docker of Step 1. If unspecified, kube-loxilb assumes loxilb is running in-cluster mode and autoconfigures this.
 - externalCIDR : CIDR or IPAddress range to allocate addresses from. By default address allocated are shared for different services(shared Mode)    
-- externalCIDR6 : Ipv6 CIDR or IPAddress range to allocate addresses from. By default address allocated are shared for different services(shared Mode)    
+- externalCIDR6 : Ipv6 CIDR or IPAddress range to allocate addresses from. By default address allocated are shared for different services(shared Mode)   
 - monitor : Enable liveness probe for the LB end-points (default : unset)    
-- setBGP : Use BGP to advertise this service (default :false). Please check [here](https://github.com/loxilb-io/loxilbdocs/blob/main/docs/integrate_bgp_eng.md) how it works.    
+- setBGP : Use specified BGP AS-ID to advertise this service. If not specified BGP will be disabled. Please check [here](https://github.com/loxilb-io/loxilbdocs/blob/main/docs/integrate_bgp_eng.md) how it works.    
+- extBGPPeers : Specifies external BGP peers with appropriate remote AS    
+- setRoles : If present, kube-loxilb arbitrates loxilb role(s) in cluster-mode    
 - setLBMode : 0, 1, 2   
   0 - default (only DNAT, preserves source-IP)       
   1 - onearm (source IP is changed to load balancer’s interface IP)     
   2 - fullNAT (sourceIP is changed to virtual IP)    
 - setUniqueIP : Allocate unique service-IP per LB service (default : false)   
-- externalSecondaryCIDRs: Secondary CIDR or IPAddress ranges to allocate addresses from in case of multi-homing support    
+- externalSecondaryCIDRs: Secondary CIDR or IPAddress ranges to allocate addresses from in case of multi-homing support      
 
 Many of the above flags and arguments can be overriden on a per-service basis based on loxilb specific annotation as mentioned in section 6 below.      
 
