@@ -32,6 +32,7 @@ nav:
       - System Requirements: requirements.md
       - Frequenctly Asked Questions- FAQs: faq.md
   - Blogs:
+      - K8s in-cluster service LB with LoxiLB: https://www.loxilb.io/post/k8s-nuances-of-in-cluster-external-service-lb-with-loxilb
       - K8s - Introducing SCTP Multihoming with LoxiLB: https://www.loxilb.io/post/k8s-introducing-sctp-multihoming-functionality-with-loxilb
       - Hyperscale anycast load balancing with HA: https://www.loxilb.io/post/loxilb-anycast-service-load-balancing-with-high-availability
       - Getting started with loxilb on Amazon EKS: https://www.loxilb.io/post/loxilb-load-balancer-setup-on-eks
@@ -44,7 +45,7 @@ nav:
         - K3s - Using loxilb as external service lb: https://cloudybytes.medium.com/k3s-using-loxilb-as-external-service-lb-2ea4ce61e159
         - 5G SCTP LoadBalancer Using LoxiLB Applying on free5GC: https://medium.com/@ben0978327139/5g-sctp-loadbalancer-using-loxilb-applying-on-free5gc-b5c05bb723f0
 extra:
-    version: v0.8.7 (Latest)
+    version: v0.8.8 (Latest)
 
 extra_css:
   - stylesheets/extra.css
