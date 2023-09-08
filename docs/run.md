@@ -61,11 +61,7 @@ loxicmd usage guide can be found [here](https://loxilb-io.github.io/loxilbdocs/c
 
 ## 2. From docker (easy)
 
-Get the loxilb official docker image 
-* Stable Image   
-```
-docker pull ghcr.io/loxilb-io/loxilb:v0.8.8
-```   
+Get the loxilb official docker image     
 * Latest dev image (possibly unstable)
 ```
 docker pull ghcr.io/loxilb-io/loxilb:latest
@@ -73,7 +69,11 @@ docker pull ghcr.io/loxilb-io/loxilb:latest
 * Latest Ubuntu 22.04 image   
 ```
 docker pull ghcr.io/loxilb-io/loxilb:latestu22
-```   
+```
+* Stable Image   
+```
+docker pull ghcr.io/loxilb-io/loxilb:v0.8.8
+``` 
 
 To run loxilb docker, we can use the following commands :
 
@@ -106,6 +106,8 @@ docker network connect llbnet2 loxilb --ip=172.30.2.195
 <b>Note:</b>    
 * While working with macvlan interfaces, the parent/underlying interface should be put in promiscous mode     
 * One can further use docker-compose to automate attaching multiple networks to loxilb docker or use --net=host as per requirement    
-* To create a simple and self-contained topology for testing loxilb, users can follow this [guide](simple_topo.md)    
-* For running in K8s environment, kindly follow [kube-loxilb](https://github.com/loxilb-io/loxilbdocs/blob/main/docs/kube-loxilb.md) guide     
+* To create a simple and self-contained topology for testing loxilb, users can follow this [guide](simple_topo.md)
+
+## 3. Running in Kubernetes   
+* For running in K8s environment, kindly follow [kube-loxilb](https://loxilb-io.github.io/loxilbdocs/kube-loxilb/) guide     
 
