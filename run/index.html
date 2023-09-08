@@ -228,6 +228,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#3-running-in-kubernetes" class="nav-link">3. Running in Kubernetes</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -290,19 +294,19 @@ sudo cp -f loxicmd /usr/local/sbin/
 </code></pre>
 <p>loxicmd usage guide can be found <a href="https://loxilb-io.github.io/loxilbdocs/cmd/">here</a></p>
 <h2 id="2-from-docker-easy">2. From docker (easy)</h2>
-<p>Get the loxilb official docker image 
-* Stable Image   </p>
-<pre><code>docker pull ghcr.io/loxilb-io/loxilb:v0.8.8
-</code></pre>
-<ul>
-<li>Latest dev image (possibly unstable)</li>
-</ul>
+<p>Get the loxilb official docker image   <br />
+* Latest dev image (possibly unstable)</p>
 <pre><code>docker pull ghcr.io/loxilb-io/loxilb:latest
 </code></pre>
 <ul>
 <li>Latest Ubuntu 22.04 image   </li>
 </ul>
 <pre><code>docker pull ghcr.io/loxilb-io/loxilb:latestu22
+</code></pre>
+<ul>
+<li>Stable Image   </li>
+</ul>
+<pre><code>docker pull ghcr.io/loxilb-io/loxilb:v0.8.8
 </code></pre>
 <p>To run loxilb docker, we can use the following commands :</p>
 <pre><code>docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --name loxilb ghcr.io/loxilb-io/loxilb:latest
@@ -325,8 +329,11 @@ docker network connect llbnet2 loxilb --ip=172.30.2.195
 <p><b>Note:</b>  <br />
 <em> While working with macvlan interfaces, the parent/underlying interface should be put in promiscous mode   <br />
 </em> One can further use docker-compose to automate attaching multiple networks to loxilb docker or use --net=host as per requirement  <br />
-<em> To create a simple and self-contained topology for testing loxilb, users can follow this <a href="../simple_topo/">guide</a>  <br />
-</em> For running in K8s environment, kindly follow <a href="https://github.com/loxilb-io/loxilbdocs/blob/main/docs/kube-loxilb.md">kube-loxilb</a> guide     </p></div>
+* To create a simple and self-contained topology for testing loxilb, users can follow this <a href="../simple_topo/">guide</a></p>
+<h2 id="3-running-in-kubernetes">3. Running in Kubernetes</h2>
+<ul>
+<li>For running in K8s environment, kindly follow <a href="https://loxilb-io.github.io/loxilbdocs/kube-loxilb/">kube-loxilb</a> guide     </li>
+</ul></div>
             </div>
         </div>
 
