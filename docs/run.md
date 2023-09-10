@@ -62,7 +62,8 @@ loxicmd usage guide can be found [here](https://loxilb-io.github.io/loxilbdocs/c
 ## 2. From docker (easy)
 
 Get the loxilb official docker image    
-* Latest dev image (possibly unstable)
+
+* Latest dev image (possibly unstable)   
 ```
 docker pull ghcr.io/loxilb-io/loxilb:latest
 ```   
