@@ -93,7 +93,8 @@ For load-balancing to effectively work in a bare-metal environment, we need mult
   loxilb docker relies on docker's macvlan driver for achieving this. The following is an example of creating macvlan network and using with loxilb
 
 ```
-# Create a mac-vlan (on an underlying interface e.g. enp0s3)
+# Create a mac-vlan (on an underlying interface e.g. enp0s3).
+# Subnet used for mac-vlan is usually the same as underlying interface
 docker network create -d macvlan -o parent=enp0s3   --subnet 172.30.1.0/24   --gateway 172.30.1.254 --aux-address 'host=172.30.1.193’ llbnet
 
 # Run loxilb docker with the created macvlan 
@@ -108,6 +109,10 @@ docker network connect llbnet2 loxilb --ip=172.30.2.195
 * While working with macvlan interfaces, the parent/underlying interface should be put in promiscous mode     
 * One can further use docker-compose to automate attaching multiple networks to loxilb docker or use --net=host as per requirement    
 * To create a simple and self-contained topology for testing loxilb, users can follow this [guide](simple_topo.md)
+* If loxilb docker is in the same node as the app/workload docker, it is advised that "tx checksum offload" inside app/workload docker is turned off for sctp load-balancing to work properly
+```
+docker exec -dt <app-docker-name> ethtool -K <app-docker-interface> tx off
+```
 
 ## 3. Running in Kubernetes   
 * For running in K8s environment, kindly follow [kube-loxilb](https://loxilb-io.github.io/loxilbdocs/kube-loxilb/) guide     
