@@ -106,13 +106,14 @@ docker network connect llbnet2 loxilb --ip=172.30.2.195
 ```
 
 <b>Note:</b>    
+
 * While working with macvlan interfaces, the parent/underlying interface should be put in promiscous mode     
 * One can further use docker-compose to automate attaching multiple networks to loxilb docker or use --net=host as per requirement    
-* To create a simple and self-contained topology for testing loxilb, users can follow this [guide](simple_topo.md)
-* If loxilb docker is in the same node as the app/workload docker, it is advised that "tx checksum offload" inside app/workload docker is turned off for sctp load-balancing to work properly
+* To create a simple and self-contained topology for testing loxilb, users can follow this [guide](simple_topo.md)   
+* If loxilb docker is in the same node as the app/workload docker, it is advised that "tx checksum offload" inside app/workload docker is turned off for sctp load-balancing to work properly   
 ```
 docker exec -dt <app-docker-name> ethtool -K <app-docker-interface> tx off
-```
+```   
 
 ## 3. Running in Kubernetes   
 * For running in K8s environment, kindly follow [kube-loxilb](https://loxilb-io.github.io/loxilbdocs/kube-loxilb/) guide     
