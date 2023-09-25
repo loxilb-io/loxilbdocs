@@ -89,6 +89,7 @@ loxilb is an open source hyper-scale software load-balancer for cloud-native wor
 - [Frequenctly Asked Questions- FAQs](faq.md)
 
 ## Blogs
+- [eBPF - Map sync using Go](https://www.loxilb.io/post/state-synchronization-of-ebpf-maps-using-go-a-tale-of-two-frameworks)    
 - [K8s in-cluster service LB with LoxiLB](https://www.loxilb.io/post/k8s-nuances-of-in-cluster-external-service-lb-with-loxilb)   
 - [K8s - Introducing SCTP Multihoming with LoxiLB](https://www.loxilb.io/post/k8s-introducing-sctp-multihoming-functionality-with-loxilb)   
 - [Load-balancer performance comparison on Amazon Graviton2](https://www.loxilb.io/post/running-loxilb-on-aws-graviton2-based-ec2-instance)   
