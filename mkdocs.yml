@@ -32,6 +32,7 @@ nav:
       - System Requirements: requirements.md
       - Frequenctly Asked Questions- FAQs: faq.md
   - Blogs:
+      - eBPF - Map Sync using Go: https://www.loxilb.io/post/state-synchronization-of-ebpf-maps-using-go-a-tale-of-two-frameworks
       - K8s in-cluster service LB with LoxiLB: https://www.loxilb.io/post/k8s-nuances-of-in-cluster-external-service-lb-with-loxilb
       - K8s - Introducing SCTP Multihoming with LoxiLB: https://www.loxilb.io/post/k8s-introducing-sctp-multihoming-functionality-with-loxilb
       - Hyperscale anycast load balancing with HA: https://www.loxilb.io/post/loxilb-anycast-service-load-balancing-with-high-availability
