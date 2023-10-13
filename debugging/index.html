@@ -303,7 +303,7 @@
 <h2 id="sctp-packets-dropping">* SCTP packets dropping ?</h2>
 <p>Usually, This happens due to SCTP checksum validation by host kernel and the possible scenarios are:</p>
 <p><b>1.</b> When workload and loxilb are scheduled in the same node. </p>
-<p><b>2.</b> Different CNI creates different types of interfaces i.e. some CNI creates bridges and some creates tunnels and some creates veth pairs. These interfaces have different characteristics and checksum calculation settings.</p>
+<p><b>2.</b> Different CNI creates different types of interfaces i.e. CNIs creates bridges/tunnels/veth pairs and different network policies. These interfaces have different characteristics and implications on loxilb's checksum calculation logic.</p>
 <ul>
 <li>
 <p><b>Solution:</b> </p>
@@ -312,9 +312,9 @@
 <li>Disable checksum calculation.</li>
 </ul>
 <p><code>echo 1 &gt;  /sys/module/sctp/parameters/no_checksums
-  echo 0 &gt;   /proc/sys/net/netfilter/nf_conntrack_checksum</code></p>
+  echo 0 &gt;  /proc/sys/net/netfilter/nf_conntrack_checksum</code>   </p>
 <ul>
-<li>Or, Let loxilb take care of the checksum calculation completely. For that, We need to install a utility(a kernel module) in all the nodes where loxilb is running. It will make sure the correct checksum is applied at the end.</li>
+<li>Or, Let loxilb take care of the checksum calculation completely. For that, We need to install a utility(a kernel module) in all the nodes where loxilb is running. It will make sure the correct checksum is applied at the end.   </li>
 </ul>
 <p><code>curl -sfL https://github.com/loxilb-io/loxilb-ebpf/raw/main/kprobe/install.sh | sh -</code></p>
 </li>
@@ -328,7 +328,7 @@
 <ul>
 <li>Check if the rule is installed properly</li>
 </ul>
-<p><code>loxicmd get lb</code></p>
+<p><code>loxicmd get lb</code>   </p>
 <ul>
 <li>Make sure the client is connecting to the same IP and port as per the configured service LB rule.</li>
 </ul>
