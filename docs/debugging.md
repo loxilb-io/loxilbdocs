@@ -40,7 +40,7 @@ Usually, This happens due to SCTP checksum validation by host kernel and the pos
 
 <b>1.</b> When workload and loxilb are scheduled in the same node. 
 
-<b>2.</b> Different CNI creates different types of interfaces i.e. some CNI creates bridges and some creates tunnels and some creates veth pairs. These interfaces have different characteristics and checksum calculation settings.
+<b>2.</b> Different CNI creates different types of interfaces i.e. CNIs creates bridges/tunnels/veth pairs and different network policies. These interfaces have different characteristics and implications on loxilb's checksum calculation logic.
   
   * <b>Solution:</b> 
 
@@ -50,10 +50,10 @@ Usually, This happens due to SCTP checksum validation by host kernel and the pos
     
     ```
       echo 1 >  /sys/module/sctp/parameters/no_checksums
-      echo 0 >   /proc/sys/net/netfilter/nf_conntrack_checksum 
-    ```
+      echo 0 >  /proc/sys/net/netfilter/nf_conntrack_checksum
+    ```   
     
-    * Or, Let loxilb take care of the checksum calculation completely. For that, We need to install a utility(a kernel module) in all the nodes where loxilb is running. It will make sure the correct checksum is applied at the end.
+    * Or, Let loxilb take care of the checksum calculation completely. For that, We need to install a utility(a kernel module) in all the nodes where loxilb is running. It will make sure the correct checksum is applied at the end.   
     
     ```
       curl -sfL https://github.com/loxilb-io/loxilb-ebpf/raw/main/kprobe/install.sh | sh -
@@ -71,7 +71,7 @@ SCTP ABORT can be seen in many scenarios:
     
       ```
         loxicmd get lb
-      ```
+      ```   
 
     * Make sure the client is connecting to the same IP and port as per the configured service LB rule.
   
