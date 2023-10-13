@@ -222,8 +222,40 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#loxilb-how-to-debug" class="nav-link">loxilb - How to debug</a>
+            <li class="nav-item" data-level="1"><a href="#loxilb-how-to-debug-and-troubleshoot" class="nav-link">loxilb - How to debug and troubleshoot</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#loxilb-docker-or-pod-not-coming-in-running-state" class="nav-link">* loxilb docker or pod not coming in Running state ?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#externalip-pending-in-kubectl-get-svc" class="nav-link">* externalIP pending in "kubectl get svc" ?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#sctp-packets-dropping" class="nav-link">* SCTP packets dropping ?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#abort-in-sctp" class="nav-link">* ABORT in SCTP ?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#check-loxilb-logs" class="nav-link">* Check loxilb logs</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#check-loxicmd-to-debug-loxilbs-internal-state" class="nav-link">* Check loxicmd to debug loxilb's internal state</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#debug-loxilb-kernel-and-ebpf-components" class="nav-link">* Debug loxilb kernel and eBPF components</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#check-ebpf-kernel-debug-logs" class="nav-link">* Check eBPF kernel debug logs</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -231,10 +263,96 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="loxilb-how-to-debug">loxilb - How to debug</h1>
+<h1 id="loxilb-how-to-debug-and-troubleshoot">loxilb - How to debug and troubleshoot</h1>
+<h2 id="loxilb-docker-or-pod-not-coming-in-running-state">* loxilb docker or pod not coming in <I>Running</I> state ?</h2>
 <ul>
-<li><b>Check loxilb logs</b></li>
+<li>
+<p><b>Solution:</b> </p>
+</li>
+<li>
+<p>Check the host machine kernel version. loxilb requires <b>kernel version 5.8 or above</b>.</p>
+</li>
+<li>
+<p>Make sure you are running the correct image as per your environment.</p>
+</li>
 </ul>
+<h2 id="externalip-pending-in-kubectl-get-svc">* externalIP pending in "kubectl get svc" ?</h2>
+<p>If this happens:</p>
+<p><b>1.</b> When running loxilb externally, there could be a connectivity issue.</p>
+<ul>
+<li>
+<p><b>Solution:</b></p>
+<ul>
+<li>Check if loxiURL annotation in kube-loxilb.yaml was set correctly.</li>
+<li>Check for kube-loxilb(master node) connectivity with loxilb node.</li>
+</ul>
+</li>
+</ul>
+<p><b>2.</b> When running loxilb in-cluster mode</p>
+<ul>
+<li><b>Solution:</b> Make sure loxilb pods were spawned.</li>
+</ul>
+<p><b>3.</b> Make sure the annotation <b>"node.kubernetes.io/exclude-from-external-load-balancers"</b> is present in the node's configuration.</p>
+<ul>
+<li><b>Solution:</b> If present, then the node will not be considered as an endpoint by loxilb. You can remove it by editing "kubectl edit \&lt;node-name&gt;"</li>
+</ul>
+<p><b>4.</b> Make sure these annotations are present in your service.yaml
+  <code>spec:
+      loadBalancerClass: loxilb.io/loxilb
+      type: LoadBalancer</code></p>
+<h2 id="sctp-packets-dropping">* SCTP packets dropping ?</h2>
+<p>Usually, This happens due to SCTP checksum validation by host kernel and the possible scenarios are:</p>
+<p><b>1.</b> When workload and loxilb are scheduled in the same node. </p>
+<p><b>2.</b> Different CNI creates different types of interfaces i.e. some CNI creates bridges and some creates tunnels and some creates veth pairs. These interfaces have different characteristics and checksum calculation settings.</p>
+<ul>
+<li>
+<p><b>Solution:</b> </p>
+<p>There are two ways to resolve this issue:</p>
+<ul>
+<li>Disable checksum calculation.</li>
+</ul>
+<p><code>echo 1 &gt;  /sys/module/sctp/parameters/no_checksums
+  echo 0 &gt;   /proc/sys/net/netfilter/nf_conntrack_checksum</code></p>
+<ul>
+<li>Or, Let loxilb take care of the checksum calculation completely. For that, We need to install a utility(a kernel module) in all the nodes where loxilb is running. It will make sure the correct checksum is applied at the end.</li>
+</ul>
+<p><code>curl -sfL https://github.com/loxilb-io/loxilb-ebpf/raw/main/kprobe/install.sh | sh -</code></p>
+</li>
+</ul>
+<h2 id="abort-in-sctp">* ABORT in SCTP ?</h2>
+<p>SCTP ABORT can be seen in many scenarios:</p>
+<p><b>1.</b> When Service IP is same as loxilb IP and SCTP packets does not match the rules.</p>
+<ul>
+<li>
+<p><b>Solution:</b></p>
+<ul>
+<li>Check if the rule is installed properly</li>
+</ul>
+<p><code>loxicmd get lb</code></p>
+<ul>
+<li>Make sure the client is connecting to the same IP and port as per the configured service LB rule.</li>
+</ul>
+</li>
+</ul>
+<p><b>2.</b> In one-arm/fullnat mode, loxilb sends SCTP ABORT after receiving SCTP INIT ACK packet.</p>
+<ul>
+<li><b>Solution:</b> Check the underlying hypervisor interface driver. 
+  Some drivers does not provide enough metadata for ebpf processing which makes the packet to follow fallback path to kernel and kernel
+  being unaware of the SCTP connection sends SCTP ABORT.
+  Emulated interfaces in bridge mode are preferred for smooth networking.</li>
+</ul>
+<p><b>3.</b> ABORT after few seconds(Heartbeat re-transmisions)</p>
+<p>When initiating the SCTP connection, if the application is not binded with a particular IP then SCTP stack uses all the IPs in the SCTP INIT message.
+  After the successful connection, both endpoints start health check for each network path. 
+  As loxilb is in between and unaware of all the endpoint IPs, drops all those packets, which leads to sending SCTP ABORT from the endpoint.</p>
+<ul>
+<li><b>Solution:</b> In SCTP uni-homing case, it is absolutely necessary to make sure the applications are binded to only one IP to avoid this case.</li>
+</ul>
+<p><b>4.</b> ABORT after few seconds(SCTP Multihoming)</p>
+<ul>
+<li><b>Solution:</b> Currently, SCTP Multihoming service works only with fullnat mode and externalTrafficPolicy set to <b><I>"Local"</I></b></li>
+</ul>
+<h2 id="check-loxilb-logs">* <b>Check loxilb logs</b></h2>
 <p>loxilb logs its various important events and logs in the file /var/log/loxilb.log. Users can check it by using tail -f or any other command of choice. </p>
 <pre><code>root@752531364e2c:/# tail -f /var/log/loxilb.log 
 DBG:  2022/07/10 12:49:27 1:dst-10.10.10.1/32,proto-6,dport-2020,,do-dnat:eip-31.31.31.1,ep-5001,w-1,alive|eip-32.32.32.1,ep-5001,w-2,alive|eip-100.100.100.1,ep-5001,w-2,alive| pc 0 bc 0 
@@ -248,10 +366,8 @@ DBG:  2022/07/10 12:50:37 1:dst-10.10.10.1/32,proto-6,dport-2020,,do-dnat:eip-31
 DBG:  2022/07/10 12:50:47 1:dst-10.10.10.1/32,proto-6,dport-2020,,do-dnat:eip-31.31.31.1,ep-5001,w-1,alive|eip-32.32.32.1,ep-5001,w-2,alive|eip-100.100.100.1,ep-5001,w-2,alive| pc 0 bc 0 
 DBG:  2022/07/10 12:50:57 1:dst-10.10.10.1/32,proto-6,dport-2020,,do-dnat:eip-31.31.31.1,ep-5001,w-1,alive|eip-32.32.32.1,ep-5001,w-2,alive|eip-100.100.100.1,ep-5001,w-2,alive| pc 0 bc 0 
 </code></pre>
-<ul>
-<li><b>Check <em>loxicmd</em> to debug loxilb's internal state</b></li>
-</ul>
-<pre><code>## Spawn a bash shell of loxilb docker 
+<h2 id="check-loxicmd-to-debug-loxilbs-internal-state">* <b>Check <em>loxicmd</em> to debug loxilb's internal state</b></h2>
+<pre><code>### Spawn a bash shell of loxilb docker 
 docker exec -it loxilb bash
 
 root@752531364e2c:/# loxicmd get lb       
@@ -332,9 +448,7 @@ root@65ad9b2f1b7f:/# loxicmd get port
 |       |          |                   |             | IPv6 : []     |               |
 
 </code></pre>
-<ul>
-<li><b>Debug loxilb kernel and eBPF components</b></li>
-</ul>
+<h2 id="debug-loxilb-kernel-and-ebpf-components">* <b>Debug loxilb kernel and eBPF components</b></h2>
 <p>loxilb uses various eBPF maps as part of its DP implementation. These maps are pinned to OS filesystem and can be further used with bpftool to debug.</p>
 <pre><code>root@0c4f9175c983:/# ls -lart /opt/loxilb/dp/bpf/
 total 0
@@ -569,9 +683,7 @@ root@752531364e2c:/# bpftool map dump pinned /opt/loxilb/dp/bpf/nat_v4_map
     }
 ]
 </code></pre>
-<ul>
-<li><b>Check eBPF kernel debug logs</b></li>
-</ul>
+<h2 id="check-ebpf-kernel-debug-logs">* <b>Check eBPF kernel debug logs</b></h2>
 <p>Last but not the least, linux kernel outputs generic eBPF debug logs to /sys/kernel/debug/tracing/trace_pipe. Although loxilb eBPF modules do not emit logs in normal mode of operation, logs can be enabled after a recompilation. </p>
 <pre><code>root@752531364e2c:/# cat /sys/kernel/debug/tracing/trace_pipe        
          loxicmd-30524   [001] d.s1 27870.170790: bpf_trace_printk: out-dir
