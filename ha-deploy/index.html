@@ -226,6 +226,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#scenario-4-active-backup-with-connection-sync" class="nav-link">Scenario 4 -  ACTIVE-BACKUP with Connection Sync</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -239,6 +243,7 @@
 <li><a href="https://github.com/loxilb-io/loxilbdocs/edit/main/docs/ha-deploy.md#scenario-1----flat-l2-networking-active-backup">Scenario 1 -  Flat L2 Networking (active-backup)</a></li>
 <li><a href="https://github.com/loxilb-io/loxilbdocs/edit/main/docs/ha-deploy.md#scenario-2----l3-network-active-backup-mode-using-bgp">Scenario 2 -  L3 network (active-backup mode using BGP)</a></li>
 <li><a href="https://github.com/loxilb-io/loxilbdocs/edit/main/docs/ha-deploy.md#scenario-3----l3-network-active-active-with-bgp-ecmp">Scenario 3 -  L3 network (active-active with BGP ECMP)</a></li>
+<li><a href="https://github.com/loxilb-io/loxilbdocs/edit/main/docs/ha-deploy.md#scenario-4----active-backup-with-connection-sync">Scenario 4 - ACTIVE-BACKUP with Connection Sync</a></li>
 </ul>
 <h2 id="scenario-1-flat-l2-networking-active-backup">Scenario 1 -  Flat L2 Networking (active-backup)</h2>
 <h3 id="setup">Setup</h3>
@@ -476,7 +481,72 @@ And, kube-loxilb will be deployed as Deployment. </p>
 <h3 id="failover_2">Failover</h3>
 <p>This diagram describes the failover scenario:</p>
 <p><img alt="setup" src="../photos/loxilb-k8s-arch-LoxiLB-HA-L3-ECMP-2.drawio.svg" /></p>
-<p>In case of failure, BGP running on the client will update the ECMP route and start sending the traffic to the active ECMP endpoints.</p></div>
+<p>In case of failure, BGP running on the client will update the ECMP route and start sending the traffic to the active ECMP endpoints.</p>
+<h2 id="scenario-4-active-backup-with-connection-sync">Scenario 4 -  ACTIVE-BACKUP with Connection Sync</h2>
+<h3 id="setup_3">Setup</h3>
+<hr />
+<p>For this deployment scenario, kubernetes and loxilb are setup as follows:</p>
+<p><img alt="setup" src="../photos/loxilb-k8s-arch-LoxiLB-HA-CT-Sync-1.drawio.svg" /></p>
+<p>This feature is only supported when loxilb runs externally outside the Kubernetes cluster in either default or fullnat mode. Kubernetes uses a cluster with 2 Master Nodes and 2 Worker Nodes, all the nodes use the same 192.168.80.0/24 subnet. SVCs will have an external IP. </p>
+<p>There are few possible scenarios which depends upon the connectivity of External Client, loxilb and the Kubernetes cluster. For this scenario, we are here considering L3 connectivity.</p>
+<h3 id="ideal-for-use-when_3">Ideal for use when</h3>
+<ol>
+<li>Clients and Cluster is in different subnet.</li>
+<li>Clients and svc VIP need to be in different subnet  (end-points may be in different networks).</li>
+<li>Ideal for cloud deployments.</li>
+<li>Better performance is desired but network devices/hosts must be capable of supporting ecmp.</li>
+</ol>
+<h3 id="roles-and-responsiblities-for-kube-loxilb_3">Roles and Responsiblities for kube-loxilb:</h3>
+<ul>
+<li>Choose CIDR from a different subnet.</li>
+<li>Choose SetRoles option so it can choose active loxilb (svcIPs will be advertised with different attributes/prio/med).</li>
+<li>Automates provisioning of bgp-peering between loxilb containers.</li>
+<li>Sets up loxilb in fullnat svc mode towards end-points.</li>
+</ul>
+<h4 id="configuration-options_6">Configuration options</h4>
+<pre><code> containers:
+      - name: kube-loxilb
+        image: ghcr.io/loxilb-io/kube-loxilb:latest
+        imagePullPolicy: Always
+        command:
+        - /bin/kube-loxilb
+        args:
+        ....
+        ....
+        - --externalCIDR=123.123.123.1/24
+        - --setLBMode=2
+        - --setBGP=65100
+        - --extBGPPeers=50.50.50.1:65101
+</code></pre>
+<ul>
+<li><b>"--externalCIDR=123.123.123.1/24" -</b> The external service IP for a svc is chosen from the externalCIDR range. In this scenario, the Client, svc and cluster are all in the different subnet.</li>
+<li><b>"--setLBMode=2" -</b> This option will enable kube-loxilb to configure svc in fullnat mode towards the endpoints.</li>
+<li><b>"--setBGP=65100" -</b> This option will let kube-loxilb to configure local AS number in the bgp instance.</li>
+<li><b>"--extBGPPeers=50.50.50.1:65101" -</b> This option will configure the bgp instance's external neighbors</li>
+</ul>
+<h3 id="roles-and-responsiblities-for-loxilb_3">Roles and Responsiblities for loxilb:</h3>
+<ul>
+<li>Advertises SVC IP as per the state(active/backup).</li>
+<li>Tracks and steers the external traffic destined to svc to the endpoints.</li>
+<li>Monitors endpoint's health and chooses active endpoints, if configured.</li>
+<li>Syncs the long-lived connections to all other configured loxilb peers.</li>
+</ul>
+<h4 id="running-options">Running options</h4>
+<pre><code>#llb1
+ docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --name loxilb ghcr.io/loxilb-io/loxilb:latest  --cluster=$llb2IP --self=0
+
+#llb2
+ docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --name loxilb ghcr.io/loxilb-io/loxilb:latest --cluster=$llb1IP --self=1
+</code></pre>
+<ul>
+<li><b>"--cluster=\&lt;llb-peer-IP&gt;" -</b> option configures the peer loxilb IP for syncing.</li>
+<li><b>"--self=0/1" -</b> option to identify the instance.</li>
+</ul>
+<h3 id="failover_3">Failover</h3>
+<p>This diagram describes the failover scenario:</p>
+<p><img alt="setup" src="../photos/loxilb-k8s-arch-LoxiLB-HA-CT-Sync-2.drawio.svg" /></p>
+<p>In case of failure, kube-loxilb will detect the faailure. It will select a new loxilb from the pool of active loxilbs and update it's state to new master. New master loxilb will advertise the svcIPs with higher proference which will force the BGP running on the client to send the traffic towards new Master loxilb. Since, the connections are all synced up, new master loxilb will start sending the traffic to the designated endpoints.</p>
+<p>Please read this detailed blog about <a href="https://www.loxilb.io/post/k8s-deploying-hitless-and-ha-load-balancing">"Hitless HA"</a> to know about this feature.</p></div>
             </div>
         </div>
 
