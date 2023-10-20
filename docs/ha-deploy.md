@@ -52,7 +52,7 @@ And, kube-loxilb will be deployed as Deployment.
 
 ### Roles and Responsiblities for loxilb:
 
-  * Tracks and steers the external traffic destined to svc to the endpoints.
+  * Tracks and directs the external traffic destined to svc to the endpoints.
   * Monitors endpoint's health and chooses active endpoints, if configured.
 
 #### Configuration options
@@ -139,7 +139,7 @@ And, kube-loxilb will be deployed as Deployment.
 ### Roles and Responsiblities for loxilb:
 
   * Advertises SVC IP as per the state(active or backup).
-  * Tracks and steers the external traffic destined to svc to the endpoints.
+  * Tracks and directs the external traffic destined to svc to the endpoints.
   * Monitors endpoint's health and chooses active endpoints, if configured.
 
 #### Configuration options
@@ -226,7 +226,7 @@ And, kube-loxilb will be deployed as Deployment.
 ### Roles and Responsiblities for loxilb:
 
   * Advertises SVC IP with same attributes.
-  * Tracks and steers the external traffic destined to svc to the endpoints.
+  * Tracks and directs the external traffic destined to svc to the endpoints.
   * Monitors endpoint's health and chooses active endpoints, if configured.
 
 #### Configuration options
@@ -312,7 +312,7 @@ There are few possible scenarios which depends upon the connectivity of External
 ### Roles and Responsiblities for loxilb:
 
   * Advertises SVC IP as per the state(active/backup).
-  * Tracks and steers the external traffic destined to svc to the endpoints.
+  * Tracks and directs the external traffic destined to svc to the endpoints.
   * Monitors endpoint's health and chooses active endpoints, if configured.
   * Syncs the long-lived connections to all other configured loxilb peers.
 
@@ -339,3 +339,5 @@ This diagram describes the failover scenario:
 In case of failure, kube-loxilb will detect the faailure. It will select a new loxilb from the pool of active loxilbs and update it's state to new master. New master loxilb will advertise the svcIPs with higher proference which will force the BGP running on the client to send the traffic towards new Master loxilb. Since, the connections are all synced up, new master loxilb will start sending the traffic to the designated endpoints.
 
 Please read this detailed blog about ["Hitless HA"](https://www.loxilb.io/post/k8s-deploying-hitless-and-ha-load-balancing) to know about this feature.
+
+<b>Note :</b> There was ways to intergrate loxilb with DSR mode, keepalived/BFD, DNS etc. We will keep updating these scenarios.
