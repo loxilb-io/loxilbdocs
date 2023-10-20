@@ -230,6 +230,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#note" class="nav-link">Note :</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -238,7 +242,7 @@
                     <div class="col-md-9" role="main">
 
 <h1 id="how-to-deploy-loxilb-with-high-availability">How to deploy loxilb with High Availability</h1>
-<p>This article describes different scenarios about how to deploy loxilb with High Availability. Before continuing to this page, all readers are advised to have a basic understanding about <a href="https://loxilb-io.github.io/loxilbdocs/kube-loxilb/">kube-loxilb</a> and the different <a href="https://github.com/loxilb-io/loxilbdocs/blob/main/docs/nat.md">NAT modes</a> supported by loxilb.</p>
+<p>This article describes different scenarios about how to deploy loxilb with High Availability. Before continuing to this page, all readers are advised to have a basic understanding about <a href="https://loxilb-io.github.io/loxilbdocs/kube-loxilb/">kube-loxilb</a> and the different <a href="https://github.com/loxilb-io/loxilbdocs/blob/main/docs/nat.md">NAT modes</a> supported by loxilb. loxilb can run in-cluster or external to kubernetes cluster depending on architectural choices. For this documentation, we have assumed an incluster deployment wherever applicable but similar configuration should suffice for and external deployment as well.   </p>
 <ul>
 <li><a href="https://github.com/loxilb-io/loxilbdocs/edit/main/docs/ha-deploy.md#scenario-1----flat-l2-networking-active-backup">Scenario 1 -  Flat L2 Networking (active-backup)</a></li>
 <li><a href="https://github.com/loxilb-io/loxilbdocs/edit/main/docs/ha-deploy.md#scenario-2----l3-network-active-backup-mode-using-bgp">Scenario 2 -  L3 network (active-backup mode using BGP)</a></li>
@@ -250,21 +254,19 @@
 <hr />
 <p>For this deployment scenario, kubernetes and loxilb are setup as follows:</p>
 <p><img alt="setup" src="../photos/loxilb-k8s-arch-LoxiLB-HA-L2-1.drawio.svg" /></p>
-<p>Kubernetes uses a cluster with 2 Master Nodes and 2 Worker Nodes, all the nodes use the same 192.168.80.0/24 subnet.
-In this scenario, loxilb will be deployed as a DaemonSet in all the master nodes. 
-And, kube-loxilb will be deployed as Deployment. </p>
+<p>Kubernetes uses a cluster with 2 Master Nodes and 2 Worker Nodes, all the nodes use the same 192.168.80.0/24 subnet. In this scenario, loxilb will be deployed as a DaemonSet in all the master nodes. And, kube-loxilb will be deployed as Deployment.    </p>
 <h3 id="ideal-for-use-when">Ideal for use when</h3>
 <ol>
-<li>Clients and end-points need to be in same-subnet.</li>
-<li>Clients and svc VIP need to be in same-subnet  (end-points may be in different networks).</li>
-<li>Simpler to deploy.</li>
+<li>Clients and end-points need to be in same-subnet.   </li>
+<li>Clients and svc VIP need to be in same-subnet  (end-points may be in different networks).   </li>
+<li>Simpler deployment is desired.   </li>
 </ol>
 <h3 id="roles-and-responsiblities-for-kube-loxilb">Roles and Responsiblities for kube-loxilb:</h3>
 <ul>
-<li>Choose CIDR from local subnet.</li>
-<li>Choose SetRoles option so it can choose active loxilb pod.</li>
-<li>Monitors loxilb's health and elect new master on failover.</li>
-<li>Sets up loxilb in one-arm svc mode towards end-points.</li>
+<li>Choose CIDR from local subnet.   </li>
+<li>Choose SetRoles option so it can choose active loxilb pod.   </li>
+<li>Monitors loxilb's health and elect new master on failover.   </li>
+<li>Sets up loxilb in one-arm svc mode towards end-points.   </li>
 </ul>
 <h4 id="configuration-options">Configuration options</h4>
 <pre><code> containers:
@@ -288,8 +290,8 @@ And, kube-loxilb will be deployed as Deployment. </p>
 <p>Sample kube-loxilb.yaml can be found <a href="https://github.com/loxilb-io/kube-loxilb/blob/main/manifest/in-cluster/kube-loxilb.yaml">here</a>.</p>
 <h3 id="roles-and-responsiblities-for-loxilb">Roles and Responsiblities for loxilb:</h3>
 <ul>
-<li>Tracks and directs the external traffic destined to svc to the endpoints.</li>
-<li>Monitors endpoint's health and chooses active endpoints, if configured.</li>
+<li>Tracks and directs the external traffic destined to svc to the endpoints.   </li>
+<li>Monitors endpoint's health and chooses active endpoints, if configured.   </li>
 </ul>
 <h4 id="configuration-options_1">Configuration options</h4>
 <pre><code> containers:
@@ -331,8 +333,8 @@ In this scenario, loxilb will be deployed as a DaemonSet in all the master nodes
 And, kube-loxilb will be deployed as Deployment. </p>
 <h3 id="ideal-for-use-when_1">Ideal for use when</h3>
 <ol>
-<li>Clients and Cluster is in different subnet.</li>
-<li>Clients and svc VIP need to be in different subnet  (end-points may be in different networks).</li>
+<li>Clients and Cluster are in different subnets.</li>
+<li>Clients and svc VIP need to be in different subnet  (cluster end-points may also be in different networks).</li>
 <li>Ideal for cloud deployments.</li>
 </ol>
 <h3 id="roles-and-responsiblities-for-kube-loxilb_1">Roles and Responsiblities for kube-loxilb:</h3>
@@ -416,10 +418,10 @@ In this scenario, loxilb will be deployed as a DaemonSet in all the master nodes
 And, kube-loxilb will be deployed as Deployment. </p>
 <h3 id="ideal-for-use-when_2">Ideal for use when</h3>
 <ol>
-<li>Clients and Cluster is in different subnet.</li>
-<li>Clients and svc VIP need to be in different subnet  (end-points may be in different networks).</li>
+<li>Clients and Cluster are in different subnets.</li>
+<li>Clients and svc VIP need to be in different subnet  (cluster end-points may also be in different networks).</li>
 <li>Ideal for cloud deployments.</li>
-<li>Better performance is desired but network devices/hosts must be capable of supporting ecmp.</li>
+<li>Better performance is desired due to active-active clustering but network devices/hosts must be capable of supporting ecmp.</li>
 </ol>
 <h3 id="roles-and-responsiblities-for-kube-loxilb_2">Roles and Responsiblities for kube-loxilb:</h3>
 <ul>
@@ -497,16 +499,18 @@ And, kube-loxilb will be deployed as Deployment. </p>
 <p>There are few possible scenarios which depends upon the connectivity of External Client, loxilb and the Kubernetes cluster. For this scenario, we are here considering L3 connectivity.</p>
 <h3 id="ideal-for-use-when_3">Ideal for use when</h3>
 <ol>
-<li>Clients and Cluster is in different subnet.</li>
-<li>Clients and svc VIP need to be in different subnet  (end-points may be in different networks).</li>
-<li>Ideal for cloud deployments.</li>
-<li>Better performance is desired but network devices/hosts must be capable of supporting ecmp.</li>
+<li>Need to preserve long running connections during lb pod failures</li>
+<li>Another LB mode known as DSR mode can be used to preserve connections but has the following limitations :<ol>
+<li>Can't ensure stateful filtering and connection-tracking.</li>
+<li>Can't support multihoming features since different 5-tuples might belong to the same connection. </li>
+</ol>
+</li>
 </ol>
 <h3 id="roles-and-responsiblities-for-kube-loxilb_3">Roles and Responsiblities for kube-loxilb:</h3>
 <ul>
-<li>Choose CIDR from a different subnet.</li>
+<li>Choose CIDR as required.</li>
 <li>Choose SetRoles option so it can choose active loxilb (svcIPs will be advertised with different attributes/prio/med).</li>
-<li>Automates provisioning of bgp-peering between loxilb containers.</li>
+<li>Automates provisioning of bgp-peering between loxilb containers (if required).</li>
 <li>Sets up loxilb in fullnat svc mode towards end-points.</li>
 </ul>
 <h4 id="configuration-options_6">Configuration options</h4>
@@ -556,7 +560,8 @@ And, kube-loxilb will be deployed as Deployment. </p>
 <p><img alt="setup" src="../photos/loxilb-k8s-arch-LoxiLB-HA-CT-Sync-2.drawio.svg" /></p>
 <p>In case of failure, kube-loxilb will detect the faailure. It will select a new loxilb from the pool of active loxilbs and update it's state to new master. New master loxilb will advertise the svcIPs with higher proference which will force the BGP running on the client to send the traffic towards new Master loxilb. Since, the connections are all synced up, new master loxilb will start sending the traffic to the designated endpoints.</p>
 <p>Please read this detailed blog about <a href="https://www.loxilb.io/post/k8s-deploying-hitless-and-ha-load-balancing">"Hitless HA"</a> to know about this feature.</p>
-<p><b>Note :</b> There are ways to intergrate loxilb with DSR mode, keepalived/BFD, DNS etc. We will keep updating these scenarios.</p></div>
+<h2 id="note">Note :</h2>
+<p>There are ways to use loxilb in DSR mode, integrate keepalived/BFD, DNS etc which is still not covered in details in this doc. We will keep updating the scenarios.</p></div>
             </div>
         </div>
 
