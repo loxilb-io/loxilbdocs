@@ -356,4 +356,4 @@ In case of failure, kube-loxilb will detect the faailure. It will select a new l
 
 Please read this detailed blog about ["Hitless HA"](https://www.loxilb.io/post/k8s-deploying-hitless-and-ha-load-balancing) to know about this feature.
 
-<b>Note :</b> There was ways to intergrate loxilb with DSR mode, keepalived/BFD, DNS etc. We will keep updating these scenarios.
+<b>Note :</b> There are ways to intergrate loxilb with DSR mode, keepalived/BFD, DNS etc. We will keep updating these scenarios.
