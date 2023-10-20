@@ -5,6 +5,7 @@ This article describes different scenarios about how to deploy loxilb with High 
 * [Scenario 1 -  Flat L2 Networking (active-backup)](https://github.com/loxilb-io/loxilbdocs/edit/main/docs/ha-deploy.md#scenario-1----flat-l2-networking-active-backup)
 * [Scenario 2 -  L3 network (active-backup mode using BGP)](https://github.com/loxilb-io/loxilbdocs/edit/main/docs/ha-deploy.md#scenario-2----l3-network-active-backup-mode-using-bgp)
 * [Scenario 3 -  L3 network (active-active with BGP ECMP)](https://github.com/loxilb-io/loxilbdocs/edit/main/docs/ha-deploy.md#scenario-3----l3-network-active-active-with-bgp-ecmp)
+* [Scenario 4 - ACTIVE-BACKUP with Connection Sync](https://github.com/loxilb-io/loxilbdocs/edit/main/docs/ha-deploy.md#scenario-4----active-backup-with-connection-sync)
 
 ## Scenario 1 -  Flat L2 Networking (active-backup)
 
@@ -260,3 +261,81 @@ This diagram describes the failover scenario:
 ![setup](photos/loxilb-k8s-arch-LoxiLB-HA-L3-ECMP-2.drawio.svg)
 
 In case of failure, BGP running on the client will update the ECMP route and start sending the traffic to the active ECMP endpoints.
+
+## Scenario 4 -  ACTIVE-BACKUP with Connection Sync
+
+### Setup
+--------
+For this deployment scenario, kubernetes and loxilb are setup as follows:
+
+![setup](photos/loxilb-k8s-arch-LoxiLB-HA-CT-Sync-1.drawio.svg)
+
+This feature is only supported when loxilb runs externally outside the Kubernetes cluster in either default or fullnat mode. Kubernetes uses a cluster with 2 Master Nodes and 2 Worker Nodes, all the nodes use the same 192.168.80.0/24 subnet. SVCs will have an external IP. 
+
+There are few possible scenarios which depends upon the connectivity of External Client, loxilb and the Kubernetes cluster. For this scenario, we are here considering L3 connectivity.
+
+
+### Ideal for use when
+  1. Clients and Cluster is in different subnet.
+  2. Clients and svc VIP need to be in different subnet  (end-points may be in different networks).
+  3. Ideal for cloud deployments.
+  4. Better performance is desired but network devices/hosts must be capable of supporting ecmp.
+      
+### Roles and Responsiblities for kube-loxilb: 
+  * Choose CIDR from a different subnet.
+  * Choose SetRoles option so it can choose active loxilb (svcIPs will be advertised with different attributes/prio/med).
+  * Automates provisioning of bgp-peering between loxilb containers.
+  * Sets up loxilb in fullnat svc mode towards end-points.
+
+#### Configuration options
+```
+ containers:
+      - name: kube-loxilb
+        image: ghcr.io/loxilb-io/kube-loxilb:latest
+        imagePullPolicy: Always
+        command:
+        - /bin/kube-loxilb
+        args:
+        ....
+        ....
+        - --externalCIDR=123.123.123.1/24
+        - --setLBMode=2
+        - --setBGP=65100
+        - --extBGPPeers=50.50.50.1:65101
+```
+
+  *  <b>"--externalCIDR=123.123.123.1/24" -</b> The external service IP for a svc is chosen from the externalCIDR range. In this scenario, the Client, svc and cluster are all in the different subnet.
+  *  <b>"--setLBMode=2" -</b> This option will enable kube-loxilb to configure svc in fullnat mode towards the endpoints.
+  *  <b>"--setBGP=65100" -</b> This option will let kube-loxilb to configure local AS number in the bgp instance.
+  *  <b>"--extBGPPeers=50.50.50.1:65101" -</b> This option will configure the bgp instance's external neighbors
+
+### Roles and Responsiblities for loxilb:
+
+  * Advertises SVC IP as per the state(active/backup).
+  * Tracks and steers the external traffic destined to svc to the endpoints.
+  * Monitors endpoint's health and chooses active endpoints, if configured.
+  * Syncs the long-lived connections to all other configured loxilb peers.
+
+#### Running options
+
+```
+#llb1
+ docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --name loxilb ghcr.io/loxilb-io/loxilb:latest  --cluster=$llb2IP --self=0
+
+#llb2
+ docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --name loxilb ghcr.io/loxilb-io/loxilb:latest --cluster=$llb1IP --self=1
+```
+
+  * <b>"--cluster=\<llb-peer-IP\>" -</b> option configures the peer loxilb IP for syncing.
+  * <b>"--self=0/1" -</b> option to identify the instance.
+  
+
+### Failover
+
+This diagram describes the failover scenario:
+
+![setup](photos/loxilb-k8s-arch-LoxiLB-HA-CT-Sync-2.drawio.svg)
+
+In case of failure, kube-loxilb will detect the faailure. It will select a new loxilb from the pool of active loxilbs and update it's state to new master. New master loxilb will advertise the svcIPs with higher proference which will force the BGP running on the client to send the traffic towards new Master loxilb. Since, the connections are all synced up, new master loxilb will start sending the traffic to the designated endpoints.
+
+Please read this detailed blog about ["Hitless HA"](https://www.loxilb.io/post/k8s-deploying-hitless-and-ha-load-balancing) to know about this feature.
