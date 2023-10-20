@@ -50,6 +50,8 @@ And, kube-loxilb will be deployed as Deployment.
   *  <b>"--setRoles=0.0.0.0" -</b> This option will enable kube-loxilb to choose active-backup amongst the loxilb instance and the svc IP to be configured on the active loxilb node.
   *  <b>"--setLBMode=1" -</b> This option will enable kube-loxilb to configure svc in one-arm mode towards the endpoints.
 
+Sample kube-loxilb.yaml can be found [here](https://github.com/loxilb-io/kube-loxilb/blob/main/manifest/in-cluster/kube-loxilb.yaml).
+
 ### Roles and Responsiblities for loxilb:
 
   * Tracks and directs the external traffic destined to svc to the endpoints.
@@ -77,6 +79,8 @@ And, kube-loxilb will be deployed as Deployment.
   * <b>"--egr-hooks" -</b> required for those cases in which workloads can be scheduled in the master nodes. No need to mention this argument when you are managing the workload scheduling to worker nodes.
 
   * <b>"--blacklist=cni[0-9a-z]|veth.|flannel." -</b> mandatory for running in in-cluster mode. As loxilb attaches it's ebpf programs on all the interfaces but since we running it in the default namespace then all the interfaces including CNI interfaces will be exposed and loxilb will attach it's ebpf program in those interfaces which is definitely not desired. So, user needs to mention a regex for  excluding all those interfaces. The regex in the given example will exclude the flannel interfaces. "--blacklist=cali.|tunl.|vxlan[.]calico|veth.|cni[0-9a-z]" regex must be used with calico CNI.
+
+Sample loxilb.yaml can be found [here](https://github.com/loxilb-io/kube-loxilb/blob/main/manifest/in-cluster/loxilb.yaml).
 
 ### Failover
 
@@ -134,7 +138,9 @@ And, kube-loxilb will be deployed as Deployment.
   *  <b>"--setRoles=0.0.0.0" -</b> This option will enable kube-loxilb to choose active-backup amongst the loxilb instance and the svc IP to be configured on the active loxilb node.
   *  <b>"--setLBMode=1" -</b> This option will enable kube-loxilb to configure svc in one-arm mode towards the endpoints.
   *  <b>"--setBGP=65100" -</b> This option will let kube-loxilb to configure local AS number in the bgp instance.
-  *  <b>"--extBGPPeers=50.50.50.1:65101" -</b> This option will configure the bgp instance's external neighbors
+  *  <b>"--extBGPPeers=50.50.50.1:65101" -</b> This option will configure the bgp instance's external neighbors.
+
+Sample kube-loxilb.yaml can be found [here](https://github.com/loxilb-io/kube-loxilb/blob/main/manifest/in-cluster/kube-loxilb.yaml).
 
 ### Roles and Responsiblities for loxilb:
 
@@ -166,6 +172,8 @@ And, kube-loxilb will be deployed as Deployment.
   * <b>"--egr-hooks" -</b> required for those cases in which workloads can be scheduled in the master nodes. No need to mention this argument when you are managing the workload scheduling to worker nodes.
 
   * <b>"--blacklist=cni[0-9a-z]|veth.|flannel." -</b> mandatory for running in in-cluster mode. As loxilb attaches it's ebpf programs on all the interfaces but since we running it in the default namespace then all the interfaces including CNI interfaces will be exposed and loxilb will attach it's ebpf program in those interfaces which is definitely not desired. So, user needs to mention a regex for  excluding all those interfaces. The regex in the given example will exclude the flannel interfaces. "--blacklist=cali.|tunl.|vxlan[.]calico|veth.|cni[0-9a-z]" regex must be used with calico CNI.
+
+Sample loxilb.yaml can be found [here](https://github.com/loxilb-io/kube-loxilb/blob/main/manifest/in-cluster/loxilb.yaml).
 
 ### Failover
 
@@ -223,6 +231,8 @@ And, kube-loxilb will be deployed as Deployment.
   *  <b>"--setBGP=65100" -</b> This option will let kube-loxilb to configure local AS number in the bgp instance.
   *  <b>"--extBGPPeers=50.50.50.1:65101" -</b> This option will configure the bgp instance's external neighbors
 
+Sample kube-loxilb.yaml can be found [here](https://github.com/loxilb-io/kube-loxilb/blob/main/manifest/in-cluster/kube-loxilb.yaml).
+
 ### Roles and Responsiblities for loxilb:
 
   * Advertises SVC IP with same attributes.
@@ -253,6 +263,8 @@ And, kube-loxilb will be deployed as Deployment.
   * <b>"--egr-hooks" -</b> required for those cases in which workloads can be scheduled in the master nodes. No need to mention this argument when you are managing the workload scheduling to worker nodes.
 
   * <b>"--blacklist=cni[0-9a-z]|veth.|flannel." -</b> mandatory for running in in-cluster mode. As loxilb attaches it's ebpf programs on all the interfaces but since we running it in the default namespace then all the interfaces including CNI interfaces will be exposed and loxilb will attach it's ebpf program in those interfaces which is definitely not desired. So, user needs to mention a regex for  excluding all those interfaces. The regex in the given example will exclude the flannel interfaces. "--blacklist=cali.|tunl.|vxlan[.]calico|veth.|cni[0-9a-z]" regex must be used with calico CNI.
+
+Sample loxilb.yaml can be found [here](https://github.com/loxilb-io/kube-loxilb/blob/main/manifest/in-cluster/loxilb.yaml).
 
 ### Failover
 
@@ -310,6 +322,8 @@ There are few possible scenarios which depends upon the connectivity of External
   *  <b>"--setLBMode=2" -</b> This option will enable kube-loxilb to configure svc in fullnat mode towards the endpoints.
   *  <b>"--setBGP=65100" -</b> This option will let kube-loxilb to configure local AS number in the bgp instance.
   *  <b>"--extBGPPeers=50.50.50.1:65101" -</b> This option will configure the bgp instance's external neighbors
+    
+Sample kube-loxilb.yaml can be found [here](https://github.com/loxilb-io/kube-loxilb/blob/main/manifest/ext-cluster/kube-loxilb.yaml).
 
 ### Roles and Responsiblities for loxilb:
 
