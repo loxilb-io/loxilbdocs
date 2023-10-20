@@ -285,6 +285,7 @@ And, kube-loxilb will be deployed as Deployment. </p>
 <li><b>"--setRoles=0.0.0.0" -</b> This option will enable kube-loxilb to choose active-backup amongst the loxilb instance and the svc IP to be configured on the active loxilb node.</li>
 <li><b>"--setLBMode=1" -</b> This option will enable kube-loxilb to configure svc in one-arm mode towards the endpoints.</li>
 </ul>
+<p>Sample kube-loxilb.yaml can be found <a href="https://github.com/loxilb-io/kube-loxilb/blob/main/manifest/in-cluster/kube-loxilb.yaml">here</a>.</p>
 <h3 id="roles-and-responsiblities-for-loxilb">Roles and Responsiblities for loxilb:</h3>
 <ul>
 <li>Tracks and directs the external traffic destined to svc to the endpoints.</li>
@@ -314,6 +315,7 @@ And, kube-loxilb will be deployed as Deployment. </p>
 <p><b>"--blacklist=cni[0-9a-z]|veth.|flannel." -</b> mandatory for running in in-cluster mode. As loxilb attaches it's ebpf programs on all the interfaces but since we running it in the default namespace then all the interfaces including CNI interfaces will be exposed and loxilb will attach it's ebpf program in those interfaces which is definitely not desired. So, user needs to mention a regex for  excluding all those interfaces. The regex in the given example will exclude the flannel interfaces. "--blacklist=cali.|tunl.|vxlan[.]calico|veth.|cni[0-9a-z]" regex must be used with calico CNI.</p>
 </li>
 </ul>
+<p>Sample loxilb.yaml can be found <a href="https://github.com/loxilb-io/kube-loxilb/blob/main/manifest/in-cluster/loxilb.yaml">here</a>.</p>
 <h3 id="failover">Failover</h3>
 <p>This diagram describes the failover scenario:</p>
 <p><img alt="setup" src="../photos/loxilb-k8s-arch-LoxiLB-HA-L2-2.drawio.svg" /></p>
@@ -362,8 +364,9 @@ And, kube-loxilb will be deployed as Deployment. </p>
 <li><b>"--setRoles=0.0.0.0" -</b> This option will enable kube-loxilb to choose active-backup amongst the loxilb instance and the svc IP to be configured on the active loxilb node.</li>
 <li><b>"--setLBMode=1" -</b> This option will enable kube-loxilb to configure svc in one-arm mode towards the endpoints.</li>
 <li><b>"--setBGP=65100" -</b> This option will let kube-loxilb to configure local AS number in the bgp instance.</li>
-<li><b>"--extBGPPeers=50.50.50.1:65101" -</b> This option will configure the bgp instance's external neighbors</li>
+<li><b>"--extBGPPeers=50.50.50.1:65101" -</b> This option will configure the bgp instance's external neighbors.</li>
 </ul>
+<p>Sample kube-loxilb.yaml can be found <a href="https://github.com/loxilb-io/kube-loxilb/blob/main/manifest/in-cluster/kube-loxilb.yaml">here</a>.</p>
 <h3 id="roles-and-responsiblities-for-loxilb_1">Roles and Responsiblities for loxilb:</h3>
 <ul>
 <li>Advertises SVC IP as per the state(active or backup).</li>
@@ -397,6 +400,7 @@ And, kube-loxilb will be deployed as Deployment. </p>
 <p><b>"--blacklist=cni[0-9a-z]|veth.|flannel." -</b> mandatory for running in in-cluster mode. As loxilb attaches it's ebpf programs on all the interfaces but since we running it in the default namespace then all the interfaces including CNI interfaces will be exposed and loxilb will attach it's ebpf program in those interfaces which is definitely not desired. So, user needs to mention a regex for  excluding all those interfaces. The regex in the given example will exclude the flannel interfaces. "--blacklist=cali.|tunl.|vxlan[.]calico|veth.|cni[0-9a-z]" regex must be used with calico CNI.</p>
 </li>
 </ul>
+<p>Sample loxilb.yaml can be found <a href="https://github.com/loxilb-io/kube-loxilb/blob/main/manifest/in-cluster/loxilb.yaml">here</a>.</p>
 <h3 id="failover_1">Failover</h3>
 <p>This diagram describes the failover scenario:</p>
 <p><img alt="setup" src="../photos/loxilb-k8s-arch-LoxiLB-HA-L3-2.drawio.svg" /></p>
@@ -445,6 +449,7 @@ And, kube-loxilb will be deployed as Deployment. </p>
 <li><b>"--setBGP=65100" -</b> This option will let kube-loxilb to configure local AS number in the bgp instance.</li>
 <li><b>"--extBGPPeers=50.50.50.1:65101" -</b> This option will configure the bgp instance's external neighbors</li>
 </ul>
+<p>Sample kube-loxilb.yaml can be found <a href="https://github.com/loxilb-io/kube-loxilb/blob/main/manifest/in-cluster/kube-loxilb.yaml">here</a>.</p>
 <h3 id="roles-and-responsiblities-for-loxilb_2">Roles and Responsiblities for loxilb:</h3>
 <ul>
 <li>Advertises SVC IP with same attributes.</li>
@@ -478,6 +483,7 @@ And, kube-loxilb will be deployed as Deployment. </p>
 <p><b>"--blacklist=cni[0-9a-z]|veth.|flannel." -</b> mandatory for running in in-cluster mode. As loxilb attaches it's ebpf programs on all the interfaces but since we running it in the default namespace then all the interfaces including CNI interfaces will be exposed and loxilb will attach it's ebpf program in those interfaces which is definitely not desired. So, user needs to mention a regex for  excluding all those interfaces. The regex in the given example will exclude the flannel interfaces. "--blacklist=cali.|tunl.|vxlan[.]calico|veth.|cni[0-9a-z]" regex must be used with calico CNI.</p>
 </li>
 </ul>
+<p>Sample loxilb.yaml can be found <a href="https://github.com/loxilb-io/kube-loxilb/blob/main/manifest/in-cluster/loxilb.yaml">here</a>.</p>
 <h3 id="failover_2">Failover</h3>
 <p>This diagram describes the failover scenario:</p>
 <p><img alt="setup" src="../photos/loxilb-k8s-arch-LoxiLB-HA-L3-ECMP-2.drawio.svg" /></p>
@@ -526,6 +532,7 @@ And, kube-loxilb will be deployed as Deployment. </p>
 <li><b>"--setBGP=65100" -</b> This option will let kube-loxilb to configure local AS number in the bgp instance.</li>
 <li><b>"--extBGPPeers=50.50.50.1:65101" -</b> This option will configure the bgp instance's external neighbors</li>
 </ul>
+<p>Sample kube-loxilb.yaml can be found <a href="https://github.com/loxilb-io/kube-loxilb/blob/main/manifest/ext-cluster/kube-loxilb.yaml">here</a>.</p>
 <h3 id="roles-and-responsiblities-for-loxilb_3">Roles and Responsiblities for loxilb:</h3>
 <ul>
 <li>Advertises SVC IP as per the state(active/backup).</li>
