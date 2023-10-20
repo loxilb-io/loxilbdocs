@@ -317,7 +317,7 @@ There are few possible scenarios which depends upon the connectivity of External
         - --extBGPPeers=50.50.50.1:65101
 ```
 
-  *  <b>--loxiURL=http://192.168.80.1:11111,http://192.168.80.2:11111" -</b> loxilb URLs to connect with.
+  *  <b>"--loxiURL=http://192.168.80.1:11111,http://192.168.80.2:11111" -</b> loxilb URLs to connect with.
   *  <b>"--externalCIDR=123.123.123.1/24" -</b> The external service IP for a svc is chosen from the externalCIDR range. In this scenario, the Client, svc and cluster are all in the different subnet.
   *  <b>"--setLBMode=2" -</b> This option will enable kube-loxilb to configure svc in fullnat mode towards the endpoints.
   *  <b>"--setBGP=65100" -</b> This option will let kube-loxilb to configure local AS number in the bgp instance.
