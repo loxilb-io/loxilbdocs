@@ -222,6 +222,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-level="2"><a href="#scenario-3-l3-network-active-active-with-bgp-ecmp" class="nav-link">Scenario 3 -  L3 network (active-active with BGP ECMP)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -234,6 +238,7 @@
 <ul>
 <li><a href="https://github.com/loxilb-io/loxilbdocs/edit/main/docs/ha-deploy.md#scenario-1----flat-l2-networking-active-backup">Scenario 1 -  Flat L2 Networking (active-backup)</a></li>
 <li><a href="https://github.com/loxilb-io/loxilbdocs/edit/main/docs/ha-deploy.md#scenario-2----l3-network-active-backup-mode-using-bgp">Scenario 2 -  L3 network (active-backup mode using BGP)</a></li>
+<li><a href="https://github.com/loxilb-io/loxilbdocs/edit/main/docs/ha-deploy.md#scenario-3----l3-network-active-active-with-bgp-ecmp">Scenario 3 -  L3 network (active-active with BGP ECMP)</a></li>
 </ul>
 <h2 id="scenario-1-flat-l2-networking-active-backup">Scenario 1 -  Flat L2 Networking (active-backup)</h2>
 <h3 id="setup">Setup</h3>
@@ -245,16 +250,16 @@ In this scenario, loxilb will be deployed as a DaemonSet in all the master nodes
 And, kube-loxilb will be deployed as Deployment. </p>
 <h3 id="ideal-for-use-when">Ideal for use when</h3>
 <ol>
-<li>Clients and end-points need to be in same-subnet </li>
-<li>Clients and svc VIP need to be in same-subnet  (end-points may be in different networks)</li>
-<li>Simpler to deploy</li>
+<li>Clients and end-points need to be in same-subnet.</li>
+<li>Clients and svc VIP need to be in same-subnet  (end-points may be in different networks).</li>
+<li>Simpler to deploy.</li>
 </ol>
 <h3 id="roles-and-responsiblities-for-kube-loxilb">Roles and Responsiblities for kube-loxilb:</h3>
 <ul>
-<li>Choose CIDR from local subnet</li>
-<li>Choose SetRoles option so it can choose active loxilb pod</li>
-<li>Monitors loxilb's health and elect new master on failover</li>
-<li>Sets up loxilb in one-arm svc mode towards end-points</li>
+<li>Choose CIDR from local subnet.</li>
+<li>Choose SetRoles option so it can choose active loxilb pod.</li>
+<li>Monitors loxilb's health and elect new master on failover.</li>
+<li>Sets up loxilb in one-arm svc mode towards end-points.</li>
 </ul>
 <h4 id="configuration-options">Configuration options</h4>
 <pre><code> containers:
@@ -278,7 +283,7 @@ And, kube-loxilb will be deployed as Deployment. </p>
 <h3 id="roles-and-responsiblities-for-loxilb">Roles and Responsiblities for loxilb:</h3>
 <ul>
 <li>Tracks and steers the external traffic destined to svc to the endpoints.</li>
-<li>Monitors endpoint's health and chooses active endpoints, if configured</li>
+<li>Monitors endpoint's health and chooses active endpoints, if configured.</li>
 </ul>
 <h4 id="configuration-options_1">Configuration options</h4>
 <pre><code> containers:
@@ -319,16 +324,16 @@ In this scenario, loxilb will be deployed as a DaemonSet in all the master nodes
 And, kube-loxilb will be deployed as Deployment. </p>
 <h3 id="ideal-for-use-when_1">Ideal for use when</h3>
 <ol>
-<li>Clients and Cluster is in different subnet</li>
-<li>Clients and svc VIP need to be in different subnet  (end-points may be in different networks)</li>
-<li>Ideal for cloud deployments</li>
+<li>Clients and Cluster is in different subnet.</li>
+<li>Clients and svc VIP need to be in different subnet  (end-points may be in different networks).</li>
+<li>Ideal for cloud deployments.</li>
 </ol>
 <h3 id="roles-and-responsiblities-for-kube-loxilb_1">Roles and Responsiblities for kube-loxilb:</h3>
 <ul>
-<li>Choose CIDR from a different subnet</li>
-<li>Choose SetRoles option so it can choose active loxilb pod</li>
-<li>Monitors loxilb's health and elect new master on failover</li>
-<li>Automates provisioning of bgp-peering between loxilb pods</li>
+<li>Choose CIDR from a different subnet.</li>
+<li>Choose SetRoles option so it can choose active loxilb pod.</li>
+<li>Monitors loxilb's health and elect new master on failover.</li>
+<li>Automates provisioning of bgp-peering between loxilb pods.</li>
 <li>Sets up loxilb in one-arm svc mode towards end-points.</li>
 </ul>
 <h4 id="configuration-options_2">Configuration options</h4>
@@ -356,7 +361,7 @@ And, kube-loxilb will be deployed as Deployment. </p>
 </ul>
 <h3 id="roles-and-responsiblities-for-loxilb_1">Roles and Responsiblities for loxilb:</h3>
 <ul>
-<li>Advertises SVC IP as per the state(active or backup)</li>
+<li>Advertises SVC IP as per the state(active or backup).</li>
 <li>Tracks and steers the external traffic destined to svc to the endpoints.</li>
 <li>Monitors endpoint's health and chooses active endpoints, if configured.</li>
 </ul>
@@ -391,7 +396,87 @@ And, kube-loxilb will be deployed as Deployment. </p>
 <p>This diagram describes the failover scenario:</p>
 <p><img alt="setup" src="../photos/loxilb-k8s-arch-LoxiLB-HA-L3-2.drawio.svg" /></p>
 <p>kube-loxilb actively monitors loxilb's health. In case of failure, it detects change in state of loxilb and assigns new “active” from available healthy loxilb pod pool.
-The new pod inherits svcIP assigned previously to other loxilb pod and advertises the SVC IP with the preference as per the new state. Client receives the new route to SVCIP and the Services are served by newly active loxilb pod.</p></div>
+The new pod inherits svcIP assigned previously to other loxilb pod and advertises the SVC IP with the preference as per the new state. Client receives the new route to SVCIP and the Services are served by newly active loxilb pod.</p>
+<h2 id="scenario-3-l3-network-active-active-with-bgp-ecmp">Scenario 3 -  L3 network (active-active with BGP ECMP)</h2>
+<h3 id="setup_2">Setup</h3>
+<hr />
+<p>For this deployment scenario, kubernetes and loxilb are setup as follows:</p>
+<p><img alt="setup" src="../photos/loxilb-k8s-arch-LoxiLB-HA-L3-ECMP.drawio.svg" /></p>
+<p>Kubernetes uses a cluster with 2 Master Nodes and 2 Worker Nodes, all the nodes use the same 192.168.80.0/24 subnet. SVCs will have an external IP, not from the cluster/local subnet.
+In this scenario, loxilb will be deployed as a DaemonSet in all the master nodes. 
+And, kube-loxilb will be deployed as Deployment. </p>
+<h3 id="ideal-for-use-when_2">Ideal for use when</h3>
+<ol>
+<li>Clients and Cluster is in different subnet.</li>
+<li>Clients and svc VIP need to be in different subnet  (end-points may be in different networks).</li>
+<li>Ideal for cloud deployments.</li>
+<li>Better performance is desired but network devices/hosts must be capable of supporting ecmp.</li>
+</ol>
+<h3 id="roles-and-responsiblities-for-kube-loxilb_2">Roles and Responsiblities for kube-loxilb:</h3>
+<ul>
+<li>Choose CIDR from a different subnet.</li>
+<li><b>Do not choose SetRoles option</b> in this case (svcIPs will be advertised with same attributes/prio/med).</li>
+<li>Automates provisioning of bgp-peering between loxilb pods.</li>
+<li>Sets up loxilb in one-arm svc mode towards end-points.</li>
+</ul>
+<h4 id="configuration-options_4">Configuration options</h4>
+<pre><code> containers:
+      - name: kube-loxilb
+        image: ghcr.io/loxilb-io/kube-loxilb:latest
+        imagePullPolicy: Always
+        command:
+        - /bin/kube-loxilb
+        args:
+        ....
+        ....
+        - --externalCIDR=123.123.123.1/24
+        - --setLBMode=1
+        - --setBGP=65100
+        - --extBGPPeers=50.50.50.1:65101
+</code></pre>
+<ul>
+<li><b>"--externalCIDR=123.123.123.1/24" -</b> The external service IP for a svc is chosen from the externalCIDR range. In this scenario, the Client, svc and cluster are all in the different subnet.</li>
+<li><b>"--setLBMode=1" -</b> This option will enable kube-loxilb to configure svc in one-arm mode towards the endpoints.</li>
+<li><b>"--setBGP=65100" -</b> This option will let kube-loxilb to configure local AS number in the bgp instance.</li>
+<li><b>"--extBGPPeers=50.50.50.1:65101" -</b> This option will configure the bgp instance's external neighbors</li>
+</ul>
+<h3 id="roles-and-responsiblities-for-loxilb_2">Roles and Responsiblities for loxilb:</h3>
+<ul>
+<li>Advertises SVC IP with same attributes.</li>
+<li>Tracks and steers the external traffic destined to svc to the endpoints.</li>
+<li>Monitors endpoint's health and chooses active endpoints, if configured.</li>
+</ul>
+<h4 id="configuration-options_5">Configuration options</h4>
+<pre><code> containers:
+      - name: loxilb-app
+        image: &quot;ghcr.io/loxilb-io/loxilb:latest&quot;
+        imagePullPolicy: Always
+        command: [ &quot;/root/loxilb-io/loxilb/loxilb&quot;, &quot;--bgp&quot;, &quot;--egr-hooks&quot;, &quot;--blacklist=cni[0-9a-z]|veth.|flannel.&quot; ]
+        ports:
+        - containerPort: 11111
+        - containerPort: 179
+        - containerPort: 50051
+        securityContext:
+          privileged: true
+          capabilities:
+            add:
+              - SYS_ADMIN
+</code></pre>
+<ul>
+<li>
+<p><b>"--bgp" -</b> option enables loxilb to run with goBGP instance which will advertise the routes with same attributes.</p>
+</li>
+<li>
+<p><b>"--egr-hooks" -</b> required for those cases in which workloads can be scheduled in the master nodes. No need to mention this argument when you are managing the workload scheduling to worker nodes.</p>
+</li>
+<li>
+<p><b>"--blacklist=cni[0-9a-z]|veth.|flannel." -</b> mandatory for running in in-cluster mode. As loxilb attaches it's ebpf programs on all the interfaces but since we running it in the default namespace then all the interfaces including CNI interfaces will be exposed and loxilb will attach it's ebpf program in those interfaces which is definitely not desired. So, user needs to mention a regex for  excluding all those interfaces. The regex in the given example will exclude the flannel interfaces. "--blacklist=cali.|tunl.|vxlan[.]calico|veth.|cni[0-9a-z]" regex must be used with calico CNI.</p>
+</li>
+</ul>
+<h3 id="failover_2">Failover</h3>
+<p>This diagram describes the failover scenario:</p>
+<p><img alt="setup" src="../photos/loxilb-k8s-arch-LoxiLB-HA-L3-ECMP-2.drawio.svg" /></p>
+<p>In case of failure, BGP running on the client will update the ECMP route and start sending the traffic to the active ECMP endpoints.</p></div>
             </div>
         </div>
 
