@@ -18,8 +18,8 @@ For this deployment scenario, kubernetes and loxilb are setup as follows:
 Kubernetes uses a cluster with 2 Master Nodes and 2 Worker Nodes, all the nodes use the same 192.168.80.0/24 subnet. In this scenario, loxilb will be deployed as a DaemonSet in all the master nodes. And, kube-loxilb will be deployed as Deployment.    
 
 ### Ideal for use when
-  1. Clients and end-points need to be in same-subnet.   
-  2. Clients and svc VIP need to be in same-subnet  (end-points may be in different networks).   
+  1. Clients and services need to be in same-subnet.    
+  2. End-points may or may not be in same subnet.      
   3. Simpler deployment is desired.   
       
 ### Roles and Responsiblities for kube-loxilb: 
