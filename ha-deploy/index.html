@@ -556,7 +556,7 @@ And, kube-loxilb will be deployed as Deployment. </p>
 <p><img alt="setup" src="../photos/loxilb-k8s-arch-LoxiLB-HA-CT-Sync-2.drawio.svg" /></p>
 <p>In case of failure, kube-loxilb will detect the faailure. It will select a new loxilb from the pool of active loxilbs and update it's state to new master. New master loxilb will advertise the svcIPs with higher proference which will force the BGP running on the client to send the traffic towards new Master loxilb. Since, the connections are all synced up, new master loxilb will start sending the traffic to the designated endpoints.</p>
 <p>Please read this detailed blog about <a href="https://www.loxilb.io/post/k8s-deploying-hitless-and-ha-load-balancing">"Hitless HA"</a> to know about this feature.</p>
-<p><b>Note :</b> There was ways to intergrate loxilb with DSR mode, keepalived/BFD, DNS etc. We will keep updating these scenarios.</p></div>
+<p><b>Note :</b> There are ways to intergrate loxilb with DSR mode, keepalived/BFD, DNS etc. We will keep updating these scenarios.</p></div>
             </div>
         </div>
 
