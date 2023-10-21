@@ -73,6 +73,7 @@ loxilb is an open source hyper-scale software load-balancer for cloud-native wor
 - [How-To : loxilb with calico bgp](integrate_bgp_eng.md)
 - [How-To : loxilb in standalone mode](standalone.md)
 - [How-To : loxilb Web-APIs](api.md)
+- [How-To : high-availability with loxilb](ha-deploy.md)
 
 ## Knowledge-Base   
 - [What is eBPF](ebpf.md)
