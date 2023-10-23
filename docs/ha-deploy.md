@@ -2,10 +2,10 @@ How to deploy loxilb with High Availability
 ========
 This article describes different scenarios about how to deploy loxilb with High Availability. Before continuing to this page, all readers are advised to have a basic understanding about [kube-loxilb](https://loxilb-io.github.io/loxilbdocs/kube-loxilb/) and the different [NAT modes](https://github.com/loxilb-io/loxilbdocs/blob/main/docs/nat.md) supported by loxilb. loxilb can run in-cluster or external to kubernetes cluster depending on architectural choices. For this documentation, we have assumed an incluster deployment wherever applicable but similar configuration should suffice for an external deployment as well.   
 
-* [Scenario 1 -  Flat L2 Networking (active-backup)](https://github.com/loxilb-io/loxilbdocs/edit/main/docs/ha-deploy.md#scenario-1----flat-l2-networking-active-backup)
-* [Scenario 2 -  L3 network (active-backup mode using BGP)](https://github.com/loxilb-io/loxilbdocs/edit/main/docs/ha-deploy.md#scenario-2----l3-network-active-backup-mode-using-bgp)
-* [Scenario 3 -  L3 network (active-active with BGP ECMP)](https://github.com/loxilb-io/loxilbdocs/edit/main/docs/ha-deploy.md#scenario-3----l3-network-active-active-with-bgp-ecmp)
-* [Scenario 4 - ACTIVE-BACKUP with Connection Sync](https://github.com/loxilb-io/loxilbdocs/edit/main/docs/ha-deploy.md#scenario-4----active-backup-with-connection-sync)
+* [Scenario 1 -  Flat L2 Networking (active-backup)](#scenario-1----flat-l2-networking-active-backup)
+* [Scenario 2 -  L3 network (active-backup mode using BGP)](#scenario-2----l3-network-active-backup-mode-using-bgp)
+* [Scenario 3 -  L3 network (active-active with BGP ECMP)](#scenario-3----l3-network-active-active-with-bgp-ecmp)
+* [Scenario 4 - ACTIVE-BACKUP with Connection Sync](#scenario-4----active-backup-with-connection-sync)
 
 ## Scenario 1 -  Flat L2 Networking (active-backup)
 
