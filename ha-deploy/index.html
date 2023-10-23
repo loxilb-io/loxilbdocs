@@ -258,10 +258,10 @@
 <h1 id="how-to-deploy-loxilb-with-high-availability">How to deploy loxilb with High Availability</h1>
 <p>This article describes different scenarios about how to deploy loxilb with High Availability. Before continuing to this page, all readers are advised to have a basic understanding about <a href="https://loxilb-io.github.io/loxilbdocs/kube-loxilb/">kube-loxilb</a> and the different <a href="https://github.com/loxilb-io/loxilbdocs/blob/main/docs/nat.md">NAT modes</a> supported by loxilb. loxilb can run in-cluster or external to kubernetes cluster depending on architectural choices. For this documentation, we have assumed an incluster deployment wherever applicable but similar configuration should suffice for an external deployment as well.   </p>
 <ul>
-<li><a href="https://github.com/loxilb-io/loxilbdocs/edit/main/docs/ha-deploy.md#scenario-1----flat-l2-networking-active-backup">Scenario 1 -  Flat L2 Networking (active-backup)</a></li>
-<li><a href="https://github.com/loxilb-io/loxilbdocs/edit/main/docs/ha-deploy.md#scenario-2----l3-network-active-backup-mode-using-bgp">Scenario 2 -  L3 network (active-backup mode using BGP)</a></li>
-<li><a href="https://github.com/loxilb-io/loxilbdocs/edit/main/docs/ha-deploy.md#scenario-3----l3-network-active-active-with-bgp-ecmp">Scenario 3 -  L3 network (active-active with BGP ECMP)</a></li>
-<li><a href="https://github.com/loxilb-io/loxilbdocs/edit/main/docs/ha-deploy.md#scenario-4----active-backup-with-connection-sync">Scenario 4 - ACTIVE-BACKUP with Connection Sync</a></li>
+<li><a href="#scenario-1----flat-l2-networking-active-backup">Scenario 1 -  Flat L2 Networking (active-backup)</a></li>
+<li><a href="#scenario-2----l3-network-active-backup-mode-using-bgp">Scenario 2 -  L3 network (active-backup mode using BGP)</a></li>
+<li><a href="#scenario-3----l3-network-active-active-with-bgp-ecmp">Scenario 3 -  L3 network (active-active with BGP ECMP)</a></li>
+<li><a href="#scenario-4----active-backup-with-connection-sync">Scenario 4 - ACTIVE-BACKUP with Connection Sync</a></li>
 </ul>
 <h2 id="scenario-1-flat-l2-networking-active-backup">Scenario 1 -  Flat L2 Networking (active-backup)</h2>
 <h3 id="setup">Setup</h3>
