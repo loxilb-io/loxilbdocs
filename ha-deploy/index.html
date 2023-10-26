@@ -377,7 +377,7 @@ And, kube-loxilb will be deployed as Deployment. </p>
 </code></pre>
 <ul>
 <li><b>"--externalCIDR=123.123.123.1/24" -</b> The external service IP for a svc is chosen from the externalCIDR range. In this scenario, the Client, svc and cluster are all in the different subnet.</li>
-<li><b>"--setRoles=0.0.0.0" -</b> This option will enable kube-loxilb to choose active-backup amongst the loxilb instance and the svc IP to be configured on the active loxilb node.</li>
+<li><b>"--setRoles=0.0.0.0" -</b> This option will enable kube-loxilb to choose active-backup amongst the loxilb instances and the svc IP to be configured on the active loxilb node.</li>
 <li><b>"--setLBMode=1" -</b> This option will enable kube-loxilb to configure svc in one-arm mode towards the endpoints.</li>
 <li><b>"--setBGP=65100" -</b> This option will let kube-loxilb to configure local AS number in the bgp instance.</li>
 <li><b>"--extBGPPeers=50.50.50.1:65101" -</b> This option will configure the bgp instance's external neighbors.</li>
@@ -537,6 +537,7 @@ And, kube-loxilb will be deployed as Deployment. </p>
         args:
         ....
         ....
+        - --setRoles=0.0.0.0
         - --loxiURL=http://192.168.80.1:11111,http://192.168.80.2:11111
         - --externalCIDR=123.123.123.1/24
         - --setLBMode=2
@@ -544,6 +545,7 @@ And, kube-loxilb will be deployed as Deployment. </p>
         - --extBGPPeers=50.50.50.1:65101
 </code></pre>
 <ul>
+<li><b>"--setRoles=0.0.0.0" -</b> This option will enable kube-loxilb to choose active-backup amongst the loxilb instance.</li>
 <li><b>"--loxiURL=http://192.168.80.1:11111,http://192.168.80.2:11111" -</b> loxilb URLs to connect with.</li>
 <li><b>"--externalCIDR=123.123.123.1/24" -</b> The external service IP for a svc is chosen from the externalCIDR range. In this scenario, the Client, svc and cluster are all in the different subnet.</li>
 <li><b>"--setLBMode=2" -</b> This option will enable kube-loxilb to configure svc in fullnat mode towards the endpoints.</li>
@@ -572,7 +574,7 @@ And, kube-loxilb will be deployed as Deployment. </p>
 <h3 id="failover_3">Failover</h3>
 <p>This diagram describes the failover scenario:</p>
 <p><img alt="setup" src="../photos/loxilb-k8s-arch-LoxiLB-HA-CT-Sync-2.drawio.svg" /></p>
-<p>In case of failure, kube-loxilb will detect the faailure. It will select a new loxilb from the pool of active loxilbs and update it's state to new master. New master loxilb will advertise the svcIPs with higher proference which will force the BGP running on the client to send the traffic towards new Master loxilb. Since, the connections are all synced up, new master loxilb will start sending the traffic to the designated endpoints.</p>
+<p>In case of failure, kube-loxilb will detect the failure. It will select a new loxilb from the pool of active loxilbs and update it's state to new master. New master loxilb will advertise the svcIPs with higher proference which will force the BGP running on the client to send the traffic towards new Master loxilb. Since, the connections are all synced up, new master loxilb will start sending the traffic to the designated endpoints.</p>
 <p>Please read this detailed blog about <a href="https://www.loxilb.io/post/k8s-deploying-hitless-and-ha-load-balancing">"Hitless HA"</a> to know about this feature.</p>
 <h2 id="note">Note :</h2>
 <p>There are ways to use loxilb in DSR mode, integrate keepalived/BFD, DNS etc which is still not covered in details in this doc. We will keep updating the scenarios.</p></div>
