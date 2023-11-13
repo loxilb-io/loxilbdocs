@@ -1,4 +1,4 @@
-site_name: loxilb v0.8.8
+site_name: loxilb v0.9.0
 site_url: https://loxilb-io.github.io/loxilbdocs 
 theme:
     name: mkdocs
@@ -47,7 +47,7 @@ nav:
         - K3s - Using loxilb as external service lb: https://cloudybytes.medium.com/k3s-using-loxilb-as-external-service-lb-2ea4ce61e159
         - 5G SCTP LoadBalancer Using LoxiLB Applying on free5GC: https://medium.com/@ben0978327139/5g-sctp-loadbalancer-using-loxilb-applying-on-free5gc-b5c05bb723f0
 extra:
-    version: v0.8.8 (Latest)
+    version: v0.9.0 (Latest)
 
 extra_css:
   - stylesheets/extra.css
