@@ -44,7 +44,7 @@ Initial release of loxilb
 - **Utilities**:  
     - loxicmd support : Data-Store support, more commands
 
-## 0.9.0 (July, 2023) - Planned   
+## 0.9.0 (Nov, 2023) - Planned   
 
 - **Functional Features**:  
     - Hardened NAT Support - CGNAT'ish   
@@ -64,7 +64,7 @@ Initial release of loxilb
     - Operator support   
     - AWS EKS support   
 
-## 0.9.5 (Oct, 2023) - Planned   
+## 0.9.5 (Jan, 2024) - Planned   
 
 - **Functional Features**:
     - SRv6 support  
