@@ -73,7 +73,7 @@ docker pull ghcr.io/loxilb-io/loxilb:latestu22
 ```
 * Stable Image   
 ```
-docker pull ghcr.io/loxilb-io/loxilb:v0.8.8
+docker pull ghcr.io/loxilb-io/loxilb:v0.9.0
 ``` 
 
 To run loxilb docker, we can use the following commands :
