@@ -77,7 +77,7 @@ kube-loxilb is a standalone implementation of kubernetes load-balancer spec whic
         
 
 6. Finally to create service LB, we can use and apply the following template yaml
-        
+   
    (<b>Note</b> -  Check <b>*loadBalancerClass*</b> and other <b>*loxilb*</b> specific annotation) :   
         
         apiVersion: v1
@@ -118,7 +118,7 @@ kube-loxilb is a standalone implementation of kubernetes load-balancer spec whic
                 - "-s"
               ports:
                 - containerPort: 5001
-
+        
    Users can change the above as per their needs.
 
 7. Verify LB service is created
