@@ -277,11 +277,12 @@
 </li>
 <li>
 <p>Download the loxilb config yaml :</p>
-<p><code>wget https://github.com/loxilb-io/kube-loxilb/raw/main/manifest/kube-loxilb.yaml</code></p>
+<pre><code>wget https://github.com/loxilb-io/kube-loxilb/raw/main/manifest/kube-loxilb.yaml
+</code></pre>
 </li>
 <li>
 <p>Modify arguments as per user's needs :</p>
-<p><code>args:
+<pre><code>args:
     - --loxiURL=http://12.12.12.1:11111
     - --externalCIDR=123.123.123.1/24
     #- --externalSecondaryCIDRs=124.124.124.1/24,125.125.125.1/24
@@ -291,7 +292,8 @@
     #- --extBGPPeers=50.50.50.1:65101,51.51.51.1:65102
     #- --setRoles=0.0.0.0
     #- --setLBMode=1
-    #- --setUniqueIP=false</code></p>
+    #- --setUniqueIP=false
+</code></pre>
 <p>The arguments have the following meaning :    </p>
 <table>
 <thead>
@@ -347,60 +349,62 @@
 </li>
 <li>
 <p>Apply the following :</p>
-<p><code>kubectl apply -f kube-loxilb.yaml</code></p>
+<pre><code>kubectl apply -f kube-loxilb.yaml
+</code></pre>
 </li>
 <li>
 <p>The above should make sure kube-loxilb is successfully running. Check kube-loxilb is running :</p>
-<p><code>kubectl get pods -A | grep kube-loxilb</code></p>
+<pre><code>kubectl get pods -A | grep kube-loxilb
+</code></pre>
 </li>
 <li>
 <p>Finally to create service LB, we can use and apply the following template yaml</p>
-<p>(<b>Note</b> -  Check <b><em>loadBalancerClass</em></b> and other <b><em>loxilb</em></b> specific annotation) :   </p>
-<p>```yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: iperf-service
-  annotations:
-   # If there is a need to do liveness check from loxilb
-   loxilb.io/liveness: "yes"
-   # Specify LB mode - one of default, onearm or fullnat 
-   loxilb.io/lbmode: "default"
-   # Specify loxilb IPAM mode - one of ipv4, ipv6 or ipv6to4 
-   loxilb.io/ipam: "ipv4"
-   # Specify number of secondary networks for multi-homing
-   # Only valid for SCTP currently
-   # loxilb.io/num-secondary-networks: "2
-spec:
-  loadBalancerClass: loxilb.io/loxilb
-  selector:
-    what: perf-test
-  ports:
-    - port: 55001
-      targetPort: 5001
-  type: LoadBalancer</p>
-<hr />
-<p>apiVersion: v1
-kind: Pod
-metadata:
-  name: iperf1
-  labels:
-    what: perf-test
-spec:
-  containers:
-    - name: iperf
-      image: eyes852/ubuntu-iperf-test:0.5
-      command:
-        - iperf
-        - "-s"
-      ports:
-        - containerPort: 5001
-```</p>
-<p>Users can change the above as per their needs.</p>
 </li>
-<li>
-<p>Verify LB service is created</p>
-<p><code>kubectl get svc</code></p>
+</ol>
+<p>(<b>Note</b> -  Check <b><em>loadBalancerClass</em></b> and other <b><em>loxilb</em></b> specific annotation) :   </p>
+<pre><code>    apiVersion: v1
+    kind: Service
+    metadata:
+      name: iperf-service
+      annotations:
+       # If there is a need to do liveness check from loxilb
+       loxilb.io/liveness: "yes"
+       # Specify LB mode - one of default, onearm or fullnat 
+       loxilb.io/lbmode: "default"
+       # Specify loxilb IPAM mode - one of ipv4, ipv6 or ipv6to4 
+       loxilb.io/ipam: "ipv4"
+       # Specify number of secondary networks for multi-homing
+       # Only valid for SCTP currently
+       # loxilb.io/num-secondary-networks: "2
+    spec:
+      loadBalancerClass: loxilb.io/loxilb
+      selector:
+        what: perf-test
+      ports:
+        - port: 55001
+          targetPort: 5001
+      type: LoadBalancer
+    ---
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: iperf1
+      labels:
+        what: perf-test
+    spec:
+      containers:
+        - name: iperf
+          image: eyes852/ubuntu-iperf-test:0.5
+          command:
+            - iperf
+            - "-s"
+          ports:
+            - containerPort: 5001
+</code></pre>
+<p>Users can change the above as per their needs.</p>
+<ol>
+<li>Verify LB service is created<pre><code>kubectl get svc
+</code></pre>
 </li>
 </ol>
 <p>For more example yaml templates, kindly refer to kube-loxilb's manifest <a href="https://github.com/loxilb-io/kube-loxilb/tree/main/manifest">directory</a>   </p></div>
