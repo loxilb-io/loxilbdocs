@@ -32,27 +32,23 @@ kube-loxilb is a standalone implementation of kubernetes load-balancer spec whic
 1. Make sure loxilb docker is downloaded and installed properly in a node external to your cluster. One can follow guides [here](https://loxilb-io.github.io/loxilbdocs/run/) or refer to various other [documentation](https://loxilb-io.github.io/loxilbdocs/#how-to-guides) . It is important to have network connectivity from this node to the master nodes of k8s cluster (where kube-loxilb will eventually run) as seen in the above figure.
 
 2. Download the loxilb config yaml :
-    
-    ```
-    wget https://github.com/loxilb-io/kube-loxilb/raw/main/manifest/kube-loxilb.yaml
-    ```
+        
+        wget https://github.com/loxilb-io/kube-loxilb/raw/main/manifest/kube-loxilb.yaml
 
 3. Modify arguments as per user's needs :
-    
-    ```
-    args:
-        - --loxiURL=http://12.12.12.1:11111
-        - --externalCIDR=123.123.123.1/24
-        #- --externalSecondaryCIDRs=124.124.124.1/24,125.125.125.1/24
-        #- --externalCIDR6=3ffe::1/96
-        #- --monitor
-        #- --setBGP=65100
-        #- --extBGPPeers=50.50.50.1:65101,51.51.51.1:65102
-        #- --setRoles=0.0.0.0
-        #- --setLBMode=1
-        #- --setUniqueIP=false
-    ```
-    
+        
+        args:
+            - --loxiURL=http://12.12.12.1:11111
+            - --externalCIDR=123.123.123.1/24
+            #- --externalSecondaryCIDRs=124.124.124.1/24,125.125.125.1/24
+            #- --externalCIDR6=3ffe::1/96
+            #- --monitor
+            #- --setBGP=65100
+            #- --extBGPPeers=50.50.50.1:65101,51.51.51.1:65102
+            #- --setRoles=0.0.0.0
+            #- --setLBMode=1
+            #- --setUniqueIP=false
+        
     The arguments have the following meaning :    
     
     | name | description |
@@ -71,69 +67,64 @@ kube-loxilb is a standalone implementation of kubernetes load-balancer spec whic
     Many of the above flags and arguments can be overriden on a per-service basis based on loxilb specific annotation as mentioned in section 6 below.      
 
 4. Apply the following :
-    
-    ```
-    kubectl apply -f kube-loxilb.yaml
-    ```
+        
+        kubectl apply -f kube-loxilb.yaml
+        
 
 5. The above should make sure kube-loxilb is successfully running. Check kube-loxilb is running :
-    
-    ```
-    kubectl get pods -A | grep kube-loxilb
-    ```
+        
+        kubectl get pods -A | grep kube-loxilb
+        
 
 6. Finally to create service LB, we can use and apply the following template yaml
-    
-    (<b>Note</b> -  Check <b>*loadBalancerClass*</b> and other <b>*loxilb*</b> specific annotation) :   
-    
-    ```yaml
-    apiVersion: v1
-    kind: Service
-    metadata:
-      name: iperf-service
-      annotations:
-       # If there is a need to do liveness check from loxilb
-       loxilb.io/liveness: "yes"
-       # Specify LB mode - one of default, onearm or fullnat 
-       loxilb.io/lbmode: "default"
-       # Specify loxilb IPAM mode - one of ipv4, ipv6 or ipv6to4 
-       loxilb.io/ipam: "ipv4"
-       # Specify number of secondary networks for multi-homing
-       # Only valid for SCTP currently
-       # loxilb.io/num-secondary-networks: "2
-    spec:
-      loadBalancerClass: loxilb.io/loxilb
-      selector:
-        what: perf-test
-      ports:
-        - port: 55001
-          targetPort: 5001
-      type: LoadBalancer
-    ---
-    apiVersion: v1
-    kind: Pod
-    metadata:
-      name: iperf1
-      labels:
-        what: perf-test
-    spec:
-      containers:
-        - name: iperf
-          image: eyes852/ubuntu-iperf-test:0.5
-          command:
-            - iperf
-            - "-s"
+        
+   (<b>Note</b> -  Check <b>*loadBalancerClass*</b> and other <b>*loxilb*</b> specific annotation) :   
+        
+        apiVersion: v1
+        kind: Service
+        metadata:
+          name: iperf-service
+          annotations:
+           # If there is a need to do liveness check from loxilb
+           loxilb.io/liveness: "yes"
+           # Specify LB mode - one of default, onearm or fullnat 
+           loxilb.io/lbmode: "default"
+           # Specify loxilb IPAM mode - one of ipv4, ipv6 or ipv6to4 
+           loxilb.io/ipam: "ipv4"
+           # Specify number of secondary networks for multi-homing
+           # Only valid for SCTP currently
+           # loxilb.io/num-secondary-networks: "2
+        spec:
+          loadBalancerClass: loxilb.io/loxilb
+          selector:
+            what: perf-test
           ports:
-            - containerPort: 5001
-    ```
-    
-    Users can change the above as per their needs.
+            - port: 55001
+              targetPort: 5001
+          type: LoadBalancer
+        ---
+        apiVersion: v1
+        kind: Pod
+        metadata:
+          name: iperf1
+          labels:
+            what: perf-test
+        spec:
+          containers:
+            - name: iperf
+              image: eyes852/ubuntu-iperf-test:0.5
+              command:
+                - iperf
+                - "-s"
+              ports:
+                - containerPort: 5001
+
+   Users can change the above as per their needs.
 
 7. Verify LB service is created
-    
-    ```
-    kubectl get svc
-    ```
+        
+        kubectl get svc
+        
 
 For more example yaml templates, kindly refer to kube-loxilb's manifest [directory](https://github.com/loxilb-io/kube-loxilb/tree/main/manifest)   
 
