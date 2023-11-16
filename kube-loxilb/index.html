@@ -296,19 +296,57 @@
         #- --setLBMode=1
         #- --setUniqueIP=false
 </code></pre>
-<p>The arguments have the following meaning :  <br />
-| name | description |
-| ---- | ----------- |
-| loxiURL | API server address of loxilb. This is the docker IP address loxilb docker of Step 1. If unspecified, kube-loxilb assumes loxilb is running in-cluster mode and autoconfigures this. |
-| externalCIDR | CIDR or IPAddress range to allocate addresses from. By default address allocated are shared for different services(shared Mode) | 
-| externalCIDR6 | Ipv6 CIDR or IPAddress range to allocate addresses from. By default address allocated are shared for different services(shared Mode) |
-| monitor | Enable liveness probe for the LB end-points (default : unset) | 
-| setBGP | Use specified BGP AS-ID to advertise this service. If not specified BGP will be disabled. Please check <a href="https://github.com/loxilb-io/loxilbdocs/blob/main/docs/integrate_bgp_eng.md">here</a> how it works. | 
-| extBGPPeers | Specifies external BGP peers with appropriate remote AS | 
-| setRoles | If present, kube-loxilb arbitrates loxilb role(s) in cluster-mode. Further, it sets a special VIP (selected as sourceIP) to communicate with end-points in full-nat mode. | 
-| setLBMode | 0, 1, 2 <br> 0 - default (only DNAT, preserves source-IP) <br> 1 - onearm (source IP is changed to load balancer’s interface IP) <br> 2 - fullNAT (sourceIP is changed to virtual IP) | 
-| setUniqueIP | Allocate unique service-IP per LB service (default : false) | 
-| externalSecondaryCIDRs | Secondary CIDR or IPAddress ranges to allocate addresses from in case of multi-homing support | </p>
+<p>The arguments have the following meaning :    </p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>loxiURL</td>
+<td>API server address of loxilb. This is the docker IP address loxilb docker of Step 1. If unspecified, kube-loxilb assumes loxilb is running in-cluster mode and autoconfigures this.</td>
+</tr>
+<tr>
+<td>externalCIDR</td>
+<td>CIDR or IPAddress range to allocate addresses from. By default address allocated are shared for different services(shared Mode)</td>
+</tr>
+<tr>
+<td>externalCIDR6</td>
+<td>Ipv6 CIDR or IPAddress range to allocate addresses from. By default address allocated are shared for different services(shared Mode)</td>
+</tr>
+<tr>
+<td>monitor</td>
+<td>Enable liveness probe for the LB end-points (default : unset)</td>
+</tr>
+<tr>
+<td>setBGP</td>
+<td>Use specified BGP AS-ID to advertise this service. If not specified BGP will be disabled. Please check <a href="https://github.com/loxilb-io/loxilbdocs/blob/main/docs/integrate_bgp_eng.md">here</a> how it works.</td>
+</tr>
+<tr>
+<td>extBGPPeers</td>
+<td>Specifies external BGP peers with appropriate remote AS</td>
+</tr>
+<tr>
+<td>setRoles</td>
+<td>If present, kube-loxilb arbitrates loxilb role(s) in cluster-mode. Further, it sets a special VIP (selected as sourceIP) to communicate with end-points in full-nat mode.</td>
+</tr>
+<tr>
+<td>setLBMode</td>
+<td>0, 1, 2 <br> 0 - default (only DNAT, preserves source-IP) <br> 1 - onearm (source IP is changed to load balancer’s interface IP) <br> 2 - fullNAT (sourceIP is changed to virtual IP)</td>
+</tr>
+<tr>
+<td>setUniqueIP</td>
+<td>Allocate unique service-IP per LB service (default : false)</td>
+</tr>
+<tr>
+<td>externalSecondaryCIDRs</td>
+<td>Secondary CIDR or IPAddress ranges to allocate addresses from in case of multi-homing support</td>
+</tr>
+</tbody>
+</table>
 <p>Many of the above flags and arguments can be overriden on a per-service basis based on loxilb specific annotation as mentioned in section 6 below.      </p>
 <ol>
 <li>Apply the following :</li>
@@ -321,9 +359,9 @@
 <pre><code>kubectl get pods -A | grep kube-loxilb
 </code></pre>
 <ol>
-<li>Finally to create service LB, we can use and apply the following template yaml  <br />
-(<b>Note</b> -  Check <b><em>loadBalancerClass</em></b> and other <b><em>loxilb</em></b> specific annotation) :</li>
+<li>Finally to create service LB, we can use and apply the following template yaml</li>
 </ol>
+<p>(<b>Note</b> -  Check <b><em>loadBalancerClass</em></b> and other <b><em>loxilb</em></b> specific annotation) :   </p>
 <pre><code class="language-yaml">apiVersion: v1
 kind: Service
 metadata:
