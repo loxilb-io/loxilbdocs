@@ -38,6 +38,7 @@ wget https://github.com/loxilb-io/kube-loxilb/raw/main/manifest/kube-loxilb.yaml
 ```
 
 3. Modify arguments as per user's needs :
+
 ```
 args:
         - --loxiURL=http://12.12.12.1:11111
@@ -53,8 +54,9 @@ args:
 ```
 
 The arguments have the following meaning :    
+
 | name | description |
-| ---- | ----------- |
+| ----------- | ----------- |
 | loxiURL | API server address of loxilb. This is the docker IP address loxilb docker of Step 1. If unspecified, kube-loxilb assumes loxilb is running in-cluster mode and autoconfigures this. |
 | externalCIDR | CIDR or IPAddress range to allocate addresses from. By default address allocated are shared for different services(shared Mode) | 
 | externalCIDR6 | Ipv6 CIDR or IPAddress range to allocate addresses from. By default address allocated are shared for different services(shared Mode) |
@@ -65,10 +67,11 @@ The arguments have the following meaning :
 | setLBMode | 0, 1, 2 <br> 0 - default (only DNAT, preserves source-IP) <br> 1 - onearm (source IP is changed to load balancer’s interface IP) <br> 2 - fullNAT (sourceIP is changed to virtual IP) | 
 | setUniqueIP | Allocate unique service-IP per LB service (default : false) | 
 | externalSecondaryCIDRs | Secondary CIDR or IPAddress ranges to allocate addresses from in case of multi-homing support | 
-
+   
 Many of the above flags and arguments can be overriden on a per-service basis based on loxilb specific annotation as mentioned in section 6 below.      
 
 4. Apply the following :
+
 ```
 kubectl apply -f kube-loxilb.yaml
 ```
@@ -80,8 +83,10 @@ kubectl get pods -A | grep kube-loxilb
 ```
 
 
-6. Finally to create service LB, we can use and apply the following template yaml    
-(<b>Note</b> -  Check <b>*loadBalancerClass*</b> and other <b>*loxilb*</b> specific annotation) :
+6. Finally to create service LB, we can use and apply the following template yaml
+
+(<b>Note</b> -  Check <b>*loadBalancerClass*</b> and other <b>*loxilb*</b> specific annotation) :   
+
 ```yaml
 apiVersion: v1
 kind: Service
@@ -122,9 +127,11 @@ spec:
       ports:
         - containerPort: 5001
 ```
+
 Users can change the above as per their needs.
 
 7. Verify LB service is created
+
 ```
 kubectl get svc
 ```
