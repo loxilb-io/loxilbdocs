@@ -29,15 +29,15 @@ kube-loxilb is a standalone implementation of kubernetes load-balancer spec whic
 
 ## How to use kube-loxilb ?
 
-1.Make sure loxilb docker is downloaded and installed properly in a node external to your cluster. One can follow guides [here](https://loxilb-io.github.io/loxilbdocs/run/) or refer to various other [documentation](https://loxilb-io.github.io/loxilbdocs/#how-to-guides) . It is important to have network connectivity from this node to the master nodes of k8s cluster (where kube-loxilb will eventually run) as seen in the above figure.
+1. Make sure loxilb docker is downloaded and installed properly in a node external to your cluster. One can follow guides [here](https://loxilb-io.github.io/loxilbdocs/run/) or refer to various other [documentation](https://loxilb-io.github.io/loxilbdocs/#how-to-guides) . It is important to have network connectivity from this node to the master nodes of k8s cluster (where kube-loxilb will eventually run) as seen in the above figure.
 
-2.Download the loxilb config yaml :
+2. Download the loxilb config yaml :
 
 ```
 wget https://github.com/loxilb-io/kube-loxilb/raw/main/manifest/kube-loxilb.yaml
 ```
 
-3.Modify arguments as per user's needs :
+3. Modify arguments as per user's needs :
 ```
 args:
         - --loxiURL=http://12.12.12.1:11111
@@ -53,19 +53,18 @@ args:
 ```
 
 The arguments have the following meaning :    
-- loxiURL : API server address of loxilb. This is the docker IP address loxilb docker of Step 1. If unspecified, kube-loxilb assumes loxilb is running in-cluster mode and autoconfigures this.
-- externalCIDR : CIDR or IPAddress range to allocate addresses from. By default address allocated are shared for different services(shared Mode)    
-- externalCIDR6 : Ipv6 CIDR or IPAddress range to allocate addresses from. By default address allocated are shared for different services(shared Mode)   
-- monitor : Enable liveness probe for the LB end-points (default : unset)    
-- setBGP : Use specified BGP AS-ID to advertise this service. If not specified BGP will be disabled. Please check [here](https://github.com/loxilb-io/loxilbdocs/blob/main/docs/integrate_bgp_eng.md) how it works.    
-- extBGPPeers : Specifies external BGP peers with appropriate remote AS    
-- setRoles : If present, kube-loxilb arbitrates loxilb role(s) in cluster-mode. Further, it sets a special VIP (selected as sourceIP) to communicate with end-points in full-nat mode.    
-- setLBMode : 0, 1, 2   
-  0 - default (only DNAT, preserves source-IP)       
-  1 - onearm (source IP is changed to load balancer’s interface IP)     
-  2 - fullNAT (sourceIP is changed to virtual IP)    
-- setUniqueIP : Allocate unique service-IP per LB service (default : false)   
-- externalSecondaryCIDRs: Secondary CIDR or IPAddress ranges to allocate addresses from in case of multi-homing support      
+| name | description |
+|---|---|
+| loxiURL | API server address of loxilb. This is the docker IP address loxilb docker of Step 1. If unspecified, kube-loxilb assumes loxilb is running in-cluster mode and autoconfigures this. |
+| externalCIDR | CIDR or IPAddress range to allocate addresses from. By default address allocated are shared for different services(shared Mode) | 
+| externalCIDR6 | Ipv6 CIDR or IPAddress range to allocate addresses from. By default address allocated are shared for different services(shared Mode) |
+| monitor | Enable liveness probe for the LB end-points (default : unset) | 
+| setBGP | Use specified BGP AS-ID to advertise this service. If not specified BGP will be disabled. Please check [here](https://github.com/loxilb-io/loxilbdocs/blob/main/docs/integrate_bgp_eng.md) how it works. | 
+| extBGPPeers | Specifies external BGP peers with appropriate remote AS | 
+| setRoles | If present, kube-loxilb arbitrates loxilb role(s) in cluster-mode. Further, it sets a special VIP (selected as sourceIP) to communicate with end-points in full-nat mode. | 
+| setLBMode | 0, 1, 2 <br> 0 - default (only DNAT, preserves source-IP) <br> 1 - onearm (source IP is changed to load balancer’s interface IP) <br> 2 - fullNAT (sourceIP is changed to virtual IP) | 
+| setUniqueIP | Allocate unique service-IP per LB service (default : false) | 
+| externalSecondaryCIDRs | Secondary CIDR or IPAddress ranges to allocate addresses from in case of multi-homing support | 
 
 Many of the above flags and arguments can be overriden on a per-service basis based on loxilb specific annotation as mentioned in section 6 below.      
 
