@@ -358,52 +358,52 @@
 </code></pre>
 </li>
 <li>
-<p>Finally to create service LB, we can use and apply the following template yaml</p>
-</li>
-</ol>
-<p>(<b>Note</b> -  Check <b><em>loadBalancerClass</em></b> and other <b><em>loxilb</em></b> specific annotation) :   </p>
-<pre><code>    apiVersion: v1
-    kind: Service
-    metadata:
-      name: iperf-service
-      annotations:
-       # If there is a need to do liveness check from loxilb
-       loxilb.io/liveness: "yes"
-       # Specify LB mode - one of default, onearm or fullnat 
-       loxilb.io/lbmode: "default"
-       # Specify loxilb IPAM mode - one of ipv4, ipv6 or ipv6to4 
-       loxilb.io/ipam: "ipv4"
-       # Specify number of secondary networks for multi-homing
-       # Only valid for SCTP currently
-       # loxilb.io/num-secondary-networks: "2
-    spec:
-      loadBalancerClass: loxilb.io/loxilb
-      selector:
-        what: perf-test
+<p>Finally to create service LB, we can use and apply the following template yaml   </p>
+<p>(<b>Note</b> -  Check <b><em>loadBalancerClass</em></b> and other <b><em>loxilb</em></b> specific annotation) :</p>
+<pre><code>apiVersion: v1
+kind: Service
+metadata:
+  name: iperf-service
+  annotations:
+   # If there is a need to do liveness check from loxilb
+   loxilb.io/liveness: "yes"
+   # Specify LB mode - one of default, onearm or fullnat 
+   loxilb.io/lbmode: "default"
+   # Specify loxilb IPAM mode - one of ipv4, ipv6 or ipv6to4 
+   loxilb.io/ipam: "ipv4"
+   # Specify number of secondary networks for multi-homing
+   # Only valid for SCTP currently
+   # loxilb.io/num-secondary-networks: "2
+spec:
+  loadBalancerClass: loxilb.io/loxilb
+  selector:
+    what: perf-test
+  ports:
+    - port: 55001
+      targetPort: 5001
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: iperf1
+  labels:
+    what: perf-test
+spec:
+  containers:
+    - name: iperf
+      image: eyes852/ubuntu-iperf-test:0.5
+      command:
+        - iperf
+        - "-s"
       ports:
-        - port: 55001
-          targetPort: 5001
-      type: LoadBalancer
-    ---
-    apiVersion: v1
-    kind: Pod
-    metadata:
-      name: iperf1
-      labels:
-        what: perf-test
-    spec:
-      containers:
-        - name: iperf
-          image: eyes852/ubuntu-iperf-test:0.5
-          command:
-            - iperf
-            - "-s"
-          ports:
-            - containerPort: 5001
+        - containerPort: 5001
 </code></pre>
 <p>Users can change the above as per their needs.</p>
-<ol>
-<li>Verify LB service is created<pre><code>kubectl get svc
+</li>
+<li>
+<p>Verify LB service is created</p>
+<pre><code>kubectl get svc
 </code></pre>
 </li>
 </ol>
