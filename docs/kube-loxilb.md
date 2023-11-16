@@ -32,13 +32,13 @@ kube-loxilb is a standalone implementation of kubernetes load-balancer spec whic
 1. Make sure loxilb docker is downloaded and installed properly in a node external to your cluster. One can follow guides [here](https://loxilb-io.github.io/loxilbdocs/run/) or refer to various other [documentation](https://loxilb-io.github.io/loxilbdocs/#how-to-guides) . It is important to have network connectivity from this node to the master nodes of k8s cluster (where kube-loxilb will eventually run) as seen in the above figure.
 
 2. Download the loxilb config yaml :
-
+    
     ```
     wget https://github.com/loxilb-io/kube-loxilb/raw/main/manifest/kube-loxilb.yaml
     ```
 
 3. Modify arguments as per user's needs :
-
+    
     ```
     args:
         - --loxiURL=http://12.12.12.1:11111
@@ -52,9 +52,9 @@ kube-loxilb is a standalone implementation of kubernetes load-balancer spec whic
         #- --setLBMode=1
         #- --setUniqueIP=false
     ```
-
+    
     The arguments have the following meaning :    
-
+    
     | name | description |
     | ----------- | ----------- |
     | loxiURL | API server address of loxilb. This is the docker IP address loxilb docker of Step 1. If unspecified, kube-loxilb assumes loxilb is running in-cluster mode and autoconfigures this. |
@@ -67,25 +67,25 @@ kube-loxilb is a standalone implementation of kubernetes load-balancer spec whic
     | setLBMode | 0, 1, 2 <br> 0 - default (only DNAT, preserves source-IP) <br> 1 - onearm (source IP is changed to load balancer’s interface IP) <br> 2 - fullNAT (sourceIP is changed to virtual IP) | 
     | setUniqueIP | Allocate unique service-IP per LB service (default : false) | 
     | externalSecondaryCIDRs | Secondary CIDR or IPAddress ranges to allocate addresses from in case of multi-homing support | 
-   
+    
     Many of the above flags and arguments can be overriden on a per-service basis based on loxilb specific annotation as mentioned in section 6 below.      
 
 4. Apply the following :
-
+    
     ```
     kubectl apply -f kube-loxilb.yaml
     ```
 
 5. The above should make sure kube-loxilb is successfully running. Check kube-loxilb is running :
-
+    
     ```
     kubectl get pods -A | grep kube-loxilb
     ```
 
 6. Finally to create service LB, we can use and apply the following template yaml
-
+    
     (<b>Note</b> -  Check <b>*loadBalancerClass*</b> and other <b>*loxilb*</b> specific annotation) :   
-
+    
     ```yaml
     apiVersion: v1
     kind: Service
@@ -126,11 +126,11 @@ kube-loxilb is a standalone implementation of kubernetes load-balancer spec whic
           ports:
             - containerPort: 5001
     ```
-
+    
     Users can change the above as per their needs.
 
 7. Verify LB service is created
-
+    
     ```
     kubectl get svc
     ```
