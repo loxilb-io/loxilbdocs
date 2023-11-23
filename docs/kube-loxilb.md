@@ -94,6 +94,8 @@ kube-loxilb is a standalone implementation of kubernetes load-balancer spec whic
            # Specify number of secondary networks for multi-homing
            # Only valid for SCTP currently
            # loxilb.io/num-secondary-networks: "2
+           # Specify a static externalIP for this service
+           # loxilb.io/staticIP: "123.123.123.2"
         spec:
           loadBalancerClass: loxilb.io/loxilb
           selector:
