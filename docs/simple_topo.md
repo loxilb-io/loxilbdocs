@@ -59,18 +59,18 @@ $HCMD ep2 ifconfig lo up
 sudo ip -n loxilb link add ellb1ep3 type veth peer name eep3llb1 netns ep3
 sudo ip -n loxilb link set ellb1ep3 mtu 9000 up
 sudo ip -n ep3 link set eep3llb1 mtu 7000 up
-$LBHCMD ip addr add 17.17.17.254/24 dev ellb1ep3
-$HCMD ep3 ifconfig eep3llb1 17.17.17.1/24 up
-$HCMD ep3 ip route add default via 17.17.17.254
+$LBHCMD ip addr add 33.33.33.254/24 dev ellb1ep3
+$HCMD ep3 ifconfig eep3llb1 33.33.33.1/24 up
+$HCMD ep3 ip route add default via 33.33.33.254
 $HCMD ep3 ifconfig lo up
 
 ## Configure load-balancer end-point h1
 sudo ip -n loxilb link add ellb1h1 type veth peer name eh1llb1 netns h1
 sudo ip -n loxilb link set ellb1h1 mtu 9000 up
 sudo ip -n h1 link set eh1llb1 mtu 7000 up
-$LBHCMD ip addr add 100.100.100.254/24 dev ellb1h1
-$HCMD h1 ifconfig eh1llb1 100.100.100.1/24 up
-$HCMD h1 ip route add default via 100.100.100.254
+$LBHCMD ip addr add 10.10.10.254/24 dev ellb1h1
+$HCMD h1 ifconfig eh1llb1 10.10.10.1/24 up
+$HCMD h1 ip route add default via 10.10.10.254
 $HCMD h1 ifconfig lo up
 ```
 
