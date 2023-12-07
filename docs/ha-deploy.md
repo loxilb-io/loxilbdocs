@@ -336,14 +336,15 @@ Sample kube-loxilb.yaml can be found [here](https://github.com/loxilb-io/kube-lo
 
 ```
 #llb1
- docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --name loxilb ghcr.io/loxilb-io/loxilb:latest  --cluster=$llb2IP --self=0
+ docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --name loxilb ghcr.io/loxilb-io/loxilb:latest  --cluster=$llb2IP --self=0 -b
 
 #llb2
- docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --name loxilb ghcr.io/loxilb-io/loxilb:latest --cluster=$llb1IP --self=1
+ docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --name loxilb ghcr.io/loxilb-io/loxilb:latest --cluster=$llb1IP --self=1 -b
 ```
 
   * <b>"--cluster=\<llb-peer-IP\>" -</b> option configures the peer loxilb IP for syncing.
   * <b>"--self=0/1" -</b> option to identify the instance.
+  * <b>"-b" -</b> option enables loxilb to run with goBGP instance which will advertise the routes with appropriate preference as per active/backup state.
   
 
 ### Failover
