@@ -70,7 +70,8 @@ sudo docker run -u root --cap-add SYS_ADMIN --restart unless-stopped \
   --net=k8snet --ip=192.168.57.4 --name loxilb ghcr.io/loxilb-io/loxilb:latest \
   --host=0.0.0.0
 ```
-The options that need to specified are:
+The options that need to specified are:   
+
 |Options|Description|
 |----|----|
 |--net=k8snet|Network to connect to container|
