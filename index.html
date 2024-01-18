@@ -353,13 +353,15 @@
 <h2 id="layer4-vs-layer7">Layer4 vs Layer7</h2>
 <p>loxilb works as a L4 load-balancer/service-mesh by default. Although it provides great performance, at times, L7 load-balancing/proxy might be necessary in K8s. There are many good L7 proxies already available for k8s. Still, we are working on providing a great L7 solution natively in eBPF. It is a tough endeavor one which should reap great benefits once completed. Please keep an eye for updates on this.</p>
 <h2 id="telco-cloud-with-loxilb">Telco-Cloud with loxilb</h2>
-<p>For deploying telco-cloud with cloud-native functions, loxilb can be used as a SCP(service communication proxy). SCP is nothing but a glorified term for Kubernetes load-balancing. But telco-cloud requires load-balancing across various interfaces/standards like N2, N4, E2(ORAN), S6x, 5GLAN, GTP etc. Each of these interfaces present its own unique challenges(and DPI) for load-balancing which loxilb aims to solve e.g. <br />
-- N4 requires PFCP level session-intelligence <br />
-- N2 requires NGAP parsing capability <br />
-- S6x requires Diameter/SCTP multi-homing LB support <br />
-- MEC use-cases might require UL-CL understanding <br />
-- Hitless failover support might be essential for mission-critical applications<br />
-- E2 might require SCTP-LB with OpenVPN bundled together</p>
+<p>For deploying telco-cloud with cloud-native functions, loxilb can be used as a SCP(service communication proxy). SCP is nothing but a glorified term for Kubernetes load-balancing. But telco-cloud requires load-balancing across various interfaces/standards like N2, N4, E2(ORAN), S6x, 5GLAN, GTP etc. Each of these interfaces present its own unique challenges(and DPI) for load-balancing, which loxilb aims to solve e.g.:   </p>
+<ul>
+<li>N4 requires PFCP level session-intelligence</li>
+<li>N2 requires NGAP parsing capability   </li>
+<li>S6x requires Diameter/SCTP multi-homing LB support   </li>
+<li>MEC use-cases might require UL-CL understanding   </li>
+<li>Hitless failover support might be essential for mission-critical applications  </li>
+<li>E2 might require SCTP-LB with OpenVPN bundled together</li>
+</ul>
 <h2 id="how-to-guides">How-To Guides</h2>
 <ul>
 <li><a href="run/">How-To : build/run</a></li>
@@ -469,5 +471,5 @@
 
 <!--
 MkDocs version : 1.5.3
-Build Date UTC : 2024-01-18 06:00:50.408502+00:00
+Build Date UTC : 2024-01-18 06:03:17.588647+00:00
 -->
