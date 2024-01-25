@@ -83,7 +83,8 @@ kube-system       kube-loxilb-5fb5566999-ll4gs                1/1     Running   
 6. Finally to create service LB for a workload, we can use and apply the following template yaml   
    
     (<b>Note</b> -  Check <b>*loadBalancerClass*</b> and other <b>*loxilb*</b> specific annotation) :
-        
+
+```
         apiVersion: v1
         kind: Service
         metadata:
@@ -124,9 +125,9 @@ kube-system       kube-loxilb-5fb5566999-ll4gs                1/1     Running   
                 - "-s"
               ports:
                 - containerPort: 5001
+```
 
-        
-    Users can change the above as per their needs.
+Users can change the above as per their needs.
 
 8. Verify LB service is created
 
