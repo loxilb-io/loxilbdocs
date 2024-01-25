@@ -31,7 +31,7 @@ This usually leads to another query - In external mode, who will be responsible 
 wget https://github.com/loxilb-io/kube-loxilb/raw/main/manifest/ext-cluster/kube-loxilb.yaml
 ```
 
-4. Modify arguments as per user's needs :
+3. Modify arguments as per user's needs :
 
 ```
         args:
@@ -65,11 +65,11 @@ The arguments have the following meaning :
 Many of the above flags and arguments can be overriden on a per-service basis based on loxilb specific annotation as mentioned in section 6 below.        
 
 4. Apply the yaml after making necessary changes :
+
 ```
 kubectl apply -f kube-loxilb.yaml
-```
-        
-5. The above should make sure kube-loxilb is successfully running. Check kube-loxilb is running :
+```        
+5. The above should make sure kube-loxilb is successfully running. Check kube-loxilb is running :   
 
 ```
 k8s@master:~$ sudo kubectl get pods -A
@@ -82,7 +82,7 @@ kube-system       kube-loxilb-5fb5566999-ll4gs                1/1     Running   
 
 6. Finally to create service LB for a workload, we can use and apply the following template yaml   
    
-    (<b>Note</b> -  Check <b>*loadBalancerClass*</b> and other <b>*loxilb*</b> specific annotation) :
+(<b>Note</b> -  Check <b>*loadBalancerClass*</b> and other <b>*loxilb*</b> specific annotation) :
 
 ```
         apiVersion: v1
@@ -129,7 +129,7 @@ kube-system       kube-loxilb-5fb5566999-ll4gs                1/1     Running   
 
 Users can change the above as per their needs.
 
-8. Verify LB service is created   
+7. Verify LB service is created   
 
 ```
 k8s@master:~$ sudo kubectl get svc
