@@ -293,7 +293,7 @@
             #- --setLBMode=1
             #- --setUniqueIP=false
 </code></pre>
-<p>The arguments have the following meaning :   </p>
+<p>The arguments have the following meaning :     </p>
 <table>
 <thead>
 <tr>
@@ -344,7 +344,7 @@
 </tr>
 </tbody>
 </table>
-<p>Many of the above flags and arguments can be overriden on a per-service basis based on loxilb specific annotation as mentioned in section 6 below.      </p>
+<p>Many of the above flags and arguments can be overriden on a per-service basis based on loxilb specific annotation as mentioned in section 6 below.        </p>
 <ol>
 <li>Apply the yaml after making necessary changes :</li>
 </ol>
@@ -409,30 +409,29 @@ kube-system       kube-loxilb-5fb5566999-ll4gs                1/1     Running   
 </code></pre>
 <p>Users can change the above as per their needs.</p>
 <ol>
-<li>Verify LB service is created</li>
+<li>Verify LB service is created   </li>
 </ol>
 <pre><code>k8s@master:~$ sudo kubectl get svc
 NAME                TYPE           CLUSTER-IP    EXTERNAL-IP         PORT(S)             AGE
 kubernetes          ClusterIP      10.43.0.1     &lt;none&gt;              443/TCP             13h
 iperf1              LoadBalancer   10.43.8.156   llb-192.168.80.20   55001:5001/TCP      8m20s
-
 </code></pre>
 <ul>
 <li>For more example yaml templates, kindly refer to kube-loxilb's manifest <a href="https://github.com/loxilb-io/kube-loxilb/tree/main/manifest">directory</a>           </li>
 </ul>
 <h2 id="additional-steps-to-deploy-loxilb-in-cluster-mode">Additional steps to deploy loxilb (in-cluster) mode ?</h2>
-<p>To run loxilb in-cluster mode, the URL argument in <a href="https://github.com/loxilb-io/kube-loxilb/blob/main/manifest/in-cluster/kube-loxilb.yaml">kube-loxilb.yaml</a> needs to be commented out: </p>
+<p>To run loxilb in-cluster mode, the URL argument in <a href="https://github.com/loxilb-io/kube-loxilb/blob/main/manifest/in-cluster/kube-loxilb.yaml">kube-loxilb.yaml</a> needs to be commented out:   </p>
 <pre><code>        args:
             #- --loxiURL=http://12.12.12.1:11111
             - --externalCIDR=123.123.123.1/24
 ````
 
-This enables a self-discovery mode of kube-loxilb where it can find and reach loxilb pods running inside the cluster. Last but not the least we need to create the loxilb pods in cluster :
+This enables a self-discovery mode of kube-loxilb where it can find and reach loxilb pods running inside the cluster. Last but not the least we need to create the loxilb pods in cluster :   
 
 </code></pre>
 <p>sudo kubectl apply -f https://github.com/loxilb-io/kube-loxilb/raw/main/manifest/in-cluster/loxilb.yaml</p>
 <pre><code>
-Once all the pods are created, the same can be verified as follows (you can see both kube-loxilb and loxilb components running:
+Once all the pods are created, the same can be verified as follows (you can see both kube-loxilb and loxilb components running:   
 
 </code></pre>
 <p>k8s@master:~$ sudo kubectl get pods -A
