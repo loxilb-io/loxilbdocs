@@ -364,52 +364,52 @@ kube-system       kube-loxilb-5fb5566999-ll4gs                1/1     Running   
 <li>
 <p>Finally to create service LB for a workload, we can use and apply the following template yaml   </p>
 <p>(<b>Note</b> -  Check <b><em>loadBalancerClass</em></b> and other <b><em>loxilb</em></b> specific annotation) :</p>
-<pre><code>apiVersion: v1
-kind: Service
-metadata:
-  name: iperf-service
-  annotations:
-   # If there is a need to do liveness check from loxilb
-   loxilb.io/liveness: "yes"
-   # Specify LB mode - one of default, onearm or fullnat 
-   loxilb.io/lbmode: "default"
-   # Specify loxilb IPAM mode - one of ipv4, ipv6 or ipv6to4 
-   loxilb.io/ipam: "ipv4"
-   # Specify number of secondary networks for multi-homing
-   # Only valid for SCTP currently
-   # loxilb.io/num-secondary-networks: "2
-   # Specify a static externalIP for this service
-   # loxilb.io/staticIP: "123.123.123.2"
-spec:
-  loadBalancerClass: loxilb.io/loxilb
-  selector:
-    what: perf-test
-  ports:
-    - port: 55001
-      targetPort: 5001
-  type: LoadBalancer
----
-apiVersion: v1
-kind: Pod
-metadata:
-  name: iperf1
-  labels:
-    what: perf-test
-spec:
-  containers:
-    - name: iperf
-      image: eyes852/ubuntu-iperf-test:0.5
-      command:
-        - iperf
-        - "-s"
-      ports:
-        - containerPort: 5001
+</li>
+</ol>
+<pre><code>        apiVersion: v1
+        kind: Service
+        metadata:
+          name: iperf-service
+          annotations:
+           # If there is a need to do liveness check from loxilb
+           loxilb.io/liveness: &quot;yes&quot;
+           # Specify LB mode - one of default, onearm or fullnat 
+           loxilb.io/lbmode: &quot;default&quot;
+           # Specify loxilb IPAM mode - one of ipv4, ipv6 or ipv6to4 
+           loxilb.io/ipam: &quot;ipv4&quot;
+           # Specify number of secondary networks for multi-homing
+           # Only valid for SCTP currently
+           # loxilb.io/num-secondary-networks: &quot;2
+           # Specify a static externalIP for this service
+           # loxilb.io/staticIP: &quot;123.123.123.2&quot;
+        spec:
+          loadBalancerClass: loxilb.io/loxilb
+          selector:
+            what: perf-test
+          ports:
+            - port: 55001
+              targetPort: 5001
+          type: LoadBalancer
+        ---
+        apiVersion: v1
+        kind: Pod
+        metadata:
+          name: iperf1
+          labels:
+            what: perf-test
+        spec:
+          containers:
+            - name: iperf
+              image: eyes852/ubuntu-iperf-test:0.5
+              command:
+                - iperf
+                - &quot;-s&quot;
+              ports:
+                - containerPort: 5001
 </code></pre>
 <p>Users can change the above as per their needs.</p>
-</li>
-<li>
-<p>Verify LB service is created</p>
-</li>
+<ol>
+<li>Verify LB service is created</li>
 </ol>
 <pre><code>k8s@master:~$ sudo kubectl get svc
 NAME                TYPE           CLUSTER-IP    EXTERNAL-IP         PORT(S)             AGE
