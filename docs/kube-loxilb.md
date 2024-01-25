@@ -154,7 +154,7 @@ This enables a self-discovery mode of kube-loxilb where it can find and reach lo
 
 ```
 sudo kubectl apply -f https://github.com/loxilb-io/kube-loxilb/raw/main/manifest/in-cluster/loxilb.yaml
-```
+```   
 
 Once all the pods are created, the same can be verified as follows (you can see both kube-loxilb and loxilb components running:   
 
@@ -169,6 +169,6 @@ kube-system       loxilb-lb-mklj2                             1/1     Running   
 kube-system       loxilb-lb-stp5k                             1/1     Running   0          13h
 kube-system       loxilb-lb-j8fc6                             1/1     Running   0          13h
 kube-system       loxilb-lb-5m85p                             1/1     Running   0          13h
-```
+```    
 
 Thereafter, the process of service creation remains the same as explained in previous sections.   
