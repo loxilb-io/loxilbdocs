@@ -23,15 +23,15 @@ This usually leads to another query - In external mode, who will be responsible 
 
 ## How to deploy kube-loxilb ?
 
-1. Make sure loxilb docker is downloaded and installed properly in a node external to your cluster. One can follow guides [here](https://loxilb-io.github.io/loxilbdocs/run/) or refer to various other [documentation](https://loxilb-io.github.io/loxilbdocs/#how-to-guides) . It is important to have network connectivity from this node to the master nodes of k8s cluster (where kube-loxilb will eventually run) as seen in the above figure.
+* If you have chosen external-mode, please make sure loxilb docker is downloaded and installed properly in a node external to your cluster. One can follow guides [here](https://loxilb-io.github.io/loxilbdocs/run/) or refer to various other [documentation](https://loxilb-io.github.io/loxilbdocs/#how-to-guides) . It is important to have network connectivity from this node to the master nodes of k8s cluster (where kube-loxilb will eventually run) as seen in the above figure. (This step can be skipped if running in-cluster mode)   
 
-2. Download the kube-loxilb config yaml :
+* Download the kube-loxilb config yaml :
 
 ```
 wget https://github.com/loxilb-io/kube-loxilb/raw/main/manifest/ext-cluster/kube-loxilb.yaml
 ```
 
-3. Modify arguments as per user's needs :
+* Modify arguments as per user's needs :
 
 ```
         args:
@@ -64,12 +64,12 @@ The arguments have the following meaning :
 
 Many of the above flags and arguments can be overriden on a per-service basis based on loxilb specific annotation as mentioned in section 6 below.        
 
-4. Apply the yaml after making necessary changes :
+* Apply the yaml after making necessary changes :
 
 ```
 kubectl apply -f kube-loxilb.yaml
-```        
-5. The above should make sure kube-loxilb is successfully running. Check kube-loxilb is running :   
+```
+* The above should make sure kube-loxilb is successfully running. Check kube-loxilb is running :   
 
 ```
 k8s@master:~$ sudo kubectl get pods -A
@@ -80,7 +80,7 @@ kube-system       metrics-server-67c658944b-t4x5d             1/1     Running   
 kube-system       kube-loxilb-5fb5566999-ll4gs                1/1     Running   0          14h
 ```
 
-6. Finally to create service LB for a workload, we can use and apply the following template yaml   
+* Finally to create service LB for a workload, we can use and apply the following template yaml   
    
 (<b>Note</b> -  Check <b>*loadBalancerClass*</b> and other <b>*loxilb*</b> specific annotation) :
 
@@ -129,7 +129,7 @@ kube-system       kube-loxilb-5fb5566999-ll4gs                1/1     Running   
 
 Users can change the above as per their needs.
 
-7. Verify LB service is created   
+* Verify LB service is created   
 
 ```
 k8s@master:~$ sudo kubectl get svc
