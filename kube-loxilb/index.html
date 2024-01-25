@@ -236,7 +236,12 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="2"><a href="#how-to-use-kube-loxilb" class="nav-link">How to use kube-loxilb ?</a>
+            <li class="nav-item" data-level="2"><a href="#how-to-deploy-kube-loxilb" class="nav-link">How to deploy kube-loxilb ?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#additional-steps-to-deploy-loxilb-in-cluster-mode" class="nav-link">Additional steps to deploy loxilb (in-cluster) mode ?</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -246,8 +251,8 @@
                     <div class="col-md-9" role="main">
 
 <h2 id="what-is-kube-loxilb">What is kube-loxilb ?</h2>
-<p><a href="https://github.com/loxilb-io/kube-loxilb">kube-loxilb</a> is loxilb's implementation of kubernetes service load-balancer spec which includes support for load-balancer class, advanced IPAM (shared or exclusive) etc. kube-loxilb runs as a deloyment set in kube-system namespace. This control-plane component runs inside k8s cluster to gather information about k8s nodes/end-points/reachability/LB services etc but in itself does not implement packet/session load-balancing. It acts as an <a href="https://www.cncf.io/blog/2022/06/15/kubernetes-operators-what-are-they-some-examples/">Operator</a> of <a href="https://github.com/loxilb-io/loxilb">loxilb</a>.</p>
-<p>Many users frequently ask us whether it is possible to run the actual packet/session load-balancing inside the cluster (in worker-nodes or master-nodes). The answer is "yes". loxilb can be run in-cluster or as an external entity. The preferred way is to run <b>kube-loxilb</b> component inside the cluster and provision <b>loxilb</b> docker in any external node/vm as mentioned in this guide. The rationale is to provide users a similar look and feel whether running loxilb in an on-prem or public cloud environment. Public-cloud environments usually run load-balancers/firewalls externally in order to provide a seamless and safe environment for the cloud-native workloads. But users are free to choose any mode (in-cluster mode or external mode) as per convenience and their system architecture. The following blogs give detailed steps for :</p>
+<p><a href="https://github.com/loxilb-io/kube-loxilb">kube-loxilb</a> is loxilb's implementation of kubernetes service load-balancer spec which includes support for load-balancer class, advanced IPAM (shared or exclusive) etc. kube-loxilb runs as a deloyment set in kube-system namespace. It is a control-plane component that always runs inside k8s cluster and watches k8s system for changes to nodes/end-points/reachability/LB services etc. It acts as a K8s <a href="https://www.cncf.io/blog/2022/06/15/kubernetes-operators-what-are-they-some-examples/">Operator</a> of <a href="https://github.com/loxilb-io/loxilb">loxilb</a>. The loxilb component takes care of doing actual job of providing service connectivity and load-balancing. So, from deployment perspective we need to run kube-loxilb inside K8s cluster but we have option to deploy loxilb in-cluster or external to the cluster.</p>
+<p>The preferred way is to run <b>kube-loxilb</b> component inside the cluster and provision <b>loxilb</b> docker in any external node/vm as mentioned in this guide. The rationale is to provide users a similar look and feel whether running loxilb in an on-prem or public cloud environment. Public-cloud environments usually run load-balancers/firewalls externally in order to provide a  secure/dmz perimeter layer outside actual workloads. But users are free to choose any mode (in-cluster mode or external mode) as per convenience and their system architecture. The following blogs give detailed steps for :</p>
 <ol>
 <li><a href="https://www.loxilb.io/post/loxilb-load-balancer-setup-on-eks">Running loxilb in external node with AWS EKS</a></li>
 <li><a href="https://www.loxilb.io/post/k8s-nuances-of-in-cluster-external-service-lb-with-loxilb">Running in-cluster LB with K3s for on-prem use-cases</a></li>
@@ -262,31 +267,33 @@
 <li>For in-cluster mode, the overall topology including all components should be similar to the following :</li>
 </ul>
 <p><img alt="loxilb topology" src="../photos/kube-loxilb-int.png" />   </p>
-<h2 id="how-to-use-kube-loxilb">How to use kube-loxilb ?</h2>
+<h2 id="how-to-deploy-kube-loxilb">How to deploy kube-loxilb ?</h2>
 <ol>
 <li>
 <p>Make sure loxilb docker is downloaded and installed properly in a node external to your cluster. One can follow guides <a href="https://loxilb-io.github.io/loxilbdocs/run/">here</a> or refer to various other <a href="https://loxilb-io.github.io/loxilbdocs/#how-to-guides">documentation</a> . It is important to have network connectivity from this node to the master nodes of k8s cluster (where kube-loxilb will eventually run) as seen in the above figure.</p>
 </li>
 <li>
-<p>Download the loxilb config yaml :</p>
-<pre><code>wget https://github.com/loxilb-io/kube-loxilb/raw/main/manifest/kube-loxilb.yaml
-</code></pre>
+<p>Download the kube-loxilb config yaml :</p>
 </li>
-<li>
-<p>Modify arguments as per user's needs :</p>
-<pre><code>args:
-    - --loxiURL=http://12.12.12.1:11111
-    - --externalCIDR=123.123.123.1/24
-    #- --externalSecondaryCIDRs=124.124.124.1/24,125.125.125.1/24
-    #- --externalCIDR6=3ffe::1/96
-    #- --monitor
-    #- --setBGP=65100
-    #- --extBGPPeers=50.50.50.1:65101,51.51.51.1:65102
-    #- --setRoles=0.0.0.0
-    #- --setLBMode=1
-    #- --setUniqueIP=false
+</ol>
+<pre><code>wget https://github.com/loxilb-io/kube-loxilb/raw/main/manifest/ext-cluster/kube-loxilb.yaml
 </code></pre>
-<p>The arguments have the following meaning :    </p>
+<ol>
+<li>Modify arguments as per user's needs :</li>
+</ol>
+<pre><code>        args:
+            - --loxiURL=http://12.12.12.1:11111
+            - --externalCIDR=123.123.123.1/24
+            #- --externalSecondaryCIDRs=124.124.124.1/24,125.125.125.1/24
+            #- --externalCIDR6=3ffe::1/96
+            #- --monitor
+            #- --setBGP=65100
+            #- --extBGPPeers=50.50.50.1:65101,51.51.51.1:65102
+            #- --setRoles=0.0.0.0
+            #- --setLBMode=1
+            #- --setUniqueIP=false
+</code></pre>
+<p>The arguments have the following meaning :   </p>
 <table>
 <thead>
 <tr>
@@ -338,19 +345,24 @@
 </tbody>
 </table>
 <p>Many of the above flags and arguments can be overriden on a per-service basis based on loxilb specific annotation as mentioned in section 6 below.      </p>
-</li>
-<li>
-<p>Apply the following :</p>
+<ol>
+<li>Apply the yaml after making necessary changes :</li>
+</ol>
 <pre><code>kubectl apply -f kube-loxilb.yaml
 </code></pre>
-</li>
-<li>
-<p>The above should make sure kube-loxilb is successfully running. Check kube-loxilb is running :</p>
-<pre><code>kubectl get pods -A | grep kube-loxilb
+<ol>
+<li>The above should make sure kube-loxilb is successfully running. Check kube-loxilb is running :</li>
+</ol>
+<pre><code>k8s@master:~$ sudo kubectl get pods -A
+NAMESPACE         NAME                                        READY   STATUS    RESTARTS   AGE
+kube-system       local-path-provisioner-84db5d44d9-pczhz     1/1     Running   0          16h
+kube-system       coredns-6799fbcd5-44qpx                     1/1     Running   0          16h
+kube-system       metrics-server-67c658944b-t4x5d             1/1     Running   0          16h
+kube-system       kube-loxilb-5fb5566999-ll4gs                1/1     Running   0          14h
 </code></pre>
-</li>
+<ol>
 <li>
-<p>Finally to create service LB, we can use and apply the following template yaml   </p>
+<p>Finally to create service LB for a workload, we can use and apply the following template yaml   </p>
 <p>(<b>Note</b> -  Check <b><em>loadBalancerClass</em></b> and other <b><em>loxilb</em></b> specific annotation) :</p>
 <pre><code>apiVersion: v1
 kind: Service
@@ -397,11 +409,44 @@ spec:
 </li>
 <li>
 <p>Verify LB service is created</p>
-<pre><code>kubectl get svc
-</code></pre>
 </li>
 </ol>
-<p>For more example yaml templates, kindly refer to kube-loxilb's manifest <a href="https://github.com/loxilb-io/kube-loxilb/tree/main/manifest">directory</a>   </p></div>
+<pre><code>k8s@master:~$ sudo kubectl get svc
+NAME                TYPE           CLUSTER-IP    EXTERNAL-IP         PORT(S)             AGE
+kubernetes          ClusterIP      10.43.0.1     &lt;none&gt;              443/TCP             13h
+iperf1              LoadBalancer   10.43.8.156   llb-192.168.80.20   55001:5001/TCP      8m20s
+
+</code></pre>
+<ul>
+<li>For more example yaml templates, kindly refer to kube-loxilb's manifest <a href="https://github.com/loxilb-io/kube-loxilb/tree/main/manifest">directory</a>           </li>
+</ul>
+<h2 id="additional-steps-to-deploy-loxilb-in-cluster-mode">Additional steps to deploy loxilb (in-cluster) mode ?</h2>
+<p>To run loxilb in-cluster mode, the URL argument in <a href="https://github.com/loxilb-io/kube-loxilb/blob/main/manifest/in-cluster/kube-loxilb.yaml">kube-loxilb.yaml</a> needs to be commented out: </p>
+<pre><code>        args:
+            #- --loxiURL=http://12.12.12.1:11111
+            - --externalCIDR=123.123.123.1/24
+````
+
+This enables a self-discovery mode of kube-loxilb where it can find and reach loxilb pods running inside the cluster. Last but not the least we need to create the loxilb pods in cluster :
+
+</code></pre>
+<p>sudo kubectl apply -f https://github.com/loxilb-io/kube-loxilb/raw/main/manifest/in-cluster/loxilb.yaml</p>
+<pre><code>
+Once all the pods are created, the same can be verified as follows (you can see both kube-loxilb and loxilb components running:
+
+</code></pre>
+<p>k8s@master:~$ sudo kubectl get pods -A
+NAMESPACE         NAME                                        READY   STATUS    RESTARTS   AGE
+kube-system       local-path-provisioner-84db5d44d9-pczhz     1/1     Running   0          16h
+kube-system       coredns-6799fbcd5-44qpx                     1/1     Running   0          16h
+kube-system       metrics-server-67c658944b-t4x5d             1/1     Running   0          16h
+kube-system       kube-loxilb-5fb5566999-ll4gs                1/1     Running   0          14h
+kube-system       loxilb-lb-mklj2                             1/1     Running   0          13h
+kube-system       loxilb-lb-stp5k                             1/1     Running   0          13h
+kube-system       loxilb-lb-j8fc6                             1/1     Running   0          13h
+kube-system       loxilb-lb-5m85p                             1/1     Running   0          13h
+```</p>
+<p>Thereafter, the process of service creation remains the same as explained in previous sections.   </p></div>
             </div>
         </div>
 
