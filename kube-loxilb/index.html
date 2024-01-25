@@ -268,19 +268,19 @@
 </ul>
 <p><img alt="loxilb topology" src="../photos/kube-loxilb-int.png" />   </p>
 <h2 id="how-to-deploy-kube-loxilb">How to deploy kube-loxilb ?</h2>
-<ol>
+<ul>
 <li>
-<p>Make sure loxilb docker is downloaded and installed properly in a node external to your cluster. One can follow guides <a href="https://loxilb-io.github.io/loxilbdocs/run/">here</a> or refer to various other <a href="https://loxilb-io.github.io/loxilbdocs/#how-to-guides">documentation</a> . It is important to have network connectivity from this node to the master nodes of k8s cluster (where kube-loxilb will eventually run) as seen in the above figure.</p>
+<p>If you have chosen external-mode, please make sure loxilb docker is downloaded and installed properly in a node external to your cluster. One can follow guides <a href="https://loxilb-io.github.io/loxilbdocs/run/">here</a> or refer to various other <a href="https://loxilb-io.github.io/loxilbdocs/#how-to-guides">documentation</a> . It is important to have network connectivity from this node to the master nodes of k8s cluster (where kube-loxilb will eventually run) as seen in the above figure. (This step can be skipped if running in-cluster mode)   </p>
 </li>
 <li>
 <p>Download the kube-loxilb config yaml :</p>
 </li>
-</ol>
+</ul>
 <pre><code>wget https://github.com/loxilb-io/kube-loxilb/raw/main/manifest/ext-cluster/kube-loxilb.yaml
 </code></pre>
-<ol>
+<ul>
 <li>Modify arguments as per user's needs :</li>
-</ol>
+</ul>
 <pre><code>        args:
             - --loxiURL=http://12.12.12.1:11111
             - --externalCIDR=123.123.123.1/24
@@ -345,14 +345,14 @@
 </tbody>
 </table>
 <p>Many of the above flags and arguments can be overriden on a per-service basis based on loxilb specific annotation as mentioned in section 6 below.        </p>
-<ol>
+<ul>
 <li>Apply the yaml after making necessary changes :</li>
-</ol>
+</ul>
 <pre><code>kubectl apply -f kube-loxilb.yaml
 </code></pre>
-<ol>
+<ul>
 <li>The above should make sure kube-loxilb is successfully running. Check kube-loxilb is running :   </li>
-</ol>
+</ul>
 <pre><code>k8s@master:~$ sudo kubectl get pods -A
 NAMESPACE         NAME                                        READY   STATUS    RESTARTS   AGE
 kube-system       local-path-provisioner-84db5d44d9-pczhz     1/1     Running   0          16h
@@ -360,9 +360,9 @@ kube-system       coredns-6799fbcd5-44qpx                     1/1     Running   
 kube-system       metrics-server-67c658944b-t4x5d             1/1     Running   0          16h
 kube-system       kube-loxilb-5fb5566999-ll4gs                1/1     Running   0          14h
 </code></pre>
-<ol>
+<ul>
 <li>Finally to create service LB for a workload, we can use and apply the following template yaml   </li>
-</ol>
+</ul>
 <p>(<b>Note</b> -  Check <b><em>loadBalancerClass</em></b> and other <b><em>loxilb</em></b> specific annotation) :</p>
 <pre><code>        apiVersion: v1
         kind: Service
@@ -406,9 +406,9 @@ kube-system       kube-loxilb-5fb5566999-ll4gs                1/1     Running   
                 - containerPort: 5001
 </code></pre>
 <p>Users can change the above as per their needs.</p>
-<ol>
+<ul>
 <li>Verify LB service is created   </li>
-</ol>
+</ul>
 <pre><code>k8s@master:~$ sudo kubectl get svc
 NAME                TYPE           CLUSTER-IP    EXTERNAL-IP         PORT(S)             AGE
 kubernetes          ClusterIP      10.43.0.1     &lt;none&gt;              443/TCP             13h
