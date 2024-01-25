@@ -231,11 +231,6 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="2"><a href="#how-is-kube-loxilb-different-from-loxi-ccm" class="nav-link">How is kube-loxilb different from loxi-ccm ?</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
             <li class="nav-item" data-level="2"><a href="#overall-topology" class="nav-link">Overall topology</a>
               <ul class="nav flex-column">
               </ul>
@@ -251,16 +246,13 @@
                     <div class="col-md-9" role="main">
 
 <h2 id="what-is-kube-loxilb">What is kube-loxilb ?</h2>
-<p><a href="https://github.com/loxilb-io/kube-loxilb">kube-loxilb</a> is loxilb's implementation of kubernetes service load-balancer spec which includes support for load-balancer class, advanced IPAM (shared or exclusive) etc. kube-loxilb runs as a deloyment set in kube-system namespace. This component runs inside k8s cluster to gather information about k8s nodes/reachability/LB services etc but in itself does not implement packet/session load-balancing. It is done by <a href="https://github.com/loxilb-io/loxilb">loxilb</a> which usually runs outside the cluster as an external-LB. </p>
+<p><a href="https://github.com/loxilb-io/kube-loxilb">kube-loxilb</a> is loxilb's implementation of kubernetes service load-balancer spec which includes support for load-balancer class, advanced IPAM (shared or exclusive) etc. kube-loxilb runs as a deloyment set in kube-system namespace. This control-plane component runs inside k8s cluster to gather information about k8s nodes/end-points/reachability/LB services etc but in itself does not implement packet/session load-balancing. It acts as an <a href="https://www.cncf.io/blog/2022/06/15/kubernetes-operators-what-are-they-some-examples/">Operator</a> of <a href="https://github.com/loxilb-io/loxilb">loxilb</a>.</p>
 <p>Many users frequently ask us whether it is possible to run the actual packet/session load-balancing inside the cluster (in worker-nodes or master-nodes). The answer is "yes". loxilb can be run in-cluster or as an external entity. The preferred way is to run <b>kube-loxilb</b> component inside the cluster and provision <b>loxilb</b> docker in any external node/vm as mentioned in this guide. The rationale is to provide users a similar look and feel whether running loxilb in an on-prem or public cloud environment. Public-cloud environments usually run load-balancers/firewalls externally in order to provide a seamless and safe environment for the cloud-native workloads. But users are free to choose any mode (in-cluster mode or external mode) as per convenience and their system architecture. The following blogs give detailed steps for :</p>
 <ol>
 <li><a href="https://www.loxilb.io/post/loxilb-load-balancer-setup-on-eks">Running loxilb in external node with AWS EKS</a></li>
 <li><a href="https://www.loxilb.io/post/k8s-nuances-of-in-cluster-external-service-lb-with-loxilb">Running in-cluster LB with K3s for on-prem use-cases</a></li>
 </ol>
-<p>This usually leads to another query - Who will be responsible for managing the external node ? On public cloud(s), it is as simple as spawning a new instance in your VPC and launch loxilb docker in it. For on-prem cases, you need to run loxilb docker in a spare node/vm as applicable. loxilb docker is a self-contained entity and easily managed with well-known tools like docker, containerd, podman etc. It can be independently restarted/upgraded anytime and kube-loxilb will make sure all the k8s LB services are properly configured each time. When deploying in-cluster mode, everything is managed by Kubernetes itself with little to no manual intervention.   </p>
-<h2 id="how-is-kube-loxilb-different-from-loxi-ccm">How is kube-loxilb different from loxi-ccm ?</h2>
-<p>Another loxilb component known as <a href="https://github.com/loxilb-io/loxi-ccm">loxi-ccm</a> also provides implementation of kubernetes load-balancer spec but it runs as a part of cloud-provider and provides load-balancer life-cycle management as part of it. If one needs to integrate loxilb with their existing cloud-provider implementation, they can use or include loxi-ccm as a part of it. Else, kube-loxilb is the right component to use for all scenarios. It also has the latest loxilb features integrated as development is currently focused on it.   </p>
-<p>kube-loxilb is a standalone implementation of kubernetes load-balancer spec which does not depend on cloud-provider. It runs as a kube-system deployment and provisions load-balancer rules in loxilb based on load-balancer class. It only acts on load-balancers services for the LB classes that is provided by itself. This along with loxilb's modularized architecture also allows us to have different load-balancers working together in the same K8s environment. In future, loxi-ccm and kube-loxilb will share the same code base but currently they are maintained separately.   </p>
+<p>This usually leads to another query - In external mode, who will be responsible for managing this entity ? On public cloud(s), it is as simple as spawning a new instance in your VPC and launch loxilb docker in it. For on-prem cases, you need to run loxilb docker in a spare node/vm as applicable. loxilb docker is a self-contained entity and easily managed with well-known tools like docker, containerd, podman etc. It can be independently restarted/upgraded anytime and kube-loxilb will make sure all the k8s LB services are properly configured each time. When deploying in-cluster mode, everything is managed by Kubernetes itself with little-to-no manual intervention.   </p>
 <h2 id="overall-topology">Overall topology</h2>
 <ul>
 <li>For external mode, the overall topology including all components should be similar to the following :</li>
