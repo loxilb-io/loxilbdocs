@@ -9,7 +9,7 @@ The preferred way is to run <b>kube-loxilb</b> component inside the cluster and 
 
 This usually leads to another query - In external mode, who will be responsible for managing this entity ? On public cloud(s), it is as simple as spawning a new instance in your VPC and launch loxilb docker in it. For on-prem cases, you need to run loxilb docker in a spare node/vm as applicable. loxilb docker is a self-contained entity and easily managed with well-known tools like docker, containerd, podman etc. It can be independently restarted/upgraded anytime and kube-loxilb will make sure all the k8s LB services are properly configured each time. When deploying in-cluster mode, everything is managed by Kubernetes itself with little-to-no manual intervention.   
 
-## Overall topology   
+### Overall topology   
 
 * For external mode, the overall topology including all components should be similar to the following :
 
@@ -140,7 +140,7 @@ iperf1              LoadBalancer   10.43.8.156   llb-192.168.80.20   55001:5001/
 
 * For more example yaml templates, kindly refer to kube-loxilb's manifest [directory](https://github.com/loxilb-io/kube-loxilb/tree/main/manifest)           
 
-## Additional steps to deploy loxilb (in-cluster) mode ?
+## Additional steps to deploy loxilb (in-cluster) mode
 
 To run loxilb in-cluster mode, the URL argument in [kube-loxilb.yaml](https://github.com/loxilb-io/kube-loxilb/blob/main/manifest/in-cluster/kube-loxilb.yaml) needs to be commented out:   
 
