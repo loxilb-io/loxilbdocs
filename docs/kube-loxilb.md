@@ -47,7 +47,7 @@ wget https://github.com/loxilb-io/kube-loxilb/raw/main/manifest/ext-cluster/kube
             #- --setUniqueIP=false
 ```
         
-The arguments have the following meaning :   
+The arguments have the following meaning :     
 
 | name | description |
 | ----------- | ----------- |
@@ -60,9 +60,9 @@ The arguments have the following meaning :
 | setRoles | If present, kube-loxilb arbitrates loxilb role(s) in cluster-mode. Further, it sets a special VIP (selected as sourceIP) to communicate with end-points in full-nat mode. | 
 | setLBMode | 0, 1, 2 <br> 0 - default (only DNAT, preserves source-IP) <br> 1 - onearm (source IP is changed to load balancer’s interface IP) <br> 2 - fullNAT (sourceIP is changed to virtual IP) | 
 | setUniqueIP | Allocate unique service-IP per LB service (default : false) | 
-| externalSecondaryCIDRs | Secondary CIDR or IPAddress ranges to allocate addresses from in case of multi-homing support |
+| externalSecondaryCIDRs | Secondary CIDR or IPAddress ranges to allocate addresses from in case of multi-homing support |   
 
-Many of the above flags and arguments can be overriden on a per-service basis based on loxilb specific annotation as mentioned in section 6 below.      
+Many of the above flags and arguments can be overriden on a per-service basis based on loxilb specific annotation as mentioned in section 6 below.        
 
 4. Apply the yaml after making necessary changes :
 ```
@@ -125,38 +125,38 @@ kube-system       kube-loxilb-5fb5566999-ll4gs                1/1     Running   
                 - "-s"
               ports:
                 - containerPort: 5001
-```
+```   
 
 Users can change the above as per their needs.
 
-8. Verify LB service is created
+8. Verify LB service is created   
 
 ```
 k8s@master:~$ sudo kubectl get svc
 NAME                TYPE           CLUSTER-IP    EXTERNAL-IP         PORT(S)             AGE
 kubernetes          ClusterIP      10.43.0.1     <none>              443/TCP             13h
 iperf1              LoadBalancer   10.43.8.156   llb-192.168.80.20   55001:5001/TCP      8m20s
-
-```
+```   
 
 * For more example yaml templates, kindly refer to kube-loxilb's manifest [directory](https://github.com/loxilb-io/kube-loxilb/tree/main/manifest)           
 
 ## Additional steps to deploy loxilb (in-cluster) mode ?
 
-To run loxilb in-cluster mode, the URL argument in [kube-loxilb.yaml](https://github.com/loxilb-io/kube-loxilb/blob/main/manifest/in-cluster/kube-loxilb.yaml) needs to be commented out: 
+To run loxilb in-cluster mode, the URL argument in [kube-loxilb.yaml](https://github.com/loxilb-io/kube-loxilb/blob/main/manifest/in-cluster/kube-loxilb.yaml) needs to be commented out:   
+
 ```
         args:
             #- --loxiURL=http://12.12.12.1:11111
             - --externalCIDR=123.123.123.1/24
 ````
 
-This enables a self-discovery mode of kube-loxilb where it can find and reach loxilb pods running inside the cluster. Last but not the least we need to create the loxilb pods in cluster :
+This enables a self-discovery mode of kube-loxilb where it can find and reach loxilb pods running inside the cluster. Last but not the least we need to create the loxilb pods in cluster :   
 
 ```
 sudo kubectl apply -f https://github.com/loxilb-io/kube-loxilb/raw/main/manifest/in-cluster/loxilb.yaml
 ```
 
-Once all the pods are created, the same can be verified as follows (you can see both kube-loxilb and loxilb components running:
+Once all the pods are created, the same can be verified as follows (you can see both kube-loxilb and loxilb components running:   
 
 ```
 k8s@master:~$ sudo kubectl get pods -A
