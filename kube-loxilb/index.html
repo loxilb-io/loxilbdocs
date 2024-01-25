@@ -351,7 +351,7 @@
 <pre><code>kubectl apply -f kube-loxilb.yaml
 </code></pre>
 <ol>
-<li>The above should make sure kube-loxilb is successfully running. Check kube-loxilb is running :</li>
+<li>The above should make sure kube-loxilb is successfully running. Check kube-loxilb is running :   </li>
 </ol>
 <pre><code>k8s@master:~$ sudo kubectl get pods -A
 NAMESPACE         NAME                                        READY   STATUS    RESTARTS   AGE
@@ -361,11 +361,9 @@ kube-system       metrics-server-67c658944b-t4x5d             1/1     Running   
 kube-system       kube-loxilb-5fb5566999-ll4gs                1/1     Running   0          14h
 </code></pre>
 <ol>
-<li>
-<p>Finally to create service LB for a workload, we can use and apply the following template yaml   </p>
-<p>(<b>Note</b> -  Check <b><em>loadBalancerClass</em></b> and other <b><em>loxilb</em></b> specific annotation) :</p>
-</li>
+<li>Finally to create service LB for a workload, we can use and apply the following template yaml   </li>
 </ol>
+<p>(<b>Note</b> -  Check <b><em>loadBalancerClass</em></b> and other <b><em>loxilb</em></b> specific annotation) :</p>
 <pre><code>        apiVersion: v1
         kind: Service
         metadata:
