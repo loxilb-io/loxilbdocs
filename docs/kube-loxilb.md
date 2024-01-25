@@ -144,11 +144,12 @@ iperf1              LoadBalancer   10.43.8.156   llb-192.168.80.20   55001:5001/
 
 To run loxilb in-cluster mode, the URL argument in [kube-loxilb.yaml](https://github.com/loxilb-io/kube-loxilb/blob/main/manifest/in-cluster/kube-loxilb.yaml) needs to be commented out:   
 
+
 ```
         args:
             #- --loxiURL=http://12.12.12.1:11111
             - --externalCIDR=123.123.123.1/24
-````
+```   
 
 This enables a self-discovery mode of kube-loxilb where it can find and reach loxilb pods running inside the cluster. Last but not the least we need to create the loxilb pods in cluster :   
 
