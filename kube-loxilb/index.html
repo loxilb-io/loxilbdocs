@@ -231,17 +231,12 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-level="2"><a href="#overall-topology" class="nav-link">Overall topology</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
             <li class="nav-item" data-level="2"><a href="#how-to-deploy-kube-loxilb" class="nav-link">How to deploy kube-loxilb ?</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="2"><a href="#additional-steps-to-deploy-loxilb-in-cluster-mode" class="nav-link">Additional steps to deploy loxilb (in-cluster) mode ?</a>
+            <li class="nav-item" data-level="2"><a href="#additional-steps-to-deploy-loxilb-in-cluster-mode" class="nav-link">Additional steps to deploy loxilb (in-cluster) mode</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -258,7 +253,7 @@
 <li><a href="https://www.loxilb.io/post/k8s-nuances-of-in-cluster-external-service-lb-with-loxilb">Running in-cluster LB with K3s for on-prem use-cases</a></li>
 </ol>
 <p>This usually leads to another query - In external mode, who will be responsible for managing this entity ? On public cloud(s), it is as simple as spawning a new instance in your VPC and launch loxilb docker in it. For on-prem cases, you need to run loxilb docker in a spare node/vm as applicable. loxilb docker is a self-contained entity and easily managed with well-known tools like docker, containerd, podman etc. It can be independently restarted/upgraded anytime and kube-loxilb will make sure all the k8s LB services are properly configured each time. When deploying in-cluster mode, everything is managed by Kubernetes itself with little-to-no manual intervention.   </p>
-<h2 id="overall-topology">Overall topology</h2>
+<h3 id="overall-topology">Overall topology</h3>
 <ul>
 <li>For external mode, the overall topology including all components should be similar to the following :</li>
 </ul>
@@ -417,7 +412,7 @@ iperf1              LoadBalancer   10.43.8.156   llb-192.168.80.20   55001:5001/
 <ul>
 <li>For more example yaml templates, kindly refer to kube-loxilb's manifest <a href="https://github.com/loxilb-io/kube-loxilb/tree/main/manifest">directory</a>           </li>
 </ul>
-<h2 id="additional-steps-to-deploy-loxilb-in-cluster-mode">Additional steps to deploy loxilb (in-cluster) mode ?</h2>
+<h2 id="additional-steps-to-deploy-loxilb-in-cluster-mode">Additional steps to deploy loxilb (in-cluster) mode</h2>
 <p>To run loxilb in-cluster mode, the URL argument in <a href="https://github.com/loxilb-io/kube-loxilb/blob/main/manifest/in-cluster/kube-loxilb.yaml">kube-loxilb.yaml</a> needs to be commented out:   </p>
 <pre><code>        args:
             #- --loxiURL=http://12.12.12.1:11111
