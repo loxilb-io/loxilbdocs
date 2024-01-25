@@ -77,14 +77,13 @@ For deploying telco-cloud with cloud-native functions, loxilb can be used as a S
   
 ## How-To Guides
 
-- [How-To : build/run](run.md)
-- [How-To : configuration](cmd.md)
-- [How-To : kube-loxilb](kube-loxilb.md)
+- [How-To : Deploy in K8s with kube-loxilb](kube-loxilb.md)
+- [How-To : Manual build/run](run.md)
+- [How-To : Run loxilb in standalone mode](standalone.md)
+- [How-To : Standalone configuration](cmd.md)
 - [How-To : debug](debugging.md)
-- [How-To : loxilb with calico bgp](integrate_bgp_eng.md)
-- [How-To : loxilb in standalone mode](standalone.md)
-- [How-To : loxilb Web-APIs](api.md)
-- [How-To : high-availability with loxilb](ha-deploy.md)
+- [How-To : Run in K8s with calico](integrate_bgp_eng.md)
+- [How-To : High-availability with loxilb](ha-deploy.md)
 
 ## Knowledge-Base   
 - [What is eBPF](ebpf.md)
@@ -95,6 +94,7 @@ For deploying telco-cloud with cloud-native functions, loxilb can be used as a S
 - [What are loxilb NAT Modes](nat.md)
 - [Developer's guide to loxicmd](cmd-dev.md)
 - [Developer's guide to loxilb API](api-dev.md)
+- [API Reference - loxilb web-Api](api.md)
 - [Performance Reports](perf.md)
 - [Development Roadmap](roadmap.md)
 - [Contribute](contribute.md)
