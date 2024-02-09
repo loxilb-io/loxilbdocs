@@ -1,4 +1,4 @@
-site_name: loxilb v0.9.0
+site_name: loxilb v0.9.1
 site_url: https://loxilb-io.github.io/loxilbdocs 
 theme:
     name: mkdocs
@@ -33,6 +33,7 @@ nav:
       - System Requirements: requirements.md
       - Frequenctly Asked Questions- FAQs: faq.md
   - Blogs:
+      - K8s - Elevating Cluster Networking: https://www.loxilb.io/post/loxilb-cluster-networking-elevating-k8s-networking-capabilities
       - eBPF - Map Sync using Go: https://www.loxilb.io/post/state-synchronization-of-ebpf-maps-using-go-a-tale-of-two-frameworks
       - K8s in-cluster service LB with LoxiLB: https://www.loxilb.io/post/k8s-nuances-of-in-cluster-external-service-lb-with-loxilb
       - K8s - Introducing SCTP Multihoming with LoxiLB: https://www.loxilb.io/post/k8s-introducing-sctp-multihoming-functionality-with-loxilb
@@ -47,7 +48,7 @@ nav:
         - K3s - Using loxilb as external service lb: https://cloudybytes.medium.com/k3s-using-loxilb-as-external-service-lb-2ea4ce61e159
         - 5G SCTP LoadBalancer Using LoxiLB Applying on free5GC: https://medium.com/@ben0978327139/5g-sctp-loadbalancer-using-loxilb-applying-on-free5gc-b5c05bb723f0
 extra:
-    version: v0.9.0 (Latest)
+    version: v0.9.1 (Latest)
 
 extra_css:
   - stylesheets/extra.css
