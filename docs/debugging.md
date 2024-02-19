@@ -23,7 +23,7 @@ If this happens:
   
   * <b>Solution:</b> Make sure loxilb pods were spawned.
   
-<b>3.</b> Make sure the annotation <b>"node.kubernetes.io/exclude-from-external-load-balancers"</b> is present in the node's configuration.
+<b>3.</b> Make sure the annotation <b>"node.kubernetes.io/exclude-from-external-load-balancers"</b> is NOT present in the node's configuration.
   
   * <b>Solution:</b> If present, then the node will not be considered as an endpoint by loxilb. You can remove it by editing "kubectl edit \<node-name\>"
 
