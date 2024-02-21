@@ -268,20 +268,6 @@ export PATH=&quot;${PATH}:/usr/local/go/bin&quot;
 <pre><code>sudo apt install -y clang-13
 </code></pre>
 <ul>
-<li>Build custom iproute2 package. (loxilb  requires a special version of <a href="https://github.com/shemminger/iproute2">iproute2</a> tool for its operation. The customized repository can be found <a href="https://github.com/loxilb-io/iproute2">here</a>. loxilb needs some patches to iproute's tc module to properly load/unload its ebpf modules</li>
-</ul>
-<pre><code>git clone https://github.com/loxilb-io/iproute2.git
-cd iproute2
-cd libbpf/src/
-mkdir build
-DESTDIR=build make install
-cd ../../
-export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:`pwd`/libbpf/src/
-LIBBPF_FORCE=on LIBBPF_DIR=`pwd`/libbpf/src/build ./configure
-make
-sudo cp -f tc/tc /usr/local/sbin/ntc
-</code></pre>
-<ul>
 <li>Build and run loxilb </li>
 </ul>
 <pre><code>git clone --recurse-submodules https://github.com/loxilb-io/loxilb.git
