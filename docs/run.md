@@ -19,21 +19,6 @@ For Ubuntu 22.04 users:
 sudo apt install -y clang-13
 ```
 
-* Build custom iproute2 package. (loxilb  requires a special version of [iproute2](https://github.com/shemminger/iproute2) tool for its operation. The customized repository can be found [here](https://github.com/loxilb-io/iproute2). loxilb needs some patches to iproute's tc module to properly load/unload its ebpf modules
-
-```
-git clone https://github.com/loxilb-io/iproute2.git
-cd iproute2
-cd libbpf/src/
-mkdir build
-DESTDIR=build make install
-cd ../../
-export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:`pwd`/libbpf/src/
-LIBBPF_FORCE=on LIBBPF_DIR=`pwd`/libbpf/src/build ./configure
-make
-sudo cp -f tc/tc /usr/local/sbin/ntc
-```
-
 * Build and run loxilb 
 
 ```
