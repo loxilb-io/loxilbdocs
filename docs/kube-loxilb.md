@@ -62,8 +62,9 @@ The arguments have the following meaning :
 | setUniqueIP | Allocate unique service-IP per LB service (default : false) | 
 | externalSecondaryCIDRs | Secondary CIDR or IPAddress ranges to allocate addresses from in case of multi-homing support |   
 
-Many of the above flags and arguments can be overriden on a per-service basis based on loxilb specific annotation as mentioned below.        
-* kube-loxilb supported annotations:
+Many of the above flags and arguments can be overriden on a per-service basis based on loxilb specific annotation as mentioned below.   
+
+* kube-loxilb supported annotations:   
   
 | Annotations | Description |
 | ----------- | ----------- |
