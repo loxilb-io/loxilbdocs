@@ -294,19 +294,19 @@ sudo cp -f loxicmd /usr/local/sbin/
 <h2 id="2-from-docker-easy">2. From docker (easy)</h2>
 <p>Get the loxilb official docker image    </p>
 <ul>
-<li>Latest dev image (possibly unstable)   </li>
+<li>Latest Ubuntu 20.04 image   </li>
 </ul>
 <pre><code>docker pull ghcr.io/loxilb-io/loxilb:latest
 </code></pre>
 <ul>
-<li>Latest Ubuntu 22.04 image   </li>
+<li>For Ubuntu 22.04 or above      </li>
 </ul>
 <pre><code>docker pull ghcr.io/loxilb-io/loxilb:latestu22
 </code></pre>
 <ul>
-<li>Stable Image   </li>
+<li>Stable Release Image   </li>
 </ul>
-<pre><code>docker pull ghcr.io/loxilb-io/loxilb:v0.9.0
+<pre><code>docker pull ghcr.io/loxilb-io/loxilb:v0.9.1
 </code></pre>
 <p>To run loxilb docker, we can use the following commands :</p>
 <pre><code>docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --name loxilb ghcr.io/loxilb-io/loxilb:latest
