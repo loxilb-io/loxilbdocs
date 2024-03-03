@@ -294,6 +294,11 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            
+            <li class="nav-item" data-level="2"><a href="#latest-cicd-status" class="nav-link">Latest CICD Status</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
         </ul>
     </div>
 </div></div>
@@ -368,7 +373,7 @@
 </ul>
 <h2 id="how-to-guides">How-To Guides</h2>
 <ul>
-<li><a href="kube-loxilb/">How-To : Deploy in K8s with kube-loxilb</a></li>
+<li><a href="kube-loxilb/">How-To : Deploy loxilb in K8s with kube-loxilb</a></li>
 <li><a href="run/">How-To : Manual build/run</a></li>
 <li><a href="standalone/">How-To : Run loxilb in standalone mode</a></li>
 <li><a href="cmd/">How-To : Standalone configuration</a></li>
@@ -414,7 +419,49 @@
 <li><a href="https://cloudybytes.medium.com/k8s-bringing-load-balancing-to-multus-workloads-with-loxilb-a0746f270abe">K8s - Bringing load-balancing to multus workloads with loxilb</a></li>
 <li><a href="https://medium.com/@ben0978327139/5g-sctp-loadbalancer-using-loxilb-applying-on-free5gc-b5c05bb723f0">5G SCTP LoadBalancer Using LoxiLB on free5GC</a></li>
 <li><a href="https://cloudybytes.medium.com/kubernetes-services-achieving-optimal-performance-is-elusive-5def5183c281">Kubernetes Services: Achieving optimal performance is elusive</a></li>
-</ul></div>
+</ul>
+<h2 id="latest-cicd-status">Latest CICD Status</h2>
+<h3 id="features-sanity">Features Sanity</h3>
+<p><img alt="build workflow" src="https://github.com/loxilb-io/loxilb/actions/workflows/docker-image.yml/badge.svg" /><br />
+<img alt="simple workflow" src="https://github.com/loxilb-io/loxilb/actions/workflows/basic-sanity.yml/badge.svg" /> <br />
+<a href="https://github.com/loxilb-io/loxilb/actions/workflows/tcp-sanity.yml"><img alt="tcp-lb-sanity-CI" src="https://github.com/loxilb-io/loxilb/actions/workflows/tcp-sanity.yml/badge.svg" /></a> <br />
+<a href="https://github.com/loxilb-io/loxilb/actions/workflows/udp-sanity.yml"><img alt="udp-lb-sanity-CI" src="https://github.com/loxilb-io/loxilb/actions/workflows/udp-sanity.yml/badge.svg" /></a> <br />
+<a href="https://github.com/loxilb-io/loxilb/actions/workflows/sctp-sanity.yml"><img alt="sctp-lb-sanity-CI" src="https://github.com/loxilb-io/loxilb/actions/workflows/sctp-sanity.yml/badge.svg" /></a> <br />
+<img alt="extlb workflow" src="https://github.com/loxilb-io/loxilb/actions/workflows/advanced-lb-sanity.yml/badge.svg" /> <br />
+<img alt="ipsec-sanity-CI" src="https://github.com/loxilb-io/loxilb/actions/workflows/ipsec-sanity.yml/badge.svg" /><br />
+<img alt="scale-sanity-CI" src="https://github.com/loxilb-io/loxilb/actions/workflows/scale-sanity.yml/badge.svg" /> <br />
+<a href="https://github.com/loxilb-io/loxilb/actions/workflows/liveness-sanity.yml"><img alt="liveness-sanity-CI" src="https://github.com/loxilb-io/loxilb/actions/workflows/liveness-sanity.yml/badge.svg" /></a> <br />
+<img alt="nat66-sanity-CI" src="https://github.com/loxilb-io/loxilb/actions/workflows/nat66-sanity.yml/badge.svg" /> <br />
+<img alt="perf-CI" src="https://github.com/loxilb-io/loxilb/actions/workflows/nat66-sanity.yml/badge.svg" />   </p>
+<h3 id="features-sanity-in-ubuntu2204">Features sanity in Ubuntu22.04</h3>
+<p><a href="https://github.com/loxilb-io/loxilb/actions/workflows/tcp-sanity-ubuntu-22.yml"><img alt="tcp-lb-sanity-CI" src="https://github.com/loxilb-io/loxilb/actions/workflows/tcp-sanity-ubuntu-22.yml/badge.svg" /></a> <br />
+<a href="https://github.com/loxilb-io/loxilb/actions/workflows/udp-sanity-ubuntu-22.yml"><img alt="udp-lb-sanity-CI" src="https://github.com/loxilb-io/loxilb/actions/workflows/udp-sanity-ubuntu-22.yml/badge.svg" /></a> <br />
+<img alt="ipsec-sanity-CI" src="https://github.com/loxilb-io/loxilb/actions/workflows/ipsec-sanity-ubuntu-22.yml/badge.svg" /><br />
+<img alt="nat66-sanity-CI" src="https://github.com/loxilb-io/loxilb/actions/workflows/nat66-sanity-ubuntu-22.yml/badge.svg" />   </p>
+<h3 id="k3s-sanity">K3s Sanity</h3>
+<p><a href="https://github.com/loxilb-io/loxilb/actions/workflows/k3s-base-sanity.yml"><img alt="K3s-Base-Sanity-CI" src="https://github.com/loxilb-io/loxilb/actions/workflows/k3s-base-sanity.yml/badge.svg?branch=main" /></a>  </p>
+<h4 id="k3s-flannel-sanity">K3s Flannel Sanity</h4>
+<p><a href="https://github.com/loxilb-io/loxilb/actions/workflows/k3s-flannel.yml"><img alt="k3s-flannel-CI" src="https://github.com/loxilb-io/loxilb/actions/workflows/k3s-flannel.yml/badge.svg" /></a> <br />
+<a href="https://github.com/loxilb-io/loxilb/actions/workflows/k3s-flannel-ubuntu-22.yml"><img alt="k3s-flannel-ubuntu22-CI" src="https://github.com/loxilb-io/loxilb/actions/workflows/k3s-flannel-ubuntu-22.yml/badge.svg" /></a><br />
+<a href="https://github.com/loxilb-io/loxilb/actions/workflows/k3s-flannel-cluster.yml"><img alt="k3s-flannel-cluster-CI" src="https://github.com/loxilb-io/loxilb/actions/workflows/k3s-flannel-cluster.yml/badge.svg" /></a> <br />
+<a href="https://github.com/loxilb-io/loxilb/actions/workflows/k3s-flannel-incluster.yml"><img alt="k3s-flannel-incluster-CI" src="https://github.com/loxilb-io/loxilb/actions/workflows/k3s-flannel-incluster.yml/badge.svg" /></a> <br />
+<a href="https://github.com/loxilb-io/loxilb/actions/workflows/k3s-flannel-incluster-l2.yml"><img alt="k3s-flannel-incluster-l2-CI" src="https://github.com/loxilb-io/loxilb/actions/workflows/k3s-flannel-incluster-l2.yml/badge.svg" /></a>   </p>
+<h4 id="k3s-calico-sanity">K3s calico Sanity</h4>
+<p><a href="https://github.com/loxilb-io/loxilb/actions/workflows/k3s-calico.yml"><img alt="k3s-calico-CI" src="https://github.com/loxilb-io/loxilb/actions/workflows/k3s-calico.yml/badge.svg" /></a> <br />
+<a href="https://github.com/loxilb-io/loxilb/actions/workflows/k3s-calico-ubuntu-22.yml"><img alt="k3s-calico-ubuntu22-CI" src="https://github.com/loxilb-io/loxilb/actions/workflows/k3s-calico-ubuntu-22.yml/badge.svg" /></a>    </p>
+<h4 id="k3s-cilium-sanity">K3s cilium Sanity</h4>
+<p><a href="https://github.com/loxilb-io/loxilb/actions/workflows/k3s-cilium-cluster.yml"><img alt="k3s-cilium-cluster-CI" src="https://github.com/loxilb-io/loxilb/actions/workflows/k3s-cilium-cluster.yml/badge.svg" /></a>  </p>
+<h4 id="k3s-sctp-multihoming-sanity">K3s sctp multihoming Sanity</h4>
+<p><a href="https://github.com/loxilb-io/loxilb/actions/workflows/k3s-sctpmh.yml"><img alt="k3s-sctpmh-CI" src="https://github.com/loxilb-io/loxilb/actions/workflows/k3s-sctpmh.yml/badge.svg" /></a> <br />
+<a href="https://github.com/loxilb-io/loxilb/actions/workflows/k3s-sctpmh-ubuntu22.yml"><img alt="k3s-sctpmh-ubuntu22-CI" src="https://github.com/loxilb-io/loxilb/actions/workflows/k3s-sctpmh-ubuntu-22.yml/badge.svg" /></a> <br />
+<a href="https://github.com/loxilb-io/loxilb/actions/workflows/k3s-sctpmh-2.yml"><img alt="k3s-sctpmh-2-CI" src="https://github.com/loxilb-io/loxilb/actions/workflows/k3s-sctpmh-2.yml/badge.svg" /></a>  </p>
+<h3 id="k8s-sanity">K8s Sanity</h3>
+<p><a href="https://github.com/loxilb-io/loxilb/actions/workflows/k8s-calico-ipvs.yml"><img alt="K8s-Calico-Cluster-IPVS-CI" src="https://github.com/loxilb-io/loxilb/actions/workflows/k8s-calico-ipvs.yml/badge.svg" /></a> <br />
+<a href="https://github.com/loxilb-io/loxilb/actions/workflows/k8s-calico-ipvs2.yml"><img alt="K8s-Calico-Cluster-IPVS2-CI" src="https://github.com/loxilb-io/loxilb/actions/workflows/k8s-calico-ipvs2.yml/badge.svg" /></a> <br />
+<a href="https://github.com/loxilb-io/loxilb/actions/workflows/k8s-calico-ipvs3.yml"><img alt="K8s-Calico-Cluster-IPVS3-CI" src="https://github.com/loxilb-io/loxilb/actions/workflows/k8s-calico-ipvs3.yml/badge.svg" /></a> <br />
+<a href="https://github.com/loxilb-io/loxilb/actions/workflows/k8s-calico-ipvs3-ha.yml"><img alt="K8s-Calico-Cluster-IPVS3-HA-CI" src="https://github.com/loxilb-io/loxilb/actions/workflows/k8s-calico-ipvs3-ha.yml/badge.svg" /></a>   </p>
+<h3 id="eks-sanity">EKS Sanity</h3>
+<p><img alt="EKS" src="https://github.com/loxilb-io/loxilb/actions/workflows/eks.yaml/badge.svg?branch=main" />  </p></div>
             </div>
         </div>
 
@@ -476,5 +523,5 @@
 
 <!--
 MkDocs version : 1.5.3
-Build Date UTC : 2024-03-02 01:07:56.259326+00:00
+Build Date UTC : 2024-03-03 01:40:17.273664+00:00
 -->
