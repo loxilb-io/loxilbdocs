@@ -13,12 +13,6 @@ export PATH="${PATH}:/usr/local/go/bin"
 ```
 sudo apt install -y clang llvm libelf-dev gcc-multilib libpcap-dev vim net-tools linux-tools-$(uname -r) elfutils dwarves git libbsd-dev bridge-utils wget unzip build-essential bison flex iproute2
 ```
-
-For Ubuntu 22.04 users:
-```
-sudo apt install -y clang-13
-```
-
 * Build and run loxilb 
 
 ```
@@ -48,15 +42,12 @@ loxicmd usage guide can be found [here](https://loxilb-io.github.io/loxilbdocs/c
 
 Get the loxilb official docker image    
 
-* Latest Ubuntu 20.04 image   
+* Latest build image   
 ```
 docker pull ghcr.io/loxilb-io/loxilb:latest
 ```   
-* For Ubuntu 22.04 or above      
-```
-docker pull ghcr.io/loxilb-io/loxilb:latestu22
-```
-* Stable Release Image   
+
+* Release build Image   
 ```
 docker pull ghcr.io/loxilb-io/loxilb:v0.9.1
 ``` 
