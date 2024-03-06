@@ -6,9 +6,7 @@ loxilb implements a variety of algortihms to achieve load-balancing and distribu
 
 This is default algo used by loxilb. In this mode, loxilb selects the end-points configured for a service in simple round-robin fashion for each new incoming connection
 
-![round](photos/rr-algo.png)
-
-In this mode, original source IP is preserved till the end-point and provides best visibility for anyone needing it. Finally, this also means the end-points should know how to reach the source.    
+![round](photos/rr-algo.png)    
 
 ### 2. Weighted round-robin (wrr)
 
@@ -22,7 +20,7 @@ In this mode, every client (sourceIP) will always be get connected to a particul
 
 ![persistent](photos/persist-algo.png)
 
-### 4. Flow hash (hash)
+### 4. Flow-hash (hash)
 
 In this mode, loxilb will select the end-point based on 5-tuple hash on incoming traffic. This 5-tuple consists of SourceIP, SourcePort, DestinationIP, DestinationPort and IP protocol number. Please note that in this mode connections from same client can also get mapped to different end-points since SourcePort is usually selected randomly by operating systems resulting in a different hash value.  
 
