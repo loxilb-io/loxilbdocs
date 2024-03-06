@@ -16,7 +16,7 @@ In this mode, loxilb selects the end-points as per weight(in terms of percentage
 
 ### 3. Persistence (persist)  
 
-In this mode, every client (sourceIP) will always be get connected to a particular end-point. In essence there is no real load-balancing involved but it can be useful for applications which require client session-affinity e.g FTP which requires two connections with the end-point.   
+In this mode, every client (sourceIP) will always get connected to a particular end-point. In essence there is no real load-balancing involved but it can be useful for applications which require client session-affinity e.g FTP which requires two connections with the end-point.   
 
 ![persistent](photos/persist-algo.png)
 
