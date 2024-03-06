@@ -233,7 +233,7 @@
 <p>loxilb implements a variety of algortihms to achieve load-balancing and distribute incoming traffic to the server end-points </p>
 <h3 id="1-round-robin-rr">1. Round-Robin (rr)</h3>
 <p>This is default algo used by loxilb. In this mode, loxilb selects the end-points configured for a service in simple round-robin fashion for each new incoming connection</p>
-<p><img alt="round" src="../photos/rr.png" /></p>
+<p><img alt="round" src="photos/rr.png" /></p>
 <p>In this mode, original source IP is preserved till the end-point and provides best visibility for anyone needing it. Finally, this also means the end-points should know how to reach the source.    </p>
 <h3 id="2-weighted-round-robin-wrr">2. Weighted round-robin (wrr)</h3>
 <p>In this mode, loxilb selects the end-points as per weight(in terms of percentage of overall traffic connections) associated with the end-points of a service. For example, if we have three end-points, we can have 70%, 10% and 20% distribution.    </p>
