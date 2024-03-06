@@ -240,10 +240,10 @@
 <p><img alt="weighted" src="../photos/wrr.png" /></p>
 <h3 id="3-persistence-persist">3. Persistence (persist)</h3>
 <p>In this mode, every client (sourceIP) will always be get connected to a particular end-point. In essence there is no real load-balancing involved but it can be useful for applications which require client session-affinity e.g FTP which requires two connections with the end-point.   </p>
-<p><img alt="persistent" src="../photos/persist.png" /></p>
+<p><img alt="persistent" src="photos/persist.png" /></p>
 <h3 id="4-flow-hash-hash">4. Flow hash (hash)</h3>
 <p>In this mode, loxilb will select the end-point based on 5-tuple hash on incoming traffic. This 5-tuple consists of SourceIP, SourcePort, DestinationIP, DestinationPort and IP protocol number. Please note that in this mode even if connections from same client will get mapped to different end-points since SourcePort is usually selected randomly by operating systems.   </p>
-<p><img alt="hash" src="../photos/hash.png" /></p>
+<p><img alt="hash" src="photos/hash.png" /></p>
 <h3 id="5-least-connections-lc">5. Least-Connections (lc)</h3>
 <p>In this mode, loxilb will select end-point which has the least active connections (or least loaded) at a given point of time.   </p>
 <p><img alt="lc" src="photos/lc.png" /></p></div>
