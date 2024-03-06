@@ -24,7 +24,7 @@ In this mode, every client (sourceIP) will always be get connected to a particul
 
 ### 4. Flow hash (hash)
 
-In this mode, loxilb will select the end-point based on 5-tuple hash on incoming traffic. This 5-tuple consists of SourceIP, SourcePort, DestinationIP, DestinationPort and IP protocol number. Please note that in this mode even if connections from same client will get mapped to different end-points since SourcePort is usually selected randomly by operating systems.   
+In this mode, loxilb will select the end-point based on 5-tuple hash on incoming traffic. This 5-tuple consists of SourceIP, SourcePort, DestinationIP, DestinationPort and IP protocol number. Please note that in this mode connections from same client can also get mapped to different end-points since SourcePort is usually selected randomly by operating systems resulting in a different hash value.  
 
 ![hash](photos/hash-algo.png)
 
