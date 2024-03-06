@@ -237,7 +237,7 @@
 <p>In this mode, original source IP is preserved till the end-point and provides best visibility for anyone needing it. Finally, this also means the end-points should know how to reach the source.    </p>
 <h3 id="2-weighted-round-robin-wrr">2. Weighted round-robin (wrr)</h3>
 <p>In this mode, loxilb selects the end-points as per weight(in terms of percentage of overall traffic connections) associated with the end-points of a service. For example, if we have three end-points, we can have 70%, 10% and 20% distribution.    </p>
-<p><img alt="weighted" src="../photos/wrr.png" /></p>
+<p><img alt="weighted" src="photos/wrr.png" /></p>
 <h3 id="3-persistence-persist">3. Persistence (persist)</h3>
 <p>In this mode, every client (sourceIP) will always be get connected to a particular end-point. In essence there is no real load-balancing involved but it can be useful for applications which require client session-affinity e.g FTP which requires two connections with the end-point.   </p>
 <p><img alt="persistent" src="../photos/persist.png" /></p>
