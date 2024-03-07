@@ -1,4 +1,4 @@
-## Service-Groups with Zoning in loxilb
+## Service-Group zoning in loxilb
 
 [kube-loxilb](https://github.com/loxilb-io/kube-loxilb) is used to deploy loxilb with Kubernetes. By default a kube-loxilb instance does not differentiate the services in any way and uses a set-of loxilb instances to setup rules related to these services. But there are potential scenarios where grouping of services is necessary. It might be beneficial for increasing capacity, uptime and security of the cluster services.    
 
