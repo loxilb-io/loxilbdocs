@@ -78,6 +78,7 @@ For deploying telco-cloud with cloud-native functions, loxilb can be used as a S
 ## How-To Guides
 
 - [How-To : Deploy loxilb in K8s with kube-loxilb](kube-loxilb.md)
+- [How-To : Service-group zones with loxilb](service-zones.md)
 - [How-To : Manual build/run](run.md)
 - [How-To : Run loxilb in standalone mode](standalone.md)
 - [How-To : Standalone configuration](cmd.md)
