@@ -5,6 +5,7 @@
  - [How to run and configure loxilb](./cmd.md#how-to-run-and-configure-loxilb)
 	 - [Load balancer](./cmd.md#load-balancer)
 	 - [Endpoint](./cmd.md#endpoint)
+  	 - [BFD](./cmd.md#bfd)
 	 - [Session](./cmd.md#session)
 	 - [SessionUlCl](./cmd.md#sessionulcl)
 	 - [IPaddress](./cmd.md#ipaddress)
@@ -232,6 +233,44 @@ spec:
 loxicmd delete endpoint 31.31.31.31
 ```
 ---
+### BFD
+#### Get BFD Session information
+```
+loxicmd get bfd
+```
+#### Create BFD Session
+```
+#loxicmd create bfd <remoteIP> --sourceIP=<sourceIP> --interval=<time in usecs> --retryCount=<count>
+loxicmd create bfd 192.168.80.253 --sourceIP=192.168.80.252 --interval=500000 --retryCount=3
+```
+remoteIP(string): Remote IP address   
+sourceIP(string): Source IP address for binding   
+interval(int): BFD packet Tx Interval Time in microseconds   
+retryCount(int): Number of retry counts to detect failure.   
+#### Delete BFD Session
+```
+#loxicmd delete bfd <remoteIP>
+loxicmd delete bfd 192.168.80.253
+```
+remoteIP(string): Remote IP address   
+sourceIP(string): Source IP address for binding   
+interval(int): BFD packet Tx Interval Time in microseconds   
+retryCount(int): Number of retry counts to detect failure.
+#### BFD yaml example
+```
+apiVersion: netlox/v1
+kind: BFD
+metadata:
+  name: test
+spec:
+  instance: "default"
+  remoteIp: "192.168.80.253"
+  sourceIp: "192.168.80.252"
+  interval: 300000
+  retryCount: 4
+
+```
+
 ### Session
 #### Get Session information
 ```
@@ -243,7 +282,7 @@ loxicmd get session
 loxicmd create session user1 192.168.20.1 --accessNetworkTunnel=1:1.232.16.1 coreNetworkTunnel=1:1.233.16.1
 ```
 userID(string): User Identifier   
-sessionIP(string): Session IPaddress   
+sessionIP(string): Session IP address   
 accessNetworkTunnel(string): accessNetworkTunnel has pairs that can be specified as 'TeID:IP'   
 coreNetworkTunnel(string): coreNetworkTunnel has pairs that can be specified as 'TeID:IP'   
 
