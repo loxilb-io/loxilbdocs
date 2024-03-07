@@ -266,6 +266,7 @@
 <li><a href="./#how-to-run-and-configure-loxilb">How to run and configure loxilb</a><ul>
 <li><a href="./#load-balancer">Load balancer</a></li>
 <li><a href="./#endpoint">Endpoint</a></li>
+<li><a href="./#bfd">BFD</a></li>
 <li><a href="./#session">Session</a></li>
 <li><a href="./#sessionulcl">SessionUlCl</a></li>
 <li><a href="./#ipaddress">IPaddress</a></li>
@@ -442,6 +443,39 @@ spec:
 <pre><code>loxicmd delete endpoint 31.31.31.31
 </code></pre>
 <hr />
+<h3 id="bfd">BFD</h3>
+<h4 id="get-bfd-session-information">Get BFD Session information</h4>
+<pre><code>loxicmd get bfd
+</code></pre>
+<h4 id="create-bfd-session">Create BFD Session</h4>
+<pre><code>#loxicmd create bfd &lt;remoteIP&gt; --sourceIP=&lt;sourceIP&gt; --interval=&lt;time in usecs&gt; --retryCount=&lt;count&gt;
+loxicmd create bfd 192.168.80.253 --sourceIP=192.168.80.252 --interval=500000 --retryCount=3
+</code></pre>
+<p>remoteIP(string): Remote IP address <br />
+sourceIP(string): Source IP address for binding <br />
+interval(int): BFD packet Tx Interval Time in microseconds <br />
+retryCount(int): Number of retry counts to detect failure.   </p>
+<h4 id="delete-bfd-session">Delete BFD Session</h4>
+<pre><code>#loxicmd delete bfd &lt;remoteIP&gt;
+loxicmd delete bfd 192.168.80.253
+</code></pre>
+<p>remoteIP(string): Remote IP address <br />
+sourceIP(string): Source IP address for binding <br />
+interval(int): BFD packet Tx Interval Time in microseconds <br />
+retryCount(int): Number of retry counts to detect failure.</p>
+<h4 id="bfd-yaml-example">BFD yaml example</h4>
+<pre><code>apiVersion: netlox/v1
+kind: BFD
+metadata:
+  name: test
+spec:
+  instance: &quot;default&quot;
+  remoteIp: &quot;192.168.80.253&quot;
+  sourceIp: &quot;192.168.80.252&quot;
+  interval: 300000
+  retryCount: 4
+
+</code></pre>
 <h3 id="session">Session</h3>
 <h4 id="get-session-information">Get Session information</h4>
 <pre><code>loxicmd get session
@@ -451,7 +485,7 @@ spec:
 loxicmd create session user1 192.168.20.1 --accessNetworkTunnel=1:1.232.16.1 coreNetworkTunnel=1:1.233.16.1
 </code></pre>
 <p>userID(string): User Identifier <br />
-sessionIP(string): Session IPaddress <br />
+sessionIP(string): Session IP address <br />
 accessNetworkTunnel(string): accessNetworkTunnel has pairs that can be specified as 'TeID:IP' <br />
 coreNetworkTunnel(string): coreNetworkTunnel has pairs that can be specified as 'TeID:IP'   </p>
 <h5 id="session-yaml-example">Session yaml example</h5>
