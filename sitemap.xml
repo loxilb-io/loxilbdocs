@@ -136,6 +136,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://loxilb-io.github.io/loxilbdocs/service-zones/</loc>
+         <lastmod>2024-03-07</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://loxilb-io.github.io/loxilbdocs/simple_topo/</loc>
          <lastmod>2024-03-07</lastmod>
          <changefreq>daily</changefreq>
