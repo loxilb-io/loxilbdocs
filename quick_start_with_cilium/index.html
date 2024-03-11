@@ -313,9 +313,6 @@ sudo cp /var/lib/rancher/k3s/server/node-token /vagrant/node-token
 sudo cp /etc/rancher/k3s/k3s.yaml /vagrant/k3s.yaml
 sudo sed -i -e &quot;s/127.0.0.1/${MASTER_IP}/g&quot; /vagrant/k3s.yaml
 
-#Add route for service IP towards loxilb
-sudo ip route add 20.20.20.1/32 via 172.17.0.2
-
 </code></pre>
 <h2 id="how-to-deploy-kube-loxilb">How to deploy kube-loxilb ?</h2>
 <p><a href="https://github.com/loxilb-io/kube-loxilb">kube-loxilb</a> is used to deploy loxilb with Kubernetes.</p>
@@ -324,7 +321,7 @@ sudo ip route add 20.20.20.1/32 via 172.17.0.2
 <p>kube-loxilb.yaml</p>
 <pre><code>        args:
             - --loxiURL=http://172.17.0.2:11111
-            - --externalCIDR=20.20.20.1/24
+            - --externalCIDR=192.168.82.100/32
             - --setMode=1
 </code></pre>
 <p>Apply in k8s:</p>
@@ -336,18 +333,18 @@ sudo ip route add 20.20.20.1/32 via 172.17.0.2
 <h2 id="check-the-status">Check the status</h2>
 <p>In k3s:</p>
 <pre><code>kubectl get svc
-NAME            TYPE           CLUSTER-IP      EXTERNAL-IP      PORT(S)           AGE
-kubernetes      ClusterIP      10.43.0.1       &lt;none&gt;           443/TCP           80m
-tcp-lb-onearm   LoadBalancer   10.43.183.123   llb-20.20.20.1   56002:30001/TCP   6m50s
+NAME            TYPE           CLUSTER-IP      EXTERNAL-IP          PORT(S)           AGE
+kubernetes      ClusterIP      10.43.0.1       &lt;none&gt;               443/TCP           80m
+tcp-lb-onearm   LoadBalancer   10.43.183.123   llb-192.168.82.100   56002:30001/TCP   6m50s
 </code></pre>
 <p>In loxilb docker:</p>
 <pre><code>$ sudo docker exec -it loxilb loxicmd get lb -o wide
-|   EXT IP   | SEC IPS | PORT  | PROTO |         NAME          | MARK | SEL |  MODE  | ENDPOINT  | EPORT | WEIGHT | STATE  | COUNTERS |
-|------------|---------|-------|-------|-----------------------|------|-----|--------|-----------|-------|--------|--------|----------|
-| 20.20.20.1 |         | 56002 | tcp   | default_tcp-lb-onearm |    0 | rr  | onearm | 10.0.2.15 | 30001 |      1 | active | 12:880   |
+|   EXT IP       | SEC IPS | PORT  | PROTO |         NAME          | MARK | SEL |  MODE  | ENDPOINT  | EPORT | WEIGHT | STATE  | COUNTERS |
+|----------------|---------|-------|-------|-----------------------|------|-----|--------|-----------|-------|--------|--------|----------|
+| 192.168.82.100 |         | 56002 | tcp   | default_tcp-lb-onearm |    0 | rr  | onearm | 10.0.2.15 | 30001 |      1 | active | 12:880   |
 </code></pre>
 <h2 id="connect-from-client">Connect from client</h2>
-<pre><code>$ curl http://20.20.20.1:56002
+<pre><code>$ curl http://192.168.82.100:56002
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
@@ -373,7 +370,7 @@ Commercial support is available at
 &lt;/html&gt;
 
 </code></pre>
-<p>All of the above steps are also available as part of CICD. Follow the steps below to replicate the above:</p>
+<p>All of the above steps are also available as part of loxilb CICD workflow. Follow the steps below to replicate the above:</p>
 <pre><code>$ cd cicd/docker-k3s-cilium/
 
 # To setup the single node k3s setup with cilium as CNI and loxilb as external load balancer
