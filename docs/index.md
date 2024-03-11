@@ -78,7 +78,6 @@ For deploying telco-cloud with cloud-native functions, loxilb can be used as a S
 ## How-To Guides
 
 - [How-To : Deploy loxilb in K8s with kube-loxilb](kube-loxilb.md)
-- [How-To : Deploy loxilb in single-node K3s with cilium](quick_start_with_cilium.md)
 - [How-To : Service-group zones with loxilb](service-zones.md)
 - [How-To : Manual build/run](run.md)
 - [How-To : Run loxilb in standalone mode](standalone.md)
@@ -86,6 +85,11 @@ For deploying telco-cloud with cloud-native functions, loxilb can be used as a S
 - [How-To : debug](debugging.md)
 - [How-To : Run in K8s with calico](integrate_bgp_eng.md)
 - [How-To : High-availability with loxilb](ha-deploy.md)
+
+## Getting started
+
+- [K3s : single-node loxilb with cilium](quick_start_with_cilium.md)
+
 
 ## Knowledge-Base   
 - [What is eBPF](ebpf.md)
