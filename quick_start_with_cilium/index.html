@@ -326,6 +326,7 @@ sudo sed -i -e &quot;s/127.0.0.1/${MASTER_IP}/g&quot; /vagrant/k3s.yaml
             - --externalCIDR=192.168.82.100/32
             - --setMode=1
 </code></pre>
+<p>In the above snippet, loxiURL uses docker interface IP of loxilb, which can be different for each setup.    </p>
 <p>Apply in k8s:</p>
 <pre><code>kubectl apply -f kube-loxilb.yaml
 </code></pre>
