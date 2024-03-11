@@ -268,13 +268,13 @@
                     <div class="col-md-9" role="main">
 
 <h2 id="loxilb-quick-start-guide-with-k3sflannel">LoxiLB Quick Start Guide with K3s/Flannel</h2>
-<p>This document will explain how to install a K3s cluster with default flannel networking and loxilb as an external load balancer.</p>
+<p>This document will explain how to install a K3s cluster with default flannel networking and loxilb as an external load balancer.   </p>
 <h3 id="prerequisite">Prerequisite</h3>
-<p><a href="https://docs.docker.com/engine/install/ubuntu/">Install</a> docker runtime to manage loxilb. </p>
+<p><a href="https://docs.docker.com/engine/install/ubuntu/">Install</a> docker runtime to manage loxilb.    </p>
 <h3 id="topology">Topology</h3>
 <p>For quickly bringing up loxilb with K3s/Flannel, we will be deploying all components in a single node :   </p>
 <p><img alt="loxilb topology" src="../photos/qs_single.png" /></p>
-<p>loxilb is run as a docker and will use macvlan for the incoming traffic. This is to mimic a topology close to cloud-hosted k8s where LB nodes run outside a cluster. loxilb can be used in more complex <a href="https://www.loxilb.io/post/k8s-nuances-of-in-cluster-external-service-lb-with-loxilb">in-cluster</a> mode as well, but not used here for simplicity.</p>
+<p>loxilb is run as a docker and will use macvlan for the incoming traffic. This is to mimic a topology close to cloud-hosted k8s where LB nodes run outside a cluster. loxilb can be used in more complex <a href="https://www.loxilb.io/post/k8s-nuances-of-in-cluster-external-service-lb-with-loxilb">in-cluster</a> mode as well, but not used here for simplicity.   </p>
 <h2 id="install-loxilb-docker">Install loxilb docker</h2>
 <pre><code>## Set underlying interface of the VM/cluster-node to promisc mode for mac-vlan to work
 sudo ifconfig eth1 promisc
