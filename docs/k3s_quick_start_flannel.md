@@ -1,10 +1,10 @@
 ## LoxiLB Quick Start Guide with K3s/Flannel
 
-This document will explain how to install a K3s cluster with default flannel networking and loxilb as an external load balancer.
+This document will explain how to install a K3s cluster with default flannel networking and loxilb as an external load balancer.   
 
 ### Prerequisite
 
-[Install](https://docs.docker.com/engine/install/ubuntu/) docker runtime to manage loxilb. 
+[Install](https://docs.docker.com/engine/install/ubuntu/) docker runtime to manage loxilb.    
 
 ### Topology   
 
@@ -12,7 +12,7 @@ For quickly bringing up loxilb with K3s/Flannel, we will be deploying all compon
 
 ![loxilb topology](photos/qs_single.png)
 
-loxilb is run as a docker and will use macvlan for the incoming traffic. This is to mimic a topology close to cloud-hosted k8s where LB nodes run outside a cluster. loxilb can be used in more complex [in-cluster](https://www.loxilb.io/post/k8s-nuances-of-in-cluster-external-service-lb-with-loxilb) mode as well, but not used here for simplicity.
+loxilb is run as a docker and will use macvlan for the incoming traffic. This is to mimic a topology close to cloud-hosted k8s where LB nodes run outside a cluster. loxilb can be used in more complex [in-cluster](https://www.loxilb.io/post/k8s-nuances-of-in-cluster-external-service-lb-with-loxilb) mode as well, but not used here for simplicity.   
 
 ## Install loxilb docker
 ```
