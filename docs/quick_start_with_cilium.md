@@ -53,9 +53,6 @@ sudo cp /var/lib/rancher/k3s/server/node-token /vagrant/node-token
 sudo cp /etc/rancher/k3s/k3s.yaml /vagrant/k3s.yaml
 sudo sed -i -e "s/127.0.0.1/${MASTER_IP}/g" /vagrant/k3s.yaml
 
-#Add route for service IP towards loxilb
-sudo ip route add 20.20.20.1/32 via 172.17.0.2
-
 ```
 
 ## How to deploy kube-loxilb ?
@@ -68,7 +65,7 @@ kube-loxilb.yaml
 ```
         args:
             - --loxiURL=http://172.17.0.2:11111
-            - --externalCIDR=20.20.20.1/24
+            - --externalCIDR=192.168.82.100/32
             - --setMode=1
 ```
 
@@ -86,21 +83,21 @@ kubectl apply -f https://raw.githubusercontent.com/loxilb-io/loxilb/main/cicd/do
 In k3s:
 ```
 kubectl get svc
-NAME            TYPE           CLUSTER-IP      EXTERNAL-IP      PORT(S)           AGE
-kubernetes      ClusterIP      10.43.0.1       <none>           443/TCP           80m
-tcp-lb-onearm   LoadBalancer   10.43.183.123   llb-20.20.20.1   56002:30001/TCP   6m50s
+NAME            TYPE           CLUSTER-IP      EXTERNAL-IP          PORT(S)           AGE
+kubernetes      ClusterIP      10.43.0.1       <none>               443/TCP           80m
+tcp-lb-onearm   LoadBalancer   10.43.183.123   llb-192.168.82.100   56002:30001/TCP   6m50s
 ```
 In loxilb docker:
 ```
 $ sudo docker exec -it loxilb loxicmd get lb -o wide
-|   EXT IP   | SEC IPS | PORT  | PROTO |         NAME          | MARK | SEL |  MODE  | ENDPOINT  | EPORT | WEIGHT | STATE  | COUNTERS |
-|------------|---------|-------|-------|-----------------------|------|-----|--------|-----------|-------|--------|--------|----------|
-| 20.20.20.1 |         | 56002 | tcp   | default_tcp-lb-onearm |    0 | rr  | onearm | 10.0.2.15 | 30001 |      1 | active | 12:880   |
+|   EXT IP       | SEC IPS | PORT  | PROTO |         NAME          | MARK | SEL |  MODE  | ENDPOINT  | EPORT | WEIGHT | STATE  | COUNTERS |
+|----------------|---------|-------|-------|-----------------------|------|-----|--------|-----------|-------|--------|--------|----------|
+| 192.168.82.100 |         | 56002 | tcp   | default_tcp-lb-onearm |    0 | rr  | onearm | 10.0.2.15 | 30001 |      1 | active | 12:880   |
 ```
 
 ## Connect from client
 ```
-$ curl http://20.20.20.1:56002
+$ curl http://192.168.82.100:56002
 <!DOCTYPE html>
 <html>
 <head>
@@ -127,7 +124,7 @@ Commercial support is available at
 
 ```
 
-All of the above steps are also available as part of CICD. Follow the steps below to replicate the above:
+All of the above steps are also available as part of loxilb CICD workflow. Follow the steps below to replicate the above:
 ```
 $ cd cicd/docker-k3s-cilium/
 
