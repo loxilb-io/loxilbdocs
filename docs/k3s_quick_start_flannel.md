@@ -26,6 +26,7 @@ sudo docker run -u root --cap-add SYS_ADMIN --restart unless-stopped --privilege
 sudo docker network create -d macvlan -o parent=eth1 --subnet 192.168.82.0/24   --gateway 192.168.82.1 --aux-address 'host=192.168.82.252' llbnet
 
 # Assign mac-vlan to loxilb docker with specified IP (which will be used as LB VIP)
+# Please note that this node should already have an IP assigned belonging to the same subnet on underlying interface
 sudo docker network connect llbnet loxilb --ip=192.168.82.100
 
 # Add iptables rule to allow traffic from source/host IP(192.168.82.1) to loxilb
@@ -58,6 +59,7 @@ kube-loxilb.yaml
             - --externalCIDR=192.168.82.100/32
             - --setMode=1
 ```
+In the above snippet, loxiURL uses docker interface IP of loxilb, which can be different for each setup.    
 
 Apply in k8s:
 ```
@@ -85,7 +87,7 @@ $ sudo docker exec -it loxilb loxicmd get lb -o wide
 | 192.168.82.100 |         | 56002 | tcp   | default_tcp-lb-onearm |    0 | rr  | onearm | 10.0.2.15 | 30001 |      1 | active | 12:880   |
 ```
 
-## Connect from client
+## Connect from host/client
 ```
 $ curl http://192.168.82.100:56002
 <!DOCTYPE html>
