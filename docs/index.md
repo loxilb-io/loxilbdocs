@@ -86,7 +86,7 @@ For deploying telco-cloud with cloud-native functions, loxilb can be used as a S
 - [How-To : Run in K8s with calico](integrate_bgp_eng.md)
 - [How-To : High-availability with loxilb](ha-deploy.md)
 
-## Getting started with different K8s Distributions
+## Getting started with different K8s distributions
 
 - [K3s : single-node loxilb with cilium](quick_start_with_cilium.md)
 
