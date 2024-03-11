@@ -42,7 +42,7 @@ loxicmd usage guide can be found [here](https://loxilb-io.github.io/loxilbdocs/c
 
 Get the loxilb official docker image    
 
-* Latest build image   
+* Latest build image (multi-arch amd64/arm64)   
 ```
 docker pull ghcr.io/loxilb-io/loxilb:latest
 ```   
