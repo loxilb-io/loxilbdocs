@@ -72,6 +72,7 @@ kube-loxilb.yaml
             - --externalCIDR=192.168.82.100/32
             - --setMode=1
 ```
+In the above snippet, loxiURL uses docker interface IP of loxilb, which can be different for each setup.    
 
 Apply in k8s:
 ```
