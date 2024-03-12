@@ -71,7 +71,7 @@ $ sudo k0s kubectl apply -f kube-loxilb.yaml
 
 ### Create the service
 ```
-kubectl apply -f https://raw.githubusercontent.com/loxilb-io/loxilb/main/cicd/docker-k3s-cilium/tcp-svc-lb.yml
+kubectl apply -f https://raw.githubusercontent.com/loxilb-io/loxilb/main/cicd/docker-k0s-lb/tcp-svc-lb.yml
 ```
 
 ### Check the status
