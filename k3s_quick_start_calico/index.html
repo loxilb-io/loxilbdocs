@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/k3s_quick_start_calico/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>K3s quick start calico - loxilb v0.9.1</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <link href="../stylesheets/extra.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-21G7NBL2BN"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', "G-21G7NBL2BN");
+        </script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">loxilb v0.9.1</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">How-To Guides <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../kube-loxilb/" class="dropdown-item">How-To - kube-loxilb</a>
+</li>
+                                    
+<li>
+    <a href="../service-zones/" class="dropdown-item">How-To - service-group zones</a>
+</li>
+                                    
+<li>
+    <a href="../run/" class="dropdown-item">How-To - build/run</a>
+</li>
+                                    
+<li>
+    <a href="../cmd/" class="dropdown-item">How-To - configuration</a>
+</li>
+                                    
+<li>
+    <a href="../debugging/" class="dropdown-item">How-To - debug</a>
+</li>
+                                    
+<li>
+    <a href="../integrate_bgp_eng/" class="dropdown-item">How-To - loxilb with calico bgp</a>
+</li>
+                                    
+<li>
+    <a href="../standalone/" class="dropdown-item">How-To - loxilb in standalone mode</a>
+</li>
+                                    
+<li>
+    <a href="../api/" class="dropdown-item">How-To - loxilb Web-APIs</a>
+</li>
+                                    
+<li>
+    <a href="../ha-deploy/" class="dropdown-item">How-To - high-availability with loxilb</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Knowledge Base <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../ebpf/" class="dropdown-item">What is eBPF</a>
+</li>
+                                    
+<li>
+    <a href="../lb/" class="dropdown-item">What is k8s service - load-balancer</a>
+</li>
+                                    
+<li>
+    <a href="../arch/" class="dropdown-item">Architecture in brief</a>
+</li>
+                                    
+<li>
+    <a href="../code/" class="dropdown-item">Code organization</a>
+</li>
+                                    
+<li>
+    <a href="../loxilbebpf/" class="dropdown-item">eBPF internals</a>
+</li>
+                                    
+<li>
+    <a href="../nat/" class="dropdown-item">NAT Modes of loxilb</a>
+</li>
+                                    
+<li>
+    <a href="../lb-algo/" class="dropdown-item">loxilb load-balancer algorithms</a>
+</li>
+                                    
+<li>
+    <a href="../cmd-dev/" class="dropdown-item">Developer's guide to loxicmd</a>
+</li>
+                                    
+<li>
+    <a href="../api-dev/" class="dropdown-item">Developer's guide to loxilb API</a>
+</li>
+                                    
+<li>
+    <a href="../perf/" class="dropdown-item">Performance Report</a>
+</li>
+                                    
+<li>
+    <a href="../roadmap/" class="dropdown-item">Development Roadmap</a>
+</li>
+                                    
+<li>
+    <a href="../contribute/" class="dropdown-item">Contribution Guide</a>
+</li>
+                                    
+<li>
+    <a href="../requirements/" class="dropdown-item">System Requirements</a>
+</li>
+                                    
+<li>
+    <a href="../faq/" class="dropdown-item">Frequenctly Asked Questions- FAQs</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Blogs <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/loxilb-cluster-networking-elevating-k8s-networking-capabilities" class="dropdown-item">K8s - Elevating Cluster Networking</a>
+</li>
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/state-synchronization-of-ebpf-maps-using-go-a-tale-of-two-frameworks" class="dropdown-item">eBPF - Map Sync using Go</a>
+</li>
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/k8s-nuances-of-in-cluster-external-service-lb-with-loxilb" class="dropdown-item">K8s in-cluster service LB with LoxiLB</a>
+</li>
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/k8s-introducing-sctp-multihoming-functionality-with-loxilb" class="dropdown-item">K8s - Introducing SCTP Multihoming with LoxiLB</a>
+</li>
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/loxilb-anycast-service-load-balancing-with-high-availability" class="dropdown-item">Hyperscale anycast load balancing with HA</a>
+</li>
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/loxilb-load-balancer-setup-on-eks" class="dropdown-item">Getting started with loxilb on Amazon EKS</a>
+</li>
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/k8s-deploying-hitless-and-ha-load-balancing" class="dropdown-item">K8s - Deploying hitless Load-Balancing</a>
+</li>
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/k8s-exposing-ipv4-services-externally-as-ipv6" class="dropdown-item">Ipv6 migration in Kubernetes made easy</a>
+</li>
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/running-loxilb-on-aws-graviton2-based-ec2-instance" class="dropdown-item">Load-balancer Perf comparison on Amazon Graviton2</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Community Posts</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="https://futuredon.medium.com/5g-sctp-loadbalancer-using-loxilb-b525198a9103" class="dropdown-item">5G SCTP LoadBalancer Using loxilb</a>
+</li>
+            
+<li>
+    <a href="https://futuredon.medium.com/5g-uplink-classifier-using-loxilb-7593a4d66f4c" class="dropdown-item">5G Uplink Classifier Using loxilb</a>
+</li>
+            
+<li>
+    <a href="https://cloudybytes.medium.com/k3s-using-loxilb-as-external-service-lb-2ea4ce61e159" class="dropdown-item">K3s - Using loxilb as external service lb</a>
+</li>
+            
+<li>
+    <a href="https://medium.com/@ben0978327139/5g-sctp-loadbalancer-using-loxilb-applying-on-free5gc-b5c05bb723f0" class="dropdown-item">5G SCTP LoadBalancer Using LoxiLB Applying on free5GC</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="2"><a href="#loxilb-quick-start-guide-with-calico" class="nav-link">LoxiLB Quick Start Guide with Calico</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#install-loxilb-docker" class="nav-link">Install loxilb docker</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#setup-k3s-with-calico" class="nav-link">Setup K3s with Calico</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#how-to-deploy-kube-loxilb" class="nav-link">How to deploy kube-loxilb ?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#create-the-service" class="nav-link">Create the service</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#check-the-status" class="nav-link">Check the status</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#connect-from-hostclient" class="nav-link">Connect from host/client</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h2 id="loxilb-quick-start-guide-with-calico">LoxiLB Quick Start Guide with Calico</h2>
+<p>This document will explain how to install a K3s cluster with calico as CNI and loxilb as an external load balancer.   </p>
+<h3 id="prerequisite">Prerequisite</h3>
+<p><a href="https://docs.docker.com/engine/install/ubuntu/">Install</a> docker runtime to manage loxilb.    </p>
+<h3 id="topology">Topology</h3>
+<p>For quickly bringing up loxilb with K3s and calico, we will be deploying all components in a single node :   </p>
+<p><img alt="loxilb topology" src="../photos/qs_single.png" /></p>
+<p>loxilb is run as a docker and will use macvlan for the incoming traffic. This is to mimic a topology close to cloud-hosted k8s where LB nodes run outside a cluster. loxilb can be used in more complex <a href="https://www.loxilb.io/post/k8s-nuances-of-in-cluster-external-service-lb-with-loxilb">in-cluster</a> mode as well, but not used here for simplicity.   </p>
+<h2 id="install-loxilb-docker">Install loxilb docker</h2>
+<pre><code>## Set underlying interface of the VM/cluster-node to promisc mode for mac-vlan to work
+sudo ifconfig eth1 promisc
+
+## Run loxilb
+sudo docker run -u root --cap-add SYS_ADMIN --restart unless-stopped --privileged --entrypoint /root/loxilb-io/loxilb/loxilb -dit -v /dev/log:/dev/log  --name loxilb ghcr.io/loxilb-io/loxilb:latest
+
+# Create mac-vlan on top of underlying eth1 interface
+sudo docker network create -d macvlan -o parent=eth1 --subnet 192.168.82.0/24   --gateway 192.168.82.1 --aux-address 'host=192.168.82.252' llbnet
+
+# Assign mac-vlan to loxilb docker with specified IP (which will be used as LB VIP)
+# Please note that this node should already have an IP assigned belonging to the same subnet on underlying interface
+sudo docker network connect llbnet loxilb --ip=192.168.82.100
+
+# Add iptables rule to allow traffic from source/host IP(192.168.82.1) to loxilb
+sudo iptables -A DOCKER -s 192.168.82.1 -j ACCEPT
+
+</code></pre>
+<p>All the above steps related to docker setup can be further automated using docker-compose.   </p>
+<h2 id="setup-k3s-with-calico">Setup K3s with Calico</h2>
+<pre><code># Install IPVS
+sudo apt-get -y install ipset ipvsadm
+
+# Install K3s with Calico and kube-proxy in IPVS mode
+curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC=&quot;--disable traefik,metrics-server,servicelb --disable-cloud-controller --kubelet-arg cloud-provider=external --flannel-backend=none --disable-network-policy&quot; K3S_KUBECONFIG_MODE=&quot;644&quot; sh -s - server --kube-proxy-arg proxy-mode=ipvs
+
+# Install Calico
+kubectl $KUBECONFIG create -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.0/manifests/tigera-operator.yaml
+
+kubectl $KUBECONFIG create -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.0/manifests/custom-resources.yaml
+
+# Remove taints in k3s if any (usually happens if started without cloud-manager)
+sudo kubectl taint nodes --all node.cloudprovider.kubernetes.io/uninitialized=false:NoSchedule-
+
+</code></pre>
+<h2 id="how-to-deploy-kube-loxilb">How to deploy kube-loxilb ?</h2>
+<p><a href="https://github.com/loxilb-io/kube-loxilb">kube-loxilb</a> is used to deploy loxilb with Kubernetes.</p>
+<pre><code>wget https://raw.githubusercontent.com/loxilb-io/kube-loxilb/main/manifest/ext-cluster/kube-loxilb.yaml
+</code></pre>
+<p>kube-loxilb.yaml</p>
+<pre><code>        args:
+            - --loxiURL=http://172.17.0.2:11111
+            - --externalCIDR=192.168.82.100/32
+            - --setMode=1
+</code></pre>
+<p>In the above snippet, loxiURL uses docker interface IP of loxilb, which can be different for each setup.    </p>
+<p>Apply in k8s:</p>
+<pre><code>kubectl apply -f kube-loxilb.yaml
+</code></pre>
+<h2 id="create-the-service">Create the service</h2>
+<pre><code>kubectl apply -f https://raw.githubusercontent.com/loxilb-io/loxilb/main/cicd/docker-k3s-cilium/tcp-svc-lb.yml
+</code></pre>
+<h2 id="check-the-status">Check the status</h2>
+<p>In k3s:</p>
+<pre><code>kubectl get svc
+NAME            TYPE           CLUSTER-IP      EXTERNAL-IP          PORT(S)           AGE
+kubernetes      ClusterIP      10.43.0.1       &lt;none&gt;               443/TCP           2m48s
+tcp-lb-onearm   LoadBalancer   10.43.183.123   llb-192.168.82.100   56002:30001/TCP   30s
+</code></pre>
+<p>In loxilb docker:</p>
+<pre><code>$ sudo docker exec -it loxilb loxicmd get lb -o wide
+|   EXT IP       | SEC IPS | PORT  | PROTO |         NAME          | MARK | SEL |  MODE  | ENDPOINT  | EPORT | WEIGHT | STATE  | COUNTERS |
+|----------------|---------|-------|-------|-----------------------|------|-----|--------|-----------|-------|--------|--------|----------|
+| 192.168.82.100 |         | 56002 | tcp   | default_tcp-lb-onearm |    0 | rr  | onearm | 10.0.2.15 | 30001 |      1 | active | 0:0   |
+</code></pre>
+<h2 id="connect-from-hostclient">Connect from host/client</h2>
+<pre><code>$ curl http://192.168.82.100:56002
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Welcome to nginx!&lt;/title&gt;
+&lt;style&gt;
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Welcome to nginx!&lt;/h1&gt;
+&lt;p&gt;If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.&lt;/p&gt;
+
+&lt;p&gt;For online documentation and support please refer to
+&lt;a href=&quot;http://nginx.org/&quot;&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;
+Commercial support is available at
+&lt;a href=&quot;http://nginx.com/&quot;&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Thank you for using nginx.&lt;/em&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+
+</code></pre>
+<p>All of the above steps are also available as part of loxilb CICD workflow. Follow the steps below to replicate the above:</p>
+<pre><code>$ cd cicd/docker-k3s-calico/
+
+# To setup the single node k3s setup with calico as CNI and loxilb as external load balancer
+$ ./config.sh
+
+# To validate the results
+$ ./validation.sh
+
+# Cleanup
+$ ./rmconfig.sh
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/jquery-3.6.0.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+
+        <div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
