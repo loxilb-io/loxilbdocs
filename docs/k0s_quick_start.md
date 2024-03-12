@@ -55,7 +55,7 @@ sudo k0s status
 wget https://raw.githubusercontent.com/loxilb-io/kube-loxilb/main/manifest/ext-cluster/kube-loxilb.yaml
 ```
 
-kube-loxilb.yaml
+Change args in kube-loxilb.yaml
 ```
         args:
             - --loxiURL=http://172.17.0.2:11111
@@ -71,7 +71,7 @@ $ sudo k0s kubectl apply -f kube-loxilb.yaml
 
 ### Create the service
 ```
-kubectl apply -f https://raw.githubusercontent.com/loxilb-io/loxilb/main/cicd/docker-k0s-lb/tcp-svc-lb.yml
+$ sudo k0s kubectl apply -f https://raw.githubusercontent.com/loxilb-io/loxilb/main/cicd/docker-k0s-lb/tcp-svc-lb.yml
 ```
 
 ### Check the status
