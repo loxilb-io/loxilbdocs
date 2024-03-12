@@ -277,7 +277,7 @@ sudo k0s start
 <p><a href="https://github.com/loxilb-io/kube-loxilb">kube-loxilb</a> is used to deploy loxilb with Kubernetes.</p>
 <pre><code>wget https://raw.githubusercontent.com/loxilb-io/kube-loxilb/main/manifest/ext-cluster/kube-loxilb.yaml
 </code></pre>
-<p>kube-loxilb.yaml</p>
+<p>Change args in kube-loxilb.yaml</p>
 <pre><code>        args:
             - --loxiURL=http://172.17.0.2:11111
             - --externalCIDR=192.168.82.100/32
@@ -288,7 +288,7 @@ sudo k0s start
 <pre><code>$ sudo k0s kubectl apply -f kube-loxilb.yaml
 </code></pre>
 <h3 id="create-the-service">Create the service</h3>
-<pre><code>kubectl apply -f https://raw.githubusercontent.com/loxilb-io/loxilb/main/cicd/docker-k0s-lb/tcp-svc-lb.yml
+<pre><code>$ sudo k0s kubectl apply -f https://raw.githubusercontent.com/loxilb-io/loxilb/main/cicd/docker-k0s-lb/tcp-svc-lb.yml
 </code></pre>
 <h3 id="check-the-status">Check the status</h3>
 <p>In k0s:</p>
