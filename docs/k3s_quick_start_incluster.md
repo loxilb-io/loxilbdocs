@@ -109,3 +109,4 @@ Commercial support is available at
 </html>
 
 ```
+For more detailed information on incluster deployment of loxilb with bgp in a full-blown cluster, kindly follow this [blog](https://www.loxilb.io/post/k8s-nuances-of-in-cluster-external-service-lb-with-loxilb).   
