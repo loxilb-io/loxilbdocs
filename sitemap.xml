@@ -2,172 +2,172 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://loxilb-io.github.io/loxilbdocs/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://loxilb-io.github.io/loxilbdocs/api-dev/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://loxilb-io.github.io/loxilbdocs/api/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://loxilb-io.github.io/loxilbdocs/arch/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://loxilb-io.github.io/loxilbdocs/ccm/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://loxilb-io.github.io/loxilbdocs/cmd-dev/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://loxilb-io.github.io/loxilbdocs/cmd/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://loxilb-io.github.io/loxilbdocs/code/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://loxilb-io.github.io/loxilbdocs/contribute/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://loxilb-io.github.io/loxilbdocs/debugging/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://loxilb-io.github.io/loxilbdocs/ebpf/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://loxilb-io.github.io/loxilbdocs/faq/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://loxilb-io.github.io/loxilbdocs/gtp/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://loxilb-io.github.io/loxilbdocs/ha-deploy/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://loxilb-io.github.io/loxilbdocs/integrate_bgp/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://loxilb-io.github.io/loxilbdocs/integrate_bgp_eng/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://loxilb-io.github.io/loxilbdocs/k0s_quick_start/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://loxilb-io.github.io/loxilbdocs/k3s_quick_start_calico/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://loxilb-io.github.io/loxilbdocs/k3s_quick_start_flannel/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://loxilb-io.github.io/loxilbdocs/kube-loxilb/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://loxilb-io.github.io/loxilbdocs/lb-algo/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://loxilb-io.github.io/loxilbdocs/lb/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://loxilb-io.github.io/loxilbdocs/loxilbebpf/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://loxilb-io.github.io/loxilbdocs/nat/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://loxilb-io.github.io/loxilbdocs/perf-multi/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://loxilb-io.github.io/loxilbdocs/perf-single/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://loxilb-io.github.io/loxilbdocs/perf/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://loxilb-io.github.io/loxilbdocs/quick_start_with_cilium/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://loxilb-io.github.io/loxilbdocs/requirements/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://loxilb-io.github.io/loxilbdocs/roadmap/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://loxilb-io.github.io/loxilbdocs/run/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://loxilb-io.github.io/loxilbdocs/service-zones/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://loxilb-io.github.io/loxilbdocs/simple_topo/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://loxilb-io.github.io/loxilbdocs/standalone/</loc>
-         <lastmod>2024-03-12</lastmod>
+         <lastmod>2024-03-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
