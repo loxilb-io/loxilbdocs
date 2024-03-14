@@ -85,12 +85,16 @@ For deploying telco-cloud with cloud-native functions, loxilb can be used as a S
 - [How-To : loxicmd config](cmd.md)
 - [How-To : debug](debugging.md)
 
-## Getting started with different K8s distributions & tools
+## Getting started with different K8s distributions & tools   
 
+#### loxilb as ext-cluster pod   
 - [K3s : loxilb with default flannel](k3s_quick_start_flannel.md)
 - [K3s : loxilb with calico](k3s_quick_start_calico.md)
 - [K3s : loxilb with cilium](quick_start_with_cilium.md)
-- [K0s : loxilb with default kube-router networking](k0s_quick_start.md)
+- [K0s : loxilb with default kube-router networking](k0s_quick_start.md)   
+
+#### loxilb as in-cluster pod   
+- [K3s : loxilb in-cluster mode](k3s_quick_start_incluster.md)
 
 ## Knowledge-Base   
 - [What is eBPF](ebpf.md)
