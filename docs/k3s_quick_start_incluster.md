@@ -26,7 +26,7 @@ sudo kubectl apply -f https://raw.githubusercontent.com/loxilb-io/loxilb/main/ci
 ```
 
 ## How to deploy kube-loxilb ?
-[kube-loxilb](https://github.com/loxilb-io/kube-loxilb) is used to deploy loxilb with Kubernetes.
+[kube-loxilb](https://github.com/loxilb-io/kube-loxilb) is used as an operator to manage loxilb.
 ```
 wget https://raw.githubusercontent.com/loxilb-io/loxilb/main/cicd/k3s-incluster/kube-loxilb.yml
 ```
