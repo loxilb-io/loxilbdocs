@@ -10,7 +10,7 @@ For quickly bringing up loxilb in-cluster and K0s, we will be deploying all comp
 
 loxilb and kube-loxilb components run as pods managed by kubernetes  in this scenario.
 
-### Setup k0s/kube-router in single-node
+### Setup k0s in a single-node
 ```
 # k0s installation steps
 curl -sSLf https://get.k0s.sh | sudo sh
