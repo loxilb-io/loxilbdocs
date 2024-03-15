@@ -240,19 +240,23 @@
             
             <li class="nav-item" data-level="1"><a href="#how-to-deploy-loxilb-with-high-availability" class="nav-link">How to deploy loxilb with High Availability</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#scenario-1-flat-l2-networking-active-backup" class="nav-link">Scenario 1 -  Flat L2 Networking (active-backup)</a>
+            <li class="nav-item" data-level="2"><a href="#scenario-1-flat-l2-networking-active-backup" class="nav-link">Scenario 1 - Flat L2 Networking (active-backup)</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#scenario-2-l3-network-active-backup-mode-using-bgp" class="nav-link">Scenario 2 -  L3 network (active-backup mode using BGP)</a>
+            <li class="nav-item" data-level="2"><a href="#scenario-2-l3-network-active-backup-mode-using-bgp" class="nav-link">Scenario 2 - L3 network (active-backup mode using BGP)</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#scenario-3-l3-network-active-active-with-bgp-ecmp" class="nav-link">Scenario 3 -  L3 network (active-active with BGP ECMP)</a>
+            <li class="nav-item" data-level="2"><a href="#scenario-3-l3-network-active-active-with-bgp-ecmp" class="nav-link">Scenario 3 - L3 network (active-active with BGP ECMP)</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#scenario-4-active-backup-with-connection-sync" class="nav-link">Scenario 4 -  ACTIVE-BACKUP with Connection Sync</a>
+            <li class="nav-item" data-level="2"><a href="#scenario-4-active-backup-with-connection-sync" class="nav-link">Scenario 4 - ACTIVE-BACKUP with Connection Sync</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#scenario-5-active-backup-with-fast-failover-detection" class="nav-link">Scenario 5 - ACTIVE-BACKUP with Fast Failover Detection</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -274,6 +278,7 @@
 <li><a href="#scenario-2----l3-network-active-backup-mode-using-bgp">Scenario 2 -  L3 network (active-backup mode using BGP)</a></li>
 <li><a href="#scenario-3----l3-network-active-active-with-bgp-ecmp">Scenario 3 -  L3 network (active-active with BGP ECMP)</a></li>
 <li><a href="#scenario-4----active-backup-with-connection-sync">Scenario 4 - ACTIVE-BACKUP with Connection Sync</a></li>
+<li><a href="#scenario-5----active-backup-with-fast-failover-detection">Scenario 5 - ACTIVE-BACKUP with Fast Failover Detection(BFD)</a></li>
 </ul>
 <h2 id="scenario-1-flat-l2-networking-active-backup">Scenario 1 -  Flat L2 Networking (active-backup)</h2>
 <h3 id="setup">Setup</h3>
@@ -589,8 +594,74 @@ And, kube-loxilb will be deployed as Deployment. </p>
 <p><img alt="setup" src="../photos/loxilb-k8s-arch-LoxiLB-HA-CT-Sync-2.drawio.svg" /></p>
 <p>In case of failure, kube-loxilb will detect the failure. It will select a new loxilb from the pool of active loxilbs and update it's state to new master. New master loxilb will advertise the svcIPs with higher proference which will force the BGP running on the client to send the traffic towards new Master loxilb. Since, the connections are all synced up, new master loxilb will start sending the traffic to the designated endpoints.</p>
 <p>Please read this detailed blog about <a href="https://www.loxilb.io/post/k8s-deploying-hitless-and-ha-load-balancing">"Hitless HA"</a> to know about this feature.</p>
+<h2 id="scenario-5-active-backup-with-fast-failover-detection">Scenario 5 -  ACTIVE-BACKUP with Fast Failover Detection</h2>
+<h3 id="setup_4">Setup</h3>
+<hr />
+<p>For this deployment scenario, kubernetes and loxilb are setup as follows:</p>
+<p><img alt="setup" src="../photos/bfd-1.svg" /></p>
+<p>This feature is only supported when loxilb runs externally outside the Kubernetes cluster. Kubernetes uses a cluster with 2 Master Nodes and 2 Worker Nodes, all the nodes use the same 192.168.80.0/24 subnet. SVCs will have an external IP. </p>
+<p>There are few possible scenarios which depends upon the connectivity of External Client, loxilb and the Kubernetes cluster. For this scenario, we are here considering L2 connectivity with connection sync.</p>
+<h3 id="ideal-for-use-when_4">Ideal for use when</h3>
+<ol>
+<li>Need fast failover detection and service continuity.</li>
+<li>This feature works in both L2 or L3 network settings. </li>
+</ol>
+<h3 id="roles-and-responsiblities-for-kube-loxilb_4">Roles and Responsiblities for kube-loxilb:</h3>
+<ul>
+<li>Choose CIDR as required.</li>
+<li>Disable SetRoles option so it should not choose active loxilb.</li>
+<li>Automates provisioning of bgp-peering between loxilb containers (if required).</li>
+<li>Sets up loxilb in configured svc mode towards end-points.</li>
+</ul>
+<h4 id="configuration-options_7">Configuration options</h4>
+<pre><code> containers:
+      - name: kube-loxilb
+        image: ghcr.io/loxilb-io/kube-loxilb:latest
+        imagePullPolicy: Always
+        command:
+        - /bin/kube-loxilb
+        args:
+        ....
+        ....
+        # Disable setRoles option
+        #- --setRoles=0.0.0.0
+        - --loxiURL=http://192.168.80.1:11111,http://192.168.80.2:11111
+        - --externalCIDR=192.168.80.5/32
+        - --setLBMode=2
+</code></pre>
+<ul>
+<li><b>"--setRoles=0.0.0.0" -</b> We have to make sure to disable this option as it will enable kube-loxilb to choose active-backup amongst the loxilb instance.</li>
+<li><b>"--loxiURL=http://192.168.80.1:11111,http://192.168.80.2:11111" -</b> loxilb URLs to connect with.</li>
+<li><b>"--externalCIDR=192.168.80.5/32" -</b> The external service IP for a svc is chosen from the externalCIDR range. In this scenario, the Client, svc and cluster are all in the same subnet.</li>
+<li><b>"--setLBMode=2" -</b> This option will enable kube-loxilb to configure svc in fullnat mode towards the endpoints.</li>
+</ul>
+<p>Sample kube-loxilb.yaml can be found <a href="https://github.com/loxilb-io/kube-loxilb/blob/main/manifest/ext-cluster/kube-loxilb.yaml">here</a>.</p>
+<h3 id="roles-and-responsiblities-for-loxilb_4">Roles and Responsiblities for loxilb:</h3>
+<ul>
+<li>Advertises SVC IP as per the state(active/backup).</li>
+<li>Tracks and directs the external traffic destined to svc to the endpoints.</li>
+<li>Monitors endpoint's health and chooses active endpoints, if configured.</li>
+<li>Syncs the long-lived connections to all other configured loxilb peers.</li>
+</ul>
+<h4 id="running-options_1">Running options</h4>
+<pre><code>#llb1
+ docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --name loxilb ghcr.io/loxilb-io/loxilb:latest  --cluster=192.168.80.2 --self=0 --ka=192.168.80.2:192.168.80.1
+
+#llb2
+ docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --name loxilb ghcr.io/loxilb-io/loxilb:latest --cluster=192.168.80.1 --self=1 --ka=192.168.80.1:192.168.80.2
+</code></pre>
+<ul>
+<li><b>"--ka=\&lt;llb-peer-IP&gt;:\&lt;llb-self-IP&gt;" -</b> option configures the peer loxilb IP and source IP for BFD.</li>
+<li><b>"--cluster=\&lt;llb-peer-IP&gt;" -</b> option configures the peer loxilb IP for syncing.</li>
+<li><b>"--self=0/1" -</b> option to identify the instance.</li>
+</ul>
+<h3 id="failover_4">Failover</h3>
+<p>This diagram describes the failover scenario:</p>
+<p><img alt="setup" src="../photos/bfd-2.svg" /></p>
+<p>In case of failure, BFD will detect the failure. BACKUP loxilb will update it's state to new master. New master loxilb will advertise the svcIPs through gARP or with higher proference, if running with BGP, which will force the client to send the traffic towards new Master loxilb. Since, the connections are all synced up, new master loxilb will start sending the traffic to the designated endpoints.</p>
+<p>Please read this detailed blog about <a href="https://www.loxilb.io/post/bringing-sub-second-resilience-in-kubernetes-cluster">"Fast Failover Detection with BFD"</a> to know about this feature.</p>
 <h2 id="note">Note :</h2>
-<p>There are ways to use loxilb in DSR mode, integrate keepalived/BFD, DNS etc which is still not covered in details in this doc. We will keep updating the scenarios.</p></div>
+<p>There are ways to use loxilb in DSR mode, DNS etc which is still not covered in details in this doc. We will keep updating the scenarios.</p></div>
             </div>
         </div>
 
