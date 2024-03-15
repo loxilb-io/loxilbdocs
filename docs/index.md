@@ -95,6 +95,7 @@ For deploying telco-cloud with cloud-native functions, loxilb can be used as a S
 
 #### loxilb as in-cluster pod   
 - [K3s : loxilb in-cluster mode](k3s_quick_start_incluster.md)
+- [K0s : loxilb in-cluster mode](k0s_quick_start_incluster.md)
 
 ## Knowledge-Base   
 - [What is eBPF](ebpf.md)
