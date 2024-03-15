@@ -246,7 +246,14 @@ loxicmd create bfd 192.168.80.253 --sourceIP=192.168.80.252 --interval=500000 --
 remoteIP(string): Remote IP address   
 sourceIP(string): Source IP address for binding   
 interval(int): BFD packet Tx Interval Time in microseconds   
-retryCount(int): Number of retry counts to detect failure.   
+retryCount(int): Number of retry counts to detect failure.  
+#### Set BFD Session
+```
+#loxicmd set bfd <remoteIP> --interval=<time in usecs> --retryCount=<count>
+loxicmd set bfd 192.168.80.253 --interval=400000 --retryCount=5
+```
+interval(int): BFD packet Tx Interval Time in microseconds   
+retryCount(int): Number of retry counts to detect failure.  
 #### Delete BFD Session
 ```
 #loxicmd delete bfd <remoteIP>
