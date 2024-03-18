@@ -2,6 +2,10 @@
   max-width: initial;
 }
 
+h1 {
+  color: red;
+}
+
 th, td {
     border: 1px solid var(--md-typeset-table-color);
     border-spacing: 0;
