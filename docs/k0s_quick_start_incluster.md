@@ -2,6 +2,10 @@
 
 This document will explain how to install a [K0s](https://k0sproject.io/) cluster with loxilb as a serviceLB provider running in-cluster mode.     
 
+### Prerequisite(s)
+
+* Single node with Linux   
+
 ### Topology   
 
 For quickly bringing up loxilb in-cluster and K0s, we will be deploying all components in a single node :   
