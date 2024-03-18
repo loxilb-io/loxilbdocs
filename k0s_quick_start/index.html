@@ -238,9 +238,16 @@
                     <div class="col-md-9" role="main">
 
 <h2 id="loxilb-quick-start-guide-with-k0skube-router">LoxiLB Quick Start Guide with k0s/kube-router</h2>
-<p>This document will explain how to install a K0s cluster with its default kube-router based networking and loxilb as an external load balancer.   </p>
-<h3 id="prerequisite">Prerequisite</h3>
-<p><a href="https://docs.docker.com/engine/install/ubuntu/">Install</a> docker runtime to manage loxilb.    </p>
+<p>This guide will explain how to:</p>
+<ul>
+<li>Deploy a single-node K0s cluster with kube-router networking   </li>
+<li>Expose services with loxilb as an external load balancer   </li>
+</ul>
+<h3 id="prerequisites">Prerequisite(s)</h3>
+<ul>
+<li>Single node with Linux   </li>
+<li><a href="https://docs.docker.com/engine/install/ubuntu/">Install</a> docker runtime to manage loxilb    </li>
+</ul>
 <h3 id="topology">Topology</h3>
 <p>For quickly bringing up loxilb with K0s/kube-router, we will be deploying all components in a single node :   </p>
 <p><img alt="loxilb topology" src="../photos/qs_single.png" /></p>
