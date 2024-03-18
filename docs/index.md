@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="extra.css" />
+<link rel="stylesheet" href="stylesheets/extra.css" />
 
 ## [![loxilb logo](photos/loxilb-logo-small.png)](https://github.com/loxilb-io/loxilb) Welcome to loxilb documentation
 
