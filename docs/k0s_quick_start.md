@@ -1,10 +1,14 @@
 ## LoxiLB Quick Start Guide with k0s/kube-router
 
-This document will explain how to install a K0s cluster with its default kube-router based networking and loxilb as an external load balancer.   
+This guide will explain how to:
 
-### Prerequisite
+* Deploy a single-node K0s cluster with kube-router networking   
+* Expose services with loxilb as an external load balancer   
 
-[Install](https://docs.docker.com/engine/install/ubuntu/) docker runtime to manage loxilb.    
+### Prerequisite(s)
+
+* Single node with Linux   
+* [Install](https://docs.docker.com/engine/install/ubuntu/) docker runtime to manage loxilb    
 
 ### Topology   
 
