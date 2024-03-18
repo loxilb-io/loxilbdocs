@@ -1,10 +1,14 @@
 ## LoxiLB Quick Start Guide with Cilium
 
-This document will explain how to install a K3s cluster with cilium as a CNI and loxilb as an external load balancer.
+This guide will explain how to:
+
+* Deploy a single-node K3s cluster with cilium networking   
+* Expose services with loxilb as an external load balancer   
 
 ### Pre-requisite
 
-[Install](https://docs.docker.com/engine/install/ubuntu/) docker runtime to manage loxilb.   
+* Single node with Linux   
+* [Install](https://docs.docker.com/engine/install/ubuntu/) docker runtime to manage loxilb     
 
 ### Topology   
 
