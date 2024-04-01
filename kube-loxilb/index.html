@@ -252,6 +252,11 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            
+            <li class="nav-item" data-level="2"><a href="#how-to-use-kube-loxilb-crds" class="nav-link">How to use kube-loxilb CRDs ?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
         </ul>
     </div>
 </div></div>
@@ -518,7 +523,50 @@ kube-system       loxilb-lb-stp5k                             1/1     Running   
 kube-system       loxilb-lb-j8fc6                             1/1     Running   0          13h
 kube-system       loxilb-lb-5m85p                             1/1     Running   0          13h
 </code></pre>
-<p>Thereafter, the process of service creation remains the same as explained in previous sections.   </p></div>
+<p>Thereafter, the process of service creation remains the same as explained in previous sections.   </p>
+<h2 id="how-to-use-kube-loxilb-crds">How to use kube-loxilb CRDs ?</h2>
+<p>Kube-loxilb provides Custom Resource Definition (CRD). Current the following operations are supported (which would be continually updated): <br />
+-  Add a BGP Peer <br />
+-  Delete a BGP Peer   </p>
+<p>An example of CRD is stored in  manifest/crds. Setting up a BGP Peer as an example is as follows:   </p>
+<ol>
+<li>Pre-Processing (Register kube-loxilb CRDs with K8s). Apply lbpeercrd.yaml as first step   </li>
+</ol>
+<pre><code>kubectl apply -f manifest/crds/lbpeercrd.yaml
+</code></pre>
+<ol>
+<li>CRD definition</li>
+</ol>
+<p>You need to create a yaml file that adds a peer for BGP. The example below is an example of creating a Peer with a RemoteAS number of Peer IP address 65123 at 123.123.123.2. Create a file named bgp-peer.yaml and add the contents below.   </p>
+<pre><code class="language-yaml">apiVersion: &quot;bgppeer.loxilb.io/v1&quot;
+kind: BGPPeerService
+metadata:
+  name: bgp-peer-test
+spec:
+  ipAddress: 123.123.123.2
+  remoteAs: 65123
+  remotePort: 179
+</code></pre>
+<ol>
+<li>Apply CRD to add a new BGP Peer</li>
+</ol>
+<pre><code>kubectl apply -f bgp-peer.yaml
+</code></pre>
+<ol>
+<li>Verify the applied CRD</li>
+</ol>
+<p>You can check it in two ways. The first one can be checked through loxicmd(in loxilb container), and the second one can be checked through kubectl.    </p>
+<pre><code># loxicmd
+kubectl exec -it {loxilb} -n kube-system -- loxicmd get bgpneigh 
+|      PEER      |  AS   |   UP/DOWN   |    STATE    | 
+|----------------|-------|-------------|-------------|
+| 123.123.123.2  | 65123 | never       | ACTIVE      |
+
+# kubectl
+kubectl get bgppeerservice
+NAME            PEER            AS   
+bgp-peer-test   123.123.123.2   65123 
+</code></pre></div>
             </div>
         </div>
 
