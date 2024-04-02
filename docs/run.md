@@ -55,7 +55,7 @@ docker pull ghcr.io/loxilb-io/loxilb:v0.9.1
 To run loxilb docker, we can use the following commands :
 
 ```
-docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --name loxilb ghcr.io/loxilb-io/loxilb:latest
+docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit --pid=host --cgroupns=host -v /dev/log:/dev/log --name loxilb ghcr.io/loxilb-io/loxilb:latest
 ```
 
 To drop in to a shell of loxilb doker :
