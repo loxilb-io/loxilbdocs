@@ -13,7 +13,7 @@ loxilb <b><i>"service-proxy"</i></b> mode works with Flannel and kube-proxy in I
 
 For quickly bringing up loxilb in-cluster and K3s, we will be deploying a 4 nodes k3s cluster :   
 
-![loxilb topology](photos/loxilb-incluster.png)
+![loxilb topology](photos/service-proxy-topo.png)
 
 loxilb and kube-loxilb components run as pods managed by kubernetes  in this scenario.
 
