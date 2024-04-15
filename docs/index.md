@@ -103,7 +103,7 @@ For deploying telco-cloud with cloud-native functions, loxilb can be used as a S
 
 #### loxilb as service-proxy
 - [K3s : loxilb service-proxy with flannel](service-proxy-flannel.md)
-- [K3s : loxilb service-proxy with calico]((service-proxy-calico.md)
+- [K3s : loxilb service-proxy with calico](service-proxy-calico.md)
 
 ## Knowledge-Base   
 - [What is eBPF](ebpf.md)
