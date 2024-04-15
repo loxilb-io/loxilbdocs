@@ -5,9 +5,10 @@ This document will explain how to install a K3s cluster with loxilb in "service-
 ### What is service-proxy mode?
 <b>service-proxy</b> mode is where kubernetes kube-proxy services are entirely replaced by loxilb for better performance. Users can continue to use existing their existing networking providers while enjoying streamlined performance provided by loxilb. 
 
-![service-proxy](photos/service-proxy.svg)
+![service-proxy](photos/service-proxy.svg)   
+
 Looking at the left side of the image, you will notice the traffic flow of the packet as it enters the Kubernetes cluster. Kube-proxy, the de-facto networking agent in the Kubernetes which runs on each node of the cluster which monitors the services and translates them to either iptables or IPVS tangible rules. If we talk about the functionality or a cluster with low volume traffic then kube-proxy is fine but when it comes to scalability or a high volume traffic then it acts as a bottle-neck.
-loxilb <b><i>"service-proxy"</i></b> mode works with Flannel/Calico and kube-proxy in IPVS mode only as of now. It inherits the IPVS rules and imports these in it's in-kernel eBPF implementation. Traffic will reach at the interface, will be processed by eBPF and sent directly to the pod or to the other node, bypassing all the layers of Linux networking. This way, all the services, be it External, NodePort or ClusterIP, can be managed through LoxiLB.
+loxilb <b><i>"service-proxy"</i></b> mode works with Flannel/Calico and kube-proxy in IPVS mode only as of now. It inherits the IPVS rules and imports these in it's in-kernel eBPF implementation. Traffic will reach at the interface, will be processed by eBPF and sent directly to the pod or to the other node, bypassing all the layers of Linux networking. This way, all the services, be it External, NodePort or ClusterIP, can be managed through LoxiLB and provide optimal performance for the users. The added benefit for the user's is the fact that there is no need to rip and replace their current networking provider (e.g flannel or calico).
 
 ### Topology   
 
