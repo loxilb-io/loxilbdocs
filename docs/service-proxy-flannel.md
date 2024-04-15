@@ -146,5 +146,5 @@ TCP window size: 85.0 KByte (default)
 [  1] 9.0000-10.0000 sec   946 MBytes  7.93 Gbits/sec
 [  1] 0.0000-10.0170 sec  8.76 GBytes  7.51 Gbits/sec
 ```
-If you are wondering why the performance difference between serviceLB and node-port, there is an interesting blog about it [here](https://cloudybytes.medium.com/kubernetes-services-achieving-optimal-performance-is-elusive-5def5183c281). For more detailed performance comparison with other solutions, kindly follow this [blog](https://www.loxilb.io/post/loxilb-cluster-networking-elevating-k8s-networking-capabilities) and for more detailed information
+If you are wondering why there is a performance difference between serviceLB and node-port, there is an interesting blog about it [here](https://cloudybytes.medium.com/kubernetes-services-achieving-optimal-performance-is-elusive-5def5183c281) by one our users. For more detailed performance comparison with other solutions, kindly follow this [blog](https://www.loxilb.io/post/loxilb-cluster-networking-elevating-k8s-networking-capabilities) and for more detailed information
 on incluster deployment of loxilb with bgp in a full-blown cluster, kindly follow this [blog](https://www.loxilb.io/post/k8s-nuances-of-in-cluster-external-service-lb-with-loxilb).   
