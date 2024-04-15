@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/service-proxy-flannel/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Service proxy flannel - loxilb v0.9.1</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <link href="../stylesheets/extra.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-21G7NBL2BN"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', "G-21G7NBL2BN");
+        </script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">loxilb v0.9.1</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">How-To Guides <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../kube-loxilb/" class="dropdown-item">How-To - kube-loxilb</a>
+</li>
+                                    
+<li>
+    <a href="../service-zones/" class="dropdown-item">How-To - service-group zones</a>
+</li>
+                                    
+<li>
+    <a href="../run/" class="dropdown-item">How-To - build/run</a>
+</li>
+                                    
+<li>
+    <a href="../cmd/" class="dropdown-item">How-To - configuration</a>
+</li>
+                                    
+<li>
+    <a href="../debugging/" class="dropdown-item">How-To - debug</a>
+</li>
+                                    
+<li>
+    <a href="../integrate_bgp_eng/" class="dropdown-item">How-To - loxilb with calico bgp</a>
+</li>
+                                    
+<li>
+    <a href="../standalone/" class="dropdown-item">How-To - loxilb in standalone mode</a>
+</li>
+                                    
+<li>
+    <a href="../api/" class="dropdown-item">How-To - loxilb Web-APIs</a>
+</li>
+                                    
+<li>
+    <a href="../ha-deploy/" class="dropdown-item">How-To - high-availability with loxilb</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Knowledge Base <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../ebpf/" class="dropdown-item">What is eBPF</a>
+</li>
+                                    
+<li>
+    <a href="../lb/" class="dropdown-item">What is k8s service - load-balancer</a>
+</li>
+                                    
+<li>
+    <a href="../arch/" class="dropdown-item">Architecture in brief</a>
+</li>
+                                    
+<li>
+    <a href="../code/" class="dropdown-item">Code organization</a>
+</li>
+                                    
+<li>
+    <a href="../loxilbebpf/" class="dropdown-item">eBPF internals</a>
+</li>
+                                    
+<li>
+    <a href="../nat/" class="dropdown-item">NAT Modes of loxilb</a>
+</li>
+                                    
+<li>
+    <a href="../lb-algo/" class="dropdown-item">loxilb load-balancer algorithms</a>
+</li>
+                                    
+<li>
+    <a href="../cmd-dev/" class="dropdown-item">Developer's guide to loxicmd</a>
+</li>
+                                    
+<li>
+    <a href="../api-dev/" class="dropdown-item">Developer's guide to loxilb API</a>
+</li>
+                                    
+<li>
+    <a href="../perf/" class="dropdown-item">Performance Report</a>
+</li>
+                                    
+<li>
+    <a href="../roadmap/" class="dropdown-item">Development Roadmap</a>
+</li>
+                                    
+<li>
+    <a href="../contribute/" class="dropdown-item">Contribution Guide</a>
+</li>
+                                    
+<li>
+    <a href="../requirements/" class="dropdown-item">System Requirements</a>
+</li>
+                                    
+<li>
+    <a href="../faq/" class="dropdown-item">Frequenctly Asked Questions- FAQs</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Blogs <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/loxilb-cluster-networking-elevating-k8s-networking-capabilities" class="dropdown-item">K8s - Elevating Cluster Networking</a>
+</li>
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/state-synchronization-of-ebpf-maps-using-go-a-tale-of-two-frameworks" class="dropdown-item">eBPF - Map Sync using Go</a>
+</li>
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/k8s-nuances-of-in-cluster-external-service-lb-with-loxilb" class="dropdown-item">K8s in-cluster service LB with LoxiLB</a>
+</li>
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/k8s-introducing-sctp-multihoming-functionality-with-loxilb" class="dropdown-item">K8s - Introducing SCTP Multihoming with LoxiLB</a>
+</li>
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/loxilb-anycast-service-load-balancing-with-high-availability" class="dropdown-item">Hyperscale anycast load balancing with HA</a>
+</li>
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/loxilb-load-balancer-setup-on-eks" class="dropdown-item">Getting started with loxilb on Amazon EKS</a>
+</li>
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/k8s-deploying-hitless-and-ha-load-balancing" class="dropdown-item">K8s - Deploying hitless Load-Balancing</a>
+</li>
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/k8s-exposing-ipv4-services-externally-as-ipv6" class="dropdown-item">Ipv6 migration in Kubernetes made easy</a>
+</li>
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/running-loxilb-on-aws-graviton2-based-ec2-instance" class="dropdown-item">Load-balancer Perf comparison on Amazon Graviton2</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Community Posts</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="https://futuredon.medium.com/5g-sctp-loadbalancer-using-loxilb-b525198a9103" class="dropdown-item">5G SCTP LoadBalancer Using loxilb</a>
+</li>
+            
+<li>
+    <a href="https://futuredon.medium.com/5g-uplink-classifier-using-loxilb-7593a4d66f4c" class="dropdown-item">5G Uplink Classifier Using loxilb</a>
+</li>
+            
+<li>
+    <a href="https://cloudybytes.medium.com/k3s-using-loxilb-as-external-service-lb-2ea4ce61e159" class="dropdown-item">K3s - Using loxilb as external service lb</a>
+</li>
+            
+<li>
+    <a href="https://medium.com/@ben0978327139/5g-sctp-loadbalancer-using-loxilb-applying-on-free5gc-b5c05bb723f0" class="dropdown-item">5G SCTP LoadBalancer Using LoxiLB Applying on free5GC</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="2"><a href="#quick-start-guide-k3s-with-loxilb-service-proxy" class="nav-link">Quick Start Guide - K3s with LoxiLB "service-proxy"</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#setup-k3s" class="nav-link">Setup K3s</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#deploy-a-sample-service" class="nav-link">Deploy a sample service</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h2 id="quick-start-guide-k3s-with-loxilb-service-proxy">Quick Start Guide -  K3s with LoxiLB "service-proxy"</h2>
+<p>This document will explain how to install a K3s cluster with loxilb in "service-proxy" mode alongside flannel networking (default for k3s). </p>
+<h3 id="what-is-service-proxy-mode">What is service-proxy mode?</h3>
+<p><b>service-proxy</b> mode is where kubernetes kube-proxy services are entirely replaced by loxilb for better performance. Users can continue to use existing their existing networking providers while enjoying streamlined performance provided by loxilb. </p>
+<p><img alt="service-proxy" src="../photos/service-proxy.svg" />   </p>
+<p>Looking at the left side of the image, you will notice the traffic flow of the packet as it enters the Kubernetes cluster. Kube-proxy, the de-facto networking agent in the Kubernetes which runs on each node of the cluster which monitors the services and translates them to either iptables or IPVS tangible rules. If we talk about the functionality or a cluster with low volume traffic then kube-proxy is fine but when it comes to scalability or a high volume traffic then it acts as a bottle-neck.
+loxilb <b><i>"service-proxy"</i></b> mode works with Flannel/Calico and kube-proxy in IPVS mode only as of now. It inherits the IPVS rules and imports these in it's in-kernel eBPF implementation. Traffic will reach at the interface, will be processed by eBPF and sent directly to the pod or to the other node, bypassing all the layers of Linux networking. This way, all the services, be it External, NodePort or ClusterIP, can be managed through LoxiLB and provide optimal performance for the users. The added benefit for the user's is the fact that there is no need to rip and replace their current networking provider (e.g flannel or calico).</p>
+<h3 id="topology">Topology</h3>
+<p>For quickly bringing up loxilb "service-proxy" in K3s, we will be deploying a single node k3s cluster :   </p>
+<p><img alt="loxilb topology" src="../photos/service-proxy-topo.png" /></p>
+<p>loxilb and kube-loxilb components run as pods managed by kubernetes in this scenario.</p>
+<h2 id="setup-k3s">Setup K3s</h2>
+<h3 id="configure-k3s-node">Configure K3s node</h3>
+<pre><code>$ curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC=&quot;--disable traefik \
+  --disable servicelb --disable-cloud-controller --kube-proxy-arg proxy-mode=ipvs \
+  cloud-provider=external --node-ip=${MASTER_IP} --node-external-ip=${MASTER_IP} \
+  --bind-address=${MASTER_IP}&quot; sh -
+</code></pre>
+<h3 id="deploy-kube-loxilb-and-loxilb">Deploy kube-loxilb and loxilb ?</h3>
+<p><a href="https://github.com/loxilb-io/kube-loxilb">kube-loxilb</a> is used as an operator to manage loxilb. We need to deploy both kube-loxilb and loxilb components in your kubernetes cluster</p>
+<pre><code>sudo kubectl apply -f https://raw.githubusercontent.com/loxilb-io/kube-loxilb/main/manifest/service-proxy/kube-loxilb.yml
+sudo kubectl apply -f https://raw.githubusercontent.com/loxilb-io/kube-loxilb/main/manifest/service-proxy/loxilb-service-proxy.yml
+</code></pre>
+<h3 id="check-the-status">Check the status</h3>
+<p>In k3s node:</p>
+<pre><code>## Check the pods created
+$ sudo kubectl get pods -A
+NAMESPACE     NAME                                      READY   STATUS    RESTARTS   AGE
+kube-system   coredns-6799fbcd5-c68ws                   1/1     Running   0          15m
+kube-system   local-path-provisioner-6c86858495-rxk2w   1/1     Running   0          15m
+kube-system   metrics-server-54fd9b65b-xtgk2            1/1     Running   0          15m
+kube-system   loxilb-lb-5p6pg                           1/1     Running   0          6m58s
+kube-system   kube-loxilb-5fb5566999-7xdkk              1/1     Running   0          6m59s
+</code></pre>
+<p>In loxilb pod, we can check internal LB rules:</p>
+<pre><code>$ udo kubectl exec -it -n kube-system loxilb-lb-5p6pg  -- loxicmd get lb -o wide
+|     EXT IP     | SEC IPS | PORT  | PROTO |             NAME              | MARK | SEL |  MODE   |    ENDPOINT    | EPORT | WEIGHT | STATE  | COUNTERS |
+|----------------|---------|-------|-------|-------------------------------|------|-----|---------|----------------|-------|--------|--------|----------|
+| 10.0.2.15      |         | 31377 | tcp   | ipvs_10.0.2.15:31377-tcp      |    0 | rr  | fullnat | 10.42.1.2      |  5001 |      1 | active | 0:0      |
+| 10.42.1.0      |         | 31377 | tcp   | ipvs_10.42.1.0:31377-tcp      |    0 | rr  | fullnat | 10.42.1.2      |  5001 |      1 | active | 0:0      |
+| 10.42.1.1      |         | 31377 | tcp   | ipvs_10.42.1.1:31377-tcp      |    0 | rr  | fullnat | 10.42.1.2      |  5001 |      1 | active | 0:0      |
+| 10.43.0.10     |         |    53 | tcp   | ipvs_10.43.0.10:53-tcp        |    0 | rr  | default | 10.42.0.3      |    53 |      1 | -      | 0:0      |
+| 10.43.0.10     |         |    53 | udp   | ipvs_10.43.0.10:53-udp        |    0 | rr  | default | 10.42.0.3      |    53 |      1 | -      | 0:0      |
+| 10.43.0.10     |         |  9153 | tcp   | ipvs_10.43.0.10:9153-tcp      |    0 | rr  | default | 10.42.0.3      |  9153 |      1 | -      | 0:0      |
+| 10.43.0.1      |         |   443 | tcp   | ipvs_10.43.0.1:443-tcp        |    0 | rr  | default | 192.168.80.10  |  6443 |      1 | -      | 0:0      |
+| 10.43.202.90   |         | 55001 | tcp   | ipvs_10.43.202.90:55001-tcp   |    0 | rr  | default | 10.42.1.2      |  5001 |      1 | -      | 0:0      |
+| 10.43.30.93    |         |   443 | tcp   | ipvs_10.43.30.93:443-tcp      |    0 | rr  | default | 10.42.0.4      | 10250 |      1 | -      | 0:0      |
+| 192.168.80.101 |         | 31377 | tcp   | ipvs_192.168.80.101:31377-tcp |    0 | rr  | fullnat | 10.42.1.2      |  5001 |      1 | active | 15:1014  |
+| 192.168.80.20  |         | 55001 | tcp   | default_iperf-service         |    0 | rr  | onearm  | 192.168.80.101 | 31377 |      1 | -      | 0:0      |
+</code></pre>
+<h2 id="deploy-a-sample-service">Deploy a sample service</h2>
+<p>To deploy a sample service, we can create service as usual in Kubernetes with few extra annotations as follows :</p>
+<pre><code>sudo kubectl apply -f - &lt;&lt;EOF
+apiVersion: v1
+kind: Service
+metadata:
+  name: iperf-service
+  annotations:
+   loxilb.io/lbmode: &quot;onearm&quot; 
+   loxilb.io/staticIP: &quot;192.168.80.20&quot;
+spec:
+  externalTrafficPolicy: Local
+  loadBalancerClass: loxilb.io/loxilb
+  selector:
+    what: perf-test
+  ports:
+    - port: 55001
+      targetPort: 5001
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: iperf1
+  labels:
+    what: perf-test
+spec:
+  containers:
+    - name: iperf
+      image: ghcr.io/nicolaka/netshoot:latest
+      command:
+        - iperf
+        - &quot;-s&quot;
+      ports:
+        - containerPort: 5001
+EOF
+</code></pre>
+<p>Check the service created :</p>
+<pre><code>$ sudo kubectl get svc
+NAME            TYPE           CLUSTER-IP     EXTERNAL-IP         PORT(S)           AGE
+kubernetes      ClusterIP      10.43.0.1      &lt;none&gt;              443/TCP           17m
+iperf-service   LoadBalancer   10.43.202.90   llb-192.168.80.20   55001:31377/TCP   2m34s
+</code></pre>
+<p>Test the service created (from a host outside the cluster) :</p>
+<pre><code>## Using service VIP
+$ iperf -c 192.168.80.20 -p 55001  -i1 -t3
+------------------------------------------------------------
+Client connecting to 192.168.80.20, TCP port 55001
+TCP window size: 85.0 KByte (default)
+------------------------------------------------------------
+[  1] local 192.168.80.80 port 55686 connected with 192.168.80.20 port 55001
+[ ID] Interval       Transfer     Bandwidth
+[  1] 0.0000-1.0000 sec   311 MBytes  2.61 Gbits/sec
+[  1] 1.0000-2.0000 sec   309 MBytes  2.59 Gbits/sec
+[  1] 2.0000-3.0000 sec   305 MBytes  2.56 Gbits/sec
+[  1] 0.0000-3.0109 sec   926 MBytes  2.58 Gbits/sec
+
+## Using node-port
+$ iperf -c 192.168.80.101 -p 31377 -i1 -t10
+------------------------------------------------------------
+Client connecting to 192.168.80.101, TCP port 31377
+TCP window size: 85.0 KByte (default)
+------------------------------------------------------------
+[  1] local 192.168.80.80 port 34066 connected with 192.168.80.101 port 31377
+[ ID] Interval       Transfer     Bandwidth
+[  1] 0.0000-1.0000 sec   792 MBytes  6.64 Gbits/sec
+[  1] 1.0000-2.0000 sec   727 MBytes  6.10 Gbits/sec
+[  1] 2.0000-3.0000 sec   784 MBytes  6.57 Gbits/sec
+[  1] 3.0000-4.0000 sec   814 MBytes  6.83 Gbits/sec
+[  1] 4.0000-5.0000 sec  1.01 GBytes  8.64 Gbits/sec
+[  1] 5.0000-6.0000 sec  1.02 GBytes  8.79 Gbits/sec
+[  1] 6.0000-7.0000 sec  1.03 GBytes  8.84 Gbits/sec
+[  1] 7.0000-8.0000 sec   814 MBytes  6.83 Gbits/sec
+[  1] 8.0000-9.0000 sec   965 MBytes  8.09 Gbits/sec
+[  1] 9.0000-10.0000 sec   946 MBytes  7.93 Gbits/sec
+[  1] 0.0000-10.0170 sec  8.76 GBytes  7.51 Gbits/sec
+</code></pre>
+<p>If you are wondering why the performance difference between serviceLB and node-port, there is an interesting blog about it <a href="https://cloudybytes.medium.com/kubernetes-services-achieving-optimal-performance-is-elusive-5def5183c281">here</a>. For more detailed performance comparison with other solutions, kindly follow this <a href="https://www.loxilb.io/post/loxilb-cluster-networking-elevating-k8s-networking-capabilities">blog</a> and for more detailed information
+on incluster deployment of loxilb with bgp in a full-blown cluster, kindly follow this <a href="https://www.loxilb.io/post/k8s-nuances-of-in-cluster-external-service-lb-with-loxilb">blog</a>.   </p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/jquery-3.6.0.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+
+        <div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
