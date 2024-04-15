@@ -255,7 +255,7 @@
 <p>Looking at the left side of the image, you will notice the traffic flow of the packet as it enters the Kubernetes cluster. Kube-proxy, the de-facto networking agent in the Kubernetes which runs on each node of the cluster which monitors the services and translates them to either iptables or IPVS tangible rules. If we talk about the functionality or a cluster with low volume traffic then kube-proxy is fine but when it comes to scalability or a high volume traffic then it acts as a bottle-neck.
 loxilb <b><i>"service-proxy"</i></b> mode works with Flannel/Calico and kube-proxy in IPVS mode only as of now. It inherits the IPVS rules and imports these in it's in-kernel eBPF implementation. Traffic will reach at the interface, will be processed by eBPF and sent directly to the pod or to the other node, bypassing all the layers of Linux networking. This way, all the services, be it External, NodePort or ClusterIP, can be managed through LoxiLB and provide optimal performance for the users. The added benefit for the user's is the fact that there is no need to rip and replace their current networking provider (e.g flannel or calico).</p>
 <h3 id="topology">Topology</h3>
-<p>For quickly bringing up loxilb "service-proxy" in K3s, we will be deploying a single node k3s cluster :   </p>
+<p>For quickly bringing up loxilb "service-proxy" in K3s, we will be deploying a single node k3s cluster (v1.29.3+k3s1) :   </p>
 <p><img alt="loxilb topology" src="../photos/service-proxy-topo.png" /></p>
 <p>loxilb and kube-loxilb components run as pods managed by kubernetes in this scenario.</p>
 <h2 id="setup-k3s">Setup K3s</h2>
