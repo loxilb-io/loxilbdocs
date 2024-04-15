@@ -301,9 +301,6 @@ calico-system      csi-node-driver-l5r75                     2/2     Running   0
 default            iperf1                                    1/1     Running   0               32h
 kube-system        metrics-server-54fd9b65b-78mwr            1/1     Running   0               2d23h
 kube-system        loxilb-lb-px6th                           1/1     Running   0               20h
-kube-system        loxilb-lb-4grfd                           1/1     Running   0               20h
-kube-system        loxilb-lb-fpt25                           1/1     Running   0               20h
-kube-system        loxilb-lb-56snx                           1/1     Running   0               20h
 </code></pre>
 <p>In loxilb pod, we can check internal LB rules:</p>
 <pre><code>$ sudo kubectl exec -it -n kube-system loxilb-lb-px6th -- loxicmd get lb -o wide
@@ -382,12 +379,12 @@ TCP window size: 85.0 KByte (default)
 [  1] 2.0000-3.0000 sec   279 MBytes  2.34 Gbits/sec
 
 ## Using node-port
-$ iperf -c 192.168.80.101 -p 31181  -i1 -t10
+$ iperf -c 192.168.80.100 -p 31181  -i1 -t10
 ------------------------------------------------------------
-Client connecting to 192.168.80.101, TCP port 31181
+Client connecting to 192.168.80.100, TCP port 31181
 TCP window size: 85.0 KByte (default)
 ------------------------------------------------------------
-[  1] local 192.168.80.80 port 43208 connected with 192.168.80.101 port 31181
+[  1] local 192.168.80.80 port 43208 connected with 192.168.80.100 port 31181
 [ ID] Interval       Transfer     Bandwidth
 [  1] 0.0000-1.0000 sec   612 MBytes  5.14 Gbits/sec
 [  1] 1.0000-2.0000 sec   598 MBytes  5.02 Gbits/sec
