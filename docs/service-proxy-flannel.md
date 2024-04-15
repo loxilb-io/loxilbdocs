@@ -12,7 +12,7 @@ loxilb <b><i>"service-proxy"</i></b> mode works with Flannel/Calico and kube-pro
 
 ### Topology   
 
-For quickly bringing up loxilb "service-proxy" in K3s, we will be deploying a single node k3s cluster :   
+For quickly bringing up loxilb "service-proxy" in K3s, we will be deploying a single node k3s cluster (v1.29.3+k3s1) :   
 
 ![loxilb topology](photos/service-proxy-topo.png)
 
