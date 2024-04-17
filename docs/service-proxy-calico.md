@@ -31,8 +31,8 @@ $ curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--disable traefik \
 
 K3s uses by default flannel for networking but here we are using calico to provide the same:
 ```
-sudo kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.0/manifests/tigera-operator.yaml
-sudo kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.0/manifests/custom-resources.yaml
+sudo kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.1/manifests/tigera-operator.yaml
+sudo kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.1/manifests/custom-resources.yaml
 ```
 
 ### Deploy kube-loxilb and loxilb ?
