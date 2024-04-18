@@ -49,7 +49,7 @@ docker pull ghcr.io/loxilb-io/loxilb:latest
 
 * Release build Image   
 ```
-docker pull ghcr.io/loxilb-io/loxilb:v0.9.1
+docker pull ghcr.io/loxilb-io/loxilb:v0.9.2
 ``` 
 
 To run loxilb docker, we can use the following commands :
