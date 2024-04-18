@@ -306,7 +306,7 @@ sudo cp -f loxicmd /usr/local/sbin/
 <ul>
 <li>Release build Image   </li>
 </ul>
-<pre><code>docker pull ghcr.io/loxilb-io/loxilb:v0.9.1
+<pre><code>docker pull ghcr.io/loxilb-io/loxilb:v0.9.2
 </code></pre>
 <p>To run loxilb docker, we can use the following commands :</p>
 <pre><code>docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit --pid=host --cgroupns=host -v /dev/log:/dev/log --name loxilb ghcr.io/loxilb-io/loxilb:latest
