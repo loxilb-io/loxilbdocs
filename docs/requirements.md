@@ -15,13 +15,13 @@ To install LoxiLB software packages, you need the 64-bit version of one of these
 
 ### Kernel Requirements  
 
-* Linux Kernel Version >= 5.1.0  
+* Linux Kernel Version >= 5.15.x  && < 6.5.x  
 * Windows (Planned)  
 
 ### Compatible Kubernetes Versions  
 
-* Kubernetes 1.19  ~ 1.26 (k0s, k3s, k8s, eks, openshift, kind etc)   
+* Kubernetes 1.19  ~ 1.29 (k0s, k3s, k8s, eks, openshift, kind etc)   
 
 ### Hardware Requirements  
 
-* None as long as above criteria are met  
+* None as long as above criteria are met  (2vcpu/2GB should be enough for starters) 
