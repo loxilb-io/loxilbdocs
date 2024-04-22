@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="light">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,9 +10,13 @@
         <link rel="shortcut icon" href="img/favicon.ico">
         <title>loxilb v0.9.2</title>
         <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/fontawesome.min.css" rel="stylesheet">
+        <link href="css/brands.min.css" rel="stylesheet">
+        <link href="css/solid.min.css" rel="stylesheet">
+        <link href="css/v4-font-face.min.css" rel="stylesheet">
         <link href="css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
         <link href="stylesheets/extra.css" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
         <script>hljs.highlightAll();</script>
@@ -31,7 +35,7 @@
             <div class="container">
                 <a class="navbar-brand" href=".">loxilb v0.9.2</a>
                 <!-- Expander button -->
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -39,11 +43,11 @@
                 <div id="navbar-collapse" class="navbar-collapse collapse">
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
-                            <li class="navitem active">
-                                <a href="." class="nav-link">Home</a>
+                            <li class="nav-item">
+                                <a href="." class="nav-link active" aria-current="page">Home</a>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">How-To Guides <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">How-To Guides</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -83,8 +87,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Knowledge Base <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Knowledge Base</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -144,8 +148,8 @@
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Blogs <b class="caret"></b></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Blogs</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
@@ -209,7 +213,7 @@
                             </li>
                         </ul>
 
-                    <ul class="nav navbar-nav ml-auto">
+                    <ul class="nav navbar-nav ms-md-auto">
                             <li class="nav-item">
                                 <a rel="prev" class="nav-link disabled">
                                     <i class="fa fa-arrow-left"></i> Previous
@@ -227,88 +231,88 @@
 
         <div class="container">
             <div class="row">
-                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
     <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
             <span class="fa fa-angle-down"></span>
         </button>
     </div>
 
     
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="2"><a href="#welcome-to-loxilb-documentation" class="nav-link">Welcome to loxilb documentation</a>
+            <li class="nav-item" data-bs-level="2"><a href="#welcome-to-loxilb-documentation" class="nav-link">Welcome to loxilb documentation</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="2"><a href="#background" class="nav-link">Background</a>
+            <li class="nav-item" data-bs-level="2"><a href="#background" class="nav-link">Background</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="2"><a href="#what-is-loxilb" class="nav-link">What is loxilb</a>
+            <li class="nav-item" data-bs-level="2"><a href="#what-is-loxilb" class="nav-link">What is loxilb</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="2"><a href="#kubernetes-with-loxilb" class="nav-link">Kubernetes with loxilb</a>
+            <li class="nav-item" data-bs-level="2"><a href="#kubernetes-with-loxilb" class="nav-link">Kubernetes with loxilb</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="2"><a href="#why-choose-loxilb" class="nav-link">Why choose loxilb?</a>
+            <li class="nav-item" data-bs-level="2"><a href="#why-choose-loxilb" class="nav-link">Why choose loxilb?</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="2"><a href="#overall-features-of-loxilb" class="nav-link">Overall features of loxilb</a>
+            <li class="nav-item" data-bs-level="2"><a href="#overall-features-of-loxilb" class="nav-link">Overall features of loxilb</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="2"><a href="#components-of-loxilb" class="nav-link">Components of loxilb</a>
+            <li class="nav-item" data-bs-level="2"><a href="#components-of-loxilb" class="nav-link">Components of loxilb</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="2"><a href="#layer4-vs-layer7" class="nav-link">Layer4 vs Layer7</a>
+            <li class="nav-item" data-bs-level="2"><a href="#layer4-vs-layer7" class="nav-link">Layer4 vs Layer7</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="2"><a href="#telco-cloud-with-loxilb" class="nav-link">Telco-Cloud with loxilb</a>
+            <li class="nav-item" data-bs-level="2"><a href="#telco-cloud-with-loxilb" class="nav-link">Telco-Cloud with loxilb</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="2"><a href="#how-to-guides" class="nav-link">How-To Guides</a>
+            <li class="nav-item" data-bs-level="2"><a href="#how-to-guides" class="nav-link">How-To Guides</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="2"><a href="#getting-started-with-different-k8s-distributions-tools" class="nav-link">Getting started with different K8s distributions &amp; tools</a>
+            <li class="nav-item" data-bs-level="2"><a href="#getting-started-with-different-k8s-distributions-tools" class="nav-link">Getting started with different K8s distributions &amp; tools</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="2"><a href="#knowledge-base" class="nav-link">Knowledge-Base</a>
+            <li class="nav-item" data-bs-level="2"><a href="#knowledge-base" class="nav-link">Knowledge-Base</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="2"><a href="#blogs" class="nav-link">Blogs</a>
+            <li class="nav-item" data-bs-level="2"><a href="#blogs" class="nav-link">Blogs</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="2"><a href="#community-posts" class="nav-link">Community Posts</a>
+            <li class="nav-item" data-bs-level="2"><a href="#community-posts" class="nav-link">Community Posts</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="2"><a href="#latest-cicd-status" class="nav-link">Latest CICD Status</a>
+            <li class="nav-item" data-bs-level="2"><a href="#latest-cicd-status" class="nav-link">Latest CICD Status</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -583,8 +587,7 @@
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
-        <script src="js/jquery-3.6.0.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
+        <script src="js/bootstrap.bundle.min.js"></script>
         <script>
             var base_url = ".",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
@@ -596,7 +599,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <table class="table">
@@ -636,6 +639,6 @@
 </html>
 
 <!--
-MkDocs version : 1.5.3
-Build Date UTC : 2024-04-19 13:24:49.290272+00:00
+MkDocs version : 1.6.0
+Build Date UTC : 2024-04-22 01:01:28.343855+00:00
 -->

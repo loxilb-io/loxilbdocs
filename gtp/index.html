@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html data-bs-theme="light" lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
@@ -9,9 +9,13 @@
 <link href="../img/favicon.ico" rel="shortcut icon"/>
 <title>Creating a simple test topology for testing GTP with loxilb - loxilb v0.9.2</title>
 <link href="../css/bootstrap.min.css" rel="stylesheet"/>
-<link href="../css/font-awesome.min.css" rel="stylesheet"/>
+<link href="../css/fontawesome.min.css" rel="stylesheet"/>
+<link href="../css/brands.min.css" rel="stylesheet"/>
+<link href="../css/solid.min.css" rel="stylesheet"/>
+<link href="../css/v4-font-face.min.css" rel="stylesheet"/>
 <link href="../css/base.css" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" id="hljs-light" rel="stylesheet"/>
+<link disabled="" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" id="hljs-dark" rel="stylesheet"/>
 <link href="../stylesheets/extra.css" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
 <script>hljs.highlightAll();</script>
@@ -29,18 +33,18 @@
 <div class="container">
 <a class="navbar-brand" href="..">loxilb v0.9.2</a>
 <!-- Expander button -->
-<button class="navbar-toggler" data-target="#navbar-collapse" data-toggle="collapse" type="button">
+<button aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbar-collapse" data-bs-toggle="collapse" type="button">
 <span class="navbar-toggler-icon"></span>
 </button>
 <!-- Expanded navigation -->
 <div class="navbar-collapse collapse" id="navbar-collapse">
 <!-- Main navigation -->
 <ul class="nav navbar-nav">
-<li class="navitem">
+<li class="nav-item">
 <a class="nav-link" href="..">Home</a>
 </li>
-<li class="dropdown">
-<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">How-To Guides <b class="caret"></b></a>
+<li class="nav-item dropdown">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">How-To Guides</a>
 <ul class="dropdown-menu">
 <li>
 <a class="dropdown-item" href="../kube-loxilb/">How-To - kube-loxilb</a>
@@ -71,8 +75,8 @@
 </li>
 </ul>
 </li>
-<li class="dropdown">
-<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Knowledge Base <b class="caret"></b></a>
+<li class="nav-item dropdown">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Knowledge Base</a>
 <ul class="dropdown-menu">
 <li>
 <a class="dropdown-item" href="../ebpf/">What is eBPF</a>
@@ -118,8 +122,8 @@
 </li>
 </ul>
 </li>
-<li class="dropdown">
-<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Blogs <b class="caret"></b></a>
+<li class="nav-item dropdown">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Blogs</a>
 <ul class="dropdown-menu">
 <li>
 <a class="dropdown-item" href="https://www.loxilb.io/post/loxilb-cluster-networking-elevating-k8s-networking-capabilities">K8s - Elevating Cluster Networking</a>
@@ -168,24 +172,24 @@
 </ul>
 </li>
 </ul>
-<ul class="nav navbar-nav ml-auto">
+<ul class="nav navbar-nav ms-md-auto">
 </ul>
 </div>
 </div>
 </div>
 <div class="container">
 <div class="row">
-<div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+<div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
 <div class="navbar-header">
-<button class="navbar-toggler collapsed" data-target="#toc-collapse" data-toggle="collapse" title="Table of Contents" type="button">
+<button class="navbar-toggler collapsed" data-bs-target="#toc-collapse" data-bs-toggle="collapse" title="Table of Contents" type="button">
 <span class="fa fa-angle-down"></span>
 </button>
 </div>
-<div class="navbar-collapse collapse card bg-secondary" id="toc-collapse">
+<div class="navbar-collapse collapse card bg-body-tertiary" id="toc-collapse">
 <ul class="nav flex-column">
-<li class="nav-item" data-level="1"><a class="nav-link" href="#creating-a-simple-test-topology-for-testing-gtp-with-loxilb">Creating a simple test topology for testing GTP with loxilb</a>
+<li class="nav-item" data-bs-level="1"><a class="nav-link" href="#creating-a-simple-test-topology-for-testing-gtp-with-loxilb">Creating a simple test topology for testing GTP with loxilb</a>
 <ul class="nav flex-column">
-<li class="nav-item" data-level="2"><a class="nav-link" href="#next-step-is-to-run-the-following-script-to-create-and-configure-the-above-topology">Next step is to run the following script to create and configure the above topology.</a>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#next-step-is-to-run-the-following-script-to-create-and-configure-the-above-topology">Next step is to run the following script to create and configure the above topology.</a>
 <ul class="nav flex-column">
 </ul>
 </li>
@@ -255,8 +259,7 @@ We can run any workloads as we wish inside the host containers and start testing
 <hr/>
 <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
 </footer>
-<script src="../js/jquery-3.6.0.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
+<script src="../js/bootstrap.bundle.min.js"></script>
 <script>
             var base_url = "..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
@@ -267,7 +270,7 @@ We can run any workloads as we wish inside the host containers and start testing
 <div class="modal-content">
 <div class="modal-header">
 <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
-<button class="close" data-dismiss="modal" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+<button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
 </div>
 <div class="modal-body">
 <table class="table">
