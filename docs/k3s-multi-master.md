@@ -187,6 +187,7 @@ EOF
 Next, we will install loxilb's operator kube-loxilb as follows :
 
 ```
+$ sudo kubectl apply -f - <<EOF
 ---
 apiVersion: v1
 kind: ServiceAccount
