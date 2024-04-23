@@ -415,7 +415,8 @@ spec:
 EOF
 </code></pre>
 <p>Next, we will install loxilb's operator kube-loxilb as follows :</p>
-<pre><code>---
+<pre><code>$ sudo kubectl apply -f - &lt;&lt;EOF
+---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
