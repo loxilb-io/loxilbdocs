@@ -87,6 +87,7 @@ For deploying telco-cloud with cloud-native functions, loxilb can be used as a S
 - [How-To : loxicmd config](cmd.md)
 - [How-To : debug](debugging.md)
 - [How-To : Access end-points outside K8s](ext-ep.md)
+- [How-To : Deploy multi-server K3s HA with loxilb](k3s-multi-master.md)
 
 ## Getting started with different K8s distributions & tools   
 
