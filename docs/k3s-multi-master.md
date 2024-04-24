@@ -1,4 +1,4 @@
-## Guide to deploy multi-master HA K3s with loxilb
+### Guide to deploy multi-master HA K3s with loxilb
 
 This document will explain how to install a multi-master HA K3s cluster with loxilb as a serviceLB provider running in-cluster mode. K3s is a lightweight Kubernetes distribution and is increasingly used for prototyping as well as for production workloads. K3s nodes are deployed as 1) k3s-server nodes for k3s control plane components like apiserver and etcd), 2) k3s-agent nodes hosting user workloads/apps. When we deploy multi-master nodes, it is necessary that they be accessed from the k3s-agents in HA configuration and behind a load-balancer. Usually deploying such a load-balancer is [outside the scope](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/high-availability/) of kubernetes. In this guide, we will see how to deploy loxilb not only as cluster's serviceLB provider but also as a server/master node(s) LB.      
 
@@ -8,17 +8,15 @@ We will be deploying the components as per the following topology :
 
 ![loxilb topology](photos/loxilb-k3s-multi-master.png)
 
-## Setup K3s
+### K3s installation and Setup
 
-### K3s installation 
-
-#### In k3s-server1 node
+#### In k3s-server1 node -
 ```
 $ curl -fL https://get.k3s.io | sh -s - server --node-ip=192.168.80.10 \
   --disable servicelb --disable traefik --cluster-init external-hostname=192.168.80.10 \
   --node-external-ip=192.168.80.10 --disable-cloud-controller
 ```
-#### Setup node for loxilb
+#### Setup the node for loxilb :
 ```
 sudo mkdir -p /etc/loxilb
 ```
@@ -94,7 +92,7 @@ Create the following files in /etc/loxilb
 
 The above serve as bootstrap LB rules for load-balancing into the k3s-server nodes as we will see later.  
 
-#### In k3s-server2 node
+#### In k3s-server2 node - 
 ```
 $ curl -fL https://get.k3s.io | K3S_TOKEN=${NODE_TOKEN} sh -s - server --server https://192.168.80.10:6443 \
   --disable traefik --disable servicelb --node-ip=192.168.80.11 \
@@ -106,7 +104,8 @@ where NODE_TOKEN contain simply contents of /var/lib/rancher/k3s/server/node-tok
 export NODE_TOKEN=$(cat node-token)
 ```
 
-#### Setup node for loxilb
+#### Setup the node for loxilb:
+
 First, follow the steps as outlined for server1. Additionally, we will have to start loxilb as follows :
 
 ```
@@ -184,7 +183,8 @@ spec:
     protocol: TCP
 EOF
 ```
-Next, we will install loxilb's operator kube-loxilb as follows :
+
+Kindly note that the args for loxilb might change depending on the scenario. This scenario considers loxilb running in-cluster mode. For service-proxy mode, please follow this [yaml](https://raw.githubusercontent.com/loxilb-io/kube-loxilb/main/manifest/service-proxy/loxilb-service-proxy.yml) for exact args. Next, we will install loxilb's operator kube-loxilb as follows :
 
 ```
 $ sudo kubectl apply -f - <<EOF
@@ -342,7 +342,7 @@ kube-system   loxilb-lb-8bddf                           1/1     Running   0     
 kube-system   loxilb-lb-nsrr9                           1/1     Running   0          3h6m
 kube-system   metrics-server-54fd9b65b-g5lfn            1/1     Running   0          3h15m
 ```
-#### In k3s-agent1 node
+#### In k3s-agent1 node -
 The following steps need to be followed to install k3s in the agent nodes:
 
 ```
@@ -353,4 +353,25 @@ where WORKER_ADDR is the IP  address of the agent node itself (in this case 192.
 It is to be noted that we use VIP: 192.168.80.80 provided by loxilb to access the server(master) K3s nodes and not the actual node addresses.
 
 For rest of the nodes we can follow the same set of steps as outlined above for k3s-agent1.
+
+### Validation
+
+After setting up all the k3s-server and k3s-agents, we should be able to see all nodes up and running 
+
+```
+$ sudo kubectl get nodes -A
+NAME      STATUS   ROLES                       AGE   VERSION
+master1   Ready    control-plane,etcd,master   4h    v1.29.3+k3s1
+master2   Ready    control-plane,etcd,master   4h    v1.29.3+k3s1
+worker1   Ready    <none>                      4h    v1.29.3+k3s1
+worker2   Ready    <none>                      4h    v1.29.3+k3s1
+worker3   Ready    <none>                      4h    v1.29.3+k3s1
+```
+
+To verify, let's shutdown master1 k3s-server. 
+
+```
+## Shutdown the master1 node
+$ sudo shutdown -t now
+```
 
