@@ -1,10 +1,10 @@
 ### Guide to deploy multi-master HA K3s with loxilb
 
-This document will explain how to install a multi-master HA K3s cluster with loxilb as a serviceLB provider running in-cluster mode. K3s is a lightweight Kubernetes distribution and is increasingly used for prototyping as well as for production workloads. K3s nodes are deployed as 1) k3s-server nodes for k3s control plane components like apiserver and etcd), 2) k3s-agent nodes hosting user workloads/apps. When we deploy multi-master nodes, it is necessary that they be accessed from the k3s-agents in HA configuration and behind a load-balancer. Usually deploying such a load-balancer is [outside the scope](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/high-availability/) of kubernetes. In this guide, we will see how to deploy loxilb not only as cluster's serviceLB provider but also as a VIP-LB for accessing server/master node(s) services.      
+This document will explain how to install a multi-master HA K3s cluster with loxilb as a serviceLB provider running in-cluster mode. K3s is a lightweight Kubernetes distribution and is increasingly used for prototyping as well as for production workloads. K3s nodes are deployed as 1) k3s-server nodes for k3s control plane components like apiserver and etcd, 2) k3s-agent nodes hosting user workloads/apps. When we deploy multi-master nodes, it is necessary that they be accessed from the k3s-agents in HA configuration and behind a load-balancer. Usually deploying such a load-balancer is [outside the scope](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/high-availability/) of kubernetes. In this guide, we will see how to deploy loxilb not only as cluster's serviceLB provider but also as a VIP-LB for accessing server/master node(s) services.      
 
 ### Topology   
 
-For multi-master setup we need atleast odd number of server nodes to maintain quorum. So, we will have 3 k3s-server nodes. Overall, we will be deploying the components as per the following topology :   
+For multi-master setup we need an odd number of server nodes to maintain quorum. So, we will have 3 k3s-server nodes for this setup. Overall, we will be deploying the components as per the following topology :   
 
 ![loxilb topology](photos/loxilb-k3s-multi-master.png)
 
@@ -141,7 +141,7 @@ export NODE_TOKEN=$(cat node-token)
 
 ##### Setup the node for loxilb:
 
-First, follow the steps as outlined for server1. Additionally, we will have to start loxilb as follows :
+First, follow the steps as outlined for server1. Additionally, we will have to start loxilb pod instances as follows :
 
 ```
 $ sudo kubectl apply -f - <<EOF
@@ -365,7 +365,7 @@ spec:
 EOF
 ```
 
-At this point we can check the running pods in our kubernetes pods (in server1 or server2):
+At this point we can check the pods running in our kubernetes cluster (in server1, server2 & server3 at this point):
 
 ```
 $ sudo kubectl get pods -A
@@ -423,7 +423,7 @@ worker1   Ready      <none>                      4h10m    v1.29.3+k3s1
 worker2   Ready      <none>                      4h10m    v1.29.3+k3s1
 ```
 
-Also, we can confirm pods getting rescheduled to other  "ready" nodes : 
+Also, we can confirm pods getting rescheduled to other "ready" nodes : 
 ```
 $ sudo kubectl get pods -A -o wide
 NAMESPACE     NAME                                      READY   STATUS        RESTARTS   AGE     IP              NODE      NOMINATED NODE   READINESS GATES
