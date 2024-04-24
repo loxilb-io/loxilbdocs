@@ -4,7 +4,7 @@ This document will explain how to install a multi-master HA K3s cluster with lox
 
 ### Topology   
 
-We will be deploying the components as per the following topology :   
+For multi-master setup we need atleast odd number of server nodes to maintain quorum. So, we will have 3 k3s-server nodes. Overall, we will be deploying the components as per the following topology :   
 
 ![loxilb topology](photos/loxilb-k3s-multi-master.png)
 
@@ -16,7 +16,7 @@ $ curl -fL https://get.k3s.io | sh -s - server --node-ip=192.168.80.10 \
   --disable servicelb --disable traefik --cluster-init external-hostname=192.168.80.10 \
   --node-external-ip=192.168.80.10 --disable-cloud-controller
 ```
-#### Setup the node for loxilb :
+##### Setup the node for loxilb :
 ```
 sudo mkdir -p /etc/loxilb
 ```
@@ -104,7 +104,23 @@ where NODE_TOKEN contain simply contents of /var/lib/rancher/k3s/server/node-tok
 export NODE_TOKEN=$(cat node-token)
 ```
 
-#### Setup the node for loxilb:
+##### Setup the node for loxilb:
+
+Simply follow the steps as outlined for server1.
+
+#### In k3s-server3 node - 
+```
+$ curl -fL https://get.k3s.io | K3S_TOKEN=${NODE_TOKEN} sh -s - server --server https://192.168.80.10:6443 \
+  --disable traefik --disable servicelb --node-ip=192.168.80.12 \
+  external-hostname=192.168.80.12 --node-external-ip=192.168.80.12 -t ${NODE_TOKEN}
+```
+where NODE_TOKEN contain simply contents of /var/lib/rancher/k3s/server/node-token from server1. For example, it can be set using a command equivalent to the following :
+
+```
+export NODE_TOKEN=$(cat node-token)
+```
+
+##### Setup the node for loxilb:
 
 First, follow the steps as outlined for server1. Additionally, we will have to start loxilb as follows :
 
@@ -340,6 +356,7 @@ kube-system   kube-loxilb-5d99c445f7-j4x6k              1/1     Running   0     
 kube-system   local-path-provisioner-6c86858495-pjn9j   1/1     Running   0          3h15m
 kube-system   loxilb-lb-8bddf                           1/1     Running   0          3h6m
 kube-system   loxilb-lb-nsrr9                           1/1     Running   0          3h6m
+kube-system   loxilb-lb-fp2z6                           1/1     Running   0          3h6m
 kube-system   metrics-server-54fd9b65b-g5lfn            1/1     Running   0          3h15m
 ```
 #### In k3s-agent1 node -
@@ -363,6 +380,7 @@ $ sudo kubectl get nodes -A
 NAME      STATUS   ROLES                       AGE   VERSION
 master1   Ready    control-plane,etcd,master   4h    v1.29.3+k3s1
 master2   Ready    control-plane,etcd,master   4h    v1.29.3+k3s1
+master3   Ready    control-plane,etcd,master   4h    v1.29.3+k3s1 
 worker1   Ready    <none>                      4h    v1.29.3+k3s1
 worker2   Ready    <none>                      4h    v1.29.3+k3s1
 worker3   Ready    <none>                      4h    v1.29.3+k3s1
@@ -371,7 +389,7 @@ worker3   Ready    <none>                      4h    v1.29.3+k3s1
 To verify, let's shutdown master1 k3s-server. 
 
 ```
-## Shutdown the master1 node
+## Run shutdown the master1 node
 $ sudo shutdown -t now
 ```
 
