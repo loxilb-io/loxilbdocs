@@ -14,8 +14,10 @@ For multi-master setup we need atleast odd number of server nodes to maintain qu
 ```
 $ curl -fL https://get.k3s.io | sh -s - server --node-ip=192.168.80.10 \
   --disable servicelb --disable traefik --cluster-init external-hostname=192.168.80.10 \
-  --node-external-ip=192.168.80.10 --disable-cloud-controller
+  --node-external-ip=192.168.80.80 --disable-cloud-controller
 ```
+It is to be noted that ``` --node-external-ip=192.168.80.80``` is used since we will utilize 192.168.80.80 as the VIP to access the multi-master setup from k3s-agents and other clients.
+
 ##### Setup the node for loxilb :
 ```
 sudo mkdir -p /etc/loxilb
@@ -55,6 +57,13 @@ Create the following files in /etc/loxilb
                "weight":1,
                "state":"active",
                "counter":""
+            },
+            {
+               "endpointIP":"192.168.80.12",
+               "targetPort":6443,
+               "weight":1,
+               "state":"active",
+               "counter":""
             }
          ]
       }
@@ -85,6 +94,16 @@ Create the following files in /etc/loxilb
          "probeResp":"",
          "probeDuration":10,
          "probePort":6443
+      },
+      {
+         "hostName":"192.168.80.12",
+         "name":"192.168.80.12_tcp_6443",
+         "inactiveReTries":2,
+         "probeType":"tcp",
+         "probeReq":"",
+         "probeResp":"",
+         "probeDuration":10,
+         "probePort":6443
       }
    ]
 }
@@ -96,7 +115,7 @@ The above serve as bootstrap LB rules for load-balancing into the k3s-server nod
 ```
 $ curl -fL https://get.k3s.io | K3S_TOKEN=${NODE_TOKEN} sh -s - server --server https://192.168.80.10:6443 \
   --disable traefik --disable servicelb --node-ip=192.168.80.11 \
-  external-hostname=192.168.80.11 --node-external-ip=192.168.80.11 -t ${NODE_TOKEN}
+  external-hostname=192.168.80.11 --node-external-ip=192.168.80.80 -t ${NODE_TOKEN}
 ```
 where NODE_TOKEN contain simply contents of /var/lib/rancher/k3s/server/node-token from server1. For example, it can be set using a command equivalent to the following :
 
@@ -112,7 +131,7 @@ Simply follow the steps as outlined for server1.
 ```
 $ curl -fL https://get.k3s.io | K3S_TOKEN=${NODE_TOKEN} sh -s - server --server https://192.168.80.10:6443 \
   --disable traefik --disable servicelb --node-ip=192.168.80.12 \
-  external-hostname=192.168.80.12 --node-external-ip=192.168.80.12 -t ${NODE_TOKEN}
+  external-hostname=192.168.80.12 --node-external-ip=192.168.80.80 -t ${NODE_TOKEN}
 ```
 where NODE_TOKEN contain simply contents of /var/lib/rancher/k3s/server/node-token from server1. For example, it can be set using a command equivalent to the following :
 
@@ -367,9 +386,9 @@ $ curl -sfL https://get.k3s.io | K3S_TOKEN=${NODE_TOKEN} sh -s - agent --server 
 ```
 where WORKER_ADDR is the IP  address of the agent node itself (in this case 192.168.80.101) and NODE_TOKEN has contents of /var/lib/rancher/k3s/server/node-token from server1. 
 
-It is to be noted that we use VIP: 192.168.80.80 provided by loxilb to access the server(master) K3s nodes and not the actual node addresses.
+It is also to be noted that we use VIP - 192.168.80.80 provided by loxilb to access the server(master) K3s nodes and not the actual private node addresses.
 
-For rest of the nodes we can follow the same set of steps as outlined above for k3s-agent1.
+For rest of the agent nodes, we can follow the same set of steps as outlined above for k3s-agent1.
 
 ### Validation
 
@@ -392,4 +411,33 @@ To verify, let's shutdown master1 k3s-server.
 ## Run shutdown the master1 node
 $ sudo shutdown -t now
 ```
+
+And try to access cluster information from other master nodes or worker nodes :
+```
+$ sudo kubectl get nodes -A
+NAME      STATUS     ROLES                       AGE      VERSION
+master1   NotReady   control-plane,etcd,master   4h10m    v1.29.3+k3s1
+master2   Ready      control-plane,etcd,master   4h10m    v1.29.3+k3s1
+master3   Ready      control-plane,etcd,master   4h10m    v1.29.3+k3s1
+worker1   Ready      <none>                      4h10m    v1.29.3+k3s1
+worker2   Ready      <none>                      4h10m    v1.29.3+k3s1
+```
+
+Also, we can confirm pods getting rescheduled to other  "ready" nodes : 
+```
+$ sudo kubectl get pods -A -o wide
+NAMESPACE     NAME                                      READY   STATUS        RESTARTS   AGE     IP              NODE      NOMINATED NODE   READINESS GATES
+kube-system   coredns-6799fbcd5-6dvm7                   1/1     Running       0          27m     10.42.2.2       master3   <none>           <none>
+kube-system   coredns-6799fbcd5-mrjgt                   1/1     Terminating   0          3h58m   10.42.0.4       master1   <none>           <none>
+kube-system   kube-loxilb-5d99c445f7-x7qd6              1/1     Running       0          3h58m   192.168.80.11   master2   <none>           <none>
+kube-system   local-path-provisioner-6c86858495-6f8rz   1/1     Terminating   0          3h58m   10.42.0.2       master1   <none>           <none>
+kube-system   local-path-provisioner-6c86858495-z2p6m   1/1     Running       0          27m     10.42.3.2       worker1   <none>           <none>
+kube-system   loxilb-lb-65jnz                           1/1     Running       0          3h58m   192.168.80.10   master1   <none>           <none>
+kube-system   loxilb-lb-pfkf8                           1/1     Running       0          3h58m   192.168.80.12   master3   <none>           <none>
+kube-system   loxilb-lb-xhr95                           1/1     Running       0          3h58m   192.168.80.11   master2   <none>           <none>
+kube-system   metrics-server-54fd9b65b-l5pqz            1/1     Running       0          27m     10.42.4.2       worker2   <none>           <none>
+kube-system   metrics-server-54fd9b65b-x9bd7            1/1     Terminating   0          3h58m   10.42.0.3       master1   <none>           <none>
+```
+
+If the above set of command works fine in any of the "ready" nodes, it indicates that the api server is available even when one of k3s server (master) goes down.
 
