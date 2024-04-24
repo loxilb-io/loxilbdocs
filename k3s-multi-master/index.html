@@ -243,15 +243,15 @@
 <h3 id="guide-to-deploy-multi-master-ha-k3s-with-loxilb">Guide to deploy multi-master HA K3s with loxilb</h3>
 <p>This document will explain how to install a multi-master HA K3s cluster with loxilb as a serviceLB provider running in-cluster mode. K3s is a lightweight Kubernetes distribution and is increasingly used for prototyping as well as for production workloads. K3s nodes are deployed as 1) k3s-server nodes for k3s control plane components like apiserver and etcd), 2) k3s-agent nodes hosting user workloads/apps. When we deploy multi-master nodes, it is necessary that they be accessed from the k3s-agents in HA configuration and behind a load-balancer. Usually deploying such a load-balancer is <a href="https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/high-availability/">outside the scope</a> of kubernetes. In this guide, we will see how to deploy loxilb not only as cluster's serviceLB provider but also as a server/master node(s) LB.      </p>
 <h3 id="topology">Topology</h3>
-<p>We will be deploying the components as per the following topology :   </p>
-<p><img alt="loxilb topology" src="photos/loxilb-k3s-multi-master.png" /></p>
+<p>For multi-master setup we need atleast odd number of server nodes to maintain quorum. So, we will have 3 k3s-server nodes. Overall, we will be deploying the components as per the following topology :   </p>
+<p><img alt="loxilb topology" src="../photos/loxilb-k3s-multi-master.png" /></p>
 <h3 id="k3s-installation-and-setup">K3s installation and Setup</h3>
 <h4 id="in-k3s-server1-node-">In k3s-server1 node -</h4>
 <pre><code>$ curl -fL https://get.k3s.io | sh -s - server --node-ip=192.168.80.10 \
   --disable servicelb --disable traefik --cluster-init external-hostname=192.168.80.10 \
   --node-external-ip=192.168.80.10 --disable-cloud-controller
 </code></pre>
-<h4 id="setup-the-node-for-loxilb">Setup the node for loxilb :</h4>
+<h5 id="setup-the-node-for-loxilb">Setup the node for loxilb :</h5>
 <pre><code>sudo mkdir -p /etc/loxilb
 </code></pre>
 <p>Create the following files in /etc/loxilb</p>
@@ -331,7 +331,17 @@
 <p>where NODE_TOKEN contain simply contents of /var/lib/rancher/k3s/server/node-token from server1. For example, it can be set using a command equivalent to the following :</p>
 <pre><code>export NODE_TOKEN=$(cat node-token)
 </code></pre>
-<h4 id="setup-the-node-for-loxilb_1">Setup the node for loxilb:</h4>
+<h5 id="setup-the-node-for-loxilb_1">Setup the node for loxilb:</h5>
+<p>Simply follow the steps as outlined for server1.</p>
+<h4 id="in-k3s-server3-node-">In k3s-server3 node -</h4>
+<pre><code>$ curl -fL https://get.k3s.io | K3S_TOKEN=${NODE_TOKEN} sh -s - server --server https://192.168.80.10:6443 \
+  --disable traefik --disable servicelb --node-ip=192.168.80.12 \
+  external-hostname=192.168.80.12 --node-external-ip=192.168.80.12 -t ${NODE_TOKEN}
+</code></pre>
+<p>where NODE_TOKEN contain simply contents of /var/lib/rancher/k3s/server/node-token from server1. For example, it can be set using a command equivalent to the following :</p>
+<pre><code>export NODE_TOKEN=$(cat node-token)
+</code></pre>
+<h5 id="setup-the-node-for-loxilb_2">Setup the node for loxilb:</h5>
 <p>First, follow the steps as outlined for server1. Additionally, we will have to start loxilb as follows :</p>
 <pre><code>$ sudo kubectl apply -f - &lt;&lt;EOF
 apiVersion: apps/v1
@@ -558,6 +568,7 @@ kube-system   kube-loxilb-5d99c445f7-j4x6k              1/1     Running   0     
 kube-system   local-path-provisioner-6c86858495-pjn9j   1/1     Running   0          3h15m
 kube-system   loxilb-lb-8bddf                           1/1     Running   0          3h6m
 kube-system   loxilb-lb-nsrr9                           1/1     Running   0          3h6m
+kube-system   loxilb-lb-fp2z6                           1/1     Running   0          3h6m
 kube-system   metrics-server-54fd9b65b-g5lfn            1/1     Running   0          3h15m
 </code></pre>
 <h4 id="in-k3s-agent1-node-">In k3s-agent1 node -</h4>
@@ -573,12 +584,13 @@ kube-system   metrics-server-54fd9b65b-g5lfn            1/1     Running   0     
 NAME      STATUS   ROLES                       AGE   VERSION
 master1   Ready    control-plane,etcd,master   4h    v1.29.3+k3s1
 master2   Ready    control-plane,etcd,master   4h    v1.29.3+k3s1
+master3   Ready    control-plane,etcd,master   4h    v1.29.3+k3s1 
 worker1   Ready    &lt;none&gt;                      4h    v1.29.3+k3s1
 worker2   Ready    &lt;none&gt;                      4h    v1.29.3+k3s1
 worker3   Ready    &lt;none&gt;                      4h    v1.29.3+k3s1
 </code></pre>
 <p>To verify, let's shutdown master1 k3s-server. </p>
-<pre><code>## Shutdown the master1 node
+<pre><code>## Run shutdown the master1 node
 $ sudo shutdown -t now
 </code></pre></div>
             </div>
