@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/https/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>HTTPS guide - loxilb v0.9.2</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <link href="../stylesheets/extra.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-21G7NBL2BN"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', "G-21G7NBL2BN");
+        </script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">loxilb v0.9.2</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">How-To Guides</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../kube-loxilb/" class="dropdown-item">How-To - kube-loxilb</a>
+</li>
+                                    
+<li>
+    <a href="../service-zones/" class="dropdown-item">How-To - service-group zones</a>
+</li>
+                                    
+<li>
+    <a href="../run/" class="dropdown-item">How-To - build/run</a>
+</li>
+                                    
+<li>
+    <a href="../cmd/" class="dropdown-item">How-To - configuration</a>
+</li>
+                                    
+<li>
+    <a href="../debugging/" class="dropdown-item">How-To - debug</a>
+</li>
+                                    
+<li>
+    <a href="../integrate_bgp_eng/" class="dropdown-item">How-To - loxilb with calico bgp</a>
+</li>
+                                    
+<li>
+    <a href="../standalone/" class="dropdown-item">How-To - loxilb in standalone mode</a>
+</li>
+                                    
+<li>
+    <a href="../api/" class="dropdown-item">How-To - loxilb Web-APIs</a>
+</li>
+                                    
+<li>
+    <a href="../ha-deploy/" class="dropdown-item">How-To - high-availability with loxilb</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Knowledge Base</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../ebpf/" class="dropdown-item">What is eBPF</a>
+</li>
+                                    
+<li>
+    <a href="../lb/" class="dropdown-item">What is k8s service - load-balancer</a>
+</li>
+                                    
+<li>
+    <a href="../arch/" class="dropdown-item">Architecture in brief</a>
+</li>
+                                    
+<li>
+    <a href="../code/" class="dropdown-item">Code organization</a>
+</li>
+                                    
+<li>
+    <a href="../loxilbebpf/" class="dropdown-item">eBPF internals</a>
+</li>
+                                    
+<li>
+    <a href="../nat/" class="dropdown-item">NAT Modes of loxilb</a>
+</li>
+                                    
+<li>
+    <a href="../lb-algo/" class="dropdown-item">loxilb load-balancer algorithms</a>
+</li>
+                                    
+<li>
+    <a href="../cmd-dev/" class="dropdown-item">Developer's guide to loxicmd</a>
+</li>
+                                    
+<li>
+    <a href="../api-dev/" class="dropdown-item">Developer's guide to loxilb API</a>
+</li>
+                                    
+<li>
+    <a href="../perf/" class="dropdown-item">Performance Report</a>
+</li>
+                                    
+<li>
+    <a href="../roadmap/" class="dropdown-item">Development Roadmap</a>
+</li>
+                                    
+<li>
+    <a href="../contribute/" class="dropdown-item">Contribution Guide</a>
+</li>
+                                    
+<li>
+    <a href="../requirements/" class="dropdown-item">System Requirements</a>
+</li>
+                                    
+<li>
+    <a href="../faq/" class="dropdown-item">Frequenctly Asked Questions- FAQs</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Blogs</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/loxilb-cluster-networking-elevating-k8s-networking-capabilities" class="dropdown-item">K8s - Elevating Cluster Networking</a>
+</li>
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/state-synchronization-of-ebpf-maps-using-go-a-tale-of-two-frameworks" class="dropdown-item">eBPF - Map Sync using Go</a>
+</li>
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/k8s-nuances-of-in-cluster-external-service-lb-with-loxilb" class="dropdown-item">K8s in-cluster service LB with LoxiLB</a>
+</li>
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/k8s-introducing-sctp-multihoming-functionality-with-loxilb" class="dropdown-item">K8s - Introducing SCTP Multihoming with LoxiLB</a>
+</li>
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/loxilb-anycast-service-load-balancing-with-high-availability" class="dropdown-item">Hyperscale anycast load balancing with HA</a>
+</li>
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/loxilb-load-balancer-setup-on-eks" class="dropdown-item">Getting started with loxilb on Amazon EKS</a>
+</li>
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/k8s-deploying-hitless-and-ha-load-balancing" class="dropdown-item">K8s - Deploying hitless Load-Balancing</a>
+</li>
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/k8s-exposing-ipv4-services-externally-as-ipv6" class="dropdown-item">Ipv6 migration in Kubernetes made easy</a>
+</li>
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/running-loxilb-on-aws-graviton2-based-ec2-instance" class="dropdown-item">Load-balancer Perf comparison on Amazon Graviton2</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Community Posts</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="https://futuredon.medium.com/5g-sctp-loadbalancer-using-loxilb-b525198a9103" class="dropdown-item">5G SCTP LoadBalancer Using loxilb</a>
+</li>
+            
+<li>
+    <a href="https://futuredon.medium.com/5g-uplink-classifier-using-loxilb-7593a4d66f4c" class="dropdown-item">5G Uplink Classifier Using loxilb</a>
+</li>
+            
+<li>
+    <a href="https://cloudybytes.medium.com/k3s-using-loxilb-as-external-service-lb-2ea4ce61e159" class="dropdown-item">K3s - Using loxilb as external service lb</a>
+</li>
+            
+<li>
+    <a href="https://medium.com/@ben0978327139/5g-sctp-loadbalancer-using-loxilb-applying-on-free5gc-b5c05bb723f0" class="dropdown-item">5G SCTP LoadBalancer Using LoxiLB Applying on free5GC</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#https-guide" class="nav-link">HTTPS guide</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#preparation" class="nav-link">Preparation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="https-guide">HTTPS guide</h1>
+<p>Key and Cert files are required for HTTPS, and they are not detailed, but explain how to generate them and where LoxiLB can read and use user-generated Key and Cert files.</p>
+<pre><code>      --tls              enable TLS  [$TLS]
+      --tls-host=        the IP to listen on for tls, when not specified it's the same as --host [$TLS_HOST]
+      --tls-port=        the port to listen on for secure connections (default: 8091) [$TLS_PORT]
+      --tls-certificate= the certificate to use for secure connections (default:
+                         /opt/loxilb/cert/server.crt) [$TLS_CERTIFICATE]
+      --tls-key=         the private key to use for secure connections (default:
+                         /opt/loxilb/cert/server.key) [$TLS_PRIVATE_KEY]
+</code></pre>
+<p>To enable https on LoxiLB, we changed it to enable it using the  <code>--tls</code>option. </p>
+<p>Tls-host and tls-port are the contents of deciding which IP to listen to. The default IP address used as tls-host is 0.0.0.0, which is everywhere, but for future security, we recommend doing only certain values. The port is 8091 as the default. You can also find and change this from a value that does not overlap with the service you use.</p>
+<p>LoxiLB reads the key by default as /opt/loxilb/cert/path with server.key and the Cert file as server.crt in the same path. In this article, we will learn how to create the server.key and server.crt files.</p>
+<p>You can enable and run HTTLS (TLS) with the following commands.</p>
+<pre><code>./loxilb --tls
+</code></pre>
+<h2 id="preparation">Preparation</h2>
+<p>First of all, the simplest way is to create it using <em>openssl</em>. To install openssl, you can install it using the command below.</p>
+<pre><code>apt install openssl
+</code></pre>
+<p>The LoxiLB team confirmed that it operates on 1.1.1f version of openssl.</p>
+<pre><code>openssl version
+OpenSSL 1.1.1f  31 Mar 2020
+</code></pre>
+<h3 id="1-create-serverkey">1. Create server.key</h3>
+<pre><code>openssl genrsa -out server.key 2048
+</code></pre>
+<p>The way to generate server.key is simple. You can create a new key by typing the command above. In fact, if you type in the command, you can see that the process is output and the server.key is generated.</p>
+<pre><code class="language-bash">openssl genrsa -out server.key 2048
+Generating RSA private key, 2048 bit long modulus (2 primes)
+..............................................+++++
+...........................................+++++
+e is 65537 (0x010001)
+</code></pre>
+<h3 id="2-create-servercsr">2. Create server.csr</h3>
+<pre><code>openssl req -new -key server.key -out server.csr
+</code></pre>
+<p>Create a csr file by putting the desired value in the corresponding item. This file is not used directly for https, but it is necessary to create a Cert file to be created later. When you type in the command above, a long sentence appears asking you to enter information, and you can fill in the corresponding value according to your situation.</p>
+<pre><code class="language-bash">openssl req -new -key server.key -out server.csr
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name (2 letter code) [AU]:
+State or Province Name (full name) [Some-State]:
+Locality Name (eg, city) []:
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:
+Organizational Unit Name (eg, section) []:
+Common Name (e.g. server FQDN or YOUR name) []:
+Email Address []:
+
+Please enter the following 'extra' attributes
+to be sent with your certificate request
+A challenge password []:
+An optional company name []:
+</code></pre>
+<h3 id="3-create-servercrt">3. Create server.crt</h3>
+<pre><code>openssl x509 -req -days 365 -in server.csr -signkey server.key  -out server.crt
+</code></pre>
+<p>This is the process of creating server.crt using server.key and server.csr generated above. You can issue a certificate with a limited deadline by setting the expiration date of the certificate well and putting a value after -day. The server.crt file is created with the following output.</p>
+<pre><code class="language-bash">openssl x509 -req -days 365 -in server.csr -signkey server.key  -out server.crt
+Signature ok
+subject=C = AU, ST = Some-State, O = Internet Widgits Pty Ltd
+Getting Private key
+</code></pre>
+<h3 id="4-validation">4. Validation</h3>
+<p>You can enable https with the server.key and server.cert files generated through the above process.</p>
+<p>If you move all of these files to the <code>/opt/loxilb</code> path and check them, you can see that they work well.</p>
+<pre><code class="language-bash">sudo cp server.key /opt/loxilb/cert/.
+sudo cp server.crt /opt/loxilb/cert/.
+./loxilb --tls
+</code></pre>
+<pre><code class="language-bash"> curl http://0.0.0.0:11111/netlox/v1/config/loadbalancer/all
+{&quot;lbAttr&quot;:[]}
+
+ curl -k https://0.0.0.0:8091/netlox/v1/config/loadbalancer/all
+{&quot;lbAttr&quot;:[]}
+</code></pre>
+<p>It should appear in the log as follows.</p>
+<pre><code class="language-bash">2024/04/12 16:19:48 Serving loxilb rest API at http://[::]:11111
+2024/04/12 16:19:48 Serving loxilb rest API at https://[::]:8091
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+
+        <div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
