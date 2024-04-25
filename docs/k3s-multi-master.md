@@ -439,5 +439,5 @@ kube-system   metrics-server-54fd9b65b-l5pqz            1/1     Running       0 
 kube-system   metrics-server-54fd9b65b-x9bd7            1/1     Terminating   0          3h58m   10.42.0.3       master1   <none>           <none>
 ```
 
-If the above set of command works fine in any of the "ready" nodes, it indicates that the api server is available even when one of k3s server (master) goes down.
+If the above set of command works fine in any of the "ready" nodes, it indicates that the api server is available even when one of k3s server (master) goes down. The same can be followed if need be for any services apart from K8s/K3s apiserver as well. 
 
