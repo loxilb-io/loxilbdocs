@@ -19,19 +19,16 @@ nav:
       - How-To - debugging: debugging.md
       - How-To - access end-points outside K8s: ext-ep.md
       - How-To - Deploy multi-server K3s HA with loxilb: k3s-multi-master.md
-  - Getting started with different K8s distributions & tools:
-      - loxilb as ext-cluster pod:
-          - K3s - loxilb with default flannel: k3s_quick_start_flannel.md
-          - K3s - loxilb with calico: k3s_quick_start_calico.md
-          - K3s - loxilb with cilium: quick_start_with_cilium.md
-          - K3s - loxilb with default kube-router networking: k0s_quick_start.md
-      - loxilb as in-cluster pod:
-          - K3s - loxilb in-cluster mode: k3s_quick_start_incluster.md
-          - K0s - loxilb in-cluster mode: k0s_quick_start_incluster.md
-          - MicroK8s - loxilb in-cluster mode: microk8s_quick_start_incluster.md
-      - loxilb as service-proxy:
-          - K3s - loxilb service-proxy with flannel: service-proxy-flannel.md
-          - K3s - loxilb service-proxy with calico: service-proxy-calico.md
+  - Getting started:
+      - ext-cluster pod - K3s/loxilb with default flannel: k3s_quick_start_flannel.md
+      - ext-cluster pod - K3s/loxilb with calico: k3s_quick_start_calico.md
+      - ext-cluster pod - K3s/loxilb with cilium: quick_start_with_cilium.md
+      - ext-cluster pod - K0s/loxilb with kube-router: k0s_quick_start.md
+      - in-cluster pod - K3s/loxilb in-cluster mode: k3s_quick_start_incluster.md
+      - in-cluster pod - K0s/loxilb in-cluster mode: k0s_quick_start_incluster.md
+      - in-cluster pod - MicroK8s/loxilb in-cluster mode: microk8s_quick_start_incluster.md
+      - service-proxy - K3s/loxilb service-proxy with flannel: service-proxy-flannel.md
+      - service-proxy - K3s/loxilb service-proxy with calico: service-proxy-calico.md
   - Knowledge Base:
       - What is eBPF: ebpf.md
       - What is k8s service - load-balancer: lb.md
