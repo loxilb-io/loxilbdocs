@@ -1,4 +1,4 @@
-site_name: loxilb v0.9.2
+site_name: loxilb v0.9.3
 site_url: https://loxilb-io.github.io/loxilbdocs 
 theme:
     name: mkdocs
@@ -12,13 +12,26 @@ nav:
   - How-To Guides:
       - How-To - kube-loxilb: kube-loxilb.md
       - How-To - service-group zones: service-zones.md
-      - How-To - build/run: run.md
-      - How-To - configuration: cmd.md
-      - How-To - debug: debugging.md
-      - How-To - loxilb with calico bgp: integrate_bgp_eng.md
-      - How-To - loxilb in standalone mode: standalone.md
-      - How-To - loxilb Web-APIs: api.md
       - How-To - high-availability with loxilb: ha-deploy.md
+      - How-To - build/run: run.md
+      - How-To - loxilb in standalone mode: standalone.md
+      - How-To - cmd configuration: cmd.md
+      - How-To - debugging: debugging.md
+      - How-To - access end-points outside K8s: ext-ep.md
+      - How-To - Deploy multi-server K3s HA with loxilb: k3s-multi-master.md
+  - Getting started with different K8s distributions & tools:
+      - loxilb as ext-cluster pod:
+          - K3s - loxilb with default flannel: k3s_quick_start_flannel.md
+          - K3s - loxilb with calico: k3s_quick_start_calico.md
+          - K3s - loxilb with cilium: quick_start_with_cilium.md
+          - K3s - loxilb with default kube-router networking: k0s_quick_start.md
+      - loxilb as in-cluster pod:
+          - K3s - loxilb in-cluster mode: k3s_quick_start_incluster.md
+          - K0s - loxilb in-cluster mode: k0s_quick_start_incluster.md
+          - MicroK8s - loxilb in-cluster mode: microk8s_quick_start_incluster.md
+      - loxilb as service-proxy
+          - K3s - loxilb service-proxy with flannel: service-proxy-flannel.md
+          - K3s - loxilb service-proxy with calico: service-proxy-calico.md
   - Knowledge Base:
       - What is eBPF: ebpf.md
       - What is k8s service - load-balancer: lb.md
@@ -29,6 +42,7 @@ nav:
       - loxilb load-balancer algorithms: lb-algo.md
       - Developer's guide to loxicmd: cmd-dev.md
       - Developer's guide to loxilb API: api-dev.md
+      - loxilb api-reference: api.md
       - Performance Report: perf.md
       - Development Roadmap: roadmap.md
       - Contribution Guide: contribute.md
@@ -50,7 +64,7 @@ nav:
         - K3s - Using loxilb as external service lb: https://cloudybytes.medium.com/k3s-using-loxilb-as-external-service-lb-2ea4ce61e159
         - 5G SCTP LoadBalancer Using LoxiLB Applying on free5GC: https://medium.com/@ben0978327139/5g-sctp-loadbalancer-using-loxilb-applying-on-free5gc-b5c05bb723f0
 extra:
-    version: v0.9.2 (Latest)
+    version: v0.9.3 (Latest)
 
 extra_css:
   - stylesheets/extra.css
