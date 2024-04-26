@@ -8,7 +8,7 @@
         
         <link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/nat/">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>NAT Modes of loxilb - loxilb v0.9.2</title>
+        <title>NAT Modes of loxilb - loxilb v0.9.3</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/fontawesome.min.css" rel="stylesheet">
         <link href="../css/brands.min.css" rel="stylesheet">
@@ -33,7 +33,7 @@
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="..">loxilb v0.9.2</a>
+                <a class="navbar-brand" href="..">loxilb v0.9.3</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -59,19 +59,11 @@
 </li>
                                     
 <li>
+    <a href="../ha-deploy/" class="dropdown-item">How-To - high-availability with loxilb</a>
+</li>
+                                    
+<li>
     <a href="../run/" class="dropdown-item">How-To - build/run</a>
-</li>
-                                    
-<li>
-    <a href="../cmd/" class="dropdown-item">How-To - configuration</a>
-</li>
-                                    
-<li>
-    <a href="../debugging/" class="dropdown-item">How-To - debug</a>
-</li>
-                                    
-<li>
-    <a href="../integrate_bgp_eng/" class="dropdown-item">How-To - loxilb with calico bgp</a>
 </li>
                                     
 <li>
@@ -79,12 +71,79 @@
 </li>
                                     
 <li>
-    <a href="../api/" class="dropdown-item">How-To - loxilb Web-APIs</a>
+    <a href="../cmd/" class="dropdown-item">How-To - cmd configuration</a>
 </li>
                                     
 <li>
-    <a href="../ha-deploy/" class="dropdown-item">How-To - high-availability with loxilb</a>
+    <a href="../debugging/" class="dropdown-item">How-To - debugging</a>
 </li>
+                                    
+<li>
+    <a href="../ext-ep/" class="dropdown-item">How-To - access end-points outside K8s</a>
+</li>
+                                    
+<li>
+    <a href="../k3s-multi-master/" class="dropdown-item">How-To - Deploy multi-server K3s HA with loxilb</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Getting started with different K8s distributions & tools</a>
+                                <ul class="dropdown-menu">
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">loxilb as ext-cluster pod</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../k3s_quick_start_flannel/" class="dropdown-item">K3s - loxilb with default flannel</a>
+</li>
+            
+<li>
+    <a href="../k3s_quick_start_calico/" class="dropdown-item">K3s - loxilb with calico</a>
+</li>
+            
+<li>
+    <a href="../quick_start_with_cilium/" class="dropdown-item">K3s - loxilb with cilium</a>
+</li>
+            
+<li>
+    <a href="../k0s_quick_start/" class="dropdown-item">K3s - loxilb with default kube-router networking</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">loxilb as in-cluster pod</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../k3s_quick_start_incluster/" class="dropdown-item">K3s - loxilb in-cluster mode</a>
+</li>
+            
+<li>
+    <a href="../k0s_quick_start_incluster/" class="dropdown-item">K0s - loxilb in-cluster mode</a>
+</li>
+            
+<li>
+    <a href="../microk8s_quick_start_incluster/" class="dropdown-item">MicroK8s - loxilb in-cluster mode</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">loxilb as service-proxy</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../service-proxy-flannel/" class="dropdown-item">K3s - loxilb service-proxy with flannel</a>
+</li>
+            
+<li>
+    <a href="../service-proxy-calico/" class="dropdown-item">K3s - loxilb service-proxy with calico</a>
+</li>
+    </ul>
+  </li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
@@ -125,6 +184,10 @@
                                     
 <li>
     <a href="../api-dev/" class="dropdown-item">Developer's guide to loxilb API</a>
+</li>
+                                    
+<li>
+    <a href="../api/" class="dropdown-item">loxilb api-reference</a>
 </li>
                                     
 <li>

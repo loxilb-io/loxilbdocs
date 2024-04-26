@@ -7,7 +7,7 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="https://loxilb-io.github.io/loxilbdocs/gtp/" rel="canonical"/>
 <link href="../img/favicon.ico" rel="shortcut icon"/>
-<title>Creating a simple test topology for testing GTP with loxilb - loxilb v0.9.2</title>
+<title>Creating a simple test topology for testing GTP with loxilb - loxilb v0.9.3</title>
 <link href="../css/bootstrap.min.css" rel="stylesheet"/>
 <link href="../css/fontawesome.min.css" rel="stylesheet"/>
 <link href="../css/brands.min.css" rel="stylesheet"/>
@@ -31,7 +31,7 @@
 <body>
 <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
 <div class="container">
-<a class="navbar-brand" href="..">loxilb v0.9.2</a>
+<a class="navbar-brand" href="..">loxilb v0.9.3</a>
 <!-- Expander button -->
 <button aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbar-collapse" data-bs-toggle="collapse" type="button">
 <span class="navbar-toggler-icon"></span>
@@ -53,25 +53,72 @@
 <a class="dropdown-item" href="../service-zones/">How-To - service-group zones</a>
 </li>
 <li>
+<a class="dropdown-item" href="../ha-deploy/">How-To - high-availability with loxilb</a>
+</li>
+<li>
 <a class="dropdown-item" href="../run/">How-To - build/run</a>
-</li>
-<li>
-<a class="dropdown-item" href="../cmd/">How-To - configuration</a>
-</li>
-<li>
-<a class="dropdown-item" href="../debugging/">How-To - debug</a>
-</li>
-<li>
-<a class="dropdown-item" href="../integrate_bgp_eng/">How-To - loxilb with calico bgp</a>
 </li>
 <li>
 <a class="dropdown-item" href="../standalone/">How-To - loxilb in standalone mode</a>
 </li>
 <li>
-<a class="dropdown-item" href="../api/">How-To - loxilb Web-APIs</a>
+<a class="dropdown-item" href="../cmd/">How-To - cmd configuration</a>
 </li>
 <li>
-<a class="dropdown-item" href="../ha-deploy/">How-To - high-availability with loxilb</a>
+<a class="dropdown-item" href="../debugging/">How-To - debugging</a>
+</li>
+<li>
+<a class="dropdown-item" href="../ext-ep/">How-To - access end-points outside K8s</a>
+</li>
+<li>
+<a class="dropdown-item" href="../k3s-multi-master/">How-To - Deploy multi-server K3s HA with loxilb</a>
+</li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Getting started with different K8s distributions &amp; tools</a>
+<ul class="dropdown-menu">
+<li class="dropdown-submenu">
+<a class="dropdown-item" href="#">loxilb as ext-cluster pod</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../k3s_quick_start_flannel/">K3s - loxilb with default flannel</a>
+</li>
+<li>
+<a class="dropdown-item" href="../k3s_quick_start_calico/">K3s - loxilb with calico</a>
+</li>
+<li>
+<a class="dropdown-item" href="../quick_start_with_cilium/">K3s - loxilb with cilium</a>
+</li>
+<li>
+<a class="dropdown-item" href="../k0s_quick_start/">K3s - loxilb with default kube-router networking</a>
+</li>
+</ul>
+</li>
+<li class="dropdown-submenu">
+<a class="dropdown-item" href="#">loxilb as in-cluster pod</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../k3s_quick_start_incluster/">K3s - loxilb in-cluster mode</a>
+</li>
+<li>
+<a class="dropdown-item" href="../k0s_quick_start_incluster/">K0s - loxilb in-cluster mode</a>
+</li>
+<li>
+<a class="dropdown-item" href="../microk8s_quick_start_incluster/">MicroK8s - loxilb in-cluster mode</a>
+</li>
+</ul>
+</li>
+<li class="dropdown-submenu">
+<a class="dropdown-item" href="#">loxilb as service-proxy</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../service-proxy-flannel/">K3s - loxilb service-proxy with flannel</a>
+</li>
+<li>
+<a class="dropdown-item" href="../service-proxy-calico/">K3s - loxilb service-proxy with calico</a>
+</li>
+</ul>
 </li>
 </ul>
 </li>
@@ -104,6 +151,9 @@
 </li>
 <li>
 <a class="dropdown-item" href="../api-dev/">Developer's guide to loxilb API</a>
+</li>
+<li>
+<a class="dropdown-item" href="../api/">loxilb api-reference</a>
 </li>
 <li>
 <a class="dropdown-item" href="../perf/">Performance Report</a>
