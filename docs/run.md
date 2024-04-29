@@ -13,8 +13,15 @@ export PATH="${PATH}:/usr/local/go/bin"
 ```
 sudo apt install -y clang llvm libelf-dev gcc-multilib libpcap-dev vim net-tools linux-tools-$(uname -r) elfutils dwarves git libbsd-dev bridge-utils wget unzip build-essential bison flex iproute2
 ```
+* Install loxilb eBPF loader tools
+```
+git clone --recurse-submodules https://github.com/loxilb-io/iproute2.git && cd iproute2 && \
+ cd libbpf/src/ && mkdir build && DESTDIR=build OBJDIR=build make install && cd - && \
+    export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:`pwd`/libbpf/src/ && \
+    LIBBPF_FORCE=on LIBBPF_DIR=`pwd`/libbpf/src/build ./configure && make && \
+    sudo cp -f tc/tc /usr/local/sbin/ntc && cd ../
+```
 * Build and run loxilb 
-
 ```
 git clone --recurse-submodules https://github.com/loxilb-io/loxilb.git
 cd loxilb
@@ -23,8 +30,6 @@ make
 cd loxilb-ebpf/libbpf/src
 sudo make install
 cd -
-sudo mkdir -p /opt/loxilb/cert/
-sudo cp api/certification/server.* /opt/loxilb/cert/
 sudo ./loxilb 
 ```
 * Build and use loxicmd 
