@@ -322,6 +322,15 @@ export PATH=&quot;${PATH}:/usr/local/go/bin&quot;
 <pre><code>sudo apt install -y clang llvm libelf-dev gcc-multilib libpcap-dev vim net-tools linux-tools-$(uname -r) elfutils dwarves git libbsd-dev bridge-utils wget unzip build-essential bison flex iproute2
 </code></pre>
 <ul>
+<li>Install loxilb eBPF loader tools</li>
+</ul>
+<pre><code>git clone --recurse-submodules https://github.com/loxilb-io/iproute2.git &amp;&amp; cd iproute2 &amp;&amp; \
+ cd libbpf/src/ &amp;&amp; mkdir build &amp;&amp; DESTDIR=build OBJDIR=build make install &amp;&amp; cd - &amp;&amp; \
+    export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:`pwd`/libbpf/src/ &amp;&amp; \
+    LIBBPF_FORCE=on LIBBPF_DIR=`pwd`/libbpf/src/build ./configure &amp;&amp; make &amp;&amp; \
+    sudo cp -f tc/tc /usr/local/sbin/ntc &amp;&amp; cd ../
+</code></pre>
+<ul>
 <li>Build and run loxilb </li>
 </ul>
 <pre><code>git clone --recurse-submodules https://github.com/loxilb-io/loxilb.git
@@ -331,8 +340,6 @@ make
 cd loxilb-ebpf/libbpf/src
 sudo make install
 cd -
-sudo mkdir -p /opt/loxilb/cert/
-sudo cp api/certification/server.* /opt/loxilb/cert/
 sudo ./loxilb 
 </code></pre>
 <ul>
