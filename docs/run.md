@@ -15,7 +15,7 @@ sudo apt install -y clang llvm libelf-dev gcc-multilib libpcap-dev vim net-tools
 ```
 * Install loxilb eBPF loader tools
 ```
-curl -sfL https://github.com/loxilb-io/loxilb-tools/raw/main/loader/install.sh | sh -
+curl -sfL https://github.com/loxilb-io/tools/raw/main/loader/install.sh | sh -
 ```
 * Build and run loxilb 
 ```
