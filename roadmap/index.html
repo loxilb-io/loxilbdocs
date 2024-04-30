@@ -293,15 +293,19 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#080-dec-2022-planned" class="nav-link">0.8.0 (Dec, 2022) - Planned</a>
+            <li class="nav-item" data-bs-level="2"><a href="#080-dec-2022" class="nav-link">0.8.0 (Dec, 2022)</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#090-nov-2023-planned" class="nav-link">0.9.0 (Nov, 2023) - Planned</a>
+            <li class="nav-item" data-bs-level="2"><a href="#090-nov-2023" class="nav-link">0.9.0 (Nov, 2023)</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#095-jan-2024-planned" class="nav-link">0.9.5 (Jan, 2024) - Planned</a>
+            <li class="nav-item" data-bs-level="2"><a href="#093-may-2024" class="nav-link">0.9.3 (May, 2024)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#095-jul-2024-planned" class="nav-link">0.9.5 (Jul, 2024) - Planned</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -352,7 +356,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="080-dec-2022-planned">0.8.0 (Dec, 2022) - Planned</h2>
+<h2 id="080-dec-2022">0.8.0 (Dec, 2022)</h2>
 <ul>
 <li>
 <p><strong>Functional Features</strong>:    </p>
@@ -382,7 +386,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="090-nov-2023-planned">0.9.0 (Nov, 2023) - Planned</h2>
+<h2 id="090-nov-2023">0.9.0 (Nov, 2023)</h2>
 <ul>
 <li>
 <p><strong>Functional Features</strong>:  </p>
@@ -390,12 +394,12 @@
 <li>Hardened NAT Support - CGNAT'ish   </li>
 <li>L3 DSR mode Support   </li>
 <li>Https end-point liveness probes   </li>
-<li>Maglev clustering  </li>
-<li>Transition to libbpf v1.0.1   </li>
+<li>Maglev clustering   </li>
 <li>SCTP multihoming support   </li>
 <li>Integration with Linux native QoS   </li>
 <li>Support for Cilium, Weave CNI   </li>
 <li>Grafana based dashboard   </li>
+<li>IPSEC Support (with VTI)   </li>
 </ul>
 </li>
 <li>
@@ -405,30 +409,77 @@
 <li>Support for per-service liveness-checks, IPAM type, multi-homing annotations   </li>
 <li>Kubernetes 1.26 (k0s, k3s, k8s )   </li>
 <li>Operator support   </li>
-<li>AWS EKS support   </li>
+<li>AWS EKS support</li>
 </ul>
 </li>
 </ul>
-<h2 id="095-jan-2024-planned">0.9.5 (Jan, 2024) - Planned</h2>
+<h2 id="093-may-2024">0.9.3 (May, 2024)</h2>
+<ul>
+<li>
+<p><strong>Functional Features</strong>:</p>
+<ul>
+<li>Kube-proxy replacement support    </li>
+<li>IPVS compatibility mode    </li>
+<li>Master-plane HA support   </li>
+<li>BFD and GARP support for Hitless HA    </li>
+<li>Enhancements for Multus support    </li>
+<li>SCTP multi-homing end-to-end support    </li>
+<li>Cloud Availability zone(s) support    </li>
+<li>Redhat9 and Ubuntu24 support   </li>
+<li>Support for upto Linux Kernel 6.8    </li>
+<li>Full Support for Oracle OCI      </li>
+<li>SockAddr eBPF for LocalVIP access   </li>
+<li>Container size enhancements   </li>
+<li>HA enhancements for multiple cloud-providers and various scenarios (active-active, active-standby, clustered etc)     </li>
+<li>CICD infra enhancements   </li>
+<li>Robust secret management for HTTPS apis   </li>
+<li>Performance enhancements   </li>
+<li>Enhanced RSS distribution mode via XDP (especially for SCTP workloads)   </li>
+<li>Loadbalancer algorithms - LeastConnections and SessionAffinity added    </li>
+</ul>
+</li>
+<li>
+<p><strong>kube-loxilb Support</strong>: </p>
+<ul>
+<li>Kubernetes 1.29   </li>
+<li>BGP (auto) Mesh support    </li>
+<li>CRD for BGP peers    </li>
+<li>Kubernetes GW-API support   </li>
+</ul>
+</li>
+<li>
+<p><strong>Utilities</strong>:  </p>
+<ul>
+<li>N4 pfcp test-tool added   </li>
+<li>Seagull test tool integrated   </li>
+<li>Massive updates to documentation    </li>
+</ul>
+</li>
+</ul>
+<h2 id="095-jul-2024-planned">0.9.5 (Jul, 2024) - Planned</h2>
 <ul>
 <li>
 <p><strong>Functional Features</strong>:</p>
 <ul>
 <li>SRv6 support  </li>
 <li>Rolling upgrades   </li>
-<li>L7 proxy   </li>
+<li>L7 (Transparent) proxy   </li>
+<li>HTTPS termination  </li>
 <li>URL Filtering       </li>
 <li>DNS caching   </li>
-<li>IPSEC/Wireguard support    </li>
+<li>Wireguard support  </li>
+<li>SIP protocol support   </li>
+<li>Policy based SNAT    </li>
+<li>Kubernetes vCluster Support    </li>
 </ul>
 </li>
 <li>
 <p><strong>kube-loxilb Support</strong>: </p>
 <ul>
-<li>Kubernetes 1.27    </li>
-<li>BGP Mesh support    </li>
+<li>Kubernetes 1.30        </li>
 <li>Multi-cluster support   </li>
-<li>ULCL filter integration       </li>
+<li>CRD for BGP policies   </li>
+<li>Kubernetes network policy support    </li>
 </ul>
 </li>
 </ul></div>
