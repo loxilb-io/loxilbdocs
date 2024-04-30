@@ -86,7 +86,8 @@ Initial release of loxilb
     - Performance enhancements with CT scaling   
     - Enhanced exception handling
     - GoLang Profiling Support
-    - Full support for in-cluster mode   
+    - Full support for in-cluster mode
+    - Better support for virtio environments    
     - Enhanced RSS distribution mode via XDP (especially for SCTP workloads)   
     - Loadbalancer algorithms - LeastConnections and SessionAffinity added    
 
