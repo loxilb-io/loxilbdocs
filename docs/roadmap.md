@@ -24,7 +24,7 @@ Initial release of loxilb
 - **Utilities**:     
     - loxicmd support : Configuration utlity with the look and feel of kubectl    
 
-## 0.8.0 (Dec, 2022) - Planned      
+## 0.8.0 (Dec, 2022)      
 
 - **Functional Features**:    
     - Enhanced load-balancer support including SCTP statefulness, WRR distribution    
@@ -44,38 +44,75 @@ Initial release of loxilb
 - **Utilities**:  
     - loxicmd support : Data-Store support, more commands
 
-## 0.9.0 (Nov, 2023) - Planned   
+## 0.9.0 (Nov, 2023)     
 
 - **Functional Features**:  
     - Hardened NAT Support - CGNAT'ish   
     - L3 DSR mode Support   
     - Https end-point liveness probes   
-    - Maglev clustering  
-    - Transition to libbpf v1.0.1   
+    - Maglev clustering   
     - SCTP multihoming support   
     - Integration with Linux native QoS   
     - Support for Cilium, Weave CNI   
     - Grafana based dashboard   
+    - IPSEC Support (with VTI)   
 
 - **kube-loxilb/LB Spec Support**: 
     - OpenShift Integration    
     - Support for per-service liveness-checks, IPAM type, multi-homing annotations   
     - Kubernetes 1.26 (k0s, k3s, k8s )   
     - Operator support   
-    - AWS EKS support   
+    - AWS EKS support
+ 
+## 0.9.3 (May, 2024)   
 
-## 0.9.5 (Jan, 2024) - Planned   
+- **Functional Features**:
+    - Kube-proxy replacement support    
+    - IPVS compatibility mode    
+    - Master-plane HA support   
+    - BFD and GARP support for Hitless HA    
+    - Enhancements for Multus support    
+    - SCTP multi-homing end-to-end support    
+    - Cloud Availability zone(s) support    
+    - Redhat9 and Ubuntu24 support   
+    - Support for upto Linux Kernel 6.8    
+    - Full Support for Oracle OCI      
+    - SockAddr eBPF for LocalVIP access   
+    - Container size enhancements   
+    - HA enhancements for multiple cloud-providers and various scenarios (active-active, active-standby, clustered etc)     
+    - CICD infra enhancements   
+    - Robust secret management for HTTPS apis   
+    - Performance enhancements   
+    - Enhanced RSS distribution mode via XDP (especially for SCTP workloads)   
+    - Loadbalancer algorithms - LeastConnections and SessionAffinity added    
+
+- **kube-loxilb Support**: 
+    - Kubernetes 1.29   
+    - BGP (auto) Mesh support    
+    - CRD for BGP peers    
+    - Kubernetes GW-API support   
+ 
+- **Utilities**:  
+    - N4 pfcp test-tool added   
+    - Seagull test tool integrated   
+    - Massive updates to documentation    
+      
+## 0.9.5 (Jul, 2024) - Planned   
 
 - **Functional Features**:
     - SRv6 support  
     - Rolling upgrades   
-    - L7 proxy   
+    - L7 (Transparent) proxy   
+    - HTTPS termination  
     - URL Filtering       
     - DNS caching   
-    - IPSEC/Wireguard support    
+    - Wireguard support  
+    - SIP protocol support   
+    - Policy based SNAT    
+    - Kubernetes vCluster Support    
 
 - **kube-loxilb Support**: 
-    - Kubernetes 1.27    
-    - BGP Mesh support    
+    - Kubernetes 1.30        
     - Multi-cluster support   
-    - ULCL filter integration       
+    - CRD for BGP policies   
+    - Kubernetes network policy support    
