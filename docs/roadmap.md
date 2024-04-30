@@ -19,7 +19,7 @@ Initial release of loxilb
 - **LB Spec Support**:     
     - IP allocation policy    
     - Kubernetes 1.20 base support
-    - Support for Calico CNI  
+    - Support for Calico Networking    
  
 - **Utilities**:     
     - loxicmd support : Configuration utlity with the look and feel of kubectl    
@@ -53,9 +53,10 @@ Initial release of loxilb
     - Maglev clustering   
     - SCTP multihoming support   
     - Integration with Linux native QoS   
-    - Support for Cilium, Weave CNI   
+    - Support for Cilium, Weave Networking   
     - Grafana based dashboard   
-    - IPSEC Support (with VTI)   
+    - IPSEC Support (with VTI)
+    - Initial support for in-cluster mode    
 
 - **kube-loxilb/LB Spec Support**: 
     - OpenShift Integration    
@@ -67,14 +68,14 @@ Initial release of loxilb
 ## 0.9.3 (May, 2024)   
 
 - **Functional Features**:
-    - Kube-proxy replacement support    
+    - Kube-proxy replacement Support    
     - IPVS compatibility mode    
     - Master-plane HA support   
     - BFD and GARP support for Hitless HA    
     - Enhancements for Multus support    
-    - SCTP multi-homing end-to-end support    
-    - Cloud Availability zone(s) support    
-    - Redhat9 and Ubuntu24 support   
+    - SCTP multi-homing end-to-end Support    
+    - Cloud Availability zone(s) Support    
+    - Redhat9 and Ubuntu24 Support   
     - Support for upto Linux Kernel 6.8    
     - Full Support for Oracle OCI      
     - SockAddr eBPF for LocalVIP access   
@@ -82,15 +83,18 @@ Initial release of loxilb
     - HA enhancements for multiple cloud-providers and various scenarios (active-active, active-standby, clustered etc)     
     - CICD infra enhancements   
     - Robust secret management for HTTPS apis   
-    - Performance enhancements   
+    - Performance enhancements with CT scaling   
+    - Enhanced exception handling
+    - GoLang Profiling Support
+    - Full support for in-cluster mode   
     - Enhanced RSS distribution mode via XDP (especially for SCTP workloads)   
     - Loadbalancer algorithms - LeastConnections and SessionAffinity added    
 
 - **kube-loxilb Support**: 
     - Kubernetes 1.29   
-    - BGP (auto) Mesh support    
+    - BGP (auto) Mesh Support    
     - CRD for BGP peers    
-    - Kubernetes GW-API support   
+    - Kubernetes GW-API Support   
  
 - **Utilities**:  
     - N4 pfcp test-tool added   
@@ -106,10 +110,11 @@ Initial release of loxilb
     - HTTPS termination  
     - URL Filtering       
     - DNS caching   
-    - Wireguard support  
-    - SIP protocol support   
+    - Wireguard Support  
+    - SIP protocol Support   
     - Policy based SNAT    
-    - Kubernetes vCluster Support    
+    - Kubernetes vCluster Support
+    - Rootless Container Support   
 
 - **kube-loxilb Support**: 
     - Kubernetes 1.30        
