@@ -1,4 +1,4 @@
-# Release Notes
+# Release Notes  (For major release milestones)   
 
 ## 0.7.0 beta (Aug, 2022)
 
