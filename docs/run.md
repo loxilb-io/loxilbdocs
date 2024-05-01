@@ -23,9 +23,6 @@ git clone --recurse-submodules https://github.com/loxilb-io/loxilb.git
 cd loxilb
 ./loxilb-ebpf/utils/mkllb_bpffs.sh
 make
-cd loxilb-ebpf/libbpf/src
-sudo make install
-cd -
 sudo ./loxilb 
 ```
 * Build and use loxicmd 
