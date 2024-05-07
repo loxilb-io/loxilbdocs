@@ -1,6 +1,6 @@
 ## Quick Start Guide -  K3s with LoxiLB "service-proxy" 
 
-This document will explain how to install a K3s cluster with loxilb in "service-proxy" mode alongside flannel networking (default for k3s). 
+This document will explain how to install a K3s cluster with [loxilb](https://github.com/loxilb-io/loxilb) in "service-proxy" mode alongside flannel networking (default for k3s). 
 
 ### What is service-proxy mode?
 <b>service-proxy</b> mode is where kubernetes kube-proxy services are entirely replaced by loxilb for better performance. Users can continue to use their existing networking providers while enjoying streamlined performance and superior feature-set provided by loxilb. 
