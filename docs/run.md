@@ -11,7 +11,7 @@ export PATH="${PATH}:/usr/local/go/bin"
 
 * Install standard packages
 ```
-sudo apt install -y clang llvm libelf-dev gcc-multilib libpcap-dev vim net-tools linux-tools-$(uname -r) elfutils dwarves git libbsd-dev bridge-utils wget unzip build-essential bison flex iproute2
+sudo apt install -y clang llvm libelf-dev gcc-multilib libpcap-dev vim net-tools linux-tools-$(uname -r) elfutils dwarves git libbsd-dev bridge-utils wget unzip build-essential bison flex iproute2 curl
 ```
 * Install loxilb eBPF loader tools
 ```
