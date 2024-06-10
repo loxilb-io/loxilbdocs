@@ -355,10 +355,10 @@ sudo cp -f loxicmd /usr/local/sbin/
 <ul>
 <li>Release build Image   </li>
 </ul>
-<pre><code>docker pull ghcr.io/loxilb-io/loxilb:v0.9.2
+<pre><code>docker pull ghcr.io/loxilb-io/loxilb:v0.9.4
 </code></pre>
 <p>To run loxilb docker, we can use the following commands :</p>
-<pre><code>docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit --pid=host --cgroupns=host -v /dev/log:/dev/log --name loxilb ghcr.io/loxilb-io/loxilb:latest
+<pre><code>docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --name loxilb ghcr.io/loxilb-io/loxilb:latest
 </code></pre>
 <p>To drop in to a shell of loxilb doker :</p>
 <pre><code>docker exec -it loxilb bash
@@ -379,7 +379,8 @@ docker network connect llbnet2 loxilb --ip=172.30.2.195
 <p><b>Note:</b>    </p>
 <ul>
 <li>While working with macvlan interfaces, the parent/underlying interface should be put in promiscous mode     </li>
-<li>One can further use docker-compose to automate attaching multiple networks to loxilb docker or use --net=host as per requirement    </li>
+<li>One can further use docker-compose to automate attaching multiple networks to loxilb docker or use --net=host as per requirement</li>
+<li>To use local socket policy or eBPF sockmap related features, we need to use <code>--pid=host --cgroupns=host</code> as additional arguments to docker run.   </li>
 <li>To create a simple and self-contained topology for testing loxilb, users can follow this <a href="../simple_topo/">guide</a>   </li>
 <li>If loxilb docker is in the same node as the app/workload docker, it is advised that "tx checksum offload" inside app/workload docker is turned off for sctp load-balancing to work properly   </li>
 </ul>
