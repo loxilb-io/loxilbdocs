@@ -297,7 +297,7 @@ nginx-lb1    LoadBalancer   10.100.244.105   llbanyextip   55005:30055/TCP   24s
 - Try to access the service from outside (internet). We can use any public IP associated with any of the loxilb ec2 instances
 
 ```
-$ curl http://3.37.191.116:55005  
+$ curl http://3.37.191.xx:55005  
 <!DOCTYPE html>
 <html>
 <head>
