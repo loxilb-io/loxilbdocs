@@ -365,7 +365,7 @@ nginx-lb1    LoadBalancer   10.100.63.175   llbanyextip   55002:32704/TCP   4hs
 - Try to access the service from outside (internet). We can use any public IP associated with the cluster (worker) nodes
 
 ```
-$ curl http://43.201.76.110:55002 
+$ curl http://43.201.76.xx:55002 
 <!DOCTYPE html>
 <html>
 <head>
