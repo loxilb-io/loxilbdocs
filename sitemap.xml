@@ -56,6 +56,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://loxilb-io.github.io/loxilbdocs/eks-external/</loc>
+         <lastmod>2024-06-18</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://loxilb-io.github.io/loxilbdocs/eks-incluster/</loc>
          <lastmod>2024-06-18</lastmod>
          <changefreq>daily</changefreq>
