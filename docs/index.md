@@ -96,13 +96,13 @@ For deploying telco-cloud with cloud-native functions, loxilb can be used as a S
 - [K3s : loxilb with calico](k3s_quick_start_calico.md)
 - [K3s : loxilb with cilium](quick_start_with_cilium.md)
 - [K0s : loxilb with default kube-router networking](k0s_quick_start.md)
-- [eks: loxilb ext-mode](eks-external.md)    
+- [EKS : loxilb ext-mode](eks-external.md)    
 
 #### loxilb as in-cluster pod   
 - [K3s : loxilb in-cluster mode](k3s_quick_start_incluster.md)
 - [K0s : loxilb in-cluster mode](k0s_quick_start_incluster.md)
 - [MicroK8s : loxilb in-cluster mode](microk8s_quick_start_incluster.md)
-- [eks: loxilb in-cluster mode](eks-external.md)     
+- [EKS : loxilb in-cluster mode](eks-external.md)     
 
 #### loxilb as service-proxy
 - [K3s : loxilb service-proxy with flannel](service-proxy-flannel.md)
