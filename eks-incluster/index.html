@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/eks-incluster/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Eks incluster - loxilb v0.9.4</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <link href="../stylesheets/extra.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-21G7NBL2BN"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', "G-21G7NBL2BN");
+        </script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">loxilb v0.9.4</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">How-To Guides</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../kube-loxilb/" class="dropdown-item">How-To - kube-loxilb</a>
+</li>
+                                    
+<li>
+    <a href="../service-zones/" class="dropdown-item">How-To - service-group zones</a>
+</li>
+                                    
+<li>
+    <a href="../ha-deploy/" class="dropdown-item">How-To - high-availability with loxilb</a>
+</li>
+                                    
+<li>
+    <a href="../run/" class="dropdown-item">How-To - build/run</a>
+</li>
+                                    
+<li>
+    <a href="../standalone/" class="dropdown-item">How-To - loxilb in standalone mode</a>
+</li>
+                                    
+<li>
+    <a href="../cmd/" class="dropdown-item">How-To - cmd configuration</a>
+</li>
+                                    
+<li>
+    <a href="../debugging/" class="dropdown-item">How-To - debugging</a>
+</li>
+                                    
+<li>
+    <a href="../ext-ep/" class="dropdown-item">How-To - access end-points outside K8s</a>
+</li>
+                                    
+<li>
+    <a href="../k3s-multi-master/" class="dropdown-item">How-To - Deploy multi-server K3s HA with loxilb</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Getting started</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../k3s_quick_start_flannel/" class="dropdown-item">ext-cluster pod - K3s/loxilb with default flannel</a>
+</li>
+                                    
+<li>
+    <a href="../k3s_quick_start_calico/" class="dropdown-item">ext-cluster pod - K3s/loxilb with calico</a>
+</li>
+                                    
+<li>
+    <a href="../quick_start_with_cilium/" class="dropdown-item">ext-cluster pod - K3s/loxilb with cilium</a>
+</li>
+                                    
+<li>
+    <a href="../k0s_quick_start/" class="dropdown-item">ext-cluster pod - K0s/loxilb with kube-router</a>
+</li>
+                                    
+<li>
+    <a href="../k3s_quick_start_incluster/" class="dropdown-item">in-cluster pod - K3s/loxilb in-cluster mode</a>
+</li>
+                                    
+<li>
+    <a href="../k0s_quick_start_incluster/" class="dropdown-item">in-cluster pod - K0s/loxilb in-cluster mode</a>
+</li>
+                                    
+<li>
+    <a href="../microk8s_quick_start_incluster/" class="dropdown-item">in-cluster pod - MicroK8s/loxilb in-cluster mode</a>
+</li>
+                                    
+<li>
+    <a href="../service-proxy-flannel/" class="dropdown-item">service-proxy - K3s/loxilb service-proxy with flannel</a>
+</li>
+                                    
+<li>
+    <a href="../service-proxy-calico/" class="dropdown-item">service-proxy - K3s/loxilb service-proxy with calico</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Knowledge Base</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../ebpf/" class="dropdown-item">What is eBPF</a>
+</li>
+                                    
+<li>
+    <a href="../lb/" class="dropdown-item">What is k8s service - load-balancer</a>
+</li>
+                                    
+<li>
+    <a href="../arch/" class="dropdown-item">Architecture in brief</a>
+</li>
+                                    
+<li>
+    <a href="../code/" class="dropdown-item">Code organization</a>
+</li>
+                                    
+<li>
+    <a href="../loxilbebpf/" class="dropdown-item">eBPF internals</a>
+</li>
+                                    
+<li>
+    <a href="../nat/" class="dropdown-item">NAT Modes of loxilb</a>
+</li>
+                                    
+<li>
+    <a href="../lb-algo/" class="dropdown-item">loxilb load-balancer algorithms</a>
+</li>
+                                    
+<li>
+    <a href="../cmd-dev/" class="dropdown-item">Developer's guide to loxicmd</a>
+</li>
+                                    
+<li>
+    <a href="../api-dev/" class="dropdown-item">Developer's guide to loxilb API</a>
+</li>
+                                    
+<li>
+    <a href="../api/" class="dropdown-item">loxilb api-reference</a>
+</li>
+                                    
+<li>
+    <a href="../perf/" class="dropdown-item">Performance Report</a>
+</li>
+                                    
+<li>
+    <a href="../roadmap/" class="dropdown-item">Development Roadmap</a>
+</li>
+                                    
+<li>
+    <a href="../contribute/" class="dropdown-item">Contribution Guide</a>
+</li>
+                                    
+<li>
+    <a href="../requirements/" class="dropdown-item">System Requirements</a>
+</li>
+                                    
+<li>
+    <a href="../faq/" class="dropdown-item">Frequenctly Asked Questions- FAQs</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Blogs</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/loxilb-cluster-networking-elevating-k8s-networking-capabilities" class="dropdown-item">K8s - Elevating Cluster Networking</a>
+</li>
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/state-synchronization-of-ebpf-maps-using-go-a-tale-of-two-frameworks" class="dropdown-item">eBPF - Map Sync using Go</a>
+</li>
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/k8s-nuances-of-in-cluster-external-service-lb-with-loxilb" class="dropdown-item">K8s in-cluster service LB with LoxiLB</a>
+</li>
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/k8s-introducing-sctp-multihoming-functionality-with-loxilb" class="dropdown-item">K8s - Introducing SCTP Multihoming with LoxiLB</a>
+</li>
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/loxilb-anycast-service-load-balancing-with-high-availability" class="dropdown-item">Hyperscale anycast load balancing with HA</a>
+</li>
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/loxilb-load-balancer-setup-on-eks" class="dropdown-item">Getting started with loxilb on Amazon EKS</a>
+</li>
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/k8s-deploying-hitless-and-ha-load-balancing" class="dropdown-item">K8s - Deploying hitless Load-Balancing</a>
+</li>
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/k8s-exposing-ipv4-services-externally-as-ipv6" class="dropdown-item">Ipv6 migration in Kubernetes made easy</a>
+</li>
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/running-loxilb-on-aws-graviton2-based-ec2-instance" class="dropdown-item">Load-balancer Perf comparison on Amazon Graviton2</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Community Posts</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="https://futuredon.medium.com/5g-sctp-loadbalancer-using-loxilb-b525198a9103" class="dropdown-item">5G SCTP LoadBalancer Using loxilb</a>
+</li>
+            
+<li>
+    <a href="https://futuredon.medium.com/5g-uplink-classifier-using-loxilb-7593a4d66f4c" class="dropdown-item">5G Uplink Classifier Using loxilb</a>
+</li>
+            
+<li>
+    <a href="https://cloudybytes.medium.com/k3s-using-loxilb-as-external-service-lb-2ea4ce61e159" class="dropdown-item">K3s - Using loxilb as external service lb</a>
+</li>
+            
+<li>
+    <a href="https://medium.com/@ben0978327139/5g-sctp-loadbalancer-using-loxilb-applying-on-free5gc-b5c05bb723f0" class="dropdown-item">5G SCTP LoadBalancer Using LoxiLB Applying on free5GC</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="2"><a href="#create-an-eks-cluster-with-ingress-access-enabled-by-loxilb-incluster-mode" class="nav-link">Create an EKS cluster with ingress access enabled by loxilb (incluster-mode)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#deploy-loxilb-as-a-daemon-set" class="nav-link">Deploy loxilb as a daemon-set</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#deploy-loxilbs-operator-kube-loxilb" class="nav-link">Deploy loxilb's operator (kube-loxilb)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#install-a-test-service" class="nav-link">Install a test service</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#test-the-service" class="nav-link">Test the service</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#restricting-loxilb-service-for-a-local-zone-node-group" class="nav-link">Restricting loxilb service for a local-zone node-group</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h2 id="create-an-eks-cluster-with-ingress-access-enabled-by-loxilb-incluster-mode">Create an EKS cluster with ingress access enabled by loxilb (incluster-mode)</h2>
+<p>This document details the steps to create an EKS cluster and allow external ingress access using loxilb running in incluster mode. loxilb will run as a daemon-set in all the worker nodes while loxilb's operator, kube-loxilb, will run as a replica-set.</p>
+<p>Although loxilb has built-in support for associating (floating) AWS EIPs to private subnet addresses of EC2 instances, this is not considered in this particular scenario. But if it is needed, the functionality can be enabled by changing a few parameters in yaml config files.</p>
+<h3 id="create-eks-cluster-with-4-worker-nodes-from-a-bastion-node-inside-your-vpc">Create EKS cluster with 4 worker nodes from a bastion node inside your VPC</h3>
+<ul>
+<li>It is assumed that aws-cli, kubectl and eksctl are installed in a bastion node</li>
+</ul>
+<pre><code>$ eksctl create cluster --version 1.24 --name loxilb-demo --vpc-nat-mode Single --region ap-northeast-2 --node-type t3.small --nodes 4 --with-oidc --managed
+</code></pre>
+<ul>
+<li>Create kube config for kubectl access </li>
+</ul>
+<pre><code>$ aws eks update-kubeconfig --region ap-northeast-2 --name loxilb-demo
+</code></pre>
+<ul>
+<li>Double confirm the cluster created </li>
+</ul>
+<pre><code>$ kubectl get pods -A
+NAMESPACE     NAME                       READY   STATUS    RESTARTS   AGE
+kube-system   aws-node-2fpm4             2/2     Running   0          14m
+kube-system   aws-node-6vhlr             2/2     Running   0          14m
+kube-system   aws-node-9kzb2             2/2     Running   0          14m
+kube-system   aws-node-vvkq5             2/2     Running   0          14m
+kube-system   coredns-5ff5b8d45c-gj9kj   1/1     Running   0          21m
+kube-system   coredns-5ff5b8d45c-p64fd   1/1     Running   0          21m
+kube-system   kube-proxy-5j9gf           1/1     Running   0          14m
+kube-system   kube-proxy-5tm8w           1/1     Running   0          14m
+kube-system   kube-proxy-894k9           1/1     Running   0          14m
+kube-system   kube-proxy-xgfb8           1/1     Running   0          14m
+</code></pre>
+<h2 id="deploy-loxilb-as-a-daemon-set">Deploy loxilb as a daemon-set</h2>
+<ul>
+<li>Create a file loxilb.yml with the following contents</li>
+</ul>
+<pre><code>apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: loxilb-lb
+  namespace: kube-system
+spec:
+  selector:
+    matchLabels:
+      app: loxilb-app
+  template:
+    metadata:
+      name: loxilb-lb
+      labels:
+        app: loxilb-app
+    spec:
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
+      containers:
+      - name: loxilb-app
+        image: &quot;ghcr.io/loxilb-io/loxilb:latest&quot;
+        imagePullPolicy: Always
+        command: [ &quot;/root/loxilb-io/loxilb/loxilb&quot;, &quot;--egr-hooks&quot;, &quot;--blacklist=cni[0-9a-z]|veth.|flannel.|eni.&quot; ]
+        ports:
+        - containerPort: 11111
+        - containerPort: 179
+        securityContext:
+          privileged: true
+          capabilities:
+            add:
+              - SYS_ADMIN
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: loxilb-lb-service
+  namespace: kube-system
+spec:
+  clusterIP: None
+  selector:
+    app: loxilb-app
+  ports:
+  - name: loxilb-app
+    port: 11111
+    targetPort: 11111
+    protocol: TCP
+  - name: loxilb-app-bgp
+    port: 179
+    targetPort: 179
+    protocol: TCP
+</code></pre>
+<ul>
+<li>Deploy loxilb</li>
+</ul>
+<pre><code>$ kubectl apply -f  loxilb.yml
+daemonset.apps/loxilb-lb created
+service/loxilb-lb-service created
+
+</code></pre>
+<ul>
+<li>Double confirm loxilb pods are running properly as a daemonset</li>
+</ul>
+<pre><code>$ kubectl get pods -A
+NAMESPACE     NAME                       READY   STATUS    RESTARTS   AGE
+kube-system   aws-node-2fpm4             2/2     Running   0          19m
+kube-system   aws-node-6vhlr             2/2     Running   0          19m
+kube-system   aws-node-9kzb2             2/2     Running   0          19m
+kube-system   aws-node-vvkq5             2/2     Running   0          19m
+kube-system   coredns-5ff5b8d45c-gj9kj   1/1     Running   0          26m
+kube-system   coredns-5ff5b8d45c-p64fd   1/1     Running   0          26m
+kube-system   kube-proxy-5j9gf           1/1     Running   0          19m
+kube-system   kube-proxy-5tm8w           1/1     Running   0          19m
+kube-system   kube-proxy-894k9           1/1     Running   0          19m
+kube-system   kube-proxy-xgfb8           1/1     Running   0          19m
+kube-system   loxilb-lb-7s45t            1/1     Running   0          18s
+kube-system   loxilb-lb-fp6nv            1/1     Running   0          18s
+kube-system   loxilb-lb-pbzql            1/1     Running   0          18s
+kube-system   loxilb-lb-zzth8            1/1     Running   0          18s
+</code></pre>
+<h2 id="deploy-loxilbs-operator-kube-loxilb">Deploy loxilb's operator (kube-loxilb)</h2>
+<ul>
+<li>Create a file kube-loxilb.yml with the following contents</li>
+</ul>
+<pre><code>---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: kube-loxilb
+  namespace: kube-system
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: kube-loxilb
+rules:
+  - apiGroups:
+      - &quot;&quot;
+    resources:
+      - nodes
+    verbs:
+      - get
+      - watch
+      - list
+      - patch
+  - apiGroups:
+      - &quot;&quot;
+    resources:
+      - pods
+    verbs:
+      - get
+      - watch
+      - list
+      - patch
+  - apiGroups:
+      - &quot;&quot;
+    resources:
+      - endpoints
+      - services
+      - services/status
+    verbs:
+      - get
+      - watch
+      - list
+      - patch
+      - update
+  - apiGroups:
+      - gateway.networking.k8s.io
+    resources:
+      - gatewayclasses
+      - gatewayclasses/status
+      - gateways
+      - gateways/status
+      - tcproutes
+      - udproutes
+    verbs: [&quot;get&quot;, &quot;watch&quot;, &quot;list&quot;, &quot;patch&quot;, &quot;update&quot;]
+  - apiGroups:
+      - discovery.k8s.io
+    resources:
+      - endpointslices
+    verbs:
+      - get
+      - watch
+      - list
+  - apiGroups:
+      - authentication.k8s.io
+    resources:
+      - tokenreviews
+    verbs:
+      - create
+  - apiGroups:
+      - authorization.k8s.io
+    resources:
+      - subjectaccessreviews
+    verbs:
+      - create
+  - apiGroups:
+      - bgppeer.loxilb.io
+    resources:
+      - bgppeerservices
+    verbs:
+      - get
+      - watch
+      - list
+      - create
+      - update
+      - delete
+
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: kube-loxilb
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: kube-loxilb
+subjects:
+  - kind: ServiceAccount
+    name: kube-loxilb
+    namespace: kube-system
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kube-loxilb
+  namespace: kube-system
+  labels:
+    app: kube-loxilb-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kube-loxilb-app
+  template:
+    metadata:
+      labels:
+        app: kube-loxilb-app
+    spec:
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
+      tolerations:
+        # Mark the pod as a critical add-on for rescheduling.
+        - key: CriticalAddonsOnly
+          operator: Exists
+      priorityClassName: system-node-critical
+      serviceAccountName: kube-loxilb
+      terminationGracePeriodSeconds: 0
+      containers:
+      - name: kube-loxilb
+        image: ghcr.io/loxilb-io/kube-loxilb:latest
+        imagePullPolicy: Always
+        command:
+        - /bin/kube-loxilb
+        args:
+        - --externalCIDR=0.0.0.0/32
+        - --setLBMode=5
+        #- --setRoles:0.0.0.0
+        resources:
+          requests:
+            cpu: &quot;100m&quot;
+            memory: &quot;50Mi&quot;
+          limits:
+            cpu: &quot;100m&quot;
+            memory: &quot;50Mi&quot;
+        securityContext:
+          privileged: true
+          capabilities:
+            add: [&quot;NET_ADMIN&quot;, &quot;NET_RAW&quot;]
+</code></pre>
+<h4 id="note-externalcidr-args-can-be-set-to-any-public-ip-address-via-which-any-of-the-worker-nodes-can-be-accessed-it-can-be-also-set-to-simply-000032-which-means-lb-will-be-performed-on-any-of-the-nodes-where-loxilb-runs-the-decision-of-which-loxilb-nodeinstance-will-be-chosen-as-ingress-in-this-case-can-be-done-by-route53dns">Note: --externalCIDR args can be set to any Public IP address via which any of the worker nodes can be accessed. It can be also set to simply 0.0.0.0/32 which means LB will be performed on any of the nodes where loxilb runs. The decision of which loxilb node/instance will be chosen as ingress in this case can be done by Route53/DNS.</h4>
+<ul>
+<li>Deploy kube-loxilb to EKS cluster</li>
+</ul>
+<pre><code>$ kubectl apply -f  kube-loxilb.yml
+serviceaccount/kube-loxilb created
+clusterrole.rbac.authorization.k8s.io/kube-loxilb created
+deployment.apps/kube-loxilb created
+</code></pre>
+<ul>
+<li>Check the state of the EKS cluster</li>
+</ul>
+<pre><code>$ kubectl get pods -A 
+NAMESPACE     NAME                          READY   STATUS    RESTARTS   AGE
+kube-system   aws-node-2fpm4                2/2     Running   0          35m
+kube-system   aws-node-6vhlr                2/2     Running   0          35m
+kube-system   aws-node-9kzb2                2/2     Running   0          35m
+kube-system   aws-node-vvkq5                2/2     Running   0          35m
+kube-system   coredns-5ff5b8d45c-gj9kj      1/1     Running   0          42m
+kube-system   coredns-5ff5b8d45c-p64fd      1/1     Running   0          42m
+kube-system   kube-loxilb-c7cd4fccd-hjg8w   1/1     Running   0          116s
+kube-system   kube-proxy-5j9gf              1/1     Running   0          35m
+kube-system   kube-proxy-5tm8w              1/1     Running   0          35m
+kube-system   kube-proxy-894k9              1/1     Running   0          35m
+kube-system   kube-proxy-xgfb8              1/1     Running   0          35m
+kube-system   loxilb-lb-7s45t               1/1     Running   0          16m
+kube-system   loxilb-lb-fp6nv               1/1     Running   0          16m
+kube-system   loxilb-lb-pbzql               1/1     Running   0          16m
+kube-system   loxilb-lb-zzth8               1/1     Running   0          16m
+</code></pre>
+<h2 id="install-a-test-service">Install a test service</h2>
+<ul>
+<li>Create a file nginx.yml with the following contents:</li>
+</ul>
+<pre><code>apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-lb1
+spec:
+  externalTrafficPolicy: Local
+  loadBalancerClass: loxilb.io/loxilb
+  selector:
+    what: nginx-test
+  ports:
+    - port: 55002
+      targetPort: 80
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-test
+  labels:
+    what: nginx-test
+spec:
+  containers:
+    - name: nginx-test
+      image: nginx:stable
+      ports:
+        - containerPort: 80
+</code></pre>
+<ul>
+<li>Deploy test nginx service to EKS</li>
+</ul>
+<pre><code>$ kubectl apply -f nginx.yml
+service/nginx-lb1 created
+</code></pre>
+<ul>
+<li>Check the state of the EKS cluster</li>
+</ul>
+<pre><code>$ kubectl get pods -A 
+NAMESPACE     NAME                          READY   STATUS    RESTARTS   AGE
+default       nginx-test                    1/1     Running   0          50s
+kube-system   aws-node-2fpm4                2/2     Running   0          39m
+kube-system   aws-node-6vhlr                2/2     Running   0          39m
+kube-system   aws-node-9kzb2                2/2     Running   0          39m
+kube-system   aws-node-vvkq5                2/2     Running   0          39m
+kube-system   coredns-5ff5b8d45c-gj9kj      1/1     Running   0          46m
+kube-system   coredns-5ff5b8d45c-p64fd      1/1     Running   0          46m
+kube-system   kube-loxilb-c7cd4fccd-hjg8w   1/1     Running   0          6m13s
+kube-system   kube-proxy-5j9gf              1/1     Running   0          39m
+kube-system   kube-proxy-5tm8w              1/1     Running   0          39m
+kube-system   kube-proxy-894k9              1/1     Running   0          39m
+kube-system   kube-proxy-xgfb8              1/1     Running   0          39m
+kube-system   loxilb-lb-7s45t               1/1     Running   0          20m
+kube-system   loxilb-lb-fp6nv               1/1     Running   0          20m
+kube-system   loxilb-lb-pbzql               1/1     Running   0          20m
+kube-system   loxilb-lb-zzth8               1/1     Running   0          20m
+</code></pre>
+<ul>
+<li>Check the external service for service ingress (via loxilb)</li>
+</ul>
+<pre><code>$ kubectl get svc
+NAME         TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)           AGE
+kubernetes   ClusterIP      10.100.0.1      &lt;none&gt;        443/TCP           6h19m
+nginx-lb1    LoadBalancer   10.100.63.175   llbanyextip   55002:32704/TCP   4hs
+</code></pre>
+<h2 id="test-the-service">Test the service</h2>
+<ul>
+<li>Try to access the service from outside (internet). We can use any public IP associated with the cluster (worker) nodes</li>
+</ul>
+<pre><code>$ curl http://43.201.76.110:55002 
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Welcome to nginx!&lt;/title&gt;
+&lt;style&gt;
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Welcome to nginx!&lt;/h1&gt;
+&lt;p&gt;If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.&lt;/p&gt;
+
+&lt;p&gt;For online documentation and support please refer to
+&lt;a href=&quot;http://nginx.org/&quot;&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;
+Commercial support is available at
+&lt;a href=&quot;http://nginx.com/&quot;&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Thank you for using nginx.&lt;/em&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h4 id="note-we-would-need-to-make-sure-aws-security-groups-are-setup-properly-to-allow-access-for-ingress-traffic">Note - We would need to make sure AWS security groups are setup properly to allow access for ingress traffic.</h4>
+<h2 id="restricting-loxilb-service-for-a-local-zone-node-group">Restricting loxilb service for a local-zone node-group</h2>
+<p>For limiting loxilb services to a specific node group of a local-zone, we can use kubenetes node-labels to limit the endpoints of that service to that node-group only. For example, if all the nodes in a local-zone node-groups have a label <code>node.kubernetes.io/local-zone2=true</code>, then we can create a loxilb service with a following annotation :</p>
+<pre><code>apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-lb1
+spec:
+  externalTrafficPolicy: Local
+  loxilb.io/nodelabel: &quot;node.kubernetes.io/local-zone2&quot;
+  loadBalancerClass: loxilb.io/loxilb
+  selector:
+    what: nginx-test
+  ports:
+    - port: 55002
+      targetPort: 80
+  type: LoadBalancer
+</code></pre>
+<p>This will make sure that loxilb will pick only the endpoint nodes which belong to that node-group only.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+
+        <div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
