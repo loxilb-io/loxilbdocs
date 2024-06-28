@@ -12,7 +12,7 @@ The active loxilb1 instance is additionally assigned a secondary network interfa
 
 loxilb1 associates this *192.168.248.254* secondary IP with an user-specified public ElasticIP address. When a user accesses the EKS service externally using an ElasticIP address, this traffic is NATed to the 192.168.248.254 IP and delivered to the active loxilb instance. The active loxilb instance can then load balance the traffic to the appropriate endpoint in EKS.
 
-![image](https://gist.github.com/assets/111065900/b4b9cb48-83c2-4a07-96f3-950dd17efa00)
+![image](https://github.com/loxilb-io/loxilbdocs/assets/111065900/40ce1e2a-06a0-4e80-9ce7-22491cd3b547)
 
 If loxilb1 goes down due to any reason, the status of loxilb2, which was backup previously, changes to active.
 
@@ -20,7 +20,7 @@ During this transition, loxilb2 instance is assigned a new loxil-eni secondary n
 
 The ElasticIP used by the user is also (re)associated to the 192.168.248.254 private IP address of the "new" active instance. This makes it possible to maintain active sessions even during failover or situations where there is a need to upgrade orginal master instance etc.
 
-![image](https://gist.github.com/assets/111065900/f267d422-703a-4f50-b743-599df0fcf495)
+![image](https://github.com/loxilb-io/loxilbdocs/assets/111065900/c6b5e454-1830-4c67-b2f5-ccb7895fa93d)
 
 To summarize, when a failover occurs the public ElasticIP address is always associated to the active LoxiLB instance, so users who were previously accessing EKS using the same ElasticIP address can continue to do so without being affected by any node failure or other issues.
 
@@ -52,21 +52,21 @@ LoxiLB instances will be created each located in a different AZ. Therefore, the 
 
 First, create a subnet loxilb-subnet-a in ap-northeast-3a with the subnet 192.168.218.0/24.
 
-![image](https://gist.github.com/assets/111065900/351b5c21-af7a-4989-99fc-e225d5615a6b)
+![image](https://github.com/loxilb-io/loxilbdocs/assets/111065900/8c69233b-e525-4358-92d9-e4f2151f436b)
 
 Similarly, create a subnet loxilb-subnet-b in ap-northeast-3b with the subnet 192.168.228.0/24.
 
-![image](https://gist.github.com/assets/111065900/377e610f-be9c-41bf-a756-61a42d274ba2)
+![image](https://github.com/loxilb-io/loxilbdocs/assets/111065900/7cb5b0e7-a9d0-487b-8a53-d349b7f6eb49)
 
 After creating it, we can double check the "enable auto-assign public IPv4 address" setting so that interfaces connected to each subnet are automatically assigned a public IP.
 
-![image](https://gist.github.com/assets/111065900/48c9098c-ab22-4925-9e5e-9f57387b9781)
+![image](https://github.com/loxilb-io/loxilbdocs/assets/111065900/c814099a-97bd-479f-8434-4f0ef7b19ce1)
 
 #### AWS Route table
 
 Newly created subnets automatically use the default route table. We will connect the default route table to the internet gateway so that users can access the LoxiLB instance from outside.
 
-![image](https://gist.github.com/assets/111065900/a13bfc69-9525-440b-beb7-9070ab7d8455)
+![image](https://github.com/loxilb-io/loxilbdocs/assets/111065900/5171aec4-e01f-4a08-b41b-0835dcda1ed2)
 
 #### LoxiLB IAM Settings
 
@@ -91,21 +91,21 @@ We will create a role with the following IAM policy for LoxiLB EC2 instances.
 
 We will create two LoxiLB instances for this example and connect the instances wits subnets A and B created above.
 
-![image](https://gist.github.com/assets/111065900/529edae4-ab0f-4ac8-bf1d-e342e76105c4)
+![image](https://github.com/loxilb-io/loxilbdocs/assets/111065900/11745542-8fff-4bcd-b296-7801c60eb45b)
 
 And specify to use the IAM role created above in the IAM instance profile of the Advanced details settings.
 
-![image](https://gist.github.com/assets/111065900/850421b7-2f3f-416d-bad7-ba35cdbd63fe)
+![image](https://github.com/loxilb-io/loxilbdocs/assets/111065900/3aaa62bc-26ae-4ad2-83c6-960ed5ee11ca)
 
 After the instance is created, go to the Action → networking → Change Source /destination check menu in the instance menu and disable this check.  Since LoxiLB is a load balancer, this configration must be disabled for LoxiLB to operate properly.
 
-![image](https://gist.github.com/assets/111065900/eafdc9ad-b53c-453b-ae4e-0f38d112dc19)
+![image](https://github.com/loxilb-io/loxilbdocs/assets/111065900/4a25d007-d103-4dcf-b586-02415a66f333)
 
 #### Create Elastic IP
 
 Next we will create an Elastic IP to use to access the service from outside.
 
-![image](https://gist.github.com/assets/111065900/0c8c3c5f-c21b-4b22-852d-8424a4fcd698)
+![image](https://github.com/loxilb-io/loxilbdocs/assets/111065900/43c43753-d30c-46a1-97d0-bfd92a76a293)
 
 For this example, the IP ```13.208.x.x``` was assigned. The Elastic IP is used when deploying kube-loxilb, and is automatically associated to the LoxiLB master instance when configuring LoxiLB HA without any user intervention.
 
@@ -236,7 +236,7 @@ nginx-lb1    LoadBalancer   10.100.178.3   llb-13.208.X.X      55002:32403/TCP  
 ```
 We can now access the service from a host client :
 
-![image](https://gist.github.com/assets/111065900/4e821d85-73d8-4e70-9e49-e634ce2a84e4)
+![image](https://github.com/loxilb-io/loxilbdocs/assets/111065900/8ea03fe2-5c28-4f04-8600-9c407278debf)
 
 #### Testing HA functionality
 
@@ -249,9 +249,9 @@ ubuntu@ip-192-168-228-108:~$
 
 Even after stopping the masterLB, the service can be accessed without interruption :
 
-![image](https://gist.github.com/assets/111065900/4e821d85-73d8-4e70-9e49-e634ce2a84e4)
+![image](https://github.com/loxilb-io/loxilbdocs/assets/111065900/bcc28acd-8dc7-4a00-a884-95c572714b50)
 
 During failover, a secondary interface is created on the *new* master instance, and you can see that the ElasticIP is also associated to the new interface.
 
-![loxilb-secondary-eni](https://gist.github.com/assets/111065900/5be5746e-0164-4f8b-80c8-369092dcf6d5)
+![image](https://github.com/loxilb-io/loxilbdocs/assets/111065900/7a5c10ba-6456-49d5-8756-c6e630b3e639)
 
