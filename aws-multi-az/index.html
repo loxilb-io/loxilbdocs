@@ -317,14 +317,14 @@
 <p>After configuring EKS, it's time to configure the LoxiLB instance. Let's create the subnet that each of the LoxiLB instances will use.</p>
 <p>LoxiLB instances will be created each located in a different AZ. Therefore, the subnets to be used by the instances will also be created in different AZs: AZ-a and AZ-b.</p>
 <p>First, create a subnet loxilb-subnet-a in ap-northeast-3a with the subnet 192.168.218.0/24.</p>
-<p><img alt="image" src="https://github.com/loxilb-io/loxilbdocs/assets/111065900/8c69233b-e525-4358-92d9-e4f2151f436b" /></p>
+<p><img alt="image" src="https://github.com/loxilb-io/loxilbdocs/assets/111065900/33e24772-df26-4344-a970-6215cebf26d6" /></p>
 <p>Similarly, create a subnet loxilb-subnet-b in ap-northeast-3b with the subnet 192.168.228.0/24.</p>
-<p><img alt="image" src="https://github.com/loxilb-io/loxilbdocs/assets/111065900/7cb5b0e7-a9d0-487b-8a53-d349b7f6eb49" /></p>
-<p>After creating it, we can double check the "enable auto-assign public IPv4 address" setting so that interfaces connected to each subnet are automatically assigned a public IP.</p>
-<p><img alt="image" src="https://github.com/loxilb-io/loxilbdocs/assets/111065900/c814099a-97bd-479f-8434-4f0ef7b19ce1" /></p>
+<p><img alt="image" src="https://github.com/loxilb-io/loxilbdocs/assets/111065900/997b7754-0c98-42f2-a877-ab89b40f6522" /></p>
+<p>After creating it, we can double check the "Enable auto-assign public IPv4 address" setting so that interfaces connected to each subnet are automatically assigned a public IP.</p>
+<p><img alt="image" src="https://github.com/loxilb-io/loxilbdocs/assets/111065900/da20de2a-8cc0-4d30-ae3d-e0ff6ca4dd0e" /></p>
 <h4 id="aws-route-table">AWS Route table</h4>
 <p>Newly created subnets automatically use the default route table. We will connect the default route table to the internet gateway so that users can access the LoxiLB instance from outside.</p>
-<p><img alt="image" src="https://github.com/loxilb-io/loxilbdocs/assets/111065900/5171aec4-e01f-4a08-b41b-0835dcda1ed2" /></p>
+<p><img alt="image" src="https://github.com/loxilb-io/loxilbdocs/assets/111065900/6ad5fa46-63e6-4ea0-a974-81606a62a842" /></p>
 <h4 id="loxilb-iam-settings">LoxiLB IAM Settings</h4>
 <p>LoxiLB instances require permission to access the AWS EC2 API to associate ElasticIPs and create secondary interfaces and subnets.</p>
 <p>We will create a role with the following IAM policy for LoxiLB EC2 instances.</p>
@@ -341,11 +341,11 @@
 </code></pre>
 <h4 id="loxilb-ec2-instance-creation">LoxiLB EC2 instance creation</h4>
 <p>We will create two LoxiLB instances for this example and connect the instances wits subnets A and B created above.</p>
-<p><img alt="image" src="https://github.com/loxilb-io/loxilbdocs/assets/111065900/11745542-8fff-4bcd-b296-7801c60eb45b" /></p>
+<p><img alt="image" src="https://github.com/loxilb-io/loxilbdocs/assets/111065900/732c6b66-33b3-4927-8864-abf03377042b" /></p>
 <p>And specify to use the IAM role created above in the IAM instance profile of the Advanced details settings.</p>
-<p><img alt="image" src="https://github.com/loxilb-io/loxilbdocs/assets/111065900/3aaa62bc-26ae-4ad2-83c6-960ed5ee11ca" /></p>
+<p><img alt="image" src="https://github.com/loxilb-io/loxilbdocs/assets/111065900/bdbfa17d-69ea-4eba-9fec-ae6481f6c971" /></p>
 <p>After the instance is created, go to the Action → networking → Change Source /destination check menu in the instance menu and disable this check.  Since LoxiLB is a load balancer, this configration must be disabled for LoxiLB to operate properly.</p>
-<p><img alt="image" src="https://github.com/loxilb-io/loxilbdocs/assets/111065900/4a25d007-d103-4dcf-b586-02415a66f333" /></p>
+<p><img alt="image" src="https://github.com/loxilb-io/loxilbdocs/assets/111065900/bd958cea-684e-431a-bf7e-d0d8c6b5ee14" /></p>
 <h4 id="create-elastic-ip">Create Elastic IP</h4>
 <p>Next we will create an Elastic IP to use to access the service from outside.</p>
 <p><img alt="image" src="https://github.com/loxilb-io/loxilbdocs/assets/111065900/43c43753-d30c-46a1-97d0-bfd92a76a293" /></p>
