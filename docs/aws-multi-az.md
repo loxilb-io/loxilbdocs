@@ -52,21 +52,21 @@ LoxiLB instances will be created each located in a different AZ. Therefore, the 
 
 First, create a subnet loxilb-subnet-a in ap-northeast-3a with the subnet 192.168.218.0/24.
 
-![image](https://github.com/loxilb-io/loxilbdocs/assets/111065900/8c69233b-e525-4358-92d9-e4f2151f436b)
+![image](https://github.com/loxilb-io/loxilbdocs/assets/111065900/33e24772-df26-4344-a970-6215cebf26d6)
 
 Similarly, create a subnet loxilb-subnet-b in ap-northeast-3b with the subnet 192.168.228.0/24.
 
-![image](https://github.com/loxilb-io/loxilbdocs/assets/111065900/7cb5b0e7-a9d0-487b-8a53-d349b7f6eb49)
+![image](https://github.com/loxilb-io/loxilbdocs/assets/111065900/997b7754-0c98-42f2-a877-ab89b40f6522)
 
-After creating it, we can double check the "enable auto-assign public IPv4 address" setting so that interfaces connected to each subnet are automatically assigned a public IP.
+After creating it, we can double check the "Enable auto-assign public IPv4 address" setting so that interfaces connected to each subnet are automatically assigned a public IP.
 
-![image](https://github.com/loxilb-io/loxilbdocs/assets/111065900/c814099a-97bd-479f-8434-4f0ef7b19ce1)
+![image](https://github.com/loxilb-io/loxilbdocs/assets/111065900/da20de2a-8cc0-4d30-ae3d-e0ff6ca4dd0e)
 
 #### AWS Route table
 
 Newly created subnets automatically use the default route table. We will connect the default route table to the internet gateway so that users can access the LoxiLB instance from outside.
 
-![image](https://github.com/loxilb-io/loxilbdocs/assets/111065900/5171aec4-e01f-4a08-b41b-0835dcda1ed2)
+![image](https://github.com/loxilb-io/loxilbdocs/assets/111065900/6ad5fa46-63e6-4ea0-a974-81606a62a842)
 
 #### LoxiLB IAM Settings
 
@@ -91,15 +91,15 @@ We will create a role with the following IAM policy for LoxiLB EC2 instances.
 
 We will create two LoxiLB instances for this example and connect the instances wits subnets A and B created above.
 
-![image](https://github.com/loxilb-io/loxilbdocs/assets/111065900/11745542-8fff-4bcd-b296-7801c60eb45b)
+![image](https://github.com/loxilb-io/loxilbdocs/assets/111065900/732c6b66-33b3-4927-8864-abf03377042b)
 
 And specify to use the IAM role created above in the IAM instance profile of the Advanced details settings.
 
-![image](https://github.com/loxilb-io/loxilbdocs/assets/111065900/3aaa62bc-26ae-4ad2-83c6-960ed5ee11ca)
+![image](https://github.com/loxilb-io/loxilbdocs/assets/111065900/bdbfa17d-69ea-4eba-9fec-ae6481f6c971)
 
 After the instance is created, go to the Action → networking → Change Source /destination check menu in the instance menu and disable this check.  Since LoxiLB is a load balancer, this configration must be disabled for LoxiLB to operate properly.
 
-![image](https://github.com/loxilb-io/loxilbdocs/assets/111065900/4a25d007-d103-4dcf-b586-02415a66f333)
+![image](https://github.com/loxilb-io/loxilbdocs/assets/111065900/bd958cea-684e-431a-bf7e-d0d8c6b5ee14)
 
 #### Create Elastic IP
 
