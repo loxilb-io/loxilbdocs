@@ -9,17 +9,10 @@ theme:
 
 nav:
   - Home: index.md
-  - How-To Guides:
-      - How-To - kube-loxilb: kube-loxilb.md
-      - How-To - service-group zones: service-zones.md
-      - How-To - high-availability with loxilb: ha-deploy.md
-      - How-To - build/run: run.md
-      - How-To - loxilb in standalone mode: standalone.md
-      - How-To - cmd configuration: cmd.md
-      - How-To - debugging: debugging.md
-      - How-To - access end-points outside K8s: ext-ep.md
-      - How-To - Deploy multi-server K3s HA with loxilb: k3s-multi-master.md
-  - Getting started:
+  - Architectural Considerations:
+      - Understanding loxilb deployment in K8s with kube-loxilb: kube-loxilb.md
+      - Understanding High-availability with loxilb: ha-deploy.md
+  - Getting Started:
       - ext-cluster pod - K3s/loxilb with default flannel: k3s_quick_start_flannel.md
       - ext-cluster pod - K3s/loxilb with calico: k3s_quick_start_calico.md
       - ext-cluster pod - K3s/loxilb with cilium: quick_start_with_cilium.md
@@ -29,6 +22,11 @@ nav:
       - in-cluster pod - MicroK8s/loxilb in-cluster mode: microk8s_quick_start_incluster.md
       - service-proxy - K3s/loxilb service-proxy with flannel: service-proxy-flannel.md
       - service-proxy - K3s/loxilb service-proxy with calico: service-proxy-calico.md
+      - loxilb in standalone mode: standalone.md
+  - Advanced Guides:
+      - How-To - service-group zones: service-zones.md
+      - How-To - access end-points outside K8s: ext-ep.md
+      - How-To - Deploy multi-server K3s HA with loxilb: k3s-multi-master.md
   - Knowledge Base:
       - What is eBPF: ebpf.md
       - What is k8s service - load-balancer: lb.md
@@ -37,6 +35,8 @@ nav:
       - eBPF internals: loxilbebpf.md
       - NAT Modes of loxilb: nat.md
       - loxilb load-balancer algorithms: lb-algo.md
+      - Manual steps to build/run: run.md
+      - Debugging loxilb: debugging.md
       - Developer's guide to loxicmd: cmd-dev.md
       - Developer's guide to loxilb API: api-dev.md
       - loxilb api-reference: api.md
