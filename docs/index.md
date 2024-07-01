@@ -77,18 +77,9 @@ For deploying telco-cloud with cloud-native functions, loxilb can be used as a S
 - Hitless failover support might be essential for mission-critical applications  
 - E2 might require SCTP-LB with OpenVPN bundled together
   
-## How-To Guides
-
-- [How-To : Deploy loxilb in K8s with kube-loxilb](kube-loxilb.md)
-- [How-To : Service-group zones with loxilb](service-zones.md)
-- [How-To : High-availability with loxilb](ha-deploy.md)
-- [How-To : Manual build/run](run.md)
-- [How-To : Run loxilb in standalone mode](standalone.md)
-- [How-To : loxicmd config](cmd.md)
-- [How-To : debug](debugging.md)
-- [How-To : Access end-points outside K8s](ext-ep.md)
-- [How-To : Deploy multi-server K3s HA with loxilb](k3s-multi-master.md)
-- [How-To : Deploy loxilb with multi-AZ HA support in AWS](aws-multi-az.md)
+## Architectural Considerations   
+- [Understanding loxilb modes and deployment in K8s with kube-loxilb](kube-loxilb.md)
+- [Understanding High-availability with loxilb](ha-deploy.md)
 
 ## Getting started with different K8s distributions & tools   
 
@@ -109,6 +100,15 @@ For deploying telco-cloud with cloud-native functions, loxilb can be used as a S
 - [K3s : loxilb service-proxy with flannel](service-proxy-flannel.md)
 - [K3s : loxilb service-proxy with calico](service-proxy-calico.md)
 
+#### loxilb in standalone mode
+- [Run loxilb standalone](standalone.md)
+
+## Advanced Guides   
+- [How-To : Service-group zones with loxilb](service-zones.md)
+- [How-To : Access end-points outside K8s](ext-ep.md)
+- [How-To : Deploy multi-server K3s HA with loxilb](k3s-multi-master.md)
+- [How-To : Deploy loxilb with multi-AZ HA support in AWS](aws-multi-az.md)
+
 ## Knowledge-Base   
 - [What is eBPF](ebpf.md)
 - [What is k8s service - load-balancer](lb.md)
@@ -117,6 +117,9 @@ For deploying telco-cloud with cloud-native functions, loxilb can be used as a S
 - [eBPF internals of loxilb](loxilbebpf.md)
 - [What are loxilb NAT Modes](nat.md)
 - [loxilb load-balancer algorithms](lb-algo.md)
+- [Manual steps to build/run](run.md)
+- [Debugging loxilb](debugging.md)
+- [loxicmd command-line tool usage](cmd.md)
 - [Developer's guide to loxicmd](cmd-dev.md)
 - [Developer's guide to loxilb API](api-dev.md)
 - [API Reference - loxilb web-Api](api.md)
