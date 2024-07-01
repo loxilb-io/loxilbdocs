@@ -332,12 +332,17 @@
               </ul>
             </li>
             
-            <li class="nav-item" data-bs-level="2"><a href="#how-to-guides" class="nav-link">How-To Guides</a>
+            <li class="nav-item" data-bs-level="2"><a href="#architectural-considerations" class="nav-link">Architectural Considerations</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
             <li class="nav-item" data-bs-level="2"><a href="#getting-started-with-different-k8s-distributions-tools" class="nav-link">Getting started with different K8s distributions &amp; tools</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#advanced-guides" class="nav-link">Advanced Guides</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -434,18 +439,10 @@
 <li>Hitless failover support might be essential for mission-critical applications  </li>
 <li>E2 might require SCTP-LB with OpenVPN bundled together</li>
 </ul>
-<h2 id="how-to-guides">How-To Guides</h2>
+<h2 id="architectural-considerations">Architectural Considerations</h2>
 <ul>
-<li><a href="kube-loxilb/">How-To : Deploy loxilb in K8s with kube-loxilb</a></li>
-<li><a href="service-zones/">How-To : Service-group zones with loxilb</a></li>
-<li><a href="ha-deploy/">How-To : High-availability with loxilb</a></li>
-<li><a href="run/">How-To : Manual build/run</a></li>
-<li><a href="standalone/">How-To : Run loxilb in standalone mode</a></li>
-<li><a href="cmd/">How-To : loxicmd config</a></li>
-<li><a href="debugging/">How-To : debug</a></li>
-<li><a href="ext-ep/">How-To : Access end-points outside K8s</a></li>
-<li><a href="k3s-multi-master/">How-To : Deploy multi-server K3s HA with loxilb</a></li>
-<li><a href="aws-multi-az/">How-To : Deploy loxilb with multi-AZ HA support in AWS</a></li>
+<li><a href="kube-loxilb/">Understanding loxilb modes and deployment in K8s with kube-loxilb</a></li>
+<li><a href="ha-deploy/">Understanding High-availability with loxilb</a></li>
 </ul>
 <h2 id="getting-started-with-different-k8s-distributions-tools">Getting started with different K8s distributions &amp; tools</h2>
 <h4 id="loxilb-as-ext-cluster-pod">loxilb as ext-cluster pod</h4>
@@ -468,6 +465,17 @@
 <li><a href="service-proxy-flannel/">K3s : loxilb service-proxy with flannel</a></li>
 <li><a href="service-proxy-calico/">K3s : loxilb service-proxy with calico</a></li>
 </ul>
+<h4 id="loxilb-in-standalone-mode">loxilb in standalone mode</h4>
+<ul>
+<li><a href="standalone/">Run loxilb standalone</a></li>
+</ul>
+<h2 id="advanced-guides">Advanced Guides</h2>
+<ul>
+<li><a href="service-zones/">How-To : Service-group zones with loxilb</a></li>
+<li><a href="ext-ep/">How-To : Access end-points outside K8s</a></li>
+<li><a href="k3s-multi-master/">How-To : Deploy multi-server K3s HA with loxilb</a></li>
+<li><a href="aws-multi-az/">How-To : Deploy loxilb with multi-AZ HA support in AWS</a></li>
+</ul>
 <h2 id="knowledge-base">Knowledge-Base</h2>
 <ul>
 <li><a href="ebpf/">What is eBPF</a></li>
@@ -477,6 +485,9 @@
 <li><a href="loxilbebpf/">eBPF internals of loxilb</a></li>
 <li><a href="nat/">What are loxilb NAT Modes</a></li>
 <li><a href="lb-algo/">loxilb load-balancer algorithms</a></li>
+<li><a href="run/">Manual steps to build/run</a></li>
+<li><a href="debugging/">Debugging loxilb</a></li>
+<li><a href="cmd/">loxicmd command-line tool usage</a></li>
 <li><a href="cmd-dev/">Developer's guide to loxicmd</a></li>
 <li><a href="api-dev/">Developer's guide to loxilb API</a></li>
 <li><a href="api/">API Reference - loxilb web-Api</a></li>
@@ -689,5 +700,5 @@
 
 <!--
 MkDocs version : 1.6.0
-Build Date UTC : 2024-07-01 22:47:05.033142+00:00
+Build Date UTC : 2024-07-01 23:09:47.790080+00:00
 -->
