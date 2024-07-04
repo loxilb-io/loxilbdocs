@@ -21,7 +21,7 @@ This page explains LoxiLB with GoBGP policy feature for controlling the route
 advertisement. It might be called Route Map in other BGP
 implementations.
 
-And This document was written with reference to [this goBGP offitial document.](https://github.com/osrg/gobgp/blob/master/docs/sources/policy.md)
+And This document was written with reference to [this goBGP official document.](https://github.com/osrg/gobgp/blob/master/docs/sources/policy.md)
 
 We explain the overview firstly, then the details.
 
