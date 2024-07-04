@@ -40,6 +40,16 @@ or in the kube-loxilb.yaml
             - --setBGP=65100
 
 ```
+
+And apply CRD yamls as first step.
+
+```
+kubectl apply -f manifest/crds/bgp-policy-apply-service.yaml
+kubectl apply -f manifest/crds/bgp-policy-defined-sets-service.yaml
+kubectl apply -f manifest/crds/bgp-policy-definition-service.yaml
+```
+
+
 (Note) Currently, gobgp does not support the Policy command in global state. Therefore, only the policy for neighbors is applied, and we plan to apply the global policy through additional development.
 To apply a policy in a neighbor, you must form a peer by adding the `route-server-client` option when using gobgp in loxilb. This does not provide a separate API and will be provided in the future.
 For examples in gobgp, please refer to the following [documents](https://github.com/osrg/gobgp/blob/master/docs/sources/route-server.md).
