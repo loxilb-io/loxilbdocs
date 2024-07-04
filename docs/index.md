@@ -68,7 +68,7 @@ Additionally, loxilb can also support cluster-ip and node-port services and ther
 loxilb works as a L4 load-balancer/service-mesh by default. Although it provides great performance, at times, L7 load-balancing/proxy might be necessary in K8s. There are many good L7 proxies already available for k8s. Still, we are working on providing a great L7 solution natively in eBPF. It is a tough endeavor one which should reap great benefits once completed. Please keep an eye for updates on this.
 
 ## Telco-Cloud with loxilb
-For deploying telco-cloud with cloud-native functions, loxilb can be used as a SCP(service communication proxy). SCP is nothing but a glorified term for Kubernetes load-balancing. But telco-cloud requires load-balancing across various interfaces/standards like N2, N4, E2(ORAN), S6x, 5GLAN, GTP etc. Each of these interfaces present its own unique challenges(and DPI) for load-balancing, which loxilb aims to solve e.g.:   
+For deploying telco-cloud with cloud-native functions, loxilb can be used as a SCP(service communication proxy). SCP is a communication proxy defined by [3GPP](https://www.etsi.org/deliver/etsi_ts/129500_129599/129500/16.04.00_60/ts_129500v160400p.pdf) and aimed at telco micro-services running in cloud-native environment. Telco-cloud requires load-balancing and communication across various interfaces/standards like N2, N4, E2(ORAN), S6x, 5GLAN, GTP etc. Each of these present its own unique challenges which loxilb aims to solve e.g.:    
 
 - N4 requires PFCP level session-intelligence
 - N2 requires NGAP parsing capability   
@@ -108,6 +108,7 @@ For deploying telco-cloud with cloud-native functions, loxilb can be used as a S
 - [How-To : Access end-points outside K8s](ext-ep.md)
 - [How-To : Deploy multi-server K3s HA with loxilb](k3s-multi-master.md)
 - [How-To : Deploy loxilb with multi-AZ HA support in AWS](aws-multi-az.md)
+- [How-To : Deploy loxilb with Ingress](loxilb-nginx-ingress.md)
 
 ## Knowledge-Base   
 - [What is eBPF](ebpf.md)
