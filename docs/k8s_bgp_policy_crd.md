@@ -32,13 +32,13 @@ Assumed that you run loxilb with `-b` option. Or If you control loxilb through k
 docker run -u root --cap-add SYS_ADMIN --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --name loxilb ghcr.io/loxilb-io/loxilb:latest -b
 ```
 or in the kube-loxilb.yaml
-
+And adding  `- --enableBGPCRDs` option in kube-loxilb.yaml
 ```
         args:
             - --loxiURL=http://12.12.12.1:11111
             - --externalCIDR=123.123.123.1/24
             - --setBGP=65100
-
+            - --enableBGPCRDs
 ```
 
 And apply CRD yamls as first step.
