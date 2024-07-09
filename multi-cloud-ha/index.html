@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/multi-cloud-ha/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Multi cloud ha - loxilb v0.9.4</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <link href="../stylesheets/extra.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-21G7NBL2BN"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', "G-21G7NBL2BN");
+        </script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">loxilb v0.9.4</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Architectural Considerations</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../kube-loxilb/" class="dropdown-item">Understanding loxilb deployment in K8s with kube-loxilb</a>
+</li>
+                                    
+<li>
+    <a href="../ha-deploy/" class="dropdown-item">Understanding High-availability with loxilb</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Getting Started</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../k3s_quick_start_flannel/" class="dropdown-item">ext-cluster pod - K3s/loxilb with default flannel</a>
+</li>
+                                    
+<li>
+    <a href="../k3s_quick_start_calico/" class="dropdown-item">ext-cluster pod - K3s/loxilb with calico</a>
+</li>
+                                    
+<li>
+    <a href="../quick_start_with_cilium/" class="dropdown-item">ext-cluster pod - K3s/loxilb with cilium</a>
+</li>
+                                    
+<li>
+    <a href="../k0s_quick_start/" class="dropdown-item">ext-cluster pod - K0s/loxilb with kube-router</a>
+</li>
+                                    
+<li>
+    <a href="../k3s_quick_start_incluster/" class="dropdown-item">in-cluster pod - K3s/loxilb in-cluster mode</a>
+</li>
+                                    
+<li>
+    <a href="../k0s_quick_start_incluster/" class="dropdown-item">in-cluster pod - K0s/loxilb in-cluster mode</a>
+</li>
+                                    
+<li>
+    <a href="../microk8s_quick_start_incluster/" class="dropdown-item">in-cluster pod - MicroK8s/loxilb in-cluster mode</a>
+</li>
+                                    
+<li>
+    <a href="../service-proxy-flannel/" class="dropdown-item">service-proxy - K3s/loxilb service-proxy with flannel</a>
+</li>
+                                    
+<li>
+    <a href="../service-proxy-calico/" class="dropdown-item">service-proxy - K3s/loxilb service-proxy with calico</a>
+</li>
+                                    
+<li>
+    <a href="../standalone/" class="dropdown-item">loxilb in standalone mode</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Advanced Guides</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../service-zones/" class="dropdown-item">How-To - service-group zones</a>
+</li>
+                                    
+<li>
+    <a href="../ext-ep/" class="dropdown-item">How-To - access end-points outside K8s</a>
+</li>
+                                    
+<li>
+    <a href="../k3s-multi-master/" class="dropdown-item">How-To - Deploy multi-server K3s HA with loxilb</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Knowledge Base</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../ebpf/" class="dropdown-item">What is eBPF</a>
+</li>
+                                    
+<li>
+    <a href="../lb/" class="dropdown-item">What is k8s service - load-balancer</a>
+</li>
+                                    
+<li>
+    <a href="../arch/" class="dropdown-item">Architecture in brief</a>
+</li>
+                                    
+<li>
+    <a href="../code/" class="dropdown-item">Code organization</a>
+</li>
+                                    
+<li>
+    <a href="../loxilbebpf/" class="dropdown-item">eBPF internals</a>
+</li>
+                                    
+<li>
+    <a href="../nat/" class="dropdown-item">NAT Modes of loxilb</a>
+</li>
+                                    
+<li>
+    <a href="../lb-algo/" class="dropdown-item">loxilb load-balancer algorithms</a>
+</li>
+                                    
+<li>
+    <a href="../run/" class="dropdown-item">Manual steps to build/run</a>
+</li>
+                                    
+<li>
+    <a href="../debugging/" class="dropdown-item">Debugging loxilb</a>
+</li>
+                                    
+<li>
+    <a href="../cmd-dev/" class="dropdown-item">Developer's guide to loxicmd</a>
+</li>
+                                    
+<li>
+    <a href="../api-dev/" class="dropdown-item">Developer's guide to loxilb API</a>
+</li>
+                                    
+<li>
+    <a href="../api/" class="dropdown-item">loxilb api-reference</a>
+</li>
+                                    
+<li>
+    <a href="../perf/" class="dropdown-item">Performance Report</a>
+</li>
+                                    
+<li>
+    <a href="../roadmap/" class="dropdown-item">Development Roadmap</a>
+</li>
+                                    
+<li>
+    <a href="../contribute/" class="dropdown-item">Contribution Guide</a>
+</li>
+                                    
+<li>
+    <a href="../requirements/" class="dropdown-item">System Requirements</a>
+</li>
+                                    
+<li>
+    <a href="../faq/" class="dropdown-item">Frequenctly Asked Questions- FAQs</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Blogs</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/loxilb-cluster-networking-elevating-k8s-networking-capabilities" class="dropdown-item">K8s - Elevating Cluster Networking</a>
+</li>
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/state-synchronization-of-ebpf-maps-using-go-a-tale-of-two-frameworks" class="dropdown-item">eBPF - Map Sync using Go</a>
+</li>
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/k8s-nuances-of-in-cluster-external-service-lb-with-loxilb" class="dropdown-item">K8s in-cluster service LB with LoxiLB</a>
+</li>
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/k8s-introducing-sctp-multihoming-functionality-with-loxilb" class="dropdown-item">K8s - Introducing SCTP Multihoming with LoxiLB</a>
+</li>
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/loxilb-anycast-service-load-balancing-with-high-availability" class="dropdown-item">Hyperscale anycast load balancing with HA</a>
+</li>
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/loxilb-load-balancer-setup-on-eks" class="dropdown-item">Getting started with loxilb on Amazon EKS</a>
+</li>
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/k8s-deploying-hitless-and-ha-load-balancing" class="dropdown-item">K8s - Deploying hitless Load-Balancing</a>
+</li>
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/k8s-exposing-ipv4-services-externally-as-ipv6" class="dropdown-item">Ipv6 migration in Kubernetes made easy</a>
+</li>
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/running-loxilb-on-aws-graviton2-based-ec2-instance" class="dropdown-item">Load-balancer Perf comparison on Amazon Graviton2</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Community Posts</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="https://futuredon.medium.com/5g-sctp-loadbalancer-using-loxilb-b525198a9103" class="dropdown-item">5G SCTP LoadBalancer Using loxilb</a>
+</li>
+            
+<li>
+    <a href="https://futuredon.medium.com/5g-uplink-classifier-using-loxilb-7593a4d66f4c" class="dropdown-item">5G Uplink Classifier Using loxilb</a>
+</li>
+            
+<li>
+    <a href="https://cloudybytes.medium.com/k3s-using-loxilb-as-external-service-lb-2ea4ce61e159" class="dropdown-item">K3s - Using loxilb as external service lb</a>
+</li>
+            
+<li>
+    <a href="https://medium.com/@ben0978327139/5g-sctp-loadbalancer-using-loxilb-applying-on-free5gc-b5c05bb723f0" class="dropdown-item">5G SCTP LoadBalancer Using LoxiLB Applying on free5GC</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            
+            
+            
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h3 id="deploy-loxilb-with-multi-cloud-ha-support">Deploy LoxiLB with multi-cloud HA support</h3>
+<p>LoxiLB supports stateful HA configuration in various cloud environments such as AWS. Especially for AWS, one can configure HA using the Floating IP <a href="https://docs.aws.amazon.com/whitepapers/latest/real-time-communication-on-aws/floating-ip-pattern-for-ha-between-activestandby-stateful-servers.html">pattern</a>, together with <a href="https://github.com/loxilb-io/loxilb">LoxiLB</a>.</p>
+<h3 id="overall-scenario">Overall Scenario</h3>
+<p>Overall scenario will look like this:
+<img alt="image" src="https://github.com/loxilb-io/loxilbdocs/assets/111065900/33e24772-df26-4344-a970-6215cebf26d6" /></p>
+<p>Setup configuration for Multi-Cloud/Multi-region will be similar to <a href="https://github.com/loxilb-io/loxilbdocs/blob/main/docs/aws-multi-az.md">Multi-AZ-HA configuration</a></p>
+<h4 id="important-considerations">Important considerations</h4>
+<ul>
+<li>The steps mentioned in the above documentation are for a single AWS region. For cross-region, similar configuration needs to be done in other AWS regions.</li>
+<li>Two LoxiLB instances - loxilb1 and loxilb2 will be deployed in different AZs per region. These two loxilbs form a HA pair and operate in active-backup roles.</li>
+<li>One instance of kube-loxilb will be deployed per region. </li>
+<li>Every region’s private CIDR will be different and one region’s privateCIDR should be reachable to others through VPC peering.</li>
+<li>As elastic IP is bound to a particular region, it is impossible to provide connection synchronization for cross-region HA. Only warm stand-by cross-region HA is supported.</li>
+<li>Full Support for elasticIP in GCP is not available yet. For testing HA with GCP, run single loxilb and kube-loxilb with standard configuration. There will not be any privateCIDR in kube-loxilb.yaml. Mention loxilb IP as externalCIDR.</li>
+</ul>
+<p>To summarize, when a failover occurs within the region, the public ElasticIP address is always associated to the active LoxiLB instance, so users who were previously accessing EKS using the same ElasticIP address can continue to do so without being affected by any node failure or other issues. When a region-wise failover occurs, DNS will redirect the requests to the different region.</p>
+<h3 id="an-example-configuration">An example configuration</h3>
+<p>Please follow the steps to create cluster and prepare VM instances mentioned <a href="https://github.com/loxilb-io/loxilbdocs/blob/main/docs/aws-multi-az.md">here</a>.</p>
+<h3 id="configuring-loxilb-ec2-instances">Configuring LoxiLB EC2 Instances</h3>
+<h4 id="kube-loxilb-deployment">kube-loxilb deployment</h4>
+<p>kube-loxilb is a K8s operator for LoxiLB. Download the manifest file required for your deployment in EKS.
+Create the ServiceAccount and other necessary settings for the cluster before start deploying kube-loxilb per cluster.</p>
+<pre><code>---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: kube-loxilb
+  namespace: kube-system
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: kube-loxilb
+rules:
+  - apiGroups:
+      - &quot;&quot;
+    resources:
+      - nodes
+    verbs:
+      - get
+      - watch
+      - list
+      - patch
+  - apiGroups:
+      - &quot;&quot;
+    resources:
+      - pods
+    verbs:
+      - get
+      - watch
+      - list
+      - patch
+  - apiGroups:
+      - &quot;&quot;
+    resources:
+      - endpoints
+      - services
+      - services/status
+    verbs:
+      - get
+      - watch
+      - list
+      - patch
+      - update
+  - apiGroups:
+      - gateway.networking.k8s.io
+    resources:
+      - gatewayclasses
+      - gatewayclasses/status
+      - gateways
+      - gateways/status
+      - tcproutes
+      - udproutes
+    verbs: [&quot;get&quot;, &quot;watch&quot;, &quot;list&quot;, &quot;patch&quot;, &quot;update&quot;]
+  - apiGroups:
+      - discovery.k8s.io
+    resources:
+      - endpointslices
+    verbs:
+      - get
+      - watch
+      - list
+  - apiGroups:
+      - authentication.k8s.io
+    resources:
+      - tokenreviews
+    verbs:
+      - create
+  - apiGroups:
+      - authorization.k8s.io
+    resources:
+      - subjectaccessreviews
+    verbs:
+      - create
+  - apiGroups:
+      - bgppeer.loxilb.io
+    resources:
+      - bgppeerservices
+    verbs:
+      - get
+      - watch
+      - list
+      - create
+      - update
+      - delete
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: kube-loxilb
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: kube-loxilb
+subjects:
+  - kind: ServiceAccount
+    name: kube-loxilb
+    namespace: kube-system
+</code></pre>
+<h4 id="change-the-args-inside-the-yaml-belowas-applicable-and-install-it-for-every-region">Change the args inside the yaml below(as applicable) and install it for every region.</h4>
+<p>kube-loxilb-osaka-deployment.yaml</p>
+<pre><code>apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kube-loxilb-osaka
+  namespace: kube-system
+  labels:
+    app: kube-loxilb-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kube-loxilb-app
+  template:
+    metadata:
+      labels:
+        app: kube-loxilb-app
+    spec:
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
+      tolerations:
+        # Mark the pod as a critical add-on for rescheduling.
+        - key: CriticalAddonsOnly
+          operator: Exists
+      priorityClassName: system-node-critical
+      serviceAccountName: kube-loxilb
+      terminationGracePeriodSeconds: 0
+      containers:
+      - name: kube-loxilb
+        image: ghcr.io/loxilb-io/kube-loxilb:aws-support
+        imagePullPolicy: Always
+        command:
+        - /bin/kube-loxilb
+        args:
+        - --loxiURL=http://192.168.218.60:11111,192.168.218.61:11111
+        - --externalCIDR=13.208.X.X/32
+       - --privateCIDR=192.168.248.254/32
+        - --setLBMode=2
+        resources:
+          requests:
+            cpu: &quot;100m&quot;
+            memory: &quot;50Mi&quot;
+          limits:
+            cpu: &quot;100m&quot;
+            memory: &quot;50Mi&quot;
+        securityContext:
+          privileged: true
+          capabilities:
+add: [&quot;NET_ADMIN&quot;, &quot;NET_RAW&quot;]
+
+</code></pre>
+<p>kube-loxilb-seoul-deployment.yaml</p>
+<pre><code>apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kube-loxilb-seoul
+  namespace: kube-system
+  labels:
+    app: kube-loxilb-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kube-loxilb-app
+  template:
+    metadata:
+      labels:
+        app: kube-loxilb-app
+    spec:
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
+      tolerations:
+        # Mark the pod as a critical add-on for rescheduling.
+        - key: CriticalAddonsOnly
+          operator: Exists
+      priorityClassName: system-node-critical
+      serviceAccountName: kube-loxilb
+      terminationGracePeriodSeconds: 0
+      containers:
+      - name: kube-loxilb
+        image: ghcr.io/loxilb-io/kube-loxilb:aws-support
+        imagePullPolicy: Always
+        command:
+        - /bin/kube-loxilb
+        args:
+        - --loxiURL=http://192.168.119.11:11111,192.168.119.12:11111
+        - --externalCIDR=14.112.X.X/32
+       - --privateCIDR=192.168.150.254/32
+        - --setLBMode=2
+        resources:
+          requests:
+            cpu: &quot;100m&quot;
+            memory: &quot;50Mi&quot;
+          limits:
+            cpu: &quot;100m&quot;
+            memory: &quot;50Mi&quot;
+        securityContext:
+          privileged: true
+          capabilities:
+add: [&quot;NET_ADMIN&quot;, &quot;NET_RAW&quot;]
+</code></pre>
+<p>For every region, Edit kube-loxilb-<i>region</i>.yaml
+* Modify loxiURL with the IPs of the LoxiLB EC2 instances created in the region above.
+* For externalCIDR, specify the Elastic IP created above.
+* PrivateCIDR specifies the VIP that will be associated with the Elastic IP.</p>
+<h4 id="run-loxilb-pods">Run LoxiLB Pods</h4>
+<h5 id="install-docker-on-loxilb-instances">Install docker on LoxiLB instance(s)</h5>
+<p>LoxiLB is deployed as a container on each instance. To use containers, docker must first be installed on the instance. Docker installation guide can be found <a href="https://docs.docker.com/engine/install/ubuntu/">here</a></p>
+<h4 id="running-loxilb-container">Running LoxiLB container</h4>
+<p>The following command is for a LoxiLB instance (loxilb1) using subnet-a.</p>
+<pre><code>sudo docker run -u root --cap-add SYS_ADMIN \
+  --restart unless-stopped \
+  --net=host \
+  --privileged \
+  -dit \
+  -v /dev/log:/dev/log -e AWS_REGION=ap-northeast-3 \
+  --name loxilb \
+  ghcr.io/loxilb-io/loxilb:aws-support \
+  --cloud=aws --cloudcidrblock=192.168.248.0/24 --cluster=192.168.218.61 --self=0
+</code></pre>
+<ul>
+<li>In the cloudcidrblock option, specify the IP band that includes the VIP set in kube-loxilb's privateCIDR. master LoxiLB uses the value set here to create a new subnet in the AZ where it is located and uses it for HA operation.</li>
+<li>The cluster option specifies the IP of the partner instance (LoxiLB instance using subnet-b) for which HA is configured.</li>
+<li>The self option is set to 0. It is just a identier used internally to identify each instance</li>
+</ul>
+<p>Similarily we can run loxilb2 instance in the second EC2 instance using subnet-b:   </p>
+<pre><code>sudo docker run -u root --cap-add SYS_ADMIN \
+  --restart unless-stopped \
+  --net=host \
+  --privileged \
+  -dit \
+  -v /dev/log:/dev/log -e AWS_REGION=ap-northeast-3 \
+  --name loxilb \
+  ghcr.io/loxilb-io/loxilb:aws-support \
+  --cloud=aws --cloudcidrblock=192.168.248.0/24 --cluster=192.168.218.60 --self=1
+</code></pre>
+<p>For each instance, HA status can be checked as follows:</p>
+<p>When the container runs, you can check the HA status as follows:</p>
+<pre><code>ubuntu@ip-192-168-218-60:~$ sudo docker exec -ti loxilb bash
+root@ip-192-168-228-108:/# loxicmd get ha
+| INSTANCE | HASTATE |
+|----------|---------|
+| default  | MASTER  |
+root@ip-192-168-218-60:/#
+</code></pre>
+<h4 id="creating-a-service">Creating a  service</h4>
+<p>Let's create a test service to test HA functionality. Below are the manifest files for the nginx pod and service that we will use for testing.</p>
+<pre><code>apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-lb1
+spec:
+  externalTrafficPolicy: Local
+  loadBalancerClass: loxilb.io/loxilb
+  selector:
+    what: nginx-test
+  ports:
+    - port: 55002
+      targetPort: 80
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-test
+  labels:
+    what: nginx-test
+spec:
+  containers:
+    - name: nginx-test
+      image: nginx:stable
+      ports:
+        - containerPort: 80
+</code></pre>
+<p>After creating an nginx service with the above,  weu can see that the ElasticIP has been designated as the externalIP of the service.</p>
+<pre><code>LEIS6N3:~/workspace/aws-demo$ kubectl apply -f nginx.yaml
+service/nginx-lb1 created
+pod/nginx-test created
+LEIS6N3:~/workspace/aws-demo$ kubectl get svc
+NAME         TYPE           CLUSTER-IP     EXTERNAL-IP         PORT(S)           AGE
+kubernetes   ClusterIP      10.100.0.1     &lt;none&gt;              443/TCP           22h
+nginx-lb1    LoadBalancer   10.100.178.3   llb-13.208.X.X      55002:32403/TCP   15s
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+
+        <div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
