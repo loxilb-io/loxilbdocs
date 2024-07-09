@@ -5,7 +5,7 @@ LoxiLB supports stateful HA configuration in various cloud environments such as 
 ### Overall Scenario
 
 Overall scenario will look like this:
-![image]([https://github.com/loxilb-io/loxilbdocs/assets/111065900/33e24772-df26-4344-a970-6215cebf26d6](https://github.com/loxilb-io/loxilbdocs/blob/main/docs/photos/loxilb-k8s-arch-Multi-Cloud-HA.drawio.svg))
+![image](https://github.com/loxilb-io/loxilbdocs/blob/main/docs/photos/loxilb-k8s-arch-Multi-Cloud-HA.drawio.svg)
 
 Setup configuration for Multi-Cloud/Multi-region will be similar to [Multi-AZ-HA configuration](https://github.com/loxilb-io/loxilbdocs/blob/main/docs/aws-multi-az.md)
 
