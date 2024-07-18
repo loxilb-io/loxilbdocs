@@ -639,9 +639,10 @@ Commercial support is available at
 kind: Service
 metadata:
   name: nginx-lb1
+  annotations:
+    loxilb.io/nodelabel: &quot;node.kubernetes.io/local-zone2&quot;
 spec:
   externalTrafficPolicy: Local
-  loxilb.io/nodelabel: &quot;node.kubernetes.io/local-zone2&quot;
   loadBalancerClass: loxilb.io/loxilb
   selector:
     what: nginx-test
