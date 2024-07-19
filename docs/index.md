@@ -107,8 +107,9 @@ For deploying telco-cloud with cloud-native functions, loxilb can be used as a S
 - [How-To : Service-group zones with loxilb](service-zones.md)
 - [How-To : Access end-points outside K8s](ext-ep.md)
 - [How-To : Deploy multi-server K3s HA with loxilb](k3s-multi-master.md)
-- [How-To : Deploy loxilb with multi-AZ HA support in AWS](aws-multi-az.md)
 - [How-To : Deploy loxilb with Ingress](loxilb-nginx-ingress.md)
+- [How-To : Deploy loxilb with multi-AZ HA support in AWS](aws-multi-az.md)
+- [How-To : Deploy loxilb with multi-cloud HA support](multi-cloud-ha.md)
 
 ## Knowledge-Base   
 - [What is eBPF](ebpf.md)
