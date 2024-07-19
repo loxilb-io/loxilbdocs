@@ -442,8 +442,9 @@ spec:
         args:
         - --loxiURL=http://192.168.218.60:11111,192.168.218.61:11111
         - --externalCIDR=13.208.X.X/32
-       - --privateCIDR=192.168.248.254/32
+        - --privateCIDR=192.168.248.254/32
         - --setLBMode=2
+        - --zone=osaka
         resources:
           requests:
             cpu: &quot;100m&quot;
@@ -493,8 +494,9 @@ spec:
         args:
         - --loxiURL=http://192.168.119.11:11111,192.168.119.12:11111
         - --externalCIDR=14.112.X.X/32
-       - --privateCIDR=192.168.150.254/32
+        - --privateCIDR=192.168.150.254/32
         - --setLBMode=2
+        - --zone=seoul
         resources:
           requests:
             cpu: &quot;100m&quot;
