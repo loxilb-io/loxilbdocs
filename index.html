@@ -374,9 +374,7 @@
 
 <p><link rel="stylesheet" href="stylesheets/extra.css" /></p>
 <h2 id="welcome-to-loxilb-documentation"><a href="https://github.com/loxilb-io/loxilb"><img alt="loxilb logo" src="photos/loxilb-logo-small.png" /></a> Welcome to loxilb documentation</h2>
-<p><a href="https://ebpf.io/projects#loxilb"><img alt="eBPF Emerging App" src="https://img.shields.io/badge/ebpf.io-Emerging--App-success" /></a> <a href="https://goreportcard.com/report/github.com/loxilb-io/loxilb"><img alt="Go Report Card" src="https://goreportcard.com/badge/github.com/loxilb-io/loxilb" /></a>  <br />
-<img alt="build workflow" src="https://github.com/loxilb-io/loxilb/actions/workflows/docker-image.yml/badge.svg" /> <img alt="sanity workflow" src="https://github.com/loxilb-io/loxilb/actions/workflows/basic-sanity.yml/badge.svg" />  <br />
-<img alt="apache" src="https://img.shields.io/badge/license-Apache-blue.svg" /> <img alt="gpl" src="https://img.shields.io/badge/license-BSD-blue.svg" />  <a href="https://github.com/loxilb-io/loxilb/stargazers"><img alt="Stargazers" src="https://img.shields.io/github/stars/loxilb-io??style=for-the-badge&amp;logo=appveyor" /></a>   </p>
+<p><a href="https://ebpf.io/projects#loxilb"><img alt="eBPF Emerging App" src="https://img.shields.io/badge/ebpf.io-Emerging--App-success" /></a> <a href="https://goreportcard.com/report/github.com/loxilb-io/loxilb"><img alt="Go Report Card" src="https://goreportcard.com/badge/github.com/loxilb-io/loxilb" /></a>  <img alt="apache" src="https://img.shields.io/badge/license-Apache-blue.svg" /> <img alt="gpl" src="https://img.shields.io/badge/license-BSD-blue.svg" />  <a href="https://github.com/loxilb-io/loxilb/stargazers"><img alt="Stargazers" src="https://img.shields.io/github/stars/loxilb-io??style=for-the-badge&amp;logo=appveyor" /></a>   </p>
 <!--[![eBPF Emerging Project](photos/ebpflogo.png)](https://ebpf.io/projects#loxilb)-->
 
 <h2 id="background">Background</h2>
@@ -392,10 +390,10 @@
 <p>Service type load-balancer is usually provided by public cloud-provider(s) as a managed entity. But for on-prem and self-managed clusters, there are only a few good options available. Even for provider-managed K8s like EKS, there are many who would want to bring their own LB to clusters running anywhere. <b>loxilb provides service type load-balancer as its main use-case</b>. loxilb can be run in-cluster or ext-to-cluster as per user need.   </p>
 <p>loxilb works as a L4 load-balancer/service-proxy by default. Although L4 load-balancing provides great performance and functionality, at times, an equally performant L7 load-balancer is also necessary in K8s for various use-cases. loxilb also supports L7 load-balancing in the form of Kubernetes Ingress implementation. This also benefit users who need L4 and L7 load-balancing under the same hood.   </p>
 <p>Additionally, loxilb also supports: <br />
-- [x] kube-proxy replacement with eBPF(full cluster-mesh implementation for Kubernetes) <br />
-- [x] Ingress Support <br />
-- [x] Kubernetes Gateway API <br />
-- [ ] Kubernetes Network Policies   </p>
+- kube-proxy replacement with eBPF(full cluster-mesh implementation for Kubernetes) <br />
+- Ingress Support <br />
+- Kubernetes Gateway API <br />
+- Kubernetes Network Policies (in-progress)  </p>
 <h2 id="telco-cloud-with-loxilb">Telco-Cloud with loxilb</h2>
 <p>For deploying telco-cloud with cloud-native functions, loxilb can be used as a SCP(service communication proxy). SCP is a communication proxy defined by <a href="https://www.etsi.org/deliver/etsi_ts/129500_129599/129500/16.04.00_60/ts_129500v160400p.pdf">3GPP</a> and aimed at optimizing telco micro-services running in cloud-native environment. Read more about it <a href="https://dev.to/nikhilmalik/5g-service-communication-proxy-with-loxilb-4242">here</a>.    </p>
 <p><img alt="loxilb svc" src="photos/scp.svg" />   </p>
@@ -712,5 +710,5 @@
 
 <!--
 MkDocs version : 1.6.0
-Build Date UTC : 2024-07-23 14:37:14.483034+00:00
+Build Date UTC : 2024-07-23 14:40:22.420725+00:00
 -->
