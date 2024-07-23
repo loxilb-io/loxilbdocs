@@ -2,9 +2,7 @@
 
 ## [![loxilb logo](photos/loxilb-logo-small.png)](https://github.com/loxilb-io/loxilb) Welcome to loxilb documentation
 
-[![eBPF Emerging App](https://img.shields.io/badge/ebpf.io-Emerging--App-success)](https://ebpf.io/projects#loxilb) [![Go Report Card](https://goreportcard.com/badge/github.com/loxilb-io/loxilb)](https://goreportcard.com/report/github.com/loxilb-io/loxilb)    
-![build workflow](https://github.com/loxilb-io/loxilb/actions/workflows/docker-image.yml/badge.svg) ![sanity workflow](https://github.com/loxilb-io/loxilb/actions/workflows/basic-sanity.yml/badge.svg)    
-![apache](https://img.shields.io/badge/license-Apache-blue.svg) ![gpl](https://img.shields.io/badge/license-BSD-blue.svg)  [![Stargazers][stars-shield]][stars-url]   
+[![eBPF Emerging App](https://img.shields.io/badge/ebpf.io-Emerging--App-success)](https://ebpf.io/projects#loxilb) [![Go Report Card](https://goreportcard.com/badge/github.com/loxilb-io/loxilb)](https://goreportcard.com/report/github.com/loxilb-io/loxilb)  ![apache](https://img.shields.io/badge/license-Apache-blue.svg) ![gpl](https://img.shields.io/badge/license-BSD-blue.svg)  [![Stargazers][stars-shield]][stars-url]   
 <!--[![eBPF Emerging Project](photos/ebpflogo.png)](https://ebpf.io/projects#loxilb)-->
    
 [stars-shield]: https://img.shields.io/github/stars/loxilb-io??style=for-the-badge&logo=appveyor
@@ -34,10 +32,10 @@ Service type load-balancer is usually provided by public cloud-provider(s) as a 
 loxilb works as a L4 load-balancer/service-proxy by default. Although L4 load-balancing provides great performance and functionality, at times, an equally performant L7 load-balancer is also necessary in K8s for various use-cases. loxilb also supports L7 load-balancing in the form of Kubernetes Ingress implementation. This also benefit users who need L4 and L7 load-balancing under the same hood.   
 
 Additionally, loxilb also supports:   
-- [x] kube-proxy replacement with eBPF(full cluster-mesh implementation for Kubernetes)   
-- [x] Ingress Support   
-- [x] Kubernetes Gateway API   
-- [ ] Kubernetes Network Policies   
+- kube-proxy replacement with eBPF(full cluster-mesh implementation for Kubernetes)   
+- Ingress Support   
+- Kubernetes Gateway API   
+- Kubernetes Network Policies (in-progress)  
 
 ## Telco-Cloud with loxilb
 For deploying telco-cloud with cloud-native functions, loxilb can be used as a SCP(service communication proxy). SCP is a communication proxy defined by [3GPP](https://www.etsi.org/deliver/etsi_ts/129500_129599/129500/16.04.00_60/ts_129500v160400p.pdf) and aimed at optimizing telco micro-services running in cloud-native environment. Read more about it [here](https://dev.to/nikhilmalik/5g-service-communication-proxy-with-loxilb-4242).    
