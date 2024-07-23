@@ -358,6 +358,11 @@
               </ul>
             </li>
             
+            <li class="nav-item" data-bs-level="2"><a href="#research-papers-featuring-loxilb" class="nav-link">Research Papers (featuring loxilb)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
             <li class="nav-item" data-bs-level="2"><a href="#latest-cicd-status" class="nav-link">Latest CICD Status</a>
               <ul class="nav flex-column">
               </ul>
@@ -369,7 +374,8 @@
 
 <p><link rel="stylesheet" href="stylesheets/extra.css" /></p>
 <h2 id="welcome-to-loxilb-documentation"><a href="https://github.com/loxilb-io/loxilb"><img alt="loxilb logo" src="photos/loxilb-logo-small.png" /></a> Welcome to loxilb documentation</h2>
-<p><a href="https://ebpf.io/projects#loxilb"><img alt="eBPF Emerging App" src="https://img.shields.io/badge/ebpf.io-Emerging--App-success" /></a> <a href="https://goreportcard.com/report/github.com/loxilb-io/loxilb"><img alt="Go Report Card" src="https://goreportcard.com/badge/github.com/loxilb-io/loxilb" /></a> <img alt="build workflow" src="https://github.com/loxilb-io/loxilb/actions/workflows/docker-image.yml/badge.svg" /> <img alt="sanity workflow" src="https://github.com/loxilb-io/loxilb/actions/workflows/basic-sanity.yml/badge.svg" />  <br />
+<p><a href="https://ebpf.io/projects#loxilb"><img alt="eBPF Emerging App" src="https://img.shields.io/badge/ebpf.io-Emerging--App-success" /></a> <a href="https://goreportcard.com/report/github.com/loxilb-io/loxilb"><img alt="Go Report Card" src="https://goreportcard.com/badge/github.com/loxilb-io/loxilb" /></a>  <br />
+<img alt="build workflow" src="https://github.com/loxilb-io/loxilb/actions/workflows/docker-image.yml/badge.svg" /> <img alt="sanity workflow" src="https://github.com/loxilb-io/loxilb/actions/workflows/basic-sanity.yml/badge.svg" />  <br />
 <img alt="apache" src="https://img.shields.io/badge/license-Apache-blue.svg" /> <img alt="gpl" src="https://img.shields.io/badge/license-BSD-blue.svg" />  <a href="https://github.com/loxilb-io/loxilb/stargazers"><img alt="Stargazers" src="https://img.shields.io/github/stars/loxilb-io??style=for-the-badge&amp;logo=appveyor" /></a>   </p>
 <!--[![eBPF Emerging Project](photos/ebpflogo.png)](https://ebpf.io/projects#loxilb)-->
 
@@ -386,21 +392,21 @@
 <p>Service type load-balancer is usually provided by public cloud-provider(s) as a managed entity. But for on-prem and self-managed clusters, there are only a few good options available. Even for provider-managed K8s like EKS, there are many who would want to bring their own LB to clusters running anywhere. <b>loxilb provides service type load-balancer as its main use-case</b>. loxilb can be run in-cluster or ext-to-cluster as per user need.   </p>
 <p>loxilb works as a L4 load-balancer/service-proxy by default. Although L4 load-balancing provides great performance and functionality, at times, an equally performant L7 load-balancer is also necessary in K8s for various use-cases. loxilb also supports L7 load-balancing in the form of Kubernetes Ingress implementation. This also benefit users who need L4 and L7 load-balancing under the same hood.   </p>
 <p>Additionally, loxilb also supports: <br />
-- [x] kube-proxy replacement with eBPF(full cluster-mesh implementation for Kubernetes).
-- [x] Ingress Support
-- [x] Kubernetes Gateway API
-- [ ] Kubernetes Network Policies</p>
+- [x] kube-proxy replacement with eBPF(full cluster-mesh implementation for Kubernetes) <br />
+- [x] Ingress Support <br />
+- [x] Kubernetes Gateway API <br />
+- [ ] Kubernetes Network Policies   </p>
 <h2 id="telco-cloud-with-loxilb">Telco-Cloud with loxilb</h2>
 <p>For deploying telco-cloud with cloud-native functions, loxilb can be used as a SCP(service communication proxy). SCP is a communication proxy defined by <a href="https://www.etsi.org/deliver/etsi_ts/129500_129599/129500/16.04.00_60/ts_129500v160400p.pdf">3GPP</a> and aimed at optimizing telco micro-services running in cloud-native environment. Read more about it <a href="https://dev.to/nikhilmalik/5g-service-communication-proxy-with-loxilb-4242">here</a>.    </p>
 <p><img alt="loxilb svc" src="photos/scp.svg" />   </p>
 <p>Telco-cloud requires load-balancing and communication across various interfaces/standards like N2, N4, E2(ORAN), S6x, 5GLAN, GTP etc. Each of these present its own unique challenges which loxilb aims to solve e.g.:  <br />
-- N4 requires PFCP level session-intelligence
-- N2 requires NGAP parsing capability(Related Blogs - <a href="https://www.loxilb.io/post/ngap-load-balancing-with-loxilb">Blog-1</a>, <a href="https://futuredon.medium.com/5g-sctp-loadbalancer-using-loxilb-b525198a9103">Blog-2</a>, <a href="https://medium.com/@ben0978327139/5g-sctp-loadbalancer-using-loxilb-applying-on-free5gc-b5c05bb723f0">Blog-3</a>)
-- S6x requires Diameter/SCTP multi-homing LB support(Related <a href="https://www.loxilb.io/post/k8s-introducing-sctp-multihoming-functionality-with-loxilb">Blog</a>)
-- MEC use-cases might require UL-CL understanding(Related <a href="https://futuredon.medium.com/5g-uplink-classifier-using-loxilb-7593a4d66f4c">Blog</a>)
-- Hitless failover support might be essential for mission-critical applications
-- E2 might require SCTP-LB with OpenVPN bundled together
-- SIP support is needed to enable cloud-native VOIP</p>
+- N4 requires PFCP level session-intelligence <br />
+- N2 requires NGAP parsing capability(Related Blogs - <a href="https://www.loxilb.io/post/ngap-load-balancing-with-loxilb">Blog-1</a>, <a href="https://futuredon.medium.com/5g-sctp-loadbalancer-using-loxilb-b525198a9103">Blog-2</a>, <a href="https://medium.com/@ben0978327139/5g-sctp-loadbalancer-using-loxilb-applying-on-free5gc-b5c05bb723f0">Blog-3</a>) <br />
+- S6x requires Diameter/SCTP multi-homing LB support(Related <a href="https://www.loxilb.io/post/k8s-introducing-sctp-multihoming-functionality-with-loxilb">Blog</a>) <br />
+- MEC use-cases might require UL-CL understanding(Related <a href="https://futuredon.medium.com/5g-uplink-classifier-using-loxilb-7593a4d66f4c">Blog</a>) <br />
+- Hitless failover support might be essential for mission-critical applications <br />
+- E2 might require SCTP-LB with OpenVPN bundled together <br />
+- SIP support is needed to enable cloud-native VOIP   </p>
 <h2 id="why-choose-loxilb">Why choose loxilb?</h2>
 <ul>
 <li><code>Performs</code> much better compared to its competitors across various architectures   <ul>
@@ -510,7 +516,7 @@
 <li><a href="https://www.loxilb.io/post/loxilb-load-balancer-setup-on-eks">Getting started with loxilb on Amazon EKS</a>   </li>
 <li><a href="https://www.loxilb.io/post/k8s-deploying-hitless-and-ha-load-balancing">K8s - Deploying "hitless" Load-balancing</a>   </li>
 <li><a href="https://www.loxilb.io/post/oracle-cloud-bring-your-own-lb-for-self-managed-clusters">Oracle Cloud - Hitless HA load balancing</a></li>
-<li><a href="https://www.loxilb.io/post/k8s-exposing-ipv4-services-externally-as-ipv6">Ipv6 migration in Kubernetes made easy</a></li>
+<li><a href="https://www.loxilb.io/post/k8s-exposing-ipv4-services-externally-as-ipv6">Ipv6 migration in Kubernetes made easy</a>   </li>
 </ul>
 <h2 id="community-posts">Community Posts</h2>
 <ul>
@@ -520,6 +526,10 @@
 <li><a href="https://cloudybytes.medium.com/k8s-bringing-load-balancing-to-multus-workloads-with-loxilb-a0746f270abe">K8s - Bringing load-balancing to multus workloads with loxilb</a></li>
 <li><a href="https://medium.com/@ben0978327139/5g-sctp-loadbalancer-using-loxilb-applying-on-free5gc-b5c05bb723f0">5G SCTP LoadBalancer Using LoxiLB on free5GC</a></li>
 <li><a href="https://cloudybytes.medium.com/kubernetes-services-achieving-optimal-performance-is-elusive-5def5183c281">Kubernetes Services: Achieving optimal performance is elusive</a></li>
+</ul>
+<h2 id="research-papers-featuring-loxilb">Research Papers (featuring loxilb)</h2>
+<ul>
+<li><a href="https://arxiv.org/pdf/2405.00078">Mitigating Spectre-PHT using Speculation Barriers in Linux BPF</a>   </li>
 </ul>
 <h2 id="latest-cicd-status">Latest CICD Status</h2>
 <table>
@@ -702,5 +712,5 @@
 
 <!--
 MkDocs version : 1.6.0
-Build Date UTC : 2024-07-23 14:31:16.611469+00:00
+Build Date UTC : 2024-07-23 14:37:14.483034+00:00
 -->
