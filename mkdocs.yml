@@ -1,28 +1,55 @@
-site_name: loxilb v0.9.5
-site_url: https://loxilb-io.github.io/loxilbdocs 
+site_name: LoxiLB
+site_url: https://loxilb-io.github.io/loxilbdocs
+repo_name: loxilb-io/loxilb
+repo_url: https://github.com/loxilb-io/loxilb
 theme:
-    name: mkdocs
+    name: material
+    logo: photos/loxilb-logo.png
     features:
-        - navigation.sections
+        - navigation.path
+        - navigation.instant
+        - navigation.tracking
+        - navigation.indexes
+        - navigation.top
+        - search.suggest
     analytics:
         gtag: G-21G7NBL2BN 
-
+    icon:
+        repo: fontawesome/brands/github
+    palette:
+        - scheme: default
+          media: "(prefers-color-scheme: light)"
+          primary: indigo
+          toggle:
+              icon: material/weather-night
+              name: Switch to dark mode
+        - scheme: slate
+          media: "(prefers-color-scheme: dark)"
+          primary: black
+          toggle:
+             icon: material/weather-sunny
+             name: Switch to light mode
 nav:
-  - Home: index.md
+  - LoxiLB: index.md
   - Architectural Considerations:
       - Understanding loxilb deployment in K8s with kube-loxilb: kube-loxilb.md
       - Understanding High-availability with loxilb: ha-deploy.md
   - Getting Started:
-      - ext-cluster pod - K3s/loxilb with default flannel: k3s_quick_start_flannel.md
-      - ext-cluster pod - K3s/loxilb with calico: k3s_quick_start_calico.md
-      - ext-cluster pod - K3s/loxilb with cilium: quick_start_with_cilium.md
-      - ext-cluster pod - K0s/loxilb with kube-router: k0s_quick_start.md
-      - in-cluster pod - K3s/loxilb in-cluster mode: k3s_quick_start_incluster.md
-      - in-cluster pod - K0s/loxilb in-cluster mode: k0s_quick_start_incluster.md
-      - in-cluster pod - MicroK8s/loxilb in-cluster mode: microk8s_quick_start_incluster.md
-      - service-proxy - K3s/loxilb service-proxy with flannel: service-proxy-flannel.md
-      - service-proxy - K3s/loxilb service-proxy with calico: service-proxy-calico.md
-      - loxilb in standalone mode: standalone.md
+      - External Cluster Mode:
+          - K3s/loxilb with default flannel: k3s_quick_start_flannel.md
+          - K3s/loxilb with calico: k3s_quick_start_calico.md
+          - K3s/loxilb with cilium: quick_start_with_cilium.md
+          - K0s/loxilb with kube-router: k0s_quick_start.md
+      - In-Cluster Mode:
+          - K3s/loxilb in-cluster mode: k3s_quick_start_incluster.md
+          - K0s/loxilb in-cluster mode: k0s_quick_start_incluster.md
+          - MicroK8s/loxilb in-cluster mode: microk8s_quick_start_incluster.md
+      - Service-Proxy Mode:
+          - K3s/loxilb service-proxy with flannel: service-proxy-flannel.md
+          - K3s/loxilb service-proxy with calico: service-proxy-calico.md
+      - Kubernestes Ingress Mode
+          - k3s/Run loxilb-ingress: loxilb-ingress.md
+      - Standalone Mode: standalone.md
   - Advanced Guides:
       - How-To - service-group zones: service-zones.md
       - How-To - access end-points outside K8s: ext-ep.md
@@ -60,11 +87,31 @@ nav:
         - 5G Uplink Classifier Using loxilb: https://futuredon.medium.com/5g-uplink-classifier-using-loxilb-7593a4d66f4c
         - K3s - Using loxilb as external service lb: https://cloudybytes.medium.com/k3s-using-loxilb-as-external-service-lb-2ea4ce61e159
         - 5G SCTP LoadBalancer Using LoxiLB Applying on free5GC: https://medium.com/@ben0978327139/5g-sctp-loadbalancer-using-loxilb-applying-on-free5gc-b5c05bb723f0
+     
 extra:
     version: v0.9.5 (Latest)
+    homepage: https://www.loxilb.io/ 
 
 extra_css:
   - stylesheets/extra.css
-
+  
+markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - admonition
+  - pymdownx.details
+  - pymdownx.snippets
+  - def_list
+  - tables
+  - attr_list
+  - md_in_html
+  - toc:
+      title: On this page
+  - pymdownx.tasklist:
+      custom_checkbox: true
+      
 plugins:
   - mermaid2
+  - search
+  - autorefs
