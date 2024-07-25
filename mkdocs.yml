@@ -60,6 +60,11 @@ nav:
         - 5G Uplink Classifier Using loxilb: https://futuredon.medium.com/5g-uplink-classifier-using-loxilb-7593a4d66f4c
         - K3s - Using loxilb as external service lb: https://cloudybytes.medium.com/k3s-using-loxilb-as-external-service-lb-2ea4ce61e159
         - 5G SCTP LoadBalancer Using LoxiLB Applying on free5GC: https://medium.com/@ben0978327139/5g-sctp-loadbalancer-using-loxilb-applying-on-free5gc-b5c05bb723f0
+    - More:
+        - GitHub: https://github.com/loxilb-io/loxilb
+        - Website: https://www.loxilb.io/
+        - Community Forum: https://github.com/loxilb-io/loxilb/discussions
+        - Join Slack: https://join.slack.com/t/loxilb/shared_invite/zt-2b3xx14wg-P7WHj5C~OEON_jviF0ghcQ
 extra:
     version: v0.9.5 (Latest)
 
