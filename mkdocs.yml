@@ -1,7 +1,7 @@
 site_name: LoxiLB
 site_url: https://nik-netlox.github.io/loxilbdocs/
 repo_name: loxilb-io/loxilb
-repo_url: https://github.com/loxilb-io/loxilb
+#repo_url: https://github.com/loxilb-io/loxilb
 theme:
     name: material
     logo: photos/loxilb-logo.png
