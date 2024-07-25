@@ -102,6 +102,8 @@ markdown_extensions:
   - pymdownx.snippets
   - def_list
   - tables
+  - attr_list
+  - md_in_html
   - pymdownx.tasklist:
       custom_checkbox: true
       
