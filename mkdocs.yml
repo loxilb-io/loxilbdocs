@@ -1,5 +1,5 @@
 site_name: LoxiLB
-site_url: https://nik-netlox.github.io/loxilbdocs/
+site_url: https://github.com/loxilb-io/loxilbdocs
 repo_name: loxilb-io/loxilb
 repo_url: https://github.com/loxilb-io/loxilb
 theme:
@@ -47,6 +47,8 @@ nav:
       - Service-Proxy Mode:
           - K3s/loxilb service-proxy with flannel: service-proxy-flannel.md
           - K3s/loxilb service-proxy with calico: service-proxy-calico.md
+      - Kubernestes Ingress Mode
+          - k3s/Run loxilb-ingress: loxilb-ingress.md
       - Standalone Mode: standalone.md
   - Advanced Guides:
       - How-To - service-group zones: service-zones.md
