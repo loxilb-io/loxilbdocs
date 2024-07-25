@@ -84,8 +84,6 @@ nav:
 extra:
     version: v0.9.5 (Latest)
     homepage: https://www.loxilb.io/ 
-extra_css:
-  - stylesheets/extra.css
   
 markdown_extensions:
   - pymdownx.highlight
@@ -95,6 +93,7 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.snippets
   - def_list
+  - tables
   - pymdownx.tasklist:
       custom_checkbox: true
       
