@@ -1,14 +1,16 @@
 site_name: LoxiLB
 site_url: https://nik-netlox.github.io/loxilbdocs/
 repo_name: loxilb-io/loxilb
+repo_url: https://github.com/loxilb-io/loxilb
 theme:
     name: material
     logo: photos/loxilb-logo.png
     features:
-        - navigation.expand
+        - navigation.path
         - navigation.instant
         - navigation.tracking
         - navigation.indexes
+        - navigation.top
         - search.suggest
     analytics:
         gtag: G-21G7NBL2BN 
@@ -38,14 +40,14 @@ nav:
           - K3s/loxilb with calico: k3s_quick_start_calico.md
           - K3s/loxilb with cilium: quick_start_with_cilium.md
           - K0s/loxilb with kube-router: k0s_quick_start.md
-      - In-cluster Mode:
+      - In-Cluster Mode:
           - K3s/loxilb in-cluster mode: k3s_quick_start_incluster.md
           - K0s/loxilb in-cluster mode: k0s_quick_start_incluster.md
           - MicroK8s/loxilb in-cluster mode: microk8s_quick_start_incluster.md
-      - Service-proxy Mode:
+      - Service-Proxy Mode:
           - K3s/loxilb service-proxy with flannel: service-proxy-flannel.md
           - K3s/loxilb service-proxy with calico: service-proxy-calico.md
-      - Standalone mode: standalone.md
+      - Standalone Mode: standalone.md
   - Advanced Guides:
       - How-To - service-group zones: service-zones.md
       - How-To - access end-points outside K8s: ext-ep.md
@@ -87,6 +89,9 @@ nav:
 extra:
     version: v0.9.5 (Latest)
     homepage: https://www.loxilb.io/ 
+
+extra_css:
+  - stylesheets/extra.css
   
 markdown_extensions:
   - pymdownx.highlight
