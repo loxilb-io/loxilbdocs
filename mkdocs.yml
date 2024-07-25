@@ -24,7 +24,7 @@ theme:
               name: Switch to dark mode
         - scheme: slate
           media: "(prefers-color-scheme: dark)"
-          primary: cyan
+          primary: black
           toggle:
              icon: material/weather-sunny
              name: Switch to light mode
@@ -85,8 +85,8 @@ nav:
 extra:
     version: v0.9.5 (Latest)
     homepage: https://www.loxilb.io/ 
-extra_css:
-  - stylesheets/extra.css
+#extra_css:
+#  - stylesheets/extra.css
   
 markdown_extensions:
   - pymdownx.highlight
