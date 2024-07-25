@@ -8,7 +8,7 @@
         
         <link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/code/">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Code organization - loxilb v0.9.5</title>
+        <title>Code organization - LoxiLB</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/fontawesome.min.css" rel="stylesheet">
         <link href="../css/brands.min.css" rel="stylesheet">
@@ -33,7 +33,7 @@
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="..">loxilb v0.9.5</a>
+                <a class="navbar-brand" href="..">LoxiLB</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -257,26 +257,8 @@
   </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">More</a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="https://github.com/loxilb-io/loxilb" class="dropdown-item">GitHub</a>
-</li>
-                                    
-<li>
-    <a href="https://www.loxilb.io/" class="dropdown-item">Website</a>
-</li>
-                                    
-<li>
-    <a href="https://github.com/loxilb-io/loxilb/discussions" class="dropdown-item">Community Forum</a>
-</li>
-                                    
-<li>
-    <a href="https://join.slack.com/t/loxilb/shared_invite/zt-2b3xx14wg-P7WHj5C~OEON_jviF0ghcQ" class="dropdown-item">Join Slack</a>
-</li>
-                                </ul>
+                            <li class="nav-item">
+                                <a href="https://www.loxilb.io/" class="nav-link">Visit Website</a>
                             </li>
                         </ul>
 
@@ -295,6 +277,10 @@
                                 <a rel="next" href="../loxilbebpf/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/loxilb-io/loxilb/edit/master/docs/code.md" class="nav-link">Edit on loxilb-io/loxilb
+                                    </a>
                             </li>
                     </ul>
                 </div>
@@ -348,7 +334,7 @@
                     <div class="col-md-9" role="main">
 
 <h1 id="loxilb-is-organized-as-below">loxilb is organized as below:</h1>
-<pre><code>├── api
+<pre class="highlight"><code>├── api
 │  ├── certification
 │  ├── cmd
 │  │  ├── loxilb-rest-api-server
@@ -387,8 +373,7 @@
 │  ├── utils
 ├── loxinet
 ├── options
-├── loxilib
-</code></pre>
+├── loxilib</code></pre>
 <h2 id="api">api</h2>
 <p>This directory contains source code to host api server to handle CCM configuration requests.</p>
 <h2 id="common">common</h2>

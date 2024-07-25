@@ -8,7 +8,7 @@
         
         <link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/perf-multi/">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Perf multi - loxilb v0.9.5</title>
+        <title>Perf multi - LoxiLB</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/fontawesome.min.css" rel="stylesheet">
         <link href="../css/brands.min.css" rel="stylesheet">
@@ -33,7 +33,7 @@
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="..">loxilb v0.9.5</a>
+                <a class="navbar-brand" href="..">LoxiLB</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -257,26 +257,8 @@
   </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">More</a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="https://github.com/loxilb-io/loxilb" class="dropdown-item">GitHub</a>
-</li>
-                                    
-<li>
-    <a href="https://www.loxilb.io/" class="dropdown-item">Website</a>
-</li>
-                                    
-<li>
-    <a href="https://github.com/loxilb-io/loxilb/discussions" class="dropdown-item">Community Forum</a>
-</li>
-                                    
-<li>
-    <a href="https://join.slack.com/t/loxilb/shared_invite/zt-2b3xx14wg-P7WHj5C~OEON_jviF0ghcQ" class="dropdown-item">Join Slack</a>
-</li>
-                                </ul>
+                            <li class="nav-item">
+                                <a href="https://www.loxilb.io/" class="nav-link">Visit Website</a>
                             </li>
                         </ul>
 
@@ -286,6 +268,10 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/loxilb-io/loxilb/edit/master/docs/perf-multi.md" class="nav-link">Edit on loxilb-io/loxilb
+                                    </a>
+                            </li>
                     </ul>
                 </div>
             </div>
@@ -318,9 +304,8 @@
 <p><img alt="LB Test" src="../photos/LBTest.png" /></p>
 <p>In this test, all the hosts, end-points and load-balancer run in separate dedicated servers/nodes. Server specs used - 
 <em>Intel(R) Xeon(R) Silver 4210R CPU @ 2.40GHz - 40 core RAM 125GB, Kernel 5.15.0-52-generic</em>. The following command can be used to configure loxilb for the given topology:</p>
-<pre><code># loxicmd create lb 20.20.20.1 --tcp=2020:5001 --endpoints=31.31.31.1:1,32.32.32.1:1,33.33.33.1:1
-</code></pre>
-<p>The default mode of LoxiLB is RR(round-robin) while other popular distribution modes such as consistent hash(<a href="https://medium.com/swlh/deep-dive-into-maglev-googles-load-balancer-f5fa943d578c">Maglev</a>), <a href="https://en.wikipedia.org/wiki/Weighted_round_robin">WRR</a> etc are also supported.</p>
+<p><pre class="highlight"><code># loxicmd create lb 20.20.20.1 --tcp=2020:5001 --endpoints=31.31.31.1:1,32.32.32.1:1,33.33.33.1:1</code></pre>
+The default mode of LoxiLB is RR(round-robin) while other popular distribution modes such as consistent hash(<a href="https://medium.com/swlh/deep-dive-into-maglev-googles-load-balancer-f5fa943d578c">Maglev</a>), <a href="https://en.wikipedia.org/wiki/Weighted_round_robin">WRR</a> etc are also supported.</p>
 <p>We run popular tool <strong><a href="https://github.com/HewlettPackard/netperf">netperf</a></strong> for the above topology. A quick explanation of terminologies used :</p>
 <p><strong>RPS</strong> - requests per seconds. Given a fixed number of connections, this denotes how many requests/message per second can be supported  <br />
 <strong>CPS</strong> - connections per second. This denotes how many new TCP connection setup/teardowns can be supported per second and hence one of the most important indicators of load-balancer performance   <br />

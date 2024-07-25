@@ -8,7 +8,7 @@
         
         <link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/integrate_bgp_eng/">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>How to run loxilb with calico CNI in BGP mode - loxilb v0.9.5</title>
+        <title>How to run loxilb with calico CNI in BGP mode - LoxiLB</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/fontawesome.min.css" rel="stylesheet">
         <link href="../css/brands.min.css" rel="stylesheet">
@@ -33,7 +33,7 @@
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="..">loxilb v0.9.5</a>
+                <a class="navbar-brand" href="..">LoxiLB</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -257,26 +257,8 @@
   </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">More</a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="https://github.com/loxilb-io/loxilb" class="dropdown-item">GitHub</a>
-</li>
-                                    
-<li>
-    <a href="https://www.loxilb.io/" class="dropdown-item">Website</a>
-</li>
-                                    
-<li>
-    <a href="https://github.com/loxilb-io/loxilb/discussions" class="dropdown-item">Community Forum</a>
-</li>
-                                    
-<li>
-    <a href="https://join.slack.com/t/loxilb/shared_invite/zt-2b3xx14wg-P7WHj5C~OEON_jviF0ghcQ" class="dropdown-item">Join Slack</a>
-</li>
-                                </ul>
+                            <li class="nav-item">
+                                <a href="https://www.loxilb.io/" class="nav-link">Visit Website</a>
                             </li>
                         </ul>
 
@@ -286,6 +268,10 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/loxilb-io/loxilb/edit/master/docs/integrate_bgp_eng.md" class="nav-link">Edit on loxilb-io/loxilb
+                                    </a>
+                            </li>
                     </ul>
                 </div>
             </div>
@@ -346,73 +332,42 @@ These examples assume that kubernetes &amp; calico are already installed.</p>
 <h3 id="11-docker-network-setup">1.1 docker network setup</h3>
 <p>In order to integrate loxilb and kubernetes, loxilb needs to be able to communicate with Kubernetes.
 First, we create a docker network so that the loxilb container is also connected to the same network which is used by kubernetes nodes. Currently, the load balancer node is connected to kubernetes through the eno6 interface. Therefore, we will create a macvlan-type docker network that uses the eno6 interface as a parent and provide it to the loxilb docker.
-Create a docker network with the following command:</p>
-<pre><code>sudo docker network create -d macvlan -o parent=eno6 \
+Create a docker network with the following command:
+<pre class="highlight"><code>sudo docker network create -d macvlan -o parent=eno6 \
   --subnet 192.168.57.0/24 \
   --gateway 192.168.57.1 \
   --aux-address 'cp1=192.168.57.101' \
   --aux-address 'cp2=192.168.57.102' \
-  --aux-address 'cp3=192.168.57.103' k8snet
-</code></pre>
-<table>
-<thead>
-<tr>
-<th>Options</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>-d macvlan</td>
-<td>Specify network type as macvlan</td>
-</tr>
-<tr>
-<td>-o parent=eno6</td>
-<td>Create a macvlan type network using the eno6 interface as parent</td>
-</tr>
-<tr>
-<td>--subnet 192.168.57.0/24</td>
-<td>Specify network subnet</td>
-</tr>
-<tr>
-<td>--gateway 192.168.57.1</td>
-<td>Set gateway (optional)</td>
-</tr>
-<tr>
-<td>--aux-address 'serverName=serverIP'</td>
-<td>Option to register in advance so that IP addresses already in use on the network are not duplicated</td>
-</tr>
-<tr>
-<td>k8snet</td>
-<td>Name the network k8snet</td>
-</tr>
-</tbody>
-</table>
-<p>A docker network that can communicate with the outside is also created so that traffic accessing the kubernetes service from outside also goes through loxilb. The load balancer node is connected to the outside through eno8.</p>
-<pre><code>sudo docker network create -d macvlan -o parent=eno8 \
+  --aux-address 'cp3=192.168.57.103' k8snet</code></pre>
+|Options|Description|
+|----|----|
+|-d macvlan|Specify network type as macvlan|
+|-o parent=eno6|Create a macvlan type network using the eno6 interface as parent|
+|--subnet 192.168.57.0/24|Specify network subnet|
+|--gateway 192.168.57.1|Set gateway (optional)|
+|--aux-address 'serverName=serverIP'|Option to register in advance so that IP addresses already in use on the network are not duplicated|
+|k8snet|Name the network k8snet|</p>
+<p>A docker network that can communicate with the outside is also created so that traffic accessing the kubernetes service from outside also goes through loxilb. The load balancer node is connected to the outside through eno8.
+<pre class="highlight"><code>sudo docker network create -d macvlan -o parent=eno8 \
   --subnet 192.168.20.0/24 \
-  --gateway 192.168.20.1 llbnet
-</code></pre>
+  --gateway 192.168.20.1 llbnet</code></pre></p>
 <p>We can check the network created with the docker network list command.</p>
-<pre><code>netlox@nd8:~$ sudo docker network list
+<pre class="highlight"><code>netlox@nd8:~$ sudo docker network list
 NETWORK ID     NAME      DRIVER    SCOPE
 5c97ae74fc32   bridge    bridge    local
 6142f53e8be6   host      host      local
 24ee7dbd7707   k8snet    macvlan   local
 81c96ceda375   llbnet    macvlan   local
-7bcd1738501b   none      null      local
-</code></pre>
+7bcd1738501b   none      null      local</code></pre>
 <h3 id="12-loxilb-docker-setup">1.2 loxilb docker setup</h3>
 <p>The loxilb container image is provided at <a href="https://github.com/loxilb-io/loxilb/pkgs/container/loxilb">github</a>. To download the docker image, use the following command.  </p>
-<pre><code>docker pull ghcr.io/loxilb-io/loxilb:latest
-</code></pre>
+<pre class="highlight"><code>docker pull ghcr.io/loxilb-io/loxilb:latest</code></pre>
 <p>To run loxilb docker, we can use the following command.</p>
-<pre><code>sudo docker run -u root --cap-add SYS_ADMIN --restart unless-stopped \
+<p><pre class="highlight"><code>sudo docker run -u root --cap-add SYS_ADMIN --restart unless-stopped \
   --privileged -dit -v /dev/log:/dev/log \
   --net=k8snet --ip=192.168.57.4 --name loxilb ghcr.io/loxilb-io/loxilb:latest \
-  --host=0.0.0.0
-</code></pre>
-<p>The options that need to specified are:   </p>
+  --host=0.0.0.0</code></pre>
+The options that need to specified are:   </p>
 <table>
 <thead>
 <tr>
@@ -435,26 +390,23 @@ NETWORK ID     NAME      DRIVER    SCOPE
 </tr>
 </tbody>
 </table>
-<p>We can check the docker created with the docker ps command.</p>
-<pre><code>netlox@nd8:~$ sudo docker ps
+<p>We can check the docker created with the docker ps command.
+<pre class="highlight"><code>netlox@nd8:~$ sudo docker ps
 CONTAINER ID   IMAGE                  COMMAND                  CREATED       STATUS       PORTS       NAMES
-eae349a283ae   loxilbio/loxilb:beta   &quot;/root/loxilb-io/lox…&quot;   11 days ago   Up 11 days               loxilb
-</code></pre>
-<p>Since we only connected the kubernetes network (k8snet) when running the docker above, we also need to connect to the docker network for external communication. Currently, docker only supports one network to be connected when running "docker run" command. But, its easy to connect other network to the docker with the following command:</p>
-<pre><code>sudo docker network connect llbnet loxilb
-</code></pre>
+eae349a283ae   loxilbio/loxilb:beta   "/root/loxilb-io/lox…"   11 days ago   Up 11 days               loxilb</code></pre>
+Since we only connected the kubernetes network (k8snet) when running the docker above, we also need to connect to the docker network for external communication. Currently, docker only supports one network to be connected when running "docker run" command. But, its easy to connect other network to the docker with the following command:
+<pre class="highlight"><code>sudo docker network connect llbnet loxilb</code></pre></p>
 <p>Once the connection is complete, we can see the docker container's interfaces as follows:</p>
-<pre><code>netlox@netlox:~$ sudo docker exec -ti loxilb ip route
+<pre class="highlight"><code>netlox@netlox:~$ sudo docker exec -ti loxilb ip route
 default via 192.168.20.1 dev eth0
 192.168.20.0/24 dev eth0 proto kernel scope link src 192.168.20.4
-192.168.30.0/24 dev eth1 proto kernel scope link src 192.168.30.2
-</code></pre>
+192.168.30.0/24 dev eth1 proto kernel scope link src 192.168.30.2</code></pre>
 <h2 id="2-loxi-ccm-setup-in-kubernetes">2. loxi-ccm setup in kubernetes</h2>
 <p>loxi-ccm is a <a href="https://kubernetes.io/ko/docs/concepts/architecture/cloud-controller/">ccm provider</a> to provide a loxilb load balancer to kubernetes, and it is essential for interworking with kubernetes and loxilb.
 Refer to <a href="https://github.com/loxilb-io/loxilbdocs/blob/main/docs/ccm.md">the relevant document</a>, change the apiServerURL of configMap to the IP address of loxilb created above and install it in kubernetes. If loxi-ccm is installed properly, the setup is complete.</p>
 <h2 id="3basic-load-balancer-test">3.Basic load-balancer test</h2>
 <p>We can now give an External IP when you create a LoadBalancer type service in kubernetes. Create a test-nginx-svc.yaml file for testing as follows:</p>
-<pre><code>apiVersion: v1
+<pre class="highlight"><code>apiVersion: v1
 kind: Pod
 metadata:
   name: nginx
@@ -480,36 +432,31 @@ spec:
   - name: name-of-service-port
     protocol: TCP
     port: 8888
-    targetPort: http-web-svc
-</code></pre>
+    targetPort: http-web-svc</code></pre>
 <p>The above steps create the nginx pod and then associates a LoadBalancer service to it. The command to apply is as follows </p>
-<pre><code>kubectl apply -f test-nginx-svc.yaml
-</code></pre>
+<pre class="highlight"><code>kubectl apply -f test-nginx-svc.yaml</code></pre>
 <p>We can verify that the service nginx-service has been created as a LoadBalancer type and has been assigned an External IP.
 Now you can access the kubernetes service from outside using IP 123.123.123.15 and port 8888.</p>
-<pre><code>vagrant@node1:~$ sudo kubectl get svc
+<pre class="highlight"><code>vagrant@node1:~$ sudo kubectl get svc
 NAME            TYPE           CLUSTER-IP      EXTERNAL-IP      PORT(S)          AGE
 kubernetes      ClusterIP      10.233.0.1      &lt;none&gt;           443/TCP          28d
-nginx-service   LoadBalancer   10.233.21.235   123.123.123.15   8888:31655/TCP   3s
-</code></pre>
+nginx-service   LoadBalancer   10.233.21.235   123.123.123.15   8888:31655/TCP   3s</code></pre>
 <p>The LoadBalancer rule is also created in the loxilb container. We can check in the loxilb load-balancer node as follows   </p>
-<pre><code>netlox@nd8:~$ sudo docker exec -ti loxilb loxicmd get lb
+<pre class="highlight"><code>netlox@nd8:~$ sudo docker exec -ti loxilb loxicmd get lb
 |  EXTERNAL IP   | PORT | PROTOCOL | SELECT | # OF ENDPOINTS |
 |----------------|------|----------|--------|----------------|
-| 123.123.123.15 | 8888 | tcp      |      0 |              2 |
-</code></pre>
+| 123.123.123.15 | 8888 | tcp      |      0 |              2 |</code></pre>
 <h2 id="4-calico-bgp-loxilb-setup">4. calico BGP &amp; loxilb setup</h2>
 <p>If calico configures the network in BGP mode, loxilb must also operate in BGP mode. loxilb supports BGP functions based on goBGP. The following description assumes that calico is already set to use BGP mode.</p>
 <h3 id="41-loxilb-bgp-mode-setup">4.1 loxilb BGP mode setup</h3>
 <p>If we create a loxilb container with the following command, it will run in BGP mode. The -b option at the end of the command is to enable BGP mode in loxilb.</p>
-<pre><code>sudo docker run -u root --cap-add SYS_ADMIN --restart unless-stopped \
+<pre class="highlight"><code>sudo docker run -u root --cap-add SYS_ADMIN --restart unless-stopped \
   --privileged -dit -v /dev/log:/dev/log \
   --net=k8snet --ip=192.168.57.4 --name loxilb ghcr.io/loxilb-io/loxilb:latest \
-  --host=0.0.0.0 -b
-</code></pre>
+  --host=0.0.0.0 -b</code></pre>
 <h3 id="42-gobgp_loxilbyaml-file-setup">4.2 gobgp_loxilb.yaml file setup</h3>
 <p>Create a gobgp_loxilb.yaml file in the /etc/gobgp/ directory of the loxilb container.   </p>
-<pre><code>global:
+<pre class="highlight"><code>global:
     config:
         as: 65002
         router-id: 172.1.0.2
@@ -519,48 +466,41 @@ neighbors:
         peer-as: 64512
     - config:
         neighbor-address: 192.168.20.55
-        peer-as: 64001
-</code></pre>
+        peer-as: 64001</code></pre>
 <p>BGP information such as as-id and router-id of the loxilb container must be registered as global items.
 The neighbors item need info about the IP address and as-id information of the BGP router peering with loxilb. In this example, calico's BGP information (192.168.57.101) and external BGP information (129.168.20.55) were registered.</p>
 <h3 id="43-add-router-id-to-the-lo-interface-of-the-loxilb-container">4.3 Add router-id to the lo interface of the loxilb container</h3>
-<p>We need to add the IP registered as loxilb router-id in the gobgp_loxilb.yaml file to the lo interface of loxilb docker.   </p>
-<pre><code>sudo docker exec -ti loxilb ip addr add 172.1.0.2/32 dev lo
-</code></pre>
+<p>We need to add the IP registered as loxilb router-id in the gobgp_loxilb.yaml file to the lo interface of loxilb docker. <br />
+<pre class="highlight"><code>sudo docker exec -ti loxilb ip addr add 172.1.0.2/32 dev lo</code></pre></p>
 <h3 id="44-loxilb-docker-restart">4.4 loxilb docker restart</h3>
-<p>Restart the loxilb docker for the settings in gobgp_loxilb.yaml to take effect.   </p>
-<pre><code>sudo docker stop loxilb
-sudo docker start loxilb
-</code></pre>
+<p>Restart the loxilb docker for the settings in gobgp_loxilb.yaml to take effect. <br />
+<pre class="highlight"><code>sudo docker stop loxilb
+sudo docker start loxilb</code></pre></p>
 <h3 id="45-setup-bgp-peer-information-in-calico">4.5 Setup BGP Peer information in Calico</h3>
-<p>We also need to add loxilb's BGP peer information to calico. Create the calico-bgp-config.yaml file as follows:   </p>
-<pre><code>apiVersion: projectcalico.org/v3
+<p>We also need to add loxilb's BGP peer information to calico. Create the calico-bgp-config.yaml file as follows: <br />
+<pre class="highlight"><code>apiVersion: projectcalico.org/v3
 kind: BGPPeer
 metadata:
   name: my-global-peers2
 spec:
   peerIP: 192.168.57.4
-  asNumber: 65002
-</code></pre>
+  asNumber: 65002</code></pre></p>
 <p>In peerIP, enter the IP address of loxilb. In asNumber, enter the as-ID of the loxilb BGP set above.
-After creating the file, add BGP peer information to calico with the command below.</p>
-<pre><code>sudo calicoctl apply -f calico-bgp-config.yaml
-</code></pre>
+After creating the file, add BGP peer information to calico with the command below.
+<pre class="highlight"><code>sudo calicoctl apply -f calico-bgp-config.yaml</code></pre></p>
 <h3 id="46-check-bgp-status">4.6 Check BGP status</h3>
-<p>We now check the BGP connectivity in the loxilb docker like this:   </p>
-<pre><code>netlox@nd8:~$ sudo docker exec -ti loxilb3 gobgp neigh
+<p>We now check the BGP connectivity in the loxilb docker like this: <br />
+<pre class="highlight"><code>netlox@nd8:~$ sudo docker exec -ti loxilb3 gobgp neigh
 Peer              AS  Up/Down State       |#Received  Accepted
-192.168.57.101 64512 00:00:59 Establ      |        4         4
-</code></pre>
+192.168.57.101 64512 00:00:59 Establ      |        4         4</code></pre></p>
 <p>If the connection is successful, the State will  be shown as "Established".
-We can check the route information of calico with the gobgp global rib command.</p>
-<pre><code>netlox@nd8:~$ sudo docker exec -ti loxilb3 gobgp global rib
+We can check the route information of calico with the gobgp global rib command.
+<pre class="highlight"><code>netlox@nd8:~$ sudo docker exec -ti loxilb3 gobgp global rib
    Network              Next Hop             AS_PATH              Age        Attrs
 *&gt; 10.233.71.0/26       192.168.57.101       64512                01:02:03   [{Origin: i}]
 *&gt; 10.233.74.64/26      192.168.57.101       64512                01:02:03   [{Origin: i}]
 *&gt; 10.233.75.0/26       192.168.57.101       64512                01:02:03   [{Origin: i}]
-*&gt; 10.233.102.128/26    192.168.57.101       64512                01:02:03   [{Origin: i}]
-</code></pre></div>
+*&gt; 10.233.102.128/26    192.168.57.101       64512                01:02:03   [{Origin: i}]</code></pre></p></div>
             </div>
         </div>
 

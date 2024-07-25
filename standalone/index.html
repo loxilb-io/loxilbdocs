@@ -8,7 +8,7 @@
         
         <link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/standalone/">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>loxilb in standalone mode - loxilb v0.9.5</title>
+        <title>loxilb in standalone mode - LoxiLB</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/fontawesome.min.css" rel="stylesheet">
         <link href="../css/brands.min.css" rel="stylesheet">
@@ -33,7 +33,7 @@
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="..">loxilb v0.9.5</a>
+                <a class="navbar-brand" href="..">LoxiLB</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -257,26 +257,8 @@
   </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">More</a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="https://github.com/loxilb-io/loxilb" class="dropdown-item">GitHub</a>
-</li>
-                                    
-<li>
-    <a href="https://www.loxilb.io/" class="dropdown-item">Website</a>
-</li>
-                                    
-<li>
-    <a href="https://github.com/loxilb-io/loxilb/discussions" class="dropdown-item">Community Forum</a>
-</li>
-                                    
-<li>
-    <a href="https://join.slack.com/t/loxilb/shared_invite/zt-2b3xx14wg-P7WHj5C~OEON_jviF0ghcQ" class="dropdown-item">Join Slack</a>
-</li>
-                                </ul>
+                            <li class="nav-item">
+                                <a href="https://www.loxilb.io/" class="nav-link">Visit Website</a>
                             </li>
                         </ul>
 
@@ -295,6 +277,10 @@
                                 <a rel="next" href="../service-zones/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/loxilb-io/loxilb/edit/master/docs/standalone.md" class="nav-link">Edit on loxilb-io/loxilb
+                                    </a>
                             </li>
                     </ul>
                 </div>
@@ -328,104 +314,86 @@
 <h3 id="pre-requisites">Pre-requisites</h3>
 <p><em>This guide uses Ubuntu 20.04.5 LTS as the base operating system</em></p>
 <h4 id="install-docker">Install docker</h4>
-<p>One can follow the guide <a href="https://docs.docker.com/engine/install/ubuntu/">here</a> to install latest docker engine or use snap to install docker.</p>
-<pre><code>sudo apt update
+<p>One can follow the guide <a href="https://docs.docker.com/engine/install/ubuntu/">here</a> to install latest docker engine or use snap to install docker.
+<pre class="highlight"><code>sudo apt update
 sudo apt install snapd
-sudo snap install docker
-</code></pre>
+sudo snap install docker</code></pre></p>
 <h4 id="enable-ipv6-if-running-nat64nat66">Enable IPv6 (if running NAT64/NAT66)</h4>
-<pre><code>sysctl net.ipv6.conf.all.disable_ipv6=0
-sysctl net.ipv6.conf.default.disable_ipv6=0
-</code></pre>
+<pre class="highlight"><code>sysctl net.ipv6.conf.all.disable_ipv6=0
+sysctl net.ipv6.conf.default.disable_ipv6=0</code></pre>
 <h3 id="run-loxilb">Run loxilb</h3>
 <p>Get the loxilb official docker image    </p>
 <ul>
-<li>Latest build image (multi-arch amd64/arm64)   </li>
+<li>
+<p>Latest build image (multi-arch amd64/arm64) <br />
+<pre class="highlight"><code>docker pull ghcr.io/loxilb-io/loxilb:latest</code></pre></p>
+</li>
+<li>
+<p>Release build image <br />
+<pre class="highlight"><code>docker pull ghcr.io/loxilb-io/loxilb:v0.9.5</code></pre></p>
+</li>
+<li>
+<p>To run loxilb docker, we can use the following commands :   </p>
+</li>
 </ul>
-<pre><code>docker pull ghcr.io/loxilb-io/loxilb:latest
-</code></pre>
-<ul>
-<li>Release build image   </li>
-</ul>
-<pre><code>docker pull ghcr.io/loxilb-io/loxilb:v0.9.5
-</code></pre>
-<ul>
-<li>To run loxilb docker, we can use the following commands :   </li>
-</ul>
-<pre><code>docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --name loxilb ghcr.io/loxilb-io/loxilb:latest
-</code></pre>
+<pre class="highlight"><code>docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --name loxilb ghcr.io/loxilb-io/loxilb:latest</code></pre>
 <ul>
 <li>To drop in to a shell of loxilb doker :   </li>
 </ul>
-<pre><code>docker exec -it loxilb bash
-</code></pre>
+<pre class="highlight"><code>docker exec -it loxilb bash</code></pre>
 <ul>
 <li>For load-balancing to effectively work in a bare-metal environment, we need multiple interfaces assigned to the docker (external and internal connectivitiy). loxilb docker relies on docker's macvlan driver for achieving this. The following is an example of creating macvlan network and using with loxilb:   </li>
 </ul>
-<pre><code># Create a mac-vlan (on an underlying interface e.g. enp0s3).
+<pre class="highlight"><code># Create a mac-vlan (on an underlying interface e.g. enp0s3).
 # Subnet used for mac-vlan is usually the same as underlying interface
 docker network create -d macvlan -o parent=enp0s3   --subnet 172.30.1.0/24   --gateway 172.30.1.254 --aux-address 'host=172.30.1.193’ llbnet
 
 # Run loxilb docker with the created macvlan 
 docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --net=llbnet --ip=172.30.1.195 --name loxilb ghcr.io/loxilb-io/loxilb:latest
 
-# If we still want to connect loxilb docker additionally to docker's default &quot;bridge&quot; network or more macvlan networks
+# If we still want to connect loxilb docker additionally to docker's default "bridge" network or more macvlan networks
 docker network connect bridge loxilb
-docker network connect llbnet2 loxilb --ip=172.30.2.195
-</code></pre>
+docker network connect llbnet2 loxilb --ip=172.30.2.195</code></pre>
 <p><b>Note:</b>    </p>
 <ul>
 <li>While working with macvlan interfaces, the parent/underlying interface should be put in promiscous mode     </li>
 <li>One can further use docker-compose to automate attaching multiple networks to loxilb docker or use <code>--net=host</code> as per requirement</li>
 <li>To use local socket policy or eBPF sockmap related features, we need to use <code>--pid=host --cgroupns=host</code> as additional arguments to docker run.   </li>
 <li>To create a simple and self-contained topology for testing loxilb, users can follow this <a href="../simple_topo/">guide</a>   </li>
-<li>If loxilb docker is in the same node as the app/workload docker, it is advised that "tx checksum offload" inside app/workload docker is turned off for sctp load-balancing to work properly   </li>
+<li>If loxilb docker is in the same node as the app/workload docker, it is advised that "tx checksum offload" inside app/workload docker is turned off for sctp load-balancing to work properly <br />
+<pre class="highlight"><code>docker exec -dt &lt;app-docker-name&gt; ethtool -K &lt;app-docker-interface&gt; tx off</code></pre></li>
 </ul>
-<pre><code>docker exec -dt &lt;app-docker-name&gt; ethtool -K &lt;app-docker-interface&gt; tx off
-</code></pre>
 <h3 id="configuration">Configuration</h3>
 <p>loxicmd command line tool can be used to configure loxilb in standalone mode. A simple example of configuration using loxilb is as follows:   </p>
 <ul>
-<li>Drop into loxilb shell   </li>
+<li>Drop into loxilb shell <br />
+<pre class="highlight"><code>sudo docker exec -it loxilb bash</code></pre></li>
+<li>Create a LB rule inside loxilb docker. Various other options for LB manipulation can be found <a href="https://github.com/loxilb-io/loxilbdocs/blob/main/docs/cmd.md#load-balancer">here</a>  <br />
+<pre class="highlight"><code>loxicmd create lb 2001::1 --tcp=2020:8080 --endpoints=33.33.33.1:1</code></pre></li>
+<li>Validate entry is created using the command:  <br />
+<pre class="highlight"><code>loxicmd get lb -o wide</code></pre>
+The detailed usage guide of loxicmd can be found <a href="https://loxilb-io.github.io/loxilbdocs/cmd/">here</a>.   </li>
 </ul>
-<pre><code>sudo docker exec -it loxilb bash
-</code></pre>
-<ul>
-<li>Create a LB rule inside loxilb docker. Various other options for LB manipulation can be found <a href="https://github.com/loxilb-io/loxilbdocs/blob/main/docs/cmd.md#load-balancer">here</a>    </li>
-</ul>
-<pre><code>loxicmd create lb 2001::1 --tcp=2020:8080 --endpoints=33.33.33.1:1
-</code></pre>
-<ul>
-<li>Validate entry is created using the command:    </li>
-</ul>
-<pre><code>loxicmd get lb -o wide
-</code></pre>
-<p>The detailed usage guide of loxicmd can be found <a href="https://loxilb-io.github.io/loxilbdocs/cmd/">here</a>.   </p>
 <h3 id="working-with-gobgp">Working with gobgp</h3>
 <p>loxilb works in tandem with gobgp when bgp services  are required. As a first step, create a file gobgp.conf in host where loxilb docker will run and add the basic necessary fields :   </p>
-<pre><code>[global.config]
+<pre class="highlight"><code>[global.config]
   as = 64512
-  router-id = &quot;10.10.10.1&quot;
+  router-id = "10.10.10.1"
 
 [[neighbors]]
   [neighbors.config]
-    neighbor-address = &quot;10.10.10.254&quot;
-    peer-as = 64512
-</code></pre>
-<p>Run loxilb docker with following arguments:   </p>
-<pre><code>docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v gobgp.conf:/etc/gobgp/gobgp.conf -v /dev/log:/dev/log --name loxilb ghcr.io/loxilb-io/loxilb:latest -b 
-</code></pre>
+    neighbor-address = "10.10.10.254"
+    peer-as = 64512</code></pre>
+<p>Run loxilb docker with following arguments: <br />
+<pre class="highlight"><code>docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v gobgp.conf:/etc/gobgp/gobgp.conf -v /dev/log:/dev/log --name loxilb ghcr.io/loxilb-io/loxilb:latest -b </code></pre></p>
 <p>The gobgp daemon should pick the configuration. The neighbors can be verified by :   </p>
-<pre><code>sudo docker exec -it loxilb gobgp neighbor
-</code></pre>
+<pre class="highlight"><code>sudo docker exec -it loxilb gobgp neighbor</code></pre>
 <p>At run time, there are two ways to change gobgp configuration. Ephemeral configuration can simply be done using “gobgp” command as detailed <a href="https://github.com/osrg/gobgp/blob/master/docs/sources/cli-operations.md">here</a>. If persistence is required, then one can change the gobgp config file /etc/gobgp/gobgp.conf and apply SIGHUP to gobgpd process for loading the edited configuration.   </p>
-<pre><code>sudo docker exec -it loxilb pkill -1 gobgpd
-</code></pre>
+<pre class="highlight"><code>sudo docker exec -it loxilb pkill -1 gobgpd</code></pre>
 <h3 id="persistent-lb-entries">Persistent LB entries</h3>
 <p>To save the created rules across reboots, one can use the following command:    </p>
-<pre><code>sudo mkdir -p /etc/loxilb/
-sudo loxicmd save --lb
-</code></pre></div>
+<pre class="highlight"><code>sudo mkdir -p /etc/loxilb/
+sudo loxicmd save --lb</code></pre></div>
             </div>
         </div>
 

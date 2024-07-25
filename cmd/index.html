@@ -8,7 +8,7 @@
         
         <link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/cmd/">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Table of Contents - loxilb v0.9.5</title>
+        <title>Table of Contents - LoxiLB</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/fontawesome.min.css" rel="stylesheet">
         <link href="../css/brands.min.css" rel="stylesheet">
@@ -33,7 +33,7 @@
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="..">loxilb v0.9.5</a>
+                <a class="navbar-brand" href="..">LoxiLB</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -257,26 +257,8 @@
   </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">More</a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="https://github.com/loxilb-io/loxilb" class="dropdown-item">GitHub</a>
-</li>
-                                    
-<li>
-    <a href="https://www.loxilb.io/" class="dropdown-item">Website</a>
-</li>
-                                    
-<li>
-    <a href="https://github.com/loxilb-io/loxilb/discussions" class="dropdown-item">Community Forum</a>
-</li>
-                                    
-<li>
-    <a href="https://join.slack.com/t/loxilb/shared_invite/zt-2b3xx14wg-P7WHj5C~OEON_jviF0ghcQ" class="dropdown-item">Join Slack</a>
-</li>
-                                </ul>
+                            <li class="nav-item">
+                                <a href="https://www.loxilb.io/" class="nav-link">Visit Website</a>
                             </li>
                         </ul>
 
@@ -286,6 +268,10 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/loxilb-io/loxilb/edit/master/docs/cmd.md" class="nav-link">Edit on loxilb-io/loxilb
+                                    </a>
+                            </li>
                     </ul>
                 </div>
             </div>
@@ -315,6 +301,34 @@
               </ul>
             </li>
             <li class="nav-item" data-bs-level="2"><a href="#how-to-run-and-configure-loxilb" class="nav-link">How to run and configure loxilb</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#loxicmd-delete-lb-1111-tcp1828" class="nav-link">loxicmd delete lb 1.1.1.1 --tcp=1828</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#loxicmd-delete-endpoint-31313131" class="nav-link">loxicmd delete endpoint 31.31.31.31</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#loxicmd-delete-session-user1" class="nav-link">loxicmd delete session user1</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#loxicmd-delete-ip-deviceipnet-device-loxicmd-delete-ip-1921680124-eno7" class="nav-link">#loxicmd delete ip &lt;DeviceIPNet&gt; &lt;device&gt; loxicmd delete ip 192.168.0.1/24 eno7</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#loxicmd-delete-route-destinationipnet-loxicmd-delete-route-192168212024" class="nav-link">#loxicmd delete route &lt;DestinationIPNet&gt; loxicmd delete route 192.168.212.0/24</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#loxicmd-delete-firewall-firewallrulerulekeyrulevalue-loxicmd-delete-firewall-firewallrulesourceip123232destinationip231232preference200" class="nav-link">#loxicmd delete firewall --firewallRule=&lt;ruleKey&gt;:&lt;ruleValue&gt; loxicmd delete firewall --firewallRule="sourceIP:1.2.3.2/32,destinationIP:2.3.1.2/32,preference:200</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#loxicmd-delete-policy-polident-loxicmd-delete-policy-pol-1" class="nav-link">#loxicmd delete policy &lt;Polident&gt; loxicmd delete policy pol-1</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -353,70 +367,52 @@
 <h2 id="how-to-build">How to build</h2>
 <p>Note - loxilb docker has this built-in and there is no need to build it when using loxilb docker</p>
 <p>Install package dependencies </p>
-<pre><code>go get .
-</code></pre>
+<pre class="highlight"><code>go get .</code></pre>
 <p>Make loxicmd</p>
-<pre><code>make
-</code></pre>
+<pre class="highlight"><code>make</code></pre>
 <p>Install loxicmd</p>
-<pre><code>sudo cp -f ./loxicmd /usr/local/sbin
-</code></pre>
+<pre class="highlight"><code>sudo cp -f ./loxicmd /usr/local/sbin</code></pre>
 <h2 id="how-to-run-and-configure-loxilb">How to run and configure loxilb</h2>
 <h3 id="load-balancer">Load Balancer</h3>
 <h4 id="get-load-balancer-rules">Get load-balancer rules</h4>
-<p>Get basic information</p>
-<pre><code>loxicmd get lb
-</code></pre>
-<p>Get detailed information</p>
-<pre><code>loxicmd get lb -o wide
-</code></pre>
-<p>Get info in json</p>
-<pre><code>loxicmd get lb -o json
-</code></pre>
+<p>Get basic information
+<pre class="highlight"><code>loxicmd get lb</code></pre></p>
+<p>Get detailed information
+<pre class="highlight"><code>loxicmd get lb -o wide</code></pre>
+Get info in json
+<pre class="highlight"><code>loxicmd get lb -o json</code></pre></p>
 <h4 id="configure-load-balancer-rule">Configure load-balancer rule</h4>
-<p>Simple NAT44 tcp (round-robin) load-balancer</p>
-<pre><code>loxicmd create lb 1.1.1.1 --tcp=1828:1920 --endpoints=2.2.3.4:1
-</code></pre>
-<p><strong><em>Note:</em></strong> <br />
+<p>Simple NAT44 tcp (round-robin) load-balancer
+<pre class="highlight"><code>loxicmd create lb 1.1.1.1 --tcp=1828:1920 --endpoints=2.2.3.4:1</code></pre>
+<strong><em>Note:</em></strong> <br />
 - Round-robin is default mode in loxilb  <br />
 - End-point format is specified as &lt;CIDR:weight&gt;. For round-robin, weight(1) has no significance.</p>
-<p>NAT66 (round-robin) load-balancer</p>
-<pre><code>loxicmd create lb  2001::1 --tcp=2020:8080 --endpoints=4ffe::1:1,5ffe::1:1,6ffe::1:1
-</code></pre>
-<p>NAT64 (round-robin) load-balancer</p>
-<pre><code>loxicmd create lb  2001::1 --tcp=2020:8080 --endpoints=31.31.31.1:1,32.32.32.1:1,33.33.33.1:1
-</code></pre>
-<p>WRR (Weighted round-robin) load-balancer (Divide traffic in 40%, 40% and 20% ratio among end-points)</p>
-<pre><code>loxicmd create lb 20.20.20.1 --select=priority --tcp=2020:8080 --endpoints=31.31.31.1:40,32.32.32.1:40,33.33.33.1:20
-</code></pre>
-<p>Sticky end-point selection load-balancer (select end-points based on traffic hash)</p>
-<pre><code>loxicmd create lb 20.20.20.1 --select=hash --tcp=2020:8080 --endpoints=31.31.31.1:1,32.32.32.1:1,33.33.33.1:1
-</code></pre>
-<p>Load-balancer with forceful tcp-reset session timeout after inactivity of 30s</p>
-<pre><code>loxicmd create lb 20.20.20.1 --tcp=2020:8080 --endpoints=31.31.31.1:1,32.32.32.1:1,33.33.33.1:1 --inatimeout=30
-</code></pre>
-<p>Load-balancer with one-arm mode</p>
-<pre><code>loxicmd create lb 20.20.20.1 --tcp=2020:8080 --endpoints=100.100.100.2:1,100.100.100.3:1,100.100.100.4:1 --mode=onearm
-</code></pre>
-<p>Load-balancer with fullnat mode</p>
-<pre><code>loxicmd create lb 88.88.88.1 --sctp=38412:38412 --endpoints=192.168.70.3:1 --mode=fullnat
-</code></pre>
-<ul>
-<li>For more information on  one-arm and full-nat mode, please check this <a href="https://github.com/loxilb-io/loxilbdocs/blob/main/docs/nat.md">post</a></li>
-</ul>
-<p>Load-balancer config in DSR(direct-server return) mode</p>
-<pre><code>loxicmd create lb 20.20.20.1 --tcp=2020:8080 --endpoints=31.31.31.1:1,32.32.32.1:1 --mode=dsr
-</code></pre>
-<p>Load-balancer config with active endpoint monitoring</p>
-<pre><code>loxicmd create lb 20.20.20.1 --tcp=2020:8080 --endpoints=31.31.31.1:1,32.32.32.1:1 --monitor
-</code></pre>
-<p><strong><em>Note:</em></strong>  <br />
+<p>NAT66 (round-robin) load-balancer
+<pre class="highlight"><code>loxicmd create lb  2001::1 --tcp=2020:8080 --endpoints=4ffe::1:1,5ffe::1:1,6ffe::1:1</code></pre></p>
+<p>NAT64 (round-robin) load-balancer
+<pre class="highlight"><code>loxicmd create lb  2001::1 --tcp=2020:8080 --endpoints=31.31.31.1:1,32.32.32.1:1,33.33.33.1:1</code></pre></p>
+<p>WRR (Weighted round-robin) load-balancer (Divide traffic in 40%, 40% and 20% ratio among end-points)
+<pre class="highlight"><code>loxicmd create lb 20.20.20.1 --select=priority --tcp=2020:8080 --endpoints=31.31.31.1:40,32.32.32.1:40,33.33.33.1:20</code></pre></p>
+<p>Sticky end-point selection load-balancer (select end-points based on traffic hash)
+<pre class="highlight"><code>loxicmd create lb 20.20.20.1 --select=hash --tcp=2020:8080 --endpoints=31.31.31.1:1,32.32.32.1:1,33.33.33.1:1</code></pre></p>
+<p>Load-balancer with forceful tcp-reset session timeout after inactivity of 30s
+<pre class="highlight"><code>loxicmd create lb 20.20.20.1 --tcp=2020:8080 --endpoints=31.31.31.1:1,32.32.32.1:1,33.33.33.1:1 --inatimeout=30</code></pre></p>
+<p>Load-balancer with one-arm mode
+<pre class="highlight"><code>loxicmd create lb 20.20.20.1 --tcp=2020:8080 --endpoints=100.100.100.2:1,100.100.100.3:1,100.100.100.4:1 --mode=onearm</code></pre></p>
+<p>Load-balancer with fullnat mode
+<pre class="highlight"><code>loxicmd create lb 88.88.88.1 --sctp=38412:38412 --endpoints=192.168.70.3:1 --mode=fullnat</code></pre>
+- For more information on  one-arm and full-nat mode, please check this <a href="https://github.com/loxilb-io/loxilbdocs/blob/main/docs/nat.md">post</a></p>
+<p>Load-balancer config in DSR(direct-server return) mode
+<pre class="highlight"><code>loxicmd create lb 20.20.20.1 --tcp=2020:8080 --endpoints=31.31.31.1:1,32.32.32.1:1 --mode=dsr</code></pre></p>
+<p>Load-balancer config with active endpoint monitoring
+<pre class="highlight"><code>loxicmd create lb 20.20.20.1 --tcp=2020:8080 --endpoints=31.31.31.1:1,32.32.32.1:1 --monitor</code></pre>
+<strong><em>Note:</em></strong>  <br />
 - By default loxilb does not do active endpoint monitoring i.e it will continue to select end-points which might be inactive <br />
 - This is due to the fact kubernetes also has its own service monitoring mechanism and it can notify loxilb of any such endpoint health state  <br />
 - Based on user's requirements, one can specify active endpoint checks using "--monitor" flag <br />
 - loxilb has extensive endpoint monitoring methods. Further details can be found in endpoint <a href="&quot;https://github.com/loxilb-io/loxilbdocs/edit/main/docs/cmd.md#endpoint">section</a>   </p>
 <h5 id="load-balancer-yaml-example">Load-balancer yaml example</h5>
-<pre><code>apiVersion: netlox/v1
+<pre class="highlight"><code>apiVersion: netlox/v1
 kind: Loadbalancer
 metadata:
   name: test
@@ -435,21 +431,16 @@ spec:
     targetPort: 8080
   - endpointIP: 4.3.2.3
     weight: 1
-    targetPort: 8080
-</code></pre>
+    targetPort: 8080</code></pre>
 <h4 id="delete-a-load-balancer-rule">Delete a load-balancer rule</h4>
-<pre><code>loxicmd delete lb 1.1.1.1 --tcp=1828 
-</code></pre>
-<hr />
+<h2 id="loxicmd-delete-lb-1111-tcp1828"><pre class="highlight"><code>loxicmd delete lb 1.1.1.1 --tcp=1828 </code></pre></h2>
 <h3 id="endpoint">Endpoint</h3>
 <h4 id="get-load-balancer-end-point-health-information">Get load-balancer end-point health information</h4>
-<pre><code>loxicmd get ep
-</code></pre>
+<pre class="highlight"><code>loxicmd get ep</code></pre>
 <h4 id="create-end-point-for-health-probing">Create end-point for health probing</h4>
-<pre><code># loxicmd create endpoint IP [--name=&lt;id&gt;] [--probetype=&lt;probetype&gt;] [--probereq=&lt;probereq&gt;] [--proberesp=&lt;proberesp&gt;] [--probeport=&lt;port&gt;] [--period=&lt;period&gt;] [--retries=&lt;retries&gt;]
-loxicmd create endpoint 32.32.32.1 --probetype=http --probeport=8080 --period=60 --retries=2
-</code></pre>
-<p>IP(string) : Endpoint target IPaddress <br />
+<p><pre class="highlight"><code># loxicmd create endpoint IP [--name=&lt;id&gt;] [--probetype=&lt;probetype&gt;] [--probereq=&lt;probereq&gt;] [--proberesp=&lt;proberesp&gt;] [--probeport=&lt;port&gt;] [--period=&lt;period&gt;] [--retries=&lt;retries&gt;]
+loxicmd create endpoint 32.32.32.1 --probetype=http --probeport=8080 --period=60 --retries=2</code></pre>
+IP(string) : Endpoint target IPaddress <br />
 name(string) : Endpoint Identifier <br />
 probetype(string): Probe-type:ping,http,https,udp,tcp,sctp,none <br />
 probereq(string): If probe is http/https, one can specify additional uri path <br />
@@ -464,10 +455,10 @@ retries(int): Number of retries before marking endPoint inactive   </p>
 - When endpoint is inactive we have internal logic and timeouts to minimize blocking calls and maintain stability. Only when endpoint is active, we use probe timeout given by user  <br />
 - For UDP end-points and probe-type, there are two ways to check end-point health currently:  <br />
   - If the service can respond to probe requests with pre-defined responses sent over UDP, we can use the following :  <br />
-<code>loxicmd create endpoint 172.1.217.133 --name="udpep1" --probetype=udp --probeport=32031 --period=60 --retries=2 --probereq="probe" --proberesp="hello"</code>  <br />
+    <pre class="highlight"><code>loxicmd create endpoint 172.1.217.133 --name="udpep1" --probetype=udp --probeport=32031 --period=60 --retries=2 --probereq="probe" --proberesp="hello"</code></pre>
   - If the services cannot support the above mechanism, loxilb will try to check for "ICMP Port unreachable" after sending UDP probes. If an "ICMP Port unreachable" is received, it means the endpoint is not up. </p>
 <h5 id="examples">Examples :</h5>
-<pre><code>loxicmd create endpoint 32.32.32.1 --probetype=http --probeport=8080 --period=60 --retries=2
+<pre class="highlight"><code>loxicmd create endpoint 32.32.32.1 --probetype=http --probeport=8080 --period=60 --retries=2
 
 loxicmd get ep
 |    HOST    |         NAME         | PTYPE | PORT | DURATION | RETRIES | MINDELAY | AVGDELAY | MAXDELAY | STATE |
@@ -482,86 +473,74 @@ loxicmd get ep
 |    HOST    |         NAME         | PTYPE | PORT | DURATION | RETRIES | MINDELAY | AVGDELAY  | MAXDELAY  | STATE |
 |------------|----------------------|-------|------|----------|---------|----------|-----------|-----------|-------|
 | 32.32.32.1 | 32.32.32.1_http_8080 | http: | 8080 |       40 |       4 | 0s       | 0s        | 0s        | ok    |
-
 </code></pre>
 <h4 id="create-end-point-with-https-probing-information">Create end-point with https probing information</h4>
-<pre><code># loxicmd create endpoint IP [--name=&lt;id&gt;] [--probetype=&lt;probetype&gt;] [--probereq=&lt;probereq&gt;] [--proberesp=&lt;proberesp&gt;] [--probeport=&lt;port&gt;] [--period=&lt;period&gt;] [--retries=&lt;retries&gt;]
-loxicmd create endpoint 32.32.32.1 --probetype=https --probeport=8080 --probereq=&quot;health&quot; --proberesp=&quot;OK&quot; --period=60 --retries=2
-</code></pre>
-<p><strong><em>Note:</em></strong> loxilb requires CA certificate for TLS connection and private certificate and private key for mTLS connection. Admin can keep a common(default) CA certificate for all the endpoints at "/opt/loxilb/cert/rootCA.crt" or per-endpoint certificates can be kept as "/opt/loxilb/cert/\&lt;IP&gt;/rootCA.crt", private key must be kept at "/opt/loxilb/cert/server.key" and private certificate at "/opt/loxilb/cert/server.crt".
+<p><pre class="highlight"><code># loxicmd create endpoint IP [--name=&lt;id&gt;] [--probetype=&lt;probetype&gt;] [--probereq=&lt;probereq&gt;] [--proberesp=&lt;proberesp&gt;] [--probeport=&lt;port&gt;] [--period=&lt;period&gt;] [--retries=&lt;retries&gt;]
+loxicmd create endpoint 32.32.32.1 --probetype=https --probeport=8080 --probereq="health" --proberesp="OK" --period=60 --retries=2</code></pre>
+<strong><em>Note:</em></strong> loxilb requires CA certificate for TLS connection and private certificate and private key for mTLS connection. Admin can keep a common(default) CA certificate for all the endpoints at "/opt/loxilb/cert/rootCA.crt" or per-endpoint certificates can be kept as "/opt/loxilb/cert/\&lt;IP&gt;/rootCA.crt", private key must be kept at "/opt/loxilb/cert/server.key" and private certificate at "/opt/loxilb/cert/server.crt".
 Please see <a href="https://github.com/jsha/minica">Minica</a> or <a href="https://github.com/square/certstrap">Certstrap</a> or <a href="https://github.com/loxilb-io/loxilb/tree/main/cicd/httpsep">this</a> CICD test case to know how to generate certificates.</p>
 <h5 id="endpoint-yaml-example">Endpoint yaml example</h5>
-<pre><code>apiVersion: netlox/v1
+<pre class="highlight"><code>apiVersion: netlox/v1
 kind: Endpoint
 metadata:
   name: test
 spec:
-  hostName: &quot;Test&quot;
+  hostName: "Test"
   description: string
   inactiveReTries: 0
   probeType: string
   probeReqUrl: string
   probeDuration: 0
   probePort: 0
-
 </code></pre>
 <h4 id="delete-end-point-informtion">Delete end-point informtion</h4>
-<pre><code>loxicmd delete endpoint 31.31.31.31
-</code></pre>
-<hr />
+<h2 id="loxicmd-delete-endpoint-31313131"><pre class="highlight"><code>loxicmd delete endpoint 31.31.31.31</code></pre></h2>
 <h3 id="bfd">BFD</h3>
 <h4 id="get-bfd-session-information">Get BFD Session information</h4>
-<pre><code>loxicmd get bfd
-</code></pre>
+<pre class="highlight"><code>loxicmd get bfd</code></pre>
 <h4 id="create-bfd-session">Create BFD Session</h4>
-<pre><code>#loxicmd create bfd &lt;remoteIP&gt; --sourceIP=&lt;sourceIP&gt; --interval=&lt;time in usecs&gt; --retryCount=&lt;count&gt;
-loxicmd create bfd 192.168.80.253 --sourceIP=192.168.80.252 --interval=500000 --retryCount=3
-</code></pre>
-<p>remoteIP(string): Remote IP address <br />
+<p><pre class="highlight"><code>#loxicmd create bfd &lt;remoteIP&gt; --sourceIP=&lt;sourceIP&gt; --interval=&lt;time in usecs&gt; --retryCount=&lt;count&gt;
+loxicmd create bfd 192.168.80.253 --sourceIP=192.168.80.252 --interval=500000 --retryCount=3</code></pre>
+remoteIP(string): Remote IP address <br />
 sourceIP(string): Source IP address for binding <br />
 interval(int): BFD packet Tx Interval Time in microseconds <br />
 retryCount(int): Number of retry counts to detect failure.  </p>
 <h4 id="set-bfd-session">Set BFD Session</h4>
-<pre><code>#loxicmd set bfd &lt;remoteIP&gt; --interval=&lt;time in usecs&gt; --retryCount=&lt;count&gt;
-loxicmd set bfd 192.168.80.253 --interval=400000 --retryCount=5
-</code></pre>
-<p>interval(int): BFD packet Tx Interval Time in microseconds <br />
+<p><pre class="highlight"><code>#loxicmd set bfd &lt;remoteIP&gt; --interval=&lt;time in usecs&gt; --retryCount=&lt;count&gt;
+loxicmd set bfd 192.168.80.253 --interval=400000 --retryCount=5</code></pre>
+interval(int): BFD packet Tx Interval Time in microseconds <br />
 retryCount(int): Number of retry counts to detect failure.  </p>
 <h4 id="delete-bfd-session">Delete BFD Session</h4>
-<pre><code>#loxicmd delete bfd &lt;remoteIP&gt;
-loxicmd delete bfd 192.168.80.253
-</code></pre>
-<p>remoteIP(string): Remote IP address <br />
+<p><pre class="highlight"><code>#loxicmd delete bfd &lt;remoteIP&gt;
+loxicmd delete bfd 192.168.80.253</code></pre>
+remoteIP(string): Remote IP address <br />
 sourceIP(string): Source IP address for binding <br />
 interval(int): BFD packet Tx Interval Time in microseconds <br />
 retryCount(int): Number of retry counts to detect failure.</p>
 <h4 id="bfd-yaml-example">BFD yaml example</h4>
-<pre><code>apiVersion: netlox/v1
+<pre class="highlight"><code>apiVersion: netlox/v1
 kind: BFD
 metadata:
   name: test
 spec:
-  instance: &quot;default&quot;
-  remoteIp: &quot;192.168.80.253&quot;
-  sourceIp: &quot;192.168.80.252&quot;
+  instance: "default"
+  remoteIp: "192.168.80.253"
+  sourceIp: "192.168.80.252"
   interval: 300000
   retryCount: 4
-
 </code></pre>
 <h3 id="session">Session</h3>
 <h4 id="get-session-information">Get Session information</h4>
-<pre><code>loxicmd get session
-</code></pre>
+<pre class="highlight"><code>loxicmd get session</code></pre>
 <h4 id="create-session-information">Create Session information</h4>
-<pre><code>#loxicmd create session &lt;userID&gt; &lt;sessionIP&gt; --accessNetworkTunnel=&lt;TeID&gt;:&lt;TunnelIP&gt; --coreNetworkTunnel=&lt;TeID&gt;:&lt;TunnelIP&gt;
-loxicmd create session user1 192.168.20.1 --accessNetworkTunnel=1:1.232.16.1 coreNetworkTunnel=1:1.233.16.1
-</code></pre>
-<p>userID(string): User Identifier <br />
+<p><pre class="highlight"><code>#loxicmd create session &lt;userID&gt; &lt;sessionIP&gt; --accessNetworkTunnel=&lt;TeID&gt;:&lt;TunnelIP&gt; --coreNetworkTunnel=&lt;TeID&gt;:&lt;TunnelIP&gt;
+loxicmd create session user1 192.168.20.1 --accessNetworkTunnel=1:1.232.16.1 coreNetworkTunnel=1:1.233.16.1</code></pre>
+userID(string): User Identifier <br />
 sessionIP(string): Session IP address <br />
 accessNetworkTunnel(string): accessNetworkTunnel has pairs that can be specified as 'TeID:IP' <br />
 coreNetworkTunnel(string): coreNetworkTunnel has pairs that can be specified as 'TeID:IP'   </p>
 <h5 id="session-yaml-example">Session yaml example</h5>
-<pre><code>apiVersion: netlox/v1
+<pre class="highlight"><code>apiVersion: netlox/v1
 kind: Session
 metadata:
   name: test
@@ -574,24 +553,19 @@ spec:
   coreNetworkTunnel:
     TeID: 1
     tunnelIP: 22.22.22.22
-
 </code></pre>
 <h4 id="delete-session-information">Delete Session information</h4>
-<pre><code>loxicmd delete session user1
-</code></pre>
-<hr />
+<h2 id="loxicmd-delete-session-user1"><pre class="highlight"><code>loxicmd delete session user1</code></pre></h2>
 <h3 id="sessionulcl">SessionUlCl</h3>
 <h4 id="get-sessionulcl-information">Get SessionUlCl information</h4>
-<pre><code>loxicmd get sessionulcl
-</code></pre>
+<pre class="highlight"><code>loxicmd get sessionulcl</code></pre>
 <h4 id="create-sessionulcl-information">Create SessionUlCl information</h4>
-<pre><code>#loxicmd create sessionulcl &lt;userID&gt; --ulclArgs=&lt;QFI&gt;:&lt;ulclIP&gt;,...
-loxicmd create sessionulcl user1 --ulclArgs=16:192.33.125.1
-</code></pre>
-<p>userID(string): User Identifier <br />
+<p><pre class="highlight"><code>#loxicmd create sessionulcl &lt;userID&gt; --ulclArgs=&lt;QFI&gt;:&lt;ulclIP&gt;,...
+loxicmd create sessionulcl user1 --ulclArgs=16:192.33.125.1</code></pre>
+userID(string): User Identifier <br />
 ulclArgs(string): Port pairs can be specified as 'QFI:UlClIP'   </p>
 <h5 id="sessionulcl-yaml-example">SessionUlCl yaml example</h5>
-<pre><code>apiVersion: netlox/v1
+<pre class="highlight"><code>apiVersion: netlox/v1
 kind: SessionULCL
 metadata:
   name: test
@@ -599,215 +573,177 @@ spec:
   ulclIdent: user1
   ulclArgument:
     qfi: 11
-    ulclIP: 8.8.8.8
-</code></pre>
+    ulclIP: 8.8.8.8</code></pre>
 <h4 id="delete-sessionulcl-information">Delete SessionUlCl information</h4>
-<pre><code>loxicmd delete sessionulcl --ulclArgs=192.33.125.1
-</code></pre>
-<p>ulclArgs(string): UlCl IP address can be specified as 'UlClIP'. It don't need QFI.</p>
+<p><pre class="highlight"><code>loxicmd delete sessionulcl --ulclArgs=192.33.125.1</code></pre>
+ulclArgs(string): UlCl IP address can be specified as 'UlClIP'. It don't need QFI.</p>
 <hr />
 <h3 id="ipaddress">IPaddress</h3>
 <h4 id="get-ipaddress-information">Get IPaddress information</h4>
-<pre><code>loxicmd get ip
-</code></pre>
+<pre class="highlight"><code>loxicmd get ip</code></pre>
 <h4 id="create-ipaddress-information">Create IPaddress information</h4>
-<pre><code>#loxicmd create ip &lt;DeviceIPNet&gt; &lt;device&gt;
-loxicmd create ip 192.168.0.1/24 eno7
-</code></pre>
-<p>DeviceIPNet(string): Actual IP address with mask <br />
+<p><pre class="highlight"><code>#loxicmd create ip &lt;DeviceIPNet&gt; &lt;device&gt;
+loxicmd create ip 192.168.0.1/24 eno7</code></pre>
+DeviceIPNet(string): Actual IP address with mask <br />
 device(string): name of the related device   </p>
 <h5 id="ipaddress-yaml-example">IPaddress yaml example</h5>
-<pre><code>apiVersion: netlox/v1
+<pre class="highlight"><code>apiVersion: netlox/v1
 kind: IPaddress
 metadata:
   name: test
 spec:
   dev: eno8
   ipAddress: 192.168.23.1/32
-
 </code></pre>
 <h4 id="delete-ipaddress-information">Delete IPaddress information</h4>
-<pre><code>#loxicmd delete ip &lt;DeviceIPNet&gt; &lt;device&gt;
-loxicmd delete ip 192.168.0.1/24 eno7
-</code></pre>
-<hr />
+<h2 id="loxicmd-delete-ip-deviceipnet-device-loxicmd-delete-ip-1921680124-eno7"><pre class="highlight"><code>#loxicmd delete ip &lt;DeviceIPNet&gt; &lt;device&gt;
+loxicmd delete ip 192.168.0.1/24 eno7</code></pre></h2>
 <h3 id="fdb">FDB</h3>
 <h4 id="get-fdb-information">Get FDB information</h4>
-<pre><code>loxicmd get fdb
-</code></pre>
+<pre class="highlight"><code>loxicmd get fdb</code></pre>
 <h4 id="create-fdb-information">Create FDB information</h4>
-<pre><code>#loxicmd create fdb &lt;MacAddress&gt; &lt;DeviceName&gt;
-loxicmd create fdb aa:aa:aa:aa:bb:bb eno7
-</code></pre>
-<p>MacAddress(string): mac address <br />
+<p><pre class="highlight"><code>#loxicmd create fdb &lt;MacAddress&gt; &lt;DeviceName&gt;
+loxicmd create fdb aa:aa:aa:aa:bb:bb eno7</code></pre>
+MacAddress(string): mac address <br />
 DeviceName(string): name of the related device   </p>
 <h5 id="fdb-yaml-example">FDB yaml example</h5>
-<pre><code>apiVersion: netlox/v1
+<pre class="highlight"><code>apiVersion: netlox/v1
 kind: FDB
 metadata:
   name: test
 spec:
   dev: eno8
-  macAddress: aa:aa:aa:aa:aa:aa
-</code></pre>
+  macAddress: aa:aa:aa:aa:aa:aa</code></pre>
 <h4 id="delete-fdb-information">Delete FDB information</h4>
-<pre><code>#loxicmd delete fdb &lt;MacAddress&gt; &lt;DeviceName&gt;
-loxicmd delete fdb aa:aa:aa:aa:bb:bb eno7
-</code></pre>
+<pre class="highlight"><code>#loxicmd delete fdb &lt;MacAddress&gt; &lt;DeviceName&gt;
+loxicmd delete fdb aa:aa:aa:aa:bb:bb eno7</code></pre>
 <hr />
 <h3 id="route">Route</h3>
 <h4 id="get-route-information">Get Route information</h4>
-<pre><code>loxicmd get route
-</code></pre>
+<pre class="highlight"><code>loxicmd get route</code></pre>
 <h4 id="create-route-information">Create Route information</h4>
-<pre><code>#loxicmd create route &lt;DestinationIPNet&gt; &lt;gateway&gt;
-loxicmd create route 192.168.212.0/24 172.17.0.254
-</code></pre>
-<p>DestinationIPNet(string): Actual IP address route with mask <br />
+<p><pre class="highlight"><code>#loxicmd create route &lt;DestinationIPNet&gt; &lt;gateway&gt;
+loxicmd create route 192.168.212.0/24 172.17.0.254</code></pre>
+DestinationIPNet(string): Actual IP address route with mask <br />
 gateway(string): gateway information if any   </p>
 <h5 id="route-yaml-example">Route yaml example</h5>
-<pre><code>apiVersion: netlox/v1
+<pre class="highlight"><code>apiVersion: netlox/v1
 kind: Route
 metadata:
   name: test
 spec:
   destinationIPNet: 192.168.30.0/24
   gateway: 172.17.0.1
-
 </code></pre>
 <h4 id="delete-route-information">Delete Route information</h4>
-<pre><code>#loxicmd delete route &lt;DestinationIPNet&gt;
-loxicmd delete route 192.168.212.0/24 
-</code></pre>
-<hr />
+<h2 id="loxicmd-delete-route-destinationipnet-loxicmd-delete-route-192168212024"><pre class="highlight"><code>#loxicmd delete route &lt;DestinationIPNet&gt;
+loxicmd delete route 192.168.212.0/24 </code></pre></h2>
 <h3 id="neighbor">Neighbor</h3>
 <h4 id="get-neighbor-information">Get Neighbor information</h4>
-<pre><code>loxicmd get neighbor
-</code></pre>
+<pre class="highlight"><code>loxicmd get neighbor</code></pre>
 <h4 id="create-neighbor-information">Create Neighbor information</h4>
-<pre><code>#loxicmd create neighbor &lt;DeviceIP&gt; &lt;DeviceName&gt; [--macAddress=aa:aa:aa:aa:aa:aa]
-loxicmd create neighbor 192.168.0.1 eno7 --macAddress=aa:aa:aa:aa:aa:aa
-</code></pre>
-<p>DeviceIP(string): The IP address <br />
+<p><pre class="highlight"><code>#loxicmd create neighbor &lt;DeviceIP&gt; &lt;DeviceName&gt; [--macAddress=aa:aa:aa:aa:aa:aa]
+loxicmd create neighbor 192.168.0.1 eno7 --macAddress=aa:aa:aa:aa:aa:aa</code></pre>
+DeviceIP(string): The IP address <br />
 DeviceName(string): name of the related device <br />
 macAddress(string): resolved hardware address if any   </p>
 <h5 id="neighbor-yaml-example">Neighbor yaml example</h5>
-<pre><code>apiVersion: netlox/v1
+<pre class="highlight"><code>apiVersion: netlox/v1
 kind: Neighbor
 metadata:
   name: test
 spec:
   dev: eno8
   macAddress: aa:aa:aa:aa:aa:aa
-  ipAddress: 192.168.23.21
-</code></pre>
+  ipAddress: 192.168.23.21</code></pre>
 <h4 id="delete-neighbor-information">Delete Neighbor information</h4>
-<pre><code>#loxicmd delete neighbor &lt;DeviceIP&gt; &lt;device&gt;
-loxicmd delete neighbor 192.168.0.1 eno7
-</code></pre>
+<pre class="highlight"><code>#loxicmd delete neighbor &lt;DeviceIP&gt; &lt;device&gt;
+loxicmd delete neighbor 192.168.0.1 eno7</code></pre>
 <hr />
 <h3 id="vlan">Vlan</h3>
 <h4 id="get-vlan-and-vlan-member-information">Get Vlan and Vlan Member information</h4>
-<pre><code>loxicmd get vlan
-</code></pre>
-<pre><code>loxicmd get vlanmember
-</code></pre>
+<p><pre class="highlight"><code>loxicmd get vlan</code></pre>
+<pre class="highlight"><code>loxicmd get vlanmember</code></pre></p>
 <h4 id="create-vlan-and-vlan-member-information">Create Vlan and Vlan Member information</h4>
-<pre><code>#loxicmd create vlan &lt;Vid&gt;
-loxicmd create vlan 100
-</code></pre>
-<p>Vid(int): vlan identifier</p>
-<pre><code>
+<p><pre class="highlight"><code>#loxicmd create vlan &lt;Vid&gt;
+loxicmd create vlan 100</code></pre>
+Vid(int): vlan identifier
+<pre class="highlight"><code>
 #loxicmd create vlanmember &lt;Vid&gt; &lt;DeviceName&gt; --tagged=&lt;Tagged&gt;
 loxicmd create vlanmember 100 eno7 --tagged=true
-loxicmd create vlanmember 100 eno7
-</code></pre>
-<p>Vid(int): vlan identifier <br />
+loxicmd create vlanmember 100 eno7</code></pre>
+Vid(int): vlan identifier <br />
 DeviceName(string): name of the related device <br />
 tagged(boolean): tagged or not (default is false)   </p>
 <h5 id="vlan-yaml-example">Vlan yaml example</h5>
-<pre><code>apiVersion: netlox/v1
+<pre class="highlight"><code>apiVersion: netlox/v1
 kind: Vlan
 metadata:
   name: test
 spec:
-  vid: 100
-</code></pre>
+  vid: 100</code></pre>
 <h5 id="vlan-member-yaml-example">Vlan Member yaml example</h5>
-<pre><code>apiVersion: netlox/v1
+<pre class="highlight"><code>apiVersion: netlox/v1
 kind: VlanMember
 metadata:
   name: test
   vid: 100
 spec:
   dev: eno8
-  Tagged: true
-</code></pre>
+  Tagged: true</code></pre>
 <h4 id="delete-vlan-and-vlan-member-information">Delete Vlan and Vlan Member information</h4>
-<pre><code>#loxicmd delete vlan &lt;Vid&gt;
-loxicmd delete vlan 100
-</code></pre>
-<pre><code>#loxicmd delete vlanmember &lt;Vid&gt; &lt;DeviceName&gt; --tagged=&lt;Tagged&gt;
+<p><pre class="highlight"><code>#loxicmd delete vlan &lt;Vid&gt;
+loxicmd delete vlan 100</code></pre>
+<pre class="highlight"><code>#loxicmd delete vlanmember &lt;Vid&gt; &lt;DeviceName&gt; --tagged=&lt;Tagged&gt;
 loxicmd delete vlanmember 100 eno7 --tagged=true
-loxicmd delete vlanmember 100 eno7
-</code></pre>
+loxicmd delete vlanmember 100 eno7</code></pre></p>
 <hr />
 <h3 id="vxlan">Vxlan</h3>
 <h4 id="get-vxlan-and-vxlan-peer-information">Get Vxlan and Vxlan Peer information</h4>
-<pre><code>loxicmd get vxlan
-</code></pre>
-<pre><code>loxicmd get vxlanpeer
-</code></pre>
+<p><pre class="highlight"><code>loxicmd get vxlan</code></pre>
+<pre class="highlight"><code>loxicmd get vxlanpeer</code></pre></p>
 <h4 id="create-vxlan-and-vxlan-peer-information">Create Vxlan and Vxlan Peer information</h4>
-<pre><code>#loxicmd create vxlan &lt;VxlanID&gt; &lt;EndpointDeviceName&gt;
-loxicmd create vxlan 100 eno7
-</code></pre>
-<p>VxlanID(int): Vxlan Identifier <br />
+<p><pre class="highlight"><code>#loxicmd create vxlan &lt;VxlanID&gt; &lt;EndpointDeviceName&gt;
+loxicmd create vxlan 100 eno7</code></pre>
+VxlanID(int): Vxlan Identifier <br />
 EndpointDeviceName(string): VTEP Device name(It must have own IP address for peering)   </p>
-<pre><code>#loxicmd create vxlanpeer &lt;VxlanID&gt; &lt;PeerIP&gt;
-loxicmd create vxlan-peer 100 30.1.3.1
-</code></pre>
-<p>VxlanID(int):  Vxlan Identifier <br />
+<p><pre class="highlight"><code>#loxicmd create vxlanpeer &lt;VxlanID&gt; &lt;PeerIP&gt;
+loxicmd create vxlan-peer 100 30.1.3.1</code></pre>
+VxlanID(int):  Vxlan Identifier <br />
 PeerIP(string): Vxlan peer device IP address   </p>
 <h5 id="vxlan-yaml-example">Vxlan yaml example</h5>
-<pre><code>apiVersion: netlox/v1
+<pre class="highlight"><code>apiVersion: netlox/v1
 kind: Vxlan
 metadata:
   name: test
 spec:
   epIntf: eno8
-  vxlanID: 100
-</code></pre>
+  vxlanID: 100</code></pre>
 <h5 id="vxlan-peer-yaml-example">Vxlan Peer yaml example</h5>
-<pre><code>apiVersion: netlox/v1
+<pre class="highlight"><code>apiVersion: netlox/v1
 kind: VxlanPeer
 metadata:
   name: test
   vxlanID: 100
 spec:
-  peerIP: 21.21.21.1
-</code></pre>
+  peerIP: 21.21.21.1</code></pre>
 <h4 id="delete-vxlan-and-vxlan-peer-information">Delete Vxlan and Vxlan Peer  information</h4>
-<pre><code>#loxicmd delete vxlan &lt;VxlanID&gt;
-loxicmd delete vxlan 100
-</code></pre>
-<pre><code>#loxicmd delete vxlanpeer &lt;VxlanID&gt; &lt;PeerIP&gt;
-loxicmd delete vxlan-peer 100 30.1.3.1
-</code></pre>
+<p><pre class="highlight"><code>#loxicmd delete vxlan &lt;VxlanID&gt;
+loxicmd delete vxlan 100</code></pre>
+<pre class="highlight"><code>#loxicmd delete vxlanpeer &lt;VxlanID&gt; &lt;PeerIP&gt;
+loxicmd delete vxlan-peer 100 30.1.3.1</code></pre></p>
 <hr />
 <h3 id="firewall">Firewall</h3>
 <h4 id="get-firewall-information">Get Firewall information</h4>
-<pre><code>loxicmd get firewall
-</code></pre>
+<pre class="highlight"><code>loxicmd get firewall</code></pre>
 <h4 id="create-firewall-information">Create Firewall information</h4>
-<pre><code>#loxicmd create firewall --firewallRule=&lt;ruleKey&gt;:&lt;ruleValue&gt;, [--allow] [--drop] [--trap] [--redirect=&lt;PortName&gt;] [--setmark=&lt;FwMark&gt;
-loxicmd create firewall --firewallRule=&quot;sourceIP:1.2.3.2/32,destinationIP:2.3.1.2/32,preference:200&quot; --allow
-loxicmd create firewall --firewallRule=&quot;sourceIP:1.2.3.2/32,destinationIP:2.3.1.2/32,preference:200&quot; --allow --setmark=10
-loxicmd create firewall --firewallRule=&quot;sourceIP:1.2.3.2/32,destinationIP:2.3.1.2/32,preference:200&quot; --drop
-loxicmd create firewall --firewallRule=&quot;sourceIP:1.2.3.2/32,destinationIP:2.3.1.2/32,preference:200&quot; --trap
-loxicmd create firewall --firewallRule=&quot;sourceIP:1.2.3.2/32,destinationIP:2.3.1.2/32,preference:200&quot; --redirect=ensp0
-</code></pre>
-<p><strong>firewallRule</strong>
+<p><pre class="highlight"><code>#loxicmd create firewall --firewallRule=&lt;ruleKey&gt;:&lt;ruleValue&gt;, [--allow] [--drop] [--trap] [--redirect=&lt;PortName&gt;] [--setmark=&lt;FwMark&gt;
+loxicmd create firewall --firewallRule="sourceIP:1.2.3.2/32,destinationIP:2.3.1.2/32,preference:200" --allow
+loxicmd create firewall --firewallRule="sourceIP:1.2.3.2/32,destinationIP:2.3.1.2/32,preference:200" --allow --setmark=10
+loxicmd create firewall --firewallRule="sourceIP:1.2.3.2/32,destinationIP:2.3.1.2/32,preference:200" --drop
+loxicmd create firewall --firewallRule="sourceIP:1.2.3.2/32,destinationIP:2.3.1.2/32,preference:200" --trap
+loxicmd create firewall --firewallRule="sourceIP:1.2.3.2/32,destinationIP:2.3.1.2/32,preference:200" --redirect=ensp0</code></pre>
+<strong>firewallRule</strong>
 sourceIP(string) - Source IP in CIDR notation <br />
 destinationIP(string) - Destination IP in CIDR notation <br />
 minSourcePort(int) - Minimum source port range <br />
@@ -818,7 +754,7 @@ protocol(int) - the protocol <br />
 portName(string) - the incoming port <br />
 preference(int) - User preference for ordering   </p>
 <h5 id="firewall-yaml-example">Firewall yaml example</h5>
-<pre><code>apiVersion: netlox/v1
+<pre class="highlight"><code>apiVersion: netlox/v1
 kind: Firewall
 metadata:
   name: test
@@ -828,22 +764,17 @@ spec:
     destinationIP: 192.169.2.1/24
     preference: 200
   opts:
-    allow: true
-</code></pre>
+    allow: true</code></pre>
 <h4 id="delete-firewall-information">Delete Firewall information</h4>
-<pre><code>#loxicmd delete firewall --firewallRule=&lt;ruleKey&gt;:&lt;ruleValue&gt;
-loxicmd delete firewall --firewallRule=&quot;sourceIP:1.2.3.2/32,destinationIP:2.3.1.2/32,preference:200
-</code></pre>
-<hr />
+<h2 id="loxicmd-delete-firewall-firewallrulerulekeyrulevalue-loxicmd-delete-firewall-firewallrulesourceip123232destinationip231232preference200"><pre class="highlight"><code>#loxicmd delete firewall --firewallRule=&lt;ruleKey&gt;:&lt;ruleValue&gt;
+loxicmd delete firewall --firewallRule="sourceIP:1.2.3.2/32,destinationIP:2.3.1.2/32,preference:200</code></pre></h2>
 <h3 id="mirror">Mirror</h3>
 <h4 id="get-mirror-information">Get Mirror information</h4>
-<pre><code>loxicmd get mirror
-</code></pre>
+<pre class="highlight"><code>loxicmd get mirror</code></pre>
 <h4 id="create-mirror-information">Create Mirror information</h4>
-<pre><code>#loxicmd create mirror &lt;mirrorIdent&gt; --mirrorInfo=&lt;InfoOption&gt;:&lt;InfoValue&gt;,... --targetObject=attachement:&lt;port1,rule2&gt;,mirrObjName:&lt;ObjectName&gt;
-loxicmd create mirror mirr-1 --mirrorInfo=&quot;type:0,port:ensp0&quot; --targetObject=&quot;attachement:1,mirrObjName:ensp1
-</code></pre>
-<p>mirrorIdent(string): Mirror identifier <br />
+<p><pre class="highlight"><code>#loxicmd create mirror &lt;mirrorIdent&gt; --mirrorInfo=&lt;InfoOption&gt;:&lt;InfoValue&gt;,... --targetObject=attachement:&lt;port1,rule2&gt;,mirrObjName:&lt;ObjectName&gt;
+loxicmd create mirror mirr-1 --mirrorInfo="type:0,port:ensp0" --targetObject="attachement:1,mirrObjName:ensp1</code></pre>
+mirrorIdent(string): Mirror identifier <br />
 type(int) : Mirroring type as like 0 == SPAN, 1 == RSPAN, 2 == ERSPAN  <br />
 port(string) : The port where mirrored traffic needs to be sent <br />
 vlan(int) : for RSPAN we may need to send tagged mirror traffic <br />
@@ -851,7 +782,7 @@ remoteIP(string) : For ERSPAN we may need to send tunnelled mirror traffic <br /
 sourceIP(string): For ERSPAN we may need to send tunnelled mirror traffic <br />
 tunnelID(int): For ERSPAN we may need to send tunnelled mirror traffic   </p>
 <h5 id="mirror-yaml-example">Mirror yaml example</h5>
-<pre><code>apiVersion: netlox/v1
+<pre class="highlight"><code>apiVersion: netlox/v1
 kind: Mirror
 metadata:
   name: test
@@ -863,31 +794,27 @@ spec:
   targetObject:
     attachment: 1
     mirrObjName: eno2
-
 </code></pre>
 <h4 id="delete-mirror-information">Delete Mirror information</h4>
-<pre><code>#loxicmd delete mirror &lt;mirrorIdent&gt;
-loxicmd delete mirror mirr-1
-</code></pre>
+<pre class="highlight"><code>#loxicmd delete mirror &lt;mirrorIdent&gt;
+loxicmd delete mirror mirr-1</code></pre>
 <hr />
 <h3 id="policy">Policy</h3>
 <h4 id="get-policy-information">Get Policy information</h4>
-<pre><code>loxicmd get policy
-</code></pre>
+<pre class="highlight"><code>loxicmd get policy</code></pre>
 <h4 id="create-policy-information">Create Policy information</h4>
-<pre><code>#loxicmd create policy IDENT --rate=&lt;Peak&gt;:&lt;Commited&gt; --target=&lt;ObjectName&gt;:&lt;Attachment&gt; [--block-size=&lt;Excess&gt;:&lt;Committed&gt;] [--color] [--pol-type=&lt;policy type&gt;]
+<p><pre class="highlight"><code>#loxicmd create policy IDENT --rate=&lt;Peak&gt;:&lt;Commited&gt; --target=&lt;ObjectName&gt;:&lt;Attachment&gt; [--block-size=&lt;Excess&gt;:&lt;Committed&gt;] [--color] [--pol-type=&lt;policy type&gt;]
 loxicmd create policy pol-0 --rate=100:100 --target=ensp0:1
 loxicmd create policy pol-1 --rate=100:100 --target=ensp0:1 --block-size=12000:6000
 loxicmd create policy pol-1 --rate=100:100 --target=ensp0:1 --color
-loxicmd create policy pol-1 --rate=100:100 --target=ensp0:1 --color --pol-type 0
-</code></pre>
-<p>rate(string): Rate pairs can be specified as 'Peak:Commited'. <em>rate unit : Mbps <br />
+loxicmd create policy pol-1 --rate=100:100 --target=ensp0:1 --color --pol-type 0</code></pre>
+rate(string): Rate pairs can be specified as 'Peak:Commited'. <em>rate unit : Mbps <br />
 block-size(string): Block Size pairs can be specified as 'Excess:Committed'. </em>block-size unit : bps <br />
 target(string): Target Interface pairs can be specified as 'ObjectName:Attachment' <br />
 color(boolean): Policy color enbale or not <br />
 pol-type(int): Policy traffic control type. 0 : TrTCM, 1 : SrTCM   </p>
 <h5 id="policy-yaml-example">Policy yaml example</h5>
-<pre><code>apiVersion: netlox/v1
+<pre class="highlight"><code>apiVersion: netlox/v1
 kind: Policy
 metadata:
   name: test
@@ -901,43 +828,34 @@ spec:
   targetObject:
     attachment: 1
     polObjName: eno8
-
 </code></pre>
 <h4 id="delete-policy-information">Delete Policy information</h4>
-<pre><code>#loxicmd delete policy &lt;Polident&gt;
-loxicmd delete policy pol-1
-</code></pre>
-<hr />
+<h2 id="loxicmd-delete-policy-polident-loxicmd-delete-policy-pol-1"><pre class="highlight"><code>#loxicmd delete policy &lt;Polident&gt;
+loxicmd delete policy pol-1</code></pre></h2>
 <h3 id="session-recorder">Session Recorder</h3>
 <h4 id="set-n-tuple-policy-for-recording">Set n-tuple policy for recording</h4>
-<pre><code>loxicmd create firewall --firewallRule=&quot;destinationIP:31.31.31.0/24,preference:200&quot; --allow --record
-</code></pre>
-<p>loxilb will record any connection track entry which matches this policy (even for reverse direction) as a way to provide extended visibility for debugging   </p>
+<p><pre class="highlight"><code>loxicmd create firewall --firewallRule="destinationIP:31.31.31.0/24,preference:200" --allow --record</code></pre>
+loxilb will record any connection track entry which matches this policy (even for reverse direction) as a way to provide extended visibility for debugging   </p>
 <h4 id="check-or-record-with-tcpdump">Check or record with tcpdump</h4>
-<pre><code>tcpdump -i llb0 -n
-</code></pre>
-<p>Any valid tcpdump option can be used including saving to a pcap file</p>
+<p><pre class="highlight"><code>tcpdump -i llb0 -n</code></pre>
+Any valid tcpdump option can be used including saving to a pcap file</p>
 <hr />
 <h3 id="get-live-connection-track-information">Get live connection-track information</h3>
-<pre><code>loxicmd get conntrack
-</code></pre>
+<pre class="highlight"><code>loxicmd get conntrack</code></pre>
 <h3 id="get-port-dump-information">Get port-dump information</h3>
-<pre><code>loxicmd get port
-</code></pre>
+<pre class="highlight"><code>loxicmd get port</code></pre>
 <h3 id="save-all-loxilbs-operational-information-in-dbstore">Save all loxilb's operational information in DBStore</h3>
-<pre><code>loxicmd save -a
-</code></pre>
-<p>** This will ensure that whenever loxilb restarts, it will start with last saved state from DBStore</p>
+<p><pre class="highlight"><code>loxicmd save -a</code></pre>
+** This will ensure that whenever loxilb restarts, it will start with last saved state from DBStore</p>
 <h3 id="configure-loxicmd-with-yamlbeta">Configure loxicmd with yaml(Beta)</h3>
 <p>The loxicmd support yaml based configuration. The format is same as Kubernetes. This beta version support only one configuraion per one file. That means "Do not use <code>---</code> in yaml file." . It will be supported at next release.</p>
 <h4 id="command">Command</h4>
-<pre><code>#loxicmd apply -f &lt;file.yaml&gt;
+<pre class="highlight"><code>#loxicmd apply -f &lt;file.yaml&gt;
 #loxicmd delete -f &lt;file.yaml&gt;
 loxicmd apply -f lb.yaml
-loxicmd delete -f lb.yaml
-</code></pre>
+loxicmd delete -f lb.yaml</code></pre>
 <h4 id="file-examplelbyaml">File example(lb.yaml)</h4>
-<pre><code>apiVersion: netlox/v1
+<p><pre class="highlight"><code>apiVersion: netlox/v1
 kind: Loadbalancer
 metadata:
   name: load
@@ -956,36 +874,34 @@ spec:
     targetPort: 8080
   - endpointIP: 4.3.2.3
     weight: 1
-    targetPort: 8080
-</code></pre>
-<p>It reuse API's json body as a "Spec". If the API URL has no param, it don't need to use "metadata". For example, The body of load Balancer rule is shown below.</p>
-<pre><code>{
-  &quot;serviceArguments&quot;: {
-    &quot;externalIP&quot;: &quot;123.123.123.1&quot;,
-    &quot;port&quot;: 80,
-    &quot;protocol&quot;: &quot;tcp&quot;,
-    &quot;sel&quot;: 0
+    targetPort: 8080</code></pre>
+It reuse API's json body as a "Spec". If the API URL has no param, it don't need to use "metadata". For example, The body of load Balancer rule is shown below.</p>
+<p><pre class="highlight"><code>{
+  "serviceArguments": {
+    "externalIP": "123.123.123.1",
+    "port": 80,
+    "protocol": "tcp",
+    "sel": 0
   },
-  &quot;endpoints&quot;: [
+  "endpoints": [
     {
-      &quot;endpointIP&quot;: &quot;4.3.2.1&quot;,
-      &quot;weight&quot;: 1,
-      &quot;targetPort&quot;: 8080
+      "endpointIP": "4.3.2.1",
+      "weight": 1,
+      "targetPort": 8080
     },
     {
-      &quot;endpointIP&quot;: &quot;4.3.2.2&quot;,
-      &quot;weight&quot;: 1,
-      &quot;targetPort&quot;: 8080
+      "endpointIP": "4.3.2.2",
+      "weight": 1,
+      "targetPort": 8080
     },
     {
-      &quot;endpointIP&quot;: &quot;4.3.2.3&quot;,
-      &quot;weight&quot;: 1,
-      &quot;targetPort&quot;: 8080
+      "endpointIP": "4.3.2.3",
+      "weight": 1,
+      "targetPort": 8080
     }
-}
-</code></pre>
-<p>This json format can be converted Yaml format as shown below.</p>
-<pre><code>  serviceArguments:
+}</code></pre>
+This json format can be converted Yaml format as shown below.
+<pre class="highlight"><code>  serviceArguments:
     externalIP: 123.123.123.1
     port: 80
     protocol: tcp
@@ -999,33 +915,29 @@ spec:
     targetPort: 8080
   - endpointIP: 4.3.2.3
     weight: 1
-    targetPort: 8080
-</code></pre>
-<p>Finally, this is located in the Spec of the entire configuration file as <a href="https://github.com/loxilb-io/loxilbdocs/edit/main/docs/cmd.md#file-examplelbyaml">File example(lb.yaml)</a></p>
-<p>If you want to add Vlan bridge, IPaddress or something else. Just change the Kind value from Loadbalancer to VlanBridge, IPaddress as like below example. </p>
-<pre><code>apiVersion: netlox/v1
+    targetPort: 8080</code></pre>
+Finally, this is located in the Spec of the entire configuration file as <a href="https://github.com/loxilb-io/loxilbdocs/edit/main/docs/cmd.md#file-examplelbyaml">File example(lb.yaml)</a></p>
+<p>If you want to add Vlan bridge, IPaddress or something else. Just change the Kind value from Loadbalancer to VlanBridge, IPaddress as like below example. 
+<pre class="highlight"><code>apiVersion: netlox/v1
 kind: IPaddress
 metadata:
   name: test
 spec:
   dev: eno8
-  ipAddress: 192.168.23.1/32
-</code></pre>
-<p>If the URL has param such as adding vlan-member, it must have <code>metadata</code>. </p>
-<pre><code>apiVersion: netlox/v1
+  ipAddress: 192.168.23.1/32</code></pre></p>
+<p>If the URL has param such as adding vlan-member, it must have <code>metadata</code>. 
+<pre class="highlight"><code>apiVersion: netlox/v1
 kind: VlanMember
 metadata:
   name: test
   vid: 100
 spec:
   dev: eno8
-  Tagged: true
-</code></pre>
-<p>The example of all the settings below, so please refer to it.</p>
+  Tagged: true</code></pre>
+The example of all the settings below, so please refer to it.</p>
 <h3 id="more-information">More information</h3>
-<p>There are tons of other commands, use help option!</p>
-<pre><code>loxicmd help
-</code></pre></div>
+<p>There are tons of other commands, use help option!
+<pre class="highlight"><code>loxicmd help</code></pre></p></div>
             </div>
         </div>
 

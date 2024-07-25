@@ -8,7 +8,7 @@
         
         <link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/k3s-multi-master/">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>How-To - Deploy multi-server K3s HA with loxilb - loxilb v0.9.5</title>
+        <title>How-To - Deploy multi-server K3s HA with loxilb - LoxiLB</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/fontawesome.min.css" rel="stylesheet">
         <link href="../css/brands.min.css" rel="stylesheet">
@@ -33,7 +33,7 @@
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="..">loxilb v0.9.5</a>
+                <a class="navbar-brand" href="..">LoxiLB</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -257,26 +257,8 @@
   </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">More</a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="https://github.com/loxilb-io/loxilb" class="dropdown-item">GitHub</a>
-</li>
-                                    
-<li>
-    <a href="https://www.loxilb.io/" class="dropdown-item">Website</a>
-</li>
-                                    
-<li>
-    <a href="https://github.com/loxilb-io/loxilb/discussions" class="dropdown-item">Community Forum</a>
-</li>
-                                    
-<li>
-    <a href="https://join.slack.com/t/loxilb/shared_invite/zt-2b3xx14wg-P7WHj5C~OEON_jviF0ghcQ" class="dropdown-item">Join Slack</a>
-</li>
-                                </ul>
+                            <li class="nav-item">
+                                <a href="https://www.loxilb.io/" class="nav-link">Visit Website</a>
                             </li>
                         </ul>
 
@@ -295,6 +277,10 @@
                                 <a rel="next" href="../ebpf/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/loxilb-io/loxilb/edit/master/docs/k3s-multi-master.md" class="nav-link">Edit on loxilb-io/loxilb
+                                    </a>
                             </li>
                     </ul>
                 </div>
@@ -333,121 +319,111 @@ K3s nodes are deployed as:  <br />
 <p><img alt="loxilb topology" src="../photos/loxilb-k3s-multi-master.png" /></p>
 <h3 id="k3s-installation-and-setup">K3s installation and Setup</h3>
 <h4 id="in-k3s-server1-node-">In k3s-server1 node -</h4>
-<pre><code>$ curl -fL https://get.k3s.io | sh -s - server --node-ip=192.168.80.10 \
+<p><pre class="highlight"><code>$ curl -fL https://get.k3s.io | sh -s - server --node-ip=192.168.80.10 \
   --disable servicelb --disable traefik --cluster-init external-hostname=192.168.80.10 \
-  --node-external-ip=192.168.80.80 --disable-cloud-controller
-</code></pre>
-<p>It is to be noted that <code>--node-external-ip=192.168.80.80</code> is used since we will utilize 192.168.80.80 as the VIP to access the multi-master setup from k3s-agents and other clients.</p>
+  --node-external-ip=192.168.80.80 --disable-cloud-controller</code></pre>
+It is to be noted that <code>--node-external-ip=192.168.80.80</code> is used since we will utilize 192.168.80.80 as the VIP to access the multi-master setup from k3s-agents and other clients.</p>
 <h5 id="setup-the-node-for-loxilb">Setup the node for loxilb :</h5>
-<pre><code>sudo mkdir -p /etc/loxilb
-</code></pre>
+<pre class="highlight"><code>sudo mkdir -p /etc/loxilb</code></pre>
 <p>Create the following files in /etc/loxilb</p>
 <ol>
 <li>lbconfig.txt with following contents (change as per your requirement)</li>
 </ol>
-<pre><code>{
-   &quot;lbAttr&quot;:[
+<p><pre class="highlight"><code>{
+   "lbAttr":[
       {
-         &quot;serviceArguments&quot;:{
-            &quot;externalIP&quot;:&quot;192.168.80.80&quot;,
-            &quot;port&quot;:6443,
-            &quot;protocol&quot;:&quot;tcp&quot;,
-            &quot;sel&quot;:0,
-            &quot;mode&quot;:2,
-            &quot;BGP&quot;:false,
-            &quot;Monitor&quot;:true,
-            &quot;inactiveTimeOut&quot;:240,
-            &quot;block&quot;:0
+         "serviceArguments":{
+            "externalIP":"192.168.80.80",
+            "port":6443,
+            "protocol":"tcp",
+            "sel":0,
+            "mode":2,
+            "BGP":false,
+            "Monitor":true,
+            "inactiveTimeOut":240,
+            "block":0
          },
-         &quot;secondaryIPs&quot;:null,
-         &quot;endpoints&quot;:[
+         "secondaryIPs":null,
+         "endpoints":[
             {
-               &quot;endpointIP&quot;:&quot;192.168.80.10&quot;,
-               &quot;targetPort&quot;:6443,
-               &quot;weight&quot;:1,
-               &quot;state&quot;:&quot;active&quot;,
-               &quot;counter&quot;:&quot;&quot;
+               "endpointIP":"192.168.80.10",
+               "targetPort":6443,
+               "weight":1,
+               "state":"active",
+               "counter":""
             },
             {
-               &quot;endpointIP&quot;:&quot;192.168.80.11&quot;,
-               &quot;targetPort&quot;:6443,
-               &quot;weight&quot;:1,
-               &quot;state&quot;:&quot;active&quot;,
-               &quot;counter&quot;:&quot;&quot;
+               "endpointIP":"192.168.80.11",
+               "targetPort":6443,
+               "weight":1,
+               "state":"active",
+               "counter":""
             },
             {
-               &quot;endpointIP&quot;:&quot;192.168.80.12&quot;,
-               &quot;targetPort&quot;:6443,
-               &quot;weight&quot;:1,
-               &quot;state&quot;:&quot;active&quot;,
-               &quot;counter&quot;:&quot;&quot;
+               "endpointIP":"192.168.80.12",
+               "targetPort":6443,
+               "weight":1,
+               "state":"active",
+               "counter":""
             }
          ]
       }
    ]
 }
-
 </code></pre>
-<ol>
-<li>EPconfig.txt with the following contents (change as per your requirement)</li>
-</ol>
-<pre><code>{
-   &quot;Attr&quot;:[
+2. EPconfig.txt with the following contents (change as per your requirement)
+<pre class="highlight"><code>{
+   "Attr":[
       {
-         &quot;hostName&quot;:&quot;192.168.80.10&quot;,
-         &quot;name&quot;:&quot;192.168.80.10_tcp_6443&quot;,
-         &quot;inactiveReTries&quot;:2,
-         &quot;probeType&quot;:&quot;tcp&quot;,
-         &quot;probeReq&quot;:&quot;&quot;,
-         &quot;probeResp&quot;:&quot;&quot;,
-         &quot;probeDuration&quot;:10,
-         &quot;probePort&quot;:6443
+         "hostName":"192.168.80.10",
+         "name":"192.168.80.10_tcp_6443",
+         "inactiveReTries":2,
+         "probeType":"tcp",
+         "probeReq":"",
+         "probeResp":"",
+         "probeDuration":10,
+         "probePort":6443
       },
       {
-         &quot;hostName&quot;:&quot;192.168.80.11&quot;,
-         &quot;name&quot;:&quot;192.168.80.11_tcp_6443&quot;,
-         &quot;inactiveReTries&quot;:2,
-         &quot;probeType&quot;:&quot;tcp&quot;,
-         &quot;probeReq&quot;:&quot;&quot;,
-         &quot;probeResp&quot;:&quot;&quot;,
-         &quot;probeDuration&quot;:10,
-         &quot;probePort&quot;:6443
+         "hostName":"192.168.80.11",
+         "name":"192.168.80.11_tcp_6443",
+         "inactiveReTries":2,
+         "probeType":"tcp",
+         "probeReq":"",
+         "probeResp":"",
+         "probeDuration":10,
+         "probePort":6443
       },
       {
-         &quot;hostName&quot;:&quot;192.168.80.12&quot;,
-         &quot;name&quot;:&quot;192.168.80.12_tcp_6443&quot;,
-         &quot;inactiveReTries&quot;:2,
-         &quot;probeType&quot;:&quot;tcp&quot;,
-         &quot;probeReq&quot;:&quot;&quot;,
-         &quot;probeResp&quot;:&quot;&quot;,
-         &quot;probeDuration&quot;:10,
-         &quot;probePort&quot;:6443
+         "hostName":"192.168.80.12",
+         "name":"192.168.80.12_tcp_6443",
+         "inactiveReTries":2,
+         "probeType":"tcp",
+         "probeReq":"",
+         "probeResp":"",
+         "probeDuration":10,
+         "probePort":6443
       }
    ]
-}
-</code></pre>
+}</code></pre></p>
 <p>The above serve as bootstrap LB rules for load-balancing into the k3s-server nodes as we will see later.  </p>
 <h4 id="in-k3s-server2-node-">In k3s-server2 node -</h4>
-<pre><code>$ curl -fL https://get.k3s.io | K3S_TOKEN=${NODE_TOKEN} sh -s - server --server https://192.168.80.10:6443 \
+<p><pre class="highlight"><code>$ curl -fL https://get.k3s.io | K3S_TOKEN=${NODE_TOKEN} sh -s - server --server https://192.168.80.10:6443 \
   --disable traefik --disable servicelb --node-ip=192.168.80.11 \
-  external-hostname=192.168.80.11 --node-external-ip=192.168.80.80 -t ${NODE_TOKEN}
-</code></pre>
-<p>where NODE_TOKEN contain simply contents of /var/lib/rancher/k3s/server/node-token from server1. For example, it can be set using a command equivalent to the following :</p>
-<pre><code>export NODE_TOKEN=$(cat node-token)
-</code></pre>
+  external-hostname=192.168.80.11 --node-external-ip=192.168.80.80 -t ${NODE_TOKEN}</code></pre>
+where NODE_TOKEN contain simply contents of /var/lib/rancher/k3s/server/node-token from server1. For example, it can be set using a command equivalent to the following :</p>
+<pre class="highlight"><code>export NODE_TOKEN=$(cat node-token)</code></pre>
 <h5 id="setup-the-node-for-loxilb_1">Setup the node for loxilb:</h5>
 <p>Simply follow the steps as outlined for server1.</p>
 <h4 id="in-k3s-server3-node-">In k3s-server3 node -</h4>
-<pre><code>$ curl -fL https://get.k3s.io | K3S_TOKEN=${NODE_TOKEN} sh -s - server --server https://192.168.80.10:6443 \
+<p><pre class="highlight"><code>$ curl -fL https://get.k3s.io | K3S_TOKEN=${NODE_TOKEN} sh -s - server --server https://192.168.80.10:6443 \
   --disable traefik --disable servicelb --node-ip=192.168.80.12 \
-  external-hostname=192.168.80.12 --node-external-ip=192.168.80.80 -t ${NODE_TOKEN}
-</code></pre>
-<p>where NODE_TOKEN contain simply contents of /var/lib/rancher/k3s/server/node-token from server1. For example, it can be set using a command equivalent to the following :</p>
-<pre><code>export NODE_TOKEN=$(cat node-token)
-</code></pre>
+  external-hostname=192.168.80.12 --node-external-ip=192.168.80.80 -t ${NODE_TOKEN}</code></pre>
+where NODE_TOKEN contain simply contents of /var/lib/rancher/k3s/server/node-token from server1. For example, it can be set using a command equivalent to the following :</p>
+<pre class="highlight"><code>export NODE_TOKEN=$(cat node-token)</code></pre>
 <h5 id="setup-the-node-for-loxilb_2">Setup the node for loxilb:</h5>
 <p>First, follow the steps as outlined for server1. Additionally, we will have to start loxilb pod instances as follows :</p>
-<pre><code>$ sudo kubectl apply -f - &lt;&lt;EOF
+<pre class="highlight"><code>$ sudo kubectl apply -f - &lt;&lt;EOF
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
@@ -466,18 +442,18 @@ spec:
       hostNetwork: true
       dnsPolicy: ClusterFirstWithHostNet
       tolerations:
-      - key: &quot;node-role.kubernetes.io/master&quot;
+      - key: "node-role.kubernetes.io/master"
         operator: Exists
-      - key: &quot;node-role.kubernetes.io/control-plane&quot;
+      - key: "node-role.kubernetes.io/control-plane"
         operator: Exists
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
             - matchExpressions:
-              - key: &quot;node-role.kubernetes.io/master&quot;
+              - key: "node-role.kubernetes.io/master"
                 operator: Exists
-              - key: &quot;node-role.kubernetes.io/control-plane&quot;
+              - key: "node-role.kubernetes.io/control-plane"
                 operator: Exists
       volumes:
       - name: hllb
@@ -486,7 +462,7 @@ spec:
           type: DirectoryOrCreate
       containers:
       - name: loxilb-app
-        image: &quot;ghcr.io/loxilb-io/loxilb:latest&quot;
+        image: "ghcr.io/loxilb-io/loxilb:latest"
         imagePullPolicy: Always
         command:
         - /root/loxilb-io/loxilb/loxilb
@@ -519,10 +495,9 @@ spec:
     port: 11111
     targetPort: 11111
     protocol: TCP
-EOF
-</code></pre>
+EOF</code></pre>
 <p>Kindly note that the args for loxilb might change depending on the scenario. This scenario considers loxilb running in-cluster mode. For service-proxy mode, please follow this <a href="https://raw.githubusercontent.com/loxilb-io/kube-loxilb/main/manifest/service-proxy/loxilb-service-proxy.yml">yaml</a> for exact args. Next, we will install loxilb's operator kube-loxilb as follows :</p>
-<pre><code>$ sudo kubectl apply -f - &lt;&lt;EOF
+<pre class="highlight"><code>$ sudo kubectl apply -f - &lt;&lt;EOF
 ---
 apiVersion: v1
 kind: ServiceAccount
@@ -536,7 +511,7 @@ metadata:
   name: kube-loxilb
 rules:
   - apiGroups:
-      - &quot;&quot;
+      - ""
     resources:
       - nodes
     verbs:
@@ -545,7 +520,7 @@ rules:
       - list
       - patch
   - apiGroups:
-      - &quot;&quot;
+      - ""
     resources:
       - pods
     verbs:
@@ -554,7 +529,7 @@ rules:
       - list
       - patch
   - apiGroups:
-      - &quot;&quot;
+      - ""
     resources:
       - endpoints
       - services
@@ -626,18 +601,18 @@ spec:
           operator: Exists
         - effect: NoExecute
           operator: Exists
-        - key: &quot;node-role.kubernetes.io/master&quot;
+        - key: "node-role.kubernetes.io/master"
           operator: Exists
-        - key: &quot;node-role.kubernetes.io/control-plane&quot;
+        - key: "node-role.kubernetes.io/control-plane"
           operator: Exists
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
             - matchExpressions:
-              - key: &quot;node-role.kubernetes.io/master&quot;
+              - key: "node-role.kubernetes.io/master"
                 operator: Exists
-              - key: &quot;node-role.kubernetes.io/control-plane&quot;
+              - key: "node-role.kubernetes.io/control-plane"
                 operator: Exists
       priorityClassName: system-node-critical
       serviceAccountName: kube-loxilb
@@ -653,19 +628,18 @@ spec:
         - --setRoles=0.0.0.0
         resources:
           requests:
-            cpu: &quot;100m&quot;
-            memory: &quot;50Mi&quot;
+            cpu: "100m"
+            memory: "50Mi"
           limits:
-            cpu: &quot;100m&quot;
-            memory: &quot;50Mi&quot;
+            cpu: "100m"
+            memory: "50Mi"
        securityContext:
           privileged: true
           capabilities:
-            add: [&quot;NET_ADMIN&quot;, &quot;NET_RAW&quot;]
-EOF
-</code></pre>
+            add: ["NET_ADMIN", "NET_RAW"]
+EOF</code></pre>
 <p>At this point we can check the pods running in our kubernetes cluster (in server1, server2 &amp; server3 at this point):</p>
-<pre><code>$ sudo kubectl get pods -A
+<pre class="highlight"><code>$ sudo kubectl get pods -A
 NAMESPACE     NAME                                      READY   STATUS    RESTARTS   AGE
 kube-system   coredns-6799fbcd5-7jhcx                   1/1     Running   0          3h15m
 kube-system   kube-loxilb-5d99c445f7-j4x6k              1/1     Running   0          3h6m
@@ -673,41 +647,36 @@ kube-system   local-path-provisioner-6c86858495-pjn9j   1/1     Running   0     
 kube-system   loxilb-lb-8bddf                           1/1     Running   0          3h6m
 kube-system   loxilb-lb-nsrr9                           1/1     Running   0          3h6m
 kube-system   loxilb-lb-fp2z6                           1/1     Running   0          3h6m
-kube-system   metrics-server-54fd9b65b-g5lfn            1/1     Running   0          3h15m
-</code></pre>
+kube-system   metrics-server-54fd9b65b-g5lfn            1/1     Running   0          3h15m</code></pre>
 <h4 id="in-k3s-agent1-node-">In k3s-agent1 node -</h4>
 <p>The following steps need to be followed to install k3s in the agent nodes:</p>
-<pre><code>$ curl -sfL https://get.k3s.io | K3S_TOKEN=${NODE_TOKEN} sh -s - agent --server https://192.168.80.80:6443 --node-ip=${WORKER_ADDR} --node-external-ip=${WORKER_ADDR} -t ${NODE_TOKEN}
-</code></pre>
-<p>where WORKER_ADDR is the IP  address of the agent node itself (in this case 192.168.80.101) and NODE_TOKEN has contents of /var/lib/rancher/k3s/server/node-token from server1. </p>
+<p><pre class="highlight"><code>$ curl -sfL https://get.k3s.io | K3S_TOKEN=${NODE_TOKEN} sh -s - agent --server https://192.168.80.80:6443 --node-ip=${WORKER_ADDR} --node-external-ip=${WORKER_ADDR} -t ${NODE_TOKEN}</code></pre>
+where WORKER_ADDR is the IP  address of the agent node itself (in this case 192.168.80.101) and NODE_TOKEN has contents of /var/lib/rancher/k3s/server/node-token from server1. </p>
 <p>It is also to be noted that we use VIP - 192.168.80.80 provided by loxilb to access the server(master) K3s nodes and not the actual private node addresses.</p>
 <p>For rest of the agent nodes, we can follow the same set of steps as outlined above for k3s-agent1.</p>
 <h3 id="validation">Validation</h3>
 <p>After setting up all the k3s-server and k3s-agents, we should be able to see all nodes up and running </p>
-<pre><code>$ sudo kubectl get nodes -A
+<pre class="highlight"><code>$ sudo kubectl get nodes -A
 NAME      STATUS   ROLES                       AGE   VERSION
 master1   Ready    control-plane,etcd,master   4h    v1.29.3+k3s1
 master2   Ready    control-plane,etcd,master   4h    v1.29.3+k3s1
 master3   Ready    control-plane,etcd,master   4h    v1.29.3+k3s1 
 worker1   Ready    &lt;none&gt;                      4h    v1.29.3+k3s1
 worker2   Ready    &lt;none&gt;                      4h    v1.29.3+k3s1
-worker3   Ready    &lt;none&gt;                      4h    v1.29.3+k3s1
-</code></pre>
+worker3   Ready    &lt;none&gt;                      4h    v1.29.3+k3s1</code></pre>
 <p>To verify, let's shutdown master1 k3s-server. </p>
-<pre><code>## Run shutdown the master1 node
-$ sudo shutdown -t now
-</code></pre>
-<p>And try to access cluster information from other master nodes or worker nodes :</p>
-<pre><code>$ sudo kubectl get nodes -A
+<pre class="highlight"><code>## Run shutdown the master1 node
+$ sudo shutdown -t now</code></pre>
+<p>And try to access cluster information from other master nodes or worker nodes :
+<pre class="highlight"><code>$ sudo kubectl get nodes -A
 NAME      STATUS     ROLES                       AGE      VERSION
 master1   NotReady   control-plane,etcd,master   4h10m    v1.29.3+k3s1
 master2   Ready      control-plane,etcd,master   4h10m    v1.29.3+k3s1
 master3   Ready      control-plane,etcd,master   4h10m    v1.29.3+k3s1
 worker1   Ready      &lt;none&gt;                      4h10m    v1.29.3+k3s1
-worker2   Ready      &lt;none&gt;                      4h10m    v1.29.3+k3s1
-</code></pre>
-<p>Also, we can confirm pods getting rescheduled to other "ready" nodes : </p>
-<pre><code>$ sudo kubectl get pods -A -o wide
+worker2   Ready      &lt;none&gt;                      4h10m    v1.29.3+k3s1</code></pre></p>
+<p>Also, we can confirm pods getting rescheduled to other "ready" nodes : 
+<pre class="highlight"><code>$ sudo kubectl get pods -A -o wide
 NAMESPACE     NAME                                      READY   STATUS        RESTARTS   AGE     IP              NODE      NOMINATED NODE   READINESS GATES
 kube-system   coredns-6799fbcd5-6dvm7                   1/1     Running       0          27m     10.42.2.2       master3   &lt;none&gt;           &lt;none&gt;
 kube-system   coredns-6799fbcd5-mrjgt                   1/1     Terminating   0          3h58m   10.42.0.4       master1   &lt;none&gt;           &lt;none&gt;
@@ -718,8 +687,7 @@ kube-system   loxilb-lb-65jnz                           1/1     Running       0 
 kube-system   loxilb-lb-pfkf8                           1/1     Running       0          3h58m   192.168.80.12   master3   &lt;none&gt;           &lt;none&gt;
 kube-system   loxilb-lb-xhr95                           1/1     Running       0          3h58m   192.168.80.11   master2   &lt;none&gt;           &lt;none&gt;
 kube-system   metrics-server-54fd9b65b-l5pqz            1/1     Running       0          27m     10.42.4.2       worker2   &lt;none&gt;           &lt;none&gt;
-kube-system   metrics-server-54fd9b65b-x9bd7            1/1     Terminating   0          3h58m   10.42.0.3       master1   &lt;none&gt;           &lt;none&gt;
-</code></pre>
+kube-system   metrics-server-54fd9b65b-x9bd7            1/1     Terminating   0          3h58m   10.42.0.3       master1   &lt;none&gt;           &lt;none&gt;</code></pre></p>
 <p>If the above set of command works fine in any of the "ready" nodes, it indicates that the api server is available even when one of k3s server (master) goes down. The same can be followed if need be for any services apart from K8s/K3s apiserver as well. </p></div>
             </div>
         </div>

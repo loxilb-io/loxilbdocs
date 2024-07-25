@@ -8,7 +8,7 @@
         
         <link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/quick_start_with_cilium/">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>ext-cluster pod - K3s/loxilb with cilium - loxilb v0.9.5</title>
+        <title>ext-cluster pod - K3s/loxilb with cilium - LoxiLB</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/fontawesome.min.css" rel="stylesheet">
         <link href="../css/brands.min.css" rel="stylesheet">
@@ -33,7 +33,7 @@
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="..">loxilb v0.9.5</a>
+                <a class="navbar-brand" href="..">LoxiLB</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -257,26 +257,8 @@
   </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">More</a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="https://github.com/loxilb-io/loxilb" class="dropdown-item">GitHub</a>
-</li>
-                                    
-<li>
-    <a href="https://www.loxilb.io/" class="dropdown-item">Website</a>
-</li>
-                                    
-<li>
-    <a href="https://github.com/loxilb-io/loxilb/discussions" class="dropdown-item">Community Forum</a>
-</li>
-                                    
-<li>
-    <a href="https://join.slack.com/t/loxilb/shared_invite/zt-2b3xx14wg-P7WHj5C~OEON_jviF0ghcQ" class="dropdown-item">Join Slack</a>
-</li>
-                                </ul>
+                            <li class="nav-item">
+                                <a href="https://www.loxilb.io/" class="nav-link">Visit Website</a>
                             </li>
                         </ul>
 
@@ -295,6 +277,10 @@
                                 <a rel="next" href="../k0s_quick_start/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/loxilb-io/loxilb/edit/master/docs/quick_start_with_cilium.md" class="nav-link">Edit on loxilb-io/loxilb
+                                    </a>
                             </li>
                     </ul>
                 </div>
@@ -370,7 +356,7 @@
 <p>loxilb and cilium both uses ebpf technology for load balancing and implementing policies. So, to avoid the conflict we have to run them in separate network space. 
 This is reason we are going to run loxilb in a docker and use macvlan for the incoming traffic. Also, this is to mimic a topology close to cloud-hosted k8s where LB nodes run outside a cluster.</p>
 <h2 id="install-loxilb-docker">Install loxilb docker</h2>
-<pre><code>## Set promisc mode for mac-vlan to work
+<pre class="highlight"><code>## Set promisc mode for mac-vlan to work
 sudo ifconfig eth1 promisc
 
 sudo docker run -u root --cap-add SYS_ADMIN --restart unless-stopped --privileged --entrypoint /root/loxilb-io/loxilb/loxilb -dit -v /dev/log:/dev/log  --name loxilb ghcr.io/loxilb-io/loxilb:latest
@@ -383,18 +369,17 @@ sudo docker network connect llbnet loxilb --ip=192.168.82.100
 
 # Add iptables rule to allow traffic from source IP(192.168.82.1) to loxilb
 sudo iptables -A DOCKER -s 192.168.82.1 -j ACCEPT
-
 </code></pre>
 <h2 id="setup-k3s-with-cilium">Setup K3s with cilium</h2>
-<pre><code>#K3s installation
-curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC=&quot;--disable traefik --disable servicelb --disable-cloud-controller  \
+<pre class="highlight"><code>#K3s installation
+curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--disable traefik --disable servicelb --disable-cloud-controller  \
 --flannel-backend=none \
---disable-network-policy&quot; sh -
+--disable-network-policy" sh -
 
 #Install Cilium
 CILIUM_CLI_VERSION=$(curl -s https://raw.githubusercontent.com/cilium/cilium-cli/master/stable.txt)
 CLI_ARCH=amd64
-if [ &quot;$(uname -m)&quot; = &quot;aarch64&quot; ]; then CLI_ARCH=arm64; fi
+if [ "$(uname -m)" = "aarch64" ]; then CLI_ARCH=arm64; fi
 curl -L --fail --remote-name-all https://github.com/cilium/cilium-cli/releases/download/${CILIUM_CLI_VERSION}/cilium-linux-${CLI_ARCH}.tar.gz{,.sha256sum}
 sha256sum --check cilium-linux-${CLI_ARCH}.tar.gz.sha256sum
 sudo tar xzvfC cilium-linux-${CLI_ARCH}.tar.gz /usr/local/bin
@@ -406,41 +391,34 @@ cilium install
 echo $MASTER_IP &gt; /vagrant/master-ip
 sudo cp /var/lib/rancher/k3s/server/node-token /vagrant/node-token
 sudo cp /etc/rancher/k3s/k3s.yaml /vagrant/k3s.yaml
-sudo sed -i -e &quot;s/127.0.0.1/${MASTER_IP}/g&quot; /vagrant/k3s.yaml
-
+sudo sed -i -e "s/127.0.0.1/${MASTER_IP}/g" /vagrant/k3s.yaml
 </code></pre>
 <h2 id="how-to-deploy-kube-loxilb">How to deploy kube-loxilb ?</h2>
-<p><a href="https://github.com/loxilb-io/kube-loxilb">kube-loxilb</a> is used to deploy loxilb with Kubernetes.</p>
-<pre><code>wget https://raw.githubusercontent.com/loxilb-io/kube-loxilb/main/manifest/ext-cluster/kube-loxilb.yaml
-</code></pre>
-<p>kube-loxilb.yaml</p>
-<pre><code>        args:
+<p><a href="https://github.com/loxilb-io/kube-loxilb">kube-loxilb</a> is used to deploy loxilb with Kubernetes.
+<pre class="highlight"><code>wget https://raw.githubusercontent.com/loxilb-io/kube-loxilb/main/manifest/ext-cluster/kube-loxilb.yaml</code></pre></p>
+<p>kube-loxilb.yaml
+<pre class="highlight"><code>        args:
             - --loxiURL=http://172.17.0.2:11111
             - --externalCIDR=192.168.82.100/32
-            - --setMode=1
-</code></pre>
-<p>In the above snippet, loxiURL uses docker interface IP of loxilb, which can be different for each setup.    </p>
-<p>Apply in k8s:</p>
-<pre><code>kubectl apply -f kube-loxilb.yaml
-</code></pre>
+            - --setMode=1</code></pre>
+In the above snippet, loxiURL uses docker interface IP of loxilb, which can be different for each setup.    </p>
+<p>Apply in k8s:
+<pre class="highlight"><code>kubectl apply -f kube-loxilb.yaml</code></pre></p>
 <h2 id="create-the-service">Create the service</h2>
-<pre><code>kubectl apply -f https://raw.githubusercontent.com/loxilb-io/loxilb/main/cicd/docker-k3s-cilium/tcp-svc-lb.yml
-</code></pre>
+<pre class="highlight"><code>kubectl apply -f https://raw.githubusercontent.com/loxilb-io/loxilb/main/cicd/docker-k3s-cilium/tcp-svc-lb.yml</code></pre>
 <h2 id="check-the-status">Check the status</h2>
-<p>In k3s:</p>
-<pre><code>kubectl get svc
+<p>In k3s:
+<pre class="highlight"><code>kubectl get svc
 NAME            TYPE           CLUSTER-IP      EXTERNAL-IP          PORT(S)           AGE
 kubernetes      ClusterIP      10.43.0.1       &lt;none&gt;               443/TCP           80m
-tcp-lb-onearm   LoadBalancer   10.43.183.123   llb-192.168.82.100   56002:30001/TCP   6m50s
-</code></pre>
-<p>In loxilb docker:</p>
-<pre><code>$ sudo docker exec -it loxilb loxicmd get lb -o wide
+tcp-lb-onearm   LoadBalancer   10.43.183.123   llb-192.168.82.100   56002:30001/TCP   6m50s</code></pre>
+In loxilb docker:
+<pre class="highlight"><code>$ sudo docker exec -it loxilb loxicmd get lb -o wide
 |   EXT IP       | SEC IPS | PORT  | PROTO |         NAME          | MARK | SEL |  MODE  | ENDPOINT  | EPORT | WEIGHT | STATE  | COUNTERS |
 |----------------|---------|-------|-------|-----------------------|------|-----|--------|-----------|-------|--------|--------|----------|
-| 192.168.82.100 |         | 56002 | tcp   | default_tcp-lb-onearm |    0 | rr  | onearm | 10.0.2.15 | 30001 |      1 | active | 12:880   |
-</code></pre>
+| 192.168.82.100 |         | 56002 | tcp   | default_tcp-lb-onearm |    0 | rr  | onearm | 10.0.2.15 | 30001 |      1 | active | 12:880   |</code></pre></p>
 <h2 id="connect-from-client">Connect from client</h2>
-<pre><code>$ curl http://192.168.82.100:56002
+<pre class="highlight"><code>$ curl http://192.168.82.100:56002
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
@@ -457,17 +435,16 @@ font-family: Tahoma, Verdana, Arial, sans-serif; }
 working. Further configuration is required.&lt;/p&gt;
 
 &lt;p&gt;For online documentation and support please refer to
-&lt;a href=&quot;http://nginx.org/&quot;&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;
+&lt;a href="http://nginx.org/"&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;
 Commercial support is available at
-&lt;a href=&quot;http://nginx.com/&quot;&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;
+&lt;a href="http://nginx.com/"&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;Thank you for using nginx.&lt;/em&gt;&lt;/p&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-
 </code></pre>
-<p>All of the above steps are also available as part of loxilb CICD workflow. Follow the steps below to replicate the above:</p>
-<pre><code>$ cd cicd/docker-k3s-cilium/
+<p>All of the above steps are also available as part of loxilb CICD workflow. Follow the steps below to replicate the above:
+<pre class="highlight"><code>$ cd cicd/docker-k3s-cilium/
 
 # To setup the single node k3s setup with cilium as CNI and loxilb as external load balancer
 $ ./config.sh
@@ -476,8 +453,7 @@ $ ./config.sh
 $ ./validation.sh
 
 # Cleanup
-$ ./rmconfig.sh
-</code></pre></div>
+$ ./rmconfig.sh</code></pre></p></div>
             </div>
         </div>
 

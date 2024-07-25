@@ -8,7 +8,7 @@
         
         <link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/k0s_quick_start/">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>ext-cluster pod - K0s/loxilb with kube-router - loxilb v0.9.5</title>
+        <title>ext-cluster pod - K0s/loxilb with kube-router - LoxiLB</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/fontawesome.min.css" rel="stylesheet">
         <link href="../css/brands.min.css" rel="stylesheet">
@@ -33,7 +33,7 @@
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="..">loxilb v0.9.5</a>
+                <a class="navbar-brand" href="..">LoxiLB</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -257,26 +257,8 @@
   </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">More</a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="https://github.com/loxilb-io/loxilb" class="dropdown-item">GitHub</a>
-</li>
-                                    
-<li>
-    <a href="https://www.loxilb.io/" class="dropdown-item">Website</a>
-</li>
-                                    
-<li>
-    <a href="https://github.com/loxilb-io/loxilb/discussions" class="dropdown-item">Community Forum</a>
-</li>
-                                    
-<li>
-    <a href="https://join.slack.com/t/loxilb/shared_invite/zt-2b3xx14wg-P7WHj5C~OEON_jviF0ghcQ" class="dropdown-item">Join Slack</a>
-</li>
-                                </ul>
+                            <li class="nav-item">
+                                <a href="https://www.loxilb.io/" class="nav-link">Visit Website</a>
                             </li>
                         </ul>
 
@@ -295,6 +277,10 @@
                                 <a rel="next" href="../k3s_quick_start_incluster/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/loxilb-io/loxilb/edit/master/docs/k0s_quick_start.md" class="nav-link">Edit on loxilb-io/loxilb
+                                    </a>
                             </li>
                     </ul>
                 </div>
@@ -339,7 +325,7 @@
 <p><img alt="loxilb topology" src="../photos/qs_single.png" /></p>
 <p>loxilb is run as a docker and will use macvlan for the incoming traffic. This is to mimic a topology close to cloud-hosted k8s where LB nodes run outside a cluster. loxilb can be used in more complex <a href="https://www.loxilb.io/post/k8s-nuances-of-in-cluster-external-service-lb-with-loxilb">in-cluster</a> mode as well, but not used here for simplicity.   </p>
 <h3 id="install-loxilb-docker">Install loxilb docker</h3>
-<pre><code>## Set underlying interface of the VM/cluster-node to promisc mode for mac-vlan to work
+<pre class="highlight"><code>## Set underlying interface of the VM/cluster-node to promisc mode for mac-vlan to work
 sudo ifconfig eth1 promisc
 
 ## Run loxilb
@@ -354,50 +340,41 @@ sudo docker network connect llbnet loxilb --ip=192.168.82.100
 
 # Add iptables rule to allow traffic from source/host IP(192.168.82.1) to loxilb
 sudo iptables -A DOCKER -s 192.168.82.1 -j ACCEPT
-
 </code></pre>
 <p>All the above steps related to docker setup can be further automated using docker-compose.   </p>
 <h3 id="setup-k0skube-router-in-single-node">Setup k0s/kube-router in single-node</h3>
-<pre><code>#K0s installation steps
+<pre class="highlight"><code>#K0s installation steps
 curl -sSLf https://get.k0s.sh | sudo sh
 sudo k0s install controller --single
-sudo k0s start
-</code></pre>
+sudo k0s start</code></pre>
 <h3 id="check-k0s-status">Check k0s status</h3>
-<pre><code>sudo k0s status
-</code></pre>
+<pre class="highlight"><code>sudo k0s status</code></pre>
 <h3 id="how-to-deploy-kube-loxilb">How to deploy kube-loxilb ?</h3>
-<p><a href="https://github.com/loxilb-io/kube-loxilb">kube-loxilb</a> is used to deploy loxilb with Kubernetes.</p>
-<pre><code>wget https://raw.githubusercontent.com/loxilb-io/kube-loxilb/main/manifest/ext-cluster/kube-loxilb.yaml
-</code></pre>
-<p>Change args in kube-loxilb.yaml</p>
-<pre><code>        args:
+<p><a href="https://github.com/loxilb-io/kube-loxilb">kube-loxilb</a> is used to deploy loxilb with Kubernetes.
+<pre class="highlight"><code>wget https://raw.githubusercontent.com/loxilb-io/kube-loxilb/main/manifest/ext-cluster/kube-loxilb.yaml</code></pre></p>
+<p>Change args in kube-loxilb.yaml
+<pre class="highlight"><code>        args:
             - --loxiURL=http://172.17.0.2:11111
             - --externalCIDR=192.168.82.100/32
-            - --setMode=1
-</code></pre>
-<p>In the above snippet, loxiURL uses docker interface IP of loxilb, which can be different for each setup.    </p>
-<p>Apply in k0s:</p>
-<pre><code>$ sudo k0s kubectl apply -f kube-loxilb.yaml
-</code></pre>
+            - --setMode=1</code></pre>
+In the above snippet, loxiURL uses docker interface IP of loxilb, which can be different for each setup.    </p>
+<p>Apply in k0s:
+<pre class="highlight"><code>$ sudo k0s kubectl apply -f kube-loxilb.yaml</code></pre></p>
 <h3 id="create-the-service">Create the service</h3>
-<pre><code>$ sudo k0s kubectl apply -f https://raw.githubusercontent.com/loxilb-io/loxilb/main/cicd/docker-k0s-lb/tcp-svc-lb.yml
-</code></pre>
+<pre class="highlight"><code>$ sudo k0s kubectl apply -f https://raw.githubusercontent.com/loxilb-io/loxilb/main/cicd/docker-k0s-lb/tcp-svc-lb.yml</code></pre>
 <h3 id="check-the-status">Check the status</h3>
-<p>In k0s:</p>
-<pre><code>$ sudo k0s kubectl get svc
+<p>In k0s:
+<pre class="highlight"><code>$ sudo k0s kubectl get svc
 NAME            TYPE           CLUSTER-IP      EXTERNAL-IP          PORT(S)           AGE
 kubernetes      ClusterIP      10.43.0.1       &lt;none&gt;               443/TCP           80m
-tcp-lb-onearm   LoadBalancer   10.43.183.123   llb-192.168.82.100   56002:30001/TCP   6m50s
-</code></pre>
-<p>In loxilb docker:</p>
-<pre><code>$ sudo docker exec -it loxilb loxicmd get lb -o wide
+tcp-lb-onearm   LoadBalancer   10.43.183.123   llb-192.168.82.100   56002:30001/TCP   6m50s</code></pre>
+In loxilb docker:
+<pre class="highlight"><code>$ sudo docker exec -it loxilb loxicmd get lb -o wide
 |   EXT IP       | SEC IPS | PORT  | PROTO |         NAME          | MARK | SEL |  MODE  | ENDPOINT  | EPORT | WEIGHT | STATE  | COUNTERS |
 |----------------|---------|-------|-------|-----------------------|------|-----|--------|-----------|-------|--------|--------|----------|
-| 192.168.82.100 |         | 56002 | tcp   | default_tcp-lb-onearm |    0 | rr  | onearm | 10.0.2.15 | 30001 |      1 | active | 12:880   |
-</code></pre>
+| 192.168.82.100 |         | 56002 | tcp   | default_tcp-lb-onearm |    0 | rr  | onearm | 10.0.2.15 | 30001 |      1 | active | 12:880   |</code></pre></p>
 <h3 id="connect-from-hostclient">Connect from host/client</h3>
-<pre><code>$ curl http://192.168.82.100:56002
+<pre class="highlight"><code>$ curl http://192.168.82.100:56002
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
@@ -414,17 +391,16 @@ font-family: Tahoma, Verdana, Arial, sans-serif; }
 working. Further configuration is required.&lt;/p&gt;
 
 &lt;p&gt;For online documentation and support please refer to
-&lt;a href=&quot;http://nginx.org/&quot;&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;
+&lt;a href="http://nginx.org/"&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;
 Commercial support is available at
-&lt;a href=&quot;http://nginx.com/&quot;&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;
+&lt;a href="http://nginx.com/"&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;Thank you for using nginx.&lt;/em&gt;&lt;/p&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-
 </code></pre>
-<p>All of the above steps are also available as part of loxilb CICD workflow. Follow the steps below to replicate the above (please note that you will need <a href="https://developer.hashicorp.com/vagrant/docs/installation">vagrant tool</a> installed to run:</p>
-<pre><code>$ git clone https://github.com/loxilb-io/loxilb.git
+<p>All of the above steps are also available as part of loxilb CICD workflow. Follow the steps below to replicate the above (please note that you will need <a href="https://developer.hashicorp.com/vagrant/docs/installation">vagrant tool</a> installed to run:
+<pre class="highlight"><code>$ git clone https://github.com/loxilb-io/loxilb.git
 $ cd cicd/docker-k0s-lb/
 
 # To setup the single node k0s setup with kube-router networking and loxilb as external load balancer
@@ -434,8 +410,7 @@ $ ./config.sh
 $ ./validation.sh
 
 # Cleanup
-$ ./rmconfig.sh
-</code></pre></div>
+$ ./rmconfig.sh</code></pre></p></div>
             </div>
         </div>
 

@@ -8,7 +8,7 @@
         
         <link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/perf-single/">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Perf single - loxilb v0.9.5</title>
+        <title>Perf single - LoxiLB</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/fontawesome.min.css" rel="stylesheet">
         <link href="../css/brands.min.css" rel="stylesheet">
@@ -33,7 +33,7 @@
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="..">loxilb v0.9.5</a>
+                <a class="navbar-brand" href="..">LoxiLB</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -257,26 +257,8 @@
   </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">More</a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="https://github.com/loxilb-io/loxilb" class="dropdown-item">GitHub</a>
-</li>
-                                    
-<li>
-    <a href="https://www.loxilb.io/" class="dropdown-item">Website</a>
-</li>
-                                    
-<li>
-    <a href="https://github.com/loxilb-io/loxilb/discussions" class="dropdown-item">Community Forum</a>
-</li>
-                                    
-<li>
-    <a href="https://join.slack.com/t/loxilb/shared_invite/zt-2b3xx14wg-P7WHj5C~OEON_jviF0ghcQ" class="dropdown-item">Join Slack</a>
-</li>
-                                </ul>
+                            <li class="nav-item">
+                                <a href="https://www.loxilb.io/" class="nav-link">Visit Website</a>
                             </li>
                         </ul>
 
@@ -286,6 +268,10 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/loxilb-io/loxilb/edit/master/docs/perf-single.md" class="nav-link">Edit on loxilb-io/loxilb
+                                    </a>
+                            </li>
                     </ul>
                 </div>
             </div>
@@ -317,34 +303,28 @@
 <p>The hosts/LB/end-points are run as docker pods inside a single server/node. The topology is as follows :</p>
 <p><img alt="LB Single Test" src="../photos/LBSingleTest.png" /></p>
 <p>The following command can be used to configure lb for the given topology:</p>
-<pre><code># loxicmd create lb 20.20.20.1 --tcp=2020:5001 --endpoints=31.31.31.1:1,32.32.32.1:1,33.33.33.1:1
-</code></pre>
-<p>The testing is done with full stateful connection tracking enabled (non dsr mode).  To create the above topology for testing loxilb, users can follow this <a href="../simple_topo/">guide</a>. A go webserver with an empty response is used for benchmark purposes. The code is as following :</p>
-<pre><code>package main
+<p><pre class="highlight"><code># loxicmd create lb 20.20.20.1 --tcp=2020:5001 --endpoints=31.31.31.1:1,32.32.32.1:1,33.33.33.1:1</code></pre>
+The testing is done with full stateful connection tracking enabled (non dsr mode).  To create the above topology for testing loxilb, users can follow this <a href="../simple_topo/">guide</a>. A go webserver with an empty response is used for benchmark purposes. The code is as following :</p>
+<p><pre class="highlight"><code>package main
 
 import (
-        &quot;log&quot;
-        &quot;net/http&quot;
+        "log"
+        "net/http"
 )
 
 func main() {
-        http.HandleFunc(&quot;/&quot;, func(w http.ResponseWriter, r *http.Request) {
+        http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 
         })
-        if err := http.ListenAndServe(&quot;:5001&quot;, nil); err != nil {
-                log.Fatal(&quot;ListenAndServe: &quot;, err)
+        if err := http.ListenAndServe(":5001", nil); err != nil {
+                log.Fatal("ListenAndServe: ", err)
         }
-}
-</code></pre>
-<p>The above code runs in each of the load-balancer end-points as following :</p>
-<pre><code>go run ./webserver.go
-</code></pre>
+}</code></pre>
+The above code runs in each of the load-balancer end-points as following :</p>
+<pre class="highlight"><code>go run ./webserver.go</code></pre>
 <p><a href="https://github.com/wg/wrk">wrk</a> based HTTP benchmarking is one of the tools used in this test. This tool is run with the following parameters:</p>
-<pre><code>root@loxilb:/home/loxilb # wrk -t8 -c400 -d30s http://20.20.20.1:2020/
-</code></pre>
-<ul>
-<li>where t: No. of threads, c: No. of connections. d: Duration of test</li>
-</ul>
+<p><pre class="highlight"><code>root@loxilb:/home/loxilb # wrk -t8 -c400 -d30s http://20.20.20.1:2020/</code></pre>
+- where t: No. of threads, c: No. of connections. d: Duration of test</p>
 <p>We also run other popular performance testing tools like <a href="https://github.com/HewlettPackard/netperf">netperf</a>, <a href="https://iperf.fr/">iperf</a> along with wrk for the above topology. A quick explanation of terminologies used :</p>
 <p><strong>RPS</strong> - requests per seconds. Given a fixed number of connections, this denotes how many requests/message per second can be supported  <br />
 <strong>CPS</strong> - connections per second. This denotes how many new TCP connection setup/teardowns can be supported per second and hence one of the most important indicators of load-balancer performance   <br />

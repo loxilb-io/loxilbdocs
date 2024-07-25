@@ -8,7 +8,7 @@
         
         <link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/loxilb-nginx-ingress/">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Loxilb nginx ingress - loxilb v0.9.5</title>
+        <title>Loxilb nginx ingress - LoxiLB</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/fontawesome.min.css" rel="stylesheet">
         <link href="../css/brands.min.css" rel="stylesheet">
@@ -33,7 +33,7 @@
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="..">loxilb v0.9.5</a>
+                <a class="navbar-brand" href="..">LoxiLB</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -257,26 +257,8 @@
   </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">More</a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="https://github.com/loxilb-io/loxilb" class="dropdown-item">GitHub</a>
-</li>
-                                    
-<li>
-    <a href="https://www.loxilb.io/" class="dropdown-item">Website</a>
-</li>
-                                    
-<li>
-    <a href="https://github.com/loxilb-io/loxilb/discussions" class="dropdown-item">Community Forum</a>
-</li>
-                                    
-<li>
-    <a href="https://join.slack.com/t/loxilb/shared_invite/zt-2b3xx14wg-P7WHj5C~OEON_jviF0ghcQ" class="dropdown-item">Join Slack</a>
-</li>
-                                </ul>
+                            <li class="nav-item">
+                                <a href="https://www.loxilb.io/" class="nav-link">Visit Website</a>
                             </li>
                         </ul>
 
@@ -286,6 +268,10 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/loxilb-io/loxilb/edit/master/docs/loxilb-nginx-ingress.md" class="nav-link">Edit on loxilb-io/loxilb
+                                    </a>
+                            </li>
                     </ul>
                 </div>
             </div>
@@ -326,23 +312,20 @@
 <h3 id="considerations">Considerations</h3>
 <p>This example is not specific to any particular managed kubernetes implementation like EKS, GKE etc but should work well with any. We will simply use K3s as a based kubernetes platform.</p>
 <h3 id="install-k3s">Install K3s</h3>
-<pre><code>curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC=&quot;--disable traefik,servicelb&quot; K3S_KUBECONFIG_MODE=&quot;644&quot; sh -
-</code></pre>
+<pre class="highlight"><code>curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--disable traefik,servicelb" K3S_KUBECONFIG_MODE="644" sh -</code></pre>
 <h3 id="install-loxilb">Install loxilb</h3>
 <p>Follow any of the getting started <a href="https://github.com/loxilb-io/loxilb?tab=readme-ov-file#getting-started">guides</a> as per requirement. Check all the pods are up and running as expected :</p>
-<pre><code>$ kubectl get pods -A
+<pre class="highlight"><code>$ kubectl get pods -A
 NAMESPACE     NAME                                     READY   STATUS    RESTARTS   AGE
 kube-system   coredns-6799fbcd5-4n4kl                  1/1     Running   0          56m
 kube-system   kube-loxilb-b466c99bb-fpgll              1/1     Running   0          56m
 kube-system   local-path-provisioner-6f5d79df6-f52sw   1/1     Running   0          56m
 kube-system   loxilb-lb-gbkw7                          1/1     Running   0          30s
-kube-system   metrics-server-54fd9b65b-dchv2           1/1     Running   0          56m
-</code></pre>
+kube-system   metrics-server-54fd9b65b-dchv2           1/1     Running   0          56m</code></pre>
 <h3 id="install-ingress-nginx">Install ingress-nginx</h3>
-<pre><code>kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.1/deploy/static/provider/baremetal/deploy.yaml
-</code></pre>
-<p>Double confirm :</p>
-<pre><code>$ kubectl get pods -A
+<pre class="highlight"><code>kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.1/deploy/static/provider/baremetal/deploy.yaml</code></pre>
+<p>Double confirm :
+<pre class="highlight"><code>$ kubectl get pods -A
 NAMESPACE       NAME                                        READY   STATUS      RESTARTS   AGE
 ingress-nginx   ingress-nginx-admission-create-9vq66        0/1     Completed   0          113s
 ingress-nginx   ingress-nginx-admission-patch-k4d74         0/1     Completed   1          113s
@@ -351,13 +334,12 @@ kube-system     coredns-6799fbcd5-4n4kl                     1/1     Running     
 kube-system     kube-loxilb-b466c99bb-fpgll                 1/1     Running     0          59m
 kube-system     local-path-provisioner-6f5d79df6-f52sw      1/1     Running     0          59m
 kube-system     loxilb-lb-gbkw7                             1/1     Running     0          3m33s
-kube-system     metrics-server-54fd9b65b-dchv2              1/1     Running     0          59m
-</code></pre>
+kube-system     metrics-server-54fd9b65b-dchv2              1/1     Running     0          59m</code></pre></p>
 <h3 id="install-service-backend-app-and-ingress-rules">Install service, backend app and ingress rules</h3>
 <ul>
 <li>Create a LB service for exposing ingress ports</li>
 </ul>
-<pre><code>apiVersion: v1
+<pre class="highlight"><code>apiVersion: v1
 kind: Service
 metadata:
   name: ingress-nginx-controller-loadbalancer
@@ -378,10 +360,9 @@ spec:
       port: 443
       protocol: TCP
       targetPort: 443
-  type: LoadBalancer
-</code></pre>
+  type: LoadBalancer</code></pre>
 <p>Check the services created :</p>
-<pre><code>$ kubectl get svc -A
+<pre class="highlight"><code>$ kubectl get svc -A
 NAMESPACE       NAME                                    TYPE           CLUSTER-IP      EXTERNAL-IP         PORT(S)                       AGE
 default         kubernetes                              ClusterIP      10.43.0.1       &lt;none&gt;              443/TCP                       61m
 ingress-nginx   ingress-nginx-controller                NodePort       10.43.114.138   &lt;none&gt;              80:30958/TCP,443:31794/TCP    3m22s
@@ -389,13 +370,11 @@ ingress-nginx   ingress-nginx-controller-admission      ClusterIP      10.43.107
 ingress-nginx   ingress-nginx-controller-loadbalancer   LoadBalancer   10.43.27.248    llb-192.168.80.10   80:32218/TCP,443:32617/TCP    9s
 kube-system     kube-dns                                ClusterIP      10.43.0.10      &lt;none&gt;              53/UDP,53/TCP,9153/TCP        61m
 kube-system     loxilb-lb-service                       ClusterIP      None            &lt;none&gt;              11111/TCP,179/TCP,50051/TCP   5m2s
-kube-system     metrics-server                          ClusterIP      10.43.20.55     &lt;none&gt;              443/TCP                       61m
-</code></pre>
+kube-system     metrics-server                          ClusterIP      10.43.20.55     &lt;none&gt;              443/TCP                       61m</code></pre>
 <p>At this point of time, all services exposed via ingress can be accessed via "192.168.80.10". This IP could be different as per use-case and scenario. This IP can then be associated with DNS for name based access.</p>
 <ul>
-<li>Create backend apps for <code>domain1.loxilb.io</code> and configure ingress rules with the following yaml</li>
-</ul>
-<pre><code>apiVersion: apps/v1
+<li>Create backend apps for <code>domain1.loxilb.io</code> and configure ingress rules with the following yaml
+<pre class="highlight"><code>apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: site
@@ -434,8 +413,8 @@ kind: Ingress
 metadata:
   name: site-nginx-ingress
   annotations:
-    #app.kubernetes.io/ingress.class: &quot;nginx&quot;
-    nginx.ingress.kubernetes.io/ssl-redirect: &quot;false&quot;
+    #app.kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   ingressClassName: nginx
   rules:
@@ -448,10 +427,10 @@ spec:
             service:
               name: site-nginx-service
               port:
-                number: 80
-</code></pre>
+                number: 80</code></pre></li>
+</ul>
 <p>Double check status of pods, services and ingress:</p>
-<pre><code>$ kubectl get pods -A
+<pre class="highlight"><code>$ kubectl get pods -A
 NAMESPACE       NAME                                        READY   STATUS      RESTARTS   AGE
 default         site-69d64fcd49-j4qhj                       1/1     Running     0          46s
 ingress-nginx   ingress-nginx-admission-create-9vq66        0/1     Completed   0          8m21s
@@ -478,12 +457,10 @@ kube-system     metrics-server                          ClusterIP      10.43.20.
 $ kubectl get ingress -A
 NAMESPACE   NAME                 CLASS   HOSTS               ADDRESS     PORTS   AGE
 default     site-nginx-ingress   nginx   domain1.loxilb.io   10.0.2.15   80      2m10s
-
 </code></pre>
 <ul>
-<li>Now, lets create backend apps for <code>domain2.loxilb.io</code> and configure ingress rules with the following yaml</li>
-</ul>
-<pre><code>apiVersion: apps/v1
+<li>Now, lets create backend apps for <code>domain2.loxilb.io</code> and configure ingress rules with the following yaml
+<pre class="highlight"><code>apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: site2
@@ -522,8 +499,8 @@ kind: Ingress
 metadata:
   name: site-nginx-ingress2
   annotations:
-    #app.kubernetes.io/ingress.class: &quot;nginx&quot;
-    nginx.ingress.kubernetes.io/ssl-redirect: &quot;false&quot;
+    #app.kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   ingressClassName: nginx
   rules:
@@ -536,10 +513,10 @@ spec:
             service:
               name: site-nginx-service2
               port:
-                number: 80
-</code></pre>
-<p>Again, we can check the status of pods, service and ingress:</p>
-<pre><code>$ kubectl get pods -A
+                number: 80</code></pre></li>
+</ul>
+<p>Again, we can check the status of pods, service and ingress:
+<pre class="highlight"><code>$ kubectl get pods -A
 NAMESPACE       NAME                                        READY   STATUS      RESTARTS   AGE
 default         site-69d64fcd49-j4qhj                       1/1     Running     0          9m12s
 default         site2-7fff6cfbbf-8d6rp                      1/1     Running     0          2m34s
@@ -567,20 +544,18 @@ kube-system     metrics-server                          ClusterIP      10.43.20.
 $ kubectl get ingress -A
 NAMESPACE   NAME                  CLASS   HOSTS               ADDRESS     PORTS   AGE
 default     site-nginx-ingress    nginx   domain1.loxilb.io   10.0.2.15   80      9m49s
-default     site-nginx-ingress2   nginx   domain2.loxilb.io   10.0.2.15   80      3m11s
-</code></pre>
+default     site-nginx-ingress2   nginx   domain2.loxilb.io   10.0.2.15   80      3m11s</code></pre></p>
 <h2 id="test">Test</h2>
 <p>If you are testing locally you can simply add the following for dns resolution in your bastion/host :</p>
-<pre><code>$ tail -n 2  /etc/hosts
+<p><pre class="highlight"><code>$ tail -n 2  /etc/hosts
 192.168.80.10   domain1.loxilb.io
 192.168.80.10   domain2.loxilb.io
-
 </code></pre>
-<p>The above step is similar to adding A records in a DNS like route53.</p>
+The above step is similar to adding A records in a DNS like route53.</p>
 <ul>
-<li>Finally, try to access the service "domain1.loxilb.io" :</li>
-</ul>
-<pre><code>$ curl -H &quot;HOST: domain1.loxilb.io&quot; domain1.loxilb.io
+<li>
+<p>Finally, try to access the service "domain1.loxilb.io" :
+<pre class="highlight"><code>$ curl -H "HOST: domain1.loxilb.io" domain1.loxilb.io
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
@@ -597,18 +572,17 @@ font-family: Tahoma, Verdana, Arial, sans-serif; }
 working. Further configuration is required.&lt;/p&gt;
 
 &lt;p&gt;For online documentation and support please refer to
-&lt;a href=&quot;http://nginx.org/&quot;&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;
+&lt;a href="http://nginx.org/"&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;
 Commercial support is available at
-&lt;a href=&quot;http://nginx.com/&quot;&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;
+&lt;a href="http://nginx.com/"&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;Thank you for using nginx.&lt;/em&gt;&lt;/p&gt;
 &lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
-<ul>
-<li>And then try to access services domain2.loxilb.io:</li>
-</ul>
-<pre><code>$ curl -H &quot;HOST: domain2.loxilb.io&quot; domain2.loxilb.io
+&lt;/html&gt;</code></pre></p>
+</li>
+<li>
+<p>And then try to access services domain2.loxilb.io:
+<pre class="highlight"><code>$ curl -H "HOST: domain2.loxilb.io" domain2.loxilb.io
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
@@ -625,14 +599,15 @@ font-family: Tahoma, Verdana, Arial, sans-serif; }
 working. Further configuration is required.&lt;/p&gt;
 
 &lt;p&gt;For online documentation and support please refer to
-&lt;a href=&quot;http://nginx.org/&quot;&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;
+&lt;a href="http://nginx.org/"&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;
 Commercial support is available at
-&lt;a href=&quot;http://nginx.com/&quot;&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;
+&lt;a href="http://nginx.com/"&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;Thank you for using nginx.&lt;/em&gt;&lt;/p&gt;
 &lt;/body&gt;
-&lt;/html&gt;
-</code></pre></div>
+&lt;/html&gt;</code></pre></p>
+</li>
+</ul></div>
             </div>
         </div>
 

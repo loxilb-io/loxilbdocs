@@ -8,7 +8,7 @@
         
         <link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/run/">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Manual steps to build/run - loxilb v0.9.5</title>
+        <title>Manual steps to build/run - LoxiLB</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/fontawesome.min.css" rel="stylesheet">
         <link href="../css/brands.min.css" rel="stylesheet">
@@ -33,7 +33,7 @@
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="..">loxilb v0.9.5</a>
+                <a class="navbar-brand" href="..">LoxiLB</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -257,26 +257,8 @@
   </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">More</a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="https://github.com/loxilb-io/loxilb" class="dropdown-item">GitHub</a>
-</li>
-                                    
-<li>
-    <a href="https://www.loxilb.io/" class="dropdown-item">Website</a>
-</li>
-                                    
-<li>
-    <a href="https://github.com/loxilb-io/loxilb/discussions" class="dropdown-item">Community Forum</a>
-</li>
-                                    
-<li>
-    <a href="https://join.slack.com/t/loxilb/shared_invite/zt-2b3xx14wg-P7WHj5C~OEON_jviF0ghcQ" class="dropdown-item">Join Slack</a>
-</li>
-                                </ul>
+                            <li class="nav-item">
+                                <a href="https://www.loxilb.io/" class="nav-link">Visit Website</a>
                             </li>
                         </ul>
 
@@ -295,6 +277,10 @@
                                 <a rel="next" href="../debugging/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/loxilb-io/loxilb/edit/master/docs/run.md" class="nav-link">Edit on loxilb-io/loxilb
+                                    </a>
                             </li>
                     </ul>
                 </div>
@@ -340,44 +326,32 @@
 <ul>
 <li>Install GoLang &gt; v1.17</li>
 </ul>
-<pre><code>wget https://go.dev/dl/go1.22.0.linux-amd64.tar.gz &amp;&amp; sudo tar -xzf go1.22.0.linux-amd64.tar.gz --directory /usr/local/
-export PATH=&quot;${PATH}:/usr/local/go/bin&quot;
-</code></pre>
+<pre class="highlight"><code>wget https://go.dev/dl/go1.22.0.linux-amd64.tar.gz &amp;&amp; sudo tar -xzf go1.22.0.linux-amd64.tar.gz --directory /usr/local/
+export PATH="${PATH}:/usr/local/go/bin"</code></pre>
 <ul>
-<li>Install standard packages</li>
-</ul>
-<pre><code>sudo apt install -y clang llvm libelf-dev gcc-multilib libpcap-dev vim net-tools linux-tools-$(uname -r) elfutils dwarves git libbsd-dev bridge-utils wget unzip build-essential bison flex iproute2 curl
-</code></pre>
-<ul>
-<li>Install loxilb eBPF loader tools</li>
-</ul>
-<pre><code>curl -sfL https://github.com/loxilb-io/tools/raw/main/loader/install.sh | sh -
-</code></pre>
-<ul>
-<li>Build and run loxilb </li>
-</ul>
-<pre><code>git clone --recurse-submodules https://github.com/loxilb-io/loxilb.git
+<li>Install standard packages
+<pre class="highlight"><code>sudo apt install -y clang llvm libelf-dev gcc-multilib libpcap-dev vim net-tools linux-tools-$(uname -r) elfutils dwarves git libbsd-dev bridge-utils wget unzip build-essential bison flex iproute2 curl</code></pre></li>
+<li>Install loxilb eBPF loader tools
+<pre class="highlight"><code>curl -sfL https://github.com/loxilb-io/tools/raw/main/loader/install.sh | sh -</code></pre></li>
+<li>Build and run loxilb 
+<pre class="highlight"><code>git clone --recurse-submodules https://github.com/loxilb-io/loxilb.git
 cd loxilb
 ./loxilb-ebpf/utils/mkllb_bpffs.sh
 make
-sudo ./loxilb 
-</code></pre>
-<ul>
+sudo ./loxilb </code></pre></li>
 <li>Build and use loxicmd </li>
 </ul>
-<pre><code>git clone https://github.com/loxilb-io/loxicmd.git
+<p><pre class="highlight"><code>git clone https://github.com/loxilb-io/loxicmd.git
 cd loxicmd
 go get .
 make
-sudo cp -f loxicmd /usr/local/sbin/
-</code></pre>
-<p>loxicmd usage guide can be found <a href="https://loxilb-io.github.io/loxilbdocs/cmd/">here</a></p>
+sudo cp -f loxicmd /usr/local/sbin/</code></pre>
+loxicmd usage guide can be found <a href="https://loxilb-io.github.io/loxilbdocs/cmd/">here</a></p>
 <h2 id="2-build-and-run-using-docker-easy">2. Build and run using docker (easy)</h2>
-<p>Build the docker image    </p>
-<pre><code>git clone --recurse-submodules https://github.com/loxilb-io/loxilb.git
+<p>Build the docker image  <br />
+<pre class="highlight"><code>git clone --recurse-submodules https://github.com/loxilb-io/loxilb.git
 cd loxilb
-make docker
-</code></pre>
+make docker</code></pre></p>
 <p>This would create the docker image <code>ghcr.io/loxilb-io/loxilb:latest</code> locally. One can then run loxilb in standalone mode by following guide <a href="https://github.com/loxilb-io/loxilbdocs/blob/main/docs/standalone.md">here</a></p>
 <h2 id="3-running-in-kubernetes">3. Running in Kubernetes</h2>
 <ul>

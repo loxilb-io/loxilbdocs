@@ -7,7 +7,7 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="https://loxilb-io.github.io/loxilbdocs/gtp/" rel="canonical"/>
 <link href="../img/favicon.ico" rel="shortcut icon"/>
-<title>Creating a simple test topology for testing GTP with loxilb - loxilb v0.9.5</title>
+<title>Creating a simple test topology for testing GTP with loxilb - LoxiLB</title>
 <link href="../css/bootstrap.min.css" rel="stylesheet"/>
 <link href="../css/fontawesome.min.css" rel="stylesheet"/>
 <link href="../css/brands.min.css" rel="stylesheet"/>
@@ -31,7 +31,7 @@
 <body>
 <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
 <div class="container">
-<a class="navbar-brand" href="..">loxilb v0.9.5</a>
+<a class="navbar-brand" href="..">LoxiLB</a>
 <!-- Expander button -->
 <button aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbar-collapse" data-bs-toggle="collapse" type="button">
 <span class="navbar-toggler-icon"></span>
@@ -208,22 +208,8 @@
 </li>
 </ul>
 </li>
-<li class="nav-item dropdown">
-<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">More</a>
-<ul class="dropdown-menu">
-<li>
-<a class="dropdown-item" href="https://github.com/loxilb-io/loxilb">GitHub</a>
-</li>
-<li>
-<a class="dropdown-item" href="https://www.loxilb.io/">Website</a>
-</li>
-<li>
-<a class="dropdown-item" href="https://github.com/loxilb-io/loxilb/discussions">Community Forum</a>
-</li>
-<li>
-<a class="dropdown-item" href="https://join.slack.com/t/loxilb/shared_invite/zt-2b3xx14wg-P7WHj5C~OEON_jviF0ghcQ">Join Slack</a>
-</li>
-</ul>
+<li class="nav-item">
+<a class="nav-link" href="https://www.loxilb.io/">Visit Website</a>
 </li>
 </ul>
 <ul class="nav navbar-nav ms-md-auto">
@@ -231,6 +217,10 @@
 <a class="nav-link" data-bs-target="#mkdocs_search_modal" data-bs-toggle="modal" href="#">
 <i class="fa fa-search"></i> Search
                             </a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="https://github.com/loxilb-io/loxilb/edit/master/docs/gtp.md">Edit on loxilb-io/loxilb
+                                    </a>
 </li>
 </ul>
 </div>
@@ -266,8 +256,7 @@
     B-- GTP Tunnel ---C[llb2&lt;br&gt;10.10.10.56/24]
     C--&gt;D[EP1&lt;br&gt;31.31.31.1];
     C--&gt;E[EP2&lt;br&gt;32.32.32.1];
-    C--&gt;F[EP3&lt;br&gt;17.17.17.1];
-</div>
+    C--&gt;F[EP3&lt;br&gt;17.17.17.1];</div>
 <p>Prerequisites :  </p>
 <ul>
 <li>The system should be x86 based (bare-metal or virtual)  </li>
@@ -276,8 +265,8 @@
 <h2 id="next-step-is-to-run-the-following-script-to-create-and-configure-the-above-topology">Next step is to run the following script to create and configure the above topology.</h2>
 <p>Please refer scenario3 in loxilb/cicd <a href="https://github.com/loxilb-io/loxilb/blob/main/cicd/scenario3/config.sh">script</a></p>
 <p>Script will spawn dockers for UEs, loxilbs and endpoints. </p>
-<p>In the script, UEs will try to access service IP(88.88.88.88). We are creating sessions and configuring load-balancer rule inside loxilb docker as follows :</p>
-<pre><code>dexec="docker exec -it "
+<p>In the script, UEs will try to access service IP(88.88.88.88). We are creating sessions and configuring load-balancer rule inside loxilb docker as follows :
+<pre class="highlight"><code>dexec="docker exec -it "
 ##llb1 config
 
 #Creating session for ue1
@@ -307,8 +296,7 @@ $dexec llb2 loxicmd create sessionulcl user2 --ulclArgs=12:88.88.88.88
 
 
 ##Create LB rule
-$dexec llb2 loxicmd create lb 88.88.88.88 --tcp=2020:8080 --endpoints=25.25.25.1:1,26.26.26.1:1,27.27.27.1:1
-</code></pre>
+$dexec llb2 loxicmd create lb 88.88.88.88 --tcp=2020:8080 --endpoints=25.25.25.1:1,26.26.26.1:1,27.27.27.1:1</code></pre></p>
 <p>So, we now have two instances loxilb running as a docker.
 First instance of loxilb, llb1 is simulated as gNB as it is used to encap the incoming traffic from UE1 or UE2. Breakout, forward or loadbalancer rule can be configured on second instance llb2
 We can run any workloads as we wish inside the host containers and start testing loxilb.</p></div>

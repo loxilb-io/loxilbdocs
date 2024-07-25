@@ -8,7 +8,7 @@
         
         <link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/lb/">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>What is k8s service - load-balancer - loxilb v0.9.5</title>
+        <title>What is k8s service - load-balancer - LoxiLB</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/fontawesome.min.css" rel="stylesheet">
         <link href="../css/brands.min.css" rel="stylesheet">
@@ -33,7 +33,7 @@
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="..">loxilb v0.9.5</a>
+                <a class="navbar-brand" href="..">LoxiLB</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -257,26 +257,8 @@
   </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">More</a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="https://github.com/loxilb-io/loxilb" class="dropdown-item">GitHub</a>
-</li>
-                                    
-<li>
-    <a href="https://www.loxilb.io/" class="dropdown-item">Website</a>
-</li>
-                                    
-<li>
-    <a href="https://github.com/loxilb-io/loxilb/discussions" class="dropdown-item">Community Forum</a>
-</li>
-                                    
-<li>
-    <a href="https://join.slack.com/t/loxilb/shared_invite/zt-2b3xx14wg-P7WHj5C~OEON_jviF0ghcQ" class="dropdown-item">Join Slack</a>
-</li>
-                                </ul>
+                            <li class="nav-item">
+                                <a href="https://www.loxilb.io/" class="nav-link">Visit Website</a>
                             </li>
                         </ul>
 
@@ -295,6 +277,10 @@
                                 <a rel="next" href="../arch/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/loxilb-io/loxilb/edit/master/docs/lb.md" class="nav-link">Edit on loxilb-io/loxilb
+                                    </a>
                             </li>
                     </ul>
                 </div>
@@ -328,25 +314,24 @@
 <p><img alt="load_balancer" src="../photos/ExternalLB.png" /></p>
 <p>But edge services need to support so many exotic protocols in play like GTP, SCTP, SRv6 etc and integrating everything into a seamlessly working solution has been quite difficult. This is an area where loxilb aims to play a pivotal role.</p>
 <p>The following is a simple yaml config file which needs to be applied to create a service type load-balancer :</p>
-<pre><code> &quot;type&quot;: &quot;LoadBalancer&quot;
+<pre class="highlight"><code> "type": "LoadBalancer"
  {
-      &quot;kind&quot;: &quot;Service&quot;,
-      &quot;apiVersion&quot;: &quot;v1&quot;,
-      &quot;metadata&quot;: {
-        &quot;name&quot;: &quot;sample-service&quot;
+      "kind": "Service",
+      "apiVersion": "v1",
+      "metadata": {
+        "name": "sample-service"
       },
-      &quot;spec&quot;: {
-        &quot;ports&quot;: [{
-          &quot;port&quot;: 9001,
-          &quot;targetPort&quot;: 5001
+      "spec": {
+        "ports": [{
+          "port": 9001,
+          "targetPort": 5001
         }],
-        &quot;selector&quot;: {
-          &quot;app&quot;: &quot;sample&quot;
+        "selector": {
+          "app": "sample"
         },
-        &quot;type&quot;: &quot;LoadBalancer&quot;
+        "type": "LoadBalancer"
       }
-    }
-</code></pre>
+    }</code></pre>
 <p>However, if there is no K8s CCM plugin implementing external service load-balancer, such services won't be created and remain in pending state forever.</p></div>
             </div>
         </div>

@@ -8,7 +8,7 @@
         
         <link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/cmd-dev/">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Developer's guide to loxicmd - loxilb v0.9.5</title>
+        <title>Developer's guide to loxicmd - LoxiLB</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/fontawesome.min.css" rel="stylesheet">
         <link href="../css/brands.min.css" rel="stylesheet">
@@ -33,7 +33,7 @@
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="..">loxilb v0.9.5</a>
+                <a class="navbar-brand" href="..">LoxiLB</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -257,26 +257,8 @@
   </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">More</a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="https://github.com/loxilb-io/loxilb" class="dropdown-item">GitHub</a>
-</li>
-                                    
-<li>
-    <a href="https://www.loxilb.io/" class="dropdown-item">Website</a>
-</li>
-                                    
-<li>
-    <a href="https://github.com/loxilb-io/loxilb/discussions" class="dropdown-item">Community Forum</a>
-</li>
-                                    
-<li>
-    <a href="https://join.slack.com/t/loxilb/shared_invite/zt-2b3xx14wg-P7WHj5C~OEON_jviF0ghcQ" class="dropdown-item">Join Slack</a>
-</li>
-                                </ul>
+                            <li class="nav-item">
+                                <a href="https://www.loxilb.io/" class="nav-link">Visit Website</a>
                             </li>
                         </ul>
 
@@ -295,6 +277,10 @@
                                 <a rel="next" href="../api-dev/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/loxilb-io/loxilb/edit/master/docs/cmd-dev.md" class="nav-link">Edit on loxilb-io/loxilb
+                                    </a>
                             </li>
                     </ul>
                 </div>
@@ -325,11 +311,10 @@
 
 <h2 id="loxicmd-development-guide">loxicmd development guide</h2>
 <p>This guide should help developers extend and enhance loxicmd. The guide is divided into three main stages: design, development, and testing. Start with cloning the loxicmd git:</p>
-<pre><code>git clone git@github.com:loxilb-io/loxicmd.git
-</code></pre>
+<pre class="highlight"><code>git clone git@github.com:loxilb-io/loxicmd.git</code></pre>
 <h3 id="api-check-and-command-design">API check and command design</h3>
 <p>Before developing Command, we need to check if the API of the necessary functions is provided. Check the official API document of LoxiLB to see if the required API is provided. Afterwards, the GET, POST, and DELETE methods are designed with get, create, and delete commands according to the API provided.</p>
-<pre><code>loxicmd$ tree
+<p><pre class="highlight"><code>loxicmd$ tree
 .
 ├── AUTHORS
 ├── cmd
@@ -355,44 +340,40 @@
 │       ├── loadBalancer.go
 │       └── rest.go
 └── README.md
-
 </code></pre>
-<p>Add the code in the ./cmd/get, ./cmd/delete, ./cmd/create, and ./pkg/api directories to add functionality.</p>
+Add the code in the ./cmd/get, ./cmd/delete, ./cmd/create, and ./pkg/api directories to add functionality.</p>
 <h3 id="add-structure-in-pkgapi-and-register-method-example-of-connection-track-api">Add structure in pkg/api and register method (example of connection track API)</h3>
 <ul>
-<li>CommonAPI embedding
-Using embedding the CommonAPI for the Methods and variables, to use in the Connecttrack structure.</li>
-</ul>
-<pre><code>type Conntrack struct {
+<li>
+<p>CommonAPI embedding
+Using embedding the CommonAPI for the Methods and variables, to use in the Connecttrack structure.
+<pre class="highlight"><code>type Conntrack struct {
     CommonAPI
-}
-</code></pre>
-<ul>
-<li>Add Structure Configuration and JSON Structure
-Define the structure for JSON Unmashal.</li>
-</ul>
-<pre><code>type CtInformationGet struct {
-    CtInfo []ConntrackInformation `json:&quot;ctAttr&quot;`
+}</code></pre></p>
+</li>
+<li>
+<p>Add Structure Configuration and JSON Structure
+Define the structure for JSON Unmashal.
+<pre class="highlight"><code>type CtInformationGet struct {
+    CtInfo []ConntrackInformation `json:"ctAttr"`
 }
 
 type ConntrackInformation struct {
-    Dip    string `json:&quot;destinationIP&quot;`
-    Sip    string `json:&quot;sourceIP&quot;`
-    Dport  uint16 `json:&quot;destinationPort&quot;`
-    Sport  uint16 `json:&quot;sourcePort&quot;`
-    Proto  string `json:&quot;protocol&quot;`
-    CState string `json:&quot;conntrackState&quot;`
-    CAct   string `json:&quot;conntrackAct&quot;`
-}
-</code></pre>
-<ul>
+    Dip    string `json:"destinationIP"`
+    Sip    string `json:"sourceIP"`
+    Dport  uint16 `json:"destinationPort"`
+    Sport  uint16 `json:"sourcePort"`
+    Proto  string `json:"protocol"`
+    CState string `json:"conntrackState"`
+    CAct   string `json:"conntrackAct"`
+}</code></pre></p>
+</li>
 <li>Define Method Functions in pkg/api/client.go
 Define the URL in the Resource constant.
-Defines the function to be used in the command.</li>
-</ul>
-<pre><code>const (
+Defines the function to be used in the command.
+<pre class="highlight"><code>const (
     …
-    loxiConntrackResource    = &quot;config/conntrack/all&quot;
+    loxiConntrackResource    = "config/conntrack/all"
 )
 
 
@@ -408,16 +389,16 @@ func (l *LoxiClient) Conntrack() *Conntrack {
         },
     }
 }
-
-</code></pre>
+</code></pre></li>
+</ul>
 <h3 id="add-get-create-delete-functions-within-cmd">Add get, create, delete functions within cmd</h3>
 <p>Use the Cobra library to define commands, Alise, descriptions, options, and callback functions, and then create a function that returns.
-Create a function such as PrintGetCTReturn and add logic when the status code is 200.</p>
-<pre><code>func NewGetConntrackCmd(restOptions *api.RESTOptions) *cobra.Command {
+Create a function such as PrintGetCTReturn and add logic when the status code is 200.
+<pre class="highlight"><code>func NewGetConntrackCmd(restOptions *api.RESTOptions) *cobra.Command {
     var GetctCmd = &amp;cobra.Command{
-        Use:     &quot;conntrack&quot;,
-        Aliases: []string{&quot;ct&quot;, &quot;conntracks&quot;, &quot;cts&quot;},
-        Short:   &quot;Get a Conntrack&quot;,
+        Use:     "conntrack",
+        Aliases: []string{"ct", "conntracks", "cts"},
+        Short:   "Get a Conntrack",
         Long:    `It shows connection track Information`,
         Run: func(cmd *cobra.Command, args []string) {
             client := api.NewLoxiClient(restOptions)
@@ -429,7 +410,7 @@ Create a function such as PrintGetCTReturn and add logic when the status code is
             }
             resp, err := client.Conntrack().Get(ctx)
             if err != nil {
-                fmt.Printf(&quot;Error: %s\n&quot;, err.Error())
+                fmt.Printf("Error: %s\n", err.Error())
                 return
             }
             if resp.StatusCode == http.StatusOK {
@@ -442,14 +423,13 @@ Create a function such as PrintGetCTReturn and add logic when the status code is
 
     return GetctCmd
 }
-
-</code></pre>
+</code></pre></p>
 <h3 id="register-command-in-cmd">Register command in cmd</h3>
-<p>Register Cobra as defined in 3.</p>
-<pre><code>func GetCmd(restOptions *api.RESTOptions) *cobra.Command {
+<p>Register Cobra as defined in 3.
+<pre class="highlight"><code>func GetCmd(restOptions *api.RESTOptions) *cobra.Command {
     var GetCmd = &amp;cobra.Command{
-        Use:   &quot;get&quot;,
-        Short: &quot;A brief description of your command&quot;,
+        Use:   "get",
+        Short: "A brief description of your command",
         Long: `A longer description that spans multiple lines and likely contains examples
     and usage of using your command. For example:
 
@@ -457,17 +437,15 @@ Create a function such as PrintGetCTReturn and add logic when the status code is
     This application is a tool to generate the needed files
     to quickly Get a Cobra application.`,
         Run: func(cmd *cobra.Command, args []string) {
-            fmt.Println(&quot;Get called&quot;)
+            fmt.Println("Get called")
         },
     }
     GetCmd.AddCommand(NewGetLoadBalancerCmd(restOptions))
     GetCmd.AddCommand(NewGetConntrackCmd(restOptions))
     return GetCmd
-}
-</code></pre>
+}</code></pre></p>
 <h3 id="build-test">Build &amp; Test</h3>
-<pre><code>make
-</code></pre></div>
+<pre class="highlight"><code>make</code></pre></div>
             </div>
         </div>
 

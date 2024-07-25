@@ -8,7 +8,7 @@
         
         <link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/api-dev/">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Developer's guide to loxilb API - loxilb v0.9.5</title>
+        <title>Developer's guide to loxilb API - LoxiLB</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/fontawesome.min.css" rel="stylesheet">
         <link href="../css/brands.min.css" rel="stylesheet">
@@ -33,7 +33,7 @@
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="..">loxilb v0.9.5</a>
+                <a class="navbar-brand" href="..">LoxiLB</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -257,26 +257,8 @@
   </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">More</a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="https://github.com/loxilb-io/loxilb" class="dropdown-item">GitHub</a>
-</li>
-                                    
-<li>
-    <a href="https://www.loxilb.io/" class="dropdown-item">Website</a>
-</li>
-                                    
-<li>
-    <a href="https://github.com/loxilb-io/loxilb/discussions" class="dropdown-item">Community Forum</a>
-</li>
-                                    
-<li>
-    <a href="https://join.slack.com/t/loxilb/shared_invite/zt-2b3xx14wg-P7WHj5C~OEON_jviF0ghcQ" class="dropdown-item">Join Slack</a>
-</li>
-                                </ul>
+                            <li class="nav-item">
+                                <a href="https://www.loxilb.io/" class="nav-link">Visit Website</a>
                             </li>
                         </ul>
 
@@ -295,6 +277,10 @@
                                 <a rel="next" href="../api/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/loxilb-io/loxilb/edit/master/docs/api-dev.md" class="nav-link">Edit on loxilb-io/loxilb
+                                    </a>
                             </li>
                     </ul>
                 </div>
@@ -330,7 +316,7 @@
 <h1 id="loxilb-api-development-guide">loxilb API Development Guide</h1>
 <p>For building and extending LoxiLB API server.</p>
 <h2 id="api-source-architecture">API source Architecture</h2>
-<pre><code>.
+<p><pre class="highlight"><code>.
 ├── certification
 │   ├── serverca.crt
 │   └── serverkey.pem
@@ -352,19 +338,13 @@
 │   │   └── ….
 │   └── server.go
 └── swagger.yml
-
 </code></pre>
-<ul>
-<li>Except for the ./api/restapi/handler and ./api/certification directories, the rest of the contents are automatically created.</li>
-<li>Add the logic for the function to the handler directory.</li>
-<li>
-<p>Add logic to file ./api/restapi/configure_loxilb_rest_api.go</p>
-</li>
-<li>
-<p>Swagger.yml file update</p>
-</li>
-</ul>
-<pre><code>paths:
+* Except for the ./api/restapi/handler and ./api/certification directories, the rest of the contents are automatically created.
+* Add the logic for the function to the handler directory.
+* Add logic to file ./api/restapi/configure_loxilb_rest_api.go</p>
+<ol>
+<li>Swagger.yml file update
+<pre class="highlight"><code>paths:
   '/additional/url/{param}':
     get:
       summary: Test Swagger API Server.
@@ -385,9 +365,7 @@
             $ref: '#/definitions/Error'
         '401':
           description: Invalid authentication credentials
-
-</code></pre>
-<ul>
+</code></pre></li>
 <li>path.{Set path and parameter URL}.{get,post,etc RESTful setting}.{Description}</li>
 <li>{Set path and parameter URL}
 Set the path used in the RESTful API.
@@ -404,52 +382,45 @@ Set the name, path, etc.
 Define the content of the response</p>
 </li>
 <li>
-<p>Creating Additional Parts with Swagger</p>
+<p>Creating Additional Parts with Swagger
+<pre class="highlight"><code># alias swagger='docker run --rm -it  --user $(id -u):$(id -g) -e GOPATH=$(go env GOPATH):/go -v $HOME:$HOME -w $(pwd) quay.io/goswagger/swagger'
+# swagger generate server</code></pre></p>
 </li>
-</ul>
-<pre><code># alias swagger='docker run --rm -it  --user $(id -u):$(id -g) -e GOPATH=$(go env GOPATH):/go -v $HOME:$HOME -w $(pwd) quay.io/goswagger/swagger'
-# swagger generate server
-</code></pre>
-<ol>
-<li>Development of Additional Partial Handlers</li>
-</ol>
-<pre><code>package handler
+<li>
+<p>Development of Additional Partial Handlers
+<pre class="highlight"><code>package handler
 
 import (
-    &quot;fmt&quot;
+    "fmt"
 
-    &quot;github.com/go-openapi/runtime/middleware&quot;
+    "github.com/go-openapi/runtime/middleware"
 
-    &quot;testswagger.com/restapi/operations&quot;
+    "testswagger.com/restapi/operations"
 )
 
 func ConfigAdditionalUrl(params operations.GetAdditionalUrlParams) middleware.Responder {
     /////////////////////////////////////////////
     //             Add logic Here              //
     ////////////////////////////////////////////.
-    return &amp;ResultResponse{Result: fmt.Sprintf(&quot;params.param : %s&quot;, params.param)}
+    return &amp;ResultResponse{Result: fmt.Sprintf("params.param : %s", params.param)}
 }
-
-</code></pre>
-<ul>
+</code></pre></p>
+</li>
 <li>
 <p>Select the logic required for the ConfigAdditionalUrl portion of the handler directory. The required parameters come from operations.GetAdditionalUrlParams.</p>
 </li>
 <li>
-<p>Additional Partial Handler Registration</p>
-</li>
-</ul>
-<pre><code>func configureAPI(api *operations.LoxilbRestAPIAPI) http.Handler {
+<p>Additional Partial Handler Registration
+<pre class="highlight"><code>func configureAPI(api *operations.LoxilbRestAPIAPI) http.Handler {
     ...... 
     // Change it by putting a function here
     api.GetAdditionalUrlHandler = operations.GetAdditionalUrlHandlerFunc(handler.ConfigAdditionalUrl)
  ….
-}
-</code></pre>
-<ul>
+}</code></pre></p>
+</li>
 <li>if api.{REST}...The Handler form is automatically generated, where if nil is erased and a handler is added to the operation function.</li>
 <li>In many cases, additional generation is not possible. In that case, you can add the function by entering it separately. The name of the function consists of a combination of Method, URL, and Parameter.</li>
-</ul></div>
+</ol></div>
             </div>
         </div>
 

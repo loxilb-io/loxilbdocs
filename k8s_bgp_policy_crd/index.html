@@ -8,7 +8,7 @@
         
         <link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/k8s_bgp_policy_crd/">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>License - loxilb v0.9.5</title>
+        <title>License - LoxiLB</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/fontawesome.min.css" rel="stylesheet">
         <link href="../css/brands.min.css" rel="stylesheet">
@@ -33,7 +33,7 @@
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="..">loxilb v0.9.5</a>
+                <a class="navbar-brand" href="..">LoxiLB</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -257,26 +257,8 @@
   </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">More</a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="https://github.com/loxilb-io/loxilb" class="dropdown-item">GitHub</a>
-</li>
-                                    
-<li>
-    <a href="https://www.loxilb.io/" class="dropdown-item">Website</a>
-</li>
-                                    
-<li>
-    <a href="https://github.com/loxilb-io/loxilb/discussions" class="dropdown-item">Community Forum</a>
-</li>
-                                    
-<li>
-    <a href="https://join.slack.com/t/loxilb/shared_invite/zt-2b3xx14wg-P7WHj5C~OEON_jviF0ghcQ" class="dropdown-item">Join Slack</a>
-</li>
-                                </ul>
+                            <li class="nav-item">
+                                <a href="https://www.loxilb.io/" class="nav-link">Visit Website</a>
                             </li>
                         </ul>
 
@@ -286,6 +268,10 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/loxilb-io/loxilb/edit/master/docs/k8s_bgp_policy_crd.md" class="nav-link">Edit on loxilb-io/loxilb
+                                    </a>
+                            </li>
                     </ul>
                 </div>
             </div>
@@ -357,8 +343,7 @@ Changes have been made to the original document.</p>
 <p>Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at</p>
-<pre><code>http://www.apache.org/licenses/LICENSE-2.0
-</code></pre>
+<pre class="highlight"><code>http://www.apache.org/licenses/LICENSE-2.0</code></pre>
 <p>Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -372,21 +357,18 @@ implementations.</p>
 <p>We explain the overview firstly, then the details.</p>
 <h2 id="prerequisites">Prerequisites</h2>
 <p>Assumed that you run loxilb with <code>-b</code> option. Or If you control loxilb through kube-loxilb, be sure to set the <code>--set-bgp</code> option in the kube-loxilb.yaml file.</p>
-<pre><code class="language-bash">docker run -u root --cap-add SYS_ADMIN --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --name loxilb ghcr.io/loxilb-io/loxilb:latest -b
-</code></pre>
-<p>or in the kube-loxilb.yaml
-And adding  <code>- --enableBGPCRDs</code> option in kube-loxilb.yaml</p>
-<pre><code>        args:
+<p><pre class="highlight"><code class="language-bash">docker run -u root --cap-add SYS_ADMIN --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --name loxilb ghcr.io/loxilb-io/loxilb:latest -b</code></pre>
+or in the kube-loxilb.yaml
+And adding  <code>- --enableBGPCRDs</code> option in kube-loxilb.yaml
+<pre class="highlight"><code>        args:
             - --loxiURL=http://12.12.12.1:11111
             - --externalCIDR=123.123.123.1/24
             - --setBGP=65100
-            - --enableBGPCRDs
-</code></pre>
+            - --enableBGPCRDs</code></pre></p>
 <p>And apply CRD yamls as first step.</p>
-<pre><code>kubectl apply -f manifest/crds/bgp-policy-apply-service.yaml
+<pre class="highlight"><code>kubectl apply -f manifest/crds/bgp-policy-apply-service.yaml
 kubectl apply -f manifest/crds/bgp-policy-defined-sets-service.yaml
-kubectl apply -f manifest/crds/bgp-policy-definition-service.yaml
-</code></pre>
+kubectl apply -f manifest/crds/bgp-policy-definition-service.yaml</code></pre>
 <p>(Note) Currently, gobgp does not support the Policy command in global state. Therefore, only the policy for neighbors is applied, and we plan to apply the global policy through additional development.
 To apply a policy in a neighbor, you must form a peer by adding the <code>route-server-client</code> option when using gobgp in loxilb. This does not provide a separate API and will be provided in the future.
 For examples in gobgp, please refer to the following <a href="https://github.com/osrg/gobgp/blob/master/docs/sources/route-server.md">documents</a>.</p>
@@ -451,9 +433,8 @@ with respect to a peer.  The <strong>Import</strong> policy defines what routes
 will be imported into the master RIB. The <strong>Export</strong> policy defines
 what routes will be exported from the master RIB.</p>
 <p>You can check each policy by the following commands in the loxilb.</p>
-<pre><code class="language-shell">$ gobgp neighbor &lt;neighbor-addr&gt; policy import
-$ gobgp neighbor &lt;neighbor-addr&gt; policy export
-</code></pre>
+<pre class="highlight"><code class="language-shell">$ gobgp neighbor &lt;neighbor-addr&gt; policy import
+$ gobgp neighbor &lt;neighbor-addr&gt; policy export</code></pre>
 <h2 id="policy-structure">Policy Structure</h2>
 <p><img alt="policy component" src="../photos/policy-component.png" /></p>
 <p>A policy consists of statements. Each statement has condition(s) and action(s).</p>
@@ -484,12 +465,11 @@ which are a container for each condition item (e.g. prefixes).</p>
 <p>When <strong>ALL</strong> conditions in the statement are <code>true</code>, the action(s) in the
 statement are executed.</p>
 <p>You can check policy configuration by the following commands.</p>
-<pre><code class="language-shell">$ kubectl get bgppolicydefinedsetsservice
+<pre class="highlight"><code class="language-shell">$ kubectl get bgppolicydefinedsetsservice
 
 $ kubectl get bgppolicydefinitionservice
 
-$ kubectl get bgppolicyapplyservice
-</code></pre>
+$ kubectl get bgppolicyapplyservice</code></pre>
 <h2 id="configure-policies">Configure Policies</h2>
 <p>Policy Configuration comes from two parts, definition and attachment. For definition, we have
 <a href="#1-defining-defined-sets">defined-sets</a> and <a href="#3-defining-policy-definitions">policy-definition</a>.
@@ -621,18 +601,17 @@ prefix-sets has either v4 or v6 addresses.</p>
 <li>If you define a prefix-list that doesn't have MasklengthRange, it matches
     routes that have just 10.33.0.0/16 as NLRI.</li>
 </ul>
-<pre><code class="language-yaml"># example 1
+<pre class="highlight"><code class="language-yaml"># example 1
 apiVersion: bgppolicydefinedsets.loxilb.io/v1
 kind: BGPPolicyDefinedSetsService
 metadata:
   name: policy-prefix
 spec:
-  name: &quot;ps1&quot;
-  definedType: &quot;prefix&quot;
+  name: "ps1"
+  definedType: "prefix"
   prefixList:
-    - ipPrefix: &quot;10.33.0.0/16&quot;
-      masklengthRange: &quot;21..24&quot;
-
+    - ipPrefix: "10.33.0.0/16"
+      masklengthRange: "21..24"
 </code></pre>
 <ul>
 <li>example 2</li>
@@ -641,48 +620,46 @@ spec:
 <li>This prefix-set-list match checks if a route has 10.33.0.0/21 to 24 or
     10.50.0.0/21 to 24.</li>
 </ul>
-<pre><code class="language-yaml"># example 2
+<pre class="highlight"><code class="language-yaml"># example 2
 apiVersion: bgppolicydefinedsets.loxilb.io/v1
 kind: BGPPolicyDefinedSetsService
 metadata:
   name: policy-prefix
 spec:
-  name: &quot;ps1&quot;
-  definedType: &quot;prefix&quot;
+  name: "ps1"
+  definedType: "prefix"
   prefixList:
-    - ipPrefix: &quot;10.33.0.0/16&quot;
-      masklengthRange: &quot;21..24&quot;
-    - ipPrefix: &quot;10.50.0.0/16&quot;
-      masklengthRange: &quot;21..24&quot;
-</code></pre>
+    - ipPrefix: "10.33.0.0/16"
+      masklengthRange: "21..24"
+    - ipPrefix: "10.50.0.0/16"
+      masklengthRange: "21..24"</code></pre>
 <ul>
 <li>example 3</li>
 <li>prefix-set-name under prefix-set-list is reference to a single prefix-set.</li>
 <li>If you want to add different prefix-set more, you can add other blocks that
     form the same structure with example 1.</li>
 </ul>
-<pre><code class="language-yaml">apiVersion: bgppolicydefinedsets.loxilb.io/v1
+<pre class="highlight"><code class="language-yaml">apiVersion: bgppolicydefinedsets.loxilb.io/v1
 kind: BGPPolicyDefinedSetsService
 metadata:
   name: policy-prefix
 spec:
-  name: &quot;ps1&quot;
-  definedType: &quot;prefix&quot;
+  name: "ps1"
+  definedType: "prefix"
   prefixList:
-    - ipPrefix: &quot;10.33.0.0/16&quot;
-      masklengthRange: &quot;21..24&quot;
+    - ipPrefix: "10.33.0.0/16"
+      masklengthRange: "21..24"
 ---
 apiVersion: bgppolicydefinedsets.loxilb.io/v1
 kind: BGPPolicyDefinedSetsService
 metadata:
   name: policy-prefix
 spec:
-  name: &quot;ps2&quot;
-  definedType: &quot;prefix&quot;
+  name: "ps2"
+  definedType: "prefix"
   prefixList:
-    - ipPrefix: &quot;10.50.0.0/16&quot;
-      masklengthRange: &quot;21..24&quot;
-</code></pre>
+    - ipPrefix: "10.50.0.0/16"
+      masklengthRange: "21..24"</code></pre>
 <h4 id="neighbor-sets">neighbor-sets</h4>
 <p>neighbor-sets has neighbor-set-list, and neighbor-set-list has
 neighbor-set-name and neighbor-info-list as its element. It is necessary to
@@ -737,42 +714,41 @@ a condition.
 <ul>
 <li>example 1</li>
 </ul>
-<pre><code class="language-yaml">apiVersion: bgppolicydefinedsets.loxilb.io/v1
+<pre class="highlight"><code class="language-yaml">apiVersion: bgppolicydefinedsets.loxilb.io/v1
 kind: BGPPolicyDefinedSetsService
 metadata:
   name: policy-neighbor
 spec:
-  name: &quot;ns1&quot;
-  definedType: &quot;neighbor&quot;
+  name: "ns1"
+  definedType: "neighbor"
   List:
-  - &quot;10.0.255.1/32&quot;
+  - "10.0.255.1/32"
 ---
 apiVersion: bgppolicydefinedsets.loxilb.io/v1
 kind: BGPPolicyDefinedSetsService
 metadata:
   name: policy-neighbor
 spec:
-  name: &quot;ns2&quot;
-  definedType: &quot;neighbor&quot;
+  name: "ns2"
+  definedType: "neighbor"
   List:
-  - &quot;10.0.0.0/24&quot;
-</code></pre>
+  - "10.0.0.0/24"</code></pre>
 <ul>
 <li>example 2</li>
 <li>As with prefix-set-list, neighbor-set-list can have multiple
     neighbor-info-list like this.</li>
 </ul>
-<pre><code class="language-yaml"># example 2
+<pre class="highlight"><code class="language-yaml"># example 2
 apiVersion: bgppolicydefinedsets.loxilb.io/v1
 kind: BGPPolicyDefinedSetsService
 metadata:
   name: policy-neighbor
 spec:
-  name: &quot;ns1&quot;
-  definedType: &quot;neighbor&quot;
+  name: "ns1"
+  definedType: "neighbor"
   List:
-  - &quot;10.0.255.1/32&quot;
-  - &quot;10.0.255.2/32&quot;
+  - "10.0.255.1/32"
+  - "10.0.255.2/32"
   ```
 
 - example 3
@@ -784,21 +760,20 @@ kind: BGPPolicyDefinedSetsService
 metadata:
   name: policy-neighbor
 spec:
-  name: &quot;ns1&quot;
-  definedType: &quot;neighbor&quot;
+  name: "ns1"
+  definedType: "neighbor"
   List:
-  - &quot;10.0.255.1/32&quot;
+  - "10.0.255.1/32"
 ---
 apiVersion: bgppolicydefinedsets.loxilb.io/v1
 kind: BGPPolicyDefinedSetsService
 metadata:
   name: policy-neighbor
 spec:
-  name: &quot;ns2&quot;
-  definedType: &quot;neighbor&quot;
+  name: "ns2"
+  definedType: "neighbor"
   List:
-  - &quot;10.0.254.1/32&quot;
-</code></pre>
+  - "10.0.254.1/32"</code></pre>
 <h3 id="2-defining-bgp-defined-sets">2. Defining bgp-defined-sets</h3>
 <p>bgp-defined-sets has Community information, Extended Community
 information and AS_PATH information in each Sets section
@@ -809,16 +784,16 @@ set can have multiple values.</p>
 <ul>
 <li>bgp-defined-sets example</li>
 </ul>
-<pre><code class="language-yaml"># Community match part
+<pre class="highlight"><code class="language-yaml"># Community match part
 apiVersion: bgppolicydefinedsets.loxilb.io/v1
 kind: BGPPolicyDefinedSetsService
 metadata:
   name: policy-community
 spec:
-  name: &quot;community1&quot;
-  definedType: &quot;community&quot;
+  name: "community1"
+  definedType: "community"
   List:
-  - &quot;65100:10&quot;
+  - "65100:10"
 
 # Extended Community match part
 apiVersion: bgppolicydefinedsets.loxilb.io/v1
@@ -826,10 +801,10 @@ kind: BGPPolicyDefinedSetsService
 metadata:
   name: policy-extcommunity
 spec:
-  name: &quot;ecommunity1&quot;
-  definedType: &quot;extcommunity&quot;
+  name: "ecommunity1"
+  definedType: "extcommunity"
   List:
-  - &quot;RT:65100:100&quot;
+  - "RT:65100:100"
 
 # AS_PATH match part
 apiVersion: bgppolicydefinedsets.loxilb.io/v1
@@ -837,10 +812,10 @@ kind: BGPPolicyDefinedSetsService
 metadata:
   name: policy-aspath
 spec:
-  name: &quot;aspath1&quot;
-  definedType: &quot;asPath&quot;
+  name: "aspath1"
+  definedType: "asPath"
   List:
-    - &quot;^65100&quot;
+    - "^65100"
 
 # Large Community match part
 apiVersion: bgppolicydefinedsets.loxilb.io/v1
@@ -848,11 +823,10 @@ kind: BGPPolicyDefinedSetsService
 metadata:
   name: policy-largecommunity
 spec:
-  name: &quot;lcommunity1&quot;
-  definedType: &quot;largecommunity&quot;
+  name: "lcommunity1"
+  definedType: "largecommunity"
   List:
-  - &quot;65100:100:100&quot;
-</code></pre>
+  - "65100:100:100"</code></pre>
 <h4 id="community-sets">community-sets</h4>
 <p>community-sets has community-set-name and community-list as its element. The
 Community value are used to evaluate communities held by the destination.</p>
@@ -905,33 +879,31 @@ Community value are used to evaluate communities held by the destination.</p>
 <li>example 1</li>
 <li>Match routes which has "65100:10" as a community value.</li>
 </ul>
-<pre><code class="language-yaml"># example 1
+<pre class="highlight"><code class="language-yaml"># example 1
 apiVersion: bgppolicydefinedsets.loxilb.io/v1
 kind: BGPPolicyDefinedSetsService
 metadata:
   name: policy-community
 spec:
-  name: &quot;community1&quot;
-  definedType: &quot;community&quot;
+  name: "community1"
+  definedType: "community"
   List:
-  - &quot;65100:10&quot;
-</code></pre>
+  - "65100:10"</code></pre>
 <ul>
 <li>example 2</li>
 <li>Specifying community by regular expression</li>
 <li>You can use regular expressions based on POSIX 1003.2 regular expressions.</li>
 </ul>
-<pre><code class="language-yaml"># example 2
+<pre class="highlight"><code class="language-yaml"># example 2
 apiVersion: bgppolicydefinedsets.loxilb.io/v1
 kind: BGPPolicyDefinedSetsService
 metadata:
   name: policy-community
 spec:
-  name: &quot;community2&quot;
-  definedType: &quot;community&quot;
+  name: "community2"
+  definedType: "community"
   List:
-  - &quot;6[0-9]+:[0-9]+&quot;
-</code></pre>
+  - "6[0-9]+:[0-9]+"</code></pre>
 <h4 id="ext-community-sets">ext-community-sets</h4>
 <p>ext-community-sets has ext-community-set-name and ext-community-list as its
 element. The values are used to evaluate extended communities held by the
@@ -1005,33 +977,31 @@ subtype of extended community and subtypes that can be used are as follows:</p>
 <li>example 1</li>
 <li>Match routes which has "RT:65001:200" as a extended community value.</li>
 </ul>
-<pre><code class="language-yaml"># example 1
+<pre class="highlight"><code class="language-yaml"># example 1
 apiVersion: bgppolicydefinedsets.loxilb.io/v1
 kind: BGPPolicyDefinedSetsService
 metadata:
   name: policy-extcommunity
 spec:
-  name: &quot;ecommunity1&quot;
-  definedType: &quot;extcommunity&quot;
+  name: "ecommunity1"
+  definedType: "extcommunity"
   List:
-  - &quot;RT:65100:100&quot;
-</code></pre>
+  - "RT:65100:100"</code></pre>
 <ul>
 <li>example 2</li>
 <li>Specifying extended community by regular expression</li>
 <li>You can use regular expressions that is available in Golang.</li>
 </ul>
-<pre><code class="language-yaml"># example 2
+<pre class="highlight"><code class="language-yaml"># example 2
 apiVersion: bgppolicydefinedsets.loxilb.io/v1
 kind: BGPPolicyDefinedSetsService
 metadata:
   name: policy-extcommunity
 spec:
-  name: &quot;ecommunity2&quot;
-  definedType: &quot;extcommunity&quot;
+  name: "ecommunity2"
+  definedType: "extcommunity"
   List:
-  - &quot;RT:6[0-9]+:[0-9]+&quot;
-</code></pre>
+  - "RT:6[0-9]+:[0-9]+"</code></pre>
 <h4 id="as-path-sets">as-path-sets</h4>
 <p>as-path-sets has as-path-set-name and as-path-list as its element. The numbers
 are used to evaluate AS numbers in the destination's AS_PATH attribute.</p>
@@ -1098,40 +1068,38 @@ and Cisco. Note Character <code>_</code> has special meaning. It is abbreviation
 <li>example 1</li>
 <li>Match routes which come from AS 65100.</li>
 </ul>
-<pre><code class="language-yaml"># example 1
+<pre class="highlight"><code class="language-yaml"># example 1
 apiVersion: bgppolicydefinedsets.loxilb.io/v1
 kind: BGPPolicyDefinedSetsService
 metadata:
   name: policy-aspath
 spec:
-  name: &quot;aspath1&quot;
-  definedType: &quot;asPath&quot;
+  name: "aspath1"
+  definedType: "asPath"
   List:
-    - &quot;^65100&quot;
-</code></pre>
+    - "^65100"</code></pre>
 <ul>
 <li>example 2</li>
 <li>Match routes which come Origin AS 65100 and use regular expressions to
     other AS.</li>
 </ul>
-<pre><code class="language-yaml"># example 2
+<pre class="highlight"><code class="language-yaml"># example 2
 apiVersion: bgppolicydefinedsets.loxilb.io/v1
 kind: BGPPolicyDefinedSetsService
 metadata:
   name: policy-aspath
 spec:
-  name: &quot;aspath1&quot;
-  definedType: &quot;asPath&quot;
+  name: "aspath1"
+  definedType: "asPath"
   List:
-    - &quot;[0-9]+_65[0-9]+_65100$&quot;
-</code></pre>
+    - "[0-9]+_65[0-9]+_65100$"</code></pre>
 <h3 id="3-defining-policy-definitions">3. Defining policy-definitions</h3>
 <p>policy-definitions consists of condition and action. Condition part is used to
 evaluate routes from neighbors, if matched, action will be applied.</p>
 <ul>
 <li>an example of policy-definitions</li>
 </ul>
-<pre><code class="language-yaml">apiVersion: bgppolicydefinition.loxilb.io/v1
+<pre class="highlight"><code class="language-yaml">apiVersion: bgppolicydefinition.loxilb.io/v1
 kind: BGPPolicyDefinitionService
 metadata:
   name: example-policy
@@ -1165,16 +1133,15 @@ spec:
     actions:
       routeDisposition: accept-route
       bgpActions:
-        setMed: &quot;-200&quot;
+        setMed: "-200"
         setAsPathPrepend:
-          as: &quot;65005&quot;
+          as: "65005"
           repeatN: 5
         setCommunity:
           options: add
           setCommunityMethod:
             communitiesList:
               - 65100:20  
-
 </code></pre>
 <p>The elements of policy-definitions are as follows:</p>
 <ul>
@@ -1502,7 +1469,7 @@ spec:
 <li>This policy definition has prefix-set <em>ps1</em> and neighbor-set <em>ns1</em> as its
     condition and routes matches the condition is rejected.</li>
 </ul>
-<pre><code class="language-yaml"># example 1
+<pre class="highlight"><code class="language-yaml"># example 1
 apiVersion: bgppolicydefinition.loxilb.io/v1
 kind: BGPPolicyDefinitionService
 metadata:
@@ -1519,15 +1486,14 @@ spec:
         neighborSet: ns1
         matchSetOptions: any
     actions:
-      routeDisposition: reject-route
-</code></pre>
+      routeDisposition: reject-route</code></pre>
 <ul>
 <li>example 2</li>
 <li>policy-definition has two statements</li>
 <li>If a route matches the condition inside the first statement(1), GoBGP
     applies its action and quits the policy evaluation.</li>
 </ul>
-<pre><code class="language-yaml"># example 2
+<pre class="highlight"><code class="language-yaml"># example 2
 apiVersion: bgppolicydefinition.loxilb.io/v1
 kind: BGPPolicyDefinitionService
 metadata:
@@ -1554,14 +1520,13 @@ spec:
         neighborSet: ns2
         matchSetOptions: any
     actions:
-      routeDisposition: reject-route
-</code></pre>
+      routeDisposition: reject-route</code></pre>
 <ul>
 <li>example 3</li>
 <li>If you want to add other policies, just add policy-definitions block
     following the first one like this</li>
 </ul>
-<pre><code class="language-yaml">apiVersion: bgppolicydefinition.loxilb.io/v1
+<pre class="highlight"><code class="language-yaml">apiVersion: bgppolicydefinition.loxilb.io/v1
 kind: BGPPolicyDefinitionService
 metadata:
   name: policy1
@@ -1594,8 +1559,7 @@ spec:
         neighborSet: ns2
         matchSetOptions: any
     actions:
-      routeDisposition: reject-route
-</code></pre>
+      routeDisposition: reject-route</code></pre>
 <ul>
 <li>example 4</li>
 <li>This PolicyDefinition has multiple conditions including BgpConditions as
@@ -1612,7 +1576,7 @@ spec:
     "65100:20", next-hop 10.0.0.1, local-pref 110, med subtracted 200, as-path
     prepended 65005 five times.</li>
 </ul>
-<pre><code class="language-yaml"># example 4
+<pre class="highlight"><code class="language-yaml"># example 4
 apiVersion: bgppolicydefinition.loxilb.io/v1
 kind: BGPPolicyDefinitionService
 metadata:
@@ -1647,16 +1611,15 @@ spec:
     actions:
       routeDisposition: accept-route
       bgpActions:
-        setMed: &quot;-200&quot;
+        setMed: "-200"
         setAsPathPrepend:
-          as: &quot;65005&quot;
+          as: "65005"
           repeatN: 5
         setCommunity:
           options: add
           setCommunityMethod:
             communitiesList:
-              - 65100:20  
-</code></pre>
+              - 65100:20  </code></pre>
 <h3 id="4-attaching-policy">4. Attaching policy</h3>
 <p>Here we explain how to attach defined policies to
 <a href="#42-attach-policy-to-route-server-client">neighbor local rib</a>.</p>
@@ -1667,17 +1630,16 @@ attaching them to neighbors which is configured to be route-server client.</p>
 <code>neighbors.apply-policy</code> in the neighbor's setting.
 This example attaches <em>policy1</em> to Import policy and <em>policy2</em> to Export policy
 and <em>policy3</em> is used as the In policy.</p>
-<pre><code class="language-yaml">apiVersion: bgppolicyapply.loxilb.io/v1
+<pre class="highlight"><code class="language-yaml">apiVersion: bgppolicyapply.loxilb.io/v1
 kind: BGPPolicyApplyService
 metadata:
   name: policy-apply
 spec:
-  ipAddress: &quot;10.0.255.2&quot;
-  policyType: &quot;import&quot;
+  ipAddress: "10.0.255.2"
+  policyType: "import"
   polices:
-  - &quot;policy1&quot;
-  routeAction: &quot;accept&quot;
-</code></pre>
+  - "policy1"
+  routeAction: "accept"</code></pre>
 <p>neighbors has a section to specify policies and the section's name is
 apply-policy. The apply-policy has 4 elements.</p>
 <table>

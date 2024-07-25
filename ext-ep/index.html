@@ -8,7 +8,7 @@
         
         <link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/ext-ep/">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>How-To - access end-points outside K8s - loxilb v0.9.5</title>
+        <title>How-To - access end-points outside K8s - LoxiLB</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/fontawesome.min.css" rel="stylesheet">
         <link href="../css/brands.min.css" rel="stylesheet">
@@ -33,7 +33,7 @@
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="..">loxilb v0.9.5</a>
+                <a class="navbar-brand" href="..">LoxiLB</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -257,26 +257,8 @@
   </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">More</a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="https://github.com/loxilb-io/loxilb" class="dropdown-item">GitHub</a>
-</li>
-                                    
-<li>
-    <a href="https://www.loxilb.io/" class="dropdown-item">Website</a>
-</li>
-                                    
-<li>
-    <a href="https://github.com/loxilb-io/loxilb/discussions" class="dropdown-item">Community Forum</a>
-</li>
-                                    
-<li>
-    <a href="https://join.slack.com/t/loxilb/shared_invite/zt-2b3xx14wg-P7WHj5C~OEON_jviF0ghcQ" class="dropdown-item">Join Slack</a>
-</li>
-                                </ul>
+                            <li class="nav-item">
+                                <a href="https://www.loxilb.io/" class="nav-link">Visit Website</a>
                             </li>
                         </ul>
 
@@ -295,6 +277,10 @@
                                 <a rel="next" href="../k3s-multi-master/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/loxilb-io/loxilb/edit/master/docs/ext-ep.md" class="nav-link">Edit on loxilb-io/loxilb
+                                    </a>
                             </li>
                     </ul>
                 </div>
@@ -346,8 +332,8 @@ In that case, your cloud-native apps needs to connect to the external services w
 <h2 id="service-with-external-endpoint">Service with External Endpoint</h2>
 <p>You can create an external service with loxilb as well. For this, You can simply create an Endpoint Object and then create a service using this endpoint object:</p>
 <p><img alt="External Endpoint with LoxiLB" src="../photos/ext-ep.png" /></p>
-<p><b>endpoint.yml</b></p>
-<pre><code>apiVersion: v1
+<p><b>endpoint.yml</b>
+<pre class="highlight"><code>apiVersion: v1
 kind: Endpoints
 metadata:
   name: ext-tcp-lb
@@ -355,19 +341,16 @@ subsets:
   - addresses:
     - ip: 192.168.82.2
     ports:
-    - port: 80
-</code></pre>
-<p>Create endpoint object:</p>
-<pre><code>$ kubectl apply -f endpoint.yml
-</code></pre>
-<p>View endpoints:</p>
-<pre><code>$ kubectl get ep
+    - port: 80</code></pre></p>
+<p>Create endpoint object:
+<pre class="highlight"><code>$ kubectl apply -f endpoint.yml</code></pre></p>
+<p>View endpoints:
+<pre class="highlight"><code>$ kubectl get ep
 NAME         ENDPOINTS         AGE
 kubernetes   10.0.2.15:6443    16m
-ext-tcp-lb   192.168.82.2:80   16m
-</code></pre>
-<p><b>service.yml</b></p>
-<pre><code>apiVersion: v1
+ext-tcp-lb   192.168.82.2:80   16m</code></pre></p>
+<p><b>service.yml</b>
+<pre class="highlight"><code>apiVersion: v1
 kind: Service
 metadata:
   name: ext-tcp-lb
@@ -377,16 +360,13 @@ spec:
  ports:
     - protocol: TCP
       port: 8000
-      targetPort: 80
-</code></pre>
-<p>Create Service:</p>
-<pre><code>$ kubectl apply -f service.yml
-</code></pre>
-<p>View Service:</p>
-<pre><code>NAME         TYPE           CLUSTER-IP      EXTERNAL-IP      PORT(S)           AGE
+      targetPort: 80</code></pre></p>
+<p>Create Service:
+<pre class="highlight"><code>$ kubectl apply -f service.yml</code></pre></p>
+<p>View Service:
+<pre class="highlight"><code>NAME         TYPE           CLUSTER-IP      EXTERNAL-IP      PORT(S)           AGE
 kubernetes   ClusterIP      10.43.0.1       &lt;none&gt;           443/TCP           16m
-ext-tcp-lb   LoadBalancer   10.43.164.108   llb-20.20.20.1   8000:30355/TCP    15m
-</code></pre></div>
+ext-tcp-lb   LoadBalancer   10.43.164.108   llb-20.20.20.1   8000:30355/TCP    15m</code></pre></p></div>
             </div>
         </div>
 

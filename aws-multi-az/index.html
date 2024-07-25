@@ -8,7 +8,7 @@
         
         <link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/aws-multi-az/">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Aws multi az - loxilb v0.9.5</title>
+        <title>Aws multi az - LoxiLB</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/fontawesome.min.css" rel="stylesheet">
         <link href="../css/brands.min.css" rel="stylesheet">
@@ -33,7 +33,7 @@
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="..">loxilb v0.9.5</a>
+                <a class="navbar-brand" href="..">LoxiLB</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -257,26 +257,8 @@
   </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">More</a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="https://github.com/loxilb-io/loxilb" class="dropdown-item">GitHub</a>
-</li>
-                                    
-<li>
-    <a href="https://www.loxilb.io/" class="dropdown-item">Website</a>
-</li>
-                                    
-<li>
-    <a href="https://github.com/loxilb-io/loxilb/discussions" class="dropdown-item">Community Forum</a>
-</li>
-                                    
-<li>
-    <a href="https://join.slack.com/t/loxilb/shared_invite/zt-2b3xx14wg-P7WHj5C~OEON_jviF0ghcQ" class="dropdown-item">Join Slack</a>
-</li>
-                                </ul>
+                            <li class="nav-item">
+                                <a href="https://www.loxilb.io/" class="nav-link">Visit Website</a>
                             </li>
                         </ul>
 
@@ -286,6 +268,10 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/loxilb-io/loxilb/edit/master/docs/aws-multi-az.md" class="nav-link">Edit on loxilb-io/loxilb
+                                    </a>
+                            </li>
                     </ul>
                 </div>
             </div>
@@ -328,7 +314,7 @@
 <h3 id="an-example-scenario">An example scenario</h3>
 <p>We will use eksctl to create an EKS cluster. To use eksctl, we need to register authentication information through AWS CLI. Instructions for installing aws CLI &amp; eksctl etc are omitted in this document and can be found in AWS.</p>
 <p>Using eksctl, let's create an EKS cluster with the following command. For this test, we are using  AWS's Osaka region, so using <code>ap-northeast-3</code> in the --region option.</p>
-<pre><code>eksctl create cluster \
+<p><pre class="highlight"><code>eksctl create cluster \
   --version 1.24 \
   --name multi-az-eks \
   --vpc-nat-mode Single \
@@ -336,9 +322,8 @@
   --node-type t3.medium \
   --nodes 2 \
   --with-oidc \
-  --managed
-</code></pre>
-<p>After running the above, we will have an EKS clsuter with two nodes named "multi-az-eks".</p>
+  --managed</code></pre>
+After running the above, we will have an EKS clsuter with two nodes named "multi-az-eks".</p>
 <h3 id="configuring-loxilb-ec2-instances">Configuring LoxiLB EC2 Instances</h3>
 <h4 id="create-loxilb-subnet">Create LoxiLB subnet</h4>
 <p>After configuring EKS, it's time to configure the LoxiLB instance. Let's create the subnet that each of the LoxiLB instances will use.</p>
@@ -355,17 +340,16 @@
 <h4 id="loxilb-iam-settings">LoxiLB IAM Settings</h4>
 <p>LoxiLB instances require permission to access the AWS EC2 API to associate ElasticIPs and create secondary interfaces and subnets.</p>
 <p>We will create a role with the following IAM policy for LoxiLB EC2 instances.</p>
-<pre><code>{
-    &quot;Version&quot;: &quot;2012-10-17&quot;,
-    &quot;Statement&quot;: [
+<pre class="highlight"><code>{
+    "Version": "2012-10-17",
+    "Statement": [
         {
-            &quot;Effect&quot;: &quot;Allow&quot;,
-            &quot;Action&quot;: &quot;*&quot;,
-            &quot;Resource&quot;: &quot;*&quot;
+            "Effect": "Allow",
+            "Action": "*",
+            "Resource": "*"
         }
     ]
-}
-</code></pre>
+}</code></pre>
 <h4 id="loxilb-ec2-instance-creation">LoxiLB EC2 instance creation</h4>
 <p>We will create two LoxiLB instances for this example and connect the instances wits subnets A and B created above.</p>
 <p><img alt="image" src="https://github.com/loxilb-io/loxilbdocs/assets/111065900/732c6b66-33b3-4927-8864-abf03377042b" /></p>
@@ -379,10 +363,9 @@
 <p>For this example, the IP <code>13.208.x.x</code> was assigned. The Elastic IP is used when deploying kube-loxilb, and is automatically associated to the LoxiLB master instance when configuring LoxiLB HA without any user intervention.</p>
 <h4 id="kube-loxilb-deployment">kube-loxilb deployment</h4>
 <p>kube-loxilb is a K8s operator for LoxiLB. Download the manifest file required for your deployment in EKS.</p>
-<pre><code>wget https://raw.githubusercontent.com/loxilb-io/kube-loxilb/main/manifest/ext-cluster/kube-loxilb.yaml
-</code></pre>
+<pre class="highlight"><code>wget https://raw.githubusercontent.com/loxilb-io/kube-loxilb/main/manifest/ext-cluster/kube-loxilb.yaml</code></pre>
 <p>Change the args inside this yaml (as applicable)</p>
-<pre><code>spec:
+<pre class="highlight"><code>spec:
   containers:
   - name: kube-loxilb
     image: ghcr.io/loxilb-io/kube-loxilb:latest
@@ -394,8 +377,7 @@
     - --externalCIDR=13.208.X.X/32
     - --privateCIDR=192.168.248.254/32
     - --setRoles=0.0.0.0
-    - --setLBMode=2 
-</code></pre>
+    - --setLBMode=2 </code></pre>
 <ul>
 <li>Modify loxiURL with the IPs of the LoxiLB EC2instances created above.</li>
 <li>For externalCIDR, specify the Elastic IP created above.</li>
@@ -406,7 +388,7 @@
 <p>LoxiLB is deployed as a container on each instance. To use containers, docker must first be installed on the instance. Docker installation guide can be found <a href="https://docs.docker.com/engine/install/ubuntu/">here</a></p>
 <h4 id="running-loxilb-container">Running LoxiLB container</h4>
 <p>The following command is for a LoxiLB instance (loxilb1) using subnet-a.</p>
-<pre><code>sudo docker run -u root --cap-add SYS_ADMIN \
+<pre class="highlight"><code>sudo docker run -u root --cap-add SYS_ADMIN \
   --restart unless-stopped \
   --net=host \
   --privileged \
@@ -414,15 +396,14 @@
   -v /dev/log:/dev/log -e AWS_REGION=ap-northeast-3 \
   --name loxilb \
   ghcr.io/loxilb-io/loxilb:aws-support \
-  --cloud=aws --cloudcidrblock=192.168.248.0/24 --cluster=192.168.228.108 --self=0
-</code></pre>
+  --cloud=aws --cloudcidrblock=192.168.248.0/24 --cluster=192.168.228.108 --self=0</code></pre>
 <ul>
 <li>In the cloudcidrblock option, specify the IP band that includes the VIP set in kube-loxilb's privateCIDR. master LoxiLB uses the value set here to create a new subnet in the AZ where it is located and uses it for HA operation.</li>
 <li>The cluster option specifies the IP of the partner instance (LoxiLB instance using subnet-b) for which HA is configured.</li>
 <li>The self option is set to 0. It is just a identier used internally to identify each instance</li>
 </ul>
 <p>Similarily we can run loxilb2 instance in the second EC2 instance using subnet-b:   </p>
-<pre><code>sudo docker run -u root --cap-add SYS_ADMIN \
+<pre class="highlight"><code>sudo docker run -u root --cap-add SYS_ADMIN \
   --restart unless-stopped \
   --net=host \
   --privileged \
@@ -430,20 +411,18 @@
   -v /dev/log:/dev/log -e AWS_REGION=ap-northeast-3 \
   --name loxilb \
   ghcr.io/loxilb-io/loxilb:aws-support \
-  --cloud=aws --cloudcidrblock=192.168.248.0/24 --cluster=192.168.218.60 --self=1
-</code></pre>
+  --cloud=aws --cloudcidrblock=192.168.248.0/24 --cluster=192.168.218.60 --self=1</code></pre>
 <p>For each instance, HA status can be checked as follows:</p>
 <p>When the container runs, you can check the HA status as follows:</p>
-<pre><code>ubuntu@ip-192-168-218-60:~$ sudo docker exec -ti loxilb bash
+<pre class="highlight"><code>ubuntu@ip-192-168-218-60:~$ sudo docker exec -ti loxilb bash
 root@ip-192-168-228-108:/# loxicmd get ha
 | INSTANCE | HASTATE |
 |----------|---------|
 | default  | MASTER  |
-root@ip-192-168-228-108:/#
-</code></pre>
+root@ip-192-168-228-108:/#</code></pre>
 <h4 id="creating-a-service">Creating a  service</h4>
 <p>Let's create a test service to test HA functionality. Below are the manifest files for the nginx pod and service that we will use for testing.</p>
-<pre><code>apiVersion: v1
+<p><pre class="highlight"><code>apiVersion: v1
 kind: Service
 metadata:
   name: nginx-lb1
@@ -468,25 +447,22 @@ spec:
     - name: nginx-test
       image: nginx:stable
       ports:
-        - containerPort: 80
-</code></pre>
-<p>After creating an nginx service with the above,  weu can see that the ElasticIP has been designated as the externalIP of the service.</p>
-<pre><code>LEIS6N3:~/workspace/aws-demo$ kubectl apply -f nginx.yaml
+        - containerPort: 80</code></pre>
+After creating an nginx service with the above,  weu can see that the ElasticIP has been designated as the externalIP of the service.</p>
+<p><pre class="highlight"><code>LEIS6N3:~/workspace/aws-demo$ kubectl apply -f nginx.yaml
 service/nginx-lb1 created
 pod/nginx-test created
 LEIS6N3:~/workspace/aws-demo$ kubectl get svc
 NAME         TYPE           CLUSTER-IP     EXTERNAL-IP         PORT(S)           AGE
 kubernetes   ClusterIP      10.100.0.1     &lt;none&gt;              443/TCP           22h
-nginx-lb1    LoadBalancer   10.100.178.3   llb-13.208.X.X      55002:32403/TCP   15s
-</code></pre>
-<p>We can now access the service from a host client :</p>
+nginx-lb1    LoadBalancer   10.100.178.3   llb-13.208.X.X      55002:32403/TCP   15s</code></pre>
+We can now access the service from a host client :</p>
 <p><img alt="image" src="https://github.com/loxilb-io/loxilbdocs/assets/111065900/8ea03fe2-5c28-4f04-8600-9c407278debf" /></p>
 <h4 id="testing-ha-functionality">Testing HA functionality</h4>
-<p>Once LoxiLB HA is configured, we can check in the AWS console that a secondary interface has been added to the master. To test HA operation, simply stop the LoxiLB pod in master state.</p>
-<pre><code>ubuntu@ip-192-168-228-108:~$ sudo docker stop loxilb
+<p>Once LoxiLB HA is configured, we can check in the AWS console that a secondary interface has been added to the master. To test HA operation, simply stop the LoxiLB pod in master state.
+<pre class="highlight"><code>ubuntu@ip-192-168-228-108:~$ sudo docker stop loxilb
 loxilb
-ubuntu@ip-192-168-228-108:~$
-</code></pre>
+ubuntu@ip-192-168-228-108:~$</code></pre></p>
 <p>Even after stopping the masterLB, the service can be accessed without interruption :</p>
 <p><img alt="image" src="https://github.com/loxilb-io/loxilbdocs/assets/111065900/bcc28acd-8dc7-4a00-a884-95c572714b50" /></p>
 <p>During failover, a secondary interface is created on the <em>new</em> master instance, and you can see that the ElasticIP is also associated to the new interface.</p>

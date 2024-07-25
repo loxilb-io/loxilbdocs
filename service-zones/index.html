@@ -8,7 +8,7 @@
         
         <link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/service-zones/">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>How-To - service-group zones - loxilb v0.9.5</title>
+        <title>How-To - service-group zones - LoxiLB</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/fontawesome.min.css" rel="stylesheet">
         <link href="../css/brands.min.css" rel="stylesheet">
@@ -33,7 +33,7 @@
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="..">loxilb v0.9.5</a>
+                <a class="navbar-brand" href="..">LoxiLB</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -257,26 +257,8 @@
   </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">More</a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="https://github.com/loxilb-io/loxilb" class="dropdown-item">GitHub</a>
-</li>
-                                    
-<li>
-    <a href="https://www.loxilb.io/" class="dropdown-item">Website</a>
-</li>
-                                    
-<li>
-    <a href="https://github.com/loxilb-io/loxilb/discussions" class="dropdown-item">Community Forum</a>
-</li>
-                                    
-<li>
-    <a href="https://join.slack.com/t/loxilb/shared_invite/zt-2b3xx14wg-P7WHj5C~OEON_jviF0ghcQ" class="dropdown-item">Join Slack</a>
-</li>
-                                </ul>
+                            <li class="nav-item">
+                                <a href="https://www.loxilb.io/" class="nav-link">Visit Website</a>
                             </li>
                         </ul>
 
@@ -295,6 +277,10 @@
                                 <a rel="next" href="../ext-ep/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/loxilb-io/loxilb/edit/master/docs/service-zones.md" class="nav-link">Edit on loxilb-io/loxilb
+                                    </a>
                             </li>
                     </ul>
                 </div>
@@ -343,18 +329,16 @@
 <ul>
 <li>The manifest files for deploying kube-loxilb for zones need to mention the zone they cater to. For example:</li>
 </ul>
-<p>kube-loxilb-south.yml</p>
-<pre><code>        args:
+<p>kube-loxilb-south.yml
+<pre class="highlight"><code>        args:
             - --loxiURL=http://12.12.12.1:11111
             - --externalCIDR=123.123.123.1/24
-            - --zone=south
-</code></pre>
-<p>kube-loxilb-north.yml</p>
-<pre><code>        args:
+            - --zone=south</code></pre></p>
+<p>kube-loxilb-north.yml
+<pre class="highlight"><code>        args:
             - --loxiURL=http://12.12.12.2:11111
             - --externalCIDR=124.124.124.1/24
-            - --zone=north
-</code></pre>
+            - --zone=north</code></pre></p>
 <ul>
 <li>
 <p>Complete kube-loxilb manifests for zones can be found <a href="https://github.com/loxilb-io/kube-loxilb/tree/main/manifest/zones">here</a> which can be further modified as per user need</p>
@@ -363,28 +347,27 @@
 <p>After deployment, you can find multiple sets of kube-loxilb running as follows :</p>
 </li>
 </ul>
-<pre><code># sudo kubectl get pods -A
+<pre class="highlight"><code># sudo kubectl get pods -A
 NAMESPACE     NAME                                      READY   STATUS    RESTARTS   AGE
 kube-system   coredns-6799fbcd5-6w52r                   1/1     Running   0          11h
 kube-system   local-path-provisioner-6c86858495-gkqgc   1/1     Running   0          11h
 kube-system   metrics-server-67c658944b-vgjqd           1/1     Running   0          11h
 default       udp-test                                  1/1     Running   0          11h
 kube-system   kube-loxilb-south-596fb8957b-7xg2k        1/1     Running   0          11h
-kube-system   kube-loxilb-north-5887f5d848-f86jv        1/1     Running   0          10h
-</code></pre>
+kube-system   kube-loxilb-north-5887f5d848-f86jv        1/1     Running   0          10h</code></pre>
 <h2 id="how-to-deploy-services-for-zones">How to deploy services for zones ?</h2>
 <ul>
 <li>The manifest files for services need to have annotation related to zone they will be served by. For example, we need to specify "loxilb.io/zoneselect" annotation :</li>
 </ul>
-<pre><code>apiVersion: v1
+<pre class="highlight"><code>apiVersion: v1
 kind: Service
 metadata:
   name: nginx-lb1
   annotations:
-    loxilb.io/lbmode: &quot;fullnat&quot;
-    loxilb.io/probetimeout: &quot;10&quot;
-    loxilb.io/proberetries: &quot;2&quot;
-    loxilb.io/zoneselect: &quot;north&quot;
+    loxilb.io/lbmode: "fullnat"
+    loxilb.io/probetimeout: "10"
+    loxilb.io/proberetries: "2"
+    loxilb.io/zoneselect: "north"
 spec:
   externalTrafficPolicy: Local
   loadBalancerClass: loxilb.io/loxilb
@@ -406,8 +389,7 @@ spec:
     - name: nginx-test
       image: nginx:stable
       ports:
-        - containerPort: 80
-</code></pre>
+        - containerPort: 80</code></pre>
 <ul>
 <li>Example services manifests for zones can be found <a href="https://github.com/loxilb-io/kube-loxilb/tree/main/manifest/zones">here</a> which can be further modified as per user need</li>
 </ul></div>

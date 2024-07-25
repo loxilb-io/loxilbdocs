@@ -8,7 +8,7 @@
         
         <link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/k3s-rmq/">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>K3s rmq - loxilb v0.9.5</title>
+        <title>K3s rmq - LoxiLB</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/fontawesome.min.css" rel="stylesheet">
         <link href="../css/brands.min.css" rel="stylesheet">
@@ -33,7 +33,7 @@
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="..">loxilb v0.9.5</a>
+                <a class="navbar-brand" href="..">LoxiLB</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -257,26 +257,8 @@
   </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">More</a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="https://github.com/loxilb-io/loxilb" class="dropdown-item">GitHub</a>
-</li>
-                                    
-<li>
-    <a href="https://www.loxilb.io/" class="dropdown-item">Website</a>
-</li>
-                                    
-<li>
-    <a href="https://github.com/loxilb-io/loxilb/discussions" class="dropdown-item">Community Forum</a>
-</li>
-                                    
-<li>
-    <a href="https://join.slack.com/t/loxilb/shared_invite/zt-2b3xx14wg-P7WHj5C~OEON_jviF0ghcQ" class="dropdown-item">Join Slack</a>
-</li>
-                                </ul>
+                            <li class="nav-item">
+                                <a href="https://www.loxilb.io/" class="nav-link">Visit Website</a>
                             </li>
                         </ul>
 
@@ -286,6 +268,10 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/loxilb-io/loxilb/edit/master/docs/k3s-rmq.md" class="nav-link">Edit on loxilb-io/loxilb
+                                    </a>
+                            </li>
                     </ul>
                 </div>
             </div>
@@ -356,7 +342,7 @@ loxilb <b><i>"service-proxy"</i></b> mode works with Flannel and kube-proxy in I
 <p>loxilb and kube-loxilb components run as pods managed by kubernetes  in this scenario.</p>
 <h2 id="setup-k3s">Setup K3s</h2>
 <h3 id="configure-master-node">Configure Master node</h3>
-<pre><code>$ curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC=&quot;--disable traefik \
+<pre class="highlight"><code>$ curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--disable traefik \
 --disable servicelb \
 --disable-cloud-controller \
 --kube-proxy-arg proxy-mode=ipvs \
@@ -364,45 +350,37 @@ loxilb <b><i>"service-proxy"</i></b> mode works with Flannel and kube-proxy in I
 --disable-network-policy \
 --node-ip=${MASTER_IP} \
 --node-external-ip=${MASTER_IP} \
---bind-address=${MASTER_IP}&quot; sh -
-</code></pre>
+--bind-address=${MASTER_IP}" sh -</code></pre>
 <h3 id="configure-worker-nodes">Configure Worker nodes</h3>
-<pre><code>$ curl -sfL https://get.k3s.io | K3S_URL=&quot;https://${MASTER_IP}:6443&quot;\
- K3S_TOKEN=&quot;${NODE_TOKEN}&quot; \
- INSTALL_K3S_EXEC=&quot;--node-ip=${WORKER_ADDR} \
+<pre class="highlight"><code>$ curl -sfL https://get.k3s.io | K3S_URL="https://${MASTER_IP}:6443"\
+ K3S_TOKEN="${NODE_TOKEN}" \
+ INSTALL_K3S_EXEC="--node-ip=${WORKER_ADDR} \
 --node-external-ip=${WORKER_IP} \
 --kube-proxy-arg proxy-mode=ipvs \
---flannel-iface=eth1&quot; sh -
-</code></pre>
+--flannel-iface=eth1" sh -</code></pre>
 <h2 id="how-to-deploy-kube-loxilb">How to deploy kube-loxilb ?</h2>
-<p><a href="https://github.com/loxilb-io/kube-loxilb">kube-loxilb</a> is used as an operator to manage loxilb.</p>
-<pre><code>wget https://raw.githubusercontent.com/loxilb-io/kube-loxilb/main/manifest/mesh/kube-loxilb.yml
-</code></pre>
-<p>kube-loxilb.yaml</p>
-<pre><code>       args:
+<p><a href="https://github.com/loxilb-io/kube-loxilb">kube-loxilb</a> is used as an operator to manage loxilb.
+<pre class="highlight"><code>wget https://raw.githubusercontent.com/loxilb-io/kube-loxilb/main/manifest/mesh/kube-loxilb.yml</code></pre></p>
+<p>kube-loxilb.yaml
+<pre class="highlight"><code>       args:
          #- --loxiURL=http://172.17.0.2:11111
          - --externalCIDR=192.168.82.100/32
          - --setRoles=0.0.0.0
          #- --monitor
          #- --setBGP
-
 </code></pre>
-<p>In the above snippet, loxiURL is commented out which denotes to utilize in-cluster mode to discover loxilb pods automatically. External CIDR represents the IP pool from where serviceLB VIP will be allocated.</p>
-<p>Apply after making changes (if any) :</p>
-<pre><code>sudo kubectl apply -f kube-loxilb.yaml
-</code></pre>
+In the above snippet, loxiURL is commented out which denotes to utilize in-cluster mode to discover loxilb pods automatically. External CIDR represents the IP pool from where serviceLB VIP will be allocated.</p>
+<p>Apply after making changes (if any) :
+<pre class="highlight"><code>sudo kubectl apply -f kube-loxilb.yaml</code></pre></p>
 <h2 id="how-to-deploy-loxilb">How to deploy loxilb ?</h2>
-<p>loxilb can be deloyed by using the following command in the K3s node</p>
-<pre><code>sudo kubectl apply -f https://raw.githubusercontent.com/loxilb-io/kube-loxilb/main/manifest/mesh/loxilb-mesh.yml
-</code></pre>
+<p>loxilb can be deloyed by using the following command in the K3s node
+<pre class="highlight"><code>sudo kubectl apply -f https://raw.githubusercontent.com/loxilb-io/kube-loxilb/main/manifest/mesh/loxilb-mesh.yml</code></pre></p>
 <h2 id="seup-rabbitmq-operator">Seup RabbitMQ Operator</h2>
-<pre><code>sudo kubectl apply -f &quot;https://github.com/rabbitmq/cluster-operator/releases/latest/download/cluster-operator.yml&quot;
-</code></pre>
+<pre class="highlight"><code>sudo kubectl apply -f "https://github.com/rabbitmq/cluster-operator/releases/latest/download/cluster-operator.yml"</code></pre>
 <h2 id="setup-rabbitmq-application-with-loxilb">Setup RabbitMQ application with loxilb</h2>
-<pre><code>wget https://raw.githubusercontent.com/rabbitmq/cluster-operator/main/docs/examples/hello-world/rabbitmq.yaml
-</code></pre>
-<p>Change the following:</p>
-<pre><code>apiVersion: rabbitmq.com/v1beta1
+<p><pre class="highlight"><code>wget https://raw.githubusercontent.com/rabbitmq/cluster-operator/main/docs/examples/hello-world/rabbitmq.yaml</code></pre>
+Change the following:
+<pre class="highlight"><code>apiVersion: rabbitmq.com/v1beta1
 kind: RabbitmqCluster
 metadata:
   name: hello-world
@@ -416,14 +394,12 @@ spec:
         loadBalancerClass: loxilb.io/loxilb
         externalTrafficPolicy: Local
         ports:
-        - port: 5672
-</code></pre>
+        - port: 5672</code></pre></p>
 <h3 id="create-the-service">Create the service</h3>
-<pre><code>sudo kubectl apply -f rabbitmq.yaml
-</code></pre>
+<pre class="highlight"><code>sudo kubectl apply -f rabbitmq.yaml</code></pre>
 <h2 id="check-the-status">Check the status</h2>
-<p>In k3s node:</p>
-<pre><code>## Check the pods created
+<p>In k3s node:
+<pre class="highlight"><code>## Check the pods created
 $ sudo kubectl get pods -A
 NAMESPACE         NAME                                        READY   STATUS    RESTARTS   AGE
 kube-system       local-path-provisioner-6c86858495-65tbc     1/1     Running   0          137m
@@ -446,10 +422,9 @@ sudo kubectl get svc
 NAME                TYPE           CLUSTER-IP      EXTERNAL-IP         PORT(S)                                           AGE
 kubernetes          ClusterIP      10.43.0.1       &lt;none&gt;              443/TCP                                           136m
 hello-world-nodes   ClusterIP      None            &lt;none&gt;              4369/TCP,25672/TCP                                7s
-hello-world         LoadBalancer   10.43.190.199   llb-192.168.82.100   15692:31224/TCP,5672:30817/TCP,15672:30698/TCP   7s
-</code></pre>
-<p>In loxilb pod, we can check internal LB rules:</p>
-<pre><code>$ sudo kubectl exec -it -n kube-system loxilb-lb-8l85d -- loxicmd get lb -o wide
+hello-world         LoadBalancer   10.43.190.199   llb-192.168.82.100   15692:31224/TCP,5672:30817/TCP,15672:30698/TCP   7s</code></pre>
+In loxilb pod, we can check internal LB rules:
+<pre class="highlight"><code>$ sudo kubectl exec -it -n kube-system loxilb-lb-8l85d -- loxicmd get lb -o wide
 sudo kubectl exec -it loxilb-lb-txtfm -n kube-system -- loxicmd get lb -o wide
 |    EXT IP     | SEC IPS | PORT  | PROTO |             NAME             | MARK | SEL |  MODE   |    ENDPOINT    | EPORT | WEIGHT | STATE  | COUNTERS |
 |---------------|---------|-------|-------|------------------------------|------|-----|---------|----------------|-------|--------|--------|----------|
@@ -521,16 +496,13 @@ sudo kubectl exec -it loxilb-lb-txtfm -n kube-system -- loxicmd get lb -o wide
 | 192.168.80.20 |         | 31224 | tcp   | ipvs_192.168.80.20:31224-tcp |    0 | rr  | fullnat | 10.42.1.6      | 15692 |      1 | active | 0:0      |
 |               |         |       |       |                              |      |     |         | 10.42.2.6      | 15692 |      1 | active | 0:0      |
 |               |         |       |       |                              |      |     |         | 10.42.3.7      | 15692 |      1 | active | 0:0      |
-
-</code></pre>
+</code></pre></p>
 <h3 id="get-rabbitmq-credentials">Get RabbitMQ Credentials</h3>
-<pre><code>username=&quot;$(sudo kubectl get secret hello-world-default-user -o jsonpath='{.data.username}' | base64 --decode)&quot;
-password=&quot;$(sudo kubectl get secret hello-world-default-user -o jsonpath='{.data.password}' | base64 --decode)&quot;
-</code></pre>
+<pre class="highlight"><code>username="$(sudo kubectl get secret hello-world-default-user -o jsonpath='{.data.username}' | base64 --decode)"
+password="$(sudo kubectl get secret hello-world-default-user -o jsonpath='{.data.password}' | base64 --decode)"</code></pre>
 <h3 id="test-rabbitmq-from-hostclient">Test RabbitMQ from host/client</h3>
-<pre><code>sudo docker run -it --rm --net=host pivotalrabbitmq/perf-test:latest --uri amqp://$username:$password@192.168.80.20:5672 -x 10  -y 10 -u &quot;throughput-test-4&quot; -a --id &quot;test 4&quot;  -z100
-</code></pre>
-<p>For more detailed performance comparison with other solutions, kindly follow this <a href="https://www.loxilb.io/post/loxilb-cluster-networking-elevating-k8s-networking-capabilities">blog</a> and for more detailed information
+<p><pre class="highlight"><code>sudo docker run -it --rm --net=host pivotalrabbitmq/perf-test:latest --uri amqp://$username:$password@192.168.80.20:5672 -x 10  -y 10 -u "throughput-test-4" -a --id "test 4"  -z100</code></pre>
+For more detailed performance comparison with other solutions, kindly follow this <a href="https://www.loxilb.io/post/loxilb-cluster-networking-elevating-k8s-networking-capabilities">blog</a> and for more detailed information
 on incluster deployment of loxilb with bgp in a full-blown cluster, kindly follow this <a href="https://www.loxilb.io/post/k8s-nuances-of-in-cluster-external-service-lb-with-loxilb">blog</a>.   </p></div>
             </div>
         </div>

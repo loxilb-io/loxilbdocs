@@ -8,7 +8,7 @@
         
         <link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/eks-external/">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Eks external - loxilb v0.9.5</title>
+        <title>Eks external - LoxiLB</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/fontawesome.min.css" rel="stylesheet">
         <link href="../css/brands.min.css" rel="stylesheet">
@@ -33,7 +33,7 @@
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="..">loxilb v0.9.5</a>
+                <a class="navbar-brand" href="..">LoxiLB</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -257,26 +257,8 @@
   </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">More</a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="https://github.com/loxilb-io/loxilb" class="dropdown-item">GitHub</a>
-</li>
-                                    
-<li>
-    <a href="https://www.loxilb.io/" class="dropdown-item">Website</a>
-</li>
-                                    
-<li>
-    <a href="https://github.com/loxilb-io/loxilb/discussions" class="dropdown-item">Community Forum</a>
-</li>
-                                    
-<li>
-    <a href="https://join.slack.com/t/loxilb/shared_invite/zt-2b3xx14wg-P7WHj5C~OEON_jviF0ghcQ" class="dropdown-item">Join Slack</a>
-</li>
-                                </ul>
+                            <li class="nav-item">
+                                <a href="https://www.loxilb.io/" class="nav-link">Visit Website</a>
                             </li>
                         </ul>
 
@@ -286,6 +268,10 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/loxilb-io/loxilb/edit/master/docs/eks-external.md" class="nav-link">Edit on loxilb-io/loxilb
+                                    </a>
+                            </li>
                     </ul>
                 </div>
             </div>
@@ -344,17 +330,12 @@
 <ul>
 <li>It is assumed that aws-cli, kubectl and eksctl are installed in a bastion node</li>
 </ul>
-<pre><code>$ eksctl create cluster --version 1.24 --name loxilb-demo --vpc-nat-mode Single --region ap-northeast-2 --node-type t3.small --nodes 4 --with-oidc --managed
-</code></pre>
+<pre class="highlight"><code>$ eksctl create cluster --version 1.24 --name loxilb-demo --vpc-nat-mode Single --region ap-northeast-2 --node-type t3.small --nodes 4 --with-oidc --managed</code></pre>
 <ul>
-<li>Create kube config for kubectl access </li>
-</ul>
-<pre><code>$ aws eks update-kubeconfig --region ap-northeast-2 --name loxilb-demo
-</code></pre>
-<ul>
-<li>Double confirm the cluster created </li>
-</ul>
-<pre><code>$ kubectl get pods -A
+<li>Create kube config for kubectl access 
+<pre class="highlight"><code>$ aws eks update-kubeconfig --region ap-northeast-2 --name loxilb-demo</code></pre></li>
+<li>Double confirm the cluster created 
+<pre class="highlight"><code>$ kubectl get pods -A
 NAMESPACE     NAME                       READY   STATUS    RESTARTS   AGE
 kube-system   aws-node-2fpm4             2/2     Running   0          14m
 kube-system   aws-node-6vhlr             2/2     Running   0          14m
@@ -365,34 +346,28 @@ kube-system   coredns-5ff5b8d45c-p64fd   1/1     Running   0          21m
 kube-system   kube-proxy-5j9gf           1/1     Running   0          14m
 kube-system   kube-proxy-5tm8w           1/1     Running   0          14m
 kube-system   kube-proxy-894k9           1/1     Running   0          14m
-kube-system   kube-proxy-xgfb8           1/1     Running   0          14m
-</code></pre>
+kube-system   kube-proxy-xgfb8           1/1     Running   0          14m</code></pre></li>
+</ul>
 <h2 id="deploy-loxilb-as-ec2-instances-in-ekss-vpc">Deploy loxilb as EC2 instances in EKS's VPC</h2>
 <ul>
-<li>Create a file <code>launch-loxilb.sh</code> with the following contents (in bastion node)</li>
-</ul>
-<pre><code>sudo apt-get update &amp;&amp; apt-get install -y snapd
+<li>Create a file <code>launch-loxilb.sh</code> with the following contents (in bastion node)
+<pre class="highlight"><code>sudo apt-get update &amp;&amp; apt-get install -y snapd
 sudo snap install docker
 sleep 30
-sudo docker run -u root --cap-add SYS_ADMIN --net=host --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --name loxilb ghcr.io/loxilb-io/loxilb:latest
-</code></pre>
-<ul>
-<li>Deploy loxilb ec2 instance(s) using the above init-script</li>
+sudo docker run -u root --cap-add SYS_ADMIN --net=host --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --name loxilb ghcr.io/loxilb-io/loxilb:latest</code></pre></li>
+<li>Deploy loxilb ec2 instance(s) using the above init-script
+<pre class="highlight"><code>$ aws ec2 run-instances --image-id ami-01ed8ade75d4eee2f --count 1 --instance-type t3.medium --key-name aws-netlox --security-group-ids sg-0e2638db05b256476 --subnet-id subnet-0109b973f5f674f99 --associate-public-ip-address --user-data file://launch-loxilb.sh</code></pre></li>
 </ul>
-<pre><code>$ aws ec2 run-instances --image-id ami-01ed8ade75d4eee2f --count 1 --instance-type t3.medium --key-name aws-netlox --security-group-ids sg-0e2638db05b256476 --subnet-id subnet-0109b973f5f674f99 --associate-public-ip-address --user-data file://launch-loxilb.sh
-</code></pre>
 <h4 id="note-subnet-id-should-be-any-subnet-with-public-access-enabled-from-the-eks-cluster-rest-of-the-args-can-be-changed-as-applicable">Note : subnet-id should be any subnet with public access enabled from the EKS cluster. Rest of the args can be changed as applicable</h4>
 <ul>
 <li>Double confirm loxilb EC2 instances are running properly in amazon aws console or using aws cli.</li>
 <li>Disable source/dest check of the loxilb EC2 instances</li>
 </ul>
-<pre><code>aws ec2 modify-network-interface-attribute --network-interface-id eni-02e1cbfa022eb0901 --no-source-dest-check
-</code></pre>
+<pre class="highlight"><code>aws ec2 modify-network-interface-attribute --network-interface-id eni-02e1cbfa022eb0901 --no-source-dest-check</code></pre>
 <h2 id="deploy-loxilbs-operator-kube-loxilb">Deploy loxilb's operator (kube-loxilb)</h2>
 <ul>
-<li>Create a file kube-loxilb.yml with the following contents</li>
-</ul>
-<pre><code>---
+<li>Create a file kube-loxilb.yml with the following contents
+<pre class="highlight"><code>---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -405,7 +380,7 @@ metadata:
   name: kube-loxilb
 rules:
   - apiGroups:
-      - &quot;&quot;
+      - ""
     resources:
       - nodes
     verbs:
@@ -414,7 +389,7 @@ rules:
       - list
       - patch
   - apiGroups:
-      - &quot;&quot;
+      - ""
     resources:
       - pods
     verbs:
@@ -423,7 +398,7 @@ rules:
       - list
       - patch
   - apiGroups:
-      - &quot;&quot;
+      - ""
     resources:
       - endpoints
       - services
@@ -443,7 +418,7 @@ rules:
       - gateways/status
       - tcproutes
       - udproutes
-    verbs: [&quot;get&quot;, &quot;watch&quot;, &quot;list&quot;, &quot;patch&quot;, &quot;update&quot;]
+    verbs: ["get", "watch", "list", "patch", "update"]
   - apiGroups:
       - discovery.k8s.io
     resources:
@@ -529,30 +504,26 @@ spec:
         #- --setRoles:0.0.0.0
         resources:
           requests:
-            cpu: &quot;100m&quot;
-            memory: &quot;50Mi&quot;
+            cpu: "100m"
+            memory: "50Mi"
           limits:
-            cpu: &quot;100m&quot;
-            memory: &quot;50Mi&quot;
+            cpu: "100m"
+            memory: "50Mi"
         securityContext:
           privileged: true
           capabilities:
-            add: [&quot;NET_ADMIN&quot;, &quot;NET_RAW&quot;]
-</code></pre>
+            add: ["NET_ADMIN", "NET_RAW"]</code></pre></li>
+</ul>
 <h4 id="note1-externalcidr-args-can-be-set-to-any-public-ip-address-via-which-any-of-the-worker-nodes-can-be-accessed-it-can-be-also-set-to-simply-000032-which-means-lb-will-be-performed-on-any-of-the-nodes-where-loxilb-runs-the-decision-of-which-loxilb-nodeinstance-will-be-chosen-as-ingress-in-this-case-can-be-done-by-route53dns">Note1: --externalCIDR args can be set to any Public IP address via which any of the worker nodes can be accessed. It can be also set to simply 0.0.0.0/32 which means LB will be performed on any of the nodes where loxilb runs. The decision of which loxilb node/instance will be chosen as ingress in this case can be done by Route53/DNS.</h4>
 <h4 id="note2-loxiurl-args-should-be-set-to-privateip-addresses-of-the-loxilb-ec2-instances-accessible-from-the-eks-cluster-currently-kube-loxilb-cant-autodetect-the-ec2-instances-running-loxilb-in-external-mode">Note2: --loxiURL args should be set to privateIP address(es) of the loxilb ec2 instances accessible from the EKS cluster. Currently, kube-loxilb can't autodetect the EC2 instances running loxilb in external mode.</h4>
 <ul>
-<li>Deploy kube-loxilb to EKS cluster</li>
-</ul>
-<pre><code>$ kubectl apply -f  kube-loxilb.yml
+<li>Deploy kube-loxilb to EKS cluster
+<pre class="highlight"><code>$ kubectl apply -f  kube-loxilb.yml
 serviceaccount/kube-loxilb created
 clusterrole.rbac.authorization.k8s.io/kube-loxilb created
-deployment.apps/kube-loxilb created
-</code></pre>
-<ul>
-<li>Check the state of the EKS cluster</li>
-</ul>
-<pre><code>$ kubectl get pods -A 
+deployment.apps/kube-loxilb created</code></pre></li>
+<li>Check the state of the EKS cluster
+<pre class="highlight"><code>$ kubectl get pods -A 
 NAMESPACE     NAME                           READY   STATUS    RESTARTS   AGE
 kube-system   aws-node-2fpm4                 2/2     Running   0          14m
 kube-system   aws-node-6vhlr                 2/2     Running   0          14m
@@ -564,13 +535,12 @@ kube-system   kube-proxy-5j9gf               1/1     Running   0          14m
 kube-system   kube-proxy-5tm8w               1/1     Running   0          14m
 kube-system   kube-proxy-894k9               1/1     Running   0          14m
 kube-system   kube-proxy-xgfb8               1/1     Running   0          14m
-kube-system   kube-loxilb-6477d6897f-vz74f   1/1     Running   0           5m
-</code></pre>
+kube-system   kube-loxilb-6477d6897f-vz74f   1/1     Running   0           5m</code></pre></li>
+</ul>
 <h2 id="install-a-test-service">Install a test service</h2>
 <ul>
-<li>Create a file nginx.yml with the following contents:</li>
-</ul>
-<pre><code>apiVersion: v1
+<li>Create a file nginx.yml with the following contents:
+<pre class="highlight"><code>apiVersion: v1
 kind: Service
 metadata:
   name: nginx-lb1
@@ -595,18 +565,13 @@ spec:
     - name: nginx-test
       image: nginx:stable
       ports:
-        - containerPort: 80
-</code></pre>
-<ul>
-<li>Deploy test nginx service to EKS</li>
-</ul>
-<pre><code>$ kubectl apply -f nginx.yml
-service/nginx-lb1 created
-</code></pre>
-<ul>
-<li>Check the state of the EKS cluster</li>
-</ul>
-<pre><code>$ kubectl get pods -A 
+        - containerPort: 80</code></pre></li>
+<li>Deploy test nginx service to EKS
+<pre class="highlight"><code>$ kubectl apply -f nginx.yml
+service/nginx-lb1 created</code></pre></li>
+<li>
+<p>Check the state of the EKS cluster
+<pre class="highlight"><code>$ kubectl get pods -A 
 NAMESPACE     NAME                          READY   STATUS    RESTARTS   AGE
 default       nginx-test                     1/1     Running   0          50s
 kube-system   aws-node-2fpm4                 2/2     Running   0          14m
@@ -619,21 +584,21 @@ kube-system   kube-proxy-5j9gf               1/1     Running   0          14m
 kube-system   kube-proxy-5tm8w               1/1     Running   0          14m
 kube-system   kube-proxy-894k9               1/1     Running   0          14m
 kube-system   kube-proxy-xgfb8               1/1     Running   0          14m
-kube-system   kube-loxilb-6477d6897f-vz74f   1/1     Running   0           5m
-</code></pre>
-<ul>
-<li>Check the external service for service ingress (via loxilb)</li>
-</ul>
-<pre><code>$  kubectl get svc
+kube-system   kube-loxilb-6477d6897f-vz74f   1/1     Running   0           5m</code></pre></p>
+</li>
+<li>
+<p>Check the external service for service ingress (via loxilb)
+<pre class="highlight"><code>$  kubectl get svc
 NAME         TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)           AGE
 kubernetes   ClusterIP      10.100.0.1       &lt;none&gt;        443/TCP           10h
-nginx-lb1    LoadBalancer   10.100.244.105   llbanyextip   55005:30055/TCP   24s
-</code></pre>
+nginx-lb1    LoadBalancer   10.100.244.105   llbanyextip   55005:30055/TCP   24s</code></pre></p>
+</li>
+</ul>
 <h2 id="test-the-service">Test the service</h2>
 <ul>
 <li>Try to access the service from outside (internet). We can use any public IP associated with any of the loxilb ec2 instances</li>
 </ul>
-<pre><code>$ curl http://3.37.191.xx:55005  
+<pre class="highlight"><code>$ curl http://3.37.191.xx:55005  
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
@@ -650,23 +615,22 @@ font-family: Tahoma, Verdana, Arial, sans-serif; }
 working. Further configuration is required.&lt;/p&gt;
 
 &lt;p&gt;For online documentation and support please refer to
-&lt;a href=&quot;http://nginx.org/&quot;&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;
+&lt;a href="http://nginx.org/"&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;
 Commercial support is available at
-&lt;a href=&quot;http://nginx.com/&quot;&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;
+&lt;a href="http://nginx.com/"&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;Thank you for using nginx.&lt;/em&gt;&lt;/p&gt;
 &lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+&lt;/html&gt;</code></pre>
 <h4 id="note-we-would-need-to-make-sure-aws-security-groups-are-setup-properly-to-allow-access-for-ingress-traffic">Note - We would need to make sure AWS security groups are setup properly to allow access for ingress traffic.</h4>
 <h2 id="restricting-loxilb-service-for-a-local-zone-node-group">Restricting loxilb service for a local-zone node-group</h2>
 <p>For limiting loxilb services to a specific node group of a local-zone, we can use kubenetes node-labels to limit the endpoints of that service to that node-group only. For example, if all the nodes in a local-zone node-groups have a label <code>node.kubernetes.io/local-zone2=true</code>, then we can create a loxilb service with a following annotation :</p>
-<pre><code>apiVersion: v1
+<p><pre class="highlight"><code>apiVersion: v1
 kind: Service
 metadata:
   name: nginx-lb1
   annotations:
-    loxilb.io/nodelabel: &quot;node.kubernetes.io/local-zone2&quot;
+    loxilb.io/nodelabel: "node.kubernetes.io/local-zone2"
 spec:
   externalTrafficPolicy: Local
   loadBalancerClass: loxilb.io/loxilb
@@ -675,9 +639,8 @@ spec:
   ports:
     - port: 55002
       targetPort: 80
-  type: LoadBalancer
-</code></pre>
-<p>This will make sure that loxilb will pick only the endpoint nodes which belong to that node-group only.</p></div>
+  type: LoadBalancer</code></pre>
+This will make sure that loxilb will pick only the endpoint nodes which belong to that node-group only.</p></div>
             </div>
         </div>
 

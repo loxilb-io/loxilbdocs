@@ -8,7 +8,7 @@
         
         <link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/service-proxy-flannel/">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>service-proxy - K3s/loxilb service-proxy with flannel - loxilb v0.9.5</title>
+        <title>service-proxy - K3s/loxilb service-proxy with flannel - LoxiLB</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/fontawesome.min.css" rel="stylesheet">
         <link href="../css/brands.min.css" rel="stylesheet">
@@ -33,7 +33,7 @@
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="..">loxilb v0.9.5</a>
+                <a class="navbar-brand" href="..">LoxiLB</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -257,26 +257,8 @@
   </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">More</a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="https://github.com/loxilb-io/loxilb" class="dropdown-item">GitHub</a>
-</li>
-                                    
-<li>
-    <a href="https://www.loxilb.io/" class="dropdown-item">Website</a>
-</li>
-                                    
-<li>
-    <a href="https://github.com/loxilb-io/loxilb/discussions" class="dropdown-item">Community Forum</a>
-</li>
-                                    
-<li>
-    <a href="https://join.slack.com/t/loxilb/shared_invite/zt-2b3xx14wg-P7WHj5C~OEON_jviF0ghcQ" class="dropdown-item">Join Slack</a>
-</li>
-                                </ul>
+                            <li class="nav-item">
+                                <a href="https://www.loxilb.io/" class="nav-link">Visit Website</a>
                             </li>
                         </ul>
 
@@ -295,6 +277,10 @@
                                 <a rel="next" href="../service-proxy-calico/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/loxilb-io/loxilb/edit/master/docs/service-proxy-flannel.md" class="nav-link">Edit on loxilb-io/loxilb
+                                    </a>
                             </li>
                     </ul>
                 </div>
@@ -346,29 +332,26 @@ loxilb <b><i>"service-proxy"</i></b> mode works with Flannel/Calico and kube-pro
 <p>loxilb and kube-loxilb components run as pods managed by kubernetes in this scenario.</p>
 <h2 id="setup-k3s">Setup K3s</h2>
 <h3 id="configure-k3s-node">Configure K3s node</h3>
-<pre><code>$ curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC=&quot;--disable traefik \
+<pre class="highlight"><code>$ curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--disable traefik \
   --disable servicelb --disable-cloud-controller --kube-proxy-arg proxy-mode=ipvs \
   cloud-provider=external --node-ip=${MASTER_IP} --node-external-ip=${MASTER_IP} \
-  --bind-address=${MASTER_IP}&quot; sh -
-</code></pre>
+  --bind-address=${MASTER_IP}" sh -</code></pre>
 <h3 id="deploy-kube-loxilb-and-loxilb">Deploy kube-loxilb and loxilb ?</h3>
-<p><a href="https://github.com/loxilb-io/kube-loxilb">kube-loxilb</a> is used as an operator to manage loxilb. We need to deploy both kube-loxilb and loxilb components in your kubernetes cluster</p>
-<pre><code>sudo kubectl apply -f https://raw.githubusercontent.com/loxilb-io/kube-loxilb/main/manifest/service-proxy/kube-loxilb.yml
-sudo kubectl apply -f https://raw.githubusercontent.com/loxilb-io/kube-loxilb/main/manifest/service-proxy/loxilb-service-proxy.yml
-</code></pre>
+<p><a href="https://github.com/loxilb-io/kube-loxilb">kube-loxilb</a> is used as an operator to manage loxilb. We need to deploy both kube-loxilb and loxilb components in your kubernetes cluster
+<pre class="highlight"><code>sudo kubectl apply -f https://raw.githubusercontent.com/loxilb-io/kube-loxilb/main/manifest/service-proxy/kube-loxilb.yml
+sudo kubectl apply -f https://raw.githubusercontent.com/loxilb-io/kube-loxilb/main/manifest/service-proxy/loxilb-service-proxy.yml</code></pre></p>
 <h3 id="check-the-status">Check the status</h3>
-<p>In k3s node:</p>
-<pre><code>## Check the pods created
+<p>In k3s node:
+<pre class="highlight"><code>## Check the pods created
 $ sudo kubectl get pods -A
 NAMESPACE     NAME                                      READY   STATUS    RESTARTS   AGE
 kube-system   coredns-6799fbcd5-c68ws                   1/1     Running   0          15m
 kube-system   local-path-provisioner-6c86858495-rxk2w   1/1     Running   0          15m
 kube-system   metrics-server-54fd9b65b-xtgk2            1/1     Running   0          15m
 kube-system   loxilb-lb-5p6pg                           1/1     Running   0          6m58s
-kube-system   kube-loxilb-5fb5566999-7xdkk              1/1     Running   0          6m59s
-</code></pre>
-<p>In loxilb pod, we can check internal LB rules:</p>
-<pre><code>$ udo kubectl exec -it -n kube-system loxilb-lb-5p6pg  -- loxicmd get lb -o wide
+kube-system   kube-loxilb-5fb5566999-7xdkk              1/1     Running   0          6m59s</code></pre>
+In loxilb pod, we can check internal LB rules:
+<pre class="highlight"><code>$ udo kubectl exec -it -n kube-system loxilb-lb-5p6pg  -- loxicmd get lb -o wide
 |     EXT IP     | SEC IPS | PORT  | PROTO |             NAME              | MARK | SEL |  MODE   |    ENDPOINT    | EPORT | WEIGHT | STATE  | COUNTERS |
 |----------------|---------|-------|-------|-------------------------------|------|-----|---------|----------------|-------|--------|--------|----------|
 | 10.0.2.15      |         | 31377 | tcp   | ipvs_10.0.2.15:31377-tcp      |    0 | rr  | fullnat | 10.42.1.2      |  5001 |      1 | active | 0:0      |
@@ -381,18 +364,17 @@ kube-system   kube-loxilb-5fb5566999-7xdkk              1/1     Running   0     
 | 10.43.202.90   |         | 55001 | tcp   | ipvs_10.43.202.90:55001-tcp   |    0 | rr  | default | 10.42.1.2      |  5001 |      1 | -      | 0:0      |
 | 10.43.30.93    |         |   443 | tcp   | ipvs_10.43.30.93:443-tcp      |    0 | rr  | default | 10.42.0.4      | 10250 |      1 | -      | 0:0      |
 | 192.168.80.101 |         | 31377 | tcp   | ipvs_192.168.80.101:31377-tcp |    0 | rr  | fullnat | 10.42.1.2      |  5001 |      1 | active | 15:1014  |
-| 192.168.80.20  |         | 55001 | tcp   | default_iperf-service         |    0 | rr  | onearm  | 192.168.80.101 | 31377 |      1 | -      | 0:0      |
-</code></pre>
+| 192.168.80.20  |         | 55001 | tcp   | default_iperf-service         |    0 | rr  | onearm  | 192.168.80.101 | 31377 |      1 | -      | 0:0      |</code></pre></p>
 <h2 id="deploy-a-sample-service">Deploy a sample service</h2>
-<p>To deploy a sample service, we can create service as usual in Kubernetes with few extra annotations as follows :</p>
-<pre><code>sudo kubectl apply -f - &lt;&lt;EOF
+<p>To deploy a sample service, we can create service as usual in Kubernetes with few extra annotations as follows :
+<pre class="highlight"><code>sudo kubectl apply -f - &lt;&lt;EOF
 apiVersion: v1
 kind: Service
 metadata:
   name: iperf-service
   annotations:
-   loxilb.io/lbmode: &quot;onearm&quot; 
-   loxilb.io/staticIP: &quot;192.168.80.20&quot;
+   loxilb.io/lbmode: "onearm" 
+   loxilb.io/staticIP: "192.168.80.20"
 spec:
   externalTrafficPolicy: Local
   loadBalancerClass: loxilb.io/loxilb
@@ -415,19 +397,17 @@ spec:
       image: ghcr.io/nicolaka/netshoot:latest
       command:
         - iperf
-        - &quot;-s&quot;
+        - "-s"
       ports:
         - containerPort: 5001
-EOF
-</code></pre>
-<p>Check the service created :</p>
-<pre><code>$ sudo kubectl get svc
+EOF</code></pre></p>
+<p>Check the service created :
+<pre class="highlight"><code>$ sudo kubectl get svc
 NAME            TYPE           CLUSTER-IP     EXTERNAL-IP         PORT(S)           AGE
 kubernetes      ClusterIP      10.43.0.1      &lt;none&gt;              443/TCP           17m
-iperf-service   LoadBalancer   10.43.202.90   llb-192.168.80.20   55001:31377/TCP   2m34s
-</code></pre>
-<p>Test the service created (from a host outside the cluster) :</p>
-<pre><code>## Using service VIP
+iperf-service   LoadBalancer   10.43.202.90   llb-192.168.80.20   55001:31377/TCP   2m34s</code></pre></p>
+<p>Test the service created (from a host outside the cluster) :
+<pre class="highlight"><code>## Using service VIP
 $ iperf -c 192.168.80.20 -p 55001  -i1 -t3
 ------------------------------------------------------------
 Client connecting to 192.168.80.20, TCP port 55001
@@ -458,9 +438,8 @@ TCP window size: 85.0 KByte (default)
 [  1] 7.0000-8.0000 sec   814 MBytes  6.83 Gbits/sec
 [  1] 8.0000-9.0000 sec   965 MBytes  8.09 Gbits/sec
 [  1] 9.0000-10.0000 sec   946 MBytes  7.93 Gbits/sec
-[  1] 0.0000-10.0170 sec  8.76 GBytes  7.51 Gbits/sec
-</code></pre>
-<p>If you are wondering why there is a performance difference between serviceLB and node-port, there is an interesting blog about it <a href="https://cloudybytes.medium.com/kubernetes-services-achieving-optimal-performance-is-elusive-5def5183c281">here</a> by one our users. For more detailed performance comparison with other solutions, kindly follow this <a href="https://www.loxilb.io/post/loxilb-cluster-networking-elevating-k8s-networking-capabilities">blog</a> and for more detailed information
+[  1] 0.0000-10.0170 sec  8.76 GBytes  7.51 Gbits/sec</code></pre>
+If you are wondering why there is a performance difference between serviceLB and node-port, there is an interesting blog about it <a href="https://cloudybytes.medium.com/kubernetes-services-achieving-optimal-performance-is-elusive-5def5183c281">here</a> by one our users. For more detailed performance comparison with other solutions, kindly follow this <a href="https://www.loxilb.io/post/loxilb-cluster-networking-elevating-k8s-networking-capabilities">blog</a> and for more detailed information
 on incluster deployment of loxilb with bgp in a full-blown cluster, kindly follow this <a href="https://www.loxilb.io/post/k8s-nuances-of-in-cluster-external-service-lb-with-loxilb">blog</a>.   </p></div>
             </div>
         </div>

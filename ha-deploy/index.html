@@ -8,7 +8,7 @@
         
         <link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/ha-deploy/">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Understanding High-availability with loxilb - loxilb v0.9.5</title>
+        <title>Understanding High-availability with loxilb - LoxiLB</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/fontawesome.min.css" rel="stylesheet">
         <link href="../css/brands.min.css" rel="stylesheet">
@@ -33,7 +33,7 @@
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="..">loxilb v0.9.5</a>
+                <a class="navbar-brand" href="..">LoxiLB</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -257,26 +257,8 @@
   </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">More</a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="https://github.com/loxilb-io/loxilb" class="dropdown-item">GitHub</a>
-</li>
-                                    
-<li>
-    <a href="https://www.loxilb.io/" class="dropdown-item">Website</a>
-</li>
-                                    
-<li>
-    <a href="https://github.com/loxilb-io/loxilb/discussions" class="dropdown-item">Community Forum</a>
-</li>
-                                    
-<li>
-    <a href="https://join.slack.com/t/loxilb/shared_invite/zt-2b3xx14wg-P7WHj5C~OEON_jviF0ghcQ" class="dropdown-item">Join Slack</a>
-</li>
-                                </ul>
+                            <li class="nav-item">
+                                <a href="https://www.loxilb.io/" class="nav-link">Visit Website</a>
                             </li>
                         </ul>
 
@@ -295,6 +277,10 @@
                                 <a rel="next" href="../k3s_quick_start_flannel/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/loxilb-io/loxilb/edit/master/docs/ha-deploy.md" class="nav-link">Edit on loxilb-io/loxilb
+                                    </a>
                             </li>
                     </ul>
                 </div>
@@ -376,7 +362,7 @@
 <li>Sets up loxilb in one-arm svc mode towards end-points.   </li>
 </ul>
 <h4 id="configuration-options">Configuration options</h4>
-<pre><code> containers:
+<pre class="highlight"><code> containers:
       - name: kube-loxilb
         image: ghcr.io/loxilb-io/kube-loxilb:latest
         imagePullPolicy: Always
@@ -387,8 +373,7 @@
         ....
         - --externalCIDR=192.168.80.200/24
         - --setRoles=0.0.0.0
-        - --setLBMode=1
-</code></pre>
+        - --setLBMode=1</code></pre>
 <ul>
 <li><b>"--externalCIDR=192.168.80.200/24" -</b> The external service IP for a svc is chosen from the externalCIDR range. In this scenario, the Client, svc and cluster are in the same subnet.</li>
 <li><b>"--setRoles=0.0.0.0" -</b> This option will enable kube-loxilb to choose active-backup amongst the loxilb instance and the svc IP to be configured on the active loxilb node.</li>
@@ -401,11 +386,11 @@
 <li>Monitors endpoint's health and chooses active endpoints, if configured.   </li>
 </ul>
 <h4 id="configuration-options_1">Configuration options</h4>
-<pre><code> containers:
+<pre class="highlight"><code> containers:
       - name: loxilb-app
-        image: &quot;ghcr.io/loxilb-io/loxilb:latest&quot;
+        image: "ghcr.io/loxilb-io/loxilb:latest"
         imagePullPolicy: Always
-        command: [ &quot;/root/loxilb-io/loxilb/loxilb&quot;, &quot;--egr-hooks&quot;, &quot;--blacklist=cni[0-9a-z]|veth.|flannel.&quot; ]
+        command: [ "/root/loxilb-io/loxilb/loxilb", "--egr-hooks", "--blacklist=cni[0-9a-z]|veth.|flannel." ]
         ports:
         - containerPort: 11111
         - containerPort: 179
@@ -414,8 +399,7 @@
           privileged: true
           capabilities:
             add:
-              - SYS_ADMIN
-</code></pre>
+              - SYS_ADMIN</code></pre>
 <ul>
 <li>
 <p><b>"--egr-hooks" -</b> required for those cases in which workloads can be scheduled in the master nodes. No need to mention this argument when you are managing the workload scheduling to worker nodes.</p>
@@ -453,7 +437,7 @@ And, kube-loxilb will be deployed as Deployment. </p>
 <li>Sets up loxilb in one-arm svc mode towards end-points.</li>
 </ul>
 <h4 id="configuration-options_2">Configuration options</h4>
-<pre><code> containers:
+<pre class="highlight"><code> containers:
       - name: kube-loxilb
         image: ghcr.io/loxilb-io/kube-loxilb:latest
         imagePullPolicy: Always
@@ -466,8 +450,7 @@ And, kube-loxilb will be deployed as Deployment. </p>
         - --setRoles=0.0.0.0
         - --setLBMode=1
         - --setBGP=65100
-        - --extBGPPeers=50.50.50.1:65101
-</code></pre>
+        - --extBGPPeers=50.50.50.1:65101</code></pre>
 <ul>
 <li><b>"--externalCIDR=123.123.123.1/24" -</b> The external service IP for a svc is chosen from the externalCIDR range. In this scenario, the Client, svc and cluster are all in the different subnet.</li>
 <li><b>"--setRoles=0.0.0.0" -</b> This option will enable kube-loxilb to choose active-backup amongst the loxilb instances and the svc IP to be configured on the active loxilb node.</li>
@@ -483,11 +466,11 @@ And, kube-loxilb will be deployed as Deployment. </p>
 <li>Monitors endpoint's health and chooses active endpoints, if configured.</li>
 </ul>
 <h4 id="configuration-options_3">Configuration options</h4>
-<pre><code> containers:
+<pre class="highlight"><code> containers:
       - name: loxilb-app
-        image: &quot;ghcr.io/loxilb-io/loxilb:latest&quot;
+        image: "ghcr.io/loxilb-io/loxilb:latest"
         imagePullPolicy: Always
-        command: [ &quot;/root/loxilb-io/loxilb/loxilb&quot;, &quot;--bgp&quot;, &quot;--egr-hooks&quot;, &quot;--blacklist=cni[0-9a-z]|veth.|flannel.&quot; ]
+        command: [ "/root/loxilb-io/loxilb/loxilb", "--bgp", "--egr-hooks", "--blacklist=cni[0-9a-z]|veth.|flannel." ]
         ports:
         - containerPort: 11111
         - containerPort: 179
@@ -496,8 +479,7 @@ And, kube-loxilb will be deployed as Deployment. </p>
           privileged: true
           capabilities:
             add:
-              - SYS_ADMIN
-</code></pre>
+              - SYS_ADMIN</code></pre>
 <ul>
 <li>
 <p><b>"--bgp" -</b> option enables loxilb to run with goBGP instance which will advertise the routes with appropriate preference as per active/backup state.</p>
@@ -538,7 +520,7 @@ And, kube-loxilb will be deployed as Deployment. </p>
 <li>Sets up loxilb in one-arm svc mode towards end-points.</li>
 </ul>
 <h4 id="configuration-options_4">Configuration options</h4>
-<pre><code> containers:
+<pre class="highlight"><code> containers:
       - name: kube-loxilb
         image: ghcr.io/loxilb-io/kube-loxilb:latest
         imagePullPolicy: Always
@@ -550,8 +532,7 @@ And, kube-loxilb will be deployed as Deployment. </p>
         - --externalCIDR=123.123.123.1/24
         - --setLBMode=1
         - --setBGP=65100
-        - --extBGPPeers=50.50.50.1:65101
-</code></pre>
+        - --extBGPPeers=50.50.50.1:65101</code></pre>
 <ul>
 <li><b>"--externalCIDR=123.123.123.1/24" -</b> The external service IP for a svc is chosen from the externalCIDR range. In this scenario, the Client, svc and cluster are all in the different subnet.</li>
 <li><b>"--setLBMode=1" -</b> This option will enable kube-loxilb to configure svc in one-arm mode towards the endpoints.</li>
@@ -566,11 +547,11 @@ And, kube-loxilb will be deployed as Deployment. </p>
 <li>Monitors endpoint's health and chooses active endpoints, if configured.</li>
 </ul>
 <h4 id="configuration-options_5">Configuration options</h4>
-<pre><code> containers:
+<pre class="highlight"><code> containers:
       - name: loxilb-app
-        image: &quot;ghcr.io/loxilb-io/loxilb:latest&quot;
+        image: "ghcr.io/loxilb-io/loxilb:latest"
         imagePullPolicy: Always
-        command: [ &quot;/root/loxilb-io/loxilb/loxilb&quot;, &quot;--bgp&quot;, &quot;--egr-hooks&quot;, &quot;--blacklist=cni[0-9a-z]|veth.|flannel.&quot; ]
+        command: [ "/root/loxilb-io/loxilb/loxilb", "--bgp", "--egr-hooks", "--blacklist=cni[0-9a-z]|veth.|flannel." ]
         ports:
         - containerPort: 11111
         - containerPort: 179
@@ -579,8 +560,7 @@ And, kube-loxilb will be deployed as Deployment. </p>
           privileged: true
           capabilities:
             add:
-              - SYS_ADMIN
-</code></pre>
+              - SYS_ADMIN</code></pre>
 <ul>
 <li>
 <p><b>"--bgp" -</b> option enables loxilb to run with goBGP instance which will advertise the routes with same attributes.</p>
@@ -621,7 +601,7 @@ And, kube-loxilb will be deployed as Deployment. </p>
 <li>Sets up loxilb in fullnat svc mode towards end-points.</li>
 </ul>
 <h4 id="configuration-options_6">Configuration options</h4>
-<pre><code> containers:
+<pre class="highlight"><code> containers:
       - name: kube-loxilb
         image: ghcr.io/loxilb-io/kube-loxilb:latest
         imagePullPolicy: Always
@@ -635,8 +615,7 @@ And, kube-loxilb will be deployed as Deployment. </p>
         - --externalCIDR=123.123.123.1/24
         - --setLBMode=2
         - --setBGP=65100
-        - --extBGPPeers=50.50.50.1:65101
-</code></pre>
+        - --extBGPPeers=50.50.50.1:65101</code></pre>
 <ul>
 <li><b>"--setRoles=0.0.0.0" -</b> This option will enable kube-loxilb to choose active-backup amongst the loxilb instance.</li>
 <li><b>"--loxiURL=http://192.168.80.1:11111,http://192.168.80.2:11111" -</b> loxilb URLs to connect with.</li>
@@ -654,12 +633,11 @@ And, kube-loxilb will be deployed as Deployment. </p>
 <li>Syncs the long-lived connections to all other configured loxilb peers.</li>
 </ul>
 <h4 id="running-options">Running options</h4>
-<pre><code>#llb1
+<pre class="highlight"><code>#llb1
  docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --name loxilb ghcr.io/loxilb-io/loxilb:latest  --cluster=$llb2IP --self=0 -b
 
 #llb2
- docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --name loxilb ghcr.io/loxilb-io/loxilb:latest --cluster=$llb1IP --self=1 -b
-</code></pre>
+ docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --name loxilb ghcr.io/loxilb-io/loxilb:latest --cluster=$llb1IP --self=1 -b</code></pre>
 <ul>
 <li><b>"--cluster=\&lt;llb-peer-IP&gt;" -</b> option configures the peer loxilb IP for syncing.</li>
 <li><b>"--self=0/1" -</b> option to identify the instance.</li>
@@ -690,7 +668,7 @@ And, kube-loxilb will be deployed as Deployment. </p>
 <li>Sets up loxilb in configured svc mode towards end-points.</li>
 </ul>
 <h4 id="configuration-options_7">Configuration options</h4>
-<pre><code> containers:
+<pre class="highlight"><code> containers:
       - name: kube-loxilb
         image: ghcr.io/loxilb-io/kube-loxilb:latest
         imagePullPolicy: Always
@@ -703,8 +681,7 @@ And, kube-loxilb will be deployed as Deployment. </p>
         #- --setRoles=0.0.0.0
         - --loxiURL=http://192.168.80.1:11111,http://192.168.80.2:11111
         - --externalCIDR=192.168.80.5/32
-        - --setLBMode=2
-</code></pre>
+        - --setLBMode=2</code></pre>
 <ul>
 <li><b>"--setRoles=0.0.0.0" -</b> We have to make sure to disable this option as it will enable kube-loxilb to choose active-backup amongst the loxilb instance.</li>
 <li><b>"--loxiURL=http://192.168.80.1:11111,http://192.168.80.2:11111" -</b> loxilb URLs to connect with.</li>
@@ -720,12 +697,11 @@ And, kube-loxilb will be deployed as Deployment. </p>
 <li>Syncs the long-lived connections to all other configured loxilb peers.</li>
 </ul>
 <h4 id="running-options_1">Running options</h4>
-<pre><code>#llb1
+<pre class="highlight"><code>#llb1
  docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --name loxilb ghcr.io/loxilb-io/loxilb:latest  --cluster=192.168.80.2 --self=0 --ka=192.168.80.2:192.168.80.1
 
 #llb2
- docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --name loxilb ghcr.io/loxilb-io/loxilb:latest --cluster=192.168.80.1 --self=1 --ka=192.168.80.1:192.168.80.2
-</code></pre>
+ docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --name loxilb ghcr.io/loxilb-io/loxilb:latest --cluster=192.168.80.1 --self=1 --ka=192.168.80.1:192.168.80.2</code></pre>
 <ul>
 <li><b>"--ka=\&lt;llb-peer-IP&gt;:\&lt;llb-self-IP&gt;" -</b> option configures the peer loxilb IP and source IP for BFD.</li>
 <li><b>"--cluster=\&lt;llb-peer-IP&gt;" -</b> option configures the peer loxilb IP for syncing.</li>

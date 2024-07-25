@@ -8,7 +8,7 @@
         
         <link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/debugging/">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Debugging loxilb - loxilb v0.9.5</title>
+        <title>Debugging loxilb - LoxiLB</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/fontawesome.min.css" rel="stylesheet">
         <link href="../css/brands.min.css" rel="stylesheet">
@@ -33,7 +33,7 @@
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="..">loxilb v0.9.5</a>
+                <a class="navbar-brand" href="..">LoxiLB</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -257,26 +257,8 @@
   </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">More</a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="https://github.com/loxilb-io/loxilb" class="dropdown-item">GitHub</a>
-</li>
-                                    
-<li>
-    <a href="https://www.loxilb.io/" class="dropdown-item">Website</a>
-</li>
-                                    
-<li>
-    <a href="https://github.com/loxilb-io/loxilb/discussions" class="dropdown-item">Community Forum</a>
-</li>
-                                    
-<li>
-    <a href="https://join.slack.com/t/loxilb/shared_invite/zt-2b3xx14wg-P7WHj5C~OEON_jviF0ghcQ" class="dropdown-item">Join Slack</a>
-</li>
-                                </ul>
+                            <li class="nav-item">
+                                <a href="https://www.loxilb.io/" class="nav-link">Visit Website</a>
                             </li>
                         </ul>
 
@@ -295,6 +277,10 @@
                                 <a rel="next" href="../cmd-dev/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/loxilb-io/loxilb/edit/master/docs/debugging.md" class="nav-link">Edit on loxilb-io/loxilb
+                                    </a>
                             </li>
                     </ul>
                 </div>
@@ -381,9 +367,9 @@
 <li><b>Solution:</b> If present, then the node will not be considered as an endpoint by loxilb. You can remove it by editing "kubectl edit \&lt;node-name&gt;"</li>
 </ul>
 <p><b>4.</b> Make sure these annotations are present in your service.yaml
-  <code>spec:
-      loadBalancerClass: loxilb.io/loxilb
-      type: LoadBalancer</code></p>
+  <pre class="highlight"><code>  spec:
+    loadBalancerClass: loxilb.io/loxilb
+    type: LoadBalancer</code></pre></p>
 <h2 id="sctp-packets-dropping">* SCTP packets dropping ?</h2>
 <p>Usually, This happens due to SCTP checksum validation by host kernel and the possible scenarios are:</p>
 <p><b>1.</b> When workload and loxilb are scheduled in the same node. </p>
@@ -395,12 +381,12 @@
 <ul>
 <li>Disable checksum calculation.</li>
 </ul>
-<p><code>echo 1 &gt;  /sys/module/sctp/parameters/no_checksums
-  echo 0 &gt;  /proc/sys/net/netfilter/nf_conntrack_checksum</code>   </p>
+<pre class="highlight"><code>  echo 1 &gt;  /sys/module/sctp/parameters/no_checksums
+  echo 0 &gt;  /proc/sys/net/netfilter/nf_conntrack_checksum</code></pre>
 <ul>
 <li>Or, Let loxilb take care of the checksum calculation completely. For that, We need to install a utility(a kernel module) in all the nodes where loxilb is running. It will make sure the correct checksum is applied at the end.   </li>
 </ul>
-<p><code>curl -sfL https://github.com/loxilb-io/loxilb-ebpf/raw/main/kprobe/install.sh | sh -</code></p>
+<pre class="highlight"><code>  curl -sfL https://github.com/loxilb-io/loxilb-ebpf/raw/main/kprobe/install.sh | sh -</code></pre>
 </li>
 </ul>
 <h2 id="abort-in-sctp">* ABORT in SCTP ?</h2>
@@ -412,7 +398,7 @@
 <ul>
 <li>Check if the rule is installed properly</li>
 </ul>
-<p><code>loxicmd get lb</code>   </p>
+<pre class="highlight"><code>  loxicmd get lb</code></pre>
 <ul>
 <li>Make sure the client is connecting to the same IP and port as per the configured service LB rule.</li>
 </ul>
@@ -438,7 +424,7 @@
 </ul>
 <h2 id="check-loxilb-logs">* <b>Check loxilb logs</b></h2>
 <p>loxilb logs its various important events and logs in the file /var/log/loxilb.log. Users can check it by using tail -f or any other command of choice. </p>
-<pre><code>root@752531364e2c:/# tail -f /var/log/loxilb.log 
+<pre class="highlight"><code>root@752531364e2c:/# tail -f /var/log/loxilb.log 
 DBG:  2022/07/10 12:49:27 1:dst-10.10.10.1/32,proto-6,dport-2020,,do-dnat:eip-31.31.31.1,ep-5001,w-1,alive|eip-32.32.32.1,ep-5001,w-2,alive|eip-100.100.100.1,ep-5001,w-2,alive| pc 0 bc 0 
 DBG:  2022/07/10 12:49:37 1:dst-10.10.10.1/32,proto-6,dport-2020,,do-dnat:eip-31.31.31.1,ep-5001,w-1,alive|eip-32.32.32.1,ep-5001,w-2,alive|eip-100.100.100.1,ep-5001,w-2,alive| pc 0 bc 0 
 DBG:  2022/07/10 12:49:47 1:dst-10.10.10.1/32,proto-6,dport-2020,,do-dnat:eip-31.31.31.1,ep-5001,w-1,alive|eip-32.32.32.1,ep-5001,w-2,alive|eip-100.100.100.1,ep-5001,w-2,alive| pc 0 bc 0 
@@ -448,8 +434,7 @@ DBG:  2022/07/10 12:50:17 1:dst-10.10.10.1/32,proto-6,dport-2020,,do-dnat:eip-31
 DBG:  2022/07/10 12:50:27 1:dst-10.10.10.1/32,proto-6,dport-2020,,do-dnat:eip-31.31.31.1,ep-5001,w-1,alive|eip-32.32.32.1,ep-5001,w-2,alive|eip-100.100.100.1,ep-5001,w-2,alive| pc 0 bc 0 
 DBG:  2022/07/10 12:50:37 1:dst-10.10.10.1/32,proto-6,dport-2020,,do-dnat:eip-31.31.31.1,ep-5001,w-1,alive|eip-32.32.32.1,ep-5001,w-2,alive|eip-100.100.100.1,ep-5001,w-2,alive| pc 0 bc 0 
 DBG:  2022/07/10 12:50:47 1:dst-10.10.10.1/32,proto-6,dport-2020,,do-dnat:eip-31.31.31.1,ep-5001,w-1,alive|eip-32.32.32.1,ep-5001,w-2,alive|eip-100.100.100.1,ep-5001,w-2,alive| pc 0 bc 0 
-DBG:  2022/07/10 12:50:57 1:dst-10.10.10.1/32,proto-6,dport-2020,,do-dnat:eip-31.31.31.1,ep-5001,w-1,alive|eip-32.32.32.1,ep-5001,w-2,alive|eip-100.100.100.1,ep-5001,w-2,alive| pc 0 bc 0 
-</code></pre>
+DBG:  2022/07/10 12:50:57 1:dst-10.10.10.1/32,proto-6,dport-2020,,do-dnat:eip-31.31.31.1,ep-5001,w-1,alive|eip-32.32.32.1,ep-5001,w-2,alive|eip-100.100.100.1,ep-5001,w-2,alive| pc 0 bc 0 </code></pre>
 <h2 id="check-loxicmd-to-debug-loxilbs-internal-state">* <b>Check <em>loxicmd</em> to debug loxilb's internal state</b></h2>
 <p>```</p>
 <h3 id="spawn-a-bash-shell-of-loxilb-docker">Spawn a bash shell of loxilb docker</h3>

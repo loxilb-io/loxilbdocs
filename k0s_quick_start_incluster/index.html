@@ -8,7 +8,7 @@
         
         <link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/k0s_quick_start_incluster/">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>in-cluster pod - K0s/loxilb in-cluster mode - loxilb v0.9.5</title>
+        <title>in-cluster pod - K0s/loxilb in-cluster mode - LoxiLB</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/fontawesome.min.css" rel="stylesheet">
         <link href="../css/brands.min.css" rel="stylesheet">
@@ -33,7 +33,7 @@
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="..">loxilb v0.9.5</a>
+                <a class="navbar-brand" href="..">LoxiLB</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -257,26 +257,8 @@
   </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">More</a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="https://github.com/loxilb-io/loxilb" class="dropdown-item">GitHub</a>
-</li>
-                                    
-<li>
-    <a href="https://www.loxilb.io/" class="dropdown-item">Website</a>
-</li>
-                                    
-<li>
-    <a href="https://github.com/loxilb-io/loxilb/discussions" class="dropdown-item">Community Forum</a>
-</li>
-                                    
-<li>
-    <a href="https://join.slack.com/t/loxilb/shared_invite/zt-2b3xx14wg-P7WHj5C~OEON_jviF0ghcQ" class="dropdown-item">Join Slack</a>
-</li>
-                                </ul>
+                            <li class="nav-item">
+                                <a href="https://www.loxilb.io/" class="nav-link">Visit Website</a>
                             </li>
                         </ul>
 
@@ -295,6 +277,10 @@
                                 <a rel="next" href="../microk8s_quick_start_incluster/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/loxilb-io/loxilb/edit/master/docs/k0s_quick_start_incluster.md" class="nav-link">Edit on loxilb-io/loxilb
+                                    </a>
                             </li>
                     </ul>
                 </div>
@@ -334,47 +320,40 @@
 <p><img alt="loxilb topology" src="../photos/loxilb-incluster.png" /></p>
 <p>loxilb and kube-loxilb components run as pods managed by kubernetes  in this scenario.</p>
 <h3 id="setup-k0s-in-a-single-node">Setup k0s in a single-node</h3>
-<pre><code># k0s installation steps
+<pre class="highlight"><code># k0s installation steps
 curl -sSLf https://get.k0s.sh | sudo sh
 sudo k0s install controller --single
-sudo k0s start
-</code></pre>
+sudo k0s start</code></pre>
 <h3 id="check-k0s-status">Check k0s status</h3>
-<pre><code>$ sudo k0s status
+<pre class="highlight"><code>$ sudo k0s status
 Version: v1.29.2+k0s.0
 Process ID: 2631
 Workloads: true
 SingleNode: true
 Kube-api probing successful: true
-Kube-api probing last error:  
-</code></pre>
+Kube-api probing last error:  </code></pre>
 <h3 id="how-to-deploy-loxilb">How to deploy loxilb ?</h3>
-<p>loxilb can be deloyed by using the following command in the K3s node</p>
-<pre><code>sudo k0s kubectl apply -f https://raw.githubusercontent.com/loxilb-io/loxilb/main/cicd/k0s-incluster/loxilb.yml
-</code></pre>
+<p>loxilb can be deloyed by using the following command in the K3s node
+<pre class="highlight"><code>sudo k0s kubectl apply -f https://raw.githubusercontent.com/loxilb-io/loxilb/main/cicd/k0s-incluster/loxilb.yml</code></pre></p>
 <h3 id="how-to-deploy-kube-loxilb">How to deploy kube-loxilb ?</h3>
-<p><a href="https://github.com/loxilb-io/kube-loxilb">kube-loxilb</a> is used as an operator to manage loxilb.</p>
-<pre><code>wget https://raw.githubusercontent.com/loxilb-io/loxilb/main/cicd/k0s-incluster/kube-loxilb.yml
-</code></pre>
-<p>kube-loxilb.yaml</p>
-<pre><code>       args:
+<p><a href="https://github.com/loxilb-io/kube-loxilb">kube-loxilb</a> is used as an operator to manage loxilb.
+<pre class="highlight"><code>wget https://raw.githubusercontent.com/loxilb-io/loxilb/main/cicd/k0s-incluster/kube-loxilb.yml</code></pre>
+kube-loxilb.yaml
+<pre class="highlight"><code>       args:
          #- --loxiURL=http://172.17.0.2:11111
          - --externalCIDR=192.168.82.100/32
          - --setRoles=0.0.0.0
          #- --monitor
          #- --setBGP
-
 </code></pre>
-<p>In the above snippet, loxiURL is commented out which denotes to utilize in-cluster mode to discover loxilb pods automatically. External CIDR represents the IP pool from where serviceLB VIP will be allocated.</p>
-<p>Apply after making changes (if any) :</p>
-<pre><code>sudo k0s kubectl apply -f kube-loxilb.yaml
-</code></pre>
+In the above snippet, loxiURL is commented out which denotes to utilize in-cluster mode to discover loxilb pods automatically. External CIDR represents the IP pool from where serviceLB VIP will be allocated.</p>
+<p>Apply after making changes (if any) :
+<pre class="highlight"><code>sudo k0s kubectl apply -f kube-loxilb.yaml</code></pre></p>
 <h3 id="create-the-service">Create the service</h3>
-<pre><code>sudo k0s kubectl apply -f https://raw.githubusercontent.com/loxilb-io/loxilb/main/cicd/k0s-incluster/tcp-svc-lb.yml
-</code></pre>
+<pre class="highlight"><code>sudo k0s kubectl apply -f https://raw.githubusercontent.com/loxilb-io/loxilb/main/cicd/k0s-incluster/tcp-svc-lb.yml</code></pre>
 <h3 id="check-status-of-various-components-in-k0s-node">Check status of various components in k0s node</h3>
-<p>In k0s node:</p>
-<pre><code>## Check the pods created
+<p>In k0s node:
+<pre class="highlight"><code>## Check the pods created
 $ sudo k0s kubectl get pods -A
 NAMESPACE     NAME                              READY   STATUS    RESTARTS   AGE
 kube-system   kube-proxy-vczxm                  1/1     Running   0          4m48s
@@ -390,16 +369,14 @@ default       tcp-onearm-test                   1/1     Running   0          92s
 $ sudo k0s kubectl get svc
 NAME            TYPE           CLUSTER-IP      EXTERNAL-IP          PORT(S)           AGE
 kubernetes      ClusterIP      10.96.0.1       &lt;none&gt;               443/TCP           5m28s
-tcp-lb-onearm   LoadBalancer   10.96.108.109   llb-192.168.82.100   56002:32033/TCP   111s
-</code></pre>
-<p>In loxilb pod, we can check internal LB rules:</p>
-<pre><code>$ sudo k0s kubectl exec -it -n kube-system loxilb-lb-4fmdp -- loxicmd get lb -o wide
+tcp-lb-onearm   LoadBalancer   10.96.108.109   llb-192.168.82.100   56002:32033/TCP   111s</code></pre>
+In loxilb pod, we can check internal LB rules:
+<pre class="highlight"><code>$ sudo k0s kubectl exec -it -n kube-system loxilb-lb-4fmdp -- loxicmd get lb -o wide
 |     EXT IP     | SEC IPS | PORT  | PROTO |         NAME          | MARK | SEL |  MODE  | ENDPOINT  | EPORT | WEIGHT | STATE  | COUNTERS |
 |----------------|---------|-------|-------|-----------------------|------|-----|--------|-----------|-------|--------|--------|----------|
-| 192.168.82.100 |         | 56002 | tcp   | default_tcp-lb-onearm |    0 | rr  | onearm | 10.0.2.15 | 32033 |      1 | active | 25:1842  |
-</code></pre>
+| 192.168.82.100 |         | 56002 | tcp   | default_tcp-lb-onearm |    0 | rr  | onearm | 10.0.2.15 | 32033 |      1 | active | 25:1842  |</code></pre></p>
 <h3 id="connect-from-hostclient">Connect from host/client</h3>
-<pre><code>$ curl http://192.168.82.100:56002
+<p><pre class="highlight"><code>$ curl http://192.168.82.100:56002
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
@@ -416,18 +393,17 @@ font-family: Tahoma, Verdana, Arial, sans-serif; }
 working. Further configuration is required.&lt;/p&gt;
 
 &lt;p&gt;For online documentation and support please refer to
-&lt;a href=&quot;http://nginx.org/&quot;&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;
+&lt;a href="http://nginx.org/"&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;
 Commercial support is available at
-&lt;a href=&quot;http://nginx.com/&quot;&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;
+&lt;a href="http://nginx.com/"&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;Thank you for using nginx.&lt;/em&gt;&lt;/p&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-
 </code></pre>
-<p>For more detailed information on incluster deployment of loxilb with bgp in a full-blown cluster, kindly follow this <a href="https://www.loxilb.io/post/k8s-nuances-of-in-cluster-external-service-lb-with-loxilb">blog</a>.   </p>
-<p>All of the above steps are also available as part of loxilb CICD workflow. Follow the steps below to replicate the above (please note that you will need <a href="https://developer.hashicorp.com/vagrant/docs/installation">vagrant tool</a> installed to run:</p>
-<pre><code>$ git clone https://github.com/loxilb-io/loxilb.git
+For more detailed information on incluster deployment of loxilb with bgp in a full-blown cluster, kindly follow this <a href="https://www.loxilb.io/post/k8s-nuances-of-in-cluster-external-service-lb-with-loxilb">blog</a>.   </p>
+<p>All of the above steps are also available as part of loxilb CICD workflow. Follow the steps below to replicate the above (please note that you will need <a href="https://developer.hashicorp.com/vagrant/docs/installation">vagrant tool</a> installed to run:
+<pre class="highlight"><code>$ git clone https://github.com/loxilb-io/loxilb.git
 $ cd cicd/k0s-incluster/
 
 # To setup the single node k0s setup with kube-router networking and loxilb as external load balancer
@@ -440,8 +416,7 @@ $ ./validation.sh
 $ vagrant ssh k0s-node1
 
 # Cleanup
-$ ./rmconfig.sh
-</code></pre></div>
+$ ./rmconfig.sh</code></pre></p></div>
             </div>
         </div>
 

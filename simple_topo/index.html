@@ -8,7 +8,7 @@
         
         <link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/simple_topo/">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Creating a simple test topology for loxilb - loxilb v0.9.5</title>
+        <title>Creating a simple test topology for loxilb - LoxiLB</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/fontawesome.min.css" rel="stylesheet">
         <link href="../css/brands.min.css" rel="stylesheet">
@@ -33,7 +33,7 @@
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="..">loxilb v0.9.5</a>
+                <a class="navbar-brand" href="..">LoxiLB</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -257,26 +257,8 @@
   </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">More</a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="https://github.com/loxilb-io/loxilb" class="dropdown-item">GitHub</a>
-</li>
-                                    
-<li>
-    <a href="https://www.loxilb.io/" class="dropdown-item">Website</a>
-</li>
-                                    
-<li>
-    <a href="https://github.com/loxilb-io/loxilb/discussions" class="dropdown-item">Community Forum</a>
-</li>
-                                    
-<li>
-    <a href="https://join.slack.com/t/loxilb/shared_invite/zt-2b3xx14wg-P7WHj5C~OEON_jviF0ghcQ" class="dropdown-item">Join Slack</a>
-</li>
-                                </ul>
+                            <li class="nav-item">
+                                <a href="https://www.loxilb.io/" class="nav-link">Visit Website</a>
                             </li>
                         </ul>
 
@@ -286,6 +268,10 @@
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/loxilb-io/loxilb/edit/master/docs/simple_topo.md" class="nav-link">Edit on loxilb-io/loxilb
+                                    </a>
+                            </li>
                     </ul>
                 </div>
             </div>
@@ -321,18 +307,17 @@
 <li>Docker should be preinstalled  </li>
 <li>Pull and run loxilb docker  </li>
 </ul>
-<pre><code># docker pull ghcr.io/loxilb-io/loxilb:latest
-# docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --name loxilb ghcr.io/loxilb-io/loxilb:latest
-</code></pre>
+<pre class="highlight"><code># docker pull ghcr.io/loxilb-io/loxilb:latest
+# docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --name loxilb ghcr.io/loxilb-io/loxilb:latest</code></pre>
 <p>Next step is to run the following script to create and configure the above topology :</p>
-<pre><code>#!/bin/bash
+<pre class="highlight"><code>#!/bin/bash
 
 docker=$1
-HADD=&quot;sudo ip netns add &quot;
-LBHCMD=&quot;sudo ip netns exec loxilb &quot;
-HCMD=&quot;sudo ip netns exec &quot;
+HADD="sudo ip netns add "
+LBHCMD="sudo ip netns exec loxilb "
+HCMD="sudo ip netns exec "
 
-id=`docker ps -f name=loxilb | cut  -d &quot; &quot;  -f 1 | grep -iv  &quot;CONTAINER&quot;`
+id=`docker ps -f name=loxilb | cut  -d " "  -f 1 | grep -iv  "CONTAINER"`
 echo $id
 pid=`docker inspect -f '{{.State.Pid}}' $id`
 if [ ! -f /var/run/netns/loxilb ]; then
@@ -379,12 +364,10 @@ sudo ip -n h1 link set eh1llb1 mtu 7000 up
 $LBHCMD ip addr add 10.10.10.254/24 dev ellb1h1
 $HCMD h1 ifconfig eh1llb1 10.10.10.1/24 up
 $HCMD h1 ip route add default via 10.10.10.254
-$HCMD h1 ifconfig lo up
-</code></pre>
-<p>Finally, we need to configure load-balancer rule inside loxilb docker as follows :</p>
-<pre><code>docker exec -it loxilb bash
-root@8b74b5ddc4d2:/# loxicmd create lb 20.20.20.1 --tcp=2020:5001 --endpoints=31.31.31.1:1,32.32.32.1:1,33.33.33.1:1
-</code></pre>
+$HCMD h1 ifconfig lo up</code></pre>
+<p>Finally, we need to configure load-balancer rule inside loxilb docker as follows :
+<pre class="highlight"><code>docker exec -it loxilb bash
+root@8b74b5ddc4d2:/# loxicmd create lb 20.20.20.1 --tcp=2020:5001 --endpoints=31.31.31.1:1,32.32.32.1:1,33.33.33.1:1</code></pre></p>
 <p>So, we now have loxilb running as a docker pod with 4 hosts connected to it. 3 of the hosts act as load-balancer end-points and 1 of them act as a client. We can run any workloads as we wish inside the host pods and start testing loxilb</p></div>
             </div>
         </div>

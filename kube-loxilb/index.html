@@ -8,7 +8,7 @@
         
         <link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/kube-loxilb/">
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Understanding loxilb deployment in K8s with kube-loxilb - loxilb v0.9.5</title>
+        <title>Understanding loxilb deployment in K8s with kube-loxilb - LoxiLB</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/fontawesome.min.css" rel="stylesheet">
         <link href="../css/brands.min.css" rel="stylesheet">
@@ -33,7 +33,7 @@
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="..">loxilb v0.9.5</a>
+                <a class="navbar-brand" href="..">LoxiLB</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -257,26 +257,8 @@
   </li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">More</a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="https://github.com/loxilb-io/loxilb" class="dropdown-item">GitHub</a>
-</li>
-                                    
-<li>
-    <a href="https://www.loxilb.io/" class="dropdown-item">Website</a>
-</li>
-                                    
-<li>
-    <a href="https://github.com/loxilb-io/loxilb/discussions" class="dropdown-item">Community Forum</a>
-</li>
-                                    
-<li>
-    <a href="https://join.slack.com/t/loxilb/shared_invite/zt-2b3xx14wg-P7WHj5C~OEON_jviF0ghcQ" class="dropdown-item">Join Slack</a>
-</li>
-                                </ul>
+                            <li class="nav-item">
+                                <a href="https://www.loxilb.io/" class="nav-link">Visit Website</a>
                             </li>
                         </ul>
 
@@ -295,6 +277,10 @@
                                 <a rel="next" href="../ha-deploy/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/loxilb-io/loxilb/edit/master/docs/kube-loxilb.md" class="nav-link">Edit on loxilb-io/loxilb
+                                    </a>
                             </li>
                     </ul>
                 </div>
@@ -364,12 +350,11 @@
 <p>Download the kube-loxilb config yaml :</p>
 </li>
 </ul>
-<pre><code>wget https://github.com/loxilb-io/kube-loxilb/raw/main/manifest/ext-cluster/kube-loxilb.yaml
-</code></pre>
+<pre class="highlight"><code>wget https://github.com/loxilb-io/kube-loxilb/raw/main/manifest/ext-cluster/kube-loxilb.yaml</code></pre>
 <ul>
 <li>Modify arguments as per user's needs :</li>
 </ul>
-<pre><code>        args:
+<pre class="highlight"><code>        args:
             - --loxiURL=http://12.12.12.1:11111
             - --externalCIDR=123.123.123.1/24
             #- --externalSecondaryCIDRs=124.124.124.1/24,125.125.125.1/24
@@ -379,8 +364,7 @@
             #- --extBGPPeers=50.50.50.1:65101,51.51.51.1:65102
             #- --setRoles=0.0.0.0
             #- --setLBMode=1
-            #- --setUniqueIP=false
-</code></pre>
+            #- --setUniqueIP=false</code></pre>
 <p>The arguments have the following meaning :     </p>
 <table>
 <thead>
@@ -513,38 +497,34 @@
 <ul>
 <li>Apply the yaml after making necessary changes :</li>
 </ul>
-<pre><code>kubectl apply -f kube-loxilb.yaml
-</code></pre>
-<ul>
-<li>The above should make sure kube-loxilb is successfully running. Check kube-loxilb is running :   </li>
-</ul>
-<pre><code>k8s@master:~$ sudo kubectl get pods -A
+<p><pre class="highlight"><code>kubectl apply -f kube-loxilb.yaml</code></pre>
+* The above should make sure kube-loxilb is successfully running. Check kube-loxilb is running :   </p>
+<pre class="highlight"><code>k8s@master:~$ sudo kubectl get pods -A
 NAMESPACE         NAME                                        READY   STATUS    RESTARTS   AGE
 kube-system       local-path-provisioner-84db5d44d9-pczhz     1/1     Running   0          16h
 kube-system       coredns-6799fbcd5-44qpx                     1/1     Running   0          16h
 kube-system       metrics-server-67c658944b-t4x5d             1/1     Running   0          16h
-kube-system       kube-loxilb-5fb5566999-ll4gs                1/1     Running   0          14h
-</code></pre>
+kube-system       kube-loxilb-5fb5566999-ll4gs                1/1     Running   0          14h</code></pre>
 <ul>
 <li>Finally to create service LB for a workload, we can use and apply the following template yaml   </li>
 </ul>
 <p>(<b>Note</b> -  Check <b><em>loadBalancerClass</em></b> and other <b><em>loxilb</em></b> specific annotation) :</p>
-<pre><code>        apiVersion: v1
+<pre class="highlight"><code>        apiVersion: v1
         kind: Service
         metadata:
           name: iperf-service
           annotations:
            # If there is a need to do liveness check from loxilb
-           loxilb.io/liveness: &quot;yes&quot;
+           loxilb.io/liveness: "yes"
            # Specify LB mode - one of default, onearm or fullnat 
-           loxilb.io/lbmode: &quot;default&quot;
+           loxilb.io/lbmode: "default"
            # Specify loxilb IPAM mode - one of ipv4, ipv6 or ipv6to4 
-           loxilb.io/ipam: &quot;ipv4&quot;
+           loxilb.io/ipam: "ipv4"
            # Specify number of secondary networks for multi-homing
            # Only valid for SCTP currently
-           # loxilb.io/num-secondary-networks: &quot;2
+           # loxilb.io/num-secondary-networks: "2
            # Specify a static externalIP for this service
-           # loxilb.io/staticIP: &quot;123.123.123.2&quot;
+           # loxilb.io/staticIP: "123.123.123.2"
         spec:
           loadBalancerClass: loxilb.io/loxilb
           selector:
@@ -566,33 +546,29 @@ kube-system       kube-loxilb-5fb5566999-ll4gs                1/1     Running   
               image: eyes852/ubuntu-iperf-test:0.5
               command:
                 - iperf
-                - &quot;-s&quot;
+                - "-s"
               ports:
-                - containerPort: 5001
-</code></pre>
+                - containerPort: 5001</code></pre>
 <p>Users can change the above as per their needs.</p>
 <ul>
 <li>Verify LB service is created   </li>
 </ul>
-<pre><code>k8s@master:~$ sudo kubectl get svc
+<pre class="highlight"><code>k8s@master:~$ sudo kubectl get svc
 NAME                TYPE           CLUSTER-IP    EXTERNAL-IP         PORT(S)             AGE
 kubernetes          ClusterIP      10.43.0.1     &lt;none&gt;              443/TCP             13h
-iperf1              LoadBalancer   10.43.8.156   llb-192.168.80.20   55001:5001/TCP      8m20s
-</code></pre>
+iperf1              LoadBalancer   10.43.8.156   llb-192.168.80.20   55001:5001/TCP      8m20s</code></pre>
 <ul>
 <li>For more example yaml templates, kindly refer to kube-loxilb's manifest <a href="https://github.com/loxilb-io/kube-loxilb/tree/main/manifest">directory</a>           </li>
 </ul>
 <h2 id="additional-steps-to-deploy-loxilb-in-cluster-mode">Additional steps to deploy loxilb (in-cluster) mode</h2>
 <p>To run loxilb in-cluster mode, the URL argument in <a href="https://github.com/loxilb-io/kube-loxilb/blob/main/manifest/in-cluster/kube-loxilb.yaml">kube-loxilb.yaml</a> needs to be commented out:   </p>
-<pre><code>        args:
+<pre class="highlight"><code>        args:
             #- --loxiURL=http://12.12.12.1:11111
-            - --externalCIDR=123.123.123.1/24
-</code></pre>
+            - --externalCIDR=123.123.123.1/24</code></pre>
 <p>This enables a self-discovery mode of kube-loxilb where it can find and reach loxilb pods running inside the cluster. Last but not the least we need to create the loxilb pods in cluster :   </p>
-<pre><code>sudo kubectl apply -f https://github.com/loxilb-io/kube-loxilb/raw/main/manifest/in-cluster/loxilb.yaml
-</code></pre>
+<pre class="highlight"><code>sudo kubectl apply -f https://github.com/loxilb-io/kube-loxilb/raw/main/manifest/in-cluster/loxilb.yaml</code></pre>
 <p>Once all the pods are created, the same can be verified as follows (you can see both kube-loxilb and loxilb components running:   </p>
-<pre><code>k8s@master:~$ sudo kubectl get pods -A
+<pre class="highlight"><code>k8s@master:~$ sudo kubectl get pods -A
 NAMESPACE         NAME                                        READY   STATUS    RESTARTS   AGE
 kube-system       local-path-provisioner-84db5d44d9-pczhz     1/1     Running   0          16h
 kube-system       coredns-6799fbcd5-44qpx                     1/1     Running   0          16h
@@ -601,8 +577,7 @@ kube-system       kube-loxilb-5fb5566999-ll4gs                1/1     Running   
 kube-system       loxilb-lb-mklj2                             1/1     Running   0          13h
 kube-system       loxilb-lb-stp5k                             1/1     Running   0          13h
 kube-system       loxilb-lb-j8fc6                             1/1     Running   0          13h
-kube-system       loxilb-lb-5m85p                             1/1     Running   0          13h
-</code></pre>
+kube-system       loxilb-lb-5m85p                             1/1     Running   0          13h</code></pre>
 <p>Thereafter, the process of service creation remains the same as explained in previous sections.   </p>
 <h2 id="how-to-use-kube-loxilb-crds">How to use kube-loxilb CRDs ?</h2>
 <p>Kube-loxilb provides Custom Resource Definition (CRD). Current the following operations are supported (which would be continually updated): <br />
@@ -610,33 +585,28 @@ kube-system       loxilb-lb-5m85p                             1/1     Running   
 -  Delete a BGP Peer   </p>
 <p>An example of CRD is stored in  manifest/crds. Setting up a BGP Peer as an example is as follows:   </p>
 <ol>
-<li>Pre-Processing (Register kube-loxilb CRDs with K8s). Apply lbpeercrd.yaml as first step   </li>
-</ol>
-<pre><code>kubectl apply -f manifest/crds/lbpeercrd.yaml
-</code></pre>
-<ol>
+<li>Pre-Processing (Register kube-loxilb CRDs with K8s). Apply lbpeercrd.yaml as first step <br />
+<pre class="highlight"><code>kubectl apply -f manifest/crds/lbpeercrd.yaml</code></pre></li>
 <li>CRD definition   </li>
 </ol>
-<p>You need to create a yaml file that adds a peer for BGP. The example below is an example of creating a Peer with a RemoteAS number of Peer IP address 65123 at 123.123.123.2. Create a file named bgp-peer.yaml and add the contents below.   </p>
-<pre><code class="language-yaml">apiVersion: &quot;bgppeer.loxilb.io/v1&quot;
+<p>You need to create a yaml file that adds a peer for BGP. The example below is an example of creating a Peer with a RemoteAS number of Peer IP address 65123 at 123.123.123.2. Create a file named bgp-peer.yaml and add the contents below. <br />
+<pre class="highlight"><code class="language-yaml">apiVersion: "bgppeer.loxilb.io/v1"
 kind: BGPPeerService
 metadata:
   name: bgp-peer-test
 spec:
   ipAddress: 123.123.123.2
   remoteAs: 65123
-  remotePort: 179
-</code></pre>
+  remotePort: 179</code></pre></p>
 <ol>
 <li>Apply CRD to add a new BGP Peer   </li>
 </ol>
-<pre><code>kubectl apply -f bgp-peer.yaml
-</code></pre>
+<pre class="highlight"><code>kubectl apply -f bgp-peer.yaml</code></pre>
 <ol>
 <li>Verify the applied CRD   </li>
 </ol>
-<p>You can check it in two ways. The first one can be checked through loxicmd(in loxilb container), and the second one can be checked through kubectl.    </p>
-<pre><code># loxicmd
+<p>You can check it in two ways. The first one can be checked through loxicmd(in loxilb container), and the second one can be checked through kubectl.  <br />
+<pre class="highlight"><code># loxicmd
 kubectl exec -it {loxilb} -n kube-system -- loxicmd get bgpneigh 
 |      PEER      |  AS   |   UP/DOWN   |    STATE    | 
 |----------------|-------|-------------|-------------|
@@ -645,8 +615,7 @@ kubectl exec -it {loxilb} -n kube-system -- loxicmd get bgpneigh
 # kubectl
 kubectl get bgppeerservice
 NAME            PEER            AS   
-bgp-peer-test   123.123.123.2   65123 
-</code></pre></div>
+bgp-peer-test   123.123.123.2   65123 </code></pre></p></div>
             </div>
         </div>
 
