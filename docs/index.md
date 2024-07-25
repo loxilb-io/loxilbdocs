@@ -106,6 +106,9 @@ Telco-cloud requires load-balancing and communication across various interfaces/
 - [K3s : loxilb service-proxy with flannel](service-proxy-flannel.md)
 - [K3s : loxilb service-proxy with calico](service-proxy-calico.md)
 
+#### loxilb as Kubernetes Ingress
+- [K3s: How to run loxilb-ingress](loxilb-ingress.md)
+  
 #### loxilb in standalone mode
 - [Run loxilb standalone](standalone.md)
 
