@@ -1,7 +1,6 @@
 site_name: LoxiLB
 site_url: https://nik-netlox.github.io/loxilbdocs/
 repo_name: loxilb-io/loxilb
-#repo_url: https://github.com/loxilb-io/loxilb
 theme:
     name: material
     logo: photos/loxilb-logo.png
@@ -85,8 +84,8 @@ nav:
 extra:
     version: v0.9.5 (Latest)
     homepage: https://www.loxilb.io/ 
-#extra_css:
-#  - stylesheets/extra.css
+extra_css:
+  - stylesheets/extra.css
   
 markdown_extensions:
   - pymdownx.highlight
