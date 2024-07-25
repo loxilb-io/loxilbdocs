@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/loxilb-ingress/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Loxilb ingress - loxilb v0.9.5</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <link href="../stylesheets/extra.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-21G7NBL2BN"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', "G-21G7NBL2BN");
+        </script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">loxilb v0.9.5</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Architectural Considerations</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../kube-loxilb/" class="dropdown-item">Understanding loxilb deployment in K8s with kube-loxilb</a>
+</li>
+                                    
+<li>
+    <a href="../ha-deploy/" class="dropdown-item">Understanding High-availability with loxilb</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Getting Started</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../k3s_quick_start_flannel/" class="dropdown-item">ext-cluster pod - K3s/loxilb with default flannel</a>
+</li>
+                                    
+<li>
+    <a href="../k3s_quick_start_calico/" class="dropdown-item">ext-cluster pod - K3s/loxilb with calico</a>
+</li>
+                                    
+<li>
+    <a href="../quick_start_with_cilium/" class="dropdown-item">ext-cluster pod - K3s/loxilb with cilium</a>
+</li>
+                                    
+<li>
+    <a href="../k0s_quick_start/" class="dropdown-item">ext-cluster pod - K0s/loxilb with kube-router</a>
+</li>
+                                    
+<li>
+    <a href="../k3s_quick_start_incluster/" class="dropdown-item">in-cluster pod - K3s/loxilb in-cluster mode</a>
+</li>
+                                    
+<li>
+    <a href="../k0s_quick_start_incluster/" class="dropdown-item">in-cluster pod - K0s/loxilb in-cluster mode</a>
+</li>
+                                    
+<li>
+    <a href="../microk8s_quick_start_incluster/" class="dropdown-item">in-cluster pod - MicroK8s/loxilb in-cluster mode</a>
+</li>
+                                    
+<li>
+    <a href="../service-proxy-flannel/" class="dropdown-item">service-proxy - K3s/loxilb service-proxy with flannel</a>
+</li>
+                                    
+<li>
+    <a href="../service-proxy-calico/" class="dropdown-item">service-proxy - K3s/loxilb service-proxy with calico</a>
+</li>
+                                    
+<li>
+    <a href="../standalone/" class="dropdown-item">loxilb in standalone mode</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Advanced Guides</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../service-zones/" class="dropdown-item">How-To - service-group zones</a>
+</li>
+                                    
+<li>
+    <a href="../ext-ep/" class="dropdown-item">How-To - access end-points outside K8s</a>
+</li>
+                                    
+<li>
+    <a href="../k3s-multi-master/" class="dropdown-item">How-To - Deploy multi-server K3s HA with loxilb</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Knowledge Base</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../ebpf/" class="dropdown-item">What is eBPF</a>
+</li>
+                                    
+<li>
+    <a href="../lb/" class="dropdown-item">What is k8s service - load-balancer</a>
+</li>
+                                    
+<li>
+    <a href="../arch/" class="dropdown-item">Architecture in brief</a>
+</li>
+                                    
+<li>
+    <a href="../code/" class="dropdown-item">Code organization</a>
+</li>
+                                    
+<li>
+    <a href="../loxilbebpf/" class="dropdown-item">eBPF internals</a>
+</li>
+                                    
+<li>
+    <a href="../nat/" class="dropdown-item">NAT Modes of loxilb</a>
+</li>
+                                    
+<li>
+    <a href="../lb-algo/" class="dropdown-item">loxilb load-balancer algorithms</a>
+</li>
+                                    
+<li>
+    <a href="../run/" class="dropdown-item">Manual steps to build/run</a>
+</li>
+                                    
+<li>
+    <a href="../debugging/" class="dropdown-item">Debugging loxilb</a>
+</li>
+                                    
+<li>
+    <a href="../cmd-dev/" class="dropdown-item">Developer's guide to loxicmd</a>
+</li>
+                                    
+<li>
+    <a href="../api-dev/" class="dropdown-item">Developer's guide to loxilb API</a>
+</li>
+                                    
+<li>
+    <a href="../api/" class="dropdown-item">loxilb api-reference</a>
+</li>
+                                    
+<li>
+    <a href="../perf/" class="dropdown-item">Performance Report</a>
+</li>
+                                    
+<li>
+    <a href="../roadmap/" class="dropdown-item">Development Roadmap</a>
+</li>
+                                    
+<li>
+    <a href="../contribute/" class="dropdown-item">Contribution Guide</a>
+</li>
+                                    
+<li>
+    <a href="../requirements/" class="dropdown-item">System Requirements</a>
+</li>
+                                    
+<li>
+    <a href="../faq/" class="dropdown-item">Frequenctly Asked Questions- FAQs</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Blogs</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/loxilb-cluster-networking-elevating-k8s-networking-capabilities" class="dropdown-item">K8s - Elevating Cluster Networking</a>
+</li>
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/state-synchronization-of-ebpf-maps-using-go-a-tale-of-two-frameworks" class="dropdown-item">eBPF - Map Sync using Go</a>
+</li>
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/k8s-nuances-of-in-cluster-external-service-lb-with-loxilb" class="dropdown-item">K8s in-cluster service LB with LoxiLB</a>
+</li>
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/k8s-introducing-sctp-multihoming-functionality-with-loxilb" class="dropdown-item">K8s - Introducing SCTP Multihoming with LoxiLB</a>
+</li>
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/loxilb-anycast-service-load-balancing-with-high-availability" class="dropdown-item">Hyperscale anycast load balancing with HA</a>
+</li>
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/loxilb-load-balancer-setup-on-eks" class="dropdown-item">Getting started with loxilb on Amazon EKS</a>
+</li>
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/k8s-deploying-hitless-and-ha-load-balancing" class="dropdown-item">K8s - Deploying hitless Load-Balancing</a>
+</li>
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/k8s-exposing-ipv4-services-externally-as-ipv6" class="dropdown-item">Ipv6 migration in Kubernetes made easy</a>
+</li>
+                                    
+<li>
+    <a href="https://www.loxilb.io/post/running-loxilb-on-aws-graviton2-based-ec2-instance" class="dropdown-item">Load-balancer Perf comparison on Amazon Graviton2</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Community Posts</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="https://futuredon.medium.com/5g-sctp-loadbalancer-using-loxilb-b525198a9103" class="dropdown-item">5G SCTP LoadBalancer Using loxilb</a>
+</li>
+            
+<li>
+    <a href="https://futuredon.medium.com/5g-uplink-classifier-using-loxilb-7593a4d66f4c" class="dropdown-item">5G Uplink Classifier Using loxilb</a>
+</li>
+            
+<li>
+    <a href="https://cloudybytes.medium.com/k3s-using-loxilb-as-external-service-lb-2ea4ce61e159" class="dropdown-item">K3s - Using loxilb as external service lb</a>
+</li>
+            
+<li>
+    <a href="https://medium.com/@ben0978327139/5g-sctp-loadbalancer-using-loxilb-applying-on-free5gc-b5c05bb723f0" class="dropdown-item">5G SCTP LoadBalancer Using LoxiLB Applying on free5GC</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="2"><a href="#how-to-run-loxilb-ingress" class="nav-link">How to run loxilb-ingress</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="2"><a href="#testing-loxilb-ingress" class="nav-link">Testing loxilb ingress</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h2 id="how-to-run-loxilb-ingress">How to run loxilb-ingress</h2>
+<p>In Kubernetes, there is usually a lot of overlap between network load-balancer and an Ingress functionality. This creates a lot of confusion. Overall, the differences between an Ingress and a load-balancer service can be categorized as follows:</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Ingress</th>
+<th>Load-balancer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Protocol</td>
+<td>HTTP level (Layer7)</td>
+<td>Network Layer4</td>
+</tr>
+<tr>
+<td>Additional Features</td>
+<td>Ingress Rules, Resource-Backends,</td>
+<td>Based on L4 Session Params</td>
+</tr>
+<tr>
+<td></td>
+<td>Path-Types, HostName</td>
+<td></td>
+</tr>
+<tr>
+<td>Yaml Manifest</td>
+<td>apiVersion: networking.k8s.io/v2</td>
+<td>type: LoadBalancer</td>
+</tr>
+</tbody>
+</table>
+<p>When using Ingress, the clients connect to one of the pods through Ingress. The clients first perform a DNS lookup which returns IP address of the ingress. This IP address is usually funnelled through a L4 Load-balancer. The client sends a HTTP(s) request to Ingress specifying URL, hostname and other HTTP headers. Based on the HTTP payload, the ingress finds an associated Service and its EndPoint Objects. The Ingress then forwards the client's request to appopriate pod. It can also serve as HTTS termination point or as a mTLS hub.</p>
+<p><img src="https://github.com/user-attachments/assets/b8d0f0a0-c298-492e-8647-7c5936a87ea9" width="500" ></p>
+<p>With Kubernetes ingress, we can expose multiple paths with the same service IP. This might be helpful if one is using public cloud, where one has to pay for managed LB services. Hence, creating a single service and exposing mulitple URL paths might be optimal in such use-cases.</p>
+<p>loxilb-ingress is optimized for cases which require long-lived connections and https termination with eBPF.</p>
+<h3 id="getting-started">Getting Started</h3>
+<p>The following getting started example is  based on  <a href="https://k3s.io/">K3s</a> as the kubernetes platform but should work on any kubernetes implementation or distribution like EKS, GKE etc but should work well with any. We will use K3s as the kubernetes platform.</p>
+<h3 id="install-k3s">Install K3s</h3>
+<pre><code>curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC=&quot;--disable traefik,servicelb&quot; K3S_KUBECONFIG_MODE=&quot;644&quot; sh -
+</code></pre>
+<h3 id="install-loxilb-as-a-l4-service-lb">Install loxilb as a L4 service LB</h3>
+<p>Follow any of the getting started <a href="https://github.com/loxilb-io/loxilb?tab=readme-ov-file#getting-started">guides</a> as per requirement. In this example, we will run loxilb-lb in external mode. Check all the pods are up and running as expected :</p>
+<pre><code>$ kubectl get pods -A
+NAMESPACE     NAME                                     READY   STATUS    RESTARTS   AGE
+kube-system   coredns-6799fbcd5-cp5lv                  1/1     Running   0          3h26m
+kube-system   kube-loxilb-755f6fb85-gbg7f              1/1     Running   0          3h26m
+kube-system   local-path-provisioner-6f5d79df6-47n2b   1/1     Running   0          3h26m
+kube-system   metrics-server-54fd9b65b-b6c6x           1/1     Running   0          3h26m
+</code></pre>
+<h3 id="prepare-tlsssl-certificates-for-ingress">Prepare TLS/SSL certificates for Ingress</h3>
+<p>Self-signed TLS/SSL certificates and private keys can be built using various tools like <a href="https://www.openssl.org">OpenSSL</a> or <a href="https://github.com/jsha/minica">Minica</a>. Basically, one will need to have two files -  server.crt and server.key  for loxilb-ingress usage. Once these files are in place, a Kubernetes secret can be created using the following yaml:</p>
+<pre><code>apiVersion: v1
+data:
+  server.crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUI3RENDQVhPZ0F3SUJBZ0lJU.....
+  server.key: LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0tCk1JRzJBZ0VBTUJBR0J5cUdTTTQ5Q.....
+kind: Secret
+metadata:
+  creationTimestamp: null
+  name: loxilb-ssl
+  namespace: kube-system
+type: Opaque
+</code></pre>
+<p>Please note the above are just dummy values but they need to be in base64 format. How do you get the base64 values from server.crt and server.key files ?</p>
+<pre><code>$ base64 server.crt
+LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUI3RENDQVhPZ0F3SUJBZ0lJU.....
+$ base64 server.key
+LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0tCk1JRzJBZ0VBTUJBR0J5cUdTTTQ5Q.....
+</code></pre>
+<p>After applying the yaml, we can check the created secret :</p>
+<pre><code>$ kubectl get secret -n kube-system loxilb-ssl
+NAME         TYPE     DATA   AGE
+loxilb-ssl   Opaque   2      106m
+</code></pre>
+<p>In the subsequent steps, this secret <code>loxilb-ssl</code> will be used throughout.</p>
+<h3 id="install-loxilb-ingress">Install loxilb-ingress</h3>
+<pre><code>kubectl apply -f https://raw.githubusercontent.com/loxilb-io/loxilb-ingress/manifests/loxilb-ingress-deploy.yml
+</code></pre>
+<p>Check status of running pods :</p>
+<pre><code>$ kubectl get pods -A
+NAMESPACE       NAME                                        READY   STATUS      RESTARTS   AGE
+kube-system   coredns-6799fbcd5-cp5lv                  1/1     Running   0          3h26m
+kube-system   kube-loxilb-755f6fb85-gbg7f              1/1     Running   0          3h26m
+kube-system   local-path-provisioner-6f5d79df6-47n2b   1/1     Running   0          3h26m
+kube-system   loxilb-ingress-hn5ld                     1/1     Running   0          61m
+kube-system   metrics-server-54fd9b65b-b6c6x           1/1     Running   0          3h26m
+</code></pre>
+<h3 id="install-service-backend-app-and-ingress-rules">Install service, backend app and ingress rules</h3>
+<ul>
+<li>Create a LB service for exposing ingress ports</li>
+</ul>
+<pre><code>apiVersion: v1
+kind: Service
+metadata:
+  name: loxilb-ingress-manager
+  namespace: kube-system
+  annotations:
+    loxilb.io/lbmode: &quot;onearm&quot;
+spec:
+  externalTrafficPolicy: Local
+  loadBalancerClass: loxilb.io/loxilb
+  selector:
+    app.kubernetes.io/instance: loxilb-ingress
+    app.kubernetes.io/name: loxilb-ingress
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: 80
+    - name: https
+      port: 443
+      protocol: TCP
+      targetPort: 443
+  type: LoadBalancer
+</code></pre>
+<p>Check the services created :</p>
+<pre><code>$ kubectl get svc -A
+NAMESPACE     NAME                     TYPE           CLUSTER-IP     EXTERNAL-IP        PORT(S)                      AGE
+default       kubernetes               ClusterIP      10.43.0.1      &lt;none&gt;             443/TCP                      3h28m
+kube-system   kube-dns                 ClusterIP      10.43.0.10     &lt;none&gt;             53/UDP,53/TCP,9153/TCP       3h28m
+kube-system   loxilb-ingress-manager   LoadBalancer   10.43.136.1    llb-192.168.80.9   80:31686/TCP,443:31994/TCP   62m
+kube-system   metrics-server           ClusterIP      10.43.236.60   &lt;none&gt;             443/TCP                      3h28m
+</code></pre>
+<p>At this point of time, all services exposed via ingress can be accessed via "192.168.80.9". This IP could be different as per use-case and scenario. This IP can then be associated with DNS for name based access.</p>
+<ul>
+<li>Create backend apps for <code>domain1.loxilb.io</code> and configure ingress rules with the following yaml :   </li>
+</ul>
+<pre><code>apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: site
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: site-handler
+  template:
+    metadata:
+      labels:
+        name: site-handler
+    spec:
+      containers:
+        - name: blog
+          image: ghcr.io/loxilb-io/nginx:stable
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: site-handler-service
+spec:
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: 80
+  selector:
+    name: site-handler
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: site-loxilb-ingress
+spec:
+  #ingressClassName: loxilb
+  tls:
+  - hosts:
+    - domain1.loxilb.io
+    secretName: loxilb-ssl
+  rules:
+  - host: domain1.loxilb.io
+    http:
+      paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: site-handler-service
+              port:
+                number: 80
+</code></pre>
+<p>Double check status of pods, services and ingress:</p>
+<pre><code>$ kubectl get pods -A
+NAMESPACE     NAME                                     READY   STATUS    RESTARTS   AGE
+default       site-869fd54548-t82bq                    1/1     Running   0          64m
+kube-system   coredns-6799fbcd5-cp5lv                  1/1     Running   0          3h31m
+kube-system   kube-loxilb-755f6fb85-gbg7f              1/1     Running   0          3h31m
+kube-system   local-path-provisioner-6f5d79df6-47n2b   1/1     Running   0          3h31m
+kube-system   loxilb-ingress-hn5ld                     1/1     Running   0          66m
+kube-system   metrics-server-54fd9b65b-b6c6x           1/1     Running   0          3h31m
+
+$ kubectl get svc -A
+NAMESPACE     NAME                     TYPE           CLUSTER-IP     EXTERNAL-IP        PORT(S)                      AGE
+default       kubernetes               ClusterIP      10.43.0.1      &lt;none&gt;             443/TCP                      3h31m
+default       site-handler-service     ClusterIP      10.43.101.77   &lt;none&gt;             80/TCP                       64m
+kube-system   kube-dns                 ClusterIP      10.43.0.10     &lt;none&gt;             53/UDP,53/TCP,9153/TCP       3h31m
+kube-system   loxilb-ingress-manager   LoadBalancer   10.43.136.1    llb-192.168.80.9   80:31686/TCP,443:31994/TCP   65m
+kube-system   metrics-server           ClusterIP      10.43.236.60   &lt;none&gt;             443/TCP                      3h31m
+
+
+$ kubectl get ingress -A
+NAMESPACE   NAME                  CLASS    HOSTS               ADDRESS   PORTS     AGE
+default     site-loxilb-ingress   &lt;none&gt;   domain1.loxilb.io             80, 443   65m
+</code></pre>
+<p>We can for the above example and create backend apps for other hostnames e.g. <code>domain2.loxilb.io</code> and configure ingress rules.</p>
+<h2 id="testing-loxilb-ingress">Testing loxilb ingress</h2>
+<p>If you are testing locally you can simply add the following for dns resolution in your bastion/host :</p>
+<pre><code>$ tail -n 2  /etc/hosts
+192.168.80.9   domain1.loxilb.io
+
+</code></pre>
+<p>The above step is similar to adding A records in a DNS like route53.</p>
+<ul>
+<li>Finally, try to access the service "domain1.loxilb.io" :</li>
+</ul>
+<pre><code>$ curl -H &quot;HOST: domain1.loxilb.io&quot; https://domain1.loxilb.io
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Welcome to nginx!&lt;/title&gt;
+&lt;style&gt;
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Welcome to nginx!&lt;/h1&gt;
+&lt;p&gt;If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.&lt;/p&gt;
+
+&lt;p&gt;For online documentation and support please refer to
+&lt;a href=&quot;http://nginx.org/&quot;&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;
+Commercial support is available at
+&lt;a href=&quot;http://nginx.com/&quot;&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Thank you for using nginx.&lt;/em&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+
+        <div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

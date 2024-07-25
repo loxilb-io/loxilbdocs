@@ -161,6 +161,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://loxilb-io.github.io/loxilbdocs/loxilb-ingress/</loc>
+         <lastmod>2024-07-25</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://loxilb-io.github.io/loxilbdocs/loxilb-nginx-ingress/</loc>
          <lastmod>2024-07-25</lastmod>
          <changefreq>daily</changefreq>
