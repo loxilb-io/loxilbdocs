@@ -32,10 +32,10 @@ Service type load-balancer is usually provided by public cloud-provider(s) as a 
 loxilb works as a L4 load-balancer/service-proxy by default. Although L4 load-balancing provides great performance and functionality, at times, an equally performant L7 load-balancer is also necessary in K8s for various use-cases. loxilb also supports L7 load-balancing in the form of Kubernetes Ingress implementation. This also benefit users who need L4 and L7 load-balancing under the same hood.   
 
 Additionally, loxilb also supports:   
-- kube-proxy replacement with eBPF(full cluster-mesh implementation for Kubernetes)   
-- Ingress Support   
-- Kubernetes Gateway API   
-- Kubernetes Network Policies (in-progress)  
+- [x] kube-proxy replacement with eBPF(full cluster-mesh implementation for Kubernetes)   
+- [x] Ingress Support   
+- [x] Kubernetes Gateway API   
+- [ ] Kubernetes Network Policies (in-progress)  
 
 ## Telco-Cloud with loxilb
 For deploying telco-cloud with cloud-native functions, loxilb can be used as a SCP(service communication proxy). SCP is a communication proxy defined by [3GPP](https://www.etsi.org/deliver/etsi_ts/129500_129599/129500/16.04.00_60/ts_129500v160400p.pdf) and aimed at optimizing telco micro-services running in cloud-native environment. Read more about it [here](https://dev.to/nikhilmalik/5g-service-communication-proxy-with-loxilb-4242).    
@@ -161,7 +161,24 @@ Telco-cloud requires load-balancing and communication across various interfaces/
 - [Mitigating Spectre-PHT using Speculation Barriers in Linux BPF](https://arxiv.org/pdf/2405.00078)   
 
 ## Latest CICD Status
+<div class="grid cards" markdown>
 
+-   :simple-ubuntu:{ .lg .middle } __ Features(Ubuntu20.04)__
+
+    ---
+    ![build workflow](https://github.com/loxilb-io/loxilb/actions/workflows/docker-image.yml/badge.svg)    
+    ![simple workflow](https://github.com/loxilb-io/loxilb/actions/workflows/basic-sanity.yml/badge.svg)    
+    [![tcp-lb-sanity-CI](https://github.com/loxilb-io/loxilb/actions/workflows/tcp-sanity.yml/badge.svg)](https://github.com/loxilb-io/loxilb/actions/workflows/tcp-sanity.yml)    
+
+-   :material-ubuntu:{ .lg .middle } __ Features(Ubuntu20.04)__
+
+    ---
+    [![Docker-Multi-Arch](https://github.com/loxilb-io/loxilb/actions/workflows/docker-multiarch.yml/badge.svg)](https://github.com/loxilb-io/loxilb/actions/workflows/docker-multiarch.yml)    
+    [![Sanity-CI-Ubuntu-22](https://github.com/loxilb-io/loxilb/actions/workflows/basic-sanity-ubuntu-22.yml/badge.svg)](https://github.com/loxilb-io/loxilb/actions/workflows/basic-sanity-ubuntu-22.yml)    
+    [![tcp-lb-sanity-CI](https://github.com/loxilb-io/loxilb/actions/workflows/tcp-sanity-ubuntu-22.yml/badge.svg)](https://github.com/loxilb-io/loxilb/actions/workflows/tcp-sanity-ubuntu-22.yml)    
+
+</div>    
+    
 | Features(Ubuntu20.04) | Features(Ubuntu22.04)|  
 |:----------|:-------------|
 | ![build workflow](https://github.com/loxilb-io/loxilb/actions/workflows/docker-image.yml/badge.svg)  |  [![Docker-Multi-Arch](https://github.com/loxilb-io/loxilb/actions/workflows/docker-multiarch.yml/badge.svg)](https://github.com/loxilb-io/loxilb/actions/workflows/docker-multiarch.yml) | 
