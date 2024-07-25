@@ -1,12 +1,36 @@
-site_name: loxilb v0.9.5
-site_url: https://loxilb-io.github.io/loxilbdocs 
+site_name: LoxiLB
+site_url: https://loxilb-io.github.io/loxilbdocs
+repo_name: loxilb-io/loxilb
+repo_url: https://github.com/loxilb-io/loxilb
 theme:
     name: mkdocs
     features:
-        - navigation.sections
+        - navigation.expand
+        - navigation.instant
+        - navigation.tracking
+        - navigation.indexes
         - search.suggest
     analytics:
         gtag: G-21G7NBL2BN 
+    icon:
+        repo: fontawesome/brands/github
+    font:
+      text: Quicksand
+    palette:
+      - scheme: default
+        media: "(prefers-color-scheme: light)"
+        primary: deep purple
+        accent: purple
+        toggle:
+          icon: material/weather-night
+          name: Switch to dark mode
+      - scheme: slate
+        media: "(prefers-color-scheme: dark)"
+        primary: purple
+        accent: purple
+        toggle:
+          icon: material/weather-sunny
+          name: Switch to light mode
 nav:
   - Home: index.md
   - Architectural Considerations:
@@ -60,17 +84,26 @@ nav:
         - 5G Uplink Classifier Using loxilb: https://futuredon.medium.com/5g-uplink-classifier-using-loxilb-7593a4d66f4c
         - K3s - Using loxilb as external service lb: https://cloudybytes.medium.com/k3s-using-loxilb-as-external-service-lb-2ea4ce61e159
         - 5G SCTP LoadBalancer Using LoxiLB Applying on free5GC: https://medium.com/@ben0978327139/5g-sctp-loadbalancer-using-loxilb-applying-on-free5gc-b5c05bb723f0
-  - More:
-      - GitHub: https://github.com/loxilb-io/loxilb
-      - Website: https://www.loxilb.io/
-      - Community Forum: https://github.com/loxilb-io/loxilb/discussions
-      - Join Slack: https://join.slack.com/t/loxilb/shared_invite/zt-2b3xx14wg-P7WHj5C~OEON_jviF0ghcQ
+  - Visit Website: https://www.loxilb.io/
+     
 extra:
     version: v0.9.5 (Latest)
 
 extra_css:
   - stylesheets/extra.css
-
+  
+markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - admonition
+  - pymdownx.details
+  - pymdownx.snippets
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
+      
 plugins:
   - mermaid2
   - search
+  - autorefs
