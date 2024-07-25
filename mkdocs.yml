@@ -104,6 +104,8 @@ markdown_extensions:
   - tables
   - attr_list
   - md_in_html
+  - toc:
+      title: On this page
   - pymdownx.tasklist:
       custom_checkbox: true
       
