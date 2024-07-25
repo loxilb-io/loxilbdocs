@@ -4,7 +4,7 @@ In Kubernetes, there is usually a lot of overlap between network load-balancer a
 
 | Feature       | Ingress       | Load-balancer |
 | ------------- | ------------- |-------------- |
-| Protocol      | HTTP level (Layer7)  | Network Layer4   |
+| Protocol      | HTTP(s) level - Layer7  | Network Layer4   |
 | Additional Features | Ingress Rules, Resource-Backends, | Based on L4 Session Params |
 ||Path-Types, HostName   |   |
 | Yaml Manifest| apiVersion: networking.k8s.io/v2 | type: LoadBalancer|
@@ -230,7 +230,6 @@ If you are testing locally you can simply add the following for dns resolution i
 ```
 $ tail -n 2  /etc/hosts
 192.168.80.9   domain1.loxilb.io
-
 ```
 The above step is similar to adding A records in a DNS like route53.
 
