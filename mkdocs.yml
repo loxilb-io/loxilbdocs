@@ -4,11 +4,9 @@ theme:
     name: mkdocs
     features:
         - navigation.sections
+        - search.suggest
     analytics:
         gtag: G-21G7NBL2BN 
-plugins:
-  - search:
-      lang: en
 nav:
   - Home: index.md
   - Architectural Considerations:
@@ -75,3 +73,4 @@ extra_css:
 
 plugins:
   - mermaid2
+  - search
