@@ -1,33 +1,12 @@
-site_name: LoxiLB
-site_url: https://loxilb-io.github.io/loxilbdocs
-repo_name: loxilb-io/loxilb
-repo_url: https://github.com/loxilb-io/loxilb
+site_name: loxilb v0.9.5
+site_url: https://loxilb-io.github.io/loxilbdocs 
 theme:
-    name: material
-    logo: photos/loxilb-logo.png
+    name: mkdocs
     features:
-        - navigation.expand
-        - navigation.instant
-        - navigation.tracking
-        - navigation.indexes
-        - search.suggest
+        - navigation.sections
     analytics:
         gtag: G-21G7NBL2BN 
-    icon:
-        repo: fontawesome/brands/github
-    palette:
-        - scheme: default
-          media: "(prefers-color-scheme: light)"
-          primary: indigo
-          toggle:
-              icon: material/weather-night
-              name: Switch to dark mode
-        - scheme: slate
-          media: "(prefers-color-scheme: dark)"
-          primary: cyan
-          toggle:
-             icon: material/weather-sunny
-             name: Switch to light mode
+
 nav:
   - Home: index.md
   - Architectural Considerations:
@@ -81,25 +60,11 @@ nav:
         - 5G Uplink Classifier Using loxilb: https://futuredon.medium.com/5g-uplink-classifier-using-loxilb-7593a4d66f4c
         - K3s - Using loxilb as external service lb: https://cloudybytes.medium.com/k3s-using-loxilb-as-external-service-lb-2ea4ce61e159
         - 5G SCTP LoadBalancer Using LoxiLB Applying on free5GC: https://medium.com/@ben0978327139/5g-sctp-loadbalancer-using-loxilb-applying-on-free5gc-b5c05bb723f0
-     
 extra:
     version: v0.9.5 (Latest)
-    homepage: https://www.loxilb.io/ 
+
 extra_css:
   - stylesheets/extra.css
-  
-markdown_extensions:
-  - pymdownx.highlight
-  - pymdownx.inlinehilite
-  - pymdownx.superfences
-  - admonition
-  - pymdownx.details
-  - pymdownx.snippets
-  - def_list
-  - pymdownx.tasklist:
-      custom_checkbox: true
-      
+
 plugins:
   - mermaid2
-  - search
-  - autorefs
