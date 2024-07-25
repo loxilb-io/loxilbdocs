@@ -4,6 +4,7 @@ repo_name: loxilb-io/loxilb
 repo_url: https://github.com/loxilb-io/loxilb
 theme:
     name: material
+    logo: photos/loxilb-logo.png
     features:
         - navigation.expand
         - navigation.instant
@@ -14,20 +15,16 @@ theme:
         gtag: G-21G7NBL2BN 
     icon:
         repo: fontawesome/brands/github
-    font:
-      text: Quicksand
     palette:
         - scheme: default
           media: "(prefers-color-scheme: light)"
-          primary: deep purple
-          accent: purple
+          primary: indigo
           toggle:
               icon: material/weather-night
               name: Switch to dark mode
         - scheme: slate
           media: "(prefers-color-scheme: dark)"
-          primary: purple
-          accent: purple
+          primary: cyan
           toggle:
              icon: material/weather-sunny
              name: Switch to light mode
@@ -84,11 +81,10 @@ nav:
         - 5G Uplink Classifier Using loxilb: https://futuredon.medium.com/5g-uplink-classifier-using-loxilb-7593a4d66f4c
         - K3s - Using loxilb as external service lb: https://cloudybytes.medium.com/k3s-using-loxilb-as-external-service-lb-2ea4ce61e159
         - 5G SCTP LoadBalancer Using LoxiLB Applying on free5GC: https://medium.com/@ben0978327139/5g-sctp-loadbalancer-using-loxilb-applying-on-free5gc-b5c05bb723f0
-  - Visit Website: https://www.loxilb.io/
      
 extra:
     version: v0.9.5 (Latest)
-
+    homepage: https://www.loxilb.io/ 
 extra_css:
   - stylesheets/extra.css
   
