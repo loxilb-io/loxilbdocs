@@ -28,21 +28,24 @@ theme:
              icon: material/weather-sunny
              name: Switch to light mode
 nav:
-  - Home: index.md
+  - LoxiLB: index.md
   - Architectural Considerations:
       - Understanding loxilb deployment in K8s with kube-loxilb: kube-loxilb.md
       - Understanding High-availability with loxilb: ha-deploy.md
   - Getting Started:
-      - ext-cluster pod - K3s/loxilb with default flannel: k3s_quick_start_flannel.md
-      - ext-cluster pod - K3s/loxilb with calico: k3s_quick_start_calico.md
-      - ext-cluster pod - K3s/loxilb with cilium: quick_start_with_cilium.md
-      - ext-cluster pod - K0s/loxilb with kube-router: k0s_quick_start.md
-      - in-cluster pod - K3s/loxilb in-cluster mode: k3s_quick_start_incluster.md
-      - in-cluster pod - K0s/loxilb in-cluster mode: k0s_quick_start_incluster.md
-      - in-cluster pod - MicroK8s/loxilb in-cluster mode: microk8s_quick_start_incluster.md
-      - service-proxy - K3s/loxilb service-proxy with flannel: service-proxy-flannel.md
-      - service-proxy - K3s/loxilb service-proxy with calico: service-proxy-calico.md
-      - loxilb in standalone mode: standalone.md
+      - External Cluster Mode:
+          - K3s/loxilb with default flannel: k3s_quick_start_flannel.md
+          - K3s/loxilb with calico: k3s_quick_start_calico.md
+          - K3s/loxilb with cilium: quick_start_with_cilium.md
+          - K0s/loxilb with kube-router: k0s_quick_start.md
+      - In-cluster Mode:
+          - K3s/loxilb in-cluster mode: k3s_quick_start_incluster.md
+          - K0s/loxilb in-cluster mode: k0s_quick_start_incluster.md
+          - MicroK8s/loxilb in-cluster mode: microk8s_quick_start_incluster.md
+      - Service-proxy Mode:
+          - K3s/loxilb service-proxy with flannel: service-proxy-flannel.md
+          - K3s/loxilb service-proxy with calico: service-proxy-calico.md
+      - Standalone mode: standalone.md
   - Advanced Guides:
       - How-To - service-group zones: service-zones.md
       - How-To - access end-points outside K8s: ext-ep.md
