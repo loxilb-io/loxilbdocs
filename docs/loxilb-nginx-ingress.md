@@ -12,7 +12,7 @@ In Kubernetes, there is usually a lot of overlap between network load-balancer a
 
 With Kubernetes ingress, we can expose multiple paths with the same service IP. This might be helpful if one is using public cloud, where one has to pay for managed LB services. Hence, creating a single service and exposing mulitple URL paths might be optimal in such use-cases.
 
-For this example, we will use ingress-nginx which is a kubernetes community driven ingress. loxilb has its own [ingress implementation](docs/loxilb-ingress.md), which is optimized (with eBPF helpers) for cases which require long-lived connections, https termination etc. However, if someone needs to use it any other ingress implementation, they can follow this guide. This guide uses ingress-nginx as the ingress implementation.
+For this example, we will use ingress-nginx which is a kubernetes community driven ingress. loxilb has its own [ingress implementation](loxilb-ingress.md), which is optimized (with eBPF helpers) for cases which require long-lived connections, https termination etc. However, if someone needs to use it any other ingress implementation, they can follow this guide. This guide uses ingress-nginx as the ingress implementation.
 
 ### Considerations
 
