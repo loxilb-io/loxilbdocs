@@ -1925,7 +1925,7 @@
 </tbody>
 </table>
 <p>With Kubernetes ingress, we can expose multiple paths with the same service IP. This might be helpful if one is using public cloud, where one has to pay for managed LB services. Hence, creating a single service and exposing mulitple URL paths might be optimal in such use-cases.</p>
-<p>For this example, we will use ingress-nginx which is a kubernetes community driven ingress. loxilb has its own <a href="docs/loxilb-ingress.md">ingress implementation</a>, which is optimized (with eBPF helpers) for cases which require long-lived connections, https termination etc. However, if someone needs to use it any other ingress implementation, they can follow this guide. This guide uses ingress-nginx as the ingress implementation.</p>
+<p>For this example, we will use ingress-nginx which is a kubernetes community driven ingress. loxilb has its own <a href="../loxilb-ingress/">ingress implementation</a>, which is optimized (with eBPF helpers) for cases which require long-lived connections, https termination etc. However, if someone needs to use it any other ingress implementation, they can follow this guide. This guide uses ingress-nginx as the ingress implementation.</p>
 <h3 id="considerations">Considerations</h3>
 <p>This example is not specific to any particular managed kubernetes implementation like EKS, GKE etc but should work well with any. We will simply use K3s as a based kubernetes platform.</p>
 <h3 id="install-k3s">Install K3s</h3>
