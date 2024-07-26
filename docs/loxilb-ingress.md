@@ -55,7 +55,7 @@ metadata:
 type: Opaque
 ```
 
-Please note the above are just dummy values but they need to be in base64 format. How do you get the base64 values from server.crt and server.key files ?
+The above values are just dummy values but it is important to note that they need to be in base64 format not in pem format. How do we get the base64 values from server.crt and server.key files ?
 
 ```
 $ base64 server.crt
@@ -64,7 +64,7 @@ $ base64 server.key
 LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0tCk1JRzJBZ0VBTUJBR0J5cUdTTTQ5Q.....
 ```
 
-After applying the yaml, we can check the created secret :
+Now, after applying the yaml, we can check the created secret :
 ```
 $ kubectl get secret -n kube-system loxilb-ssl
 NAME         TYPE     DATA   AGE
@@ -72,7 +72,6 @@ loxilb-ssl   Opaque   2      106m
 ```
 
 In the subsequent steps, this secret ```loxilb-ssl``` will be used throughout.
-
 
 ### Install loxilb-ingress
 
