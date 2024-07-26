@@ -11,6 +11,7 @@ theme:
         - navigation.tracking
         - navigation.indexes
         - navigation.top
+        - navigation.footer
         - search.suggest
     analytics:
         gtag: G-21G7NBL2BN 
@@ -90,7 +91,19 @@ nav:
      
 extra:
     version: v0.9.5 (Latest)
-    homepage: https://www.loxilb.io/ 
+    homepage: https://www.loxilb.io/
+    social:
+        - icon: fontawesome/brands/github
+          link: https://github.com/loxilb-io/loxilb
+          name: GitHub
+        - icon: fontawesome/brands/linkedin
+          link: https://www.linkedin.com/company/loxilb/
+          name: LinkedIn
+        - icon: material/web
+          link: https://www.loxilb.io/
+          name: Website
+        - icon: fontawesome/brands/slack
+          link: https://join.slack.com/t/loxilb/shared_invite/zt-2b3xx14wg-P7WHj5C~OEON_jviF0ghcQ
 
 extra_css:
   - stylesheets/extra.css
