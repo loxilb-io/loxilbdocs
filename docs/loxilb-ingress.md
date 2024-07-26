@@ -76,7 +76,7 @@ In the subsequent steps, this secret ```loxilb-ssl``` will be used throughout.
 ### Install loxilb-ingress
 
 ```
-kubectl apply -f https://raw.githubusercontent.com/loxilb-io/loxilb-ingress/manifests/loxilb-ingress-deploy.yml
+kubectl apply -f https://raw.githubusercontent.com/loxilb-io/loxilb-ingress/main/manifests/loxilb-ingress-deploy.yml
 ```
 
 Check status of running pods :
