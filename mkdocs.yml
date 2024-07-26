@@ -31,7 +31,7 @@ theme:
              icon: material/weather-sunny
              name: Switch to light mode
 nav:
-  - LoxiLB: index.md
+  - Introduction: index.md
   - Architectural Considerations:
       - Understanding loxilb deployment in K8s with kube-loxilb: kube-loxilb.md
       - Understanding High-availability with loxilb: ha-deploy.md
