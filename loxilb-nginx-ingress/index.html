@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#how-to-run-loxilb-with-ingress" class="md-skip">
+        <a href="#how-to-run-loxilb-with-ingress-nginx" class="md-skip">
           Skip to content
         </a>
       
@@ -1808,13 +1808,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#how-to-run-loxilb-with-ingress" class="md-nav__link">
+  <a href="#how-to-run-loxilb-with-ingress-nginx" class="md-nav__link">
     <span class="md-ellipsis">
-      How to run loxilb with ingress
+      How to run loxilb with ingress-nginx
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="How to run loxilb with ingress">
+    <nav class="md-nav" aria-label="How to run loxilb with ingress-nginx">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1896,11 +1896,36 @@
 
   <h1>Loxilb nginx ingress</h1>
 
-<h2 id="how-to-run-loxilb-with-ingress">How to run loxilb with ingress</h2>
+<h2 id="how-to-run-loxilb-with-ingress-nginx">How to run loxilb with ingress-nginx</h2>
 <p>In Kubernetes, there is usually a lot of overlap between network load-balancer and an Ingress functionality. This creates a lot of confusion. Overall, the differences between an Ingress and a load-balancer service can be categorized as follows:</p>
-<p><img alt="image" src="https://github.com/loxilb-io/loxilbdocs/assets/111065900/ed3fcbcb-2e8b-40d6-90dc-6b5f3539e963" /></p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Ingress</th>
+<th>Load-balancer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Protocol</td>
+<td>HTTP(s) level - Layer7</td>
+<td>Network Layer4</td>
+</tr>
+<tr>
+<td>Additional Features</td>
+<td>Ingress Rules, Resource-Backends</td>
+<td>Based on L4 Session Params</td>
+</tr>
+<tr>
+<td>Yaml Manifest</td>
+<td>apiVersion: networking.k8s.io/v2</td>
+<td>type: LoadBalancer</td>
+</tr>
+</tbody>
+</table>
 <p>With Kubernetes ingress, we can expose multiple paths with the same service IP. This might be helpful if one is using public cloud, where one has to pay for managed LB services. Hence, creating a single service and exposing mulitple URL paths might be optimal in such use-cases.</p>
-<p>For this example, we will use ingress-nginx which is a kubernetes community driven ingress. loxilb itself also supports its own ingress ingress (not covered here), which is optimized for cases which require long-lived connections and https termination with eBPF. However, if someone needs more policy oriented ingress, ingress-nginx might be the right fit.</p>
+<p>For this example, we will use ingress-nginx which is a kubernetes community driven ingress. loxilb has its own <a href="docs/loxilb-ingress.md">ingress implementation</a>, which is optimized (with eBPF helpers) for cases which require long-lived connections, https termination etc. However, if someone needs to use it any other ingress implementation, they can follow this guide. This guide uses ingress-nginx as the ingress implementation.</p>
 <h3 id="considerations">Considerations</h3>
 <p>This example is not specific to any particular managed kubernetes implementation like EKS, GKE etc but should work well with any. We will simply use K3s as a based kubernetes platform.</p>
 <h3 id="install-k3s">Install K3s</h3>
