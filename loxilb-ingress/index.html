@@ -2093,13 +2093,13 @@ metadata:
   namespace: kube-system
 type: Opaque
 </code></pre></div></p>
-<p>Please note the above are just dummy values but they need to be in base64 format. How do you get the base64 values from server.crt and server.key files ?</p>
+<p>The above values are just dummy values but it is important to note that they need to be in base64 format not in pem format. How do we get the base64 values from server.crt and server.key files ?</p>
 <div class="highlight"><pre><span></span><code>$ base64 server.crt
 LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUI3RENDQVhPZ0F3SUJBZ0lJU.....
 $ base64 server.key
 LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0tCk1JRzJBZ0VBTUJBR0J5cUdTTTQ5Q.....
 </code></pre></div>
-<p>After applying the yaml, we can check the created secret :
+<p>Now, after applying the yaml, we can check the created secret :
 <div class="highlight"><pre><span></span><code>$ kubectl get secret -n kube-system loxilb-ssl
 NAME         TYPE     DATA   AGE
 loxilb-ssl   Opaque   2      106m
