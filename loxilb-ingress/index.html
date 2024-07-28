@@ -2065,14 +2065,14 @@
 <p>When using Ingress, the clients connect to one of the pods through Ingress. The clients first perform a DNS lookup which returns IP address of the ingress. This IP address is usually funnelled through a L4 Load-balancer. The client sends a HTTP(s) request to Ingress specifying URL, hostname and other HTTP headers. Based on the HTTP payload, the ingress finds an associated Service and its EndPoint Objects. The Ingress then forwards the client's request to appopriate pod. It can also serve as HTTS termination point or as a mTLS hub.</p>
 <p><img src="https://github.com/user-attachments/assets/638c9c96-ce4e-4950-9070-fe734a1a5e12" width="450" ></p>
 <p>With Kubernetes ingress, we can expose multiple paths with the same service IP. This might be helpful if one is using public cloud, where one has to pay for managed LB services. Hence, creating a single service and exposing mulitple URL paths might be optimal in such use-cases.</p>
-<p>loxilb-ingress is optimized for cases which require long-lived connections and https termination with eBPF.</p>
+<p><a href="https://github.com/loxilb-io/loxilb-ingress">loxilb-ingress</a> is optimized for cases which require long-lived connections and https termination with eBPF.</p>
 <h3 id="getting-started">Getting Started</h3>
 <p>The following getting started example is  based on  <a href="https://k3s.io/">K3s</a> as the kubernetes platform but should work on any kubernetes implementation or distribution like EKS, GKE etc but should work well with any. We will use K3s as the kubernetes platform.</p>
 <h3 id="install-k3s">Install K3s</h3>
 <div class="highlight"><pre><span></span><code>curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC=&quot;--disable traefik,servicelb&quot; K3S_KUBECONFIG_MODE=&quot;644&quot; sh -
 </code></pre></div>
 <h3 id="install-loxilb-as-a-l4-service-lb">Install loxilb as a L4 service LB</h3>
-<p>Follow any of the getting started <a href="https://github.com/loxilb-io/loxilb?tab=readme-ov-file#getting-started">guides</a> as per requirement. In this example, we will run loxilb-lb in external mode. Check all the pods are up and running as expected :</p>
+<p>Follow any of the <a href="https://github.com/loxilb-io/loxilb">loxilb</a> getting started <a href="https://github.com/loxilb-io/loxilb?tab=readme-ov-file#getting-started">guides</a> as per requirement. In this example, we will run loxilb-lb in external mode. Check all the pods are up and running as expected :</p>
 <div class="highlight"><pre><span></span><code>$ kubectl get pods -A
 NAMESPACE     NAME                                     READY   STATUS    RESTARTS   AGE
 kube-system   coredns-6799fbcd5-cp5lv                  1/1     Running   0          3h26m
