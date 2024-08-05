@@ -110,7 +110,8 @@ Initial release of loxilb
     - Native eBPF implementation for Policy based IP Masquerade/SNAT  
     - Kubernetes vCluster support   
     - E2E SCTP multi-homing support with Multus   
-    - Multi-AZ/Region hitless HA support for AWS/EKS   
+    - Multi-AZ/Region hitless HA support for AWS/EKS
+    - Service communication proxy support for Telco deployments    
 
 - **Kubernetes Support**: 
     - Kubernetes 1.30   
@@ -143,5 +144,6 @@ Initial release of loxilb
 
 - **Kubernetes Support**: 
     - Kubernetes 1.31   
-    - Multi-cluster support   
+    - Multi-cluster support
+    - Support for Cilium and LoxiLB in-cluster [support](https://github.com/loxilb-io/kube-loxilb/issues/158)    
     - Kubernetes network policy support    
