@@ -107,41 +107,42 @@ Initial release of loxilb
 - **Functional Features**:
     - L7 (Transparent) proxy
     - HTTPS termination  
-    - Native eBPF implementation for Policy based IP Masquerade/SNAT  
+    - [Native eBPF implementation for Policy based IP Masquerade/SNAT](https://github.com/loxilb-io/loxilb/issues/718)      
     - Kubernetes vCluster support   
     - E2E SCTP multi-homing support with Multus   
-    - Multi-AZ/Region hitless HA support for AWS/EKS
-    - Service communication proxy support for Telco deployments    
+    - [Multi-AZ/Region hitless HA support for AWS/EKS](https://github.com/loxilb-io/loxilb/issues/681)   
+    - [Service communication proxy support for Telco deployments](https://dev.to/nikhilmalik/5g-service-communication-proxy-with-loxilb-4242)      
 
 - **Kubernetes Support**: 
     - Kubernetes 1.30   
-    - CRD for BGP policies    
+    - [CRD for BGP policies](https://github.com/loxilb-io/loxilbdocs/blob/main/docs/k8s_bgp_policy_crd.md)        
  
 ## 0.9.6 (Aug, 2024)   
 
 - **Functional Features**:
-    - Support for any host onearm LB rule    
-    - HTTP 2.0 parser
-    - NGAP protocol parser   
-    - ECMP Load-balancing support   
-    - Rootless Container support
-    - AWS Local-Zone support
-    - Multi-Cloud HA support (AWS+GCP)   
+    - [Support for any host onearm LB rule](https://github.com/loxilb-io/loxilb/pull/694)        
+    - [HTTP 2.0 parser](https://github.com/loxilb-io/loxilb/issues/48)     
+    - [NGAP protocol parser](https://www.loxilb.io/post/ngap-load-balancing-with-loxilb)       
+    - [ECMP Load-balancing support](https://github.com/loxilb-io/loxilb/issues/730)       
+    - [Non-privileged Container support](https://github.com/loxilb-io/loxilb/discussions/654)
+    - [AWS Local-Zone support](https://github.com/loxilb-io/loxilbdocs/blob/main/docs/eks-external.md#restricting-loxilb-service-for-a-local-zone-node-group)    
+    - [Multi-Cloud HA support (AWS+GCP)](https://github.com/loxilb-io/loxilb/issues/697)   
     - Updated CICD workflows     
  
 - **Kubernetes Support**: 
-    - Ingress Manager support   
+    - [Ingress Manager support](https://github.com/loxilb-io/loxilbdocs/blob/main/docs/loxilb-ingress.md)       
     - Enhanced GW API support   
 
 ## 0.9.7 (Oct, 2024)   Planned
 - **Functional Features**:
-    - SRv6 support    
-    - Rolling upgrades     
-    - URL Filtering       
-    - Wireguard support (ingress + egress)    
-    - SIP protocol support   
+    - [SRv6 implementation](https://github.com/loxilb-io/loxilb/issues/14)         
+    - [Rolling upgrades](https://github.com/loxilb-io/loxilb/issues/312)        
+    - [URL Filtering](https://github.com/loxilb-io/loxilb/issues/133)            
+    - [Wireguard support (ingress + egress)](https://github.com/loxilb-io/loxilb/issues/67)        
+    - [SIP protocol support](https://github.com/loxilb-io/loxilb-ebpf/issues/45)       
     - Sockmap support for SCTP
-    - SYNProxy [support](https://github.com/loxilb-io/loxilb/issues/670)    
+    - [Support for proxy protocol v2](https://github.com/loxilb-io/loxilb/issues/675)    
+    - [SYNProxy support](https://github.com/loxilb-io/loxilb/issues/670)    
     - IPSec service mesh for Telco workloads  (ingress + egress)     
 
 - **Kubernetes Support**: 
