@@ -68,14 +68,14 @@ Initial release of loxilb
 ## 0.9.3 (May, 2024)   
 
 - **Functional Features**:
-    - Kube-proxy replacement Support    
+    - Kube-proxy replacement support    
     - IPVS compatibility mode    
     - Master-plane HA support   
     - BFD and GARP support for Hitless HA    
     - Enhancements for Multus support    
-    - SCTP multi-homing end-to-end Support    
-    - Cloud Availability zone(s) Support    
-    - Redhat9 and Ubuntu24 Support   
+    - SCTP multi-homing end-to-end support    
+    - Cloud Availability zone(s) support    
+    - Redhat9 and Ubuntu24 support   
     - Support for upto Linux Kernel 6.8    
     - Full Support for Oracle OCI      
     - SockAddr eBPF for LocalVIP access   
@@ -93,9 +93,9 @@ Initial release of loxilb
 
 - **kube-loxilb Support**: 
     - Kubernetes 1.29   
-    - BGP (auto) Mesh Support    
+    - BGP (auto) Mesh support    
     - CRD for BGP peers    
-    - Kubernetes GWAPI Support   
+    - Kubernetes GWAPI support   
  
 - **Utilities**:  
     - N4 pfcp test-tool added   
@@ -108,8 +108,8 @@ Initial release of loxilb
     - L7 (Transparent) proxy
     - HTTPS termination  
     - Native eBPF implementation for Policy based IP Masquerade/SNAT  
-    - Kubernetes vCluster Support   
-    - E2E SCTP multi-homing Support with Multus   
+    - Kubernetes vCluster support   
+    - E2E SCTP multi-homing support with Multus   
     - Multi-AZ/Region hitless HA support for AWS/EKS   
 
 - **Kubernetes Support**: 
@@ -122,7 +122,8 @@ Initial release of loxilb
     - Support for any host onearm LB rule    
     - HTTP 2.0 parser   
     - ECMP Load-balancing support   
-    - Rootless Container Support   
+    - Rootless Container support
+    - AWS Local-Zone support
     - Multi-Cloud HA support (AWS+GCP)   
     - Updated CICD workflows     
  
@@ -135,8 +136,8 @@ Initial release of loxilb
     - SRv6 support    
     - Rolling upgrades     
     - URL Filtering       
-    - Wireguard Support    
-    - SIP protocol Support   
+    - Wireguard support (ingress + egress)    
+    - SIP protocol support   
     - Sockmap support for SCTP   
     - IPSec service mesh for Telco workloads  (ingress + egress)     
 
