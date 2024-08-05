@@ -140,7 +140,7 @@ Initial release of loxilb
     - [URL Filtering](https://github.com/loxilb-io/loxilb/issues/133)            
     - [Wireguard support (ingress + egress)](https://github.com/loxilb-io/loxilb/issues/67)        
     - [SIP protocol support](https://github.com/loxilb-io/loxilb-ebpf/issues/45)       
-    - Sockmap support for SCTP
+    - [Sockmap support for SCTP](https://github.com/loxilb-io/loxilb/issues/750)     
     - [Support for proxy protocol v2](https://github.com/loxilb-io/loxilb/issues/675)    
     - [SYNProxy support](https://github.com/loxilb-io/loxilb/issues/670)    
     - IPSec service mesh for Telco workloads  (ingress + egress)     
