@@ -147,6 +147,6 @@ Initial release of loxilb
 
 - **Kubernetes Support**: 
     - Kubernetes 1.31   
-    - Multi-cluster support
-    - Support for Cilium and LoxiLB in-cluster [support](https://github.com/loxilb-io/kube-loxilb/issues/158)    
+    - [Multi-cluster support](https://github.com/loxilb-io/loxilb/issues/371)    
+    - [Support for Cilium and LoxiLB in-cluster support](https://github.com/loxilb-io/kube-loxilb/issues/158)    
     - Kubernetes network policy support    
