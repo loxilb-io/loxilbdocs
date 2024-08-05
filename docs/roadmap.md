@@ -121,7 +121,8 @@ Initial release of loxilb
 
 - **Functional Features**:
     - Support for any host onearm LB rule    
-    - HTTP 2.0 parser   
+    - HTTP 2.0 parser
+    - NGAP protocol parser   
     - ECMP Load-balancing support   
     - Rootless Container support
     - AWS Local-Zone support
@@ -139,7 +140,8 @@ Initial release of loxilb
     - URL Filtering       
     - Wireguard support (ingress + egress)    
     - SIP protocol support   
-    - Sockmap support for SCTP   
+    - Sockmap support for SCTP
+    - SYNProxy [support](https://github.com/loxilb-io/loxilb/issues/670)    
     - IPSec service mesh for Telco workloads  (ingress + egress)     
 
 - **Kubernetes Support**: 
