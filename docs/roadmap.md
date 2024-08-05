@@ -95,30 +95,52 @@ Initial release of loxilb
     - Kubernetes 1.29   
     - BGP (auto) Mesh Support    
     - CRD for BGP peers    
-    - Kubernetes GW-API Support   
+    - Kubernetes GWAPI Support   
  
 - **Utilities**:  
     - N4 pfcp test-tool added   
     - Seagull test tool integrated   
     - Massive updates to documentation    
       
-## 0.9.5 (Jul, 2024) - Planned   
+## 0.9.5 (Jul, 2024)   
 
 - **Functional Features**:
-    - SRv6 support  
-    - Rolling upgrades   
-    - L7 (Transparent) proxy   
+    - L7 (Transparent) proxy
     - HTTPS termination  
-    - URL Filtering       
-    - DNS caching   
-    - Wireguard Support  
-    - SIP protocol Support   
-    - Policy based SNAT    
-    - Kubernetes vCluster Support
-    - Rootless Container Support   
+    - Native eBPF implementation for Policy based IP Masquerade/SNAT  
+    - Kubernetes vCluster Support   
+    - E2E SCTP multi-homing Support with Multus   
+    - Multi-AZ/Region hitless HA support for AWS/EKS   
 
-- **kube-loxilb Support**: 
-    - Kubernetes 1.30        
+- **Kubernetes Support**: 
+    - Kubernetes 1.30   
+    - CRD for BGP policies    
+ 
+## 0.9.6 (Aug, 2024)   
+
+- **Functional Features**:
+    - Support for any host onearm LB rule    
+    - HTTP 2.0 parser   
+    - ECMP Load-balancing support   
+    - Rootless Container Support   
+    - Multi-Cloud HA support (AWS+GCP)   
+    - Updated CICD workflows     
+ 
+- **Kubernetes Support**: 
+    - Ingress Manager support   
+    - Enhanced GW API support   
+
+## 0.9.7 (Oct, 2024)   Planned
+- **Functional Features**:
+    - SRv6 support    
+    - Rolling upgrades     
+    - URL Filtering       
+    - Wireguard Support    
+    - SIP protocol Support   
+    - Sockmap support for SCTP   
+    - IPSec service mesh for Telco workloads  (ingress + egress)     
+
+- **Kubernetes Support**: 
+    - Kubernetes 1.31   
     - Multi-cluster support   
-    - CRD for BGP policies   
     - Kubernetes network policy support    
