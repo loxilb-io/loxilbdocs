@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.30">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.31">
     
     
       
@@ -1397,9 +1397,27 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#095-jul-2024-planned" class="md-nav__link">
+  <a href="#095-jul-2024" class="md-nav__link">
     <span class="md-ellipsis">
-      0.9.5 (Jul, 2024) - Planned
+      0.9.5 (Jul, 2024)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#096-aug-2024" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.9.6 (Aug, 2024)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#097-oct-2024-planned" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.9.7 (Oct, 2024) Planned
     </span>
   </a>
   
@@ -1939,9 +1957,27 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#095-jul-2024-planned" class="md-nav__link">
+  <a href="#095-jul-2024" class="md-nav__link">
     <span class="md-ellipsis">
-      0.9.5 (Jul, 2024) - Planned
+      0.9.5 (Jul, 2024)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#096-aug-2024" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.9.6 (Aug, 2024)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#097-oct-2024-planned" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.9.7 (Oct, 2024) Planned
     </span>
   </a>
   
@@ -2098,7 +2134,7 @@
 <li>Kubernetes 1.29   </li>
 <li>BGP (auto) Mesh Support    </li>
 <li>CRD for BGP peers    </li>
-<li>Kubernetes GW-API Support   </li>
+<li>Kubernetes GWAPI Support   </li>
 </ul>
 </li>
 <li>
@@ -2110,30 +2146,67 @@
 </ul>
 </li>
 </ul>
-<h2 id="095-jul-2024-planned">0.9.5 (Jul, 2024) - Planned</h2>
+<h2 id="095-jul-2024">0.9.5 (Jul, 2024)</h2>
 <ul>
 <li>
 <p><strong>Functional Features</strong>:</p>
 <ul>
-<li>SRv6 support  </li>
-<li>Rolling upgrades   </li>
-<li>L7 (Transparent) proxy   </li>
+<li>L7 (Transparent) proxy</li>
 <li>HTTPS termination  </li>
-<li>URL Filtering       </li>
-<li>DNS caching   </li>
-<li>Wireguard Support  </li>
-<li>SIP protocol Support   </li>
-<li>Policy based SNAT    </li>
-<li>Kubernetes vCluster Support</li>
-<li>Rootless Container Support   </li>
+<li>Native eBPF implementation for Policy based IP Masquerade/SNAT  </li>
+<li>Kubernetes vCluster Support   </li>
+<li>E2E SCTP multi-homing Support with Multus   </li>
+<li>Multi-AZ/Region hitless HA support for AWS/EKS   </li>
 </ul>
 </li>
 <li>
-<p><strong>kube-loxilb Support</strong>: </p>
+<p><strong>Kubernetes Support</strong>: </p>
 <ul>
-<li>Kubernetes 1.30        </li>
+<li>Kubernetes 1.30   </li>
+<li>CRD for BGP policies    </li>
+</ul>
+</li>
+</ul>
+<h2 id="096-aug-2024">0.9.6 (Aug, 2024)</h2>
+<ul>
+<li>
+<p><strong>Functional Features</strong>:</p>
+<ul>
+<li>Support for any host onearm LB rule    </li>
+<li>HTTP 2.0 parser   </li>
+<li>ECMP Load-balancing support   </li>
+<li>Rootless Container Support   </li>
+<li>Multi-Cloud HA support (AWS+GCP)   </li>
+<li>Updated CICD workflows     </li>
+</ul>
+</li>
+<li>
+<p><strong>Kubernetes Support</strong>: </p>
+<ul>
+<li>Ingress Manager support   </li>
+<li>Enhanced GW API support   </li>
+</ul>
+</li>
+</ul>
+<h2 id="097-oct-2024-planned">0.9.7 (Oct, 2024)   Planned</h2>
+<ul>
+<li>
+<p><strong>Functional Features</strong>:</p>
+<ul>
+<li>SRv6 support    </li>
+<li>Rolling upgrades     </li>
+<li>URL Filtering       </li>
+<li>Wireguard Support    </li>
+<li>SIP protocol Support   </li>
+<li>Sockmap support for SCTP   </li>
+<li>IPSec service mesh for Telco workloads  (ingress + egress)     </li>
+</ul>
+</li>
+<li>
+<p><strong>Kubernetes Support</strong>: </p>
+<ul>
+<li>Kubernetes 1.31   </li>
 <li>Multi-cluster support   </li>
-<li>CRD for BGP policies   </li>
 <li>Kubernetes network policy support    </li>
 </ul>
 </li>
