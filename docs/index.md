@@ -17,7 +17,7 @@ loxilb dev team was approached by many people who wanted to solve this problem. 
 
 ## What is loxilb
 
-loxilb is an open source cloud-native load-balancer based on GoLang/eBPF with the goal of achieving cross-compatibity across a wide range of on-prem, public-cloud or hybrid K8s environments.   
+loxilb is an open source cloud-native load-balancer based on GoLang/eBPF with the goal of achieving cross-compatibity across a wide range of on-prem, public-cloud or hybrid K8s environments. loxilb is being developed to support the adoption of cloud-native tech in telco, mobility, and edge computing.   
 
 ## Kubernetes with loxilb
 

@@ -68,14 +68,14 @@ Initial release of loxilb
 ## 0.9.3 (May, 2024)   
 
 - **Functional Features**:
-    - Kube-proxy replacement Support    
+    - Kube-proxy replacement support    
     - IPVS compatibility mode    
     - Master-plane HA support   
     - BFD and GARP support for Hitless HA    
     - Enhancements for Multus support    
-    - SCTP multi-homing end-to-end Support    
-    - Cloud Availability zone(s) Support    
-    - Redhat9 and Ubuntu24 Support   
+    - SCTP multi-homing end-to-end support    
+    - Cloud Availability zone(s) support    
+    - Redhat9 and Ubuntu24 support   
     - Support for upto Linux Kernel 6.8    
     - Full Support for Oracle OCI      
     - SockAddr eBPF for LocalVIP access   
@@ -93,32 +93,60 @@ Initial release of loxilb
 
 - **kube-loxilb Support**: 
     - Kubernetes 1.29   
-    - BGP (auto) Mesh Support    
+    - BGP (auto) Mesh support    
     - CRD for BGP peers    
-    - Kubernetes GW-API Support   
+    - Kubernetes GWAPI support   
  
 - **Utilities**:  
     - N4 pfcp test-tool added   
     - Seagull test tool integrated   
     - Massive updates to documentation    
       
-## 0.9.5 (Jul, 2024) - Planned   
+## 0.9.5 (Jul, 2024)   
 
 - **Functional Features**:
-    - SRv6 support  
-    - Rolling upgrades   
-    - L7 (Transparent) proxy   
+    - L7 (Transparent) proxy
     - HTTPS termination  
-    - URL Filtering       
-    - DNS caching   
-    - Wireguard Support  
-    - SIP protocol Support   
-    - Policy based SNAT    
-    - Kubernetes vCluster Support
-    - Rootless Container Support   
+    - [Native eBPF implementation for Policy based IP Masquerade/SNAT](https://github.com/loxilb-io/loxilb/issues/718)      
+    - Kubernetes vCluster support   
+    - E2E SCTP multi-homing support with Multus   
+    - [Multi-AZ/Region hitless HA support for AWS/EKS](https://github.com/loxilb-io/loxilb/issues/681)   
+    - [Service communication proxy support for Telco deployments](https://dev.to/nikhilmalik/5g-service-communication-proxy-with-loxilb-4242)      
 
-- **kube-loxilb Support**: 
-    - Kubernetes 1.30        
-    - Multi-cluster support   
-    - CRD for BGP policies   
+- **Kubernetes Support**: 
+    - Kubernetes 1.30   
+    - [CRD for BGP policies](https://github.com/loxilb-io/loxilbdocs/blob/main/docs/k8s_bgp_policy_crd.md)        
+ 
+## 0.9.6 (Aug, 2024)   
+
+- **Functional Features**:
+    - [Support for any host onearm LB rule](https://github.com/loxilb-io/loxilb/pull/694)        
+    - [HTTP 2.0 parser](https://github.com/loxilb-io/loxilb/issues/48)     
+    - [NGAP protocol parser](https://www.loxilb.io/post/ngap-load-balancing-with-loxilb)       
+    - [ECMP Load-balancing support](https://github.com/loxilb-io/loxilb/issues/730)       
+    - [Non-privileged Container support](https://github.com/loxilb-io/loxilb/discussions/654)
+    - [AWS Local-Zone support](https://github.com/loxilb-io/loxilbdocs/blob/main/docs/eks-external.md#restricting-loxilb-service-for-a-local-zone-node-group)    
+    - [Multi-Cloud HA support (AWS+GCP)](https://github.com/loxilb-io/loxilb/issues/697)   
+    - Updated CICD workflows     
+ 
+- **Kubernetes Support**: 
+    - [Ingress Manager support](https://github.com/loxilb-io/loxilbdocs/blob/main/docs/loxilb-ingress.md)       
+    - Enhanced GW API support   
+
+## 0.9.7 (Oct, 2024)   Planned
+- **Functional Features**:
+    - [SRv6 implementation](https://github.com/loxilb-io/loxilb/issues/14)         
+    - [Rolling upgrades](https://github.com/loxilb-io/loxilb/issues/312)        
+    - [URL Filtering](https://github.com/loxilb-io/loxilb/issues/133)            
+    - [Wireguard support (ingress + egress)](https://github.com/loxilb-io/loxilb/issues/67)        
+    - [SIP protocol support](https://github.com/loxilb-io/loxilb-ebpf/issues/45)       
+    - [Sockmap support for SCTP](https://github.com/loxilb-io/loxilb/issues/750)     
+    - [Support for proxy protocol v2](https://github.com/loxilb-io/loxilb/issues/675)    
+    - [SYNProxy support](https://github.com/loxilb-io/loxilb/issues/670)    
+    - IPSec service mesh for Telco workloads  (ingress + egress)     
+
+- **Kubernetes Support**: 
+    - Kubernetes 1.31   
+    - [Multi-cluster support](https://github.com/loxilb-io/loxilb/issues/371)    
+    - [Support for Cilium and LoxiLB in-cluster support](https://github.com/loxilb-io/kube-loxilb/issues/158)    
     - Kubernetes network policy support    

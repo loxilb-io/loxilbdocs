@@ -15,7 +15,7 @@ When using Ingress, the clients connect to one of the pods through Ingress. The 
 
 With Kubernetes ingress, we can expose multiple paths with the same service IP. This might be helpful if one is using public cloud, where one has to pay for managed LB services. Hence, creating a single service and exposing mulitple URL paths might be optimal in such use-cases.
 
-loxilb-ingress is optimized for cases which require long-lived connections and https termination with eBPF.
+[loxilb-ingress](https://github.com/loxilb-io/loxilb-ingress) is optimized for cases which require long-lived connections and https termination with eBPF.
 
 ### Getting Started
 
@@ -28,7 +28,7 @@ curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--disable traefik,servicelb" K3
 
 ### Install loxilb as a L4 service LB
 
-Follow any of the getting started [guides](https://github.com/loxilb-io/loxilb?tab=readme-ov-file#getting-started) as per requirement. In this example, we will run loxilb-lb in external mode. Check all the pods are up and running as expected :
+Follow any of the [loxilb](https://github.com/loxilb-io/loxilb) getting started [guides](https://github.com/loxilb-io/loxilb?tab=readme-ov-file#getting-started) as per requirement. In this example, we will run loxilb-lb in external mode. Check all the pods are up and running as expected :
 
 ```
 $ kubectl get pods -A
@@ -76,7 +76,7 @@ In the subsequent steps, this secret ```loxilb-ssl``` will be used throughout.
 ### Install loxilb-ingress
 
 ```
-kubectl apply -f https://raw.githubusercontent.com/loxilb-io/loxilb-ingress/manifests/loxilb-ingress-deploy.yml
+kubectl apply -f https://raw.githubusercontent.com/loxilb-io/loxilb-ingress/main/manifests/loxilb-ingress-deploy.yml
 ```
 
 Check status of running pods :
