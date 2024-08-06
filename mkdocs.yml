@@ -96,6 +96,7 @@ nav:
      
 extra:
     version: v0.9.5 (Latest)
+        provider: mike
     homepage: https://www.loxilb.io/
     social:
         - icon: fontawesome/brands/github
@@ -109,7 +110,6 @@ extra:
           name: Website
         - icon: fontawesome/brands/slack
           link: https://join.slack.com/t/loxilb/shared_invite/zt-2b3xx14wg-P7WHj5C~OEON_jviF0ghcQ
-
 extra_css:
   - stylesheets/extra.css
   
