@@ -12,8 +12,9 @@ jobs:
         with:
           fetch-depth: 0
       - uses: actions/setup-python@v2
-      - run: pip install --upgrade pip && pip install mkdocs mkdocs-gen-files mkdocs-mermaid2-plugin mkdocs-autorefs mkdocs-material
+      - run: pip install --upgrade pip && pip install mkdocs mkdocs-gen-files mkdocs-mermaid2-plugin mkdocs-autorefs mkdocs-material mike
       - run: git config user.name 'github-actions[bot]' && git config user.email 'github-actions[bot]@users.noreply.github.com'
       - name: Publish docs
-        run: mkdocs gh-deploy
-
+        run: |
+            mike deploy v0.9.6 latest --update-alias
+            mike set-default latest
