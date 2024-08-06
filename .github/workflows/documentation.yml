@@ -17,5 +17,5 @@ jobs:
       - name: Publish docs
         run: |
             mike deploy --push v0.9.5
-            mike deploy --push --update-alias v0.9.6 latest
+            #mike deploy --push --update-alias v0.9.6 latest
     
