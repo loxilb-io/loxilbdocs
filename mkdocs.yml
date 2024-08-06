@@ -5,6 +5,7 @@ repo_url: https://github.com/loxilb-io/loxilb
 theme:
     name: material
     logo: photos/loxilb-logo.png
+    favicon: photos/loxilb-logo.png
     features:
         - navigation.path
         - navigation.instant
