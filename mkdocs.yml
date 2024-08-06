@@ -99,6 +99,7 @@ extra:
     version:
         provider: mike
         default: latest
+        alias: true
     homepage: https://www.loxilb.io/
     social:
         - icon: fontawesome/brands/github
