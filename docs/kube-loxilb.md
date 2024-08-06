@@ -220,13 +220,11 @@ spec:
   remoteAs: 65123
   remotePort: 179
 ```
-
 3. Apply CRD to add a new BGP Peer   
 
 ```
 kubectl apply -f bgp-peer.yaml
 ```
-
 4. Verify the applied CRD   
 
 You can check it in two ways. The first one can be checked through loxicmd(in loxilb container), and the second one can be checked through kubectl.    
