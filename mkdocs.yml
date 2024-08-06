@@ -95,7 +95,7 @@ nav:
         - 5G SCTP LoadBalancer Using LoxiLB Applying on free5GC: https://medium.com/@ben0978327139/5g-sctp-loadbalancer-using-loxilb-applying-on-free5gc-b5c05bb723f0
      
 extra:
-    version: v0.9.5 (Latest)
+    version:
         provider: mike
     homepage: https://www.loxilb.io/
     social:
