@@ -16,5 +16,6 @@ jobs:
       - run: git config user.name 'github-actions[bot]' && git config user.email 'github-actions[bot]@users.noreply.github.com'
       - name: Publish docs
         run: |
+            mike deploy --push v0.9.5
             mike deploy --push --update-alias ${{ github.event.release.tag_name }} latest
             mike set-default --push latest
