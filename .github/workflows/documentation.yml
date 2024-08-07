@@ -4,6 +4,11 @@ on:
     branches:
       - main
   workflow_dispatch:
+    inputs:
+      tagName:
+        description: 'Tag Name'     
+        required: true
+        default: 'latest'
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -16,8 +21,13 @@ jobs:
       - run: git config user.name 'github-actions[bot]' && git config user.email 'github-actions[bot]@users.noreply.github.com'
       - name: Get the latest version
         run: echo "version=$(curl --silent -m 10 --connect-timeout 5 "https://api.github.com/repos/loxilb-io/loxilb/releases/latest" | jq -r .name)" >> "$GITHUB_ENV"
-      - name: Publish docs
-        run: mkdocs gh-deploy
-        #run: |
-        #    mike deploy --push ${{ env.version }}
-        #     mike set-default ${{ env.version }} 
+      - name: Publish docs for latest
+        if: github.event.inputs.tagName == '' 
+        #run: mkdocs gh-deploy
+        run: |
+            mike deploy --push --update-aliases main latest
+            mike set-default main
+      - name: Publish docs for given tag
+        if: github.event.inputs.tagName != ''
+        #run: mkdocs gh-deploy
+        run: mike deploy --push ${{ github.event.inputs.tagName }} --allow-empty
