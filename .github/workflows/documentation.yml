@@ -12,9 +12,11 @@ jobs:
         with:
           fetch-depth: 0
       - uses: actions/setup-python@v2
-      - run: pip install --upgrade pip && pip install mkdocs mkdocs-gen-files mkdocs-mermaid2-plugin mkdocs-autorefs mkdocs-material mike
+      - run: pip install --upgrade pip && pip install mkdocs mkdocs-gen-files mkdocs-mermaid2-plugin mkdocs-autorefs mkdocs-material mike jq
       - run: git config user.name 'github-actions[bot]' && git config user.email 'github-actions[bot]@users.noreply.github.com'
+      - name: Get the latest version
+        run: echo "version=$(curl --silent -m 10 --connect-timeout 5 "https://api.github.com/repos/loxilb-io/loxilb/releases/latest" | jq -r .name)" >> "$GITHUB_ENV"
       - name: Publish docs
         run: |
-             mike deploy --push v0.9.6
+             mike deploy --push ${{ env.version }}
     
