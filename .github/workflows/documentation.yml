@@ -19,4 +19,5 @@ jobs:
       - name: Publish docs
         run: |
              mike deploy --push ${{ env.version }}
+             mike set-default ${{ env.version }} 
     
