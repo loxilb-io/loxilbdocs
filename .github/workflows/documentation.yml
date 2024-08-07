@@ -25,8 +25,8 @@ jobs:
         if: github.event.inputs.tagName == '' 
         #run: mkdocs gh-deploy
         run: |
-            mike deploy --push --update-aliases main latest
-            mike set-default main
+            mike deploy --update-aliases main latest --allow-empty
+            mike set-default latest --push --allow-empty
       - name: Publish docs for given tag
         if: github.event.inputs.tagName != ''
         #run: mkdocs gh-deploy
