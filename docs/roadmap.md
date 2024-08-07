@@ -105,8 +105,8 @@ Initial release of loxilb
 ## 0.9.5 (Jul, 2024)   
 
 - **Functional Features**:
-    - L7 (Transparent) proxy
-    - HTTPS termination  
+    - [L7 (Transparent) proxy](https://github.com/loxilb-io/loxilb/issues/48)
+    - [HTTPS termination](https://github.com/loxilb-io/loxilb/issues/726)  
     - [Native eBPF implementation for Policy based IP Masquerade/SNAT](https://github.com/loxilb-io/loxilb/issues/718)      
     - Kubernetes vCluster support   
     - E2E SCTP multi-homing support with Multus   

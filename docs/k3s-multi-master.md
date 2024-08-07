@@ -227,7 +227,7 @@ EOF
 Kindly note that the args for loxilb might change depending on the scenario. This scenario considers loxilb running in-cluster mode. For service-proxy mode, please follow this [yaml](https://raw.githubusercontent.com/loxilb-io/kube-loxilb/main/manifest/service-proxy/loxilb-service-proxy.yml) for exact args. Next, we will install loxilb's operator kube-loxilb as follows :
 
 ```
-$ sudo kubectl apply -f - <<EOF
+sudo kubectl apply -f - <<EOF
 ---
 apiVersion: v1
 kind: ServiceAccount
@@ -271,11 +271,21 @@ rules:
       - patch
       - update
   - apiGroups:
+      - gateway.networking.k8s.io
+    resources:
+      - gatewayclasses
+      - gatewayclasses/status
+      - gateways
+      - gateways/status
+      - tcproutes
+      - udproutes
+    verbs: ["get", "watch", "list", "patch", "update"]
+  - apiGroups:
       - discovery.k8s.io
     resources:
       - endpointslices
     verbs:
-     - get
+      - get
       - watch
       - list
   - apiGroups:
@@ -290,6 +300,51 @@ rules:
       - subjectaccessreviews
     verbs:
       - create
+  - apiGroups:
+      - bgppeer.loxilb.io
+    resources:
+      - bgppeerservices
+    verbs:
+      - get
+      - watch
+      - list
+      - create
+      - update
+      - delete
+  - apiGroups:
+      - bgppolicydefinedsets.loxilb.io
+    resources:
+      - bgppolicydefinedsetsservices
+    verbs:
+      - get
+      - watch
+      - list
+      - create
+      - update
+      - delete
+  - apiGroups:
+      - bgppolicydefinition.loxilb.io
+    resources:
+      - bgppolicydefinitionservices
+    verbs:
+      - get
+      - watch
+      - list
+      - create
+      - update
+      - delete
+  - apiGroups:
+      - bgppolicyapply.loxilb.io
+    resources:
+      - bgppolicyapplyservices
+    verbs:
+      - get
+      - watch
+      - list
+      - create
+      - update
+      - delete
+
 ---
 kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
@@ -310,40 +365,23 @@ metadata:
   name: kube-loxilb
   namespace: kube-system
   labels:
-    app: loxilb
+    app: kube-loxilb-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: loxilb
+      app: kube-loxilb-app
   template:
     metadata:
       labels:
-        app: loxilb
+        app: kube-loxilb-app
     spec:
       hostNetwork: true
       dnsPolicy: ClusterFirstWithHostNet
       tolerations:
-        - effect: NoSchedule
-          operator: Exists
         # Mark the pod as a critical add-on for rescheduling.
         - key: CriticalAddonsOnly
           operator: Exists
-        - effect: NoExecute
-          operator: Exists
-        - key: "node-role.kubernetes.io/master"
-          operator: Exists
-        - key: "node-role.kubernetes.io/control-plane"
-          operator: Exists
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: "node-role.kubernetes.io/master"
-                operator: Exists
-              - key: "node-role.kubernetes.io/control-plane"
-                operator: Exists
       priorityClassName: system-node-critical
       serviceAccountName: kube-loxilb
       terminationGracePeriodSeconds: 0
@@ -354,8 +392,16 @@ spec:
         command:
         - /bin/kube-loxilb
         args:
+        #- --loxiURL=http://192.168.80.10:11111
         - --externalCIDR=192.168.80.200/32
+        #- --externalSecondaryCIDRs=124.124.124.1/24,125.125.125.1/24
+        #- --setBGP=64512
+        #- --listenBGPPort=1791
         - --setRoles=0.0.0.0
+        #- --monitor
+        #- --extBGPPeers=50.50.50.1:65101,51.51.51.1:65102
+        #- --setLBMode=1
+        #- --config=/opt/loxilb/agent/kube-loxilb.conf
         resources:
           requests:
             cpu: "100m"
@@ -363,7 +409,7 @@ spec:
           limits:
             cpu: "100m"
             memory: "50Mi"
-       securityContext:
+        securityContext:
           privileged: true
           capabilities:
             add: ["NET_ADMIN", "NET_RAW"]
