@@ -11,14 +11,18 @@
         <link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/aws-multi-az/">
       
       
+        <link rel="prev" href="../k3s-multi-master/">
       
       
-      <link rel="icon" href="../assets/images/favicon.png">
+        <link rel="next" href="../multi-cloud-ha/">
+      
+      
+      <link rel="icon" href="../photos/loxilb-logo.png">
       <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.31">
     
     
       
-        <title>Aws multi az - LoxiLB</title>
+        <title>How-To - Deploy loxilb with multi-AZ HA support in AWS - LoxiLB</title>
       
     
     
@@ -111,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Aws multi az
+              How-To - Deploy loxilb with multi-AZ HA support in AWS
             
           </span>
         </div>
@@ -847,10 +851,18 @@
       
   
   
+    
   
   
+  
     
     
+      
+        
+      
+        
+      
+        
       
         
       
@@ -861,11 +873,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
@@ -879,7 +891,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             Advanced Guides
@@ -940,6 +952,254 @@
   
   <span class="md-ellipsis">
     How-To - Deploy multi-server K3s HA with loxilb
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    How-To - Deploy loxilb with multi-AZ HA support in AWS
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    How-To - Deploy loxilb with multi-AZ HA support in AWS
+  </span>
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#deploy-loxilb-with-multi-az-ha-support-in-aws" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deploy LoxiLB with multi-AZ HA support in AWS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overall-scenario" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overall Scenario
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#an-example-scenario" class="md-nav__link">
+    <span class="md-ellipsis">
+      An example scenario
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-loxilb-ec2-instances" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuring LoxiLB EC2 Instances
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring LoxiLB EC2 Instances">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-loxilb-subnet" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create LoxiLB subnet
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-route-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      AWS Route table
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loxilb-iam-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      LoxiLB IAM Settings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loxilb-ec2-instance-creation" class="md-nav__link">
+    <span class="md-ellipsis">
+      LoxiLB EC2 instance creation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-elastic-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create Elastic IP
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kube-loxilb-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      kube-loxilb deployment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-loxilb-pods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run LoxiLB Pods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Run LoxiLB Pods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-docker-on-loxilb-instances" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install docker on LoxiLB instance(s)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-loxilb-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running LoxiLB container
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating a service
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing-ha-functionality" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing HA functionality
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi-cloud-ha/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    How-To - Deploy loxilb with multi-cloud HA support
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../loxilb-nginx-ingress/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    How-To - Deploy loxilb with ingress-nginx
   </span>
   
 
@@ -1420,6 +1680,8 @@
       
         
       
+        
+      
     
     
     
@@ -1564,7 +1826,7 @@
         
   
   <span class="md-ellipsis">
-    Getting started with loxilb on Amazon EKS
+    Getting started with LoxiLB on Amazon EKS
   </span>
   
 
@@ -1643,8 +1905,31 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="https://www.loxilb.io/post/ngap-load-balancing-with-loxilb" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NGAP load balancing with LoxiLB
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
+      
+        
       
         
       
@@ -1661,10 +1946,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_10" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_11" >
         
           
-          <label class="md-nav__link" for="__nav_6_10" id="__nav_6_10_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6_11" id="__nav_6_11_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -1675,8 +1960,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_10_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6_10">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_11">
             <span class="md-nav__icon md-icon"></span>
             Community Posts
           </label>
@@ -1689,11 +1974,32 @@
   
   
     <li class="md-nav__item">
+      <a href="https://dev.to/nikhilmalik/5g-service-communication-proxy-with-loxilb-4242" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5G Service Communication Proxy(SCP) with LoxiLB
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="https://futuredon.medium.com/5g-sctp-loadbalancer-using-loxilb-b525198a9103" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    5G SCTP LoadBalancer Using loxilb
+    5G SCTP LoadBalancer Using LoxiLB
   </span>
   
 
@@ -1714,7 +2020,7 @@
         
   
   <span class="md-ellipsis">
-    5G Uplink Classifier Using loxilb
+    5G Uplink Classifier Using LoxiLB
   </span>
   
 
@@ -1735,7 +2041,7 @@
         
   
   <span class="md-ellipsis">
-    K3s - Using loxilb as external service lb
+    K3s - Using LoxiLB as external service lb
   </span>
   
 
@@ -1972,7 +2278,7 @@
   
 
 
-  <h1>Aws multi az</h1>
+  <h1>How-To - Deploy loxilb with multi-AZ HA support in AWS</h1>
 
 <h3 id="deploy-loxilb-with-multi-az-ha-support-in-aws">Deploy LoxiLB with multi-AZ HA support in AWS</h3>
 <p>LoxiLB supports stateful HA configuration in various cloud environments such as AWS. Especially for AWS, one can configure HA using the Floating IP <a href="https://docs.aws.amazon.com/whitepapers/latest/real-time-communication-on-aws/floating-ip-pattern-for-ha-between-activestandby-stateful-servers.html">pattern</a>, together with <a href="https://github.com/loxilb-io/loxilb">LoxiLB</a>.</p>
@@ -2184,6 +2490,44 @@ ubuntu@ip-192-168-228-108:~$
         <footer class="md-footer">
   
     
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../k3s-multi-master/" class="md-footer__link md-footer__link--prev" aria-label="Previous: How-To - Deploy multi-server K3s HA with loxilb">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                How-To - Deploy multi-server K3s HA with loxilb
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../multi-cloud-ha/" class="md-footer__link md-footer__link--next" aria-label="Next: How-To - Deploy loxilb with multi-cloud HA support">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                How-To - Deploy loxilb with multi-cloud HA support
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -2246,7 +2590,7 @@ ubuntu@ip-192-168-228-108:~$
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.path", "navigation.instant", "navigation.tracking", "navigation.indexes", "navigation.top", "navigation.footer", "search.suggest"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": "v0.9.5 (Latest)"}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.path", "navigation.instant", "navigation.tracking", "navigation.indexes", "navigation.top", "navigation.footer", "search.suggest"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": "latest", "provider": "mike"}}</script>
     
     
       <script src="../assets/javascripts/bundle.fe8b6f2b.min.js"></script>

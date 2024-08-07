@@ -14,10 +14,10 @@
         <link rel="prev" href="../ext-ep/">
       
       
-        <link rel="next" href="../ebpf/">
+        <link rel="next" href="../aws-multi-az/">
       
       
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="../photos/loxilb-logo.png">
       <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.31">
     
     
@@ -864,6 +864,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
     
@@ -1111,6 +1117,69 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aws-multi-az/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    How-To - Deploy loxilb with multi-AZ HA support in AWS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi-cloud-ha/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    How-To - Deploy loxilb with multi-cloud HA support
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../loxilb-nginx-ingress/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    How-To - Deploy loxilb with ingress-nginx
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1587,6 +1656,8 @@
       
         
       
+        
+      
     
     
     
@@ -1731,7 +1802,7 @@
         
   
   <span class="md-ellipsis">
-    Getting started with loxilb on Amazon EKS
+    Getting started with LoxiLB on Amazon EKS
   </span>
   
 
@@ -1810,8 +1881,31 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="https://www.loxilb.io/post/ngap-load-balancing-with-loxilb" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NGAP load balancing with LoxiLB
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
+      
+        
       
         
       
@@ -1828,10 +1922,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_10" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_11" >
         
           
-          <label class="md-nav__link" for="__nav_6_10" id="__nav_6_10_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6_11" id="__nav_6_11_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -1842,8 +1936,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_10_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6_10">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_11">
             <span class="md-nav__icon md-icon"></span>
             Community Posts
           </label>
@@ -1856,11 +1950,32 @@
   
   
     <li class="md-nav__item">
+      <a href="https://dev.to/nikhilmalik/5g-service-communication-proxy-with-loxilb-4242" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5G Service Communication Proxy(SCP) with LoxiLB
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="https://futuredon.medium.com/5g-sctp-loadbalancer-using-loxilb-b525198a9103" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    5G SCTP LoadBalancer Using loxilb
+    5G SCTP LoadBalancer Using LoxiLB
   </span>
   
 
@@ -1881,7 +1996,7 @@
         
   
   <span class="md-ellipsis">
-    5G Uplink Classifier Using loxilb
+    5G Uplink Classifier Using LoxiLB
   </span>
   
 
@@ -1902,7 +2017,7 @@
         
   
   <span class="md-ellipsis">
-    K3s - Using loxilb as external service lb
+    K3s - Using LoxiLB as external service lb
   </span>
   
 
@@ -2314,7 +2429,7 @@ spec:
 EOF
 </code></pre></div>
 <p>Kindly note that the args for loxilb might change depending on the scenario. This scenario considers loxilb running in-cluster mode. For service-proxy mode, please follow this <a href="https://raw.githubusercontent.com/loxilb-io/kube-loxilb/main/manifest/service-proxy/loxilb-service-proxy.yml">yaml</a> for exact args. Next, we will install loxilb's operator kube-loxilb as follows :</p>
-<div class="highlight"><pre><span></span><code>$ sudo kubectl apply -f - &lt;&lt;EOF
+<div class="highlight"><pre><span></span><code>sudo kubectl apply -f - &lt;&lt;EOF
 ---
 apiVersion: v1
 kind: ServiceAccount
@@ -2358,11 +2473,21 @@ rules:
       - patch
       - update
   - apiGroups:
+      - gateway.networking.k8s.io
+    resources:
+      - gatewayclasses
+      - gatewayclasses/status
+      - gateways
+      - gateways/status
+      - tcproutes
+      - udproutes
+    verbs: [&quot;get&quot;, &quot;watch&quot;, &quot;list&quot;, &quot;patch&quot;, &quot;update&quot;]
+  - apiGroups:
       - discovery.k8s.io
     resources:
       - endpointslices
     verbs:
-     - get
+      - get
       - watch
       - list
   - apiGroups:
@@ -2377,6 +2502,51 @@ rules:
       - subjectaccessreviews
     verbs:
       - create
+  - apiGroups:
+      - bgppeer.loxilb.io
+    resources:
+      - bgppeerservices
+    verbs:
+      - get
+      - watch
+      - list
+      - create
+      - update
+      - delete
+  - apiGroups:
+      - bgppolicydefinedsets.loxilb.io
+    resources:
+      - bgppolicydefinedsetsservices
+    verbs:
+      - get
+      - watch
+      - list
+      - create
+      - update
+      - delete
+  - apiGroups:
+      - bgppolicydefinition.loxilb.io
+    resources:
+      - bgppolicydefinitionservices
+    verbs:
+      - get
+      - watch
+      - list
+      - create
+      - update
+      - delete
+  - apiGroups:
+      - bgppolicyapply.loxilb.io
+    resources:
+      - bgppolicyapplyservices
+    verbs:
+      - get
+      - watch
+      - list
+      - create
+      - update
+      - delete
+
 ---
 kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
@@ -2397,40 +2567,23 @@ metadata:
   name: kube-loxilb
   namespace: kube-system
   labels:
-    app: loxilb
+    app: kube-loxilb-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: loxilb
+      app: kube-loxilb-app
   template:
     metadata:
       labels:
-        app: loxilb
+        app: kube-loxilb-app
     spec:
       hostNetwork: true
       dnsPolicy: ClusterFirstWithHostNet
       tolerations:
-        - effect: NoSchedule
-          operator: Exists
         # Mark the pod as a critical add-on for rescheduling.
         - key: CriticalAddonsOnly
           operator: Exists
-        - effect: NoExecute
-          operator: Exists
-        - key: &quot;node-role.kubernetes.io/master&quot;
-          operator: Exists
-        - key: &quot;node-role.kubernetes.io/control-plane&quot;
-          operator: Exists
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: &quot;node-role.kubernetes.io/master&quot;
-                operator: Exists
-              - key: &quot;node-role.kubernetes.io/control-plane&quot;
-                operator: Exists
       priorityClassName: system-node-critical
       serviceAccountName: kube-loxilb
       terminationGracePeriodSeconds: 0
@@ -2441,8 +2594,16 @@ spec:
         command:
         - /bin/kube-loxilb
         args:
+        #- --loxiURL=http://192.168.80.10:11111
         - --externalCIDR=192.168.80.200/32
+        #- --externalSecondaryCIDRs=124.124.124.1/24,125.125.125.1/24
+        #- --setBGP=64512
+        #- --listenBGPPort=1791
         - --setRoles=0.0.0.0
+        #- --monitor
+        #- --extBGPPeers=50.50.50.1:65101,51.51.51.1:65102
+        #- --setLBMode=1
+        #- --config=/opt/loxilb/agent/kube-loxilb.conf
         resources:
           requests:
             cpu: &quot;100m&quot;
@@ -2450,7 +2611,7 @@ spec:
           limits:
             cpu: &quot;100m&quot;
             memory: &quot;50Mi&quot;
-       securityContext:
+        securityContext:
           privileged: true
           capabilities:
             add: [&quot;NET_ADMIN&quot;, &quot;NET_RAW&quot;]
@@ -2565,13 +2726,13 @@ kube-system   metrics-server-54fd9b65b-x9bd7            1/1     Terminating   0 
         
         
           
-          <a href="../ebpf/" class="md-footer__link md-footer__link--next" aria-label="Next: What is eBPF">
+          <a href="../aws-multi-az/" class="md-footer__link md-footer__link--next" aria-label="Next: How-To - Deploy loxilb with multi-AZ HA support in AWS">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                What is eBPF
+                How-To - Deploy loxilb with multi-AZ HA support in AWS
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -2644,7 +2805,7 @@ kube-system   metrics-server-54fd9b65b-x9bd7            1/1     Terminating   0 
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.path", "navigation.instant", "navigation.tracking", "navigation.indexes", "navigation.top", "navigation.footer", "search.suggest"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": "v0.9.5 (Latest)"}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.path", "navigation.instant", "navigation.tracking", "navigation.indexes", "navigation.top", "navigation.footer", "search.suggest"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": "latest", "provider": "mike"}}</script>
     
     
       <script src="../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
