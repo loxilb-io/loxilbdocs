@@ -17,7 +17,7 @@ jobs:
       - name: Get the latest version
         run: echo "version=$(curl --silent -m 10 --connect-timeout 5 "https://api.github.com/repos/loxilb-io/loxilb/releases/latest" | jq -r .name)" >> "$GITHUB_ENV"
       - name: Publish docs
-        run: |
-             mike deploy --push ${{ env.version }}
-             mike set-default ${{ env.version }} 
-    
+        run: mkdocs gh-deploy
+        #run: |
+        #    mike deploy --push ${{ env.version }}
+        #     mike set-default ${{ env.version }} 
