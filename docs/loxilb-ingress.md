@@ -175,7 +175,7 @@ kind: Ingress
 metadata:
   name: site-loxilb-ingress
 spec:
-  #ingressClassName: loxilb
+  ingressClassName: loxilb
   tls:
   - hosts:
     - domain1.loxilb.io
