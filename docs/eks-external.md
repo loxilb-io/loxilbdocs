@@ -34,6 +34,7 @@ kube-system   kube-proxy-xgfb8           1/1     Running   0          14m
 
 - Create a file ```launch-loxilb.sh``` with the following contents (in bastion node)
 ```
+#!/bin/bash
 sudo apt-get update && apt-get install -y snapd
 sudo snap install docker
 sleep 30
