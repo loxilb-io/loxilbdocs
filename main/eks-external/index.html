@@ -2095,7 +2095,8 @@ kube-system   kube-proxy-xgfb8           1/1     Running   0          14m
 <h2 id="deploy-loxilb-as-ec2-instances-in-ekss-vpc">Deploy loxilb as EC2 instances in EKS's VPC</h2>
 <ul>
 <li>Create a file <code>launch-loxilb.sh</code> with the following contents (in bastion node)
-<div class="highlight"><pre><span></span><code>sudo apt-get update &amp;&amp; apt-get install -y snapd
+<div class="highlight"><pre><span></span><code>#!/bin/bash
+sudo apt-get update &amp;&amp; apt-get install -y snapd
 sudo snap install docker
 sleep 30
 sudo docker run -u root --cap-add SYS_ADMIN --net=host --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --name loxilb ghcr.io/loxilb-io/loxilb:latest
