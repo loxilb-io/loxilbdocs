@@ -2425,7 +2425,8 @@ Commercial support is available at
 kind: Service
 metadata:
   name: nginx-lb1
-  loxilb.io/nodelabel: &quot;node.kubernetes.io/local-zone2&quot;
+  annotations:
+    loxilb.io/nodelabel: &quot;node.kubernetes.io/local-zone2&quot;
 spec:
   externalTrafficPolicy: Local
   loadBalancerClass: loxilb.io/loxilb
