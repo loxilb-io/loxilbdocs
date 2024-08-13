@@ -402,7 +402,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: nginx-lb1
-  loxilb.io/nodelabel: "node.kubernetes.io/local-zone2"
+  annotations:
+    loxilb.io/nodelabel: "node.kubernetes.io/local-zone2"
 spec:
   externalTrafficPolicy: Local
   loadBalancerClass: loxilb.io/loxilb
