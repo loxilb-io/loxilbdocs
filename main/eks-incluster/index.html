@@ -11,6 +11,10 @@
         <link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/main/eks-incluster/">
       
       
+        <link rel="prev" href="../microk8s_quick_start_incluster/">
+      
+      
+        <link rel="next" href="../service-proxy-flannel/">
       
       
       <link rel="icon" href="../photos/loxilb-logo.png">
@@ -18,7 +22,7 @@
     
     
       
-        <title>Eks incluster - LoxiLB</title>
+        <title>EKS/loxilb incluster mode - LoxiLB</title>
       
     
     
@@ -111,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Eks incluster
+              EKS/loxilb incluster mode
             
           </span>
         </div>
@@ -362,8 +366,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -380,11 +386,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -398,7 +404,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Getting Started
@@ -413,6 +419,8 @@
   
     
     
+      
+        
       
         
       
@@ -534,6 +542,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../eks-external/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    EKS/loxilb external mode
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -546,8 +575,10 @@
                 
   
   
+    
   
   
+  
     
     
       
@@ -557,14 +588,16 @@
       
         
       
+        
+      
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
         
           
           <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
@@ -578,7 +611,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3_2">
             <span class="md-nav__icon md-icon"></span>
             In-Cluster Mode
@@ -643,6 +676,164 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    EKS/loxilb incluster mode
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    EKS/loxilb incluster mode
+  </span>
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#create-an-eks-cluster-with-ingress-access-enabled-by-loxilb-incluster-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create an EKS cluster with ingress access enabled by loxilb (incluster-mode)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Create an EKS cluster with ingress access enabled by loxilb (incluster-mode)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-eks-cluster-with-4-worker-nodes-from-a-bastion-node-inside-your-vpc" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create EKS cluster with 4 worker nodes from a bastion node inside your VPC
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deploy-loxilb-as-a-daemon-set" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deploy loxilb as a daemon-set
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deploy-loxilbs-operator-kube-loxilb" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deploy loxilb's operator (kube-loxilb)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deploy loxilb's operator (kube-loxilb)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#note-externalcidr-args-can-be-set-to-any-public-ip-address-via-which-any-of-the-worker-nodes-can-be-accessed-it-can-be-also-set-to-simply-000032-which-means-lb-will-be-performed-on-any-of-the-nodes-where-loxilb-runs-the-decision-of-which-loxilb-nodeinstance-will-be-chosen-as-ingress-in-this-case-can-be-done-by-route53dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Note: --externalCIDR args can be set to any Public IP address via which any of the worker nodes can be accessed. It can be also set to simply 0.0.0.0/32 which means LB will be performed on any of the nodes where loxilb runs. The decision of which loxilb node/instance will be chosen as ingress in this case can be done by Route53/DNS.
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-a-test-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install a test service
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-the-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test the service
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test the service">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#note-we-would-need-to-make-sure-aws-security-groups-are-setup-properly-to-allow-access-for-ingress-traffic" class="md-nav__link">
+    <span class="md-ellipsis">
+      Note - We would need to make sure AWS security groups are setup properly to allow access for ingress traffic.
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#restricting-loxilb-service-for-a-local-zone-node-group" class="md-nav__link">
+    <span class="md-ellipsis">
+      Restricting loxilb service for a local-zone node-group
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -2039,7 +2230,7 @@
   
 
 
-  <h1>Eks incluster</h1>
+  <h1>EKS/loxilb incluster mode</h1>
 
 <h2 id="create-an-eks-cluster-with-ingress-access-enabled-by-loxilb-incluster-mode">Create an EKS cluster with ingress access enabled by loxilb (incluster-mode)</h2>
 <p>This document details the steps to create an EKS cluster and allow external ingress access using loxilb running in incluster mode. loxilb will run as a daemon-set in all the worker nodes while loxilb's operator, kube-loxilb, will run as a replica-set.</p>
@@ -2468,6 +2659,44 @@ This will make sure that loxilb will pick only the endpoint nodes which belong t
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../microk8s_quick_start_incluster/" class="md-footer__link md-footer__link--prev" aria-label="Previous: MicroK8s/loxilb in-cluster mode">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                MicroK8s/loxilb in-cluster mode
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../service-proxy-flannel/" class="md-footer__link md-footer__link--next" aria-label="Next: K3s/loxilb service-proxy with flannel">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                K3s/loxilb service-proxy with flannel
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">
