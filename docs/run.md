@@ -17,6 +17,21 @@ sudo apt install -y clang llvm libelf-dev gcc-multilib libpcap-dev vim net-tools
 ```
 curl -sfL https://github.com/loxilb-io/tools/raw/main/loader/install.sh | sh -
 ```
+* Install Openssl 3
+```
+wget https://github.com/openssl/openssl/releases/download/openssl-3.3.1/openssl-3.3.1.tar.gz   
+tar -xvzf openssl-3.3.1.tar.gz   
+cd openssl-3.3.1
+./Configure enable-ktls '-Wl,-rpath,$(LIBRPATH)' --prefix=/usr/local/build   
+make -j$(nproc)
+make install_dev install_modules
+cd -   
+cp -a /usr/local/build/include/openssl /usr/include/   
+if [ -d /usr/local/build/lib64  ] ; then mv /usr/local/build/lib64  /usr/local/build/lib; fi   
+cp -fr /usr/local/build/lib/* /usr/lib/   
+ldconfig   
+rm -fr openssl-3.3.1*   
+```
 * Build and run loxilb 
 ```
 git clone --recurse-submodules https://github.com/loxilb-io/loxilb.git
