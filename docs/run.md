@@ -24,12 +24,12 @@ tar -xvzf openssl-3.3.1.tar.gz
 cd openssl-3.3.1
 ./Configure enable-ktls '-Wl,-rpath,$(LIBRPATH)' --prefix=/usr/local/build   
 make -j$(nproc)
-make install_dev install_modules
+sudo make install_dev install_modules
 cd -   
-cp -a /usr/local/build/include/openssl /usr/include/   
-if [ -d /usr/local/build/lib64  ] ; then mv /usr/local/build/lib64  /usr/local/build/lib; fi   
-cp -fr /usr/local/build/lib/* /usr/lib/   
-ldconfig   
+sudo cp -a /usr/local/build/include/openssl /usr/include/   
+sudo bash -c "if [ -d /usr/local/build/lib64  ] ; then mv /usr/local/build/lib64  /usr/local/build/lib; fi"   
+sudo cp -fr /usr/local/build/lib/* /usr/lib/   
+sudo ldconfig   
 rm -fr openssl-3.3.1*   
 ```
 * Build and run loxilb 
