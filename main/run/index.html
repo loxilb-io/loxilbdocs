@@ -2105,6 +2105,20 @@ export PATH=&quot;${PATH}:/usr/local/go/bin&quot;
 <li>Install loxilb eBPF loader tools
 <div class="highlight"><pre><span></span><code>curl -sfL https://github.com/loxilb-io/tools/raw/main/loader/install.sh | sh -
 </code></pre></div></li>
+<li>Install Openssl 3
+<div class="highlight"><pre><span></span><code>wget https://github.com/openssl/openssl/releases/download/openssl-3.3.1/openssl-3.3.1.tar.gz   
+tar -xvzf openssl-3.3.1.tar.gz   
+cd openssl-3.3.1
+./Configure enable-ktls &#39;-Wl,-rpath,$(LIBRPATH)&#39; --prefix=/usr/local/build   
+make -j$(nproc)
+make install_dev install_modules
+cd -   
+cp -a /usr/local/build/include/openssl /usr/include/   
+if [ -d /usr/local/build/lib64  ] ; then mv /usr/local/build/lib64  /usr/local/build/lib; fi   
+cp -fr /usr/local/build/lib/* /usr/lib/   
+ldconfig   
+rm -fr openssl-3.3.1*   
+</code></pre></div></li>
 <li>Build and run loxilb 
 <div class="highlight"><pre><span></span><code>git clone --recurse-submodules https://github.com/loxilb-io/loxilb.git
 cd loxilb
