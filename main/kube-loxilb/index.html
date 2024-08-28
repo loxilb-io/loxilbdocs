@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../photos/loxilb-logo.png">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.32">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.33">
     
     
       
@@ -2304,6 +2304,10 @@
 <td><b>loxilb.io/prefLocalPod</b></td>
 <td>Specifies whether to always prefer to select a local pod in in-cluster mode. The default value is false. <br><br><b>Example:</b><br>apiVersion: v1<br>kind: Service<br>metadata:<br>&nbsp;&nbsp;name: sctp-lb<br>&nbsp;&nbsp;annotations:<br>&nbsp;&nbsp;&nbsp;&nbsp;loxilb.io/prefLocalPod : "yes"<br>spec:<br>&nbsp;&nbsp;loadBalancerClass: loxilb.io/loxilb<br>&nbsp;&nbsp;externalTrafficPolicy: Local<br>&nbsp;&nbsp;selector:<br>&nbsp;&nbsp;&nbsp;&nbsp;what: sctp-lb<br>&nbsp;&nbsp;ports:<br>&nbsp;&nbsp;&nbsp;- port: 56004<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;protocol: SCTP<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;targetPort: 9999<br>&nbsp;&nbsp;type: LoadBalancer</td>
 </tr>
+<tr>
+<td><b>loxilb.io/usepodnetwork</b></td>
+<td>Whether to select PodIP and targetPort as EndPoints <br><br><b>Example:</b><br>apiVersion: v1<br>kind: Service<br>metadata:<br>&nbsp;&nbsp;name: sctp-lb<br>&nbsp;&nbsp;annotations:<br>&nbsp;&nbsp;&nbsp;&nbsp;loxilb.io/liveness : "yes"<br>&nbsp;&nbsp;&nbsp;&nbsp;loxilb.io/probetimeout : "10"<br>&nbsp;&nbsp;&nbsp;&nbsp;loxilb.io/proberetries : "3"<br>&nbsp;&nbsp;&nbsp;&nbsp;loxilb.io/usepodnetwork : "yes"<br>&nbsp;&nbsp;&nbsp;&nbsp;spec:<br>&nbsp;&nbsp;loadBalancerClass: loxilb.io/loxilb<br>&nbsp;&nbsp;externalTrafficPolicy: Local<br>&nbsp;&nbsp;selector:<br>&nbsp;&nbsp;&nbsp;&nbsp;what: sctp-lb<br>&nbsp;&nbsp;ports:<br>&nbsp;&nbsp;&nbsp;- port: 56004<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;protocol: SCTP<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;targetPort: 9999<br>&nbsp;&nbsp;type: LoadBalancer</td>
+</tr>
 </tbody>
 </table>
 <ul>
@@ -2569,7 +2573,7 @@ bgp-peer-test   123.123.123.2   65123
     <script id="__config" type="application/json">{"base": "..", "features": ["navigation.path", "navigation.instant", "navigation.tracking", "navigation.indexes", "navigation.top", "navigation.footer", "search.suggest"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": "latest", "provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.471ce7a9.min.js"></script>
+      <script src="../assets/javascripts/bundle.af256bd8.min.js"></script>
       
     
   </body>
