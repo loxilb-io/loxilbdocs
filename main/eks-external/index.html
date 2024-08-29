@@ -2510,6 +2510,8 @@ kube-system   kube-loxilb-6477d6897f-vz74f   1/1     Running   0           5m
 kind: Service
 metadata:
   name: nginx-lb1
+  annotations:
+    loxilb.io/usepodnetwork : &quot;yes&quot;
 spec:
   externalTrafficPolicy: Local
   loadBalancerClass: loxilb.io/loxilb
@@ -2533,6 +2535,7 @@ spec:
       ports:
         - containerPort: 80
 </code></pre></div></li>
+<li>Please not the usage of annotation <code>loxilb.io/usepodnetwork : "yes"</code>. This would imply loxilb will directly use PodIP and TargetPort to reach out as its end-points. This feature is only available with EKS currently and should provide additional performance boost.</li>
 <li>Deploy test nginx service to EKS
 <div class="highlight"><pre><span></span><code>$ kubectl apply -f nginx.yml
 service/nginx-lb1 created
