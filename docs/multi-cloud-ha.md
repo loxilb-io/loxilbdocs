@@ -335,7 +335,7 @@ LEIS6N3:~/workspace/aws-demo$ kubectl apply -f nginx.yaml
 service/nginx-lb1 created
 pod/nginx-test created
 LEIS6N3:~/workspace/aws-demo$ kubectl get svc
-NAME         TYPE           CLUSTER-IP     EXTERNAL-IP         PORT(S)           AGE
-kubernetes   ClusterIP      10.100.0.1     <none>              443/TCP           22h
-nginx-lb1    LoadBalancer   10.100.178.3   llb-13.208.X.X      55002:32403/TCP   15s
+NAME         TYPE           CLUSTER-IP     EXTERNAL-IP                           PORT(S)           AGE
+kubernetes   ClusterIP      10.100.0.1     <none>                                443/TCP           22h
+nginx-lb1    LoadBalancer   10.100.178.3   osaka-13.208.X.X,seoul-14.112.X.X     55002:32403/TCP   15s
 ```
