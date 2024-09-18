@@ -85,6 +85,13 @@ spec:
 
 * Example services manifests for zones can be found [here](https://github.com/loxilb-io/kube-loxilb/tree/main/manifest/zones) which can be further modified as per user need
 
+### How to deploy zones for loxilb in-cluster mode ?
 
+In in-cluster [mode](https://www.loxilb.io/post/k8s-nuances-of-in-cluster-external-service-lb-with-loxilb), loxilb instances also run inside K8s cluster. In this mode, for zoning to work we need to label the nodes where loxilb instances are running as per the zoning needs. For the above example, we would need to add nodes labels as following :
 
-        
+```
+kubectl label node worker1 loxilb.io/zonelabel=north
+kubectl label node worker2 loxilb.io/zonelabel=south
+````
+
+After the labeling, loxilb instance running in worker1 will serve availability zone "north" while loxilb instance running in worker2 will serve availability zone "south".   
