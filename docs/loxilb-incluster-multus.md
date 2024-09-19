@@ -29,7 +29,7 @@ kube-system    metrics-server-d4dc9c4f-pjp4t    1/1     Running            0    
 
 We will deploy a topology similar to the following :
 
-![image](https://github.com/user-attachments/assets/94524f1e-6cc2-4407-8013-cd722a945816)
+![image](https://github.com/user-attachments/assets/a30cb94f-2845-416f-8e82-7718fa93bad0)
 
 ### Configuration
 #### Create a network attachment definition with the following yaml :
@@ -348,7 +348,7 @@ spec:
           capabilities:
             add: ["NET_ADMIN", "NET_RAW"]
 ```
-:point_right: <b>It is to be noted that in this particular example, kube-loxilb runs in kube-system namespace while loxilb runs in default namespace. This is due to the fact loxilb needs to run in a same namespace as the endpoint pod for multus connectivity to work properly. It is assumed that  kube-loxilb running in kube-system namespace can access loxilb pods just fine and there are no network policies in play here. </b>
+:point_right: <b>It is to be noted that in this particular example, kube-loxilb runs in kube-system namespace while loxilb runs in default namespace. This is due to the fact loxilb needs to run in a same namespace as the endpoint pod for multus connectivity to work properly. It is assumed that  kube-loxilb running in kube-system namespace can access loxilb pods just fine and there are no network policies in play here. Finally cidrPools is defined as a floating IP which belongs to the secondary network subnet in this example. It needs to be made sure this IP(range) is not allocated for any pods.</b>
 
 ##### Example :
 
