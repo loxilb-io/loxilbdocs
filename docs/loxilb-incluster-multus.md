@@ -21,8 +21,11 @@ kube-system    kube-multus-ds-s9cnm             1/1     Running            0    
 kube-system    kube-proxy-6k9kb                 1/1     Running            0                5h33m
 kube-system    kube-proxy-lqclz                 1/1     Running            0                5h36m
 kube-system    kube-proxy-qclfz                 1/1     Running            0                5h30m
-kube-system    kube-scheduler-master            1/1     Running            1 (42m ago)      5h36m
+kube-system    kube-scheduler-master            1/1     Running            0                5h36m
 kube-system    metrics-server-d4dc9c4f-pjp4t    1/1     Running            0                5h36m
+kube-system    whereabouts-c7ccf                1/1     Running            0                5h55m
+kube-system    whereabouts-sswf2                1/1     Running            0                5h52m
+kube-system    whereabouts-t75kh                1/1     Running            0                5h25m
 ```
 
 ### Topology
@@ -30,6 +33,8 @@ kube-system    metrics-server-d4dc9c4f-pjp4t    1/1     Running            0    
 We will deploy a topology similar to the following :
 
 ![image](https://github.com/user-attachments/assets/a30cb94f-2845-416f-8e82-7718fa93bad0)
+
+:point_right: In this topology, there are multiple interfaces but it is also possible to create secondary network on top of a single interface as well.
 
 ### Configuration
 #### Create a network attachment definition with the following yaml :
