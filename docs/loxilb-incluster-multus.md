@@ -501,7 +501,7 @@ spec:
 ##### Example :
 
 ```
-$ kubectl apply -f  /vagrant/multus/multus-service.yml 
+$ kubectl apply -f  multus-service.yaml 
 service/multus-service created
 
 $ kubectl get svc 
