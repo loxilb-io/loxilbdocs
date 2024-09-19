@@ -2198,7 +2198,7 @@ spec:
     }
   }&#39;
 </code></pre></div>
-<p>We can check the created attachment as follows :</p>
+<p>This basically creates a tagged vlan subinterface attachment type and can be directly assigned to the pod namespace.We can check the created attachment as follows :</p>
 <div class="highlight"><pre><span></span><code>$ kubectl describe network-attachment-definitions.k8s.cni.cncf.io vlan5
 Name:         vlan5
 Namespace:    default
@@ -2444,7 +2444,7 @@ spec:
       labels:
         app: kube-loxilb-app
     spec:
-      hostNetwork: true
+      #hostNetwork: true
       dnsPolicy: ClusterFirstWithHostNet
       tolerations:
       # Mark the pod as a critical add-on for rescheduling.
