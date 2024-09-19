@@ -155,7 +155,7 @@ spec:
     protocol: TCP
 ```
 
-The above creates a loxilb daemonset which for this example is labeled to run only in the master node. But the same example can be followed to let it run in any node necessary. However, in certain multus scenarios, it might be necessary to run loxilb pods in nodes which are not running the actual multus workloads. This is due to the fact how various vlan, mcvlan etc drivers work with multus. Hence appropirate planning has to be done beforehand in this regard. Also, we need to note that we add the network attachment created in previous step as an annotation "k8s.v1.cni.cncf.io/networks". This is to make sure loxilb has connectivity to the workload pods.
+The above creates a loxilb daemonset which for this example is labeled to run only in the master node. But the same example can be followed to let it run in any node necessary. However, in certain multus scenarios, it might be necessary to run loxilb pods in nodes which are not running the actual multus workloads. This is due to the fact how various vlan, mcvlan etc drivers work with multus. Hence appropirate planning has to be done beforehand in this regard. Also, we need to note that we add the network attachment created in previous step as an annotation ```"k8s.v1.cni.cncf.io/networks: vlan5"```. This is to make sure loxilb has connectivity to the workload pods.
 
 ##### Example :
 
@@ -348,7 +348,7 @@ spec:
           capabilities:
             add: ["NET_ADMIN", "NET_RAW"]
 ```
-:point_right: <b>It is to be noted that in this example kube-loxilb runs in kube-system namespace while loxilb runs in default namespace. This is due to the fact loxilb needs to run in a same namespace as the endpoint pod for multus connectivity to work properly. It is assumed that  kube-loxilb running in kube-system namespace can access loxilb pods just fine and there are no network policies in play here. </b>
+:point_right: <b>It is to be noted that in this particular example, kube-loxilb runs in kube-system namespace while loxilb runs in default namespace. This is due to the fact loxilb needs to run in a same namespace as the endpoint pod for multus connectivity to work properly. It is assumed that  kube-loxilb running in kube-system namespace can access loxilb pods just fine and there are no network policies in play here. </b>
 
 ##### Example :
 
