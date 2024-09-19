@@ -49,7 +49,7 @@ spec:
     "vlanId": 5,
     "linkInContainer": false,
     "ipam": {
-        "type": "host-local",
+        "type": "whereabouts",
         "subnet": "123.123.123.0/24"
     },
     "dns": {
