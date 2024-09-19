@@ -2608,7 +2608,7 @@ spec:
 </code></pre></div>
 <p>:point_right: Please make sure that loadBalancerClass is set to <code>loxilb.io/loxilb</code> so that loxilb can co-exist with any other LB which one might be using for primary services. And finally the annotation <code>loxilb.io/multus-nets</code> which denotes the network attachement definition name.</p>
 <h5 id="example_3">Example :</h5>
-<div class="highlight"><pre><span></span><code>$ kubectl apply -f  /vagrant/multus/multus-service.yml 
+<div class="highlight"><pre><span></span><code>$ kubectl apply -f  multus-service.yaml 
 service/multus-service created
 
 $ kubectl get svc 
