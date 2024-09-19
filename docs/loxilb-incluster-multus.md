@@ -1,6 +1,6 @@
 ## HowTo: Run loxilb in-cluster with multus based secondary services
 
-This guide will explain how to run loxilb in in-cluster mode and provide LB services for multus based secondary networks. Some  users have used loxilb in external-mode to provide LB for multus secondary services as explained in this [blog](https://cloudybytes.medium.com/k8s-bringing-load-balancing-to-multus-workloads-with-loxilb-a0746f270abe). Here we will explore how do achieve the same with loxilb in-cluster mode.
+This guide will explain how to run loxilb in in-cluster mode and provide LB services for multus based secondary networks. Some  users have used loxilb in external-mode to provide LB for multus secondary services as explained in this [blog](https://cloudybytes.medium.com/k8s-bringing-load-balancing-to-multus-workloads-with-loxilb-a0746f270abe). Multus is used for various telco use-cases and also in [kube-virt](https://kubevirt.io) deployments. Here we will explore how do achieve the same with loxilb in-cluster mode. 
 
 ### PreRequisites
 
