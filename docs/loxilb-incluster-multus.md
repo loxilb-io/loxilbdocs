@@ -4,7 +4,7 @@ This guide will explain how to run loxilb in in-cluster mode and provide LB serv
 
 ### PreRequisites
 
-A functioning K8s cluster with multiple nodes and multus installed. [Multus](https://github.com/k8snetworkplumbingwg/multus-cni) plugin can be installed by following the guide [here](https://github.com/k8snetworkplumbingwg/multus-cni/blob/master/docs/how-to-use.md). In the beginning the state of the cluster should be similar to the following :
+A functioning K8s cluster with multiple nodes and multus installed. [Multus](https://github.com/k8snetworkplumbingwg/multus-cni) plugin can be installed by following the guide [here](https://github.com/k8snetworkplumbingwg/multus-cni/blob/master/docs/how-to-use.md). Also, for IPAM to work properly with multus, one might need to use [whereabouts](https://github.com/k8snetworkplumbingwg/whereabouts) plugin as well. In the beginning the state of the cluster should be similar to the following :
 
 ```
 kube-flannel   kube-flannel-ds-cq9rx            1/1     Running            0                5h30m
@@ -155,7 +155,7 @@ spec:
     protocol: TCP
 ```
 
-The above creates a loxilb daemonset which for this example is labeled to run only in the master node. But the same example can be followed to let it run in any node necessary. However, in certain multus scenarios, it might be necessary to run loxilb pods in nodes which are not running the actual multus workloads. This is due to the fact how various vlan, mcvlan etc drivers work with multus. Also, we need to note that we add the network attachment created in previous step as an annotation "k8s.v1.cni.cncf.io/networks". This is to make sure loxilb has connectivity to the workload pods.
+The above creates a loxilb daemonset which for this example is labeled to run only in the master node. But the same example can be followed to let it run in any node necessary. However, in certain multus scenarios, it might be necessary to run loxilb pods in nodes which are not running the actual multus workloads. This is due to the fact how various vlan, mcvlan etc drivers work with multus. Hence appropirate planning has to be done beforehand in this regard. Also, we need to note that we add the network attachment created in previous step as an annotation "k8s.v1.cni.cncf.io/networks". This is to make sure loxilb has connectivity to the workload pods.
 
 ##### Example :
 
@@ -348,6 +348,7 @@ spec:
           capabilities:
             add: ["NET_ADMIN", "NET_RAW"]
 ```
+:point_right: <b>It is to be noted that in this example kube-loxilb runs in kube-system namespace while loxilb runs in default namespace. This is due to the fact loxilb needs to run in a same namespace as the endpoint pod for multus connectivity to work properly. It is assumed that  kube-loxilb running in kube-system namespace can access loxilb pods just fine and there are no network policies in play here. </b>
 
 ##### Example :
 
@@ -515,5 +516,28 @@ multus-service      LoadBalancer   10.245.18.238   llb-123.123.123.123   55002:3
 Now we can access the service from any host connected to this secondary network.
 
 ```
-$ curl http://123.123.123.123:55002 
+$ curl http://123.123.123.123:55002
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
 ```
