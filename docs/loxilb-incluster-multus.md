@@ -496,7 +496,7 @@ spec:
   type: LoadBalancer
 ```
 
-Please make sure that loadBalancerClass is set to ```loxilb.io/loxilb``` so that loxilb can co-exist with any other LB which one might be using for primary services. And finally the annotation ```loxilb.io/multus-nets``` which denotes the network attachement definition name.
+:point_right: Please make sure that loadBalancerClass is set to ```loxilb.io/loxilb``` so that loxilb can co-exist with any other LB which one might be using for primary services. And finally the annotation ```loxilb.io/multus-nets``` which denotes the network attachement definition name.
 
 ##### Example :
 
