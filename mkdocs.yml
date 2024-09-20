@@ -61,6 +61,7 @@ nav:
       - How-To - Deploy loxilb with multi-AZ HA support in AWS: aws-multi-az.md
       - How-To - Deploy loxilb with multi-cloud HA support: multi-cloud-ha.md
       - How-To - Deploy loxilb with ingress-nginx: loxilb-nginx-ingress.md
+      - How-To - Deploy loxilb in-cluster for multus based secondary services: loxilb-incluster-multus.md 
   - Knowledge Base:
       - What is eBPF: ebpf.md
       - What is k8s service - load-balancer: lb.md
