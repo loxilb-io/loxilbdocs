@@ -1,7 +1,7 @@
 site_name: LoxiLB
-site_url: https://loxilb-io.github.io/loxilbdocs
-repo_name: loxilb-io/loxilb
-repo_url: https://github.com/loxilb-io/loxilb
+site_url: https://TrekkieCoder.github.io/loxilbdocs
+repo_name: TrekkieCoder/loxilbdocs
+repo_url: https://github.com/TrekkieCoder/loxilb
 theme:
     name: material
     custom_dir: overrides
