@@ -4,6 +4,7 @@ repo_name: loxilb-io/loxilb
 repo_url: https://github.com/loxilb-io/loxilb
 theme:
     name: material
+    custom_dir: overrides
     logo: photos/loxilb-logo.png
     favicon: photos/loxilb-logo.png
     features:
