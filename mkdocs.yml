@@ -4,6 +4,7 @@ repo_name: loxilb-io/loxilb
 repo_url: https://github.com/loxilb-io/loxilb
 theme:
     name: material
+    custom_dir: overrides
     logo: photos/loxilb-logo.png
     favicon: photos/loxilb-logo.png
     features:
@@ -97,6 +98,8 @@ nav:
         - 5G Uplink Classifier Using LoxiLB: https://futuredon.medium.com/5g-uplink-classifier-using-loxilb-7593a4d66f4c
         - K3s - Using LoxiLB as external service lb: https://cloudybytes.medium.com/k3s-using-loxilb-as-external-service-lb-2ea4ce61e159
         - 5G SCTP LoadBalancer Using LoxiLB Applying on free5GC: https://medium.com/@ben0978327139/5g-sctp-loadbalancer-using-loxilb-applying-on-free5gc-b5c05bb723f0
+
+copyright: Copyright &copy; 2022 - 2024 LoxiLB Authors
      
 extra:
     version:
@@ -104,6 +107,7 @@ extra:
         default: latest
         alias: true
     homepage: https://www.loxilb.io/
+    generator: false
     social:
         - icon: fontawesome/brands/github
           link: https://github.com/loxilb-io/loxilb
