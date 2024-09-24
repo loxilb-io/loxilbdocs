@@ -178,6 +178,9 @@ default        loxilb-lb-kdvj7                  1/1     Running            0    
 kube-loxilb is the operator of loxilb. To install kube-loxilb, we can apply the following yaml :
 
 ```
+---
+apiVersion: v1
+kind: ServiceAccount
 metadata:
   name: kube-loxilb
   namespace: kube-system
