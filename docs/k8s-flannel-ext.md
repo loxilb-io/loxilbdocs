@@ -35,7 +35,7 @@ apt-get install -y docker-ce
 
 ### Run loxilb
 ```
-sudo docker run -u root --cap-add SYS_ADMIN --restart unless-stopped --privileged --entrypoint /root/loxilb-io/loxilb/loxilb -dit -v /dev/log:/dev/log  --name loxilb ghcr.io/loxilb-io/loxilb:latest
+sudo docker run -u root --cap-add SYS_ADMIN --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --net=host --name loxilb ghcr.io/loxilb-io/loxilb:latest
 ```
 
 ## Setup K8s node
@@ -294,7 +294,7 @@ $ sudo docker exec -it loxilb loxicmd get lb -o wide
 
 ## Connect from host/client
 ```
-$ curl http://192.168.82.100:55002
+$ curl http://192.168.80.100:55002
 <!DOCTYPE html>
 <html>
 <head>
