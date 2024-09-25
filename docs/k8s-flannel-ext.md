@@ -9,6 +9,7 @@ This guide will explain how to:
 ### Pre-requisite
 
 * Two nodes with Linux - one for running K8s and another for running loxilb
+* For loxilb, the linux kernel version should be >= 5.15
 * Bastion or Host node to consume the services
 
 ### Topology   
@@ -69,7 +70,7 @@ sudo apt install -y docker.io
 sudo usermod -aG docker vagrant
 ```
 
-### Install docker container runtime
+### Install docker container runtime (or any runtime as per user preference)
 ```
 # cri-docker Install
 VER=$(curl -s https://api.github.com/repos/Mirantis/cri-dockerd/releases/latest|grep tag_name | cut -d '"' -f 4|sed 's/v//g')
