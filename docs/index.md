@@ -91,6 +91,7 @@ Telco-cloud requires load-balancing and communication across various interfaces/
 ## Getting started with different K8s distributions & tools   
 
 #### loxilb as ext-cluster pod   
+- [K8s : loxilb ext-mode](k8s-flannel-ext.md)
 - [K3s : loxilb with default flannel](k3s_quick_start_flannel.md)
 - [K3s : loxilb with calico](k3s_quick_start_calico.md)
 - [K3s : loxilb with cilium](quick_start_with_cilium.md)
@@ -98,6 +99,7 @@ Telco-cloud requires load-balancing and communication across various interfaces/
 - [EKS : loxilb ext-mode](eks-external.md)    
 
 #### loxilb as in-cluster pod   
+- [K8s : loxilb in-cluster mode](k8s-flannel-incluster.md)
 - [K3s : loxilb in-cluster mode](k3s_quick_start_incluster.md)
 - [K0s : loxilb in-cluster mode](k0s_quick_start_incluster.md)
 - [MicroK8s : loxilb in-cluster mode](microk8s_quick_start_incluster.md)
