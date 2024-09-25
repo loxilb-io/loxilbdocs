@@ -2750,7 +2750,7 @@ $ kubectl exec -it -n kube-system loxilb-lb-sws2g  -- loxicmd get lb -o wide
 | 192.168.80.100 |         |      | 55002 | tcp   | default_tcp-lb-onearm |    0 | rr  | onearm | 192.168.80.250 | 31640 |      1 | active | 11:818   |
 </code></pre></div>
 <h2 id="connect-from-hostclient">Connect from host/client</h2>
-<div class="highlight"><pre><span></span><code>$ curl http://192.168.82.100:55002
+<div class="highlight"><pre><span></span><code>$ curl http://192.168.80.100:55002
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
