@@ -8,9 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/main/integrate_bgp_eng/">
+        <link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/main/rhocp-quickstart-incluster/">
       
       
+        <link rel="prev" href="../eks-incluster/">
+      
+      
+        <link rel="next" href="../service-proxy-flannel/">
       
       
       <link rel="icon" href="../photos/loxilb-logo.png">
@@ -18,7 +22,7 @@
     
     
       
-        <title>How to run loxilb with calico CNI in BGP mode - LoxiLB</title>
+        <title>RedHat OCP/loxilb in-cluster mode - LoxiLB</title>
       
     
     
@@ -72,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#how-to-run-loxilb-with-calico-cni-in-bgp-mode" class="md-skip">
+        <a href="#quick-start-guide-with-redhat-ocp-416-and-loxilb-in-cluster-mode" class="md-skip">
           Skip to content
         </a>
       
@@ -111,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              How to run loxilb with calico CNI in BGP mode
+              RedHat OCP/loxilb in-cluster mode
             
           </span>
         </div>
@@ -362,8 +366,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -380,11 +386,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -398,7 +404,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Getting Started
@@ -592,8 +598,10 @@
                 
   
   
+    
   
   
+  
     
     
       
@@ -612,11 +620,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
         
           
           <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
@@ -630,7 +638,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3_2">
             <span class="md-nav__icon md-icon"></span>
             In-Cluster Mode
@@ -746,10 +754,28 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../rhocp-quickstart-incluster/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    RedHat OCP/loxilb in-cluster mode
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -758,6 +784,143 @@
   
 
       </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start-guide-with-redhat-ocp-416-and-loxilb-in-cluster-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick Start Guide with Redhat OCP 4.16 and LoxiLB in-cluster mode
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quick Start Guide with Redhat OCP 4.16 and LoxiLB in-cluster mode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pre-requisite" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pre-requisite
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#topology" class="md-nav__link">
+    <span class="md-ellipsis">
+      Topology
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup-redhat-openshift-container-platform-ocp-416" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup Redhat OpenShift Container Platform (OCP) 4.16
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setup Redhat OpenShift Container Platform (OCP) 4.16">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#deploying-loxilb-in-ocp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deploying loxilb in OCP
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deploying-kube-loxilb-in-ocp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deploying kube-loxilb in OCP
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spawn-a-test-pod-and-create-a-lb-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      Spawn a test pod and create a LB service
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-the-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check the status
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Check the status">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#check-kubernetes-services-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check Kubernetes services status :
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-create-lb-rules-in-loxilb-pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check create LB rules in loxilb pod :
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connect-from-hostclient" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connect from host/client
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -2053,8 +2216,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -2063,37 +2224,28 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#setup" class="md-nav__link">
+  <a href="#quick-start-guide-with-redhat-ocp-416-and-loxilb-in-cluster-mode" class="md-nav__link">
     <span class="md-ellipsis">
-      Setup
+      Quick Start Guide with Redhat OCP 4.16 and LoxiLB in-cluster mode
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#1-loxilb-setup" class="md-nav__link">
-    <span class="md-ellipsis">
-      1. loxilb setup
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1. loxilb setup">
+    <nav class="md-nav" aria-label="Quick Start Guide with Redhat OCP 4.16 and LoxiLB in-cluster mode">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#11-docker-network-setup" class="md-nav__link">
+  <a href="#pre-requisite" class="md-nav__link">
     <span class="md-ellipsis">
-      1.1 docker network setup
+      Pre-requisite
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#12-loxilb-docker-setup" class="md-nav__link">
+  <a href="#topology" class="md-nav__link">
     <span class="md-ellipsis">
-      1.2 loxilb docker setup
+      Topology
     </span>
   </a>
   
@@ -2105,82 +2257,28 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-loxi-ccm-setup-in-kubernetes" class="md-nav__link">
+  <a href="#setup-redhat-openshift-container-platform-ocp-416" class="md-nav__link">
     <span class="md-ellipsis">
-      2. loxi-ccm setup in kubernetes
+      Setup Redhat OpenShift Container Platform (OCP) 4.16
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3basic-load-balancer-test" class="md-nav__link">
-    <span class="md-ellipsis">
-      3.Basic load-balancer test
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-calico-bgp-loxilb-setup" class="md-nav__link">
-    <span class="md-ellipsis">
-      4. calico BGP &amp; loxilb setup
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="4. calico BGP & loxilb setup">
+    <nav class="md-nav" aria-label="Setup Redhat OpenShift Container Platform (OCP) 4.16">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#41-loxilb-bgp-mode-setup" class="md-nav__link">
+  <a href="#deploying-loxilb-in-ocp" class="md-nav__link">
     <span class="md-ellipsis">
-      4.1 loxilb BGP mode setup
+      Deploying loxilb in OCP
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#42-gobgp_loxilbyaml-file-setup" class="md-nav__link">
+  <a href="#deploying-kube-loxilb-in-ocp" class="md-nav__link">
     <span class="md-ellipsis">
-      4.2 gobgp_loxilb.yaml file setup
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#43-add-router-id-to-the-lo-interface-of-the-loxilb-container" class="md-nav__link">
-    <span class="md-ellipsis">
-      4.3 Add router-id to the lo interface of the loxilb container
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#44-loxilb-docker-restart" class="md-nav__link">
-    <span class="md-ellipsis">
-      4.4 loxilb docker restart
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#45-setup-bgp-peer-information-in-calico" class="md-nav__link">
-    <span class="md-ellipsis">
-      4.5 Setup BGP Peer information in Calico
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#46-check-bgp-status" class="md-nav__link">
-    <span class="md-ellipsis">
-      4.6 Check BGP status
+      Deploying kube-loxilb in OCP
     </span>
   </a>
   
@@ -2188,6 +2286,57 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spawn-a-test-pod-and-create-a-lb-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      Spawn a test pod and create a LB service
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-the-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check the status
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Check the status">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#check-kubernetes-services-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check Kubernetes services status :
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-create-lb-rules-in-loxilb-pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check create LB rules in loxilb pod :
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connect-from-hostclient" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connect from host/client
+    </span>
+  </a>
   
 </li>
       
@@ -2209,208 +2358,133 @@
   
 
 
-<h1 id="how-to-run-loxilb-with-calico-cni-in-bgp-mode">How to run loxilb with calico CNI in BGP mode</h1>
-<p>This article describes how to integrate loxilb using calico CNI in Kubernetes.</p>
-<h2 id="setup">Setup</h2>
-<p>For this example, kubernetes and loxilb are setup as follows:</p>
-<p><img alt="setup" src="../photos/integrate_bgp.png" /></p>
-<p>Kubernetes uses a single master cluster for simplicity, all clusters use the same 192.168.57.0/24 subnet.
-The load balancer node where the loxilb container is running is also connected to the same subnet as kubernetes. Externally, all kubernetes connections are configured to go through the "loxilb" load balancer node.</p>
-<p>This example uses docker to run the loxilb container.
-These examples assume that kubernetes &amp; calico are already installed.</p>
-<h2 id="1-loxilb-setup">1. loxilb setup</h2>
-<h3 id="11-docker-network-setup">1.1 docker network setup</h3>
-<p>In order to integrate loxilb and kubernetes, loxilb needs to be able to communicate with Kubernetes.
-First, we create a docker network so that the loxilb container is also connected to the same network which is used by kubernetes nodes. Currently, the load balancer node is connected to kubernetes through the eno6 interface. Therefore, we will create a macvlan-type docker network that uses the eno6 interface as a parent and provide it to the loxilb docker.
-Create a docker network with the following command:
-<div class="highlight"><pre><span></span><code>sudo docker network create -d macvlan -o parent=eno6 \
-  --subnet 192.168.57.0/24 \
-  --gateway 192.168.57.1 \
-  --aux-address &#39;cp1=192.168.57.101&#39; \
-  --aux-address &#39;cp2=192.168.57.102&#39; \
-  --aux-address &#39;cp3=192.168.57.103&#39; k8snet
-</code></pre></div>
-|Options|Description|
-|----|----|
-|-d macvlan|Specify network type as macvlan|
-|-o parent=eno6|Create a macvlan type network using the eno6 interface as parent|
-|--subnet 192.168.57.0/24|Specify network subnet|
-|--gateway 192.168.57.1|Set gateway (optional)|
-|--aux-address 'serverName=serverIP'|Option to register in advance so that IP addresses already in use on the network are not duplicated|
-|k8snet|Name the network k8snet|</p>
-<p>A docker network that can communicate with the outside is also created so that traffic accessing the kubernetes service from outside also goes through loxilb. The load balancer node is connected to the outside through eno8.
-<div class="highlight"><pre><span></span><code>sudo docker network create -d macvlan -o parent=eno8 \
-  --subnet 192.168.20.0/24 \
-  --gateway 192.168.20.1 llbnet
+  <h1>RedHat OCP/loxilb in-cluster mode</h1>
+
+<h2 id="quick-start-guide-with-redhat-ocp-416-and-loxilb-in-cluster-mode">Quick Start Guide with Redhat OCP 4.16 and LoxiLB in-cluster mode</h2>
+<p>This guide will explain how to:</p>
+<ul>
+<li>Deploy a single-node Redhat OCP 4.16 cluster</li>
+<li>Run loxilb in-cluster mode</li>
+<li>Expose services with loxilb as an external load balancer   </li>
+</ul>
+<h3 id="pre-requisite">Pre-requisite</h3>
+<ul>
+<li>Single node to run Redhat OCP 4.16 (or later)</li>
+<li>Bastion or Host node to consume the services running in same network subnet as OCP node</li>
+</ul>
+<h3 id="topology">Topology</h3>
+<p>For quickly bringing up loxilb with OCP, we will be deploying all components in a single node :   </p>
+<p><img alt="image" src="https://github.com/user-attachments/assets/6b6ff783-33fa-498a-974a-461bb9090b08" /></p>
+<p>All components of loxilb run as part of the OCP cluster in this scenario. loxilb can be used with various <a href="https://docs.loxilb.io/latest/ha-deploy/">HA</a> options as well, but skipped here for simplicity.   </p>
+<h2 id="setup-redhat-openshift-container-platform-ocp-416">Setup Redhat OpenShift Container Platform (OCP)  4.16</h2>
+<p>Users can follow the official <a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html/installing/installing-on-a-single-node#preparing-to-install-snol">documentation</a> to install a single node OCP cluster</p>
+<h3 id="deploying-loxilb-in-ocp">Deploying loxilb in OCP</h3>
+<p>Use the following command to get the loxilb manifest:
+<div class="highlight"><pre><span></span><code>wget https://raw.githubusercontent.com/loxilb-io/kube-loxilb/refs/heads/main/manifest/in-cluster/loxilb-nobgp.yaml
 </code></pre></div></p>
-<p>We can check the network created with the docker network list command.</p>
-<div class="highlight"><pre><span></span><code>netlox@nd8:~$ sudo docker network list
-NETWORK ID     NAME      DRIVER    SCOPE
-5c97ae74fc32   bridge    bridge    local
-6142f53e8be6   host      host      local
-24ee7dbd7707   k8snet    macvlan   local
-81c96ceda375   llbnet    macvlan   local
-7bcd1738501b   none      null      local
+<p>Change the contents of loxilb.yaml as following:
+<div class="highlight"><pre><span></span><code>command: [ &quot;/root/loxilb-io/loxilb/loxilb&quot;, &quot;--egr-hooks&quot;, &quot;--whitelist=enp0s3&quot; ]
 </code></pre></div>
-<h3 id="12-loxilb-docker-setup">1.2 loxilb docker setup</h3>
-<p>The loxilb container image is provided at <a href="https://github.com/loxilb-io/loxilb/pkgs/container/loxilb">github</a>. To download the docker image, use the following command.  </p>
-<div class="highlight"><pre><span></span><code>docker pull ghcr.io/loxilb-io/loxilb:latest
-</code></pre></div>
-<p>To run loxilb docker, we can use the following command.</p>
-<p><div class="highlight"><pre><span></span><code>sudo docker run -u root --cap-add SYS_ADMIN --restart unless-stopped \
-  --privileged -dit -v /dev/log:/dev/log \
-  --net=k8snet --ip=192.168.57.4 --name loxilb ghcr.io/loxilb-io/loxilb:latest \
-  --host=0.0.0.0
-</code></pre></div>
-The options that need to specified are:   </p>
-<table>
-<thead>
-<tr>
-<th>Options</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>--net=k8snet</td>
-<td>Network to connect to container</td>
-</tr>
-<tr>
-<td>--ip=192.168.57.4</td>
-<td>Specifies the IP address the container will use. If not specified, use any IP within the network subnet range</td>
-</tr>
-<tr>
-<td>--name loxilb</td>
-<td>Set container name</td>
-</tr>
-</tbody>
-</table>
-<p>We can check the docker created with the docker ps command.
-<div class="highlight"><pre><span></span><code>netlox@nd8:~$ sudo docker ps
-CONTAINER ID   IMAGE                  COMMAND                  CREATED       STATUS       PORTS       NAMES
-eae349a283ae   loxilbio/loxilb:beta   &quot;/root/loxilb-io/lox…&quot;   11 days ago   Up 11 days               loxilb
-</code></pre></div>
-Since we only connected the kubernetes network (k8snet) when running the docker above, we also need to connect to the docker network for external communication. Currently, docker only supports one network to be connected when running "docker run" command. But, its easy to connect other network to the docker with the following command:
-<div class="highlight"><pre><span></span><code>sudo docker network connect llbnet loxilb
+As one could guess, this is the name of system interface. This should be the interface which is associated with br-ex of OCP node. To confirm one can open the OCP web console and check under "Networking-&gt;NodeNetworkState" :</p>
+<p><img alt="image" src="https://github.com/user-attachments/assets/567e6871-b61f-4c42-ad6d-31fc0882e7b0" /></p>
+<p>Now apply the loxilb manifest file :
+<div class="highlight"><pre><span></span><code>oc apply -f loxilb-nobgp.yaml
 </code></pre></div></p>
-<p>Once the connection is complete, we can see the docker container's interfaces as follows:</p>
-<div class="highlight"><pre><span></span><code>netlox@netlox:~$ sudo docker exec -ti loxilb ip route
-default via 192.168.20.1 dev eth0
-192.168.20.0/24 dev eth0 proto kernel scope link src 192.168.20.4
-192.168.30.0/24 dev eth1 proto kernel scope link src 192.168.30.2
+<h3 id="deploying-kube-loxilb-in-ocp">Deploying kube-loxilb in OCP</h3>
+<p><a href="https://github.com/loxilb-io/kube-loxilb">kube-loxilb</a> is used as loxilb's operator with Kubernetes. Get the manifest file :
+<div class="highlight"><pre><span></span><code>wget https://raw.githubusercontent.com/loxilb-io/kube-loxilb/refs/heads/main/manifest/in-cluster/kube-loxilb.yaml
+</code></pre></div></p>
+<p>Change the contents of kube-loxilb.yaml "args" to the following (leaving others commented) : 
+<div class="highlight"><pre><span></span><code>        args:
+          #- --loxiURL=http://192.168.80.10:11111
+          - --cidrPools=defaultPool=192.168.80.100/32
+          - --setRoles=0.0.0.0
+          #- --setBGP=64512
+          #- --listenBGPPort=1791
+          #- --monitor
+          #- --extBGPPeers=50.50.50.1:65101,51.51.51.1:65102
+          #- --setLBMode=1
 </code></pre></div>
-<h2 id="2-loxi-ccm-setup-in-kubernetes">2. loxi-ccm setup in kubernetes</h2>
-<p>loxi-ccm is a <a href="https://kubernetes.io/ko/docs/concepts/architecture/cloud-controller/">ccm provider</a> to provide a loxilb load balancer to kubernetes, and it is essential for interworking with kubernetes and loxilb.
-Refer to <a href="https://github.com/loxilb-io/loxilbdocs/blob/main/docs/ccm.md">the relevant document</a>, change the apiServerURL of configMap to the IP address of loxilb created above and install it in kubernetes. If loxi-ccm is installed properly, the setup is complete.</p>
-<h2 id="3basic-load-balancer-test">3.Basic load-balancer test</h2>
-<p>We can now give an External IP when you create a LoadBalancer type service in kubernetes. Create a test-nginx-svc.yaml file for testing as follows:</p>
-<div class="highlight"><pre><span></span><code>apiVersion: v1
-kind: Pod
-metadata:
-  name: nginx
-  labels:
-    app.kubernetes.io/name: proxy
-spec:
-  containers:
-  - name: nginx
-    image: nginx:latest
-    ports:
-      - containerPort: 80
-        name: http-web-svc
----
+The CIDR is set to any unused IP/subnet in the local network.</p>
+<p>Apply the yaml contents :
+<div class="highlight"><pre><span></span><code>oc apply -f kube-loxilb.yaml
+</code></pre></div></p>
+<h2 id="spawn-a-test-pod-and-create-a-lb-service">Spawn a test pod and create a LB service</h2>
+<p><div class="highlight"><pre><span></span><code>cat &lt;&lt; EOF | oc apply -f -
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx-service
+  name: tcp-lb-onearm
+  annotations:
+    loxilb.io/liveness: &quot;yes&quot;
+    loxilb.io/lbmode: &quot;onearm&quot;
 spec:
-  type: LoadBalancer
+  externalTrafficPolicy: Local
+  loadBalancerClass: loxilb.io/loxilb
   selector:
-    app.kubernetes.io/name: proxy
+    what: tcp-onearm-test
   ports:
-  - name: name-of-service-port
-    protocol: TCP
-    port: 8888
-    targetPort: http-web-svc
-</code></pre></div>
-<p>The above steps create the nginx pod and then associates a LoadBalancer service to it. The command to apply is as follows </p>
-<div class="highlight"><pre><span></span><code>kubectl apply -f test-nginx-svc.yaml
-</code></pre></div>
-<p>We can verify that the service nginx-service has been created as a LoadBalancer type and has been assigned an External IP.
-Now you can access the kubernetes service from outside using IP 123.123.123.15 and port 8888.</p>
-<div class="highlight"><pre><span></span><code>vagrant@node1:~$ sudo kubectl get svc
-NAME            TYPE           CLUSTER-IP      EXTERNAL-IP      PORT(S)          AGE
-kubernetes      ClusterIP      10.233.0.1      &lt;none&gt;           443/TCP          28d
-nginx-service   LoadBalancer   10.233.21.235   123.123.123.15   8888:31655/TCP   3s
-</code></pre></div>
-<p>The LoadBalancer rule is also created in the loxilb container. We can check in the loxilb load-balancer node as follows   </p>
-<div class="highlight"><pre><span></span><code>netlox@nd8:~$ sudo docker exec -ti loxilb loxicmd get lb
-|  EXTERNAL IP   | PORT | PROTOCOL | SELECT | # OF ENDPOINTS |
-|----------------|------|----------|--------|----------------|
-| 123.123.123.15 | 8888 | tcp      |      0 |              2 |
-</code></pre></div>
-<h2 id="4-calico-bgp-loxilb-setup">4. calico BGP &amp; loxilb setup</h2>
-<p>If calico configures the network in BGP mode, loxilb must also operate in BGP mode. loxilb supports BGP functions based on goBGP. The following description assumes that calico is already set to use BGP mode.</p>
-<h3 id="41-loxilb-bgp-mode-setup">4.1 loxilb BGP mode setup</h3>
-<p>If we create a loxilb container with the following command, it will run in BGP mode. The -b option at the end of the command is to enable BGP mode in loxilb.</p>
-<div class="highlight"><pre><span></span><code>sudo docker run -u root --cap-add SYS_ADMIN --restart unless-stopped \
-  --privileged -dit -v /dev/log:/dev/log \
-  --net=k8snet --ip=192.168.57.4 --name loxilb ghcr.io/loxilb-io/loxilb:latest \
-  --host=0.0.0.0 -b
-</code></pre></div>
-<h3 id="42-gobgp_loxilbyaml-file-setup">4.2 gobgp_loxilb.yaml file setup</h3>
-<p>Create a gobgp_loxilb.yaml file in the /etc/gobgp/ directory of the loxilb container.   </p>
-<div class="highlight"><pre><span></span><code>global:
-    config:
-        as: 65002
-        router-id: 172.1.0.2
-neighbors:
-    - config:
-        neighbor-address: 192.168.57.101
-        peer-as: 64512
-    - config:
-        neighbor-address: 192.168.20.55
-        peer-as: 64001
-</code></pre></div>
-<p>BGP information such as as-id and router-id of the loxilb container must be registered as global items.
-The neighbors item need info about the IP address and as-id information of the BGP router peering with loxilb. In this example, calico's BGP information (192.168.57.101) and external BGP information (129.168.20.55) were registered.</p>
-<h3 id="43-add-router-id-to-the-lo-interface-of-the-loxilb-container">4.3 Add router-id to the lo interface of the loxilb container</h3>
-<p>We need to add the IP registered as loxilb router-id in the gobgp_loxilb.yaml file to the lo interface of loxilb docker. <br />
-<div class="highlight"><pre><span></span><code>sudo docker exec -ti loxilb ip addr add 172.1.0.2/32 dev lo
-</code></pre></div></p>
-<h3 id="44-loxilb-docker-restart">4.4 loxilb docker restart</h3>
-<p>Restart the loxilb docker for the settings in gobgp_loxilb.yaml to take effect. <br />
-<div class="highlight"><pre><span></span><code>sudo docker stop loxilb
-sudo docker start loxilb
-</code></pre></div></p>
-<h3 id="45-setup-bgp-peer-information-in-calico">4.5 Setup BGP Peer information in Calico</h3>
-<p>We also need to add loxilb's BGP peer information to calico. Create the calico-bgp-config.yaml file as follows: <br />
-<div class="highlight"><pre><span></span><code>apiVersion: projectcalico.org/v3
-kind: BGPPeer
+    - port: 55002
+      targetPort: 80 
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Pod
 metadata:
-  name: my-global-peers2
+  name: tcp-onearm-test
+  labels:
+    what: tcp-onearm-test
 spec:
-  peerIP: 192.168.57.4
-  asNumber: 65002
-</code></pre></div></p>
-<p>In peerIP, enter the IP address of loxilb. In asNumber, enter the as-ID of the loxilb BGP set above.
-After creating the file, add BGP peer information to calico with the command below.
-<div class="highlight"><pre><span></span><code>sudo calicoctl apply -f calico-bgp-config.yaml
-</code></pre></div></p>
-<h3 id="46-check-bgp-status">4.6 Check BGP status</h3>
-<p>We now check the BGP connectivity in the loxilb docker like this: <br />
-<div class="highlight"><pre><span></span><code>netlox@nd8:~$ sudo docker exec -ti loxilb3 gobgp neigh
-Peer              AS  Up/Down State       |#Received  Accepted
-192.168.57.101 64512 00:00:59 Establ      |        4         4
-</code></pre></div></p>
-<p>If the connection is successful, the State will  be shown as "Established".
-We can check the route information of calico with the gobgp global rib command.
-<div class="highlight"><pre><span></span><code>netlox@nd8:~$ sudo docker exec -ti loxilb3 gobgp global rib
-   Network              Next Hop             AS_PATH              Age        Attrs
-*&gt; 10.233.71.0/26       192.168.57.101       64512                01:02:03   [{Origin: i}]
-*&gt; 10.233.74.64/26      192.168.57.101       64512                01:02:03   [{Origin: i}]
-*&gt; 10.233.75.0/26       192.168.57.101       64512                01:02:03   [{Origin: i}]
-*&gt; 10.233.102.128/26    192.168.57.101       64512                01:02:03   [{Origin: i}]
-</code></pre></div></p>
+  containers:
+    - name: tcp-onearm-test
+      image: ghcr.io/loxilb-io/nginx:stable
+      ports:
+        - containerPort: 80
+EOF
+</code></pre></div>
+For detailed explanation of various annotations, please check <a href="https://docs.loxilb.io/latest/kube-loxilb/#how-to-deploy-kube-loxilb">this</a> guide.</p>
+<h2 id="check-the-status">Check the status</h2>
+<h3 id="check-kubernetes-services-status">Check Kubernetes services status :</h3>
+<div class="highlight"><pre><span></span><code>$ oc get svc
+NAME            TYPE           CLUSTER-IP    EXTERNAL-IP          PORT(S)           AGE
+kubernetes      ClusterIP      10.245.0.1    &lt;none&gt;               443/TCP           31m
+tcp-lb-onearm   LoadBalancer   10.245.2.83   llb-192.168.80.100   55002:32057/TCP   45s
+</code></pre></div>
+<h3 id="check-create-lb-rules-in-loxilb-pod">Check create LB rules in loxilb pod :</h3>
+<div class="highlight"><pre><span></span><code>$ oc get pods -A |grep loxilb-lb
+kube-system    loxilb-lb-sws2g                  1/1     Running   0          4m14s
+
+$ oc exec -it -n kube-system loxilb-lb-sws2g  -- loxicmd get lb -o wide
+|     EXT IP     | SEC IPS | HOST | PORT  | PROTO |         NAME          | MARK | SEL |  MODE  |    ENDPOINT    | EPORT | WEIGHT | STATE  | COUNTERS |
+|----------------|---------|------|-------|-------|-----------------------|------|-----|--------|----------------|-------|--------|--------|----------|
+| 192.168.80.100 |         |      | 55002 | tcp   | default_tcp-lb-onearm |    0 | rr  | onearm | 192.168.80.250 | 31640 |      1 | active | 11:818   |
+</code></pre></div>
+<h2 id="connect-from-hostclient">Connect from host/client</h2>
+<div class="highlight"><pre><span></span><code>$ curl http://192.168.80.100:55002
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Welcome to nginx!&lt;/title&gt;
+&lt;style&gt;
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Welcome to nginx!&lt;/h1&gt;
+&lt;p&gt;If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.&lt;/p&gt;
+
+&lt;p&gt;For online documentation and support please refer to
+&lt;a href=&quot;http://nginx.org/&quot;&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;
+Commercial support is available at
+&lt;a href=&quot;http://nginx.com/&quot;&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Thank you for using nginx.&lt;/em&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre></div>
 
 
 
@@ -2441,6 +2515,44 @@ We can check the route information of calico with the gobgp global rib command.
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../eks-incluster/" class="md-footer__link md-footer__link--prev" aria-label="Previous: EKS/loxilb in-cluster mode">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                EKS/loxilb in-cluster mode
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../service-proxy-flannel/" class="md-footer__link md-footer__link--next" aria-label="Next: K3s/loxilb service-proxy with flannel">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                K3s/loxilb service-proxy with flannel
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">
