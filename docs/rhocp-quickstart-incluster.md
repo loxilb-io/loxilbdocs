@@ -108,7 +108,7 @@ For detailed explanation of various annotations, please check [this](https://doc
 ## Check the status
 ### Check Kubernetes services status :
 ```
-oc get svc
+$ oc get svc
 NAME            TYPE           CLUSTER-IP    EXTERNAL-IP          PORT(S)           AGE
 kubernetes      ClusterIP      10.245.0.1    <none>               443/TCP           31m
 tcp-lb-onearm   LoadBalancer   10.245.2.83   llb-192.168.80.100   55002:32057/TCP   45s
