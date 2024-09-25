@@ -2568,7 +2568,7 @@ apt-get update
 apt-get install -y docker-ce
 </code></pre></div>
 <h3 id="run-loxilb">Run loxilb</h3>
-<div class="highlight"><pre><span></span><code>sudo docker run -u root --cap-add SYS_ADMIN --restart unless-stopped --privileged --entrypoint /root/loxilb-io/loxilb/loxilb -dit -v /dev/log:/dev/log  --name loxilb ghcr.io/loxilb-io/loxilb:latest
+<div class="highlight"><pre><span></span><code>sudo docker run -u root --cap-add SYS_ADMIN --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --net=host --name loxilb ghcr.io/loxilb-io/loxilb:latest
 </code></pre></div>
 <h2 id="setup-k8s-node">Setup K8s node</h2>
 <p>We  will setup the single node Kubernetes setup using kubeadm. </p>
