@@ -4,7 +4,7 @@ This guide will explain how to:
 
 * Deploy a single-node K8s cluster with flannel networking
 * Run loxilb in ext-mode
-* Expose services with loxilb as an external load balancer   
+* Expose services with loxilb as provider of serviceLB      
 
 ### Pre-requisite
 
