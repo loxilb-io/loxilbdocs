@@ -4,7 +4,7 @@ This guide will explain how to:
 
 * Deploy a single-node Redhat OCP 4.16 cluster
 * Run loxilb in-cluster mode
-* Expose services with loxilb as an external load balancer   
+* Expose services with loxilb as provider of serviceLB   
 
 ### Pre-requisite
 
