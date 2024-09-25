@@ -160,7 +160,7 @@ spec:
     protocol: TCP
 ```
 
-The above creates a loxilb daemonset which for this example is labeled to run only in the master node. But the same example can be followed to let it run in any node necessary. However, in certain multus scenarios, it might be necessary to run loxilb pods in nodes which are not running the actual multus workloads. This is due to the fact how various vlan, mcvlan etc drivers work with multus. Hence appropirate planning has to be done beforehand in this regard. Also, we need to note that we add the network attachment created in previous step as an annotation ```"k8s.v1.cni.cncf.io/networks: vlan5"```. This is to make sure loxilb has connectivity to the workload pods.
+The above creates a loxilb daemonset which for this example is labeled to run only in the master node. But the same example can be followed to let it run in any node necessary. However, in certain multus scenarios, it might be necessary to run loxilb pods in nodes which are not running the actual multus workloads. This is due to the fact how various vlan, mcvlan etc drivers work with multus. Hence appropirate planning has to be done beforehand in this regard. Also, we need to note that we add the network attachment created in previous step as an annotation ```"k8s.v1.cni.cncf.io/networks: vlan5"```. This is to make sure loxilb has connectivity to the workload pods. Furthermore, here loxilb does not run in host network.
 
 ##### Example :
 
