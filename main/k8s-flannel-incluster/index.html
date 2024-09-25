@@ -11,6 +11,10 @@
         <link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/main/k8s-flannel-incluster/">
       
       
+        <link rel="prev" href="../eks-external/">
+      
+      
+        <link rel="next" href="../k3s_quick_start_incluster/">
       
       
       <link rel="icon" href="../photos/loxilb-logo.png">
@@ -18,7 +22,7 @@
     
     
       
-        <title>K8s flannel incluster - LoxiLB</title>
+        <title>K8s/loxilb in-cluster mode - LoxiLB</title>
       
     
     
@@ -111,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              K8s flannel incluster
+              K8s/loxilb in-cluster mode
             
           </span>
         </div>
@@ -362,8 +366,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -380,11 +386,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -398,7 +404,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Getting Started
@@ -413,6 +419,8 @@
   
     
     
+      
+        
       
         
       
@@ -451,6 +459,27 @@
             External Cluster Mode
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../k8s-flannel-ext/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    K8s/loxilb external mode
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -569,8 +598,10 @@
                 
   
   
+    
   
   
+  
     
     
       
@@ -582,14 +613,16 @@
       
         
       
+        
+      
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
         
           
           <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
@@ -603,12 +636,266 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3_2">
             <span class="md-nav__icon md-icon"></span>
             In-Cluster Mode
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    K8s/loxilb in-cluster mode
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    K8s/loxilb in-cluster mode
+  </span>
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start-guide-with-k8s-and-loxilb-in-cluster-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick Start Guide with K8s and LoxiLB in-cluster mode
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quick Start Guide with K8s and LoxiLB in-cluster mode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pre-requisite" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pre-requisite
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#topology" class="md-nav__link">
+    <span class="md-ellipsis">
+      Topology
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup-k8s-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup K8s node
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setup K8s node">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prepare-the-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prepare the node
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-docker-container-runtime" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install docker container runtime
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-kubernetes-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install Kubernetes dependencies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-kubernetes-with-kubeadm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install Kubernetes with kubeadm
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Install Kubernetes with kubeadm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#first-create-a-kubeadm-configyaml-with-following-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      First create a kubeadm-config.yaml with following contents :
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-kubeadm-to-complete-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run kubeadm to complete installation:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setup-kubeconfig-for-running-kubectl-conveniently-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup kubeconfig for running kubectl conveniently (optional)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#label-the-node-and-remove-taints-to-make-sure-pods-are-scheduled-properly-since-it-is-a-single-node-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Label the node and remove taints to make sure pods are scheduled properly (since it is a single node setup)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deploying-loxilb-in-k8s" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deploying loxilb in K8s
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deploying-kube-loxilb-in-k8s" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deploying kube-loxilb in K8s
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spawn-a-test-pod-and-create-a-lb-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      Spawn a test pod and create a LB service
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-the-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check the status
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Check the status">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#check-kubernetes-services-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check Kubernetes services status :
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-create-lb-rules-in-loxilb-pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check create LB rules in loxilb pod :
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connect-from-hostclient" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connect from host/client
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
             
               
                 
@@ -684,7 +971,7 @@
         
   
   <span class="md-ellipsis">
-    EKS/loxilb incluster mode
+    EKS/loxilb in-cluster mode
   </span>
   
 
@@ -2204,7 +2491,7 @@
   
 
 
-  <h1>K8s flannel incluster</h1>
+  <h1>K8s/loxilb in-cluster mode</h1>
 
 <h2 id="quick-start-guide-with-k8s-and-loxilb-in-cluster-mode">Quick Start Guide with K8s and LoxiLB in-cluster mode</h2>
 <p>This guide will explain how to:</p>
@@ -2518,6 +2805,44 @@ Commercial support is available at
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../eks-external/" class="md-footer__link md-footer__link--prev" aria-label="Previous: EKS/loxilb external mode">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                EKS/loxilb external mode
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../k3s_quick_start_incluster/" class="md-footer__link md-footer__link--next" aria-label="Next: K3s/loxilb in-cluster mode">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                K3s/loxilb in-cluster mode
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">
