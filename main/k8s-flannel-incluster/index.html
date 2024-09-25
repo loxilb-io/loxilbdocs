@@ -746,9 +746,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#install-docker-container-runtime" class="md-nav__link">
+  <a href="#install-docker-container-runtime-or-any-runtime-as-per-user-preference" class="md-nav__link">
     <span class="md-ellipsis">
-      Install docker container runtime
+      Install docker container runtime (or any runtime as per user preference)
     </span>
   </a>
   
@@ -2331,9 +2331,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#install-docker-container-runtime" class="md-nav__link">
+  <a href="#install-docker-container-runtime-or-any-runtime-as-per-user-preference" class="md-nav__link">
     <span class="md-ellipsis">
-      Install docker container runtime
+      Install docker container runtime (or any runtime as per user preference)
     </span>
   </a>
   
@@ -2537,7 +2537,7 @@ sudo sysctl --system
 sudo apt install -y docker.io
 sudo usermod -aG docker vagrant
 </code></pre></div>
-<h3 id="install-docker-container-runtime">Install docker container runtime</h3>
+<h3 id="install-docker-container-runtime-or-any-runtime-as-per-user-preference">Install docker container runtime (or any runtime as per user preference)</h3>
 <div class="highlight"><pre><span></span><code># cri-docker Install
 VER=$(curl -s https://api.github.com/repos/Mirantis/cri-dockerd/releases/latest|grep tag_name | cut -d &#39;&quot;&#39; -f 4|sed &#39;s/v//g&#39;)
 echo $VER
