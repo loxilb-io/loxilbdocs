@@ -32,7 +32,7 @@ wget https://raw.githubusercontent.com/loxilb-io/kube-loxilb/refs/heads/main/man
 
 Change the contents of loxilb.yaml as following:
 ```
-command: [ "/root/loxilb-io/loxilb/loxilb", "--egr-hooks", "--whilelist=enp0s3" ]
+command: [ "/root/loxilb-io/loxilb/loxilb", "--egr-hooks", "--whitelist=enp0s3" ]
 ```
 As one could guess, this is the name of system interface. This should be the interface which is associated with br-ex of OCP node. To confirm one can open the OCP web console and check under "Networking->NodeNetworkState" :
 
