@@ -294,7 +294,7 @@ $ sudo docker exec -it loxilb loxicmd get lb -o wide
 
 ## Connect from host/client
 ```
-$ curl http://192.168.82.100:55002
+$ curl http://192.168.80.100:55002
 <!DOCTYPE html>
 <html>
 <head>
