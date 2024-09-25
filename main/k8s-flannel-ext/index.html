@@ -8,13 +8,9 @@
       
       
       
-        <link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/main/loxilb-incluster-multus/">
+        <link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/main/k8s-flannel-ext/">
       
       
-        <link rel="prev" href="../loxilb-nginx-ingress/">
-      
-      
-        <link rel="next" href="../ebpf/">
       
       
       <link rel="icon" href="../photos/loxilb-logo.png">
@@ -22,7 +18,7 @@
     
     
       
-        <title>How-To - Deploy loxilb in-cluster for multus based secondary services - LoxiLB</title>
+        <title>K8s flannel ext - LoxiLB</title>
       
     
     
@@ -76,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#howto-run-loxilb-in-cluster-with-multus-based-secondary-services" class="md-skip">
+        <a href="#quick-start-guide-with-k8s-and-loxilb-ext-mode" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              How-To - Deploy loxilb in-cluster for multus based secondary services
+              K8s flannel ext
             
           </span>
         </div>
@@ -897,10 +893,8 @@
       
   
   
-    
   
   
-  
     
     
       
@@ -921,11 +915,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
@@ -939,7 +933,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             Advanced Guides
@@ -1076,28 +1070,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    How-To - Deploy loxilb in-cluster for multus based secondary services
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../loxilb-incluster-multus/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1106,188 +1082,6 @@
   
 
       </a>
-      
-        
-
-  
-
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#howto-run-loxilb-in-cluster-with-multus-based-secondary-services" class="md-nav__link">
-    <span class="md-ellipsis">
-      HowTo: Run loxilb in-cluster with multus based secondary services
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="HowTo: Run loxilb in-cluster with multus based secondary services">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
-    <span class="md-ellipsis">
-      PreRequisites
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#topology" class="md-nav__link">
-    <span class="md-ellipsis">
-      Topology
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      Configuration
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Configuration">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#create-a-network-attachment-definition-with-the-following-yaml" class="md-nav__link">
-    <span class="md-ellipsis">
-      Create a network attachment definition with the following yaml :
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#install-loxilb-daemonset" class="md-nav__link">
-    <span class="md-ellipsis">
-      Install loxilb daemonset
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Install loxilb daemonset">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
-    <span class="md-ellipsis">
-      Example :
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#install-kube-loxilb" class="md-nav__link">
-    <span class="md-ellipsis">
-      Install kube-loxilb
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Install kube-loxilb">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#example_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Example :
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#create-a-sample-pod-with-multus-attachment" class="md-nav__link">
-    <span class="md-ellipsis">
-      Create a sample Pod with multus attachment
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Create a sample Pod with multus attachment">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#example_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      Example :
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#create-a-service-to-access-the-pod-from-outside" class="md-nav__link">
-    <span class="md-ellipsis">
-      Create a service to access the pod from outside
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Create a service to access the pod from outside">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#example_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      Example :
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#test-the-service" class="md-nav__link">
-    <span class="md-ellipsis">
-      Test the service
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2198,19 +1992,19 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#howto-run-loxilb-in-cluster-with-multus-based-secondary-services" class="md-nav__link">
+  <a href="#quick-start-guide-with-k8s-and-loxilb-ext-mode" class="md-nav__link">
     <span class="md-ellipsis">
-      HowTo: Run loxilb in-cluster with multus based secondary services
+      Quick Start Guide with K8s and LoxiLB ext-mode
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="HowTo: Run loxilb in-cluster with multus based secondary services">
+    <nav class="md-nav" aria-label="Quick Start Guide with K8s and LoxiLB ext-mode">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
+  <a href="#pre-requisite" class="md-nav__link">
     <span class="md-ellipsis">
-      PreRequisites
+      Pre-requisite
     </span>
   </a>
   
@@ -2225,63 +2019,113 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#configuration" class="md-nav__link">
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup-loxilb-node" class="md-nav__link">
     <span class="md-ellipsis">
-      Configuration
+      Setup loxilb node
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Configuration">
+    <nav class="md-nav" aria-label="Setup loxilb node">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#create-a-network-attachment-definition-with-the-following-yaml" class="md-nav__link">
+  <a href="#install-docker-runtime" class="md-nav__link">
     <span class="md-ellipsis">
-      Create a network attachment definition with the following yaml :
+      Install docker runtime
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#install-loxilb-daemonset" class="md-nav__link">
+  <a href="#run-loxilb" class="md-nav__link">
     <span class="md-ellipsis">
-      Install loxilb daemonset
+      Run loxilb
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Install loxilb daemonset">
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup-k8s-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup K8s node
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setup K8s node">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
+  <a href="#prepare-the-node" class="md-nav__link">
     <span class="md-ellipsis">
-      Example :
+      Prepare the node
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#install-kube-loxilb" class="md-nav__link">
+  <a href="#install-docker-container-runtime" class="md-nav__link">
     <span class="md-ellipsis">
-      Install kube-loxilb
+      Install docker container runtime
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Install kube-loxilb">
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-kubernetes-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install Kubernetes dependencies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-kubernetes-with-kubeadm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install Kubernetes with kubeadm
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Install Kubernetes with kubeadm">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#example_1" class="md-nav__link">
+  <a href="#first-create-a-kubeadm-configyaml-with-following-contents" class="md-nav__link">
     <span class="md-ellipsis">
-      Example :
+      First create a kubeadm-config.yaml with following contents :
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-kubeadm-to-complete-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run kubeadm to complete installation:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setup-kubeconfig-for-running-kubectl-conveniently-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup kubeconfig for running kubectl conveniently (optional)
     </span>
   </a>
   
@@ -2293,43 +2137,60 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#create-a-sample-pod-with-multus-attachment" class="md-nav__link">
+  <a href="#label-the-node-and-remove-taints-to-make-sure-pods-are-scheduled-properly-since-it-is-a-single-node-setup" class="md-nav__link">
     <span class="md-ellipsis">
-      Create a sample Pod with multus attachment
+      Label the node and remove taints to make sure pods are scheduled properly (since it is a single node setup)
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Create a sample Pod with multus attachment">
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deploying-kube-loxilb-in-k8s" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deploying kube-loxilb in K8s
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spawn-a-test-pod-and-create-a-lb-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      Spawn a test pod and create a LB service
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-the-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check the status
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Check the status">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#example_2" class="md-nav__link">
+  <a href="#in-kubernetes-node" class="md-nav__link">
     <span class="md-ellipsis">
-      Example :
+      In Kubernetes node:
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#create-a-service-to-access-the-pod-from-outside" class="md-nav__link">
+  <a href="#in-loxilb-node" class="md-nav__link">
     <span class="md-ellipsis">
-      Create a service to access the pod from outside
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Create a service to access the pod from outside">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#example_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      Example :
+      In loxilb node:
     </span>
   </a>
   
@@ -2339,23 +2200,13 @@
     </nav>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#test-the-service" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#connect-from-hostclient" class="md-nav__link">
     <span class="md-ellipsis">
-      Test the service
+      Connect from host/client
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -2377,485 +2228,266 @@
   
 
 
-  <h1>How-To - Deploy loxilb in-cluster for multus based secondary services</h1>
+  <h1>K8s flannel ext</h1>
 
-<h2 id="howto-run-loxilb-in-cluster-with-multus-based-secondary-services">HowTo: Run loxilb in-cluster with multus based secondary services</h2>
-<p>This guide will explain how to run loxilb in in-cluster mode and provide LB services for multus based secondary networks. Some  users have used loxilb in external-mode to provide LB for multus secondary services as explained in this <a href="https://cloudybytes.medium.com/k8s-bringing-load-balancing-to-multus-workloads-with-loxilb-a0746f270abe">blog</a>. Multus is used for various telco use-cases and also in <a href="https://kubevirt.io">kube-virt</a> deployments. Here we will explore how do achieve the same with loxilb in-cluster mode. </p>
-<h3 id="prerequisites">PreRequisites</h3>
-<p>A functioning K8s cluster with multiple nodes and multus installed. <a href="https://github.com/k8snetworkplumbingwg/multus-cni">Multus</a> plugin can be installed by following the guide <a href="https://github.com/k8snetworkplumbingwg/multus-cni/blob/master/docs/how-to-use.md">here</a>. Also, for IPAM to work properly with multus, one might need to use <a href="https://github.com/k8snetworkplumbingwg/whereabouts">whereabouts</a> plugin as well. In the beginning the state of the cluster should be similar to the following :</p>
-<div class="highlight"><pre><span></span><code>kube-flannel   kube-flannel-ds-cq9rx            1/1     Running            0                5h30m
-kube-flannel   kube-flannel-ds-mmvrf            1/1     Running            0                5h36m
-kube-flannel   kube-flannel-ds-tbdzx            1/1     Running            0                5h33m
-kube-system    coredns-76f75df574-frjh5         1/1     Running            0                5h36m
-kube-system    coredns-76f75df574-sxgjf         1/1     Running            0                5h36m
-kube-system    etcd-master                      1/1     Running            0                5h36m
-kube-system    kube-apiserver-master            1/1     Running            0                5h36m
-kube-system    kube-controller-manager-master   1/1     Running            0                5h36m
-kube-system    kube-multus-ds-98zq5             1/1     Running            0                3h57m
-kube-system    kube-multus-ds-qrp4n             1/1     Running            0                3h57m
-kube-system    kube-multus-ds-s9cnm             1/1     Running            0                3h57m
-kube-system    kube-proxy-6k9kb                 1/1     Running            0                5h33m
-kube-system    kube-proxy-lqclz                 1/1     Running            0                5h36m
-kube-system    kube-proxy-qclfz                 1/1     Running            0                5h30m
-kube-system    kube-scheduler-master            1/1     Running            0                5h36m
-kube-system    metrics-server-d4dc9c4f-pjp4t    1/1     Running            0                5h36m
-kube-system    whereabouts-c7ccf                1/1     Running            0                5h55m
-kube-system    whereabouts-sswf2                1/1     Running            0                5h52m
-kube-system    whereabouts-t75kh                1/1     Running            0                5h25m
-</code></pre></div>
+<h2 id="quick-start-guide-with-k8s-and-loxilb-ext-mode">Quick Start Guide with K8s and LoxiLB ext-mode</h2>
+<p>This guide will explain how to:</p>
+<ul>
+<li>Deploy a single-node K8s cluster with flannel networking</li>
+<li>Run loxilb in ext-mode</li>
+<li>Expose services with loxilb as an external load balancer   </li>
+</ul>
+<h3 id="pre-requisite">Pre-requisite</h3>
+<ul>
+<li>Two nodes with Linux - one for running K8s and another for running loxilb</li>
+<li>Bastion or Host node to consume the services</li>
+</ul>
 <h3 id="topology">Topology</h3>
-<p>We will deploy a topology similar to the following :</p>
-<p><img alt="image" src="https://github.com/user-attachments/assets/a30cb94f-2845-416f-8e82-7718fa93bad0" /></p>
-<p>:point_right: In this topology, there are multiple interfaces but it is also possible to create secondary network on top of a single interface as well.</p>
-<h3 id="configuration">Configuration</h3>
-<h4 id="create-a-network-attachment-definition-with-the-following-yaml">Create a network attachment definition with the following yaml :</h4>
-<div class="highlight"><pre><span></span><code>apiVersion: &quot;k8s.cni.cncf.io/v1&quot;
-kind: NetworkAttachmentDefinition
-metadata:
-  name: vlan5
-spec:
-  config: &#39;{
-    &quot;name&quot;: &quot;vlan5-net&quot;,
-    &quot;cniVersion&quot;: &quot;0.3.1&quot;,
-    &quot;type&quot;: &quot;vlan&quot;,
-    &quot;master&quot;: &quot;eth1&quot;,
-    &quot;mtu&quot;: 1450,
-    &quot;vlanId&quot;: 5,
-    &quot;linkInContainer&quot;: false,
-    &quot;ipam&quot;: {
-        &quot;type&quot;: &quot;whereabouts&quot;,
-        &quot;subnet&quot;: &quot;123.123.123.0/24&quot;
-    },
-    &quot;dns&quot;: {
-      &quot;nameservers&quot;: [ &quot;8.8.8.8&quot; ]
-    }
-  }&#39;
+<p>For quickly bringing up loxilb with K8s, we will be deploying all components in a single node :   </p>
+<p><img alt="image" src="https://github.com/user-attachments/assets/96dd024d-7480-42be-8272-be047485aa43" /></p>
+<p>loxilb is run as a docker in its own node in external mode. loxilb can be used in more complex <a href="https://www.loxilb.io/post/k8s-nuances-of-in-cluster-external-service-lb-with-loxilb">in-cluster</a> mode as well with various <a href="https://docs.loxilb.io/latest/ha-deploy/">HA</a> options as well, but skipped here for simplicity.   </p>
+<h2 id="setup-loxilb-node">Setup loxilb node</h2>
+<h3 id="install-docker-runtime">Install docker runtime</h3>
+<div class="highlight"><pre><span></span><code>apt-get update
+apt-get install -y software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+add-apt-repository -y &quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu  $(lsb_release -cs)  stable&quot;
+apt-get update
+apt-get install -y docker-ce
 </code></pre></div>
-<p>This basically creates a tagged vlan subinterface attachment type and can be directly assigned to the pod namespace.We can check the created attachment as follows :</p>
-<div class="highlight"><pre><span></span><code>$ kubectl describe network-attachment-definitions.k8s.cni.cncf.io vlan5
-Name:         vlan5
-Namespace:    default
-Labels:       &lt;none&gt;
-Annotations:  &lt;none&gt;
-API Version:  k8s.cni.cncf.io/v1
-Kind:         NetworkAttachmentDefinition
-Metadata:
-  Creation Timestamp:  2024-09-19T05:48:05Z
-  Generation:          1
-  Resource Version:    15678
-  UID:                 0c0dc69c-bda2-4b49-bd82-1872f76ba2d3
-Spec:
-  Config:  { &quot;name&quot;: &quot;vlan5-net&quot;, &quot;cniVersion&quot;: &quot;0.3.1&quot;, &quot;type&quot;: &quot;vlan&quot;, &quot;master&quot;: &quot;eth1&quot;, &quot;mtu&quot;: 1450, &quot;vlanId&quot;: 5, &quot;linkInContainer&quot;: false, &quot;ipam&quot;: { &quot;type&quot;: &quot;host-local&quot;, &quot;subnet&quot;: &quot;123.123.123.0/24&quot; }, &quot;dns&quot;: { &quot;nameservers&quot;: [ &quot;8.8.8.8&quot; ] } }
-Events:    &lt;none&gt;
+<h3 id="run-loxilb">Run loxilb</h3>
+<div class="highlight"><pre><span></span><code>sudo docker run -u root --cap-add SYS_ADMIN --restart unless-stopped --privileged --entrypoint /root/loxilb-io/loxilb/loxilb -dit -v /dev/log:/dev/log  --name loxilb ghcr.io/loxilb-io/loxilb:latest
 </code></pre></div>
-<h4 id="install-loxilb-daemonset">Install loxilb daemonset</h4>
-<p>To install loxilb as a daemonset, we can apply the following yaml :</p>
-<div class="highlight"><pre><span></span><code>apiVersion: apps/v1
-kind: DaemonSet
-metadata:
-  name: loxilb-lb
-  #namespace: kube-system
-spec:
-  selector:
-    matchLabels:
-      app: loxilb-app
-  template:
-    metadata:
-      name: loxilb-lb
-      labels:
-        app: loxilb-app
-      annotations:
-        k8s.v1.cni.cncf.io/networks: vlan5
-    spec:
-      #hostNetwork: true
-      dnsPolicy: ClusterFirstWithHostNet
-      tolerations:
-        #- key: &quot;node-role.kubernetes.io/master&quot;
-        #operator: Exists
-      - key: &quot;node-role.kubernetes.io/control-plane&quot;
-        operator: Exists
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              #- key: &quot;node-role.kubernetes.io/master&quot;
-              #  operator: Exists
-              - key: &quot;node-role.kubernetes.io/control-plane&quot;
-                operator: Exists
-      containers:
-      - name: loxilb-app
-        image: &quot;ghcr.io/loxilb-io/loxilb:latest&quot;
-        imagePullPolicy: Always
-        command: [ &quot;/root/loxilb-io/loxilb/loxilb&quot; ]
-        ports:
-        - containerPort: 11111
-        - containerPort: 179
-        - containerPort: 50051
-        securityContext:
-          privileged: true
-          capabilities:
-            add:
-              - SYS_ADMIN
+<h2 id="setup-k8s-node">Setup K8s node</h2>
+<p>We  will setup the single node Kubernetes setup using kubeadm. </p>
+<h3 id="prepare-the-node">Prepare the node</h3>
+<div class="highlight"><pre><span></span><code># disable swap
+sudo swapoff -a
+
+# keeps the swap off during reboot
+(crontab -l 2&gt;/dev/null; echo &quot;@reboot /sbin/swapoff -a&quot;) | crontab - || true
+sudo apt-get update -y
+
+# Kernel Forwarding 
+cat &lt;&lt;EOF | sudo tee /etc/modules-load.d/k8s.conf
+br_netfilter
+EOF
+
+# Set up required sysctl params, these persist across reboots.
+cat &lt;&lt;EOF | sudo tee /etc/sysctl.d/99-kubernetes-cri.conf
+net.bridge.bridge-nf-call-iptables  = 1
+net.ipv4.ip_forward                 = 1
+net.bridge.bridge-nf-call-ip6tables = 1
+EOF
+
+sudo sysctl --system
+
+# Install docker to be used as container-runtime by Kubernetes
+sudo apt install -y docker.io
+sudo usermod -aG docker vagrant
+</code></pre></div>
+<h3 id="install-docker-container-runtime">Install docker container runtime</h3>
+<div class="highlight"><pre><span></span><code># cri-docker Install
+VER=$(curl -s https://api.github.com/repos/Mirantis/cri-dockerd/releases/latest|grep tag_name | cut -d &#39;&quot;&#39; -f 4|sed &#39;s/v//g&#39;)
+echo $VER
+wget -q https://github.com/Mirantis/cri-dockerd/releases/download/v${VER}/cri-dockerd-${VER}.amd64.tgz --retry-connrefused  --waitretry=1 --read-timeout=20 --timeout=15 --tries=5 --continue
+tar xvf cri-dockerd-${VER}.amd64.tgz
+sudo mv cri-dockerd/cri-dockerd /usr/local/bin/
+
+wget -q https://raw.githubusercontent.com/Mirantis/cri-dockerd/master/packaging/systemd/cri-docker.service --retry-connrefused  --waitretry=1 --read-timeout=20 --timeout=15 --tries=5 --continue
+wget -q https://raw.githubusercontent.com/Mirantis/cri-dockerd/master/packaging/systemd/cri-docker.socket --retry-connrefused  --waitretry=1 --read-timeout=20 --timeout=15 --tries=5 --continue
+sudo mv cri-docker.socket cri-docker.service /etc/systemd/system/
+sudo sed -i -e &#39;s,/usr/bin/cri-dockerd,/usr/local/bin/cri-dockerd,&#39; /etc/systemd/system/cri-docker.service
+
+sudo systemctl daemon-reload
+sudo systemctl enable cri-docker.service
+sudo systemctl enable --now cri-docker.socket
+
+# cri-docker Active Check
+sudo systemctl restart docker &amp;&amp; sudo systemctl restart cri-docker
+sudo systemctl status cri-docker.socket --no-pager
+
+# Docker cgroup Change Require to Systemd
+sudo mkdir -p /etc/docker || true
+cat &lt;&lt;EOF | sudo tee /etc/docker/daemon.json
+{
+  &quot;exec-opts&quot;: [&quot;native.cgroupdriver=systemd&quot;],
+  &quot;log-driver&quot;: &quot;json-file&quot;,
+  &quot;log-opts&quot;: {
+    &quot;max-size&quot;: &quot;100m&quot;
+  },
+  &quot;storage-driver&quot;: &quot;overlay2&quot;
+}
+EOF
+
+sudo systemctl restart docker &amp;&amp; sudo systemctl restart cri-docker
+</code></pre></div>
+<h3 id="install-kubernetes-dependencies">Install Kubernetes dependencies</h3>
+<div class="highlight"><pre><span></span><code>sudo apt-get install -y apt-transport-https ca-certificates curl gpg
+curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.29.2/deb/Release.key | sudo gpg --no-tty --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+echo &#39;deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.29.2/deb/ /&#39; | sudo tee /etc/apt/sources.list.d/kubernetes.list
+
+sudo apt-get update -y
+sudo apt-get install -y kubelet kubectl kubeadm
+sudo apt-get update -y
+sudo apt-get install -y jq
+sudo apt-get install -y ipvsadm
+</code></pre></div>
+<h3 id="install-kubernetes-with-kubeadm">Install Kubernetes with kubeadm</h3>
+<h4 id="first-create-a-kubeadm-configyaml-with-following-contents">First create a kubeadm-config.yaml with following contents :</h4>
+<p>(Note that 192.168.80.250 is the nodeIP of the Kubernetes node)
+<div class="highlight"><pre><span></span><code>apiVersion: kubeadm.k8s.io/v1beta3
+bootstrapTokens:
+- groups:
+  - system:bootstrappers:kubeadm:default-node-token
+  ttl: 24h0m0s
+  usages:
+  - signing
+  - authentication
+kind: InitConfiguration
+localAPIEndpoint:
+  advertiseAddress: 192.168.80.250
+  bindPort: 6443
+nodeRegistration:
+  imagePullPolicy: IfNotPresent
+  name: master
+  taints: null
+  kubeletExtraArgs:
+    node-ip: 192.168.80.250
+  criSocket: unix:///var/run/cri-dockerd.sock
 ---
+apiVersion: kubeadm.k8s.io/v1beta3
+certificatesDir: /etc/kubernetes/pki
+kind: ClusterConfiguration
+apiServer:
+  timeoutForControlPlane: 4m0s
+  certSANs:
+  - 192.168.80.250
+controlPlaneEndpoint: 192.168.80.250:6443
+clusterName: kubernetes
+controllerManager: {}
+dns: {}
+etcd:
+  local:
+    dataDir: /var/lib/etcd
+imageRepository: registry.k8s.io
+kubernetesVersion: v1.29.2
+networking:
+  dnsDomain: cluster.local
+  podSubnet: 10.244.0.0/16
+  serviceSubnet: 10.245.0.0/18
+scheduler: {}
+--
+apiVersion: kubeproxy.config.k8s.io/v1alpha1
+bindAddress: 0.0.0.0
+clientConnection:
+  acceptContentTypes: &quot;&quot;
+  burst: 10
+  contentType: application/vnd.kubernetes.protobuf
+  kubeconfig: /var/lib/kube-proxy/kubeconfig.conf
+  qps: 5
+clusterCIDR: &quot;&quot;
+configSyncPeriod: 15m0s
+#featureGates: &quot;SupportIPVSProxyMode=true&quot;
+enableProfiling: false
+healthzBindAddress: 0.0.0.0:10256
+hostnameOverride: &quot;&quot;
+iptables:
+  masqueradeAll: false
+  masqueradeBit: 14
+  minSyncPeriod: 0s
+  syncPeriod: 30s
+ipvs:
+  excludeCIDRs: null
+  minSyncPeriod: 0s
+  scheduler: &quot;&quot;
+  syncPeriod: 30s
+kind: KubeProxyConfiguration
+metricsBindAddress: 127.0.0.1:10249
+nodePortAddresses: null
+oomScoreAdj: -999
+portRange: &quot;&quot;
+---
+kind: KubeletConfiguration
+apiVersion: kubelet.config.k8s.io/v1beta1
+cgroupDriver: systemd
+</code></pre></div></p>
+<h4 id="run-kubeadm-to-complete-installation">Run kubeadm to complete installation:</h4>
+<div class="highlight"><pre><span></span><code>sudo kubeadm init --ignore-preflight-errors Swap --config kubeadm-config.yaml
+</code></pre></div>
+<h4 id="setup-kubeconfig-for-running-kubectl-conveniently-optional">Setup kubeconfig for running kubectl conveniently (optional)</h4>
+<div class="highlight"><pre><span></span><code>mkdir -p &quot;$HOME&quot;/.kube
+sudo cp -i /etc/kubernetes/admin.conf &quot;$HOME&quot;/.kube/config
+sudo chown &quot;$(id -u)&quot;:&quot;$(id -g)&quot; &quot;$HOME&quot;/.kube/config
+</code></pre></div>
+<h3 id="label-the-node-and-remove-taints-to-make-sure-pods-are-scheduled-properly-since-it-is-a-single-node-setup">Label the node and remove taints to make sure pods are scheduled properly (since it is a single node setup)</h3>
+<div class="highlight"><pre><span></span><code>kubectl label node $(hostname -s) node-role.kubernetes.io/worker=&#39;&#39;
+kubectl label node $(hostname -s) node.kubernetes.io/exclude-from-external-load-balancers-
+kubectl taint nodes --all node-role.kubernetes.io/control-plane-
+</code></pre></div>
+<h3 id="deploying-kube-loxilb-in-k8s">Deploying kube-loxilb in K8s</h3>
+<p><a href="https://github.com/loxilb-io/kube-loxilb">kube-loxilb</a> is used to deploy loxilb with Kubernetes.
+<div class="highlight"><pre><span></span><code>wget https://raw.githubusercontent.com/loxilb-io/kube-loxilb/main/manifest/ext-cluster/kube-loxilb.yaml
+</code></pre></div></p>
+<p>Change the contents of kube-loxilb.yaml to the following (leaving others commented) : 
+<div class="highlight"><pre><span></span><code>        args:
+            - --loxiURL=http://192.168.80.10:11111
+            - --cidrPools=defaultPool=192.168.80.100/32
+            - --setRoles=0.0.0.0
+</code></pre></div>
+In the above snippet, loxiURL uses nodeIP of loxilb node, which can be different for each setup. The CIDR is set to any unused IP/subnet in the local network.</p>
+<p>Apply the yaml contents :
+<div class="highlight"><pre><span></span><code>kubectl apply -f kube-loxilb.yaml
+</code></pre></div></p>
+<h2 id="spawn-a-test-pod-and-create-a-lb-service">Spawn a test pod and create a LB service</h2>
+<p><div class="highlight"><pre><span></span><code>cat &lt;&lt; EOF | kubectl apply -f -
 apiVersion: v1
 kind: Service
 metadata:
-  name: loxilb-lb-service
-  #namespace: kube-system
-spec:
-  clusterIP: None
-  selector:
-    app: loxilb-app
-  ports:
-  - name: loxilb-app
-    port: 11111
-    targetPort: 11111
-    protocol: TCP
-  - name: loxilb-app-bgp
-    port: 179
-    targetPort: 179
-    protocol: TCP
-  - name: loxilb-app-gobgp
-    port: 50051
-    targetPort: 50051
-    protocol: TCP
-</code></pre></div>
-<p>The above creates a loxilb daemonset which for this example is labeled to run only in the master node. But the same example can be followed to let it run in any node necessary. However, in certain multus scenarios, it might be necessary to run loxilb pods in nodes which are not running the actual multus workloads. This is due to the fact how various vlan, mcvlan etc drivers work with multus. Hence appropirate planning has to be done beforehand in this regard. Also, we need to note that we add the network attachment created in previous step as an annotation <code>"k8s.v1.cni.cncf.io/networks: vlan5"</code>. This is to make sure loxilb has connectivity to the workload pods. Furthermore, here loxilb does not run in host network.</p>
-<h5 id="example">Example :</h5>
-<div class="highlight"><pre><span></span><code>$ kubectl apply -f loxilb.yaml 
-daemonset.apps/loxilb-lb created
-service/loxilb-lb-service created
-
-$ kubectl get pods -A | grep loxilb-lb
-default        loxilb-lb-kdvj7                  1/1     Running            0                64s
-</code></pre></div>
-<h4 id="install-kube-loxilb">Install kube-loxilb</h4>
-<p>kube-loxilb is the operator of loxilb. To install kube-loxilb, we can apply the following yaml :</p>
-<p><div class="highlight"><pre><span></span><code>---
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: kube-loxilb
-  namespace: kube-system
----
-kind: ClusterRole
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
-  name: kube-loxilb
-rules:
-  - apiGroups:
-      - &quot;&quot;
-    resources:
-      - nodes
-    verbs:
-      - get
-      - watch
-      - list
-      - patch
-  - apiGroups:
-      - &quot;&quot;
-    resources:
-      - pods
-    verbs:
-      - get
-      - watch
-      - list
-      - patch
-  - apiGroups:
-      - &quot;&quot;
-    resources:
-      - endpoints
-      - services
-      - namespaces
-      - services/status
-    verbs:
-      - get
-      - watch
-      - list
-      - patch
-      - update
-  - apiGroups:
-      - gateway.networking.k8s.io
-    resources:
-      - gatewayclasses
-      - gatewayclasses/status
-      - gateways
-      - gateways/status
-      - tcproutes
-      - udproutes
-    verbs: [&quot;get&quot;, &quot;watch&quot;, &quot;list&quot;, &quot;patch&quot;, &quot;update&quot;]
-  - apiGroups:
-      - discovery.k8s.io
-    resources:
-      - endpointslices
-    verbs:
-      - get
-      - watch
-      - list
-  - apiGroups:
-      - authentication.k8s.io
-    resources:
-      - tokenreviews
-    verbs:
-      - create
-  - apiGroups:
-      - authorization.k8s.io
-    resources:
-      - subjectaccessreviews
-    verbs:
-      - create
-  - apiGroups:
-      - bgppeer.loxilb.io
-    resources:
-      - bgppeerservices
-    verbs:
-      - get
-      - watch
-      - list
-      - create
-      - update
-      - delete
-  - apiGroups:
-      - bgppolicydefinedsets.loxilb.io
-    resources:
-      - bgppolicydefinedsetsservices
-    verbs:
-      - get
-      - watch
-      - list
-      - create
-      - update
-      - delete
-  - apiGroups:
-      - bgppolicydefinition.loxilb.io
-    resources:
-      - bgppolicydefinitionservices
-    verbs:
-      - get
-      - watch
-      - list
-      - create
-      - update
-      - delete
-  - apiGroups:
-      - bgppolicyapply.loxilb.io
-    resources:
-      - bgppolicyapplyservices
-    verbs:
-      - get
-      - watch
-      - list
-      - create
-      - update
-      - delete
----
-kind: ClusterRoleBinding
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
-  name: kube-loxilb
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: kube-loxilb
-subjects:
-  - kind: ServiceAccount
-    name: kube-loxilb
-    namespace: kube-system
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: kube-loxilb
-  namespace: kube-system
-  labels:
-    app: kube-loxilb-app
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: kube-loxilb-app
-  template:
-    metadata:
-      labels:
-        app: kube-loxilb-app
-    spec:
-      #hostNetwork: true
-      dnsPolicy: ClusterFirstWithHostNet
-      tolerations:
-      # Mark the pod as a critical add-on for rescheduling.
-      - key: CriticalAddonsOnly
-        operator: Exists
-      priorityClassName: system-node-critical
-      serviceAccountName: kube-loxilb
-      terminationGracePeriodSeconds: 0
-      containers:
-      - name: kube-loxilb
-        image: ghcr.io/loxilb-io/kube-loxilb:latest
-        imagePullPolicy: Always
-        command:
-        - /bin/kube-loxilb
-        args:
-        - --cidrPools=defaultPool=123.123.123.123/32
-        - --setRoles=0.0.0.0
-        resources:
-          requests:
-            cpu: &quot;100m&quot;
-            memory: &quot;50Mi&quot;
-          limits:
-            cpu: &quot;100m&quot;
-            memory: &quot;50Mi&quot;
-        securityContext:
-          privileged: true
-          capabilities:
-            add: [&quot;NET_ADMIN&quot;, &quot;NET_RAW&quot;]
-</code></pre></div>
-:point_right: <b>It is to be noted that in this particular example, kube-loxilb runs in kube-system namespace while loxilb runs in default namespace. This is due to the fact loxilb needs to run in a same namespace as the endpoint pod for multus connectivity to work properly. It is assumed that  kube-loxilb running in kube-system namespace can access loxilb pods just fine and there are no network policies in play here. Finally cidrPools is defined as a floating IP which belongs to the secondary network subnet in this example. It needs to be made sure this IP(range) is not allocated for any pods.</b></p>
-<h5 id="example_1">Example :</h5>
-<div class="highlight"><pre><span></span><code>$ kubectl apply -f kube-loxilb.yaml 
-serviceaccount/kube-loxilb created
-clusterrole.rbac.authorization.k8s.io/kube-loxilb created
-clusterrolebinding.rbac.authorization.k8s.io/kube-loxilb created
-deployment.apps/kube-loxilb created
-
-$ kubectl get pods -A | grep kube-loxilb
-kube-system    kube-loxilb-d97c89f4c-8zvhk      1/1     Running            0                74s
-</code></pre></div>
-<h4 id="create-a-sample-pod-with-multus-attachment">Create a sample Pod with multus attachment</h4>
-<p>We can use the following yaml for this :</p>
-<div class="highlight"><pre><span></span><code>apiVersion: v1
-kind: Pod
-metadata:
-  name: pod-01
-  labels:
-    app: pod-01
+  name: tcp-lb-onearm
   annotations:
-    k8s.v1.cni.cncf.io/networks: vlan5
-spec:
-  containers:
-    - name: nginx
-      image: ghcr.io/loxilb-io/nginx:stable
-      ports:
-        - containerPort: 80
-</code></pre></div>
-<h5 id="example_2">Example :</h5>
-<div class="highlight"><pre><span></span><code>$ kubectl apply -f multus-pod.yaml
-pod/pod-01 created
-
-$ kubectl describe pods pod-01
-Name:             pod-01
-Namespace:        default
-Priority:         0
-Service Account:  default
-Node:             worker2/192.168.80.202
-Start Time:       Thu, 19 Sep 2024 09:14:42 +0000
-Labels:           app=pod-01
-Annotations:      k8s.v1.cni.cncf.io/network-status:
-                    [{
-                        &quot;name&quot;: &quot;cbr0&quot;,
-                        &quot;interface&quot;: &quot;eth0&quot;,
-                        &quot;ips&quot;: [
-                            &quot;10.244.2.20&quot;
-                        ],
-                        &quot;mac&quot;: &quot;56:aa:2f:db:95:82&quot;,
-                        &quot;default&quot;: true,
-                        &quot;dns&quot;: {},
-                        &quot;gateway&quot;: [
-                            &quot;10.244.2.1&quot;
-                        ]
-                    },{
-                        &quot;name&quot;: &quot;default/vlan5&quot;,
-                        &quot;interface&quot;: &quot;net1&quot;,
-                        &quot;ips&quot;: [
-                            &quot;123.123.123.17&quot;
-                        ],
-                        &quot;mac&quot;: &quot;08:00:27:55:ec:f5&quot;,
-                        &quot;dns&quot;: {
-                            &quot;nameservers&quot;: [
-                                &quot;8.8.8.8&quot;
-                            ]
-                        }
-                    }]
-                  k8s.v1.cni.cncf.io/networks: vlan5
-Status:           Running
-IP:               10.244.2.20
-IPs:
-  IP:  10.244.2.20
-Containers:
-  nginx:
-    Container ID:   cri-o://46932f3cb26facd041bbeed16e4373e7efa8b5f89b2ca20dfbcffad26d2b88dd
-    Image:          ghcr.io/loxilb-io/nginx:stable
-    Image ID:       ghcr.io/loxilb-io/nginx@sha256:46f036b0be0dfe50ca81ba2428390570a4c179830e29e67cd5872ecf8ecbfbb3
-    Port:           80/TCP
-    Host Port:      0/TCP
-    State:          Running
-      Started:      Thu, 19 Sep 2024 09:14:43 +0000
-    Ready:          True
-    Restart Count:  0
-    Environment:    &lt;none&gt;
-    Mounts:
-      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-s8mjs (ro)
-Conditions:
-  Type                        Status
-  PodReadyToStartContainers   True 
-  Initialized                 True 
-  Ready                       True 
-  ContainersReady             True 
-  PodScheduled                True 
-Volumes:
-  kube-api-access-s8mjs:
-    Type:                    Projected (a volume that contains injected data from multiple sources)
-    TokenExpirationSeconds:  3607
-    ConfigMapName:           kube-root-ca.crt
-    ConfigMapOptional:       &lt;nil&gt;
-    DownwardAPI:             true
-QoS Class:                   BestEffort
-Node-Selectors:              &lt;none&gt;
-Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
-                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
-Events:
-  Type    Reason          Age   From               Message
-  ----    ------          ----  ----               -------
-  Normal  Scheduled       60s   default-scheduler  Successfully assigned default/pod-01 to worker2
-  Normal  AddedInterface  60s   multus             Add eth0 [10.244.2.20/24] from cbr0
-  Normal  AddedInterface  60s   multus             Add net1 [123.123.123.17/24] from default/vlan5
-  Normal  Pulled          60s   kubelet            Container image &quot;ghcr.io/loxilb-io/nginx:stable&quot; already present on machine
-  Normal  Created         60s   kubelet            Created container nginx
-  Normal  Started         60s   kubelet            Started container nginx
-</code></pre></div>
-<h4 id="create-a-service-to-access-the-pod-from-outside">Create a service to access the pod from outside</h4>
-<p>We can use the following yaml :</p>
-<div class="highlight"><pre><span></span><code>apiVersion: v1
-kind: Service
-metadata:
-  name: multus-service
-  annotations:
-    loxilb.io/multus-nets: vlan5
+    loxilb.io/liveness: &quot;yes&quot;
     loxilb.io/lbmode: &quot;onearm&quot;
 spec:
   externalTrafficPolicy: Local
   loadBalancerClass: loxilb.io/loxilb
   selector:
-    app: pod-01
+    what: tcp-onearm-test
   ports:
     - port: 55002
-      targetPort: 80
+      targetPort: 80 
   type: LoadBalancer
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: tcp-onearm-test
+  labels:
+    what: tcp-onearm-test
+spec:
+  containers:
+    - name: tcp-onearm-test
+      image: ghcr.io/loxilb-io/nginx:stable
+      ports:
+        - containerPort: 80
+EOF
 </code></pre></div>
-<p>:point_right: Please make sure that loadBalancerClass is set to <code>loxilb.io/loxilb</code> so that loxilb can co-exist with any other LB which one might be using for primary services. And finally the annotation <code>loxilb.io/multus-nets</code> which denotes the network attachement definition name.</p>
-<h5 id="example_3">Example :</h5>
-<div class="highlight"><pre><span></span><code>$ kubectl apply -f  multus-service.yaml 
-service/multus-service created
-
-$ kubectl get svc 
-NAME                TYPE           CLUSTER-IP      EXTERNAL-IP           PORT(S)                       AGE
-kubernetes          ClusterIP      10.245.0.1      &lt;none&gt;                443/TCP                       6h19m
-loxilb-lb-service   ClusterIP      None            &lt;none&gt;                11111/TCP,179/TCP,50051/TCP   21m
-multus-service      LoadBalancer   10.245.18.238   llb-123.123.123.123   55002:32488/TCP               30s
+For detailed explanation of various annotations, please check <a href="https://docs.loxilb.io/latest/kube-loxilb/#how-to-deploy-kube-loxilb">this</a> guide.</p>
+<h2 id="check-the-status">Check the status</h2>
+<h3 id="in-kubernetes-node">In Kubernetes node:</h3>
+<div class="highlight"><pre><span></span><code>kubectl get svc
+NAME            TYPE           CLUSTER-IP    EXTERNAL-IP          PORT(S)           AGE
+kubernetes      ClusterIP      10.245.0.1    &lt;none&gt;               443/TCP           31m
+tcp-lb-onearm   LoadBalancer   10.245.2.83   llb-192.168.80.100   55002:32057/TCP   45s
 </code></pre></div>
-<h4 id="test-the-service">Test the service</h4>
-<p>Now we can access the service from any host connected to this secondary network.</p>
-<div class="highlight"><pre><span></span><code>$ curl http://123.123.123.123:55002
+<h3 id="in-loxilb-node">In loxilb node:</h3>
+<div class="highlight"><pre><span></span><code>$ sudo docker exec -it loxilb loxicmd get lb -o wide
+|     EXT IP     | SEC IPS | HOST | PORT  | PROTO |         NAME          | MARK | SEL |  MODE  |    ENDPOINT    | EPORT | WEIGHT | STATE  | COUNTERS |
+|----------------|---------|------|-------|-------|-----------------------|------|-----|--------|----------------|-------|--------|--------|----------|
+| 192.168.80.100 |         |      | 55002 | tcp   | default_tcp-lb-onearm |    0 | rr  | onearm | 192.168.80.250 | 32057 |      1 | active | 0:0      |
+</code></pre></div>
+<h2 id="connect-from-hostclient">Connect from host/client</h2>
+<div class="highlight"><pre><span></span><code>$ curl http://192.168.82.100:55002
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
@@ -2910,44 +2542,6 @@ Commercial support is available at
       
         <footer class="md-footer">
   
-    
-      
-      <nav class="md-footer__inner md-grid" aria-label="Footer" >
-        
-          
-          <a href="../loxilb-nginx-ingress/" class="md-footer__link md-footer__link--prev" aria-label="Previous: How-To - Deploy loxilb with ingress-nginx">
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
-            </div>
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              <div class="md-ellipsis">
-                How-To - Deploy loxilb with ingress-nginx
-              </div>
-            </div>
-          </a>
-        
-        
-          
-          <a href="../ebpf/" class="md-footer__link md-footer__link--next" aria-label="Next: What is eBPF">
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              <div class="md-ellipsis">
-                What is eBPF
-              </div>
-            </div>
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
     
   
   <div class="md-footer-meta md-typeset">
