@@ -142,11 +142,11 @@ spec:
 #### Run LoxiLB Pods
 ##### Install docker on LoxiLB instance(s)
 
-LoxiLB is deployed as a container on each instance. After creating two EC2 instances with appropriate EMI (preferably Ubuntu 20.04 or 22.04). To use loxilb pods, docker must first be installed on the instance. Docker installation guide can be found [here](https://docs.docker.com/engine/install/ubuntu/)
+LoxiLB is deployed as a container pod on each instance after creating two EC2 instances with appropriate EMI (preferably Ubuntu 20.04 or 22.04). To use loxilb pods, docker must first be installed on the instance. Docker installation guide can be found [here](https://docs.docker.com/engine/install/ubuntu/)
 
 ##### Setup security groups to allow necessary traffic to loxilb instance
 
-LoxiLB will by default use TCP ports 11111, 22222 for communication with each other and with kube-loxilb. So, at minimum these should be allowed as part of the inbound security rules associated with each instance. For simplicity, in this example we have allowed all ports from any source as follows:
+LoxiLB will by default use TCP ports 11111, 22222 for communication with each other and with kube-loxilb. So, at minimum these alongwith incoming traffic for load-balancing should be allowed as part of the inbound security rules associated with each instance. For simplicity, in this example we have allowed all ports from any source as follows:
 
 ![Screenshot 2024-09-28 at 9 32 36 AM](https://github.com/user-attachments/assets/63a27d2f-042d-4057-a240-3aa130f58622)
 
