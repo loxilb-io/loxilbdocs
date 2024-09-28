@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../photos/loxilb-logo.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.37">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.38">
     
     
       
@@ -1238,6 +1238,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#setup-security-groups-to-allow-necessary-traffic-to-loxilb-instance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup security groups to allow necessary traffic to loxilb instance
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2361,6 +2370,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#setup-security-groups-to-allow-necessary-traffic-to-loxilb-instance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup security groups to allow necessary traffic to loxilb instance
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2473,7 +2491,7 @@ After running the above, we will have an EKS clsuter with two nodes named "multi
 }
 </code></pre></div>
 <h4 id="loxilb-ec2-instance-creation">LoxiLB EC2 instance creation</h4>
-<p>We will create two LoxiLB instances for this example and connect the instances wits subnets A and B created above.</p>
+<p>We will create two LoxiLB instances for this example and connect the instances with subnets A and B created above.</p>
 <p><img alt="image" src="https://github.com/loxilb-io/loxilbdocs/assets/111065900/732c6b66-33b3-4927-8864-abf03377042b" /></p>
 <p>And specify to use the IAM role created above in the IAM instance profile of the Advanced details settings.</p>
 <p><img alt="image" src="https://github.com/loxilb-io/loxilbdocs/assets/111065900/bdbfa17d-69ea-4eba-9fec-ae6481f6c971" /></p>
@@ -2509,9 +2527,12 @@ After running the above, we will have an EKS clsuter with two nodes named "multi
 </ul>
 <h4 id="run-loxilb-pods">Run LoxiLB Pods</h4>
 <h5 id="install-docker-on-loxilb-instances">Install docker on LoxiLB instance(s)</h5>
-<p>LoxiLB is deployed as a container on each instance. To use containers, docker must first be installed on the instance. Docker installation guide can be found <a href="https://docs.docker.com/engine/install/ubuntu/">here</a></p>
+<p>LoxiLB is deployed as a container on each instance. After creating two EC2 instances with appropriate EMI (preferably Ubuntu 20.04 or 22.04). To use loxilb pods, docker must first be installed on the instance. Docker installation guide can be found <a href="https://docs.docker.com/engine/install/ubuntu/">here</a></p>
+<h5 id="setup-security-groups-to-allow-necessary-traffic-to-loxilb-instance">Setup security groups to allow necessary traffic to loxilb instance</h5>
+<p>LoxiLB will by default use TCP ports 11111, 22222 for communication with each other and with kube-loxilb. So, at minimum these should be allowed as part of the inbound security rules. For simplicity, in this example we have allowed all ports from any source as follows:</p>
+<p><img alt="Screenshot 2024-09-28 at 9 32 36 AM" src="https://github.com/user-attachments/assets/63a27d2f-042d-4057-a240-3aa130f58622" /></p>
 <h4 id="running-loxilb-container">Running LoxiLB container</h4>
-<p>The following command is for a LoxiLB instance (loxilb1) using subnet-a.</p>
+<p>The following command is for a LoxiLB instance (loxilb1) using subnet-a. Similar command can be followed for loxilb2 instance.</p>
 <div class="highlight"><pre><span></span><code>sudo docker run -u root --cap-add SYS_ADMIN \
   --restart unless-stopped \
   --net=host \
