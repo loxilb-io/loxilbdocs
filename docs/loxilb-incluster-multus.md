@@ -34,7 +34,7 @@ We will deploy a topology similar to the following :
 
 ![image](https://github.com/user-attachments/assets/a30cb94f-2845-416f-8e82-7718fa93bad0)
 
-<b>Note:</b> In this topology, there are multiple interfaces but it is also possible to create secondary network on top of a single interface as well.
+> **Note:** In this topology, there are multiple interfaces but it is also possible to create secondary network on top of a single interface as well.
 
 ### Configuration
 #### Create a network attachment definition with the following yaml :
@@ -356,7 +356,7 @@ spec:
           capabilities:
             add: ["NET_ADMIN", "NET_RAW"]
 ```
-<b>Note:</b> It is to be noted that in this particular example, kube-loxilb runs in kube-system namespace while loxilb runs in default namespace. This is due to the fact loxilb needs to run in a same namespace as the endpoint pod for multus connectivity to work properly. It is assumed that  kube-loxilb running in kube-system namespace can access loxilb pods just fine and there are no network policies in play here. Finally cidrPools is defined as a floating IP which belongs to the secondary network subnet in this example. It needs to be made sure this IP(range) is not allocated for any pods.
+> **Note:** It is to be noted that in this particular example, kube-loxilb runs in kube-system namespace while loxilb runs in default namespace. This is due to the fact loxilb needs to run in a same namespace as the endpoint pod for multus connectivity to work properly. It is assumed that  kube-loxilb running in kube-system namespace can access loxilb pods just fine and there are no network policies in play here. Finally cidrPools is defined as a floating IP which belongs to the secondary network subnet in this example. It needs to be made sure this IP(range) is not allocated for any pods.
 
 ##### Example :
 
@@ -504,7 +504,7 @@ spec:
   type: LoadBalancer
 ```
 
-:point_right: Please make sure that loadBalancerClass is set to ```loxilb.io/loxilb``` so that loxilb can co-exist with any other LB which one might be using for primary services. And finally the annotation ```loxilb.io/multus-nets``` which denotes the network attachement definition name.
+> **Note:** Please make sure that loadBalancerClass is set to ```loxilb.io/loxilb``` so that loxilb can co-exist with any other LB which one might be using for primary services. And finally the annotation ```loxilb.io/multus-nets``` which denotes the network attachement definition name.
 
 ##### Example :
 
