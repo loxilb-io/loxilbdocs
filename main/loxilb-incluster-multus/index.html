@@ -2475,7 +2475,9 @@ kube-system    whereabouts-t75kh                1/1     Running            0    
 <h3 id="topology">Topology</h3>
 <p>We will deploy a topology similar to the following :</p>
 <p><img alt="image" src="https://github.com/user-attachments/assets/a30cb94f-2845-416f-8e82-7718fa93bad0" /></p>
-<p><b>Note:</b> In this topology, there are multiple interfaces but it is also possible to create secondary network on top of a single interface as well.</p>
+<blockquote>
+<p><strong>Note:</strong> In this topology, there are multiple interfaces but it is also possible to create secondary network on top of a single interface as well.</p>
+</blockquote>
 <h3 id="configuration">Configuration</h3>
 <h4 id="create-a-network-attachment-definition-with-the-following-yaml">Create a network attachment definition with the following yaml :</h4>
 <div class="highlight"><pre><span></span><code>apiVersion: &quot;k8s.cni.cncf.io/v1&quot;
@@ -2601,7 +2603,7 @@ default        loxilb-lb-kdvj7                  1/1     Running            0    
 </code></pre></div>
 <h4 id="install-kube-loxilb">Install kube-loxilb</h4>
 <p>kube-loxilb is the operator of loxilb. To install kube-loxilb, we can apply the following yaml :</p>
-<p><div class="highlight"><pre><span></span><code>---
+<div class="highlight"><pre><span></span><code>---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -2779,7 +2781,9 @@ spec:
           capabilities:
             add: [&quot;NET_ADMIN&quot;, &quot;NET_RAW&quot;]
 </code></pre></div>
-<b>Note:</b> It is to be noted that in this particular example, kube-loxilb runs in kube-system namespace while loxilb runs in default namespace. This is due to the fact loxilb needs to run in a same namespace as the endpoint pod for multus connectivity to work properly. It is assumed that  kube-loxilb running in kube-system namespace can access loxilb pods just fine and there are no network policies in play here. Finally cidrPools is defined as a floating IP which belongs to the secondary network subnet in this example. It needs to be made sure this IP(range) is not allocated for any pods.</p>
+<blockquote>
+<p><strong>Note:</strong> It is to be noted that in this particular example, kube-loxilb runs in kube-system namespace while loxilb runs in default namespace. This is due to the fact loxilb needs to run in a same namespace as the endpoint pod for multus connectivity to work properly. It is assumed that  kube-loxilb running in kube-system namespace can access loxilb pods just fine and there are no network policies in play here. Finally cidrPools is defined as a floating IP which belongs to the secondary network subnet in this example. It needs to be made sure this IP(range) is not allocated for any pods.</p>
+</blockquote>
 <h5 id="example_1">Example :</h5>
 <div class="highlight"><pre><span></span><code>$ kubectl apply -f kube-loxilb.yaml 
 serviceaccount/kube-loxilb created
@@ -2911,7 +2915,9 @@ spec:
       targetPort: 80
   type: LoadBalancer
 </code></pre></div>
-<p>:point_right: Please make sure that loadBalancerClass is set to <code>loxilb.io/loxilb</code> so that loxilb can co-exist with any other LB which one might be using for primary services. And finally the annotation <code>loxilb.io/multus-nets</code> which denotes the network attachement definition name.</p>
+<blockquote>
+<p><strong>Note:</strong> Please make sure that loadBalancerClass is set to <code>loxilb.io/loxilb</code> so that loxilb can co-exist with any other LB which one might be using for primary services. And finally the annotation <code>loxilb.io/multus-nets</code> which denotes the network attachement definition name.</p>
+</blockquote>
 <h5 id="example_3">Example :</h5>
 <div class="highlight"><pre><span></span><code>$ kubectl apply -f  multus-service.yaml 
 service/multus-service created
