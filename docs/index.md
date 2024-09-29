@@ -123,7 +123,7 @@ Telco-cloud requires load-balancing and communication across various interfaces/
 - [How-To : Deploy loxilb with multi-AZ HA support in AWS](aws-multi-az.md)
 - [How-To : Deploy loxilb with multi-cloud HA support](multi-cloud-ha.md)
 - [How-To : Deploy loxilb with ingress-nginx](loxilb-nginx-ingress.md)
-- [How-To : Run loxilb in-cluster with multus based secondary services](loxilb-incluster-multus.md)
+- [How-To : Run loxilb in-cluster with secondary networks](loxilb-incluster-multus.md)
 
 ## Knowledge-Base   
 - [What is eBPF](ebpf.md)
