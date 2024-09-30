@@ -8,19 +8,19 @@ The HA configuration described in the above [document](https://docs.aws.amazon.c
 
 Two LoxiLB instances - loxilb1 and loxilb2 will be deployed in different AZs. These two loxilbs form a HA pair and operate in active-backup roles.
 
-The active loxilb1 instance is additionally assigned a secondary network interface called loxi-eni. The loxi-eni network interface has a private IP (192.168.248.254 in this setup) which is used as a secondary IP.
+The active loxilb1 instance is additionally assigned a secondary network interface called loxi-eni. The loxi-eni network interface has a private IP (124.124.124.250 in this setup) which is used as a secondary IP.
 
-loxilb1 associates this *192.168.248.254* secondary IP with an user-specified public ElasticIP address. When a user accesses the EKS service externally using an ElasticIP address, this traffic is NATed to the 192.168.248.254 IP and delivered to the active loxilb instance. The active loxilb instance can then load balance the traffic to the appropriate endpoint in EKS.
+loxilb1 associates this *124.124.124.250* secondary IP with an user-specified public ElasticIP address. When a user accesses the EKS service externally using an ElasticIP address, this traffic is NATed to the 124.124.124.250 IP and delivered to the active loxilb instance. The active loxilb instance can then load balance the traffic to the appropriate endpoint in EKS.
 
-![image](https://github.com/loxilb-io/loxilbdocs/assets/111065900/40ce1e2a-06a0-4e80-9ce7-22491cd3b547)
+![image](https://github.com/user-attachments/assets/8e046fe6-fa14-4d0c-9d32-d437d1eee9c4)
 
 If loxilb1 goes down due to any reason, the status of loxilb2, which was backup previously, changes to active.
 
-During this transition, loxilb2 instance is assigned a new loxil-eni secondary network interface, and the 192.168.248.254 IP used by the the original master "loxilb1" is set to the secondary network interface of loxilb2.
+During this transition, loxilb2 instance is assigned a new loxil-eni secondary network interface, and the 124.124.124.250 IP used by the the original master "loxilb1" is set to the secondary network interface of loxilb2.
 
-The ElasticIP used by the user is also (re)associated to the 192.168.248.254 private IP address of the "new" active instance. This makes it possible to maintain active sessions even during failover or situations where there is a need to upgrade orginal master instance etc.
+The ElasticIP used by the user is also (re)associated to the 124.124.124.250 private IP address of the "new" active instance. This makes it possible to maintain active sessions even during failover or situations where there is a need to upgrade orginal master instance etc.
 
-![image](https://github.com/loxilb-io/loxilbdocs/assets/111065900/c6b5e454-1830-4c67-b2f5-ccb7895fa93d)
+![image](https://github.com/user-attachments/assets/38b1a421-5587-41c4-8df6-ce934f515863)
 
 To summarize, when a failover occurs the public ElasticIP address is always associated to the active LoxiLB instance, so users who were previously accessing EKS using the same ElasticIP address can continue to do so without being affected by any node failure or other issues.
 
@@ -41,7 +41,7 @@ eksctl create cluster \
   --with-oidc \
   --managed
 ```
-After running the above, we will have an EKS cluster with two nodes named "multi-az-eks".
+After running the above, we will have an EKS cluster with two nodes named "multi-az-eks". Note: Please edit the instance security to allow traffic to and from loxilb instances for the created EKS nodes as necessary.
 
 ### Configuring LoxiLB EC2 Instances
 ####  Create LoxiLB subnet
@@ -139,7 +139,7 @@ spec:
 
 * Modify loxiURL with the IPs of the LoxiLB EC2instances created above.
 * For externalCIDR, specify the Elastic IP created above.
-* PrivateCIDR specifies the VIP that will be associated with the Elastic IP. As described in the scenario above, we will use 192.168.248.254 as the VIP in this article. The IP must be set within the range of the VPC CIDR and not currently part of any another subnet.
+* PrivateCIDR specifies the VIP that will be associated with the Elastic IP. As described in the scenario above, we will use 124.124.124.250 as the VIP in this article. The IP must be set within the range of the VPC CIDR and not currently part of any another subnet.
 
 #### Run LoxiLB Pods
 ##### Install docker on LoxiLB instance(s)
@@ -208,6 +208,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: nginx-lb1
+  annotations:
+    loxilb.io/lbmode: "fullnat"
 spec:
   externalTrafficPolicy: Local
   loadBalancerClass: loxilb.io/loxilb
