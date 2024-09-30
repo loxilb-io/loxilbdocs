@@ -132,7 +132,7 @@ spec:
     args:
     - --loxiURL=http://192.168.228.108:11111,http://192.168.218.60:11111
     - --externalCIDR=13.208.X.X/32
-    - --privateCIDR=192.168.248.254/32
+    - --privateCIDR==124.124.124.250/32
     - --setRoles=0.0.0.0
     - --setLBMode=2 
 ```
@@ -164,11 +164,11 @@ sudo docker run -u root --cap-add SYS_ADMIN \
   -dit \
   -v /dev/log:/dev/log -e AWS_REGION=ap-northeast-3 \
   --name loxilb \
-  ghcr.io/loxilb-io/loxilb:main \
-  --cloud=aws --cloudcidrblock=192.168.248.0/24 --cluster=192.168.228.108 --self=0
+  ghcr.io/loxilb-io/loxilb:latest \
+  --cloud=aws --cloudcidrblock=124.124.124.0/24 --cluster=192.168.228.108 --self=0
 ```
 
-* In the cloudcidrblock option, specify the IP band that includes the VIP set in kube-loxilb's privateCIDR. master LoxiLB uses the value set here to create a new subnet in the AZ where it is located and uses it for HA operation.
+* In the cloudcidrblock option, specify the IP band that includes the VIP set in kube-loxilb's privateCIDR. master LoxiLB uses the value set here to create a new subnet in the AZ where it is located and uses it for HA operation. Use any subnet which is not currently used by your VPC.
 * The cluster option specifies the IP of the partner instance (LoxiLB instance using subnet-b) for which HA is configured.
 * The self option is set to 0. It is just a identier used internally to identify each instance
 
@@ -183,7 +183,7 @@ sudo docker run -u root --cap-add SYS_ADMIN \
   -v /dev/log:/dev/log -e AWS_REGION=ap-northeast-3 \
   --name loxilb \
   ghcr.io/loxilb-io/loxilb:main \
-  --cloud=aws --cloudcidrblock=192.168.248.0/24 --cluster=192.168.218.60 --self=1
+  --cloud=aws --cloudcidrblock=124.124.124.0/24 --cluster=192.168.218.60 --self=1
 ```
 
 For each instance, HA status can be checked as follows:
