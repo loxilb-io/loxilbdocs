@@ -41,7 +41,7 @@ eksctl create cluster \
   --with-oidc \
   --managed
 ```
-After running the above, we will have an EKS clsuter with two nodes named "multi-az-eks".
+After running the above, we will have an EKS cluster with two nodes named "multi-az-eks".
 
 ### Configuring LoxiLB EC2 Instances
 ####  Create LoxiLB subnet
@@ -72,7 +72,7 @@ Newly created subnets automatically use the default route table. We will connect
 
 LoxiLB instances require permission to access the AWS EC2 API to associate ElasticIPs and create secondary interfaces and subnets.
 
-We will create a role with the following IAM policy for LoxiLB EC2 instances.
+We will create a role with the following IAM policy for LoxiLB EC2 instances in AWS ```IAM->Policies->Create policy``` dashboard , select JSON mode and paste the following:
 
 ```
 {
@@ -87,9 +87,11 @@ We will create a role with the following IAM policy for LoxiLB EC2 instances.
 }
 ```
 
+After this one can create  a new IAM role using this policy in AWS dashboard : Roles->Create role->Use policy.
+
 #### LoxiLB EC2 instance creation
 
-We will create two LoxiLB instances for this example and connect the instances with subnets A and B created above.
+We will create two LoxiLB EC2 instances with appropriate EMI (preferably Ubuntu 20.04 or 22.04).  For this example we have to connect the instances with subnets A and B created above. While creating the instances, one we need to edit the "Network Settings" and "Advanced Detail Settings" as illustrated below:
 
 ![image](https://github.com/loxilb-io/loxilbdocs/assets/111065900/732c6b66-33b3-4927-8864-abf03377042b)
 
@@ -162,7 +164,7 @@ sudo docker run -u root --cap-add SYS_ADMIN \
   -dit \
   -v /dev/log:/dev/log -e AWS_REGION=ap-northeast-3 \
   --name loxilb \
-  ghcr.io/loxilb-io/loxilb:aws-support \
+  ghcr.io/loxilb-io/loxilb:main \
   --cloud=aws --cloudcidrblock=192.168.248.0/24 --cluster=192.168.228.108 --self=0
 ```
 
@@ -180,7 +182,7 @@ sudo docker run -u root --cap-add SYS_ADMIN \
   -dit \
   -v /dev/log:/dev/log -e AWS_REGION=ap-northeast-3 \
   --name loxilb \
-  ghcr.io/loxilb-io/loxilb:aws-support \
+  ghcr.io/loxilb-io/loxilb:main \
   --cloud=aws --cloudcidrblock=192.168.248.0/24 --cluster=192.168.218.60 --self=1
 ```
 
@@ -229,7 +231,7 @@ spec:
       ports:
         - containerPort: 80
 ```
-After creating an nginx service with the above,  weu can see that the ElasticIP has been designated as the externalIP of the service.
+After creating an nginx service with the above,  we can see that the ElasticIP has been designated as the externalIP of the service.
 
 ```
 LEIS6N3:~/workspace/aws-demo$ kubectl apply -f nginx.yaml
