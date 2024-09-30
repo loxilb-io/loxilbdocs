@@ -87,11 +87,11 @@ We will create a role with the following IAM policy for LoxiLB EC2 instances in 
 }
 ```
 
-After this one can create  a new IAM role using this policy in AWS dashboard : Roles->Create role->Use policy.
+After this one can create  a new IAM role using this policy in AWS dashboard : ```Roles->Create role->Use policy```. This role can be subsequently used in creating LoxiLB EC2 instances.
 
 #### LoxiLB EC2 instance creation
 
-We will create two LoxiLB EC2 instances with appropriate EMI (preferably Ubuntu 20.04 or 22.04).  For this example we have to connect the instances with subnets A and B created above. While creating the instances, one we need to edit the "Network Settings" and "Advanced Detail Settings" as illustrated below:
+We will create two LoxiLB EC2 instances with appropriate EMI (preferably Ubuntu 20.04 or 22.04).  For this use-case, we have to connect the instances with subnets A and B created above. While creating the instances, we need to edit the "Network Settings" and "Advanced Detail Settings" as illustrated below:
 
 ![image](https://github.com/loxilb-io/loxilbdocs/assets/111065900/732c6b66-33b3-4927-8864-abf03377042b)
 
@@ -99,7 +99,7 @@ And specify to use the IAM role created above in the IAM instance profile of the
 
 ![image](https://github.com/loxilb-io/loxilbdocs/assets/111065900/bdbfa17d-69ea-4eba-9fec-ae6481f6c971)
 
-After the instance is created, go to the Action → networking → Change Source /destination check menu in the instance menu and disable this check.  Since LoxiLB is a load balancer, this configration must be disabled for LoxiLB to operate properly.
+After the instance is created, go to the ``Action → networking → Change Source /destination``` and check menu in the instance menu and disable the following check.  Since LoxiLB is a load balancer, this configration must be disabled for LoxiLB to operate properly.
 
 ![image](https://github.com/loxilb-io/loxilbdocs/assets/111065900/bd958cea-684e-431a-bf7e-d0d8c6b5ee14)
 
