@@ -152,6 +152,7 @@ rules:
       - ""
     resources:
       - endpoints
+      - namespaces
       - services
       - services/status
     verbs:
