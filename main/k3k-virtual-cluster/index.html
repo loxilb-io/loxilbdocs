@@ -2155,7 +2155,7 @@
 <h3 id="kubernetes-virtual-cluster-setup-with-k3k-and-loxilb">Kubernetes virtual cluster setup with k3k and loxilb</h3>
 <p>This guide will provide users with step-by-step instructions to provision a Kubernetes virtual cluster, run workloads in an isolated manner, and expose them via a load balancer without sacrificing performance or security.</p>
 <p>For background, virtual cluster is a Kubernetes-native solution that allows you to create virtual clusters within a host Kubernetes cluster. Essentially, each virtual cluster runs its own Kubernetes control plane while sharing the same worker nodes as the host cluster. This setup provides an isolated environment for each virtual cluster without the overhead of creating separate physical clusters.</p>
-<p>This guide will use <a href="https://github.com/rancher/k3k">k3k</a> as the virtual cluster provider and <a href="https://github.com/loxilb-io/loxilb">loxilb</a> as the LB solution. k3k is in beta hence this guide can be used as a template for any other virtual cluster solutions out there.</p>
+<p>This guide will use <a href="https://github.com/rancher/k3k">k3k</a> (kubernetes in kubernetes) as the virtual cluster provider and <a href="https://github.com/loxilb-io/loxilb">loxilb</a> as the LB solution. k3k is in beta hence this guide can be used as a template for any other virtual cluster solutions out there.</p>
 <h3 id="prerequisite">Prerequisite</h3>
 <p>We need to have a kubernetes cluster setup already. This base cluster will host other vistual cluster inside it. Let's name it <code>host cluster</code> for remainder of this guide.  The state of this host cluster to start with is as follows :</p>
 <div class="highlight"><pre><span></span><code>$ kubectl get pods -A
