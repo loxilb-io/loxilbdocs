@@ -13,7 +13,12 @@ arm64 users, use the command below.
 wget https://go.dev/dl/go1.22.0.linux-arm64.tar.gz && sudo tar -xzf go1.22.0.linux-arm64.tar.gz --directory /usr/local/
 export PATH="${PATH}:/usr/local/go/bin"
 ```
-
+   
+* update package   
+```
+sudo apt update   
+```
+  
 * Install standard packages
 ```
 sudo apt install -y clang llvm libelf-dev gcc-multilib libpcap-dev vim net-tools linux-tools-$(uname -r) elfutils dwarves git libbsd-dev bridge-utils wget unzip build-essential bison flex iproute2 curl
