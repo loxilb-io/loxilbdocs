@@ -8,13 +8,9 @@
       
       
       
-        <link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/main/k0s_quick_start_incluster/">
+        <link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/main/k3k-virtual-cluster/">
       
       
-        <link rel="prev" href="../k3s_quick_start_incluster/">
-      
-      
-        <link rel="next" href="../microk8s_quick_start_incluster/">
       
       
       <link rel="icon" href="../photos/loxilb-logo.png">
@@ -22,7 +18,7 @@
     
     
       
-        <title>K0s/loxilb in-cluster mode - LoxiLB</title>
+        <title>K3k virtual cluster - LoxiLB</title>
       
     
     
@@ -76,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#quick-start-guide-with-k0s-and-loxilb-in-cluster-mode" class="md-skip">
+        <a href="#kubernetes-virtual-cluster-setup-with-k3k-and-loxilb" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              K0s/loxilb in-cluster mode
+              K3k virtual cluster
             
           </span>
         </div>
@@ -366,10 +362,8 @@
       
   
   
-    
   
   
-  
     
     
       
@@ -386,11 +380,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -404,7 +398,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Getting Started
@@ -598,10 +592,8 @@
                 
   
   
-    
   
   
-  
     
     
       
@@ -620,11 +612,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
         
           
           <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
@@ -638,7 +630,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3_2">
             <span class="md-nav__icon md-icon"></span>
             In-Cluster Mode
@@ -691,28 +683,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    K0s/loxilb in-cluster mode
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../k0s_quick_start_incluster/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -721,122 +695,6 @@
   
 
       </a>
-      
-        
-
-  
-
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#quick-start-guide-with-k0s-and-loxilb-in-cluster-mode" class="md-nav__link">
-    <span class="md-ellipsis">
-      Quick Start Guide with K0s and LoxiLB in-cluster mode
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Quick Start Guide with K0s and LoxiLB in-cluster mode">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
-    <span class="md-ellipsis">
-      Prerequisite(s)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#topology" class="md-nav__link">
-    <span class="md-ellipsis">
-      Topology
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#setup-k0s-in-a-single-node" class="md-nav__link">
-    <span class="md-ellipsis">
-      Setup k0s in a single-node
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#check-k0s-status" class="md-nav__link">
-    <span class="md-ellipsis">
-      Check k0s status
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#how-to-deploy-loxilb" class="md-nav__link">
-    <span class="md-ellipsis">
-      How to deploy loxilb ?
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#how-to-deploy-kube-loxilb" class="md-nav__link">
-    <span class="md-ellipsis">
-      How to deploy kube-loxilb ?
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#create-the-service" class="md-nav__link">
-    <span class="md-ellipsis">
-      Create the service
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#check-status-of-various-components-in-k0s-node" class="md-nav__link">
-    <span class="md-ellipsis">
-      Check status of various components in k0s node
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#connect-from-hostclient" class="md-nav__link">
-    <span class="md-ellipsis">
-      Connect from host/client
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2203,25 +2061,24 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#quick-start-guide-with-k0s-and-loxilb-in-cluster-mode" class="md-nav__link">
+  <a href="#kubernetes-virtual-cluster-setup-with-k3k-and-loxilb" class="md-nav__link">
     <span class="md-ellipsis">
-      Quick Start Guide with K0s and LoxiLB in-cluster mode
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Quick Start Guide with K0s and LoxiLB in-cluster mode">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
-    <span class="md-ellipsis">
-      Prerequisite(s)
+      Kubernetes virtual cluster setup with k3k and loxilb
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
+  <a href="#prerequisite" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisite
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#topology" class="md-nav__link">
     <span class="md-ellipsis">
       Topology
@@ -2229,72 +2086,49 @@
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#setup-k0s-in-a-single-node" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#installing-k3k" class="md-nav__link">
     <span class="md-ellipsis">
-      Setup k0s in a single-node
+      Installing k3k
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#check-k0s-status" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#install-multus" class="md-nav__link">
     <span class="md-ellipsis">
-      Check k0s status
+      Install multus
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#how-to-deploy-loxilb" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-kube-loxilb-in-each-vcluster" class="md-nav__link">
     <span class="md-ellipsis">
-      How to deploy loxilb ?
+      Setting up kube-loxilb in each vCLuster
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#how-to-deploy-kube-loxilb" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#setup-host-cluster-to-run-loxilb-instances" class="md-nav__link">
     <span class="md-ellipsis">
-      How to deploy kube-loxilb ?
+      Setup host cluster to run loxilb instances
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#create-the-service" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#testing" class="md-nav__link">
     <span class="md-ellipsis">
-      Create the service
+      Testing
     </span>
   </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#check-status-of-various-components-in-k0s-node" class="md-nav__link">
-    <span class="md-ellipsis">
-      Check status of various components in k0s node
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#connect-from-hostclient" class="md-nav__link">
-    <span class="md-ellipsis">
-      Connect from host/client
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -2316,84 +2150,587 @@
   
 
 
-  <h1>K0s/loxilb in-cluster mode</h1>
+  <h1>K3k virtual cluster</h1>
 
-<h2 id="quick-start-guide-with-k0s-and-loxilb-in-cluster-mode">Quick Start Guide with K0s and LoxiLB in-cluster mode</h2>
-<p>This document will explain how to install a <a href="https://k0sproject.io/">K0s</a> cluster with loxilb as a serviceLB provider running in-cluster mode.     </p>
-<h3 id="prerequisites">Prerequisite(s)</h3>
-<ul>
-<li>Single node with Linux   </li>
-</ul>
+<h3 id="kubernetes-virtual-cluster-setup-with-k3k-and-loxilb">Kubernetes virtual cluster setup with k3k and loxilb</h3>
+<p>This guide will provide users with step-by-step instructions to provision a Kubernetes virtual cluster, run workloads in an isolated manner, and expose them via a load balancer without sacrificing performance or security.</p>
+<p>For background, virtual cluster is a Kubernetes-native solution that allows you to create virtual clusters within a host Kubernetes cluster. Essentially, each virtual cluster runs its own Kubernetes control plane while sharing the same worker nodes as the host cluster. This setup provides an isolated environment for each virtual cluster without the overhead of creating separate physical clusters.</p>
+<p>This guide will use <a href="https://github.com/rancher/k3k">k3k</a> as the virtual cluster provider and <a href="https://github.com/loxilb-io/loxilb">loxilb</a> as the LB solution. k3k is in beta hence this guide can be used as a template for any other virtual cluster solutions out there.</p>
+<h3 id="prerequisite">Prerequisite</h3>
+<p>We need to have a kubernetes cluster setup already. This base cluster will host other vistual cluster inside it. Let's name it <code>host cluster</code> for remainder of this guide.  The state of this host cluster to start with is as follows :</p>
+<div class="highlight"><pre><span></span><code>$ kubectl get pods -A
+NAMESPACE      NAME                             READY   STATUS    RESTARTS   AGE
+kube-flannel   kube-flannel-ds-94dd4            1/1     Running   0          3h4m
+kube-system    coredns-76f75df574-drz2d         1/1     Running   0          3h4m
+kube-system    coredns-76f75df574-rlr7c         1/1     Running   0          3h4m
+kube-system    etcd-master                      1/1     Running   0          3h4m
+kube-system    kube-apiserver-master            1/1     Running   0          3h4m
+kube-system    kube-controller-manager-master   1/1     Running   0          3h4m
+kube-system    kube-proxy-bxnkd                 1/1     Running   0          3h4m
+kube-system    kube-scheduler-master            1/1     Running   0          3h4m
+
+$ kubectl get nodes -A -o wide
+NAME     STATUS   ROLES           AGE     VERSION   INTERNAL-IP      EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION      CONTAINER-RUNTIME
+master   Ready    control-plane   3h13m   v1.29.9   192.168.80.250   &lt;none&gt;        Ubuntu 22.04.2 LTS   5.15.0-67-generic   docker://24.0.7
+</code></pre></div>
 <h3 id="topology">Topology</h3>
-<p>For quickly bringing up loxilb in-cluster and K0s, we will be deploying all components in a single node :   </p>
-<p><img alt="loxilb topology" src="../photos/loxilb-incluster.png" /></p>
-<p>loxilb and kube-loxilb components run as pods managed by kubernetes  in this scenario.</p>
-<h3 id="setup-k0s-in-a-single-node">Setup k0s in a single-node</h3>
-<div class="highlight"><pre><span></span><code># k0s installation steps
-curl -sSLf https://get.k0s.sh | sudo sh
-sudo k0s install controller --single
-sudo k0s start
+<p>Overall we will deploy a topology as follows :</p>
+<p><img alt="loxilb-virtual-cluster" src="https://github.com/user-attachments/assets/34c571e9-6889-48c8-9f40-eef7f9d392a5" /></p>
+<p>The overall idea is to install a virtual cluster, run kube-loxilb and workloads in the virtual clusters while running a dedicated/isolated LB per virtual cluster in the host cluster. </p>
+<h3 id="installing-k3k">Installing k3k</h3>
+<p>First we need to get helm tool using <a href="https://helm.sh/docs/intro/install/">guidelines</a> or just use the following steps :</p>
+<div class="highlight"><pre><span></span><code>curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+chmod 700 get_helm.sh
+./get_helm.sh
 </code></pre></div>
-<h3 id="check-k0s-status">Check k0s status</h3>
-<div class="highlight"><pre><span></span><code>$ sudo k0s status
-Version: v1.29.2+k0s.0
-Process ID: 2631
-Workloads: true
-SingleNode: true
-Kube-api probing successful: true
-Kube-api probing last error:  
+<p>Install k3k using helm</p>
+<div class="highlight"><pre><span></span><code>helm repo add k3k https://rancher.github.io/k3k
+helm install my-k3k k3k/k3k --devel
 </code></pre></div>
-<h3 id="how-to-deploy-loxilb">How to deploy loxilb ?</h3>
-<p>loxilb can be deloyed by using the following command in the K3s node
-<div class="highlight"><pre><span></span><code>sudo k0s kubectl apply -f https://raw.githubusercontent.com/loxilb-io/loxilb/main/cicd/k0s-incluster/loxilb.yml
+<p>Check the running kubernetes pods to confirm k3k is running</p>
+<div class="highlight"><pre><span></span><code>$ kubectl get pods -A
+NAMESPACE      NAME                             READY   STATUS    RESTARTS   AGE
+k3k-system     my-k3k-858565699d-kn96m          1/1     Running   0          3m36s
+kube-flannel   kube-flannel-ds-94dd4            1/1     Running   0          3h23m
+kube-system    coredns-76f75df574-drz2d         1/1     Running   0          3h23m
+kube-system    coredns-76f75df574-rlr7c         1/1     Running   0          3h23m
+kube-system    etcd-master                      1/1     Running   0          3h23m
+kube-system    kube-apiserver-master            1/1     Running   0          3h23m
+kube-system    kube-controller-manager-master   1/1     Running   0          3h23m
+kube-system    kube-proxy-bxnkd                 1/1     Running   0          3h23m
+kube-system    kube-scheduler-master            1/1     Running   0          3h23m
+</code></pre></div>
+<p>To manage virtual cluster using k3k, we need to get and use k3kcli tool</p>
+<div class="highlight"><pre><span></span><code>wget https://github.com/rancher/k3k/releases/download/v0.2.0/k3kcli
+chmod +x k3kcli
+sudo mv k3kcli /usr/local/sbin/
+</code></pre></div>
+<p>Now we can create a test vistual cluster
+<div class="highlight"><pre><span></span><code>k3kcli cluster create --name example-cluster --token test  --kubeconfig ~/.kube/config
+</code></pre></div>
+Sometimes, cluster creation fails with the error :
+<div class="highlight"><pre><span></span><code>E1014 07:58:19.244710       7 node_container_manager_linux.go:61] &quot;Failed to create cgroup&quot; err=&quot;cannot enter cgroupv2 \&quot;/sys/fs/cgroup/kubepods\&quot; with domain controllers -- it is in an invalid state&quot; cgroupName=[kubepods]
+E1014 07:58:19.244745       7 kubelet.go:1466] &quot;Failed to start ContainerManager&quot; err=&quot;cannot enter cgroupv2 \&quot;/sys/fs/cgroup/kubepods\&quot; with domain controllers -- it is in an invalid state&quot;
 </code></pre></div></p>
-<h3 id="how-to-deploy-kube-loxilb">How to deploy kube-loxilb ?</h3>
-<p><a href="https://github.com/loxilb-io/kube-loxilb">kube-loxilb</a> is used as an operator to manage loxilb.
-<div class="highlight"><pre><span></span><code>wget https://raw.githubusercontent.com/loxilb-io/loxilb/main/cicd/k0s-incluster/kube-loxilb.yml
+<p>This is due to the fact there is some problems with k3k not able to work with cgroup v2, so in this case one needs to disable cgroup-v2 support in the OS kernel :</p>
+<div class="highlight"><pre><span></span><code>sudo su
+echo &#39;GRUB_CMDLINE_LINUX=systemd.unified_cgroup_hierarchy=false&#39; &gt; /etc/default/grub.d/cgroup.cfg
+update-grub
+reboot
 </code></pre></div>
-kube-loxilb.yaml
-<div class="highlight"><pre><span></span><code>       args:
-         #- --loxiURL=http://172.17.0.2:11111
-         - --externalCIDR=192.168.82.100/32
-         - --setRoles=0.0.0.0
-         #- --monitor
-         #- --setBGP
+<p>Double check if the new vistual cluster is created in host cluster:</p>
+<div class="highlight"><pre><span></span><code>$ kubectl get pods -A
+NAMESPACE             NAME                             READY   STATUS    RESTARTS        AGE
+k3k-example-cluster   example-cluster-k3k-server-0     1/1     Running   0               2d16h
+k3k-system            my-k3k-858565699d-kxh8h          1/1     Running   0               2d16h
+kube-flannel          kube-flannel-ds-8rn5s            1/1     Running   0               2d16h
+kube-system           coredns-76f75df574-87j4d         1/1     Running   1 (2d16h ago)   2d16h
+kube-system           coredns-76f75df574-trb9m         1/1     Running   1 (2d16h ago)   2d16h
+kube-system           etcd-master                      1/1     Running   3 (2d16h ago)   2d16h
+kube-system           kube-apiserver-master            1/1     Running   2 (2d16h ago)   2d16h
+kube-system           kube-controller-manager-master   1/1     Running   2 (37h ago)     2d16h
+kube-system           kube-proxy-pn4t2                 1/1     Running   1 (2d16h ago)   2d16h
+kube-system           kube-scheduler-master            1/1     Running   2 (37h ago)     2d16h
 </code></pre></div>
-In the above snippet, loxiURL is commented out which denotes to utilize in-cluster mode to discover loxilb pods automatically. External CIDR represents the IP pool from where serviceLB VIP will be allocated.</p>
-<p>Apply after making changes (if any) :
-<div class="highlight"><pre><span></span><code>sudo k0s kubectl apply -f kube-loxilb.yaml
+<p>To manage the cluster, it is convenient to generate the kubeconfig for the created virtual cluster : 
+<div class="highlight"><pre><span></span><code>k3kcli kubeconfig generate --name example-cluster  --config-name kubeconfig-cluster1 --kubeconfig ~/.kube/config
 </code></pre></div></p>
-<h3 id="create-the-service">Create the service</h3>
-<div class="highlight"><pre><span></span><code>sudo k0s kubectl apply -f https://raw.githubusercontent.com/loxilb-io/loxilb/main/cicd/k0s-incluster/tcp-svc-lb.yml
-</code></pre></div>
-<h3 id="check-status-of-various-components-in-k0s-node">Check status of various components in k0s node</h3>
-<p>In k0s node:
-<div class="highlight"><pre><span></span><code>## Check the pods created
-$ sudo k0s kubectl get pods -A
-NAMESPACE     NAME                              READY   STATUS    RESTARTS   AGE
-kube-system   kube-proxy-vczxm                  1/1     Running   0          4m48s
-kube-system   kube-router-gjp7g                 1/1     Running   0          4m48s
-kube-system   metrics-server-7556957bb7-25hsk   1/1     Running   0          4m50s
-kube-system   coredns-6cd46fb86c-xllg2          1/1     Running   0          4m50s
-kube-system   loxilb-lb-4fmdp                   1/1     Running   0          3m43s
-kube-system   kube-loxilb-6f44cdcdf5-ffdcv      1/1     Running   0          2m22s
-default       tcp-onearm-test                   1/1     Running   0          92s
-
-
-## Check the services created
-$ sudo k0s kubectl get svc
-NAME            TYPE           CLUSTER-IP      EXTERNAL-IP          PORT(S)           AGE
-kubernetes      ClusterIP      10.96.0.1       &lt;none&gt;               443/TCP           5m28s
-tcp-lb-onearm   LoadBalancer   10.96.108.109   llb-192.168.82.100   56002:32033/TCP   111s
-</code></pre></div>
-In loxilb pod, we can check internal LB rules:
-<div class="highlight"><pre><span></span><code>$ sudo k0s kubectl exec -it -n kube-system loxilb-lb-4fmdp -- loxicmd get lb -o wide
-|     EXT IP     | SEC IPS | PORT  | PROTO |         NAME          | MARK | SEL |  MODE  | ENDPOINT  | EPORT | WEIGHT | STATE  | COUNTERS |
-|----------------|---------|-------|-------|-----------------------|------|-----|--------|-----------|-------|--------|--------|----------|
-| 192.168.82.100 |         | 56002 | tcp   | default_tcp-lb-onearm |    0 | rr  | onearm | 10.0.2.15 | 32033 |      1 | active | 25:1842  |
+<p>We can then use <code>export KUBECONFIG</code> and run commands for the new vistual cluster as follows :
+<div class="highlight"><pre><span></span><code>$ export KUBECONFIG=&lt;PATH-TO-DIR&gt;/kubeconfig-cluster1
+$ kubectl get nodes
+NAME                           STATUS   ROLES                       AGE   VERSION
+example-cluster-k3k-server-0   Ready    control-plane,etcd,master   37h   v1.26.1+k3s1
 </code></pre></div></p>
-<h3 id="connect-from-hostclient">Connect from host/client</h3>
-<p><div class="highlight"><pre><span></span><code>$ curl http://192.168.82.100:56002
+<p>Create a config-map for this virtual cluster's kubeconfig (to be used later) :
+<div class="highlight"><pre><span></span><code>$ kubectl create configmap kubeconfig-cluster1 --from-file=kubeconfig-cluster1
+</code></pre></div></p>
+<h3 id="install-multus">Install multus</h3>
+<p>We will be using multus to direct incoming traffic directly to each loxilb pod handling traffic towards a particular virtual cluster. Multus can be installed by using the following command in the host cluster:</p>
+<p><div class="highlight"><pre><span></span><code>$ export KUBECONFIG=~/.kube/config
+$ kubectl apply -f https://raw.githubusercontent.com/k8snetworkplumbingwg/multus-cni/master/deployments/multus-daemonset.yml  # thin deployment
+</code></pre></div>
+Further usage and installation guides can be found <a href="https://github.com/k8snetworkplumbingwg/multus-cni/blob/master/docs/how-to-use.md">here</a></p>
+<p>Next, we create a macvlan attachment object with multus with the following yaml (save it as multus-macvlan.yaml) :
+<div class="highlight"><pre><span></span><code>apiVersion: &quot;k8s.cni.cncf.io/v1&quot;
+kind: NetworkAttachmentDefinition
+metadata:
+  name: macvlan1
+spec:
+  config: &#39;{
+            &quot;cniVersion&quot;: &quot;0.3.1&quot;,
+            &quot;type&quot;: &quot;macvlan&quot;,
+            &quot;master&quot;: &quot;eth1&quot;,
+            &quot;mode&quot;: &quot;bridge&quot;,
+            &quot;ipam&quot;: {
+                &quot;type&quot;: &quot;host-local&quot;,
+                &quot;ranges&quot;: [
+                    [ {
+                         &quot;subnet&quot;: &quot;192.168.80.0/24&quot;,
+                         &quot;rangeStart&quot;: &quot;192.168.80.251&quot;,
+                         &quot;rangeEnd&quot;: &quot;192.168.80.254&quot;,
+                         &quot;routes&quot;: [
+                            {
+                              &quot;dst&quot;: &quot;0.0.0.0/0&quot;
+                            }
+                         ],
+                         &quot;gateway&quot;: &quot;192.168.80.1&quot;
+                    } ]
+                ]
+            }
+        }&#39;
+</code></pre></div>
+Apply and verify it (in host Cluster) :
+<div class="highlight"><pre><span></span><code>$ kubectl apply -f multus-macvlan.yaml
+$ kubectl describe network-attachment-definitions.k8s.cni.cncf.io 
+Name:         macvlan1
+Namespace:    default
+Labels:       &lt;none&gt;
+Annotations:  &lt;none&gt;
+API Version:  k8s.cni.cncf.io/v1
+Kind:         NetworkAttachmentDefinition
+Metadata:
+  Creation Timestamp:  2024-10-11T14:23:32Z
+  Generation:          1
+  Resource Version:    13944
+  UID:                 32dbd769-f89f-4035-8c21-ac351842bba2
+Spec:
+  Config:  { &quot;cniVersion&quot;: &quot;0.3.1&quot;, &quot;type&quot;: &quot;macvlan&quot;, &quot;master&quot;: &quot;eth1&quot;, &quot;mode&quot;: &quot;bridge&quot;, &quot;ipam&quot;: { &quot;type&quot;: &quot;host-local&quot;, &quot;ranges&quot;: [ [ { &quot;subnet&quot;: &quot;192.168.80.0/24&quot;, &quot;rangeStart&quot;: &quot;192.168.80.251&quot;, &quot;rangeEnd&quot;: &quot;192.168.80.254&quot;, &quot;routes&quot;: [ { &quot;dst&quot;: &quot;0.0.0.0/0&quot; } ], &quot;gateway&quot;: &quot;192.168.80.1&quot; } ] ] } }
+Events:    &lt;none&gt;
+</code></pre></div></p>
+<h3 id="setting-up-kube-loxilb-in-each-vcluster">Setting up kube-loxilb in each vCLuster</h3>
+<p>We will run a kube-loxilb instance for each virtual cluster. Run kube-loxilb in the the vcluster using the following yaml (use the kubeconfig for the vcluster in kubectl) :
+<div class="highlight"><pre><span></span><code>---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: kube-loxilb
+  namespace: kube-system
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: kube-loxilb
+rules:
+  - apiGroups:
+      - &quot;&quot;
+    resources:
+      - nodes
+    verbs:
+      - get
+      - watch
+      - list
+      - patch
+  - apiGroups:
+      - &quot;&quot;
+    resources:
+      - pods
+    verbs:
+      - get
+      - watch
+      - list
+      - patch
+  - apiGroups:
+      - &quot;&quot;
+    resources:
+      - endpoints
+      - services
+      - namespaces
+      - services/status
+    verbs:
+      - get
+      - watch
+      - list
+      - patch
+      - update
+  - apiGroups:
+      - gateway.networking.k8s.io
+    resources:
+      - gatewayclasses
+      - gatewayclasses/status
+      - gateways
+      - gateways/status
+      - tcproutes
+      - udproutes
+    verbs: [&quot;get&quot;, &quot;watch&quot;, &quot;list&quot;, &quot;patch&quot;, &quot;update&quot;]
+  - apiGroups:
+      - discovery.k8s.io
+    resources:
+      - endpointslices
+    verbs:
+      - get
+      - watch
+      - list
+  - apiGroups:
+      - apiextensions.k8s.io
+    resources:
+      - customresourcedefinitions
+    verbs:
+      - get
+      - watch
+      - list
+  - apiGroups:
+      - authentication.k8s.io
+    resources:
+      - tokenreviews
+    verbs:
+      - create
+  - apiGroups:
+      - authorization.k8s.io
+    resources:
+      - subjectaccessreviews
+    verbs:
+      - create
+  - apiGroups:
+      - bgppeer.loxilb.io
+    resources:
+      - bgppeerservices
+    verbs:
+      - get
+      - watch
+      - list
+      - create
+      - update
+      - delete
+  - apiGroups:
+      - bgppolicydefinedsets.loxilb.io
+    resources:
+      - bgppolicydefinedsetsservices
+    verbs:
+      - get
+      - watch
+      - list
+      - create
+      - update
+      - delete
+  - apiGroups:
+      - bgppolicydefinition.loxilb.io
+    resources:
+      - bgppolicydefinitionservices
+    verbs:
+      - get
+      - watch
+      - list
+      - create
+      - update
+      - delete
+  - apiGroups:
+      - bgppolicyapply.loxilb.io
+    resources:
+      - bgppolicyapplyservices
+    verbs:
+      - get
+      - watch
+      - list
+      - create
+      - update
+      - delete
+  - apiGroups:
+      - loxiurl.loxilb.io
+    resources:
+      - loxiurls
+    verbs:
+      - get
+      - watch
+      - list
+      - create
+      - update
+      - delete
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: kube-loxilb
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: kube-loxilb
+subjects:
+  - kind: ServiceAccount
+    name: kube-loxilb
+    namespace: kube-system
+---
+apiVersion: apps/v1             
+kind: Deployment           
+metadata:                           
+  name: kube-loxilb                        
+  namespace: kube-system                           
+  labels:                          
+    app: kube-loxilb-app                           
+spec:                             
+  replicas: 1                             
+  selector:                          
+    matchLabels:                      
+      app: kube-loxilb-app                            
+  template:                         
+    metadata:                          
+      labels:                       
+        app: kube-loxilb-app                    
+    spec:                       
+      dnsPolicy: ClusterFirstWithHostNet                         
+      tolerations:                      
+        # Mark the pod as a critical add-on for rescheduling.           
+        - key: CriticalAddonsOnly            
+          operator: Exists                          
+      priorityClassName: system-node-critical                      
+      serviceAccountName: kube-loxilb                       
+      terminationGracePeriodSeconds: 0                    
+      containers:                     
+      - name: kube-loxilb                     
+        image: ghcr.io/loxilb-io/kube-loxilb:latest              
+        imagePullPolicy: Always                      
+        command:                   
+        - /bin/kube-loxilb                
+        args:               
+        - --loxiURL=http://127.0.0.1:11111                    
+        - --cidrPools=defaultPool=192.168.80.250/32                   
+        - --setRoles=0.0.0.0
+        resources:             
+          requests:           
+            cpu: &quot;100m&quot;
+            memory: &quot;50Mi&quot;             
+          limits:              
+            cpu: &quot;100m&quot;                
+            memory: &quot;50Mi&quot;              
+        securityContext:           
+          privileged: true             
+          capabilities:            
+            add: [&quot;NET_ADMIN&quot;, &quot;NET_RAW&quot;]
+</code></pre></div>
+For example :</p>
+<div class="highlight"><pre><span></span><code>$ export KUBECONFIG=&lt;PATH-TO-CLUSTER&gt;/kubeconfig-cluster1
+$ kubectl apply -f kube-loxilb.yaml
+</code></pre></div>
+<p>We can check if kube-loxilb works inside the virtual cluster now :
+<div class="highlight"><pre><span></span><code>$ kubectl get pods -A
+NAMESPACE     NAME                                      READY   STATUS      RESTARTS      AGE
+kube-system   coredns-5c6b6c5476-fm8fw                  1/1     Running     1 (37h ago)   2d16h
+kube-system   helm-install-traefik-crd-6w982            0/1     Completed   0             2d16h
+kube-system   helm-install-traefik-trsh7                0/1     Completed   1             2d16h
+kube-system   kube-loxilb-6c9d9b75cf-8ptpp              1/1     Running     0             21s
+kube-system   local-path-provisioner-5d56847996-4pc8m   1/1     Running     1 (37h ago)   2d16h
+kube-system   metrics-server-7b67f64457-8v2dz           1/1     Running     1 (37h ago)   2d16h
+kube-system   svclb-traefik-3f3876ec-k97dw              2/2     Running     2 (37h ago)   2d16h
+kube-system   traefik-56b8c5fb5c-stdtb                  1/1     Running     1 (37h ago)   2d16h
+</code></pre></div></p>
+<p>In this use-case, we will use URL CRDs exposed by kube-loxilb (running in virtual cluster) for allowing dynamic registration of loxilb instances (running in host cluster). To do so we need to create the CRDs by applying the following yaml inside virtual cluster (save as loxiurl-crd.yaml):
+<div class="highlight"><pre><span></span><code>apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.13.0
+  name: loxiurls.loxiurl.loxilb.io
+spec:
+  group: loxiurl.loxilb.io
+  names:
+    kind: LoxiURL
+    listKind: LoxiURLList
+    plural: loxiurls
+    singular: loxiurl
+  scope: Cluster
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          required:
+            - spec
+          properties:
+            spec:
+              type: object
+              x-kubernetes-preserve-unknown-fields: true
+              properties:
+                loxiURL:
+                  type: string
+                type:
+                  type: string
+                zone:
+                  type: string
+              required:
+                - loxiURL
+            status:
+              type: object
+              x-kubernetes-preserve-unknown-fields: true
+</code></pre></div></p>
+<p>Further, we can double check the created CRDS in virtual cluster :
+<div class="highlight"><pre><span></span><code>$ kubectl apply -f loxilb-url.crd 
+customresourcedefinition.apiextensions.k8s.io/loxiurls.loxiurl.loxilb.io created
+$ kubectl get crds
+NAME                                    CREATED AT
+addons.k3s.cattle.io                    2024-10-11T12:04:09Z
+helmchartconfigs.helm.cattle.io         2024-10-11T12:04:09Z
+helmcharts.helm.cattle.io               2024-10-11T12:04:09Z
+ingressroutes.traefik.containo.us       2024-10-11T12:04:53Z
+ingressroutetcps.traefik.containo.us    2024-10-11T12:04:53Z
+ingressrouteudps.traefik.containo.us    2024-10-11T12:04:53Z
+loxiurls.loxiurl.loxilb.io              2024-10-13T14:29:31Z
+middlewares.traefik.containo.us         2024-10-11T12:04:53Z
+middlewaretcps.traefik.containo.us      2024-10-11T12:04:53Z
+serverstransports.traefik.containo.us   2024-10-11T12:04:53Z
+tlsoptions.traefik.containo.us          2024-10-11T12:04:53Z
+tlsstores.traefik.containo.us           2024-10-11T12:04:53Z
+traefikservices.traefik.containo.us     2024-10-11T12:04:53Z
+</code></pre></div></p>
+<h3 id="setup-host-cluster-to-run-loxilb-instances">Setup host cluster to run loxilb instances</h3>
+<p>Run loxilb in host cluster with the following loxilb.yaml (with any modificiations needed) :
+<div class="highlight"><pre><span></span><code>apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: loxilb-lb
+  #namespace: kube-system
+spec:
+  selector:
+    matchLabels:
+      app: loxilb-app
+  template:
+    metadata:
+      name: loxilb-lb
+      labels:
+        app: loxilb-app
+      annotations:
+        k8s.v1.cni.cncf.io/networks: macvlan1
+    spec:
+      dnsPolicy: ClusterFirstWithHostNet
+      tolerations:
+        #- key: &quot;node-role.kubernetes.io/master&quot;
+        #operator: Exists
+      - key: &quot;node-role.kubernetes.io/control-plane&quot;
+        operator: Exists
+      initContainers:
+      - name: mkllb-joinurl
+        command:
+          - sh
+          - -ec
+          - |
+            /usr/local/sbin/mkllb-url -a $(MY_POD_IP) -z llb -t default;
+        image: &quot;ghcr.io/loxilb-io/loxilb:latest&quot;
+        imagePullPolicy: Always
+        volumeMounts:
+          - name: kubeconfig-cluster1-vol
+            mountPath: /root/.kube/config
+            subPath: kubeconfig-cluster1
+        env:
+        - name: MY_POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+      containers:
+      - name: loxilb-app
+        image: &quot;ghcr.io/loxilb-io/loxilb:latest&quot;
+        imagePullPolicy: Always
+        command: [ &quot;/root/loxilb-io/loxilb/loxilb&quot; ]
+        ports:
+        - containerPort: 11111
+        - containerPort: 179
+        - containerPort: 50051
+        securityContext:
+          privileged: true
+          capabilities:
+            add:
+              - SYS_ADMIN
+        volumeMounts:
+          - name: kubeconfig-cluster1-vol
+            mountPath: /root/.kube/config
+            subPath: kubeconfig-cluster1
+      volumes:
+      - name: kubeconfig-cluster1-vol
+        configMap:
+          name: kubeconfig-cluster1
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: loxilb-lb-service
+  #namespace: kube-system
+spec:
+  clusterIP: None
+  selector:
+    app: loxilb-app
+  ports:
+  - name: loxilb-app
+    port: 11111
+    targetPort: 11111
+    protocol: TCP
+  - name: loxilb-app-bgp
+    port: 179
+    targetPort: 179
+    protocol: TCP
+  - name: loxilb-app-gobgp
+    port: 50051
+    targetPort: 50051
+    protocol: TCP
+</code></pre></div>
+In the above yaml file, we run an <code>initContainer</code> which joins this loxilb instance to the respective kube-loxilb running in the virtual cluster. Also, kindly note that we are using the annotation <code>k8s.v1.cni.cncf.io/networks</code> which assigns an additional interface to the loxilb pod.</p>
+<p>We can also double check if loxilb is running in the host cluster :</p>
+<div class="highlight"><pre><span></span><code>$ export KUBECONFIG=~/.kube/config
+$ kubectl apply -f loxilb.yaml 
+daemonset.apps/loxilb-lb created
+service/loxilb-lb-service created
+$ kubectl get pods -A
+NAMESPACE             NAME                             READY   STATUS    RESTARTS        AGE
+default               loxilb-lb-kjq5v                  1/1     Running   0               95m
+k3k-example-cluster   example-cluster-k3k-server-0     1/1     Running   0               2d17h
+k3k-system            my-k3k-858565699d-kxh8h          1/1     Running   0               2d17h
+kube-flannel          kube-flannel-ds-8rn5s            1/1     Running   0               2d17h
+kube-system           coredns-76f75df574-87j4d         1/1     Running   1 (2d18h ago)   2d18h
+kube-system           coredns-76f75df574-trb9m         1/1     Running   1 (2d18h ago)   2d18h
+kube-system           etcd-master                      1/1     Running   3 (2d18h ago)   2d18h
+kube-system           kube-apiserver-master            1/1     Running   2 (2d18h ago)   2d18h
+kube-system           kube-controller-manager-master   1/1     Running   2 (38h ago)     2d18h
+kube-system           kube-loxilb-7bc7865f76-6jm6n     1/1     Running   0               26h
+kube-system           kube-multus-ds-r8qm9             1/1     Running   0               2d15h
+kube-system           kube-proxy-pn4t2                 1/1     Running   1 (2d18h ago)   2d18h
+kube-system           kube-scheduler-master            1/1     Running   2 (38h ago)     2d18h
+</code></pre></div>
+<p>There are many <a href="https://medium.com/@ahmetb/mastering-kubeconfig-4e447aa32c75">ways</a> to deal with multiple kube config files for multi-clusters. Users can choose whatever works the best for their needs.</p>
+<h3 id="testing">Testing</h3>
+<p>For testing, we would first create a test pod in virtual cluster and expose it via loxilb using the following yaml (save it as tcp.yaml) :</p>
+<div class="highlight"><pre><span></span><code>apiVersion: v1
+kind: Service
+metadata:
+  name: tcp-lb
+  annotations:
+    loxilb.io/lbmode: &quot;onearm&quot;
+spec:
+  externalTrafficPolicy: Local
+  loadBalancerClass: loxilb.io/loxilb
+  selector:
+    what: tcp-test
+  ports:
+    - port: 56002
+      targetPort: 80
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: tcp-test
+  labels:
+    what: tcp-test
+spec:
+  containers:
+    - name: tcp-test
+      image: ghcr.io/loxilb-io/nginx:stable
+      ports:
+        - containerPort: 80
+</code></pre></div>
+<p>And apply it inside the virtual cluster :</p>
+<div class="highlight"><pre><span></span><code>$ export KUBECONFIG=&lt;PATH-TO-DIR&gt;/kubeconfig-cluster1
+$ kubectl apply -f tcp.yaml 
+service/tcp-lb created
+pod/tcp-test created
+</code></pre></div>
+<p>We can check if services have been created as expected :
+<div class="highlight"><pre><span></span><code>$ kubectl get svc -A
+NAMESPACE     NAME             TYPE           CLUSTER-IP     EXTERNAL-IP          PORT(S)                      AGE
+default       kubernetes       ClusterIP      10.45.0.1      &lt;none&gt;               443/TCP                      2d16h
+default       tcp-lb           LoadBalancer   10.45.225.96   llb-192.168.80.250   56002:32145/TCP              2s
+kube-system   kube-dns         ClusterIP      10.45.0.10     &lt;none&gt;               53/UDP,53/TCP,9153/TCP       2d16h
+kube-system   metrics-server   ClusterIP      10.45.89.141   &lt;none&gt;               443/TCP                      2d16h
+</code></pre></div></p>
+<p>Finally we can check the service accessibility from outside :</p>
+<div class="highlight"><pre><span></span><code>curl http://192.168.80.250:56002
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
@@ -2418,23 +2755,7 @@ Commercial support is available at
 &lt;/body&gt;
 &lt;/html&gt;
 </code></pre></div>
-For more detailed information on incluster deployment of loxilb with bgp in a full-blown cluster, kindly follow this <a href="https://www.loxilb.io/post/k8s-nuances-of-in-cluster-external-service-lb-with-loxilb">blog</a>.   </p>
-<p>All of the above steps are also available as part of loxilb CICD workflow. Follow the steps below to replicate the above (please note that you will need <a href="https://developer.hashicorp.com/vagrant/docs/installation">vagrant tool</a> installed to run:
-<div class="highlight"><pre><span></span><code>$ git clone https://github.com/loxilb-io/loxilb.git
-$ cd cicd/k0s-incluster/
-
-# To setup the single node k0s setup with kube-router networking and loxilb as external load balancer
-$ ./config.sh
-
-# To validate the results
-$ ./validation.sh
-
-# To login to the node and check the installation
-$ vagrant ssh k0s-node1
-
-# Cleanup
-$ ./rmconfig.sh
-</code></pre></div></p>
+<p>In this guide, we have illustrated how to deploy a single virtual cluster with a single loxilb pod. But the same set of steps (with minor variations) can be followed to created multiple virtual clusters each with its own HA pair of loxilb instances. </p>
 
 
 
@@ -2465,44 +2786,6 @@ $ ./rmconfig.sh
       
         <footer class="md-footer">
   
-    
-      
-      <nav class="md-footer__inner md-grid" aria-label="Footer" >
-        
-          
-          <a href="../k3s_quick_start_incluster/" class="md-footer__link md-footer__link--prev" aria-label="Previous: K3s/loxilb in-cluster mode">
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
-            </div>
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              <div class="md-ellipsis">
-                K3s/loxilb in-cluster mode
-              </div>
-            </div>
-          </a>
-        
-        
-          
-          <a href="../microk8s_quick_start_incluster/" class="md-footer__link md-footer__link--next" aria-label="Next: MicroK8s/loxilb in-cluster mode">
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              <div class="md-ellipsis">
-                MicroK8s/loxilb in-cluster mode
-              </div>
-            </div>
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
     
   
   <div class="md-footer-meta md-typeset">
