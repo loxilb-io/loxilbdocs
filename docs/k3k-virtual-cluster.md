@@ -123,6 +123,12 @@ $ kubectl get nodes
 NAME                           STATUS   ROLES                       AGE   VERSION
 example-cluster-k3k-server-0   Ready    control-plane,etcd,master   37h   v1.26.1+k3s1
 ```
+We will use this config file as a ConfigMap and mount in to loxilb later in the guide. For this we need to make sure the server address in the kubeconfig is not set to some host proxy address but pod address of the virtual cluster, which is the podIP of k3k-example-cluster pod.
+
+```
+# kubeconfig-cluster1 contents (Double check server in virtual cluster kube-config)
+ server: https://10.244.0.7:6443
+```
 
 Create a config-map for this virtual cluster's kubeconfig (to be used later) :
 ```
