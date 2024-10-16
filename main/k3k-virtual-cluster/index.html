@@ -14,7 +14,7 @@
       
       
       <link rel="icon" href="../photos/loxilb-logo.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.40">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.41">
     
     
       
@@ -22,7 +22,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.8c3ca2c6.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.0253249f.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
@@ -2157,7 +2157,7 @@
 <p>For background, virtual cluster is a Kubernetes-native solution that allows you to create virtual clusters within a host Kubernetes cluster. Essentially, each virtual cluster runs its own Kubernetes control plane while sharing the same worker nodes as the host cluster. This setup provides an isolated environment for each virtual cluster without the overhead of creating separate physical clusters.</p>
 <p>This guide will use <a href="https://github.com/rancher/k3k">k3k</a> (kubernetes in kubernetes) as the virtual cluster provider and <a href="https://github.com/loxilb-io/loxilb">loxilb</a> as the LB solution. k3k is in beta hence this guide can be used as a template for any other virtual cluster solutions out there.</p>
 <h3 id="prerequisite">Prerequisite</h3>
-<p>We need to have a kubernetes cluster setup already. This base cluster will host other vistual cluster inside it. Let's name it <code>host cluster</code> for remainder of this guide.  The state of this host cluster to start with is as follows :</p>
+<p>We need to have a kubernetes cluster setup already. This base cluster will host other virtual cluster inside it. Let's name it <code>host cluster</code> for remainder of this guide.  The state of this host cluster to start with is as follows :</p>
 <div class="highlight"><pre><span></span><code>$ kubectl get pods -A
 NAMESPACE      NAME                             READY   STATUS    RESTARTS   AGE
 kube-flannel   kube-flannel-ds-94dd4            1/1     Running   0          3h4m
@@ -2205,7 +2205,7 @@ kube-system    kube-scheduler-master            1/1     Running   0          3h2
 chmod +x k3kcli
 sudo mv k3kcli /usr/local/sbin/
 </code></pre></div>
-<p>Now we can create a test vistual cluster
+<p>Now we can create a test virtual cluster
 <div class="highlight"><pre><span></span><code>k3kcli cluster create --name example-cluster --token test  --kubeconfig ~/.kube/config
 </code></pre></div>
 Sometimes, cluster creation fails with the error :
@@ -2218,7 +2218,7 @@ echo &#39;GRUB_CMDLINE_LINUX=systemd.unified_cgroup_hierarchy=false&#39; &gt; /e
 update-grub
 reboot
 </code></pre></div>
-<p>Double check if the new vistual cluster is created in host cluster:</p>
+<p>Double check if the new virtual cluster is created in host cluster:</p>
 <div class="highlight"><pre><span></span><code>$ kubectl get pods -A
 NAMESPACE             NAME                             READY   STATUS    RESTARTS        AGE
 k3k-example-cluster   example-cluster-k3k-server-0     1/1     Running   0               2d16h
@@ -2235,7 +2235,7 @@ kube-system           kube-scheduler-master            1/1     Running   2 (37h 
 <p>To manage the cluster, it is convenient to generate the kubeconfig for the created virtual cluster : 
 <div class="highlight"><pre><span></span><code>k3kcli kubeconfig generate --name example-cluster  --config-name kubeconfig-cluster1 --kubeconfig ~/.kube/config
 </code></pre></div></p>
-<p>We can then use <code>export KUBECONFIG</code> and run commands for the new vistual cluster as follows :
+<p>We can then use <code>export KUBECONFIG</code> and run commands for the new virtual cluster as follows :
 <div class="highlight"><pre><span></span><code>$ export KUBECONFIG=&lt;PATH-TO-DIR&gt;/kubeconfig-cluster1
 $ kubectl get nodes
 NAME                           STATUS   ROLES                       AGE   VERSION
@@ -2856,7 +2856,7 @@ Commercial support is available at
     <script id="__config" type="application/json">{"base": "..", "features": ["navigation.path", "navigation.instant", "navigation.tracking", "navigation.indexes", "navigation.top", "navigation.footer", "search.suggest"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": "latest", "provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.525ec568.min.js"></script>
+      <script src="../assets/javascripts/bundle.83f73b43.min.js"></script>
       
     
   </body>
