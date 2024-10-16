@@ -7,7 +7,7 @@ For background, virtual cluster is a Kubernetes-native solution that allows you 
 This guide will use [k3k](https://github.com/rancher/k3k) (kubernetes in kubernetes) as the virtual cluster provider and [loxilb](https://github.com/loxilb-io/loxilb) as the LB solution. k3k is in beta hence this guide can be used as a template for any other virtual cluster solutions out there.
 
 ### Prerequisite
-We need to have a kubernetes cluster setup already. This base cluster will host other vistual cluster inside it. Let's name it ```host cluster``` for remainder of this guide.  The state of this host cluster to start with is as follows :
+We need to have a kubernetes cluster setup already. This base cluster will host other virtual cluster inside it. Let's name it ```host cluster``` for remainder of this guide.  The state of this host cluster to start with is as follows :
 
 ```
 $ kubectl get pods -A
@@ -75,7 +75,7 @@ chmod +x k3kcli
 sudo mv k3kcli /usr/local/sbin/
 ```
 
-Now we can create a test vistual cluster
+Now we can create a test virtual cluster
 ```
 k3kcli cluster create --name example-cluster --token test  --kubeconfig ~/.kube/config
 ```
@@ -94,7 +94,7 @@ update-grub
 reboot
 ```
 
-Double check if the new vistual cluster is created in host cluster:
+Double check if the new virtual cluster is created in host cluster:
 
 ```
 $ kubectl get pods -A
@@ -116,7 +116,7 @@ To manage the cluster, it is convenient to generate the kubeconfig for the creat
 k3kcli kubeconfig generate --name example-cluster  --config-name kubeconfig-cluster1 --kubeconfig ~/.kube/config
 ```
 
-We can then use ```export KUBECONFIG``` and run commands for the new vistual cluster as follows :
+We can then use ```export KUBECONFIG``` and run commands for the new virtual cluster as follows :
 ```
 $ export KUBECONFIG=<PATH-TO-DIR>/kubeconfig-cluster1
 $ kubectl get nodes
