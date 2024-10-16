@@ -152,8 +152,8 @@ rules:
       - ""
     resources:
       - endpoints
-      - namespaces
       - services
+      - namespaces
       - services/status
     verbs:
       - get
@@ -175,6 +175,14 @@ rules:
       - discovery.k8s.io
     resources:
       - endpointslices
+    verbs:
+      - get
+      - watch
+      - list
+  - apiGroups:
+      - apiextensions.k8s.io
+    resources:
+      - customresourcedefinitions
     verbs:
       - get
       - watch
@@ -202,7 +210,50 @@ rules:
       - create
       - update
       - delete
-
+  - apiGroups:
+      - bgppolicydefinedsets.loxilb.io
+    resources:
+      - bgppolicydefinedsetsservices
+    verbs:
+      - get
+      - watch
+      - list
+      - create
+      - update
+      - delete
+  - apiGroups:
+      - bgppolicydefinition.loxilb.io
+    resources:
+      - bgppolicydefinitionservices
+    verbs:
+      - get
+      - watch
+      - list
+      - create
+      - update
+      - delete
+  - apiGroups:
+      - bgppolicyapply.loxilb.io
+    resources:
+      - bgppolicyapplyservices
+    verbs:
+      - get
+      - watch
+      - list
+      - create
+      - update
+      - delete
+  - apiGroups:
+      - loxiurl.loxilb.io
+    resources:
+      - loxiurls
+    verbs:
+      - get
+      - watch
+      - list
+      - create
+      - update
+      - delete
 ---
 kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
