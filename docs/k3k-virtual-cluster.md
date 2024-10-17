@@ -32,9 +32,9 @@ master   Ready    control-plane   3h13m   v1.29.9   192.168.80.250   <none>     
 
 Overall we will deploy a topology as follows :
 
-![loxilb-virtual-cluster](https://github.com/user-attachments/assets/34c571e9-6889-48c8-9f40-eef7f9d392a5)
+![image](https://github.com/user-attachments/assets/68579237-949b-4498-ada2-07a077291f20)
 
-The overall idea is to install a virtual cluster, run kube-loxilb and workloads in the virtual clusters while running a dedicated/isolated LB per virtual cluster in the host cluster. 
+The overall idea is to install a virtual cluster, run kube-loxilb and workloads in the virtual clusters while running dedicated/isolated LB instance(s) per virtual cluster in the host cluster. 
 
 ### Installing k3k
 
