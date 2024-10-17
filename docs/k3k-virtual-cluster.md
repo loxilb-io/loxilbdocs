@@ -4,7 +4,7 @@ This guide will provide users with step-by-step instructions to provision a Kube
 
 For background, virtual cluster is a Kubernetes-native solution that allows you to create virtual clusters within a host Kubernetes cluster. Essentially, each virtual cluster runs its own Kubernetes control plane while sharing the same worker nodes as the host cluster. This setup provides an isolated environment for each virtual cluster without the overhead of creating separate physical clusters.
 
-![image](https://github.com/user-attachments/assets/91d94255-364f-4f77-bb95-e4edec94830c)
+![image](https://github.com/user-attachments/assets/5e59b7bc-add0-493e-8ea4-2722d0e05ffe)
 
 This guide will use [k3k](https://github.com/rancher/k3k) (kubernetes in kubernetes) as the virtual cluster provider and [loxilb](https://github.com/loxilb-io/loxilb) as the LB solution. k3k is in beta hence this guide can be used as a template for any other virtual cluster solutions out there.
 
@@ -197,9 +197,9 @@ Spec:
 Events:    <none>
 ```
 
-### Setting up kube-loxilb in each vCLuster 
+### Setting up kube-loxilb in each virtual cluster 
 
-We will run a kube-loxilb instance for each virtual cluster. Run kube-loxilb in the the vcluster using the following yaml (use the kubeconfig for the vcluster in kubectl) :
+We will run a kube-loxilb instance for each virtual cluster. Run kube-loxilb in the the virtual cluster using the following yaml (use the kubeconfig for the virtual cluster in kubectl) :
 ```
 $ wget https://raw.githubusercontent.com/loxilb-io/kube-loxilb/refs/heads/main/manifest/virtual-cluster/kube-loxilb.yaml
 ```
