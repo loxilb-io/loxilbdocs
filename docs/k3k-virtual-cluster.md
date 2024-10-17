@@ -228,7 +228,7 @@ kube-system   svclb-traefik-3f3876ec-k97dw              2/2     Running     2 (3
 kube-system   traefik-56b8c5fb5c-stdtb                  1/1     Running     1 (37h ago)   2d16h
 ```
 
-In this use-case, we will use URL CRDs exposed by kube-loxilb (running in virtual cluster) for allowing dynamic registration of loxilb instances (running in host cluster). To do so we need to create the CRDs by applying the following yaml inside virtual cluster (save as loxilburl-crd.yaml):
+In this use-case, we will use URL CRDs exposed by kube-loxilb (running in virtual cluster) for allowing dynamic registration of loxilb instances (running in host cluster). To do so we need to create the CRDs by applying the following yaml inside virtual cluster :
 
 ```
 $ kubectl apply -f https://raw.githubusercontent.com/loxilb-io/kube-loxilb/refs/heads/main/manifest/crds/loxilb-url-crd.yaml 
