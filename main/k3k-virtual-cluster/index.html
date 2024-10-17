@@ -2179,13 +2179,13 @@ master   Ready    control-plane   3h13m   v1.29.9   192.168.80.250   &lt;none&gt
 <p>The overall idea is to install a virtual cluster, run kube-loxilb and workloads in the virtual clusters while running a dedicated/isolated LB per virtual cluster in the host cluster. </p>
 <h3 id="installing-k3k">Installing k3k</h3>
 <p>First we need to get helm tool using <a href="https://helm.sh/docs/intro/install/">guidelines</a> or just use the following steps :</p>
-<div class="highlight"><pre><span></span><code>curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
-chmod 700 get_helm.sh
-./get_helm.sh
+<div class="highlight"><pre><span></span><code>$ curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+$ chmod 700 get_helm.sh
+$ ./get_helm.sh
 </code></pre></div>
 <p>Install k3k using helm</p>
-<div class="highlight"><pre><span></span><code>helm repo add k3k https://rancher.github.io/k3k
-helm install my-k3k k3k/k3k --devel
+<div class="highlight"><pre><span></span><code>$ helm repo add k3k https://rancher.github.io/k3k
+$ helm install my-k3k k3k/k3k --devel
 </code></pre></div>
 <p>Check the running kubernetes pods to confirm k3k is running</p>
 <div class="highlight"><pre><span></span><code>$ kubectl get pods -A
@@ -2201,22 +2201,22 @@ kube-system    kube-proxy-bxnkd                 1/1     Running   0          3h2
 kube-system    kube-scheduler-master            1/1     Running   0          3h23m
 </code></pre></div>
 <p>To manage virtual cluster using k3k, we need to get and use k3kcli tool</p>
-<div class="highlight"><pre><span></span><code>wget https://github.com/rancher/k3k/releases/download/v0.2.0/k3kcli
-chmod +x k3kcli
-sudo mv k3kcli /usr/local/sbin/
+<div class="highlight"><pre><span></span><code>$ wget https://github.com/rancher/k3k/releases/download/v0.2.0/k3kcli
+$ chmod +x k3kcli
+$ sudo mv k3kcli /usr/local/sbin/
 </code></pre></div>
 <p>Now we can create a test virtual cluster
-<div class="highlight"><pre><span></span><code>k3kcli cluster create --name example-cluster --token test  --kubeconfig ~/.kube/config
+<div class="highlight"><pre><span></span><code>$ k3kcli cluster create --name example-cluster --token test  --kubeconfig ~/.kube/config
 </code></pre></div>
 Sometimes, cluster creation fails with the error :
 <div class="highlight"><pre><span></span><code>E1014 07:58:19.244710       7 node_container_manager_linux.go:61] &quot;Failed to create cgroup&quot; err=&quot;cannot enter cgroupv2 \&quot;/sys/fs/cgroup/kubepods\&quot; with domain controllers -- it is in an invalid state&quot; cgroupName=[kubepods]
 E1014 07:58:19.244745       7 kubelet.go:1466] &quot;Failed to start ContainerManager&quot; err=&quot;cannot enter cgroupv2 \&quot;/sys/fs/cgroup/kubepods\&quot; with domain controllers -- it is in an invalid state&quot;
 </code></pre></div></p>
 <p>This is due to the fact there is some problems with k3k not able to work with cgroup v2, so in this case one needs to disable cgroup-v2 support in the OS kernel :</p>
-<div class="highlight"><pre><span></span><code>sudo su
-echo &#39;GRUB_CMDLINE_LINUX=systemd.unified_cgroup_hierarchy=false&#39; &gt; /etc/default/grub.d/cgroup.cfg
-update-grub
-reboot
+<div class="highlight"><pre><span></span><code>$ sudo su
+$ echo &#39;GRUB_CMDLINE_LINUX=systemd.unified_cgroup_hierarchy=false&#39; &gt; /etc/default/grub.d/cgroup.cfg
+$ update-grub
+$ reboot
 </code></pre></div>
 <p>Double check if the new virtual cluster is created in host cluster:</p>
 <div class="highlight"><pre><span></span><code>$ kubectl get pods -A
@@ -2233,7 +2233,7 @@ kube-system           kube-proxy-pn4t2                 1/1     Running   1 (2d16
 kube-system           kube-scheduler-master            1/1     Running   2 (37h ago)     2d16h
 </code></pre></div>
 <p>To manage the cluster, it is convenient to generate the kubeconfig for the created virtual cluster : 
-<div class="highlight"><pre><span></span><code>k3kcli kubeconfig generate --name example-cluster  --config-name kubeconfig-cluster1 --kubeconfig ~/.kube/config
+<div class="highlight"><pre><span></span><code>$ k3kcli kubeconfig generate --name example-cluster  --config-name kubeconfig-cluster1 --kubeconfig ~/.kube/config
 </code></pre></div></p>
 <p>We can then use <code>export KUBECONFIG</code> and run commands for the new virtual cluster as follows :
 <div class="highlight"><pre><span></span><code>$ export KUBECONFIG=&lt;PATH-TO-DIR&gt;/kubeconfig-cluster1
@@ -2303,7 +2303,7 @@ Events:    &lt;none&gt;
 </code></pre></div></p>
 <h3 id="setting-up-kube-loxilb-in-each-vcluster">Setting up kube-loxilb in each vCLuster</h3>
 <p>We will run a kube-loxilb instance for each virtual cluster. Run kube-loxilb in the the vcluster using the following yaml (use the kubeconfig for the vcluster in kubectl) :
-<div class="highlight"><pre><span></span><code>wget https://raw.githubusercontent.com/loxilb-io/kube-loxilb/refs/heads/main/manifest/virtual-cluster/kube-loxilb.yaml
+<div class="highlight"><pre><span></span><code>$ wget https://raw.githubusercontent.com/loxilb-io/kube-loxilb/refs/heads/main/manifest/virtual-cluster/kube-loxilb.yaml
 </code></pre></div></p>
 <p>Change the following line in the manifest as per the service VIP needed in this file :
 <div class="highlight"><pre><span></span><code> - --cidrPools=defaultPool=192.168.80.250/32  
