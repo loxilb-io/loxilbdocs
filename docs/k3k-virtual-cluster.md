@@ -87,7 +87,7 @@ E1014 07:58:19.244710       7 node_container_manager_linux.go:61] "Failed to cre
 E1014 07:58:19.244745       7 kubelet.go:1466] "Failed to start ContainerManager" err="cannot enter cgroupv2 \"/sys/fs/cgroup/kubepods\" with domain controllers -- it is in an invalid state"
 ```
 
-This is due to the fact there is some problems with k3k not able to work with cgroup v2, so in this case one needs to disable cgroup-v2 support in the OS kernel :
+This is due to the fact there is some issue with k3k not able to work with cgroup v2, so in this case one needs to disable cgroup-v2 support in the OS kernel :
 
 ```
 $ sudo su
