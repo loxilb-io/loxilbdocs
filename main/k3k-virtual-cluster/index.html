@@ -2315,8 +2315,8 @@ master   Ready    control-plane   3h13m   v1.29.9   192.168.80.250   &lt;none&gt
 </code></pre></div>
 <h3 id="topology">Topology</h3>
 <p>Overall we will deploy a topology as follows :</p>
-<p><img alt="loxilb-virtual-cluster" src="https://github.com/user-attachments/assets/34c571e9-6889-48c8-9f40-eef7f9d392a5" /></p>
-<p>The overall idea is to install a virtual cluster, run kube-loxilb and workloads in the virtual clusters while running a dedicated/isolated LB per virtual cluster in the host cluster. </p>
+<p><img alt="image" src="https://github.com/user-attachments/assets/68579237-949b-4498-ada2-07a077291f20" /></p>
+<p>The overall idea is to install a virtual cluster, run kube-loxilb and workloads in the virtual clusters while running dedicated/isolated LB instance(s) per virtual cluster in the host cluster. </p>
 <h3 id="installing-k3k">Installing k3k</h3>
 <p>First we need to get helm tool using <a href="https://helm.sh/docs/intro/install/">guidelines</a> or just use the following steps :</p>
 <div class="highlight"><pre><span></span><code>$ curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
