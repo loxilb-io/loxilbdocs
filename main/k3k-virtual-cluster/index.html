@@ -2352,7 +2352,7 @@ Sometimes, cluster creation fails with the error :
 <div class="highlight"><pre><span></span><code>E1014 07:58:19.244710       7 node_container_manager_linux.go:61] &quot;Failed to create cgroup&quot; err=&quot;cannot enter cgroupv2 \&quot;/sys/fs/cgroup/kubepods\&quot; with domain controllers -- it is in an invalid state&quot; cgroupName=[kubepods]
 E1014 07:58:19.244745       7 kubelet.go:1466] &quot;Failed to start ContainerManager&quot; err=&quot;cannot enter cgroupv2 \&quot;/sys/fs/cgroup/kubepods\&quot; with domain controllers -- it is in an invalid state&quot;
 </code></pre></div></p>
-<p>This is due to the fact there is some problems with k3k not able to work with cgroup v2, so in this case one needs to disable cgroup-v2 support in the OS kernel :</p>
+<p>This is due to the fact there is some issue with k3k not able to work with cgroup v2, so in this case one needs to disable cgroup-v2 support in the OS kernel :</p>
 <div class="highlight"><pre><span></span><code>$ sudo su
 $ echo &#39;GRUB_CMDLINE_LINUX=systemd.unified_cgroup_hierarchy=false&#39; &gt; /etc/default/grub.d/cgroup.cfg
 $ update-grub
