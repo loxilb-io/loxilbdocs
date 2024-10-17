@@ -4,6 +4,8 @@ This guide will provide users with step-by-step instructions to provision a Kube
 
 For background, virtual cluster is a Kubernetes-native solution that allows you to create virtual clusters within a host Kubernetes cluster. Essentially, each virtual cluster runs its own Kubernetes control plane while sharing the same worker nodes as the host cluster. This setup provides an isolated environment for each virtual cluster without the overhead of creating separate physical clusters.
 
+![image](https://github.com/user-attachments/assets/91d94255-364f-4f77-bb95-e4edec94830c)
+
 This guide will use [k3k](https://github.com/rancher/k3k) (kubernetes in kubernetes) as the virtual cluster provider and [loxilb](https://github.com/loxilb-io/loxilb) as the LB solution. k3k is in beta hence this guide can be used as a template for any other virtual cluster solutions out there.
 
 ### Prerequisite
