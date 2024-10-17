@@ -1260,9 +1260,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#setting-up-kube-loxilb-in-each-vcluster" class="md-nav__link">
+  <a href="#setting-up-kube-loxilb-in-each-virtual-cluster" class="md-nav__link">
     <span class="md-ellipsis">
-      Setting up kube-loxilb in each vCLuster
+      Setting up kube-loxilb in each virtual cluster
     </span>
   </a>
   
@@ -2245,9 +2245,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#setting-up-kube-loxilb-in-each-vcluster" class="md-nav__link">
+  <a href="#setting-up-kube-loxilb-in-each-virtual-cluster" class="md-nav__link">
     <span class="md-ellipsis">
-      Setting up kube-loxilb in each vCLuster
+      Setting up kube-loxilb in each virtual cluster
     </span>
   </a>
   
@@ -2294,7 +2294,7 @@
 <h3 id="kubernetes-virtual-cluster-setup-with-k3k-and-loxilb">Kubernetes virtual cluster setup with k3k and loxilb</h3>
 <p>This guide will provide users with step-by-step instructions to provision a Kubernetes virtual cluster, run workloads in an isolated manner, and expose them via a load balancer without sacrificing performance or security.</p>
 <p>For background, virtual cluster is a Kubernetes-native solution that allows you to create virtual clusters within a host Kubernetes cluster. Essentially, each virtual cluster runs its own Kubernetes control plane while sharing the same worker nodes as the host cluster. This setup provides an isolated environment for each virtual cluster without the overhead of creating separate physical clusters.</p>
-<p><img alt="image" src="https://github.com/user-attachments/assets/91d94255-364f-4f77-bb95-e4edec94830c" /></p>
+<p><img alt="image" src="https://github.com/user-attachments/assets/5e59b7bc-add0-493e-8ea4-2722d0e05ffe" /></p>
 <p>This guide will use <a href="https://github.com/rancher/k3k">k3k</a> (kubernetes in kubernetes) as the virtual cluster provider and <a href="https://github.com/loxilb-io/loxilb">loxilb</a> as the LB solution. k3k is in beta hence this guide can be used as a template for any other virtual cluster solutions out there.</p>
 <h3 id="prerequisite">Prerequisite</h3>
 <p>We need to have a kubernetes cluster setup already. This base cluster will host other virtual cluster inside it. Let's name it <code>host cluster</code> for remainder of this guide.  The state of this host cluster to start with is as follows :</p>
@@ -2441,8 +2441,8 @@ Spec:
   Config:  { &quot;cniVersion&quot;: &quot;0.3.1&quot;, &quot;type&quot;: &quot;macvlan&quot;, &quot;master&quot;: &quot;eth1&quot;, &quot;mode&quot;: &quot;bridge&quot;, &quot;ipam&quot;: { &quot;type&quot;: &quot;host-local&quot;, &quot;ranges&quot;: [ [ { &quot;subnet&quot;: &quot;192.168.80.0/24&quot;, &quot;rangeStart&quot;: &quot;192.168.80.251&quot;, &quot;rangeEnd&quot;: &quot;192.168.80.254&quot;, &quot;routes&quot;: [ { &quot;dst&quot;: &quot;0.0.0.0/0&quot; } ], &quot;gateway&quot;: &quot;192.168.80.1&quot; } ] ] } }
 Events:    &lt;none&gt;
 </code></pre></div></p>
-<h3 id="setting-up-kube-loxilb-in-each-vcluster">Setting up kube-loxilb in each vCLuster</h3>
-<p>We will run a kube-loxilb instance for each virtual cluster. Run kube-loxilb in the the vcluster using the following yaml (use the kubeconfig for the vcluster in kubectl) :
+<h3 id="setting-up-kube-loxilb-in-each-virtual-cluster">Setting up kube-loxilb in each virtual cluster</h3>
+<p>We will run a kube-loxilb instance for each virtual cluster. Run kube-loxilb in the the virtual cluster using the following yaml (use the kubeconfig for the virtual cluster in kubectl) :
 <div class="highlight"><pre><span></span><code>$ wget https://raw.githubusercontent.com/loxilb-io/kube-loxilb/refs/heads/main/manifest/virtual-cluster/kube-loxilb.yaml
 </code></pre></div></p>
 <p>Change the following line in the manifest as per the service VIP needed in this file :
