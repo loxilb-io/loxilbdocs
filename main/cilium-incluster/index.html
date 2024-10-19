@@ -2228,7 +2228,7 @@
 
 <h3 id="kubernetes-cluster-setup-with-cilium-and-loxilb-in-cluster">Kubernetes cluster setup with cilium and loxilb in-cluster</h3>
 <p>This guide will provide users with step-by-step instructions to provision a Kubernetes cluster, with cilium as the default networking and expose services via a loxilb load balancer also running as an incluster component.</p>
-<p>Cilium's has a great pod networking implementation and loxilb has a great kubernetes-native load-balancer. This guide explores how to get best of the both worlds and make things work smoothly.</p>
+<p>Cilium has a great pod networking implementation and loxilb has a great kubernetes-native load-balancer. This guide explores how to get best of the both worlds and make things work smoothly.</p>
 <h3 id="prerequisite">Prerequisite</h3>
 <p>This guide will not delve into details of installing a Kubernetes cluster itself and assumes that users have cluster up and ready. Interested readers can follow various <a href="https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/">resources</a> on the internet for the same. </p>
 <h3 id="topology">Topology</h3>
@@ -2243,7 +2243,8 @@ $ chmod 700 get_helm.sh
 $ ./get_helm.sh
 </code></pre></div>
 <h4 id="pull-cilium-helm-chart">Pull cilium helm chart</h4>
-<div class="highlight"><pre><span></span><code>$ helm pull cilium/cilium  --version=1.16.2 --untar
+<div class="highlight"><pre><span></span><code>$ helm repo add cilium https://helm.cilium.io/
+$ helm pull cilium/cilium  --version=1.16.2 --untar
 </code></pre></div>
 <h4 id="set-cni-exclusive-flag-in-cilium-is-set-to-false">Set cni-exclusive flag in cilium is set to false</h4>
 <div class="highlight"><pre><span></span><code>## Change exclusive flag in values.yaml inside the downloaded chart dir &quot;cilium&quot;:
