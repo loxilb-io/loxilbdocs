@@ -31,6 +31,7 @@ $ ./get_helm.sh
 #### Pull cilium helm chart
 
 ```
+$ helm repo add cilium https://helm.cilium.io/
 $ helm pull cilium/cilium  --version=1.16.2 --untar
 ```
 
