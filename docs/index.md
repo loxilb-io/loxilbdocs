@@ -100,6 +100,7 @@ Telco-cloud requires load-balancing and communication across various interfaces/
 
 #### loxilb as in-cluster pod   
 - [K8s : loxilb in-cluster mode](k8s-flannel-incluster.md)
+- [K8s : loxilb in-cluster mode with cilium](cilium-incluster.md)
 - [K3s : loxilb in-cluster mode](k3s_quick_start_incluster.md)
 - [K0s : loxilb in-cluster mode](k0s_quick_start_incluster.md)
 - [MicroK8s : loxilb in-cluster mode](microk8s_quick_start_incluster.md)
