@@ -23,15 +23,15 @@ The steps to install cilium as as follows :
 #### Install helm tool
 
 ```
-curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
-chmod 700 get_helm.sh
-./get_helm.sh
+$ curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+$ chmod 700 get_helm.sh
+$ ./get_helm.sh
 ```
 
 #### Pull cilium helm chart
 
 ```
-helm pull cilium/cilium  --version=1.16.2 --untar
+$ helm pull cilium/cilium  --version=1.16.2 --untar
 ```
 
 #### Set cni-exclusive flag in cilium is set to false
@@ -85,7 +85,7 @@ Hence, we take the approach to completely segregrate the traffic destined to lox
 To install multus, we will use the following steps :
 
 ```
-kubectl apply -f https://raw.githubusercontent.com/k8snetworkplumbingwg/multus-cni/master/deployments/multus-daemonset.yml  # thin deployment
+$ kubectl apply -f https://raw.githubusercontent.com/k8snetworkplumbingwg/multus-cni/master/deployments/multus-daemonset.yml  # thin deployment
 ```
 
 Further usage and installation guides can be found here
@@ -210,7 +210,7 @@ kube-system   kube-scheduler-master             1/1     Running   0          46h
 Now we will deploy kube-loxilb which is loxilb's operator. Get the manifest file :
 
 ```
-wget https://raw.githubusercontent.com/loxilb-io/kube-loxilb/refs/heads/main/manifest/in-cluster/kube-loxilb-nobgp.yaml
+$ wget https://raw.githubusercontent.com/loxilb-io/kube-loxilb/refs/heads/main/manifest/in-cluster/kube-loxilb-nobgp.yaml
 ```
 
 Change the following line in the manifest as per the service VIP needed in this file :
@@ -297,7 +297,7 @@ tcp-lb              LoadBalancer   10.245.23.116   llb-192.168.80.249   56002:32
 Finally we can check the service accessibility from outside :
 
 ```
-curl http://192.168.80.249:56002
+$ curl http://192.168.80.249:56002
 <!DOCTYPE html>
 <html>
 <head>
