@@ -47,6 +47,7 @@ nav:
           - EKS/loxilb external mode: eks-external.md
       - In-Cluster Mode:
           - K8s/loxilb in-cluster mode: k8s-flannel-incluster.md
+          - K8s/loxilb in-cluster & Cilium: cilium-incluster.md
           - K3s/loxilb in-cluster mode: k3s_quick_start_incluster.md
           - K0s/loxilb in-cluster mode: k0s_quick_start_incluster.md
           - MicroK8s/loxilb in-cluster mode: microk8s_quick_start_incluster.md
