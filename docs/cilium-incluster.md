@@ -2,7 +2,7 @@
 
 This guide will provide users with step-by-step instructions to provision a Kubernetes cluster, with cilium as the default networking and expose services via a loxilb load balancer also running as an incluster component.
 
-Cilium's has a great pod networking implementation and loxilb has a great kubernetes-native load-balancer. This guide explores how to get best of the both worlds and make things work smoothly.
+Cilium has a great pod networking implementation and loxilb has a great kubernetes-native load-balancer. This guide explores how to get best of the both worlds and make things work smoothly.
 
 ### Prerequisite 
 
