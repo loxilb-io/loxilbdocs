@@ -184,6 +184,29 @@ spec:
           capabilities:
             add:
               - SYS_ADMIN
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: loxilb-lb-service
+  #namespace: kube-system
+spec:
+  clusterIP: None
+  selector:
+    app: loxilb-app
+  ports:
+  - name: loxilb-app
+    port: 11111
+    targetPort: 11111
+    protocol: TCP
+  - name: loxilb-app-bgp
+    port: 179
+    targetPort: 179
+    protocol: TCP
+  - name: loxilb-app-gobgp
+    port: 50051
+    targetPort: 50051
+    protocol: TCP
 ```
 
 Also, kindly note that we are using the annotation k8s.v1.cni.cncf.io/networks which assigns an additional interface to the loxilb pod. If the ``cni-exclusive`` flag is not set to false during cilium's installation, cilium usually does not allow meta-plugins like mutlus to work properly.
@@ -223,7 +246,11 @@ Change the following line in the manifest as per the service VIP needed in this 
 Deploy it:
 
 ```
-$ kubectl apply -f kube-loxilb.yaml
+$ kubectl apply -f kube-loxilb-nobgp.yaml
+serviceaccount/kube-loxilb created
+clusterrole.rbac.authorization.k8s.io/kube-loxilb created
+clusterrolebinding.rbac.authorization.k8s.io/kube-loxilb created
+deployment.apps/kube-loxilb created
 $ kubectl get pods -A
 NAMESPACE     NAME                              READY   STATUS    RESTARTS   AGE
 default       loxilb-lb-wcz6p                   1/1     Running   0          16m
