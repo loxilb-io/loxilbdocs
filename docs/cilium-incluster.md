@@ -1,4 +1,4 @@
-### Kubernetes cluster setup with cilium and loxilb in-cluster
+### Kubernetes setup with cilium and loxilb in-cluster mode
 
 This guide will provide users with step-by-step instructions to provision a Kubernetes cluster, with cilium as the default networking and expose services via a loxilb load balancer also running as an incluster component.
 
