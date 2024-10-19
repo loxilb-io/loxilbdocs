@@ -2238,12 +2238,12 @@
 <h3 id="installing-cilium">Installing Cilium</h3>
 <p>The steps to install cilium as as follows :</p>
 <h4 id="install-helm-tool">Install helm tool</h4>
-<div class="highlight"><pre><span></span><code>curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
-chmod 700 get_helm.sh
-./get_helm.sh
+<div class="highlight"><pre><span></span><code>$ curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+$ chmod 700 get_helm.sh
+$ ./get_helm.sh
 </code></pre></div>
 <h4 id="pull-cilium-helm-chart">Pull cilium helm chart</h4>
-<div class="highlight"><pre><span></span><code>helm pull cilium/cilium  --version=1.16.2 --untar
+<div class="highlight"><pre><span></span><code>$ helm pull cilium/cilium  --version=1.16.2 --untar
 </code></pre></div>
 <h4 id="set-cni-exclusive-flag-in-cilium-is-set-to-false">Set cni-exclusive flag in cilium is set to false</h4>
 <div class="highlight"><pre><span></span><code>## Change exclusive flag in values.yaml inside the downloaded chart dir &quot;cilium&quot;:
@@ -2277,7 +2277,7 @@ filter protocol all pref 1 bpf chain 0 handle 0x1 cil_from_netdev-eth1 direct-ac
 <p>Hence, we take the approach to completely segregrate the traffic destined to loxilb into a separate pod and use secondary interfaces for traffic injection with help from <a href="https://github.com/k8snetworkplumbingwg/multus-cni">multus</a>. For starters, multus can create various type of secondary interfaces and attach them to pods. It is very useful for pods which require multi-homing or multiple-interfaces to work with.</p>
 <h3 id="deploy-multus">Deploy multus</h3>
 <p>To install multus, we will use the following steps :</p>
-<div class="highlight"><pre><span></span><code>kubectl apply -f https://raw.githubusercontent.com/k8snetworkplumbingwg/multus-cni/master/deployments/multus-daemonset.yml  # thin deployment
+<div class="highlight"><pre><span></span><code>$ kubectl apply -f https://raw.githubusercontent.com/k8snetworkplumbingwg/multus-cni/master/deployments/multus-daemonset.yml  # thin deployment
 </code></pre></div>
 <p>Further usage and installation guides can be found here</p>
 <p>Next, we create a macvlan attachment object with multus with the following yaml (save it as multus-macvlan.yaml) :</p>
@@ -2384,7 +2384,7 @@ kube-system   kube-scheduler-master             1/1     Running   0          46h
 </code></pre></div></p>
 <h3 id="deploy-kube-loxilb">Deploy kube-loxilb</h3>
 <p>Now we will deploy kube-loxilb which is loxilb's operator. Get the manifest file :</p>
-<div class="highlight"><pre><span></span><code>wget https://raw.githubusercontent.com/loxilb-io/kube-loxilb/refs/heads/main/manifest/in-cluster/kube-loxilb-nobgp.yaml
+<div class="highlight"><pre><span></span><code>$ wget https://raw.githubusercontent.com/loxilb-io/kube-loxilb/refs/heads/main/manifest/in-cluster/kube-loxilb-nobgp.yaml
 </code></pre></div>
 <p>Change the following line in the manifest as per the service VIP needed in this file :</p>
 <div class="highlight"><pre><span></span><code> - --cidrPools=defaultPool=192.168.80.249/32  
@@ -2452,7 +2452,7 @@ loxilb-lb-service   ClusterIP      None            &lt;none&gt;               11
 tcp-lb              LoadBalancer   10.245.23.116   llb-192.168.80.249   56002:32093/TCP               3m7s
 </code></pre></div>
 <p>Finally we can check the service accessibility from outside :</p>
-<div class="highlight"><pre><span></span><code>curl http://192.168.80.249:56002
+<div class="highlight"><pre><span></span><code>$ curl http://192.168.80.249:56002
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
