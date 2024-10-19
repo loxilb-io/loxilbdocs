@@ -2365,6 +2365,29 @@ spec:
           capabilities:
             add:
               - SYS_ADMIN
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: loxilb-lb-service
+  #namespace: kube-system
+spec:
+  clusterIP: None
+  selector:
+    app: loxilb-app
+  ports:
+  - name: loxilb-app
+    port: 11111
+    targetPort: 11111
+    protocol: TCP
+  - name: loxilb-app-bgp
+    port: 179
+    targetPort: 179
+    protocol: TCP
+  - name: loxilb-app-gobgp
+    port: 50051
+    targetPort: 50051
+    protocol: TCP
 </code></pre></div>
 <p>Also, kindly note that we are using the annotation k8s.v1.cni.cncf.io/networks which assigns an additional interface to the loxilb pod. If the <code>cni-exclusive</code> flag is not set to false during cilium's installation, cilium usually does not allow meta-plugins like mutlus to work properly.</p>
 <p>We can now double check if loxilb is running in the  cluster :
@@ -2391,7 +2414,11 @@ kube-system   kube-scheduler-master             1/1     Running   0          46h
 <div class="highlight"><pre><span></span><code> - --cidrPools=defaultPool=192.168.80.249/32  
 </code></pre></div>
 <p>Deploy it:</p>
-<div class="highlight"><pre><span></span><code>$ kubectl apply -f kube-loxilb.yaml
+<div class="highlight"><pre><span></span><code>$ kubectl apply -f kube-loxilb-nobgp.yaml
+serviceaccount/kube-loxilb created
+clusterrole.rbac.authorization.k8s.io/kube-loxilb created
+clusterrolebinding.rbac.authorization.k8s.io/kube-loxilb created
+deployment.apps/kube-loxilb created
 $ kubectl get pods -A
 NAMESPACE     NAME                              READY   STATUS    RESTARTS   AGE
 default       loxilb-lb-wcz6p                   1/1     Running   0          16m
