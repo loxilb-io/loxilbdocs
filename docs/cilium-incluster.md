@@ -35,7 +35,7 @@ $ helm repo add cilium https://helm.cilium.io/
 $ helm pull cilium/cilium  --version=1.16.2 --untar
 ```
 
-#### Set cni-exclusive flag in cilium is set to false
+#### Set cni-exclusive flag in cilium to false
 
 ```
 ## Change exclusive flag in values.yaml inside the downloaded chart dir "cilium":
@@ -94,7 +94,7 @@ To install multus, we will use the following steps :
 $ kubectl apply -f https://raw.githubusercontent.com/k8snetworkplumbingwg/multus-cni/master/deployments/multus-daemonset.yml  # thin deployment
 ```
 
-Further usage and installation guides can be found here
+Further usage and installation guides can be found [here](https://github.com/k8snetworkplumbingwg/multus-cni/blob/master/docs%2Fquickstart.md)
 
 Next, we create a macvlan attachment object with multus with the following yaml (save it as multus-macvlan.yaml) :
 
