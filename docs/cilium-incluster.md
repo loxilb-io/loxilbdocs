@@ -42,7 +42,12 @@ $ helm pull cilium/cilium  --version=1.16.2 --untar
   exclusive: false
 ```
 
-The importance of setting this flag will become evident in subsequent sections.
+The importance of setting this flag will become evident in subsequent sections. Also, if cilium is already installed, this flag can be changed by using :
+
+```
+$ kubectl edit configmap -n kube-system cilium-config
+## change cni-exclusive flag
+```
 
 #### Deploy cilium using helm
 
