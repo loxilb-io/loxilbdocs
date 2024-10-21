@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../photos/loxilb-logo.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.41">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.42">
     
     
       
@@ -2442,7 +2442,10 @@ $ helm pull cilium/cilium  --version=1.16.2 --untar
 <div class="highlight"><pre><span></span><code>## Change exclusive flag in values.yaml inside the downloaded chart dir &quot;cilium&quot;:
   exclusive: false
 </code></pre></div>
-<p>The importance of setting this flag will become evident in subsequent sections.</p>
+<p>The importance of setting this flag will become evident in subsequent sections. Also, if cilium is already installed, this flag can be changed by using :</p>
+<div class="highlight"><pre><span></span><code>$ kubectl edit configmap -n kube-system cilium-config
+## change cni-exclusive flag
+</code></pre></div>
 <h4 id="deploy-cilium-using-helm">Deploy cilium using helm</h4>
 <div class="highlight"><pre><span></span><code>$ helm install cilium --namespace kube-system  ./cilium
 </code></pre></div>
