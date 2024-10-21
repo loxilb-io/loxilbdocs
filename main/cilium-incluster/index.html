@@ -774,9 +774,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#set-cni-exclusive-flag-in-cilium-is-set-to-false" class="md-nav__link">
+  <a href="#set-cni-exclusive-flag-in-cilium-to-false" class="md-nav__link">
     <span class="md-ellipsis">
-      Set cni-exclusive flag in cilium is set to false
+      Set cni-exclusive flag in cilium to false
     </span>
   </a>
   
@@ -2331,9 +2331,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#set-cni-exclusive-flag-in-cilium-is-set-to-false" class="md-nav__link">
+  <a href="#set-cni-exclusive-flag-in-cilium-to-false" class="md-nav__link">
     <span class="md-ellipsis">
-      Set cni-exclusive flag in cilium is set to false
+      Set cni-exclusive flag in cilium to false
     </span>
   </a>
   
@@ -2438,7 +2438,7 @@ $ ./get_helm.sh
 <div class="highlight"><pre><span></span><code>$ helm repo add cilium https://helm.cilium.io/
 $ helm pull cilium/cilium  --version=1.16.2 --untar
 </code></pre></div>
-<h4 id="set-cni-exclusive-flag-in-cilium-is-set-to-false">Set cni-exclusive flag in cilium is set to false</h4>
+<h4 id="set-cni-exclusive-flag-in-cilium-to-false">Set cni-exclusive flag in cilium to false</h4>
 <div class="highlight"><pre><span></span><code>## Change exclusive flag in values.yaml inside the downloaded chart dir &quot;cilium&quot;:
   exclusive: false
 </code></pre></div>
@@ -2475,7 +2475,7 @@ filter protocol all pref 1 bpf chain 0 handle 0x1 cil_from_netdev-eth1 direct-ac
 <p>To install multus, we will use the following steps :</p>
 <div class="highlight"><pre><span></span><code>$ kubectl apply -f https://raw.githubusercontent.com/k8snetworkplumbingwg/multus-cni/master/deployments/multus-daemonset.yml  # thin deployment
 </code></pre></div>
-<p>Further usage and installation guides can be found here</p>
+<p>Further usage and installation guides can be found <a href="https://github.com/k8snetworkplumbingwg/multus-cni/blob/master/docs%2Fquickstart.md">here</a></p>
 <p>Next, we create a macvlan attachment object with multus with the following yaml (save it as multus-macvlan.yaml) :</p>
 <div class="highlight"><pre><span></span><code>apiVersion: &quot;k8s.cni.cncf.io/v1&quot;
 kind: NetworkAttachmentDefinition
