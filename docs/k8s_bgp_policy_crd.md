@@ -1,4 +1,4 @@
-# Policy Configuration
+# BGP Policy Configuration with kube-loxilb CRD
 
 This page explains LoxiLB with GoBGP policy feature for controlling the route advertisement. It is also known as RouteMap policies in other BGP implementations.
 
