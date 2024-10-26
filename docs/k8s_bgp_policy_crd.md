@@ -1,38 +1,36 @@
-# License 
-This document is based on the original work by [GOBGP](https://github.com/osrg/gobgp.git).
-Changes have been made to the original document.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
-
 # Policy Configuration
 
-This page explains LoxiLB with GoBGP policy feature for controlling the route
-advertisement. It might be called Route Map in other BGP
-implementations.
-
-And This document was written with reference to [this goBGP official document.](https://github.com/osrg/gobgp/blob/master/docs/sources/policy.md)
-
-We explain the overview firstly, then the details.
+This page explains LoxiLB with GoBGP policy feature for controlling the route advertisement. It is also known as RouteMap policies in other BGP implementations.
 
 ## Prerequisites
-Assumed that you run loxilb with `-b` option. Or If you control loxilb through kube-loxilb, be sure to set the `--set-bgp` option in the kube-loxilb.yaml file.
 
-```bash
+For running bgp and using bgp crds, we need to run loxilb and kube-loxilb with "bgp" enabled.  For loxilb, we need to set the following:
+
+* loxilb in-cluster mode (add --bgp option) 
+
+```
+ containers:
+      - name: loxilb-app
+        image: "ghcr.io/loxilb-io/loxilb:latest"
+        imagePullPolicy: Always
+        command: [ "/root/loxilb-io/loxilb/loxilb", "--bgp", "--egr-hooks", "--blacklist=cni[0-9a-z]|veth.|flannel.|cali.|tunl.|vxlan[.]calico" ]
+        ports:
+        - containerPort: 11111
+        - containerPort: 179
+        - containerPort: 50051
+        securityContext:
+          privileged: true
+          capabilities:
+            add:
+              - SYS_ADMIN
+```
+* loxilb ext-cluster mode (use same --bgp flag)
+
+```
 docker run -u root --cap-add SYS_ADMIN --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --name loxilb ghcr.io/loxilb-io/loxilb:latest -b
 ```
-or in the kube-loxilb.yaml
-And adding  `- --enableBGPCRDs` option in kube-loxilb.yaml
+
+For kube-loxilb we need to use the following options in its yaml file :
 ```
         args:
             - --loxiURL=http://12.12.12.1:11111
@@ -49,8 +47,8 @@ kubectl apply -f manifest/crds/bgp-policy-defined-sets-service.yaml
 kubectl apply -f manifest/crds/bgp-policy-definition-service.yaml
 ```
 
+<b>Note : </b> Currently, gobgp does not support the Policy command in global state. Therefore, only the policy for neighbors is applied, and we plan to apply the global policy through additional development.
 
-(Note) Currently, gobgp does not support the Policy command in global state. Therefore, only the policy for neighbors is applied, and we plan to apply the global policy through additional development.
 To apply a policy in a neighbor, you must form a peer by adding the `route-server-client` option when using gobgp in loxilb. This does not provide a separate API and will be provided in the future.
 For examples in gobgp, please refer to the following [documents](https://github.com/osrg/gobgp/blob/master/docs/sources/route-server.md).
 
@@ -1018,4 +1016,22 @@ apply-policy. The apply-policy has 4 elements.
 When you change an import policy and reset the inbound routing table (aka soft reset in), a withdraw for a route rejected by the latest import policies will be sent to peers. However, when you change an export policy and reset the outbound routing table (aka soft reset out), even if a route is rejected by the latest export policies, a withdraw for the route will not be sent.
 
 The outbound routing table doesn't exist for saving memory usage, it's impossible to know whether the route was actually sent to peer or the route also was rejected by the previous export policies and not sent. GoBGP doesn't send such withdraw rather than possible unwilling leaking information.
+
+# Credits/License 
+
+This document is based on the original work by [GOBGP](https://github.com/osrg/gobgp.git).
+
+Changes have been made to the original document as per modifications required for loxilb.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
 
