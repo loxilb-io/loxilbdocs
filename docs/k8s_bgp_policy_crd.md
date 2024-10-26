@@ -1,6 +1,6 @@
-# BGP Policy Configuration with kube-loxilb CRD
+# BGP Configuration with kube-loxilb CRD
 
-This page explains LoxiLB with GoBGP policy feature for controlling the route advertisement. It is also known as RouteMap policies in other BGP implementations.
+This page explains dynamic BGP configuration and control in loxilb using Kubernetes CRDs exposed by kube-loxilb.
 
 ## Prerequisites
 
@@ -38,19 +38,52 @@ For kube-loxilb we need to use the following options in its yaml file :
             - --setBGP=65100
             - --enableBGPCRDs
 ```
+# BGP Peer Configuration with kube-loxilb CRD
 
-And apply CRD yamls as first step.
+This sections explains how to do BGP peer manipulation with kube-loxilb CRDS. As a first step, we need to apply CRD yamls as first step to create peer CRD definitions.
 
 ```
-kubectl apply -f manifest/crds/bgp-policy-apply-service.yaml
-kubectl apply -f manifest/crds/bgp-policy-defined-sets-service.yaml
-kubectl apply -f manifest/crds/bgp-policy-definition-service.yaml
+kubectl apply -f https://raw.githubusercontent.com/loxilb-io/kube-loxilb/refs/heads/main/manifest/crds/bgp-peer-service.yaml
+```
+
+Now , we need to create a yaml file that adds a peer for BGP. The example below is an example of creating a Peer with a RemoteAS number of Peer IP address 65123 at 123.123.123.2. Create a file named bgp-peer.yaml and add the contents below.
+
+```
+apiVersion: "bgppeer.loxilb.io/v1"
+kind: BGPPeerService
+metadata:
+  name: bgp-peer-test
+spec:
+  ipAddress: 123.123.123.2
+  remoteAs: 65123
+  remotePort: 179
+```
+Apply to create a new BGP Peer association :
+```
+kubectl apply -f bgp-peer.yaml
+```
+To verify the applied CRD, we can check as follows:
+
+```
+kubectl get bgppeerservice
+NAME            PEER            AS   
+bgp-peer-test   123.123.123.2   65123 
+```
+
+# BGP Policy Configuration with kube-loxilb CRD
+
+This section explains LoxiLB with GoBGP policy feature for controlling the route advertisement. It is also known as RouteMap policies in other BGP implementations. To apply a policy in a neighbor, you must form a peer by adding the `route-server-client` option when using gobgp in loxilb. This does not provide a separate API and will be provided in the future.
+For examples in gobgp, please refer to the following [documents](https://github.com/osrg/gobgp/blob/master/docs/sources/route-server.md).
+
+We need to apply CRD yamls as first step to create policy CRD definitions.
+
+```
+kubectl apply -f https://raw.githubusercontent.com/loxilb-io/kube-loxilb/refs/heads/main/manifest/crds/bgp-policy-apply-service.yaml
+kubectl apply -f https://raw.githubusercontent.com/loxilb-io/kube-loxilb/refs/heads/main/manifest/crds/bgp-policy-defined-sets-service.yaml
+kubectl apply -f https://raw.githubusercontent.com/loxilb-io/kube-loxilb/refs/heads/main/manifest/crds/bgp-policy-definition-service.yaml
 ```
 
 <b>Note : </b> Currently, gobgp does not support the Policy command in global state. Therefore, only the policy for neighbors is applied, and we plan to apply the global policy through additional development.
-
-To apply a policy in a neighbor, you must form a peer by adding the `route-server-client` option when using gobgp in loxilb. This does not provide a separate API and will be provided in the future.
-For examples in gobgp, please refer to the following [documents](https://github.com/osrg/gobgp/blob/master/docs/sources/route-server.md).
 
 ## Contents
 
