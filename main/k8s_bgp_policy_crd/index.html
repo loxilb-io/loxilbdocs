@@ -18,7 +18,7 @@
     
     
       
-        <title>License - LoxiLB</title>
+        <title>Policy Configuration - LoxiLB</title>
       
     
     
@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#license" class="md-skip">
+        <a href="#policy-configuration" class="md-skip">
           Skip to content
         </a>
       
@@ -111,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              License
+              Policy Configuration
             
           </span>
         </div>
@@ -2102,6 +2102,83 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contents
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#route-server-policy-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      Route Server Policy Model
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#policy-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Policy Structure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure Policies
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configure Policies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-defining-defined-sets" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Defining defined-sets
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2118,31 +2195,32 @@
   
 
 
-<h1 id="license">License</h1>
-<p>This document is based on the original work by <a href="https://github.com/osrg/gobgp.git">GOBGP</a>.
-Changes have been made to the original document.</p>
-<p>Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at</p>
-<div class="highlight"><pre><span></span><code>http://www.apache.org/licenses/LICENSE-2.0
-</code></pre></div>
-<p>Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.</p>
 <h1 id="policy-configuration">Policy Configuration</h1>
-<p>This page explains LoxiLB with GoBGP policy feature for controlling the route
-advertisement. It might be called Route Map in other BGP
-implementations.</p>
-<p>And This document was written with reference to <a href="https://github.com/osrg/gobgp/blob/master/docs/sources/policy.md">this goBGP official document.</a></p>
-<p>We explain the overview firstly, then the details.</p>
+<p>This page explains LoxiLB with GoBGP policy feature for controlling the route advertisement. It is also known as RouteMap policies in other BGP implementations.</p>
 <h2 id="prerequisites">Prerequisites</h2>
-<p>Assumed that you run loxilb with <code>-b</code> option. Or If you control loxilb through kube-loxilb, be sure to set the <code>--set-bgp</code> option in the kube-loxilb.yaml file.</p>
-<p><div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-u<span class="w"> </span>root<span class="w"> </span>--cap-add<span class="w"> </span>SYS_ADMIN<span class="w"> </span>--restart<span class="w"> </span>unless-stopped<span class="w"> </span>--privileged<span class="w"> </span>-dit<span class="w"> </span>-v<span class="w"> </span>/dev/log:/dev/log<span class="w"> </span>--name<span class="w"> </span>loxilb<span class="w"> </span>ghcr.io/loxilb-io/loxilb:latest<span class="w"> </span>-b
+<p>For running bgp and using bgp crds, we need to run loxilb and kube-loxilb with "bgp" enabled.  For loxilb, we need to set the following:</p>
+<ul>
+<li>loxilb in-cluster mode (add --bgp option) </li>
+</ul>
+<p><div class="highlight"><pre><span></span><code> containers:
+      - name: loxilb-app
+        image: &quot;ghcr.io/loxilb-io/loxilb:latest&quot;
+        imagePullPolicy: Always
+        command: [ &quot;/root/loxilb-io/loxilb/loxilb&quot;, &quot;--bgp&quot;, &quot;--egr-hooks&quot;, &quot;--blacklist=cni[0-9a-z]|veth.|flannel.|cali.|tunl.|vxlan[.]calico&quot; ]
+        ports:
+        - containerPort: 11111
+        - containerPort: 179
+        - containerPort: 50051
+        securityContext:
+          privileged: true
+          capabilities:
+            add:
+              - SYS_ADMIN
 </code></pre></div>
-or in the kube-loxilb.yaml
-And adding  <code>- --enableBGPCRDs</code> option in kube-loxilb.yaml
+* loxilb ext-cluster mode (use same --bgp flag)</p>
+<div class="highlight"><pre><span></span><code>docker run -u root --cap-add SYS_ADMIN --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --name loxilb ghcr.io/loxilb-io/loxilb:latest -b
+</code></pre></div>
+<p>For kube-loxilb we need to use the following options in its yaml file :
 <div class="highlight"><pre><span></span><code>        args:
             - --loxiURL=http://12.12.12.1:11111
             - --externalCIDR=123.123.123.1/24
@@ -2154,8 +2232,8 @@ And adding  <code>- --enableBGPCRDs</code> option in kube-loxilb.yaml
 kubectl apply -f manifest/crds/bgp-policy-defined-sets-service.yaml
 kubectl apply -f manifest/crds/bgp-policy-definition-service.yaml
 </code></pre></div>
-<p>(Note) Currently, gobgp does not support the Policy command in global state. Therefore, only the policy for neighbors is applied, and we plan to apply the global policy through additional development.
-To apply a policy in a neighbor, you must form a peer by adding the <code>route-server-client</code> option when using gobgp in loxilb. This does not provide a separate API and will be provided in the future.
+<p><b>Note : </b> Currently, gobgp does not support the Policy command in global state. Therefore, only the policy for neighbors is applied, and we plan to apply the global policy through additional development.</p>
+<p>To apply a policy in a neighbor, you must form a peer by adding the <code>route-server-client</code> option when using gobgp in loxilb. This does not provide a separate API and will be provided in the future.
 For examples in gobgp, please refer to the following <a href="https://github.com/osrg/gobgp/blob/master/docs/sources/route-server.md">documents</a>.</p>
 <h2 id="contents">Contents</h2>
 <ul>
@@ -3479,6 +3557,19 @@ apply-policy. The apply-policy has 4 elements.</p>
 <h2 id="policy-and-soft-reset">Policy and Soft Reset</h2>
 <p>When you change an import policy and reset the inbound routing table (aka soft reset in), a withdraw for a route rejected by the latest import policies will be sent to peers. However, when you change an export policy and reset the outbound routing table (aka soft reset out), even if a route is rejected by the latest export policies, a withdraw for the route will not be sent.</p>
 <p>The outbound routing table doesn't exist for saving memory usage, it's impossible to know whether the route was actually sent to peer or the route also was rejected by the previous export policies and not sent. GoBGP doesn't send such withdraw rather than possible unwilling leaking information.</p>
+<h1 id="creditslicense">Credits/License</h1>
+<p>This document is based on the original work by <a href="https://github.com/osrg/gobgp.git">GOBGP</a>.</p>
+<p>Changes have been made to the original document as per modifications required for loxilb.</p>
+<p>Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at</p>
+<div class="highlight"><pre><span></span><code>http://www.apache.org/licenses/LICENSE-2.0
+</code></pre></div>
+<p>Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.</p>
 
 
 
