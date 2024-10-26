@@ -194,51 +194,11 @@ kube-system       loxilb-lb-stp5k                             1/1     Running   
 kube-system       loxilb-lb-j8fc6                             1/1     Running   0          13h
 kube-system       loxilb-lb-5m85p                             1/1     Running   0          13h
 ```    
-
 Thereafter, the process of service creation remains the same as explained in previous sections.   
 
 ## How to use kube-loxilb CRDs ?   
 
-Kube-loxilb provides Custom Resource Definition (CRD). Current the following operations are supported (which would be continually updated):   
--  Add a BGP Peer   
--  Delete a BGP Peer   
+Kube-loxilb provides various Custom Resource Definition (CRD) to facilicate its run-time operations:
 
-An example of CRD is stored in  manifest/crds. Setting up a BGP Peer as an example is as follows:   
-
-1. Pre-Processing (Register kube-loxilb CRDs with K8s). Apply lbpeercrd.yaml as first step   
-```
-kubectl apply -f manifest/crds/lbpeercrd.yaml
-```
-2. CRD definition   
-
-You need to create a yaml file that adds a peer for BGP. The example below is an example of creating a Peer with a RemoteAS number of Peer IP address 65123 at 123.123.123.2. Create a file named bgp-peer.yaml and add the contents below.   
-```yaml
-apiVersion: "bgppeer.loxilb.io/v1"
-kind: BGPPeerService
-metadata:
-  name: bgp-peer-test
-spec:
-  ipAddress: 123.123.123.2
-  remoteAs: 65123
-  remotePort: 179
-```
-3. Apply CRD to add a new BGP Peer   
-
-```
-kubectl apply -f bgp-peer.yaml
-```
-4. Verify the applied CRD   
-
-You can check it in two ways. The first one can be checked through loxicmd(in loxilb container), and the second one can be checked through kubectl.    
-```
-# loxicmd
-kubectl exec -it {loxilb} -n kube-system -- loxicmd get bgpneigh 
-|      PEER      |  AS   |   UP/DOWN   |    STATE    | 
-|----------------|-------|-------------|-------------|
-| 123.123.123.2  | 65123 | never       | ACTIVE      |
-
-# kubectl
-kubectl get bgppeerservice
-NAME            PEER            AS   
-bgp-peer-test   123.123.123.2   65123 
-```
+1. Generic config CRDs. More info [here](https://docs.loxilb.io/latest/kube-loxilb-url-crds)
+2. BGP config CRDs. More info [here](https://docs.loxilb.io/latest/k8s_bgp_policy_crd)
