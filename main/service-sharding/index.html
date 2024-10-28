@@ -2349,7 +2349,7 @@ To figure out the exact instance selected, we need to check in each loxilb insta
 <p><div class="highlight"><pre><span></span><code>sudo kubectl exec -it -n kube-system loxilb-lb-n5zfk -- loxicmd get ip | grep 192.168.80.250
 |             | 192.168.80.250/32 |
 </code></pre></div>
-In this case, kube-loxilb chooses the "default" shard and places loxilb master pod for "default" shard. </p>
+In this case, kube-loxilb chooses the "default" shard and assigns the respective VIP to the current master loxilb pod for "default" shard. </p>
 <h4 id="create-service-by-specifying-sharding-instance">Create service by specifying sharding instance</h4>
 <div class="highlight"><pre><span></span><code>cat &lt;&lt;EOF | sudo kubectl apply -f -
 apiVersion: v1
@@ -2383,14 +2383,14 @@ spec:
         - containerPort: 80
 EOF
 </code></pre></div>
-<p>Here we are explicitly specifying <code>loxilb.io/zoneinstance: "llb-inst2"`` to choose an instance. The created services as follows :
+<p>Here we are explicitly specifying <code>loxilb.io/zoneinstance: "llb-inst2"</code> to choose an instance. The created services as follows :
 <div class="highlight"><pre><span></span><code>$ kubectl get svc
 NAME         TYPE           CLUSTER-IP      EXTERNAL-IP          PORT(S)           AGE
 kubernetes   ClusterIP      10.43.0.1       &lt;none&gt;               443/TCP           7h25m
 tcp-lb       LoadBalancer   10.43.184.236   llb-192.168.80.250   57002:31819/TCP   8m7s
 tcp-lb2      LoadBalancer   10.43.240.78    llb-192.168.80.251   57002:30253/TCP   10s
 </code></pre></div>
-As per our earlier observation, the pod</code>loxilb-lb-ktq55<code>is the master of the instance</code>llb-inst2```. So, we can check whether VIP has been associated with it or not :</p>
+As per our earlier observation, the pod <code>loxilb-lb-ktq55</code> is the master of the instance <code>llb-inst2</code>. So, we can check whether VIP has been associated with it or not :</p>
 <div class="highlight"><pre><span></span><code>sudo kubectl exec -it -n kube-system loxilb-lb-ktq55 -- loxicmd get ip | grep 192.168.80.251
 |             | 192.168.80.251/32 |
 </code></pre></div>
@@ -2449,7 +2449,7 @@ Commercial support is available at
 &lt;/body&gt;
 &lt;/html&gt;
 </code></pre></div>
-For curious readers, they can further analyze where each service traffic is heading with tools like tcpdump !</p>
+Curious readers can further analyze where each service traffic is heading with tools like tcpdump and left as an exercise !</p>
 
 
 
