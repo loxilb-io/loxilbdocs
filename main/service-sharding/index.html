@@ -2306,7 +2306,7 @@ $ kubectl exec -it -n kube-system loxilb-lb-n5zfk -- loxicmd get ha
 </code></pre></div>
 Hence, it creates three instances "default", "llb-inst1" and "llb-inst2"  and assigns a separate master instance for each.</p>
 <h3 id="creating-services">Creating services</h3>
-<p>We can create LoadBalancer services as usual. In this case, kube-loxilb will choose a sharding instance for the service. If an user needs to place the service in a specific service instance, they can do so with help of loxilb annotation.</p>
+<p>We can create LoadBalancer services as usual. Here, kube-loxilb will choose a sharding instance by itself for the service. If an user needs to place the service in a specific service instance, they can do so with help of loxilb annotation as explained afterwards.</p>
 <h4 id="create-service-without-specifying-any-sharding-instance">Create service without specifying any sharding instance</h4>
 <p><div class="highlight"><pre><span></span><code>cat &lt;&lt;EOF | sudo kubectl apply -f -
 apiVersion: v1
