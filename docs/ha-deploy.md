@@ -88,7 +88,9 @@ This diagram describes the failover scenario:
 ![setup](photos/loxilb-k8s-arch-LoxiLB-HA-L2-2.drawio.svg)
 
 kube-loxilb actively monitors loxilb's health. In case of failure, it detects change in state of loxilb and assigns new “active” from available healthy loxilb pod pool.
-The new pod inherits svcIP assigned previously to other loxilb pod and Services are served by newly active loxilb pod.
+The new pod inherits svcIP assigned previously to other loxilb pod and Services are served by newly active loxilb pod. 
+
+For users, who want to distribute services across various HA sharding instances so that there is better resource utilization in a similar scenario, please check this [guide](https://docs.loxilb.io/latest/service-sharding/). This can be helpful for folks who don't want their slave pods to sit without doing anything.
 
 
 ## Scenario 2 -  L3 network (active-backup mode using BGP)
