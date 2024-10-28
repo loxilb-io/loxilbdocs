@@ -99,7 +99,7 @@ Hence, it creates three instances "default", "llb-inst1" and "llb-inst2"  and as
 
 ### Creating services
 
-We can create LoadBalancer services as usual. In this case, kube-loxilb will choose a sharding instance for the service. If an user needs to place the service in a specific service instance, they can do so with help of loxilb annotation.
+We can create LoadBalancer services as usual. Here, kube-loxilb will choose a sharding instance by itself for the service. If an user needs to place the service in a specific service instance, they can do so with help of loxilb annotation as explained afterwards.
 
 #### Create service without specifying any sharding instance 
 
