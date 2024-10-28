@@ -3175,7 +3175,7 @@
 <p><img alt="setup" src="../photos/loxilb-k8s-arch-LoxiLB-HA-L2-2.drawio.svg" /></p>
 <p>kube-loxilb actively monitors loxilb's health. In case of failure, it detects change in state of loxilb and assigns new “active” from available healthy loxilb pod pool.
 The new pod inherits svcIP assigned previously to other loxilb pod and Services are served by newly active loxilb pod. </p>
-<p>For users, who want to distribute services across various HA sharding instances so that there is better resource utilization in a similar scenario, please check this <a href="https://docs.loxilb.io/latest/service-sharding/">guide</a>. This can be helpful for folks who don't want their slave pods to sit without doing anything.</p>
+<p>For users, who want to distribute services across various HA sharding instances so that there is better resource utilization in a similar scenario, please check this <a href="https://docs.loxilb.io/latest/service-sharding/">guide</a>. This can be helpful for folks who don't want their slave pods to sit idle without doing anything.</p>
 <h2 id="scenario-2-l3-network-active-backup-mode-using-bgp">Scenario 2 -  L3 network (active-backup mode using BGP)</h2>
 <h3 id="setup_1">Setup</h3>
 <hr />
