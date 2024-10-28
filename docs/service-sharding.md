@@ -149,8 +149,7 @@ To figure out the exact instance selected, we need to check in each loxilb insta
 sudo kubectl exec -it -n kube-system loxilb-lb-n5zfk -- loxicmd get ip | grep 192.168.80.250
 |             | 192.168.80.250/32 |
 ```
-In this case, kube-loxilb chooses the "default" shard and places loxilb master pod for "default" shard. 
-
+In this case, kube-loxilb chooses the "default" shard and assigns the respective VIP to the current master loxilb pod for "default" shard. 
 
 #### Create service by specifying sharding instance 
 
@@ -188,7 +187,7 @@ spec:
 EOF
 ```
 
-Here we are explicitly specifying ```loxilb.io/zoneinstance: "llb-inst2"`` to choose an instance. The created services as follows :
+Here we are explicitly specifying ```loxilb.io/zoneinstance: "llb-inst2"``` to choose an instance. The created services as follows :
 ```
 $ kubectl get svc
 NAME         TYPE           CLUSTER-IP      EXTERNAL-IP          PORT(S)           AGE
@@ -264,4 +263,4 @@ Commercial support is available at
 </body>
 </html>
 ```
-For curious readers, they can further analyze where each service traffic is heading with tools like tcpdump !
+Curious readers can further analyze where each service traffic is heading with tools like tcpdump and left as an exercise !
