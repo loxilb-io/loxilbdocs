@@ -126,6 +126,7 @@ Telco-cloud requires load-balancing and communication across various interfaces/
 - [How-To : Deploy loxilb with ingress-nginx](loxilb-nginx-ingress.md)
 - [How-To : Run loxilb in-cluster with secondary networks](loxilb-incluster-multus.md)
 - [How-To : Kubernetes virtual cluster setup with k3k and loxilb](k3k-virtual-cluster.md)
+- [How-To : Kubernetes service sharding with loxilb](service-sharding.md)
 
 ## Knowledge-Base   
 - [What is eBPF](ebpf.md)
