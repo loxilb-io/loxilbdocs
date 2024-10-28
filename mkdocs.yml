@@ -68,6 +68,8 @@ nav:
       - How-To - Deploy loxilb with ingress-nginx: loxilb-nginx-ingress.md
       - How-To - Deploy loxilb in-cluster for multus based secondary services: loxilb-incluster-multus.md
       - How-To - Kubernetes virtual cluster setup with k3k and loxilb: k3k-virtual-cluster.md
+      - How-To - Kubernetes service sharding with loxilb: service-sharding.md
+
   - Knowledge Base:
       - What is eBPF: ebpf.md
       - What is k8s service - load-balancer: lb.md
