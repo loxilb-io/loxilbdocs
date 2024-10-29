@@ -187,7 +187,7 @@ spec:
 EOF
 ```
 
-Here we are explicitly specifying ```loxilb.io/zoneinstance: "llb-inst2"``` to choose an instance. The created services as follows :
+Here we are explicitly specifying ```loxilb.io/zoneinstance: "llb-inst2"``` to choose an instance. The created services are as follows :
 ```
 $ kubectl get svc
 NAME         TYPE           CLUSTER-IP      EXTERNAL-IP          PORT(S)           AGE
@@ -202,7 +202,7 @@ sudo kubectl exec -it -n kube-system loxilb-lb-ktq55 -- loxicmd get ip | grep 19
 |             | 192.168.80.251/32 |
 ```
 
-We can also double confirm that these VIPS are at a time associated with only one loxilb pod. 
+We can also double confirm that these VIPs are associated with only one loxilb pod at a time. 
 
 ### Test
 
