@@ -2558,7 +2558,7 @@ spec:
         - containerPort: 80
 EOF
 </code></pre></div>
-<p>Here we are explicitly specifying <code>loxilb.io/zoneinstance: "llb-inst2"</code> to choose an instance. The created services as follows :
+<p>Here we are explicitly specifying <code>loxilb.io/zoneinstance: "llb-inst2"</code> to choose an instance. The created services are as follows :
 <div class="highlight"><pre><span></span><code>$ kubectl get svc
 NAME         TYPE           CLUSTER-IP      EXTERNAL-IP          PORT(S)           AGE
 kubernetes   ClusterIP      10.43.0.1       &lt;none&gt;               443/TCP           7h25m
@@ -2569,7 +2569,7 @@ As per our earlier observation, the pod <code>loxilb-lb-ktq55</code> is the mast
 <div class="highlight"><pre><span></span><code>sudo kubectl exec -it -n kube-system loxilb-lb-ktq55 -- loxicmd get ip | grep 192.168.80.251
 |             | 192.168.80.251/32 |
 </code></pre></div>
-<p>We can also double confirm that these VIPS are at a time associated with only one loxilb pod. </p>
+<p>We can also double confirm that these VIPs are associated with only one loxilb pod at a time. </p>
 <h3 id="test">Test</h3>
 <p>Let's do a quick test to check both these services are accessible from outside the cluster :</p>
 <h4 id="service-1">Service 1</h4>
