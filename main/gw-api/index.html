@@ -8,13 +8,9 @@
       
       
       
-        <link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/main/k3s_quick_start_flannel/">
+        <link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/main/gw-api/">
       
       
-        <link rel="prev" href="../k8s-flannel-ext/">
-      
-      
-        <link rel="next" href="../k3s_quick_start_calico/">
       
       
       <link rel="icon" href="../photos/loxilb-logo.png">
@@ -22,7 +18,7 @@
     
     
       
-        <title>K3s/loxilb with default flannel - LoxiLB</title>
+        <title>LoxiLB - Mastering L4/L7 Load Balancing with Kubernetes Gateway API - LoxiLB</title>
       
     
     
@@ -76,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#loxilb-quick-start-guide-with-k3sflannel" class="md-skip">
+        <a href="#loxilb-mastering-l4l7-load-balancing-with-kubernetes-gateway-api" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              K3s/loxilb with default flannel
+              LoxiLB - Mastering L4/L7 Load Balancing with Kubernetes Gateway API
             
           </span>
         </div>
@@ -366,10 +362,8 @@
       
   
   
-    
   
   
-  
     
     
       
@@ -386,11 +380,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -404,7 +398,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Getting Started
@@ -415,10 +409,8 @@
                 
   
   
-    
   
   
-  
     
     
       
@@ -437,11 +429,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
         
           
           <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
@@ -455,7 +447,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3_1">
             <span class="md-nav__icon md-icon"></span>
             External Cluster Mode
@@ -487,28 +479,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    K3s/loxilb with default flannel
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../k3s_quick_start_flannel/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -517,113 +491,6 @@
   
 
       </a>
-      
-        
-
-  
-
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#loxilb-quick-start-guide-with-k3sflannel" class="md-nav__link">
-    <span class="md-ellipsis">
-      LoxiLB Quick Start Guide with K3s/Flannel
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="LoxiLB Quick Start Guide with K3s/Flannel">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#pre-requisite" class="md-nav__link">
-    <span class="md-ellipsis">
-      Pre-requisite
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#topology" class="md-nav__link">
-    <span class="md-ellipsis">
-      Topology
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#install-loxilb-docker" class="md-nav__link">
-    <span class="md-ellipsis">
-      Install loxilb docker
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#setup-k3sflannel" class="md-nav__link">
-    <span class="md-ellipsis">
-      Setup K3s/Flannel
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-to-deploy-kube-loxilb" class="md-nav__link">
-    <span class="md-ellipsis">
-      How to deploy kube-loxilb ?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#create-the-service" class="md-nav__link">
-    <span class="md-ellipsis">
-      Create the service
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#check-the-status" class="md-nav__link">
-    <span class="md-ellipsis">
-      Check the status
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#connect-from-hostclient" class="md-nav__link">
-    <span class="md-ellipsis">
-      Connect from host/client
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2255,6 +2122,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -2263,28 +2132,83 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#loxilb-quick-start-guide-with-k3sflannel" class="md-nav__link">
+  <a href="#getting-started" class="md-nav__link">
     <span class="md-ellipsis">
-      LoxiLB Quick Start Guide with K3s/Flannel
+      Getting Started
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="LoxiLB Quick Start Guide with K3s/Flannel">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-loxilb-as-a-l4-service-lb" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install loxilb as a L4 service LB
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-started-with-gateway-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      Getting started with Gateway API
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Getting started with Gateway API">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#pre-requisite" class="md-nav__link">
+  <a href="#gatewayclass" class="md-nav__link">
     <span class="md-ellipsis">
-      Pre-requisite
+      GatewayClass
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#topology" class="md-nav__link">
+  <a href="#gateway" class="md-nav__link">
     <span class="md-ellipsis">
-      Topology
+      Gateway
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tcprouteudproutehttproute" class="md-nav__link">
+    <span class="md-ellipsis">
+      TCPRoute/UDPRoute/HTTPRoute
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#first-create-the-crds" class="md-nav__link">
+    <span class="md-ellipsis">
+      First, create the CRDs:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kube-loxilbloxilbs-operator-for-kubernetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      kube-loxilb(loxilb's operator for Kubernetes)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="kube-loxilb(loxilb's operator for Kubernetes)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-kube-loxilb" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install kube-loxilb
     </span>
   </a>
   
@@ -2294,58 +2218,96 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#install-loxilb-docker" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#prepare-tlsssl-certificates-for-ingress" class="md-nav__link">
     <span class="md-ellipsis">
-      Install loxilb docker
+      Prepare TLS/SSL certificates for Ingress
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#setup-k3sflannel" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#install-loxilb-ingress" class="md-nav__link">
     <span class="md-ellipsis">
-      Setup K3s/Flannel
+      Install loxilb-ingress
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#how-to-deploy-kube-loxilb" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#create-gateway-api-resources" class="md-nav__link">
     <span class="md-ellipsis">
-      How to deploy kube-loxilb ?
+      Create Gateway API resources
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Create Gateway API resources">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gatewayclass_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      GatewayClass
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#create-the-service" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#gateway_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Create the service
+      Gateway
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#check-the-status" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#tcproute" class="md-nav__link">
     <span class="md-ellipsis">
-      Check the status
+      TCPRoute
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#connect-from-hostclient" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#udproute" class="md-nav__link">
     <span class="md-ellipsis">
-      Connect from host/client
+      UDPRoute
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#httproute" class="md-nav__link">
+    <span class="md-ellipsis">
+      HTTPRoute
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#httproute-for-https" class="md-nav__link">
+    <span class="md-ellipsis">
+      HTTPRoute for HTTPs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2367,80 +2329,248 @@
   
 
 
-  <h1>K3s/loxilb with default flannel</h1>
-
-<h2 id="loxilb-quick-start-guide-with-k3sflannel">LoxiLB Quick Start Guide with K3s/Flannel</h2>
-<p>This guide will explain how to:</p>
+<h1 id="loxilb-mastering-l4l7-load-balancing-with-kubernetes-gateway-api">LoxiLB - Mastering L4/L7 Load Balancing with Kubernetes Gateway API</h1>
+<p>The Kubernetes Gateway API is a significant advancement in managing traffic load balancing at both L4 and L7. It provides a flexible and extensible framework that allows developers to define how external traffic should be directed to their services, enabling fine-grained control over routing decisions and security policies. This comprehensive guide aims to demystify L4 and L7 load balancing within the context of the Kubernetes Gateway API.</p>
+<p>In this guide, we will explore the fundamental concepts and provide some examples to help you leverage this powerful toolset.</p>
+<p><img alt="image" src="https://github.com/user-attachments/assets/62b24c2a-19d5-4d92-a15c-0b1cfbba74b7" /></p>
+<h3 id="getting-started">Getting Started</h3>
+<p>This guide assumes that users have a Kubernetes cluster pre-installed. If not, they can follow various <a href="https://kubernetes.io/docs/setup/">resources</a> available in the web.</p>
+<h3 id="install-loxilb-as-a-l4-service-lb">Install loxilb as a L4 service LB</h3>
+<p>You may follow any of the <a href="https://github.com/loxilb-io/loxilb?tab=readme-ov-file#getting-started">loxilb getting started guides</a> as per requirement. In this example, we will run loxilb-lb in external mode. </p>
+<h2 id="getting-started-with-gateway-api">Getting started with Gateway API</h2>
+<p>Before getting into creating gateway resource, let's delve into some of them.</p>
+<h3 id="gatewayclass">GatewayClass</h3>
+<p>The actual implementation of the Gateway API varies depending on which controller is used. Users can use a variety of controllers, and when creating a Gateway API, they must specify the controller.</p>
+<p><a href="https://gateway-api.sigs.k8s.io/api-types/gatewayclass/?h=gatewayclass"><em>GatewayClass</em></a> is a resource that specifies the name of the controller that provides the Gateway API implementation. </p>
+<p>This is similar to the <em>spec.LoadBalancerClass</em> of the <em>LoadBalancer</em> service. Just as users can use LoadBalancerClass to set a specific provider to control the LoadBalancer function, they can create a GatewayClass and then set other Gateway API Resources to be controlled by a specific provider.</p>
+<p>Users must create at least one <em>GatewayClass</em> to use the Gateway API.</p>
+<h3 id="gateway">Gateway</h3>
+<p><a href="https://gateway-api.sigs.k8s.io/api-types/gateway/"><em>Gateway</em></a> is a resource that defines external IP, port, and protocol that can be accessed from the outside.</p>
+<p>When creating a gateway, kube-loxilb is assigned an external IP from the IP Pool and provides it to the gateway. (You can also specify the IP statically when creating a gateway.)</p>
+<p>Just creating a gateway does not connect the path from the outside to the Pod. You must create TCPRoute, UDPRoute, etc. connected to the gateway.</p>
+<h3 id="tcprouteudproutehttproute">TCPRoute/UDPRoute/HTTPRoute</h3>
+<p>TCPRoute, and UDPRoute define routing for TCP and UDP traffic, respectively. HTTPRoute resource can be used to define routing for HTTP and HTTPs traffic as well.</p>
+<p>It is linked to the listener defined in the gateway (ports, protocols, etc).</p>
+<p>When creating a Route resource, a new LoadBalancer Type service is created using listener information and Route resource information.</p>
+<h3 id="first-create-the-crds">First, create the CRDs:</h3>
+<p>For using the Gateway API, you must first install the Gateway API CRD on K8s. </p>
+<p>Installation is divided into <strong>Standard Channel</strong> and <strong>Experimental Channel</strong>. The Standard side is the official release, and the Experimental side includes Standard + experimental CRDs. Since TCPRoute and UDPRoute CRDs corresponding to Gateway API L4 functions are provided in Experimental Channel, we must install Experimental Channel.</p>
+<p>For the relationship between each channel, please refer to the <a href="https://gateway-api.sigs.k8s.io/concepts/versioning/">this page</a>.</p>
+<p>For an explanation of CRD version management, see <a href="https://gateway-api.sigs.k8s.io/guides/crd-management/">CRD Management Page</a>.</p>
+<div class="highlight"><pre><span></span><code>kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.0.0/experimental-install.yaml
+</code></pre></div>
+<h3 id="kube-loxilbloxilbs-operator-for-kubernetes">kube-loxilb(loxilb's operator for Kubernetes)</h3>
+<p>In order for kube-loxilb to use the Gateway API, ClusterRole must have permission to access the gateway API resource <em>(apiGroup: [”gateway.networking.k8s.io”])</em> as follows:
+<div class="highlight"><pre><span></span><code>kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: kube-loxilb
+rules:
+  - apiGroups: [&quot;&quot;]
+    resources: [&quot;nodes&quot;, [&quot;pods&quot;, &quot;endpoints&quot;]]
+    verbs: [&quot;get&quot;, &quot;watch&quot;, &quot;list&quot;, &quot;patch&quot;]
+  - apiGroups: [&quot;&quot;]
+    resources: [&quot;services&quot;, &quot;services/status&quot;]
+    verbs: [&quot;*&quot;]
+  - apiGroups: [&quot;gateway.networking.k8s.io&quot;]
+    resources: [&quot;gatewayclasses&quot;, &quot;gatewayclasses/status&quot;, &quot;gateways&quot;, &quot;tcproutes&quot;, &quot;udproutes&quot;]
+    verbs: [&quot;get&quot;, &quot;watch&quot;, &quot;list&quot;, &quot;patch&quot;, &quot;update&quot;]
+  - apiGroups: [&quot;discovery.k8s.io&quot;]
+    resources: [&quot;endpointslices&quot;]
+    verbs: [&quot;get&quot;, &quot;watch&quot;, &quot;list&quot;]
+  - apiGroups: [&quot;authentication.k8s.io&quot;]
+    resources: [&quot;tokenreviews&quot;]
+    verbs: [&quot;create&quot;]
+  - apiGroups: [&quot;authorization.k8s.io&quot;]
+    resources: [&quot;subjectaccessreviews&quot;]
+    verbs: [&quot;create&quot;]
+</code></pre></div></p>
+<h4 id="install-kube-loxilb">Install kube-loxilb</h4>
+<div class="highlight"><pre><span></span><code>kubectl apply -f https://raw.githubusercontent.com/loxilb-io/kube-loxilb/refs/heads/main/manifest/gateway-api/kube-loxilb.yaml
+</code></pre></div>
+<p>Since, Gateway API's HTTPRoute for https will be handled via loxilb-ingress module, we must prepare SSL certificates.</p>
+<h3 id="prepare-tlsssl-certificates-for-ingress">Prepare TLS/SSL certificates for Ingress</h3>
+<p>Self-signed TLS/SSL certificates and private keys can be built using various tools like OpenSSL or Minica. Basically, one will need to have two files - server.crt and server.key for loxilb-ingress usage. Once these files are in place, a Kubernetes secret can be created using the following yaml:
+<div class="highlight"><pre><span></span><code>apiVersion: v1
+data:
+  server.crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUI3RENDQVhPZ0F3SUJBZ0lJU.....
+  server.key: LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0tCk1JRzJBZ0VBTUJBR0J5cUdTTTQ5Q.....
+kind: Secret
+metadata:
+  creationTimestamp: null
+  name: loxilb-ssl
+  namespace: kube-system
+type: Opaque
+</code></pre></div>
+The above values are just dummy values but it is important to note that they need to be in base64 format not in pem format. How do we get the base64 values from server.crt and server.key files ?
+<div class="highlight"><pre><span></span><code>$ base64 server.crt
+LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUI3RENDQVhPZ0F3SUJBZ0lJU.....
+$ base64 server.key
+LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0tCk1JRzJBZ0VBTUJBR0J5cUdTTTQ5Q.....
+</code></pre></div></p>
+<p>Now, after applying the yaml, we can check the created secret :
+<div class="highlight"><pre><span></span><code>$ kubectl get secret -n kube-system loxilb-ssl
+NAME         TYPE     DATA   AGE
+loxilb-ssl   Opaque   2      24s
+</code></pre></div>
+In the subsequent steps, this secret loxilb-ssl will be used throughout.</p>
+<h3 id="install-loxilb-ingress">Install loxilb-ingress</h3>
+<div class="highlight"><pre><span></span><code>kubectl apply -f https://raw.githubusercontent.com/loxilb-io/kube-loxilb/refs/heads/main/manifest/gateway-api/loxilb-ingress-deploy.yml
+</code></pre></div>
+<p>Check the status of running pods:
+<div class="highlight"><pre><span></span><code>$ kubectl get pods -A
+NAMESPACE     NAME                                      READY   STATUS    RESTARTS   AGE
+kube-system   coredns-7b98449c4-85qsc                   1/1     Running   0          99m
+kube-system   kube-loxilb-575cd8dc7f-xlzw2              1/1     Running   0          3m4s
+kube-system   local-path-provisioner-595dcfc56f-b6gt8   1/1     Running   0          99m
+kube-system   loxilb-ingress-g7nf5                      1/1     Running   0          36s
+kube-system   metrics-server-cdcc87586-pvws9            1/1     Running   0          99m
+</code></pre></div></p>
+<h3 id="create-gateway-api-resources">Create Gateway API resources</h3>
+<h4 id="gatewayclass_1">GatewayClass</h4>
+<p>The following is the example of GatewayClass with controller name:
+<div class="highlight"><pre><span></span><code>apiVersion: gateway.networking.k8s.io/v1
+kind: GatewayClass
+metadata:
+  name: test-gc
+  namespace: kube-system
+spec:
+  controllerName: &quot;loxilb.io/loxilb&quot;
+</code></pre></div></p>
+<p>Here, <em>loxilb.io/loxilb</em> is the name of the gateway API controller name. Now, kube-loxilb will be able to handle all Gateway APIs that use test-gc as the gatewayClass.</p>
+<p>Register the Gateway API controller name:
+<div class="highlight"><pre><span></span><code>kubectl apply -f https://raw.githubusercontent.com/loxilb-io/kube-loxilb/refs/heads/main/manifest/gateway-api/gatewayclass.yaml
+</code></pre></div></p>
+<p>After creating it, you can check the results using the following command.
+<div class="highlight"><pre><span></span><code>$ kubectl get gatewayclass
+NAME      CONTROLLER         ACCEPTED   AGE
+test-gc   loxilb.io/loxilb   True       16s
+</code></pre></div>
+This displays gatewayClass controller and the status. ACCEPTED as True means that kube-loxilb detected the creation of gatewayClass and successfully updated the status. If the provider specified in controllerName does not exist in K8s, ACCEPTED is displayed as Unknown.</p>
+<h4 id="gateway_1">Gateway</h4>
+<p>The following is the example of gateway:
+<div class="highlight"><pre><span></span><code>apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: test-gateway
+  namespace: kube-system
+spec:
+  gatewayClassName: test-gc
+  listeners:
+  - name: test-listener
+    protocol: TCP
+    port: 21818
+    allowedRoutes:
+      kinds:
+      - kind: TCPRoute
+</code></pre></div>
+The description of the spec is as follows:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>gatewayClassName</td>
+<td>The name of the GatewayClass. Specifies which GatewayClass the Gateway will use.</td>
+</tr>
+<tr>
+<td>listeners</td>
+<td>You can specify ports and protocols accessible from the outside. When creating a Gateway, you must have at least one <a href="https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io%2Fv1.Listener">listener</a></td>
+</tr>
+<tr>
+<td>- name</td>
+<td>listener's name</td>
+</tr>
+<tr>
+<td>- protocol</td>
+<td>Protocol to open via listener. You can use “HTTP”, “HTTPS”, “TCP”, “TLS”, “UDP”, and currently kube-loxilb only supports “TCP”, “UDP”, HTTP, HTTPS.</td>
+</tr>
+<tr>
+<td>- port</td>
+<td>Port number to open via listener</td>
+</tr>
+<tr>
+<td>- allowedRoutes</td>
+<td>You can specify Routes resources (TCPRoute, UDPRoute etc) that can be connected to the listener.Multiple Routes resources can be specified, but only one is connected.</td>
+</tr>
+</tbody>
+</table>
+<p>Create the gateway resource:
+<div class="highlight"><pre><span></span><code>kubectl apply -f https://raw.githubusercontent.com/loxilb-io/kube-loxilb/refs/heads/main/manifest/gateway-api/gateway.yaml
+</code></pre></div></p>
+<p>In the example, <em>test-gc</em> was specified as gatewayClassName. TCP port 21818 was set to open through the listener, and the listener was set to connect only to the TCPRoute resource.</p>
+<p>Check the created gateway:
+<div class="highlight"><pre><span></span><code>$ sudo kubectl get gateway -A
+NAMESPACE     NAME           CLASS     ADDRESS         PROGRAMMED   AGE
+kube-system   test-gateway   test-gc   192.168.80.90   True         59m
+</code></pre></div></p>
+<p>We can see PROGRAMMED is displayed as True, it means that kube-loxilb was able to detect the creation of the corresponding gateway. If detection fails or an error occurs, PROGRAMMED is displayed as Unknown.</p>
+<p>And, 192.168.80.90 IP was assigned to ADDRESS. This is the IP assigned from kube-loxilb's IPAM. If you want to assign a static IP to the Gateway, you can specify it in spec.addresses.</p>
+<p>Verify the Gateway Ingress service
+<div class="highlight"><pre><span></span><code>$ sudo kubectl get svc -A -o wide
+NAMESPACE     NAME                           TYPE           CLUSTER-IP      EXTERNAL-IP         PORT(S)                      AGE     SELECTOR
+default       kubernetes                     ClusterIP      10.43.0.1       &lt;none&gt;              443/TCP                      4h22m   &lt;none&gt;
+kube-system   kube-dns                       ClusterIP      10.43.0.10      &lt;none&gt;              53/UDP,53/TCP,9153/TCP       4h22m   k8s-app=kube-dns
+kube-system   metrics-server                 ClusterIP      10.43.200.202   &lt;none&gt;              443/TCP                      4h22m   k8s-app=metrics-server
+kube-system   test-gateway-ingress-service   LoadBalancer   10.43.210.140   llb-192.168.80.90   80:32413/TCP,443:31345/TCP   64m     app=loxilb-ingress-app
+</code></pre></div></p>
+<h4 id="tcproute">TCPRoute</h4>
+<p>The following is the example of TCPRoute resource:
+<div class="highlight"><pre><span></span><code>apiVersion: gateway.networking.k8s.io/v1alpha2
+kind: TCPRoute
+metadata:
+  name: test-tcproute
+  namespace: kube-system
+  labels:
+    selectorkey: run
+    selectorvalue: my-nginx
+  annotations:
+    ### https://loxilb-io.github.io/loxilbdocs/kube-loxilb/
+    #loxilb.io/liveness: &quot;yes&quot;
+    #loxilb.io/lbmode: &quot;fullnat&quot;
+spec:
+  # find gateway and gateway&#39;s listener
+  parentRefs:
+  - name: test-gateway         # name of gateway
+    sectionName: test-listener # name of listener
+  rules:
+  - backendRefs:
+    - name: tcproute-lb-service
+      port: 80
+</code></pre></div>
+Kindly note that the apiVersion is v1alpha2, different from GatewayClass or Gateway.</p>
+<p>The details description of the spec arguments is <a href="https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io%2fv1alpha2.TCPRoute">here</a>.</p>
 <ul>
-<li>Deploy a single-node K3s cluster with flannel networking   </li>
-<li>Expose services with loxilb as an external load balancer   </li>
+<li>
+<p>Create the TCPRoute rule:
+<div class="highlight"><pre><span></span><code>kubectl apply -f https://raw.githubusercontent.com/loxilb-io/kube-loxilb/refs/heads/main/manifest/gateway-api/tcpRoute.yaml
+</code></pre></div></p>
+</li>
+<li>
+<p>Check the result:
+<div class="highlight"><pre><span></span><code>$ kubectl get tcproute -A
+NAMESPACE     NAME            AGE
+kube-system   test-tcproute   19m
+</code></pre></div></p>
+</li>
 </ul>
-<h3 id="pre-requisite">Pre-requisite</h3>
+<p>All the information cannot be confirmed using TCPRoute alone. However, if you check the service using the following command, you can confirm that the service was created with the name specified in rules.backendRefs.
+<div class="highlight"><pre><span></span><code>kubectl get svc -A -o wide
+NAMESPACE     NAME                           TYPE           CLUSTER-IP      EXTERNAL-IP         PORT(S)                      AGE     SELECTOR
+default       kubernetes                     ClusterIP      10.43.0.1       &lt;none&gt;              443/TCP                      4h25m   &lt;none&gt;
+kube-system   kube-dns                       ClusterIP      10.43.0.10      &lt;none&gt;              53/UDP,53/TCP,9153/TCP       4h25m   k8s-app=kube-dns
+kube-system   metrics-server                 ClusterIP      10.43.200.202   &lt;none&gt;              443/TCP                      4h25m   k8s-app=metrics-server
+kube-system   tcproute-lb-service            LoadBalancer   10.43.157.245   llb-192.168.80.90   21818:30388/TCP              20m     app=tcproute-pod
+kube-system   test-gateway-ingress-service   LoadBalancer   10.43.210.140   llb-192.168.80.90   80:32413/TCP,443:31345/TCP   67m     app=loxilb-ingress-app
+</code></pre></div></p>
+<p>We can see that tcproute-lb-service was created as a LoadBalancer service, and the address assigned to the gateway is used as the external IP. The port also uses 21818 as specified in the gateway's listener.</p>
 <ul>
-<li>Single node with Linux   </li>
-<li><a href="https://docs.docker.com/engine/install/ubuntu/">Install</a> docker runtime to manage loxilb  </li>
-</ul>
-<h3 id="topology">Topology</h3>
-<p>For quickly bringing up loxilb with K3s/Flannel, we will be deploying all components in a single node :   </p>
-<p><img alt="loxilb topology" src="../photos/qs_single.png" /></p>
-<p>loxilb is run as a docker and will use macvlan for the incoming traffic. This is to mimic a topology close to cloud-hosted k8s where LB nodes run outside a cluster. loxilb can be used in more complex <a href="https://www.loxilb.io/post/k8s-nuances-of-in-cluster-external-service-lb-with-loxilb">in-cluster</a> mode as well, but not used here for simplicity.   </p>
-<h2 id="install-loxilb-docker">Install loxilb docker</h2>
-<div class="highlight"><pre><span></span><code>## Set underlying interface of the VM/cluster-node to promisc mode for mac-vlan to work
-sudo ifconfig eth1 promisc
-
-## Run loxilb
-sudo docker run -u root --cap-add SYS_ADMIN --restart unless-stopped --privileged --entrypoint /root/loxilb-io/loxilb/loxilb -dit -v /dev/log:/dev/log  --name loxilb ghcr.io/loxilb-io/loxilb:latest
-
-# Create mac-vlan on top of underlying eth1 interface
-sudo docker network create -d macvlan -o parent=eth1 --subnet 192.168.82.0/24   --gateway 192.168.82.1 --aux-address &#39;host=192.168.82.252&#39; llbnet
-
-# Assign mac-vlan to loxilb docker with specified IP (which will be used as LB VIP)
-# Please note that this node should already have an IP assigned belonging to the same subnet on underlying interface
-sudo docker network connect llbnet loxilb --ip=192.168.82.100
-
-# Add iptables rule to allow traffic from source/host IP(192.168.82.1) to loxilb
-sudo iptables -A DOCKER -s 192.168.82.1 -j ACCEPT
-</code></pre></div>
-<p>All the above steps related to docker setup can be further automated using docker-compose.   </p>
-<h2 id="setup-k3sflannel">Setup K3s/Flannel</h2>
-<div class="highlight"><pre><span></span><code>#K3s installation
-curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC=&quot;server --disable traefik --disable servicelb --disable-cloud-controller --kube-proxy-arg metrics-bind-address=0.0.0.0 --kubelet-arg cloud-provider=external&quot; K3S_KUBECONFIG_MODE=&quot;644&quot; sh -
-
-# Remove taints in k3s if any (usually happens if started without cloud-manager)
-sudo kubectl taint nodes --all node.cloudprovider.kubernetes.io/uninitialized=false:NoSchedule-
-</code></pre></div>
-<h2 id="how-to-deploy-kube-loxilb">How to deploy kube-loxilb ?</h2>
-<p><a href="https://github.com/loxilb-io/kube-loxilb">kube-loxilb</a> is used to deploy loxilb with Kubernetes.
-<div class="highlight"><pre><span></span><code>wget https://raw.githubusercontent.com/loxilb-io/kube-loxilb/main/manifest/ext-cluster/kube-loxilb.yaml
-</code></pre></div></p>
-<p>kube-loxilb.yaml
-<div class="highlight"><pre><span></span><code>        args:
-            - --loxiURL=http://172.17.0.2:11111
-            - --externalCIDR=192.168.82.100/32
-            - --setMode=1
-</code></pre></div>
-In the above snippet, loxiURL uses docker interface IP of loxilb, which can be different for each setup.    </p>
-<p>Apply in k8s:
-<div class="highlight"><pre><span></span><code>kubectl apply -f kube-loxilb.yaml
-</code></pre></div></p>
-<h2 id="create-the-service">Create the service</h2>
-<div class="highlight"><pre><span></span><code>kubectl apply -f https://raw.githubusercontent.com/loxilb-io/loxilb/main/cicd/docker-k3s-cilium/tcp-svc-lb.yml
-</code></pre></div>
-<h2 id="check-the-status">Check the status</h2>
-<p>In k3s:
-<div class="highlight"><pre><span></span><code>kubectl get svc
-NAME            TYPE           CLUSTER-IP      EXTERNAL-IP          PORT(S)           AGE
-kubernetes      ClusterIP      10.43.0.1       &lt;none&gt;               443/TCP           80m
-tcp-lb-onearm   LoadBalancer   10.43.183.123   llb-192.168.82.100   56002:30001/TCP   6m50s
-</code></pre></div>
-In loxilb docker:
-<div class="highlight"><pre><span></span><code>$ sudo docker exec -it loxilb loxicmd get lb -o wide
-|   EXT IP       | SEC IPS | PORT  | PROTO |         NAME          | MARK | SEL |  MODE  | ENDPOINT  | EPORT | WEIGHT | STATE  | COUNTERS |
-|----------------|---------|-------|-------|-----------------------|------|-----|--------|-----------|-------|--------|--------|----------|
-| 192.168.82.100 |         | 56002 | tcp   | default_tcp-lb-onearm |    0 | rr  | onearm | 10.0.2.15 | 30001 |      1 | active | 12:880   |
-</code></pre></div></p>
-<h2 id="connect-from-hostclient">Connect from host/client</h2>
-<div class="highlight"><pre><span></span><code>$ curl http://192.168.82.100:56002
+<li>Test the service
+<div class="highlight"><pre><span></span><code>$ curl http://192.168.80.90:21818
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
@@ -2464,7 +2594,142 @@ Commercial support is available at
 &lt;p&gt;&lt;em&gt;Thank you for using nginx.&lt;/em&gt;&lt;/p&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-</code></pre></div>
+</code></pre></div></li>
+</ul>
+<h4 id="udproute">UDPRoute</h4>
+<p>Similarily, we can create UDPRoute rule as well.</p>
+<ul>
+<li>
+<p>Create the UDPRoute rule:
+<div class="highlight"><pre><span></span><code>kubectl apply -f https://raw.githubusercontent.com/loxilb-io/kube-loxilb/refs/heads/main/manifest/gateway-api/udpRoute.yaml
+</code></pre></div></p>
+</li>
+<li>
+<p>Check the result:
+<div class="highlight"><pre><span></span><code>$ kubectl get udproute -A
+NAMESPACE     NAME            AGE
+kube-system   test-udproute   24m
+</code></pre></div></p>
+</li>
+<li>
+<p>Check the service created:
+<div class="highlight"><pre><span></span><code>$ kubectl get svc -A -o wide
+NAMESPACE     NAME                           TYPE           CLUSTER-IP      EXTERNAL-IP         PORT(S)                      AGE     SELECTOR
+default       kubernetes                     ClusterIP      10.43.0.1       &lt;none&gt;              443/TCP                      4h26m   &lt;none&gt;
+kube-system   kube-dns                       ClusterIP      10.43.0.10      &lt;none&gt;              53/UDP,53/TCP,9153/TCP       4h26m   k8s-app=kube-dns
+kube-system   metrics-server                 ClusterIP      10.43.200.202   &lt;none&gt;              443/TCP                      4h26m   k8s-app=metrics-server
+kube-system   tcproute-lb-service            LoadBalancer   10.43.157.245   llb-192.168.80.90   21818:30388/TCP              21m     app=tcproute-pod
+kube-system   test-gateway-ingress-service   LoadBalancer   10.43.210.140   llb-192.168.80.90   80:32413/TCP,443:31345/TCP   68m     app=loxilb-ingress-app
+kube-system   udproute-lb-service            LoadBalancer   10.43.254.49    llb-192.168.80.90   21819:32369/UDP              24m     app=udproute-pod
+</code></pre></div></p>
+</li>
+<li>
+<p>Test the service
+<div class="highlight"><pre><span></span><code>$ ./udp_client 192.168.80.90 21819
+Client address: 10.42.0.1:11607
+Data sent by client:
+Hello
+</code></pre></div></p>
+</li>
+</ul>
+<h4 id="httproute">HTTPRoute</h4>
+<p>Now, we will see how we can use HTTPRoute to create HTTP gateway api rules.</p>
+<ul>
+<li>
+<p>Create the HTTPRoute
+<div class="highlight"><pre><span></span><code>$ kubectl apply -f https://raw.githubusercontent.com/loxilb-io/kube-loxilb/refs/heads/main/manifest/gateway-api/httpRoute.yaml
+</code></pre></div></p>
+</li>
+<li>
+<p>Check the result
+<div class="highlight"><pre><span></span><code>$ kubectl get httproute -A
+NAMESPACE     NAME               HOSTNAMES                       AGE
+kube-system   test-http-route    [&quot;test.loxilb.gateway.http&quot;]    29m
+
+$ kubectl get ingress -A
+NAMESPACE     NAME               CLASS    HOSTS                       ADDRESS             PORTS     AGE
+kube-system   test-http-route    loxilb   test.loxilb.gateway.http    llb-192.168.80.90   80        30m
+</code></pre></div></p>
+</li>
+<li>
+<p>Test the service
+<div class="highlight"><pre><span></span><code>curl -s --connect-timeout 30 -H &quot;Application/json&quot; -H &quot;Content-type: application/json&quot; -H &quot;HOST: test.loxilb.gateway.http&quot; http://192.168.80.90:80
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Welcome to nginx!&lt;/title&gt;
+&lt;style&gt;
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Welcome to nginx!&lt;/h1&gt;
+&lt;p&gt;If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.&lt;/p&gt;
+
+&lt;p&gt;For online documentation and support please refer to
+&lt;a href=&quot;http://nginx.org/&quot;&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;
+Commercial support is available at
+&lt;a href=&quot;http://nginx.com/&quot;&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Thank you for using nginx.&lt;/em&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre></div></p>
+</li>
+</ul>
+<h4 id="httproute-for-https">HTTPRoute for HTTPs</h4>
+<p>Lastly, we will see how we can use HTTPRoute to create HTTPs gateway api rules.</p>
+<ul>
+<li>
+<p>Create the HTTPRoute for HTTPs
+<div class="highlight"><pre><span></span><code>$ kubectl apply -f https://raw.githubusercontent.com/loxilb-io/kube-loxilb/refs/heads/main/manifest/gateway-api/httpsRoute.yaml
+</code></pre></div></p>
+</li>
+<li>
+<p>Check the result
+<div class="highlight"><pre><span></span><code>$ kubectl get httproute -A
+NAMESPACE     NAME               HOSTNAMES                       AGE
+kube-system   test-http-route    [&quot;test.loxilb.gateway.http&quot;]    33m
+kube-system   test-https-route   [&quot;test.loxilb.gateway.https&quot;]   48m
+
+$ kubectl get ingress -A
+NAMESPACE     NAME               CLASS    HOSTS                       ADDRESS             PORTS     AGE
+kube-system   test-http-route    loxilb   test.loxilb.gateway.http    llb-192.168.80.90   80        34m
+kube-system   test-https-route   loxilb   test.loxilb.gateway.https   llb-192.168.80.90   80, 443   49m
+</code></pre></div></p>
+</li>
+<li>
+<p>Test the service
+<div class="highlight"><pre><span></span><code>curl -s --connect-timeout 30 -H &quot;Application/json&quot; -H &quot;Content-type: application/json&quot; -H &quot;HOST: test.loxilb.gateway.https&quot; --insecure https://192.168.80.90:443
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Welcome to nginx!&lt;/title&gt;
+&lt;style&gt;
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Welcome to nginx!&lt;/h1&gt;
+&lt;p&gt;If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.&lt;/p&gt;
+
+&lt;p&gt;For online documentation and support please refer to
+&lt;a href=&quot;http://nginx.org/&quot;&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;
+Commercial support is available at
+&lt;a href=&quot;http://nginx.com/&quot;&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Thank you for using nginx.&lt;/em&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre></div></p>
+</li>
+</ul>
 
 
 
@@ -2495,44 +2760,6 @@ Commercial support is available at
       
         <footer class="md-footer">
   
-    
-      
-      <nav class="md-footer__inner md-grid" aria-label="Footer" >
-        
-          
-          <a href="../k8s-flannel-ext/" class="md-footer__link md-footer__link--prev" aria-label="Previous: K8s/loxilb external mode">
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
-            </div>
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              <div class="md-ellipsis">
-                K8s/loxilb external mode
-              </div>
-            </div>
-          </a>
-        
-        
-          
-          <a href="../k3s_quick_start_calico/" class="md-footer__link md-footer__link--next" aria-label="Next: K3s/loxilb with calico">
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              <div class="md-ellipsis">
-                K3s/loxilb with calico
-              </div>
-            </div>
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
     
   
   <div class="md-footer-meta md-typeset">
