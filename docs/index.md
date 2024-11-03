@@ -150,6 +150,7 @@ Telco-cloud requires load-balancing and communication across various interfaces/
 - [Frequenctly Asked Questions- FAQs](faq.md)
 
 ## Blogs
+- [Building a resilient EKS Cluster with in-cluster auto-scaled LoxiLB](https://www.loxilb.io/post/build-a-high-performance-eks-cluster-using-auto-scaled-loxilb)
 - [K8s - Elevating cluster networking](https://www.loxilb.io/post/loxilb-cluster-networking-elevating-k8s-networking-capabilities)    
 - [eBPF - Map sync using Go](https://www.loxilb.io/post/state-synchronization-of-ebpf-maps-using-go-a-tale-of-two-frameworks)    
 - [K8s in-cluster service LB with LoxiLB](https://www.loxilb.io/post/k8s-nuances-of-in-cluster-external-service-lb-with-loxilb)   
