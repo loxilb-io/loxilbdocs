@@ -69,6 +69,7 @@ nav:
       - How-To - Deploy loxilb in-cluster for multus based secondary services: loxilb-incluster-multus.md
       - How-To - Kubernetes virtual cluster setup with k3k and loxilb: k3k-virtual-cluster.md
       - How-To - Kubernetes service sharding with loxilb: service-sharding.md
+      - How-To - loxilb L4/L7 policies with Kubernetes gateway API: gw-api.md
 
   - Knowledge Base:
       - What is eBPF: ebpf.md
@@ -89,6 +90,7 @@ nav:
       - System Requirements: requirements.md
       - Frequenctly Asked Questions- FAQs: faq.md
   - Blogs:
+      - EKS Cluster with in-cluster auto-scaled LoxiLB: https://www.loxilb.io/post/build-a-high-performance-eks-cluster-using-auto-scaled-loxilb
       - K8s - Elevating Cluster Networking: https://www.loxilb.io/post/loxilb-cluster-networking-elevating-k8s-networking-capabilities
       - eBPF - Map Sync using Go: https://www.loxilb.io/post/state-synchronization-of-ebpf-maps-using-go-a-tale-of-two-frameworks
       - K8s in-cluster service LB with LoxiLB: https://www.loxilb.io/post/k8s-nuances-of-in-cluster-external-service-lb-with-loxilb
