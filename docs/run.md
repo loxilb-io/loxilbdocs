@@ -18,15 +18,15 @@ export PATH="${PATH}:/usr/local/go/bin"
 ```
 sudo apt install -y clang llvm libelf-dev gcc-multilib libpcap-dev vim net-tools linux-tools-$(uname -r) elfutils dwarves git libbsd-dev bridge-utils wget unzip build-essential bison flex iproute2 curl
 ```
-arm64 users, use the command below.
+For arm64, use the command below:
 ```
  apt-get install -y clang llvm libelf-dev libpcap-dev vim net-tools ca-certificates elfutils dwarves git libbsd-dev bridge-utils wget unzip build-essential bison flex sudo iproute2 pkg-config tcpdump iputils-ping curl bash-completion
 ```
-
-* Install loxilb eBPF loader tools
+<!-- * Install loxilb eBPF loader tools
 ```
 curl -sfL https://github.com/loxilb-io/tools/raw/main/loader/install.sh | sh -
-```
+```)-->
+
 * Install Openssl 3
 ```
 wget https://github.com/openssl/openssl/releases/download/openssl-3.3.1/openssl-3.3.1.tar.gz   
