@@ -8,7 +8,7 @@
 wget https://go.dev/dl/go1.22.0.linux-amd64.tar.gz && sudo tar -xzf go1.22.0.linux-amd64.tar.gz --directory /usr/local/
 export PATH="${PATH}:/usr/local/go/bin"
 ```
-arm64 users, use the command below.
+For arm64, use the command below:
 ```
 wget https://go.dev/dl/go1.22.0.linux-arm64.tar.gz && sudo tar -xzf go1.22.0.linux-arm64.tar.gz --directory /usr/local/
 export PATH="${PATH}:/usr/local/go/bin"
