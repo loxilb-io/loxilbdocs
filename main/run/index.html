@@ -1543,15 +1543,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-build-and-run-using-docker-easy" class="md-nav__link">
-    <span class="md-ellipsis">
-      2. Build and run using docker (easy)
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#3-running-in-kubernetes" class="md-nav__link">
     <span class="md-ellipsis">
       3. Running in Kubernetes
@@ -2262,15 +2253,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-build-and-run-using-docker-easy" class="md-nav__link">
-    <span class="md-ellipsis">
-      2. Build and run using docker (easy)
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#3-running-in-kubernetes" class="md-nav__link">
     <span class="md-ellipsis">
       3. Running in Kubernetes
@@ -2310,55 +2292,55 @@ arm64 users, use the command below.
 export PATH=&quot;${PATH}:/usr/local/go/bin&quot;
 </code></pre></div></p>
 <ul>
-<li>
-<p>Install standard packages
+<li>Install standard packages
 <div class="highlight"><pre><span></span><code>sudo apt install -y clang llvm libelf-dev gcc-multilib libpcap-dev vim net-tools linux-tools-$(uname -r) elfutils dwarves git libbsd-dev bridge-utils wget unzip build-essential bison flex iproute2 curl
 </code></pre></div>
-arm64 users, use the command below.
+For arm64, use the command below:
 <div class="highlight"><pre><span></span><code> apt-get install -y clang llvm libelf-dev libpcap-dev vim net-tools ca-certificates elfutils dwarves git libbsd-dev bridge-utils wget unzip build-essential bison flex sudo iproute2 pkg-config tcpdump iputils-ping curl bash-completion
-</code></pre></div></p>
-</li>
-<li>
-<p>Install loxilb eBPF loader tools
+</code></pre></div>
+&lt;!-- * Install loxilb eBPF loader tools
 <div class="highlight"><pre><span></span><code>curl -sfL https://github.com/loxilb-io/tools/raw/main/loader/install.sh | sh -
-</code></pre></div></p>
-</li>
-<li>Install Openssl 3
-<div class="highlight"><pre><span></span><code>wget https://github.com/openssl/openssl/releases/download/openssl-3.3.1/openssl-3.3.1.tar.gz   
-tar -xvzf openssl-3.3.1.tar.gz   
+```)--&gt;
+
+* Install Openssl 3
+</code></pre></div>
+wget https://github.com/openssl/openssl/releases/download/openssl-3.3.1/openssl-3.3.1.tar.gz <br />
+tar -xvzf openssl-3.3.1.tar.gz <br />
 cd openssl-3.3.1
-./Configure enable-ktls &#39;-Wl,-rpath,$(LIBRPATH)&#39; --prefix=/usr/local/build   
+./Configure enable-ktls '-Wl,-rpath,$(LIBRPATH)' --prefix=/usr/local/build <br />
 make -j$(nproc)
 sudo make install_dev install_modules
-cd -   
-sudo cp -a /usr/local/build/include/openssl /usr/include/   
-sudo bash -c &quot;if [ -d /usr/local/build/lib64  ] ; then mv /usr/local/build/lib64  /usr/local/build/lib; fi&quot;   
-sudo cp -fr /usr/local/build/lib/* /usr/lib/   
-sudo ldconfig   
-rm -fr openssl-3.3.1*   
-</code></pre></div></li>
-<li>Build and run loxilb 
-<div class="highlight"><pre><span></span><code>git clone --recurse-submodules https://github.com/loxilb-io/loxilb.git
+cd - <br />
+sudo cp -a /usr/local/build/include/openssl /usr/include/ <br />
+sudo bash -c "if [ -d /usr/local/build/lib64  ] ; then mv /usr/local/build/lib64  /usr/local/build/lib; fi" <br />
+sudo cp -fr /usr/local/build/lib/<em> /usr/lib/ <br />
+sudo ldconfig <br />
+rm -fr openssl-3.3.1</em> <br />
+<div class="highlight"><pre><span></span><code>* Build and run loxilb 
+</code></pre></div>
+git clone --recurse-submodules https://github.com/loxilb-io/loxilb.git
 cd loxilb
 ./loxilb-ebpf/utils/mkllb_bpffs.sh
 make
 sudo ./loxilb 
-</code></pre></div></li>
-<li>Build and use loxicmd </li>
-</ul>
-<p><div class="highlight"><pre><span></span><code>git clone https://github.com/loxilb-io/loxicmd.git
+<div class="highlight"><pre><span></span><code>* Build and use loxicmd 
+</code></pre></div>
+git clone https://github.com/loxilb-io/loxicmd.git
 cd loxicmd
 go get .
 make
 sudo cp -f loxicmd /usr/local/sbin/
+<div class="highlight"><pre><span></span><code>loxicmd usage guide can be found [here](https://loxilb-io.github.io/loxilbdocs/cmd/)
+
+## 2. Build and run using docker (easy)
+
+Build the docker image    
 </code></pre></div>
-loxicmd usage guide can be found <a href="https://loxilb-io.github.io/loxilbdocs/cmd/">here</a></p>
-<h2 id="2-build-and-run-using-docker-easy">2. Build and run using docker (easy)</h2>
-<p>Build the docker image  <br />
-<div class="highlight"><pre><span></span><code>git clone --recurse-submodules https://github.com/loxilb-io/loxilb.git
+git clone --recurse-submodules https://github.com/loxilb-io/loxilb.git
 cd loxilb
 make docker
-</code></pre></div></p>
+```</li>
+</ul>
 <p>This would create the docker image <code>ghcr.io/loxilb-io/loxilb:latest</code> locally. One can then run loxilb in standalone mode by following guide <a href="https://github.com/loxilb-io/loxilbdocs/blob/main/docs/standalone.md">here</a></p>
 <h2 id="3-running-in-kubernetes">3. Running in Kubernetes</h2>
 <ul>
