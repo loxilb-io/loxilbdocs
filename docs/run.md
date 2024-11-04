@@ -22,11 +22,6 @@ For arm64, use the command below:
 ```
  apt-get install -y clang llvm libelf-dev libpcap-dev vim net-tools ca-certificates elfutils dwarves git libbsd-dev bridge-utils wget unzip build-essential bison flex sudo iproute2 pkg-config tcpdump iputils-ping curl bash-completion
 ```
-<!-- * Install loxilb eBPF loader tools
-```
-curl -sfL https://github.com/loxilb-io/tools/raw/main/loader/install.sh | sh -
-```)-->
-
 * Install Openssl 3
 ```
 wget https://github.com/openssl/openssl/releases/download/openssl-3.3.1/openssl-3.3.1.tar.gz   
