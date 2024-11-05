@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#https-guide-for-loxilb" class="md-skip">
+        <a href="#https-guide-for-loxilb-api" class="md-skip">
           Skip to content
         </a>
       
@@ -2320,7 +2320,7 @@
   
 
 
-<h1 id="https-guide-for-loxilb">HTTPS guide for loxilb</h1>
+<h1 id="https-guide-for-loxilb-api">HTTPS guide for loxilb API</h1>
 <p>By default loxilb uses plain http for its API operation. Please refere to the arch <a href="https://docs.loxilb.io/latest/kube-loxilb/#overall-topology">guide</a> for more info. This guide will detail the steps needed to enable https in both loxilb (server-mode) and kube-loxilb (client-mode). For enabling https, we need to have proper certificate and keys in place. We will use popular tool <a href="https://github.com/FiloSottile/mkcert">mkcert</a> to configure locally-trusted development certificates. One could also use tools like <a href="https://letsencrypt.org">letsencrypt</a> for production grade certificates. Nonetheless, overall process is the same.</p>
 <h2 id="generate-the-certificates">Generate the certificates</h2>
 <div class="highlight"><pre><span></span><code>mkdir cert
