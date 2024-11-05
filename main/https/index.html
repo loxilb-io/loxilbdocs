@@ -2348,7 +2348,7 @@ The http only api channel is still available at this point. We can restrict its 
 <p>As a first step, we need to copy the <code>rootCA.pem</code> from the previous step to the host managing the kubernetes cluster. Then we create a configmap as follows :
 <div class="highlight"><pre><span></span><code>kubectl -n kube-system create configmap loxilb-cacert --from-file=`pwd`/loxilbCA.pem
 </code></pre></div></p>
-<p>To make kube-loxilb, use this root CA, we need to append the following to kube-loxilb.yaml as follows :</p>
+<p>To make kube-loxilb, use this root CA, we need to append the following to kube-loxilb.yaml before applying it :</p>
 <div class="highlight"><pre><span></span><code>apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -2402,7 +2402,7 @@ spec:
             defaultMode: 420
             name: loxilb-cacert
 </code></pre></div>
-<p>Please note that here the loxiURL has changed to https and loxilb rootCA will be added to the pod system store of CA certs. If more than one root CA need to be added, we can concat them into a single file loxilbCA.pem. Additionally, we can mount them as loxilbCAx.pem, loxilbCAy.pem etc.</p>
+<p>Please note that here the loxiURL has changed to https and loxilb rootCA will be added to the pod system store of CA certs. If more than one root CA need to be added, we can concat them into a single file loxilbCA.pem. Additionally, we can mount them separately as loxilbCAx.pem, loxilbCAy.pem etc.</p>
 
 
 
