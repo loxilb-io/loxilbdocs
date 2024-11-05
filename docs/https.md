@@ -41,7 +41,7 @@ As a first step, we need to copy the ```rootCA.pem``` from the previous step to 
 kubectl -n kube-system create configmap loxilb-cacert --from-file=`pwd`/loxilbCA.pem
 ```
 
-To make kube-loxilb, use this root CA, we need to append the following to kube-loxilb.yaml as follows :
+To make kube-loxilb, use this root CA, we need to append the following to kube-loxilb.yaml before applying it :
 
 ```
 apiVersion: apps/v1
@@ -98,4 +98,4 @@ spec:
             name: loxilb-cacert
 ```
  
-Please note that here the loxiURL has changed to https and loxilb rootCA will be added to the pod system store of CA certs. If more than one root CA need to be added, we can concat them into a single file loxilbCA.pem. Additionally, we can mount them as loxilbCAx.pem, loxilbCAy.pem etc.
+Please note that here the loxiURL has changed to https and loxilb rootCA will be added to the pod system store of CA certs. If more than one root CA need to be added, we can concat them into a single file loxilbCA.pem. Additionally, we can mount them separately as loxilbCAx.pem, loxilbCAy.pem etc.
