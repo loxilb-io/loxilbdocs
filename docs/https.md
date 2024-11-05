@@ -1,116 +1,101 @@
 
-# HTTPS guide
- Key and Cert files are required for HTTPS, and they are not detailed, but explain how to generate them and where LoxiLB can read and use user-generated Key and Cert files.
+# HTTPS guide for loxilb 
+
+By default loxilb uses plain loxilb for its API operation. Please refere to the arch [guide](https://docs.loxilb.io/latest/kube-loxilb/#overall-topology) for more info. This guide will detail the steps needed to enable https in both loxilb (server-mode) and kube-loxilb (client-mode). For enabling https, we need to have proper certificate and keys in place. We will use popular tool [mkcert](https://github.com/FiloSottile/mkcert) to configure locally-trusted development certificates. One could also use tools like [letsencrypt](https://letsencrypt.org) for production grade certificates. Nonetheless overall process is the same.
+
+## Generate the certificates 
 
 ```
-      --tls              enable TLS  [$TLS]
-      --tls-host=        the IP to listen on for tls, when not specified it's the same as --host [$TLS_HOST]
-      --tls-port=        the port to listen on for secure connections (default: 8091) [$TLS_PORT]
-      --tls-certificate= the certificate to use for secure connections (default:
-                         /opt/loxilb/cert/server.crt) [$TLS_CERTIFICATE]
-      --tls-key=         the private key to use for secure connections (default:
-                         /opt/loxilb/cert/server.key) [$TLS_PRIVATE_KEY]
-```
-To enable https on LoxiLB, we changed it to enable it using the  `--tls`option. 
-
-Tls-host and tls-port are the contents of deciding which IP to listen to. The default IP address used as tls-host is 0.0.0.0, which is everywhere, but for future security, we recommend doing only certain values. The port is 8091 as the default. You can also find and change this from a value that does not overlap with the service you use.
-
-LoxiLB reads the key by default as /opt/loxilb/cert/path with server.key and the Cert file as server.crt in the same path. In this article, we will learn how to create the server.key and server.crt files.
-
-You can enable and run HTTLS (TLS) with the following commands.
-```
-./loxilb --tls
+mkdir cert
+cd cert
+wget https://github.com/FiloSottile/mkcert/releases/download/v1.4.3/mkcert-v1.4.3-linux-amd64
+chmod +x mkcert-v1.4.3-linux-amd64
+mv mkcert-v1.4.3-linux-amd64 mkcert
+mkdir loxilb.io
+export CAROOT=`pwd`/loxilb
+./mkcert -install
+./mkcert 192.168.80.9
+cp loxilb/rootCA.pem ./rootCA.crt
+mv 192.168.80.9.pem ./server.crt
+mv 192.168.80.9-key.pem ./server.key
+cd - 
 ```
 
-## Preparation
-First of all, the simplest way is to create it using *openssl*. To install openssl, you can install it using the command below.
-```
-apt install openssl
-```
-The LoxiLB team confirmed that it operates on 1.1.1f version of openssl.
-```
-openssl version
-OpenSSL 1.1.1f  31 Mar 2020
-```
-### 1. Create server.key 
+The above creates SSL certificate with IP in the SAN(Subject Alternative Name). In this example, we assume loxilb  will run in a host with private IP address ```192.168.80.9```.
+
+## Run loxilb with the certificates 
+
+To run loxilb, we can simply mount the cert directory created earlier into appropriate mount point of the loxilb pod/docker :
 
 ```
-openssl genrsa -out server.key 2048
+docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log -v `pwd`/cert:/opt/loxilb/cert/ --net=host --name loxilb ghcr.io/loxilb-io/loxilb:latest --tls
+```
+If loxilb is running in-cluster, we can use volume mounts to the loxilb pod. The volume mount option is similar to what will be used for kube-loxilb as explained below. 
+
+## Run kube-loxilb with updated rootCA 
+
+Any https client needs to have the rootCA certificate to validate the authenticity of the certificates presented by a server. Since, we are using local certificates we need to add the local rootCA to the system store of the kube-loxilb pod.
+
+As a first step, we need to copy the ```rootCA.pem``` from the previous step to the host managing the kubernetes cluster. Then we create a configmap as follows :
+```
+kubectl -n kube-system create configmap loxilb-cacert --from-file=`pwd`/loxilbCA.pem
 ```
 
-The way to generate server.key is simple. You can create a new key by typing the command above. In fact, if you type in the command, you can see that the process is output and the server.key is generated.
-```bash
-openssl genrsa -out server.key 2048
-Generating RSA private key, 2048 bit long modulus (2 primes)
-..............................................+++++
-...........................................+++++
-e is 65537 (0x010001)
-```
-
-### 2. Create server.csr 
+To make kube-loxilb, use this root CA, we need to append the following to kube-loxilb.yaml as follows :
 
 ```
-openssl req -new -key server.key -out server.csr
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kube-loxilb
+  namespace: kube-system
+  labels:
+    app: kube-loxilb-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kube-loxilb-app
+  template:
+    metadata:
+      labels:
+        app: kube-loxilb-app
+    spec:
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
+      tolerations:
+        - effect: NoSchedule
+          operator: Exists
+        # Mark the pod as a critical add-on for rescheduling.
+        - key: CriticalAddonsOnly
+          operator: Exists
+        - effect: NoExecute
+          operator: Exists
+      priorityClassName: system-node-critical
+      serviceAccountName: kube-loxilb
+      terminationGracePeriodSeconds: 0
+      containers:
+      - name: kube-loxilb
+        image: ghcr.io/loxilb-io/kube-loxilb:latest
+        imagePullPolicy: Always
+        command:
+        - /bin/kube-loxilb
+        args:
+        - --loxiURL=https://192.168.80.9:8091
+        - --cidrPools=defaultPool=192.168.80.9/32
+        volumeMounts:
+        - mountPath: /etc/ssl/certs/loxilbCA.pem
+          name: loxilb-cacert
+          subPath: loxilbCA.pem
+        securityContext:
+          privileged: true
+          capabilities:
+            add: ["NET_ADMIN", "NET_RAW"]
+      volumes:
+        - name: loxilb-cacert
+          configMap:
+            defaultMode: 420
+            name: loxilb-cacert
 ```
-
-Create a csr file by putting the desired value in the corresponding item. This file is not used directly for https, but it is necessary to create a Cert file to be created later. When you type in the command above, a long sentence appears asking you to enter information, and you can fill in the corresponding value according to your situation.
-```bash
-openssl req -new -key server.key -out server.csr
-You are about to be asked to enter information that will be incorporated
-into your certificate request.
-What you are about to enter is what is called a Distinguished Name or a DN.
-There are quite a few fields but you can leave some blank
-For some fields there will be a default value,
-If you enter '.', the field will be left blank.
------
-Country Name (2 letter code) [AU]:
-State or Province Name (full name) [Some-State]:
-Locality Name (eg, city) []:
-Organization Name (eg, company) [Internet Widgits Pty Ltd]:
-Organizational Unit Name (eg, section) []:
-Common Name (e.g. server FQDN or YOUR name) []:
-Email Address []:
-
-Please enter the following 'extra' attributes
-to be sent with your certificate request
-A challenge password []:
-An optional company name []:
-```
-
-### 3. Create server.crt
-```
-openssl x509 -req -days 365 -in server.csr -signkey server.key  -out server.crt
-```
-This is the process of creating server.crt using server.key and server.csr generated above. You can issue a certificate with a limited deadline by setting the expiration date of the certificate well and putting a value after -day. The server.crt file is created with the following output.
-```bash
-openssl x509 -req -days 365 -in server.csr -signkey server.key  -out server.crt
-Signature ok
-subject=C = AU, ST = Some-State, O = Internet Widgits Pty Ltd
-Getting Private key
-```
-
-### 4. Validation
-You can enable https with the server.key and server.cert files generated through the above process.
-
-If you move all of these files to the `/opt/loxilb` path and check them, you can see that they work well.
-
-```bash
-sudo cp server.key /opt/loxilb/cert/.
-sudo cp server.crt /opt/loxilb/cert/.
-./loxilb --tls
-```
-
-```bash
- curl http://0.0.0.0:11111/netlox/v1/config/loadbalancer/all
-{"lbAttr":[]}
-
- curl -k https://0.0.0.0:8091/netlox/v1/config/loadbalancer/all
-{"lbAttr":[]}
-```
-
-It should appear in the log as follows.
-
-```bash
-2024/04/12 16:19:48 Serving loxilb rest API at http://[::]:11111
-2024/04/12 16:19:48 Serving loxilb rest API at https://[::]:8091
-```
+ 
+Please note that here the loxiURL has changed to https and loxilb rootCA will be added to the pod system store of CA certs. If more than one root CA need to be added, we can concat them into a single file loxilbCA.pem. Additionally, we can mount them as loxilbCAx.pem, loxilbCAy.pem etc.
