@@ -1,7 +1,7 @@
 
 # HTTPS guide for loxilb 
 
-By default loxilb uses plain loxilb for its API operation. Please refere to the arch [guide](https://docs.loxilb.io/latest/kube-loxilb/#overall-topology) for more info. This guide will detail the steps needed to enable https in both loxilb (server-mode) and kube-loxilb (client-mode). For enabling https, we need to have proper certificate and keys in place. We will use popular tool [mkcert](https://github.com/FiloSottile/mkcert) to configure locally-trusted development certificates. One could also use tools like [letsencrypt](https://letsencrypt.org) for production grade certificates. Nonetheless overall process is the same.
+By default loxilb uses plain http for its API operation. Please refere to the arch [guide](https://docs.loxilb.io/latest/kube-loxilb/#overall-topology) for more info. This guide will detail the steps needed to enable https in both loxilb (server-mode) and kube-loxilb (client-mode). For enabling https, we need to have proper certificate and keys in place. We will use popular tool [mkcert](https://github.com/FiloSottile/mkcert) to configure locally-trusted development certificates. One could also use tools like [letsencrypt](https://letsencrypt.org) for production grade certificates. Nonetheless, overall process is the same.
 
 ## Generate the certificates 
 
