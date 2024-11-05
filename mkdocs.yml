@@ -83,6 +83,7 @@ nav:
       - Debugging loxilb: debugging.md
       - Developer's guide to loxicmd: cmd-dev.md
       - Developer's guide to loxilb API: api-dev.md
+      - HTTPS guide for loxilb: https.md
       - loxilb api-reference: api.md
       - Performance Report: perf.md
       - Development Roadmap: roadmap.md
