@@ -30,7 +30,7 @@ To run loxilb, we can simply mount the cert directory created earlier into appro
 ```
 docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log -v `pwd`/cert:/opt/loxilb/cert/ --net=host --name loxilb ghcr.io/loxilb-io/loxilb:latest --tls
 ```
-If loxilb is running in-cluster, we can use volume mounts to the loxilb pod. The volume mount option is similar to what will be used for kube-loxilb as explained below. 
+The http only api channel is still available at this point. We can restrict its availability only inside the pod by adding the argument ```--host=127.0.0.1```. If loxilb is running in-cluster, we can use volume mounts to the loxilb pod. The volume mount option is similar to what will be used for kube-loxilb as explained below. 
 
 ## Run kube-loxilb with updated rootCA 
 
