@@ -2342,7 +2342,7 @@ cd -
 <p>To run loxilb, we can simply mount the cert directory created earlier into appropriate mount point of the loxilb pod/docker :</p>
 <p><div class="highlight"><pre><span></span><code>docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log -v `pwd`/cert:/opt/loxilb/cert/ --net=host --name loxilb ghcr.io/loxilb-io/loxilb:latest --tls
 </code></pre></div>
-If loxilb is running in-cluster, we can use volume mounts to the loxilb pod. The volume mount option is similar to what will be used for kube-loxilb as explained below. </p>
+The http only api channel is still available at this point. We can restrict its availability only inside the pod by adding the argument <code>--host=127.0.0.1</code>. If loxilb is running in-cluster, we can use volume mounts to the loxilb pod. The volume mount option is similar to what will be used for kube-loxilb as explained below. </p>
 <h2 id="run-kube-loxilb-with-updated-rootca">Run kube-loxilb with updated rootCA</h2>
 <p>Any https client needs to have the rootCA certificate to validate the authenticity of the certificates presented by a server. Since, we are using local certificates we need to add the local rootCA to the system store of the kube-loxilb pod.</p>
 <p>As a first step, we need to copy the <code>rootCA.pem</code> from the previous step to the host managing the kubernetes cluster. Then we create a configmap as follows :
