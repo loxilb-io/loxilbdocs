@@ -2321,14 +2321,14 @@
 
 
 <h1 id="https-guide-for-loxilb-api">HTTPS guide for loxilb API</h1>
-<p>By default loxilb uses plain http for its API operation. Please refere to the arch <a href="https://docs.loxilb.io/latest/kube-loxilb/#overall-topology">guide</a> for more info. This guide will detail the steps needed to enable https in both loxilb (server-mode) and kube-loxilb (client-mode). For enabling https, we need to have proper certificate and keys in place. We will use popular tool <a href="https://github.com/FiloSottile/mkcert">mkcert</a> to configure locally-trusted development certificates. One could also use tools like <a href="https://letsencrypt.org">letsencrypt</a> for production grade certificates. Nonetheless, overall process is the same.</p>
+<p>By default loxilb uses plain http for its API operation. Please refer to the arch <a href="https://docs.loxilb.io/latest/kube-loxilb/#overall-topology">guide</a> for more info. This guide will detail the steps needed to enable https in both loxilb (server-mode) and kube-loxilb (client-mode). For enabling https, we need to have proper certificate and keys in place. We will use popular tool <a href="https://github.com/FiloSottile/mkcert">mkcert</a> to configure locally-trusted development certificates. One could also use tools like <a href="https://letsencrypt.org">letsencrypt</a> for production grade certificates. Nonetheless, overall process is the same.</p>
 <h2 id="generate-the-certificates">Generate the certificates</h2>
 <div class="highlight"><pre><span></span><code>mkdir cert
 cd cert
 wget https://github.com/FiloSottile/mkcert/releases/download/v1.4.3/mkcert-v1.4.3-linux-amd64
 chmod +x mkcert-v1.4.3-linux-amd64
 mv mkcert-v1.4.3-linux-amd64 mkcert
-mkdir loxilb.io
+mkdir loxilb
 export CAROOT=`pwd`/loxilb
 ./mkcert -install
 ./mkcert 192.168.80.9
@@ -2342,7 +2342,8 @@ cd -
 <p>To run loxilb, we can simply mount the cert directory created earlier into appropriate mount point of the loxilb pod/docker :</p>
 <p><div class="highlight"><pre><span></span><code>docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log -v `pwd`/cert:/opt/loxilb/cert/ --net=host --name loxilb ghcr.io/loxilb-io/loxilb:latest --tls
 </code></pre></div>
-The http only api channel is still available at this point. We can restrict its availability only inside the pod by adding the argument <code>--host=127.0.0.1</code>. If loxilb is running in-cluster, we can use volume mounts to the loxilb pod. The volume mount option is similar to what will be used for kube-loxilb as explained below. </p>
+The http only api channel is still available at this point outside the pod. We can restrict its availability only inside the pod by adding the argument <code>--host=127.0.0.1</code>. </p>
+<p>If loxilb is running in-cluster, we can use volume mounts to the loxilb pod to have the same effect as explained. The volume mount option is similar to what will be used for kube-loxilb as explained below. </p>
 <h2 id="run-kube-loxilb-with-updated-rootca">Run kube-loxilb with updated rootCA</h2>
 <p>Any https client needs to have the rootCA certificate to validate the authenticity of the certificates presented by a server. Since, we are using local certificates we need to add the local rootCA to the system store of the kube-loxilb pod.</p>
 <p>As a first step, we need to copy the <code>rootCA.pem</code> from the previous step to the host managing the kubernetes cluster. Then we create a configmap as follows :
