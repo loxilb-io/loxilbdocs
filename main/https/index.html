@@ -18,7 +18,7 @@
     
     
       
-        <title>HTTPS guide - LoxiLB</title>
+        <title>HTTPS guide for loxilb - LoxiLB</title>
       
     
     
@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#https-guide" class="md-skip">
+        <a href="#https-guide-for-loxilb" class="md-skip">
           Skip to content
         </a>
       
@@ -111,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              HTTPS guide
+              HTTPS guide for loxilb
             
           </span>
         </div>
@@ -2178,53 +2178,29 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#preparation" class="md-nav__link">
+  <a href="#generate-the-certificates" class="md-nav__link">
     <span class="md-ellipsis">
-      Preparation
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Preparation">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-create-serverkey" class="md-nav__link">
-    <span class="md-ellipsis">
-      1. Create server.key
+      Generate the certificates
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#2-create-servercsr" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#run-loxilb-with-the-certificates" class="md-nav__link">
     <span class="md-ellipsis">
-      2. Create server.csr
+      Run loxilb with the certificates
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#3-create-servercrt" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#run-kube-loxilb-with-updated-rootca" class="md-nav__link">
     <span class="md-ellipsis">
-      3. Create server.crt
+      Run kube-loxilb with updated rootCA
     </span>
   </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-validation" class="md-nav__link">
-    <span class="md-ellipsis">
-      4. Validation
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -2246,91 +2222,89 @@
   
 
 
-<h1 id="https-guide">HTTPS guide</h1>
-<p>Key and Cert files are required for HTTPS, and they are not detailed, but explain how to generate them and where LoxiLB can read and use user-generated Key and Cert files.</p>
-<p><div class="highlight"><pre><span></span><code>      --tls              enable TLS  [$TLS]
-      --tls-host=        the IP to listen on for tls, when not specified it&#39;s the same as --host [$TLS_HOST]
-      --tls-port=        the port to listen on for secure connections (default: 8091) [$TLS_PORT]
-      --tls-certificate= the certificate to use for secure connections (default:
-                         /opt/loxilb/cert/server.crt) [$TLS_CERTIFICATE]
-      --tls-key=         the private key to use for secure connections (default:
-                         /opt/loxilb/cert/server.key) [$TLS_PRIVATE_KEY]
+<h1 id="https-guide-for-loxilb">HTTPS guide for loxilb</h1>
+<p>By default loxilb uses plain loxilb for its API operation. Please refere to the arch <a href="https://docs.loxilb.io/latest/kube-loxilb/#overall-topology">guide</a> for more info. This guide will detail the steps needed to enable https in both loxilb (server-mode) and kube-loxilb (client-mode). For enabling https, we need to have proper certificate and keys in place. We will use popular tool <a href="https://github.com/FiloSottile/mkcert">mkcert</a> to configure locally-trusted development certificates. One could also use tools like <a href="https://letsencrypt.org">letsencrypt</a> for production grade certificates. Nonetheless overall process is the same.</p>
+<h2 id="generate-the-certificates">Generate the certificates</h2>
+<div class="highlight"><pre><span></span><code>mkdir cert
+cd cert
+wget https://github.com/FiloSottile/mkcert/releases/download/v1.4.3/mkcert-v1.4.3-linux-amd64
+chmod +x mkcert-v1.4.3-linux-amd64
+mv mkcert-v1.4.3-linux-amd64 mkcert
+mkdir loxilb.io
+export CAROOT=`pwd`/loxilb
+./mkcert -install
+./mkcert 192.168.80.9
+cp loxilb/rootCA.pem ./rootCA.crt
+mv 192.168.80.9.pem ./server.crt
+mv 192.168.80.9-key.pem ./server.key
+cd - 
 </code></pre></div>
-To enable https on LoxiLB, we changed it to enable it using the  <code>--tls</code>option. </p>
-<p>Tls-host and tls-port are the contents of deciding which IP to listen to. The default IP address used as tls-host is 0.0.0.0, which is everywhere, but for future security, we recommend doing only certain values. The port is 8091 as the default. You can also find and change this from a value that does not overlap with the service you use.</p>
-<p>LoxiLB reads the key by default as /opt/loxilb/cert/path with server.key and the Cert file as server.crt in the same path. In this article, we will learn how to create the server.key and server.crt files.</p>
-<p>You can enable and run HTTLS (TLS) with the following commands.
-<div class="highlight"><pre><span></span><code>./loxilb --tls
+<p>The above creates SSL certificate with IP in the SAN(Subject Alternative Name). In this example, we assume loxilb  will run in a host with private IP address <code>192.168.80.9</code>.</p>
+<h2 id="run-loxilb-with-the-certificates">Run loxilb with the certificates</h2>
+<p>To run loxilb, we can simply mount the cert directory created earlier into appropriate mount point of the loxilb pod/docker :</p>
+<p><div class="highlight"><pre><span></span><code>docker run -u root --cap-add SYS_ADMIN   --restart unless-stopped --privileged -dit -v /dev/log:/dev/log -v `pwd`/cert:/opt/loxilb/cert/ --net=host --name loxilb ghcr.io/loxilb-io/loxilb:latest --tls
+</code></pre></div>
+If loxilb is running in-cluster, we can use volume mounts to the loxilb pod. The volume mount option is similar to what will be used for kube-loxilb as explained below. </p>
+<h2 id="run-kube-loxilb-with-updated-rootca">Run kube-loxilb with updated rootCA</h2>
+<p>Any https client needs to have the rootCA certificate to validate the authenticity of the certificates presented by a server. Since, we are using local certificates we need to add the local rootCA to the system store of the kube-loxilb pod.</p>
+<p>As a first step, we need to copy the <code>rootCA.pem</code> from the previous step to the host managing the kubernetes cluster. Then we create a configmap as follows :
+<div class="highlight"><pre><span></span><code>kubectl -n kube-system create configmap loxilb-cacert --from-file=`pwd`/loxilbCA.pem
 </code></pre></div></p>
-<h2 id="preparation">Preparation</h2>
-<p>First of all, the simplest way is to create it using <em>openssl</em>. To install openssl, you can install it using the command below.
-<div class="highlight"><pre><span></span><code>apt install openssl
+<p>To make kube-loxilb, use this root CA, we need to append the following to kube-loxilb.yaml as follows :</p>
+<div class="highlight"><pre><span></span><code>apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kube-loxilb
+  namespace: kube-system
+  labels:
+    app: kube-loxilb-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kube-loxilb-app
+  template:
+    metadata:
+      labels:
+        app: kube-loxilb-app
+    spec:
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
+      tolerations:
+        - effect: NoSchedule
+          operator: Exists
+        # Mark the pod as a critical add-on for rescheduling.
+        - key: CriticalAddonsOnly
+          operator: Exists
+        - effect: NoExecute
+          operator: Exists
+      priorityClassName: system-node-critical
+      serviceAccountName: kube-loxilb
+      terminationGracePeriodSeconds: 0
+      containers:
+      - name: kube-loxilb
+        image: ghcr.io/loxilb-io/kube-loxilb:latest
+        imagePullPolicy: Always
+        command:
+        - /bin/kube-loxilb
+        args:
+        - --loxiURL=https://192.168.80.9:8091
+        - --cidrPools=defaultPool=192.168.80.9/32
+        volumeMounts:
+        - mountPath: /etc/ssl/certs/loxilbCA.pem
+          name: loxilb-cacert
+          subPath: loxilbCA.pem
+        securityContext:
+          privileged: true
+          capabilities:
+            add: [&quot;NET_ADMIN&quot;, &quot;NET_RAW&quot;]
+      volumes:
+        - name: loxilb-cacert
+          configMap:
+            defaultMode: 420
+            name: loxilb-cacert
 </code></pre></div>
-The LoxiLB team confirmed that it operates on 1.1.1f version of openssl.
-<div class="highlight"><pre><span></span><code>openssl version
-OpenSSL 1.1.1f  31 Mar 2020
-</code></pre></div></p>
-<h3 id="1-create-serverkey">1. Create server.key</h3>
-<div class="highlight"><pre><span></span><code>openssl genrsa -out server.key 2048
-</code></pre></div>
-<p>The way to generate server.key is simple. You can create a new key by typing the command above. In fact, if you type in the command, you can see that the process is output and the server.key is generated.
-<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>genrsa<span class="w"> </span>-out<span class="w"> </span>server.key<span class="w"> </span><span class="m">2048</span>
-Generating<span class="w"> </span>RSA<span class="w"> </span>private<span class="w"> </span>key,<span class="w"> </span><span class="m">2048</span><span class="w"> </span>bit<span class="w"> </span>long<span class="w"> </span>modulus<span class="w"> </span><span class="o">(</span><span class="m">2</span><span class="w"> </span>primes<span class="o">)</span>
-..............................................+++++
-...........................................+++++
-e<span class="w"> </span>is<span class="w"> </span><span class="m">65537</span><span class="w"> </span><span class="o">(</span>0x010001<span class="o">)</span>
-</code></pre></div></p>
-<h3 id="2-create-servercsr">2. Create server.csr</h3>
-<div class="highlight"><pre><span></span><code>openssl req -new -key server.key -out server.csr
-</code></pre></div>
-<p>Create a csr file by putting the desired value in the corresponding item. This file is not used directly for https, but it is necessary to create a Cert file to be created later. When you type in the command above, a long sentence appears asking you to enter information, and you can fill in the corresponding value according to your situation.
-<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>req<span class="w"> </span>-new<span class="w"> </span>-key<span class="w"> </span>server.key<span class="w"> </span>-out<span class="w"> </span>server.csr
-You<span class="w"> </span>are<span class="w"> </span>about<span class="w"> </span>to<span class="w"> </span>be<span class="w"> </span>asked<span class="w"> </span>to<span class="w"> </span>enter<span class="w"> </span>information<span class="w"> </span>that<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>incorporated
-into<span class="w"> </span>your<span class="w"> </span>certificate<span class="w"> </span>request.
-What<span class="w"> </span>you<span class="w"> </span>are<span class="w"> </span>about<span class="w"> </span>to<span class="w"> </span>enter<span class="w"> </span>is<span class="w"> </span>what<span class="w"> </span>is<span class="w"> </span>called<span class="w"> </span>a<span class="w"> </span>Distinguished<span class="w"> </span>Name<span class="w"> </span>or<span class="w"> </span>a<span class="w"> </span>DN.
-There<span class="w"> </span>are<span class="w"> </span>quite<span class="w"> </span>a<span class="w"> </span>few<span class="w"> </span>fields<span class="w"> </span>but<span class="w"> </span>you<span class="w"> </span>can<span class="w"> </span>leave<span class="w"> </span>some<span class="w"> </span>blank
-For<span class="w"> </span>some<span class="w"> </span>fields<span class="w"> </span>there<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>a<span class="w"> </span>default<span class="w"> </span>value,
-If<span class="w"> </span>you<span class="w"> </span>enter<span class="w"> </span><span class="s1">&#39;.&#39;</span>,<span class="w"> </span>the<span class="w"> </span>field<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>left<span class="w"> </span>blank.
------
-Country<span class="w"> </span>Name<span class="w"> </span><span class="o">(</span><span class="m">2</span><span class="w"> </span>letter<span class="w"> </span>code<span class="o">)</span><span class="w"> </span><span class="o">[</span>AU<span class="o">]</span>:
-State<span class="w"> </span>or<span class="w"> </span>Province<span class="w"> </span>Name<span class="w"> </span><span class="o">(</span>full<span class="w"> </span>name<span class="o">)</span><span class="w"> </span><span class="o">[</span>Some-State<span class="o">]</span>:
-Locality<span class="w"> </span>Name<span class="w"> </span><span class="o">(</span>eg,<span class="w"> </span>city<span class="o">)</span><span class="w"> </span><span class="o">[]</span>:
-Organization<span class="w"> </span>Name<span class="w"> </span><span class="o">(</span>eg,<span class="w"> </span>company<span class="o">)</span><span class="w"> </span><span class="o">[</span>Internet<span class="w"> </span>Widgits<span class="w"> </span>Pty<span class="w"> </span>Ltd<span class="o">]</span>:
-Organizational<span class="w"> </span>Unit<span class="w"> </span>Name<span class="w"> </span><span class="o">(</span>eg,<span class="w"> </span>section<span class="o">)</span><span class="w"> </span><span class="o">[]</span>:
-Common<span class="w"> </span>Name<span class="w"> </span><span class="o">(</span>e.g.<span class="w"> </span>server<span class="w"> </span>FQDN<span class="w"> </span>or<span class="w"> </span>YOUR<span class="w"> </span>name<span class="o">)</span><span class="w"> </span><span class="o">[]</span>:
-Email<span class="w"> </span>Address<span class="w"> </span><span class="o">[]</span>:
-
-Please<span class="w"> </span>enter<span class="w"> </span>the<span class="w"> </span>following<span class="w"> </span><span class="s1">&#39;extra&#39;</span><span class="w"> </span>attributes
-to<span class="w"> </span>be<span class="w"> </span>sent<span class="w"> </span>with<span class="w"> </span>your<span class="w"> </span>certificate<span class="w"> </span>request
-A<span class="w"> </span>challenge<span class="w"> </span>password<span class="w"> </span><span class="o">[]</span>:
-An<span class="w"> </span>optional<span class="w"> </span>company<span class="w"> </span>name<span class="w"> </span><span class="o">[]</span>:
-</code></pre></div></p>
-<h3 id="3-create-servercrt">3. Create server.crt</h3>
-<p><div class="highlight"><pre><span></span><code>openssl x509 -req -days 365 -in server.csr -signkey server.key  -out server.crt
-</code></pre></div>
-This is the process of creating server.crt using server.key and server.csr generated above. You can issue a certificate with a limited deadline by setting the expiration date of the certificate well and putting a value after -day. The server.crt file is created with the following output.
-<div class="highlight"><pre><span></span><code>openssl<span class="w"> </span>x509<span class="w"> </span>-req<span class="w"> </span>-days<span class="w"> </span><span class="m">365</span><span class="w"> </span>-in<span class="w"> </span>server.csr<span class="w"> </span>-signkey<span class="w"> </span>server.key<span class="w">  </span>-out<span class="w"> </span>server.crt
-Signature<span class="w"> </span>ok
-<span class="nv">subject</span><span class="o">=</span><span class="nv">C</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>AU,<span class="w"> </span><span class="nv">ST</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Some-State,<span class="w"> </span><span class="nv">O</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Internet<span class="w"> </span>Widgits<span class="w"> </span>Pty<span class="w"> </span>Ltd
-Getting<span class="w"> </span>Private<span class="w"> </span>key
-</code></pre></div></p>
-<h3 id="4-validation">4. Validation</h3>
-<p>You can enable https with the server.key and server.cert files generated through the above process.</p>
-<p>If you move all of these files to the <code>/opt/loxilb</code> path and check them, you can see that they work well.</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>cp<span class="w"> </span>server.key<span class="w"> </span>/opt/loxilb/cert/.
-sudo<span class="w"> </span>cp<span class="w"> </span>server.crt<span class="w"> </span>/opt/loxilb/cert/.
-./loxilb<span class="w"> </span>--tls
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="w"> </span>curl<span class="w"> </span>http://0.0.0.0:11111/netlox/v1/config/loadbalancer/all
-<span class="o">{</span><span class="s2">&quot;lbAttr&quot;</span>:<span class="o">[]}</span>
-
-<span class="w"> </span>curl<span class="w"> </span>-k<span class="w"> </span>https://0.0.0.0:8091/netlox/v1/config/loadbalancer/all
-<span class="o">{</span><span class="s2">&quot;lbAttr&quot;</span>:<span class="o">[]}</span>
-</code></pre></div>
-<p>It should appear in the log as follows.</p>
-<div class="highlight"><pre><span></span><code><span class="m">2024</span>/04/12<span class="w"> </span><span class="m">16</span>:19:48<span class="w"> </span>Serving<span class="w"> </span>loxilb<span class="w"> </span>rest<span class="w"> </span>API<span class="w"> </span>at<span class="w"> </span>http://<span class="o">[</span>::<span class="o">]</span>:11111
-<span class="m">2024</span>/04/12<span class="w"> </span><span class="m">16</span>:19:48<span class="w"> </span>Serving<span class="w"> </span>loxilb<span class="w"> </span>rest<span class="w"> </span>API<span class="w"> </span>at<span class="w"> </span>https://<span class="o">[</span>::<span class="o">]</span>:8091
-</code></pre></div>
+<p>Please note that here the loxiURL has changed to https and loxilb rootCA will be added to the pod system store of CA certs. If more than one root CA need to be added, we can concat them into a single file loxilbCA.pem. Additionally, we can mount them as loxilbCAx.pem, loxilbCAy.pem etc.</p>
 
 
 
