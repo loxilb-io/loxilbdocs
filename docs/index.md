@@ -142,6 +142,7 @@ Telco-cloud requires load-balancing and communication across various interfaces/
 - [loxicmd command-line tool usage](cmd.md)
 - [Developer's guide to loxicmd](cmd-dev.md)
 - [Developer's guide to loxilb API](api-dev.md)
+- [HTTPS guide for loxilb](https.md)
 - [API Reference - loxilb web-Api](api.md)
 - [Performance Reports](perf.md)
 - [Development Roadmap](roadmap.md)
