@@ -7,20 +7,22 @@ To run loxilb, we need to have the following -
 To install LoxiLB software packages, you need the 64-bit version of one of these OS versions:  
 
 * Ubuntu 20.04(LTS)   
-* Ubuntu 22.04(LTS)   
+* Ubuntu 22.04(LTS)
+* Ubuntu 24.04
+* Amazon Linux
 * Fedora 36   
 * RockyOS  
-* Enterprise Redhat (Planned)  
+* Enterprise Redhat9
 * Windows Server(Planned)  
 
 ### Kernel Requirements  
 
-* Linux Kernel Version >= 5.15.x  && < 6.5.x  
+* Linux Kernel Version >= 5.15.x
 * Windows (Planned)  
 
 ### Compatible Kubernetes Versions  
 
-* Kubernetes 1.19  ~ 1.29 (k0s, k3s, k8s, eks, openshift, kind etc)   
+* Kubernetes >= 1.19  (k0s, k3s, k8s, eks, gke, openshift, kind etc)   
 
 ### Hardware Requirements  
 
