@@ -1,0 +1,285 @@
+img[alt="build workflow"] {
+    padding: 0px;
+    line-height: 0;
+    border-radius: 0px;
+    margin: 0;
+    max-width: 70%;
+    display: inline-block;
+}
+
+img[alt="Docker-Multi-Arch"] {
+    padding: 0px;
+    line-height: 0;
+    border-radius: 0px;
+    margin: 0;
+    max-width: 70%;
+    display: inline-block;
+}
+
+
+img[alt="simple workflow"] {
+    padding: 0px;
+    line-height: 0;
+    border-radius: 0px;
+    margin: 0;
+    max-width: 70%;
+    display: inline-block;
+}
+
+img[alt="Sanity-CI-Ubuntu-22"] {
+    padding: 0px;
+    line-height: 0;
+    border-radius: 0px;
+    margin: 0;
+    max-width: 70%;
+    display: inline-block;
+}
+
+img[alt="tcp-lb-sanity-CI"] {
+    padding: 0px;
+    line-height: 0;
+    border-radius: 0px;
+    margin: 0;
+    max-width: 70%;
+    display: inline-block;
+}
+
+img[alt="udp-lb-sanity-CI"] {
+    padding: 0px;
+    line-height: 0;
+    border-radius: 0px;
+    margin: 0;
+    max-width: 70%;
+    display: inline-block;
+}
+
+img[alt="sctp-lb-sanity-CI"] {
+    padding: 0px;
+    line-height: 0;
+    border-radius: 0px;
+    margin: 0;
+    max-width: 50%;
+    display: inline-block;
+}
+
+img[alt="ipsec-sanity-CI"] {
+    padding: 0px;
+    line-height: 0;
+    border-radius: 0px;
+    margin: 0;
+    max-width: 50%;
+    display: inline-block;
+}
+
+img[alt="extlb workflow"] {
+    padding: 0px;
+    line-height: 0;
+    border-radius: 0px;
+    margin: 0;
+    max-width: 50%;
+    display: inline-block;
+}
+
+img[alt="nat66-sanity-CI"] {
+    padding: 0px;
+    line-height: 0;
+    border-radius: 0px;
+    margin: 0;
+    max-width: 70%;
+    display: inline-block;
+}
+
+img[alt="Scale-Sanity-CI-Ubuntu-22"] {
+    padding: 0px;
+    line-height: 0;
+    border-radius: 0px;
+    margin: 0;
+    max-width: 70%;
+    display: inline-block;
+}
+
+img[alt="scale-sanity-CI"] {
+    padding: 0px;
+    line-height: 0;
+    border-radius: 0px;
+    margin: 0;
+    max-width: 50%;
+    display: inline-block;
+}
+
+img[alt="perf-CI"] {
+    padding: 0px;
+    line-height: 0;
+    border-radius: 0px;
+    margin: 0;
+    max-width: 50%;
+    display: inline-block;
+}
+
+img[alt="liveness-sanity-CI"] {
+    padding: 0px;
+    line-height: 0;
+    border-radius: 0px;
+    margin: 0;
+    max-width: 50%;
+    display: inline-block;
+}
+
+img[alt=K3s-Base-Sanity-CI] {
+    padding: 0px;
+    line-height: 0;
+    border-radius: 0px;
+    margin: 0;
+    max-width: 70%;
+    display: inline-block;
+}
+
+img[alt=K8s-Calico-Cluster-IPVS-CI] {
+    padding: 0px;
+    line-height: 0;
+    border-radius: 0px;
+    margin: 0;
+    max-width: 90%;
+    display: inline-block;
+}
+
+img[alt=EKS] {
+    padding: 0px;
+    line-height: 0;
+    border-radius: 0px;
+    margin: 0;
+    max-width: 70%;
+    display: inline-block;
+}
+
+img[alt=k3s-flannel-CI] {
+    padding: 0px;
+    line-height: 0;
+    border-radius: 0px;
+    margin: 0;
+    max-width: 70%;
+    display: inline-block;
+}
+
+img[alt=K8s-Calico-Cluster-IPVS2-CI] {
+    padding: 0px;
+    line-height: 0;
+    border-radius: 0px;
+    margin: 0;
+    max-width: 90%;
+    display: inline-block;
+}
+
+img[alt=k3s-flannel-ubuntu22-CI] {
+    padding: 0px;
+    line-height: 0;
+    border-radius: 0px;
+    margin: 0;
+    max-width: 90%;
+    display: inline-block;
+}
+
+img[alt=K8s-Calico-Cluster-IPVS3-CI] {
+    padding: 0px;
+    line-height: 0;
+    border-radius: 0px;
+    margin: 0;
+    max-width: 90%;
+    display: inline-block;
+}
+
+img[alt=k3s-flannel-cluster-CI] {
+    padding: 0px;
+    line-height: 0;
+    border-radius: 0px;
+    margin: 0;
+    max-width: 90%;
+    display: inline-block;
+}
+
+img[alt=K8s-Calico-Cluster-IPVS3-HA-CI] {
+    padding: 0px;
+    line-height: 0;
+    border-radius: 0px;
+    margin: 0;
+    max-width: 90%;
+    display: inline-block;
+}
+
+img[alt=k3s-flannel-incluster-CI] {
+    padding: 0px;
+    line-height: 0;
+    border-radius: 0px;
+    margin: 0;
+    max-width: 90%;
+    display: inline-block;
+}
+
+img[alt=k3s-flannel-incluster-l2-CI] {
+    padding: 0px;
+    line-height: 0;
+    border-radius: 0px;
+    margin: 0;
+    max-width: 90%;
+    display: inline-block;
+}
+
+img[alt=k3s-calico-CI] {
+    padding: 0px;
+    line-height: 0;
+    border-radius: 0px;
+    margin: 0;
+    max-width: 70%;
+    display: inline-block;
+}
+
+img[alt=k3s-cilium-cluster-CI] {
+    padding: 0px;
+    line-height: 0;
+    border-radius: 0px;
+    margin: 0;
+    max-width: 90%;
+    display: inline-block;
+}
+
+img[alt=k3s-sctpmh-CI] {
+    padding: 0px;
+    line-height: 0;
+    border-radius: 0px;
+    margin: 0;
+    max-width: 90%;
+    display: inline-block;
+}
+
+img[alt=k3s-sctpmh-ubuntu22-CI] {
+    padding: 0px;
+    line-height: 0;
+    border-radius: 0px;
+    margin: 0;
+    max-width: 90%;
+    display: inline-block;
+}
+
+img[alt=k3s-sctpmh-2-CI] {
+    padding: 0px;
+    line-height: 0;
+    border-radius: 0px;
+    margin: 0;
+    max-width: 90%;
+    display: inline-block;
+}
+
+
+td:nth-child(odd) {
+    padding: 0px 0px 0px 0px;
+    margin: 0px;
+    width: 1000px
+
+}
+
+td:nth-child(even) {
+    padding: 0px 0px 0px 0px;
+    margin: 0px;
+    width: 1000px
+
+}
