@@ -170,6 +170,7 @@ Telco-cloud requires load-balancing and communication across various interfaces/
 - [K8s - Bringing load-balancing to multus workloads with loxilb](https://cloudybytes.medium.com/k8s-bringing-load-balancing-to-multus-workloads-with-loxilb-a0746f270abe)
 - [5G SCTP LoadBalancer Using LoxiLB on free5GC](https://medium.com/@ben0978327139/5g-sctp-loadbalancer-using-loxilb-applying-on-free5gc-b5c05bb723f0)
 - [Kubernetes Services: Achieving optimal performance is elusive](https://cloudybytes.medium.com/kubernetes-services-achieving-optimal-performance-is-elusive-5def5183c281)
+- [LoxiLB: Another Load Balancer](https://blog.devgenius.io/loxilb-another-load-balancer-aabf4a29d810)
 
 ## Research Papers (featuring loxilb)
 - [Mitigating Spectre-PHT using Speculation Barriers in Linux BPF](https://arxiv.org/pdf/2405.00078)   
