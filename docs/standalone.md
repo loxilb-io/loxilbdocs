@@ -4,7 +4,9 @@ This guide will help users to run loxilb in a standalone mode decoupled from kub
 
 ### Pre-requisites 
 
-*This guide uses Ubuntu 20.04.5 LTS as the base operating system*
+*This guide uses Ubuntu 20.04.5 LTS as the base operating system*. Please check [system requirements](https://docs.loxilb.io/latest/requirements/) for other supported OSs.
+
+### 1) Run using docker
 
 #### Install docker    
 
@@ -14,14 +16,12 @@ sudo apt update
 sudo apt install snapd
 sudo snap install docker
 ```
-
 #### Enable IPv6 (if running NAT64/NAT66)   
 ```
 sysctl net.ipv6.conf.all.disable_ipv6=0
 sysctl net.ipv6.conf.default.disable_ipv6=0
 ```
-
-### Run loxilb 
+#### Run loxilb docker
 
 Get the loxilb official docker image    
 
@@ -71,16 +71,46 @@ docker network connect llbnet2 loxilb --ip=172.30.2.195
 * If loxilb docker is in the same node as the app/workload docker, it is advised that "tx checksum offload" inside app/workload docker is turned off for sctp load-balancing to work properly   
 ```
 docker exec -dt <app-docker-name> ethtool -K <app-docker-interface> tx off
-```   
+```
+### 2) Run using systemd services
 
-### Configuration   
+#### Get loxilb "deb" packages
+
+loxilb *deb* packages can be downloaded from loxilb packages. For latest nightly builds, one can use the following command :
+
+```
+wget https://github.com/loxilb-io/loxilb/releases/download/latest/loxilb_0.99rc-amd64.deb
+```
+
+For stable builds, one can use the following command:
+
+```
+wget https://github.com/loxilb-io/loxilb/releases/download/latest/loxilb_0.9.7-amd64.deb
+```
+#### Install loxilb deb package
+```
+sudo dpkg -i loxilb_0.99rc-amd64.deb
+```
+#### Change loxilb arguments 
+
+If there is a need to change loxilb run time arguments, one can use the following set of steps :
+
+```
+sudo systemctl stop loxilb
+### Edit the file /etc/systemd/system/loxilb.service
+sudo systemctl daemon-reload
+sudo systemctl start loxilb
+```
+#### Uninstall loxilb packages
+
+```
+sudo systemctl stop loxilb
+sudo dpkg -P loxilb
+```
+## Configuration in standalone mode   
 
 loxicmd command line tool can be used to configure loxilb in standalone mode. A simple example of configuration using loxilb is as follows:   
 
-* Drop into loxilb shell   
-```
-sudo docker exec -it loxilb bash
-```
 * Create a LB rule inside loxilb docker. Various other options for LB manipulation can be found [here](https://github.com/loxilb-io/loxilbdocs/blob/main/docs/cmd.md#load-balancer)    
 ```
 loxicmd create lb 2001::1 --tcp=2020:8080 --endpoints=33.33.33.1:1
@@ -89,9 +119,14 @@ loxicmd create lb 2001::1 --tcp=2020:8080 --endpoints=33.33.33.1:1
 ```
 loxicmd get lb -o wide
 ```
-The detailed usage guide of loxicmd can be found [here](https://loxilb-io.github.io/loxilbdocs/cmd/).   
 
-### Working with gobgp
+The detailed usage guide of loxicmd can be found [here](https://loxilb-io.github.io/loxilbdocs/cmd/). If loxilb docker is being used, these commands are available after dropping into loxilb docker:   
+
+* Drop into loxilb shell   
+```
+sudo docker exec -it loxilb bash
+```
+## Working with gobgp
 
 loxilb works in tandem with gobgp when bgp services  are required. As a first step, create a file gobgp.conf in host where loxilb docker will run and add the basic necessary fields :   
 
@@ -117,12 +152,14 @@ The gobgp daemon should pick the configuration. The neighbors can be verified by
 sudo docker exec -it loxilb gobgp neighbor
 ```
 
+Kindly note that while working with loxilb docker, gobgp is already packaged in the loxilb docker. If one is using systemd based packages, gobgp needs to be installed manually as per [instructions](https://github.com/osrg/gobgp?tab=readme-ov-file). 
+
 At run time, there are two ways to change gobgp configuration. Ephemeral configuration can simply be done using “gobgp” command as detailed [here](https://github.com/osrg/gobgp/blob/master/docs/sources/cli-operations.md). If persistence is required, then one can change the gobgp config file /etc/gobgp/gobgp.conf and apply SIGHUP to gobgpd process for loading the edited configuration.   
 
 ```
 sudo docker exec -it loxilb pkill -1 gobgpd
 ```
-### Persistent LB entries
+## Persistent LB entries
 
 To save the created rules across reboots, one can use the following command:    
 
