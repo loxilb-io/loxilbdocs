@@ -79,13 +79,13 @@ docker exec -dt <app-docker-name> ethtool -K <app-docker-interface> tx off
 loxilb *deb* packages can be downloaded from loxilb release packages. For latest nightly builds, one can use the following command :
 
 ```
-wget https://github.com/loxilb-io/loxilb/releases/download/latest/loxilb_0.99rc-amd64.deb
+wget https://github.com/loxilb-io/loxilb/releases/download/vlatest/loxilb_0.99rc-amd64.deb
 ```
 
 For stable builds, one can use the following command:
 
 ```
-wget https://github.com/loxilb-io/loxilb/releases/download/latest/loxilb_0.9.7-amd64.deb
+wget https://github.com/loxilb-io/loxilb/releases/download/v0.9.7/loxilb_0.9.7-amd64.deb
 ```
 #### Install loxilb deb package
 ```
