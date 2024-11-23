@@ -2444,7 +2444,7 @@
 </tr>
 <tr>
 <td>cidrPools</td>
-<td>CIDR or IPAddress range to allocate addresses from. By default address allocated are shared for different services(shared Mode).  cidrPools can be specified as ip-cidr e.g 123.123.123.0/24 or as ip-ranges e.g 192.168.20.100-192.168.20.105</td>
+<td>CIDR or IPAddress range to allocate addresses from. By default address allocated are shared for different services(shared Mode). Multiple pools can be defined and any of them can be selected during service creation using "loxilb.io/poolSelect" annotation. cidrPools can be specified as ip-cidr e.g 123.123.123.0/24 or as ip-ranges e.g 192.168.20.100-192.168.20.105</td>
 </tr>
 <tr>
 <td>cidr6Pools</td>
