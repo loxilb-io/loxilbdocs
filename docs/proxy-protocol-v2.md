@@ -1,6 +1,14 @@
 # Proxy Protocol v2 with LoxiLB
 
-Proxy Protocol v2 is essential for maintaining transparency between clients, load balancers, and backend servers. Load balancers typically act as intermediaries, often obscuring the original client's IP address. By using [Proxy Protocol v2](https://www.haproxy.org/download/1.8/doc/proxy-protocol.txt), this limitation is overcome by embedding client connection metadata, enabling backend servers to process requests while retaining original client details.
+In network architectures involving load balancers, client connections are routed through these intermediaries before reaching backend servers. While load balancers effectively distribute traffic, they often hide the original client's IP address and connection details, as backend servers see the load balancer as the source.
+
+This lack of transparency creates challenges, such as:
+
+* <b>Accurate Logging</b>: Backend servers cannot log the original client information, leading to incomplete or misleading records.   
+* <b>Troubleshooting</b>: Identifying and resolving client-specific issues becomes difficult without visibility into connection metadata.     
+* <b>Access Control</b>: Enforcing IP-based rules or geolocation-based policies becomes impossible without knowing the original client’s IP.   
+
+[Proxy Protocol v2](https://www.haproxy.org/download/1.8/doc/proxy-protocol.txt) addresses these limitations by embedding client connection metadata into the communication stream. This enables backend servers to process requests while retaining visibility into the original client details, enhancing transparency, accuracy, and control in modern network environments.   
 
 ## How Proxy protocol works with LoxiLB
 
@@ -16,7 +24,7 @@ Address Family: IPv4/IPv6.
 Additional Fields: Checksum, length, or custom data.
 By encoding this metadata, LoxiLB ensures transparency, enhances visibility, and enables accurate logging and troubleshooting in complex environments.
 
-LoxiLB leverages eBPF technology to generate Proxy Protocol headers dynamically with minimal performance overhead. However, before enabling Proxy Protocol v2, ensure that server-side applications support this feature to avoid compatibility issues.
+LoxiLB leverages [eBPF](ebpf.io) technology to generate Proxy Protocol headers dynamically with minimal performance overhead. However, before enabling Proxy Protocol v2, ensure that server-side applications support this feature to avoid compatibility issues.
 
 ## How to create a Service enabling Proxy Protocol v2
 
