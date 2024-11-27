@@ -2261,20 +2261,17 @@
 
 
 <h1 id="proxy-protocol-v2-with-loxilb">Proxy Protocol v2 with LoxiLB</h1>
-<p>Proxy Protocol v2 plays a critical role in enabling transparency between clients, load balancers, and backend servers. 
-Load balancers typically act as intermediaries, and sometimes making it impossible to preserve the source IP address of the original client. 
-<a href="https://www.haproxy.org/download/1.8/doc/proxy-protocol.txt">Proxy Protocol v2</a> addresses this limitation by forwarding the client’s connection metadata to the backend servers, allowing them to receive and process the original client details.</p>
+<p>Proxy Protocol v2 is essential for maintaining transparency between clients, load balancers, and backend servers. Load balancers typically act as intermediaries, often obscuring the original client's IP address. By using <a href="https://www.haproxy.org/download/1.8/doc/proxy-protocol.txt">Proxy Protocol v2</a>, this limitation is overcome by embedding client connection metadata, enabling backend servers to process requests while retaining original client details.</p>
 <h2 id="how-proxy-protocol-works-with-loxilb">How Proxy protocol works with LoxiLB</h2>
-<p>When a client establishes a TCP connection with the backend server after the completion of a 3-way handshake, LoxiLB appends a Proxy Protocol v2 header containing the client’s metadata, and forwards the request to the backend servers. The Proxy Protocol v2 header, containing the client's connection details, is added to the beginning of the data stream.</p>
+<p>When a client establishes a TCP connection with a backend server (after completing the 3-way handshake), LoxiLB appends a Proxy Protocol v2 header containing the client’s metadata to the beginning of the data stream. The request is then forwarded to the backend servers.</p>
 <p><img alt="image" src="https://github.com/user-attachments/assets/5b0f4d9d-a2d2-4a7a-b753-e5fb6a2472b6" /></p>
-<p>The Client's metadata may include original L3/L4 information, for example:
-- Client's IP and Port(Source/Destination)
-- Protocol(TCP/UDP)
-- Address Family(IPv4/IPv6)
-- Checksum
-- Length
-- Custom Data</p>
-<p>By encoding essential Client's connection metadata, it preserves transparency, extends visibility and facilitates accurate logging and troubleshooting in complex environments. Furthermore, loxilb uses eBPF to implement proxy protocol headers on-the-fly. Hence there is hardly any performance impact on enabling proxy protocol. However one should confirm if the server-side applications deployed are compatible with proxy protocol v2.</p>
+<p>The metadata in the Proxy Protocol v2 header can include:</p>
+<p>Client Information: Original IP and port (source/destination).
+Protocol Details: TCP/UDP.
+Address Family: IPv4/IPv6.
+Additional Fields: Checksum, length, or custom data.
+By encoding this metadata, LoxiLB ensures transparency, enhances visibility, and enables accurate logging and troubleshooting in complex environments.</p>
+<p>LoxiLB leverages eBPF technology to generate Proxy Protocol headers dynamically with minimal performance overhead. However, before enabling Proxy Protocol v2, ensure that server-side applications support this feature to avoid compatibility issues.</p>
 <h2 id="how-to-create-a-service-enabling-proxy-protocol-v2">How to create a Service enabling Proxy Protocol v2</h2>
 <p>One can follows various <a href="https://docs.loxilb.io/latest/kube-loxilb/">guides</a> about general deployment of loxilb. Below is an example manifest for creating a load-balancer service with Proxy protocol v2 with loxilb :
 <div class="highlight"><pre><span></span><code>apiVersion: v1
@@ -2301,7 +2298,7 @@ spec:
 </code></pre></div>
 <img alt="Screenshot 2024-11-27 at 3 04 11 PM" src="https://github.com/user-attachments/assets/d58aa3f5-39dc-48aa-992b-36b1a3edf90a" /></p>
 <h3 id="limitations">Limitations</h3>
-<p>Currently, loxilb supports proxy protocol v2 with only Ipv4 and TCP payloads. Support for more combinations of protocols is in progress.</p>
+<p>LoxiLB currently supports Proxy Protocol v2 with IPv4 and TCP payloads. Support for additional protocol combinations is under development.</p>
 
 
 
