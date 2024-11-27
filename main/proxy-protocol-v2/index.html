@@ -8,13 +8,9 @@
       
       
       
-        <link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/main/k3s-multi-master/">
+        <link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/main/proxy-protocol-v2/">
       
       
-        <link rel="prev" href="../ext-ep/">
-      
-      
-        <link rel="next" href="../aws-multi-az/">
       
       
       <link rel="icon" href="../photos/loxilb-logo.png">
@@ -22,7 +18,7 @@
     
     
       
-        <title>How-To - Deploy multi-server K3s HA with loxilb - LoxiLB</title>
+        <title>Proxy Protocol v2 with LoxiLB - LoxiLB</title>
       
     
     
@@ -76,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#guide-to-deploy-multi-master-ha-k3s-with-loxilb" class="md-skip">
+        <a href="#proxy-protocol-v2-with-loxilb" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              How-To - Deploy multi-server K3s HA with loxilb
+              Proxy Protocol v2 with LoxiLB
             
           </span>
         </div>
@@ -989,10 +985,8 @@
       
   
   
-    
   
   
-  
     
     
       
@@ -1019,11 +1013,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
@@ -1037,7 +1031,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             Advanced Guides
@@ -1090,28 +1084,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    How-To - Deploy multi-server K3s HA with loxilb
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../k3s-multi-master/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1120,149 +1096,6 @@
   
 
       </a>
-      
-        
-
-  
-
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#guide-to-deploy-multi-master-ha-k3s-with-loxilb" class="md-nav__link">
-    <span class="md-ellipsis">
-      Guide to deploy multi-master HA K3s with loxilb
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#topology" class="md-nav__link">
-    <span class="md-ellipsis">
-      Topology
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#k3s-installation-and-setup" class="md-nav__link">
-    <span class="md-ellipsis">
-      K3s installation and Setup
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="K3s installation and Setup">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#in-k3s-server1-node-" class="md-nav__link">
-    <span class="md-ellipsis">
-      In k3s-server1 node -
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="In k3s-server1 node -">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#setup-the-node-for-loxilb" class="md-nav__link">
-    <span class="md-ellipsis">
-      Setup the node for loxilb :
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#in-k3s-server2-node-" class="md-nav__link">
-    <span class="md-ellipsis">
-      In k3s-server2 node -
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="In k3s-server2 node -">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#setup-the-node-for-loxilb_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Setup the node for loxilb:
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#in-k3s-server3-node-" class="md-nav__link">
-    <span class="md-ellipsis">
-      In k3s-server3 node -
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="In k3s-server3 node -">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#setup-the-node-for-loxilb_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      Setup the node for loxilb:
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#in-k3s-agent1-node-" class="md-nav__link">
-    <span class="md-ellipsis">
-      In k3s-agent1 node -
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#validation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Validation
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2358,6 +2191,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -2366,47 +2201,37 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#guide-to-deploy-multi-master-ha-k3s-with-loxilb" class="md-nav__link">
+  <a href="#how-proxy-protocol-works-with-loxilb" class="md-nav__link">
     <span class="md-ellipsis">
-      Guide to deploy multi-master HA K3s with loxilb
+      How Proxy protocol works with LoxiLB
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#topology" class="md-nav__link">
+  <a href="#how-to-create-a-service-enabling-proxy-protocol-v2" class="md-nav__link">
     <span class="md-ellipsis">
-      Topology
+      How to create a Service enabling Proxy Protocol v2
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#k3s-installation-and-setup" class="md-nav__link">
+  <a href="#how-to-verify-proxy-protocol-v2" class="md-nav__link">
     <span class="md-ellipsis">
-      K3s installation and Setup
+      How to verify Proxy Protocol v2
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="K3s installation and Setup">
+    <nav class="md-nav" aria-label="How to verify Proxy Protocol v2">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#in-k3s-server1-node-" class="md-nav__link">
+  <a href="#limitations" class="md-nav__link">
     <span class="md-ellipsis">
-      In k3s-server1 node -
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="In k3s-server1 node -">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#setup-the-node-for-loxilb" class="md-nav__link">
-    <span class="md-ellipsis">
-      Setup the node for loxilb :
+      Limitations
     </span>
   </a>
   
@@ -2414,77 +2239,6 @@
         
       </ul>
     </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#in-k3s-server2-node-" class="md-nav__link">
-    <span class="md-ellipsis">
-      In k3s-server2 node -
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="In k3s-server2 node -">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#setup-the-node-for-loxilb_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Setup the node for loxilb:
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#in-k3s-server3-node-" class="md-nav__link">
-    <span class="md-ellipsis">
-      In k3s-server3 node -
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="In k3s-server3 node -">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#setup-the-node-for-loxilb_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      Setup the node for loxilb:
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#in-k3s-agent1-node-" class="md-nav__link">
-    <span class="md-ellipsis">
-      In k3s-agent1 node -
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#validation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Validation
-    </span>
-  </a>
   
 </li>
       
@@ -2506,450 +2260,48 @@
   
 
 
-  <h1>How-To - Deploy multi-server K3s HA with loxilb</h1>
-
-<h3 id="guide-to-deploy-multi-master-ha-k3s-with-loxilb">Guide to deploy multi-master HA K3s with <a href="https://github.com/loxilb-io/loxilb">loxilb</a></h3>
-<p>This document will explain how to install a multi-master HA K3s cluster with loxilb as a serviceLB provider running in-cluster mode. K3s is a lightweight Kubernetes distribution and is increasingly used for prototyping as well as for production workloads. 
-K3s nodes are deployed as:  <br />
-1) k3s-server nodes for k3s control plane components like apiserver and etcd. <br />
-2) k3s-agent nodes hosting user workloads/apps. When we deploy multi-master nodes, it is necessary that they be accessed from the k3s-agents in HA configuration and behind a load-balancer. Usually deploying such a load-balancer is <a href="https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/high-availability/">outside the scope</a> of kubernetes.   </p>
-<p>In this guide, we will see how to deploy loxilb not only as cluster's serviceLB provider but also as a VIP-LB for accessing server/master node(s) services.      </p>
-<h3 id="topology">Topology</h3>
-<p>For multi-master setup we need an odd number of server nodes to maintain quorum. So, we will have 3 k3s-server nodes for this setup. Overall, we will be deploying the components as per the following topology :   </p>
-<p><img alt="loxilb topology" src="../photos/loxilb-k3s-multi-master.png" /></p>
-<h3 id="k3s-installation-and-setup">K3s installation and Setup</h3>
-<h4 id="in-k3s-server1-node-">In k3s-server1 node -</h4>
-<p><div class="highlight"><pre><span></span><code>$ curl -fL https://get.k3s.io | sh -s - server --node-ip=192.168.80.10 \
-  --disable servicelb --disable traefik --cluster-init external-hostname=192.168.80.10 \
-  --node-external-ip=192.168.80.80 --disable-cloud-controller
-</code></pre></div>
-It is to be noted that <code>--node-external-ip=192.168.80.80</code> is used since we will utilize 192.168.80.80 as the VIP to access the multi-master setup from k3s-agents and other clients.</p>
-<h5 id="setup-the-node-for-loxilb">Setup the node for loxilb :</h5>
-<div class="highlight"><pre><span></span><code>sudo mkdir -p /etc/loxilb
-</code></pre></div>
-<p>Create the following files in /etc/loxilb</p>
-<ol>
-<li>lbconfig.txt with following contents (change as per your requirement)</li>
-</ol>
-<p><div class="highlight"><pre><span></span><code>{
-   &quot;lbAttr&quot;:[
-      {
-         &quot;serviceArguments&quot;:{
-            &quot;externalIP&quot;:&quot;192.168.80.80&quot;,
-            &quot;port&quot;:6443,
-            &quot;protocol&quot;:&quot;tcp&quot;,
-            &quot;sel&quot;:0,
-            &quot;mode&quot;:2,
-            &quot;BGP&quot;:false,
-            &quot;Monitor&quot;:true,
-            &quot;inactiveTimeOut&quot;:240,
-            &quot;block&quot;:0
-         },
-         &quot;secondaryIPs&quot;:null,
-         &quot;endpoints&quot;:[
-            {
-               &quot;endpointIP&quot;:&quot;192.168.80.10&quot;,
-               &quot;targetPort&quot;:6443,
-               &quot;weight&quot;:1,
-               &quot;state&quot;:&quot;active&quot;,
-               &quot;counter&quot;:&quot;&quot;
-            },
-            {
-               &quot;endpointIP&quot;:&quot;192.168.80.11&quot;,
-               &quot;targetPort&quot;:6443,
-               &quot;weight&quot;:1,
-               &quot;state&quot;:&quot;active&quot;,
-               &quot;counter&quot;:&quot;&quot;
-            },
-            {
-               &quot;endpointIP&quot;:&quot;192.168.80.12&quot;,
-               &quot;targetPort&quot;:6443,
-               &quot;weight&quot;:1,
-               &quot;state&quot;:&quot;active&quot;,
-               &quot;counter&quot;:&quot;&quot;
-            }
-         ]
-      }
-   ]
-}
-</code></pre></div>
-2. EPconfig.txt with the following contents (change as per your requirement)
-<div class="highlight"><pre><span></span><code>{
-   &quot;Attr&quot;:[
-      {
-         &quot;hostName&quot;:&quot;192.168.80.10&quot;,
-         &quot;name&quot;:&quot;192.168.80.10_tcp_6443&quot;,
-         &quot;inactiveReTries&quot;:2,
-         &quot;probeType&quot;:&quot;tcp&quot;,
-         &quot;probeReq&quot;:&quot;&quot;,
-         &quot;probeResp&quot;:&quot;&quot;,
-         &quot;probeDuration&quot;:10,
-         &quot;probePort&quot;:6443
-      },
-      {
-         &quot;hostName&quot;:&quot;192.168.80.11&quot;,
-         &quot;name&quot;:&quot;192.168.80.11_tcp_6443&quot;,
-         &quot;inactiveReTries&quot;:2,
-         &quot;probeType&quot;:&quot;tcp&quot;,
-         &quot;probeReq&quot;:&quot;&quot;,
-         &quot;probeResp&quot;:&quot;&quot;,
-         &quot;probeDuration&quot;:10,
-         &quot;probePort&quot;:6443
-      },
-      {
-         &quot;hostName&quot;:&quot;192.168.80.12&quot;,
-         &quot;name&quot;:&quot;192.168.80.12_tcp_6443&quot;,
-         &quot;inactiveReTries&quot;:2,
-         &quot;probeType&quot;:&quot;tcp&quot;,
-         &quot;probeReq&quot;:&quot;&quot;,
-         &quot;probeResp&quot;:&quot;&quot;,
-         &quot;probeDuration&quot;:10,
-         &quot;probePort&quot;:6443
-      }
-   ]
-}
-</code></pre></div></p>
-<p>The above serve as bootstrap LB rules for load-balancing into the k3s-server nodes as we will see later.  </p>
-<h4 id="in-k3s-server2-node-">In k3s-server2 node -</h4>
-<p><div class="highlight"><pre><span></span><code>$ curl -fL https://get.k3s.io | K3S_TOKEN=${NODE_TOKEN} sh -s - server --server https://192.168.80.10:6443 \
-  --disable traefik --disable servicelb --node-ip=192.168.80.11 \
-  external-hostname=192.168.80.11 --node-external-ip=192.168.80.80 -t ${NODE_TOKEN}
-</code></pre></div>
-where NODE_TOKEN contain simply contents of /var/lib/rancher/k3s/server/node-token from server1. For example, it can be set using a command equivalent to the following :</p>
-<div class="highlight"><pre><span></span><code>export NODE_TOKEN=$(cat node-token)
-</code></pre></div>
-<h5 id="setup-the-node-for-loxilb_1">Setup the node for loxilb:</h5>
-<p>Simply follow the steps as outlined for server1.</p>
-<h4 id="in-k3s-server3-node-">In k3s-server3 node -</h4>
-<p><div class="highlight"><pre><span></span><code>$ curl -fL https://get.k3s.io | K3S_TOKEN=${NODE_TOKEN} sh -s - server --server https://192.168.80.10:6443 \
-  --disable traefik --disable servicelb --node-ip=192.168.80.12 \
-  external-hostname=192.168.80.12 --node-external-ip=192.168.80.80 -t ${NODE_TOKEN}
-</code></pre></div>
-where NODE_TOKEN contain simply contents of /var/lib/rancher/k3s/server/node-token from server1. For example, it can be set using a command equivalent to the following :</p>
-<div class="highlight"><pre><span></span><code>export NODE_TOKEN=$(cat node-token)
-</code></pre></div>
-<h5 id="setup-the-node-for-loxilb_2">Setup the node for loxilb:</h5>
-<p>First, follow the steps as outlined for server1. Additionally, we will have to start loxilb pod instances as follows :</p>
-<div class="highlight"><pre><span></span><code>$ sudo kubectl apply -f - &lt;&lt;EOF
-apiVersion: apps/v1
-kind: DaemonSet
-metadata:
-  name: loxilb-lb
-  namespace: kube-system
-spec:
-  selector:
-    matchLabels:
-      app: loxilb-app
-  template:
-    metadata:
-      name: loxilb-lb
-      labels:
-        app: loxilb-app
-    spec:
-      hostNetwork: true
-      dnsPolicy: ClusterFirstWithHostNet
-      tolerations:
-      - key: &quot;node-role.kubernetes.io/master&quot;
-        operator: Exists
-      - key: &quot;node-role.kubernetes.io/control-plane&quot;
-        operator: Exists
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: &quot;node-role.kubernetes.io/master&quot;
-                operator: Exists
-              - key: &quot;node-role.kubernetes.io/control-plane&quot;
-                operator: Exists
-      volumes:
-      - name: hllb
-        hostPath:
-          path: /etc/loxilb
-          type: DirectoryOrCreate
-      containers:
-      - name: loxilb-app
-        image: &quot;ghcr.io/loxilb-io/loxilb:latest&quot;
-        imagePullPolicy: Always
-        command:
-        - /root/loxilb-io/loxilb/loxilb
-        args:
-        - --egr-hooks
-        - --blacklist=cni[0-9a-z]|veth.|flannel.
-        volumeMounts:
-        - name: hllb
-          mountPath: /etc/loxilb
-        ports:
-        - containerPort: 11111
-        - containerPort: 179
-        securityContext:
-          privileged: true
-          capabilities:
-            add:
-              - SYS_ADMIN
----
-apiVersion: v1
+<h1 id="proxy-protocol-v2-with-loxilb">Proxy Protocol v2 with LoxiLB</h1>
+<p>Proxy Protocol v2 plays a critical role in enabling transparency between clients, load balancers, and backend servers. 
+Load balancers typically act as intermediaries, and sometimes making it impossible to preserve the source IP address of the original client. 
+<a href="https://www.haproxy.org/download/1.8/doc/proxy-protocol.txt">Proxy Protocol v2</a> addresses this limitation by forwarding the client’s connection metadata to the backend servers, allowing them to receive and process the original client details.</p>
+<h2 id="how-proxy-protocol-works-with-loxilb">How Proxy protocol works with LoxiLB</h2>
+<p>When a client establishes a TCP connection with the backend server after the completion of a 3-way handshake, LoxiLB appends a Proxy Protocol v2 header containing the client’s metadata, and forwards the request to the backend servers. The Proxy Protocol v2 header, containing the client's connection details, is added to the beginning of the data stream.</p>
+<p><img alt="image" src="https://github.com/user-attachments/assets/5b0f4d9d-a2d2-4a7a-b753-e5fb6a2472b6" /></p>
+<p>The Client's metadata may include original L3/L4 information, for example:
+- Client's IP and Port(Source/Destination)
+- Protocol(TCP/UDP)
+- Address Family(IPv4/IPv6)
+- Checksum
+- Length
+- Custom Data</p>
+<p>By encoding essential Client's connection metadata, it preserves transparency, extends visibility and facilitates accurate logging and troubleshooting in complex environments. Furthermore, loxilb uses eBPF to implement proxy protocol headers on-the-fly. Hence there is hardly any performance impact on enabling proxy protocol. However one should confirm if the server-side applications deployed are compatible with proxy protocol v2.</p>
+<h2 id="how-to-create-a-service-enabling-proxy-protocol-v2">How to create a Service enabling Proxy Protocol v2</h2>
+<p>One can follows various <a href="https://docs.loxilb.io/latest/kube-loxilb/">guides</a> about general deployment of loxilb. Below is an example manifest for creating a load-balancer service with Proxy protocol v2 with loxilb :
+<div class="highlight"><pre><span></span><code>apiVersion: v1
 kind: Service
 metadata:
-  name: loxilb-lb-service
-  namespace: kube-system
+  name: tcp-lb-fullnat
+  annotations:
+    loxilb.io/liveness: &quot;yes&quot;
+    loxilb.io/lbmode: &quot;fullnat&quot;
+    loxilb.io/useproxyprotov2 : &quot;yes&quot;
 spec:
-  clusterIP: None
+  externalTrafficPolicy: Local
+  loadBalancerClass: loxilb.io/loxilb
   selector:
-    app: loxilb-app
+    what: tcp-fullnat-test
   ports:
-  - name: loxilb-app
-    port: 11111
-    targetPort: 11111
-    protocol: TCP
-EOF
-</code></pre></div>
-<p>Kindly note that the args for loxilb might change depending on the scenario. This scenario considers loxilb running in-cluster mode. For service-proxy mode, please follow this <a href="https://raw.githubusercontent.com/loxilb-io/kube-loxilb/main/manifest/service-proxy/loxilb-service-proxy.yml">yaml</a> for exact args. Next, we will install loxilb's operator kube-loxilb as follows :</p>
-<div class="highlight"><pre><span></span><code>sudo kubectl apply -f - &lt;&lt;EOF
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: kube-loxilb
-  namespace: kube-system
----
-kind: ClusterRole
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
-  name: kube-loxilb
-rules:
-  - apiGroups:
-      - &quot;&quot;
-    resources:
-      - nodes
-    verbs:
-      - get
-      - watch
-      - list
-      - patch
-  - apiGroups:
-      - &quot;&quot;
-    resources:
-      - pods
-    verbs:
-      - get
-      - watch
-      - list
-      - patch
-  - apiGroups:
-      - &quot;&quot;
-    resources:
-      - endpoints
-      - services
-      - services/status
-    verbs:
-      - get
-      - watch
-      - list
-      - patch
-      - update
-  - apiGroups:
-      - gateway.networking.k8s.io
-    resources:
-      - gatewayclasses
-      - gatewayclasses/status
-      - gateways
-      - gateways/status
-      - tcproutes
-      - udproutes
-    verbs: [&quot;get&quot;, &quot;watch&quot;, &quot;list&quot;, &quot;patch&quot;, &quot;update&quot;]
-  - apiGroups:
-      - discovery.k8s.io
-    resources:
-      - endpointslices
-    verbs:
-      - get
-      - watch
-      - list
-  - apiGroups:
-      - authentication.k8s.io
-    resources:
-      - tokenreviews
-    verbs:
-      - create
-  - apiGroups:
-      - authorization.k8s.io
-    resources:
-      - subjectaccessreviews
-    verbs:
-      - create
-  - apiGroups:
-      - bgppeer.loxilb.io
-    resources:
-      - bgppeerservices
-    verbs:
-      - get
-      - watch
-      - list
-      - create
-      - update
-      - delete
-  - apiGroups:
-      - bgppolicydefinedsets.loxilb.io
-    resources:
-      - bgppolicydefinedsetsservices
-    verbs:
-      - get
-      - watch
-      - list
-      - create
-      - update
-      - delete
-  - apiGroups:
-      - bgppolicydefinition.loxilb.io
-    resources:
-      - bgppolicydefinitionservices
-    verbs:
-      - get
-      - watch
-      - list
-      - create
-      - update
-      - delete
-  - apiGroups:
-      - bgppolicyapply.loxilb.io
-    resources:
-      - bgppolicyapplyservices
-    verbs:
-      - get
-      - watch
-      - list
-      - create
-      - update
-      - delete
-
----
-kind: ClusterRoleBinding
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
-  name: kube-loxilb
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: kube-loxilb
-subjects:
-  - kind: ServiceAccount
-    name: kube-loxilb
-    namespace: kube-system
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: kube-loxilb
-  namespace: kube-system
-  labels:
-    app: kube-loxilb-app
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: kube-loxilb-app
-  template:
-    metadata:
-      labels:
-        app: kube-loxilb-app
-    spec:
-      hostNetwork: true
-      dnsPolicy: ClusterFirstWithHostNet
-      tolerations:
-        # Mark the pod as a critical add-on for rescheduling.
-        - key: CriticalAddonsOnly
-          operator: Exists
-      priorityClassName: system-node-critical
-      serviceAccountName: kube-loxilb
-      terminationGracePeriodSeconds: 0
-      containers:
-      - name: kube-loxilb
-        image: ghcr.io/loxilb-io/kube-loxilb:latest
-        imagePullPolicy: Always
-        command:
-        - /bin/kube-loxilb
-        args:
-        #- --loxiURL=http://192.168.80.10:11111
-        - --externalCIDR=192.168.80.200/32
-        #- --externalSecondaryCIDRs=124.124.124.1/24,125.125.125.1/24
-        #- --setBGP=64512
-        #- --listenBGPPort=1791
-        - --setRoles=0.0.0.0
-        #- --monitor
-        #- --extBGPPeers=50.50.50.1:65101,51.51.51.1:65102
-        #- --setLBMode=1
-        #- --config=/opt/loxilb/agent/kube-loxilb.conf
-        resources:
-          requests:
-            cpu: &quot;100m&quot;
-            memory: &quot;50Mi&quot;
-          limits:
-            cpu: &quot;100m&quot;
-            memory: &quot;50Mi&quot;
-        securityContext:
-          privileged: true
-          capabilities:
-            add: [&quot;NET_ADMIN&quot;, &quot;NET_RAW&quot;]
-EOF
-</code></pre></div>
-<p>At this point we can check the pods running in our kubernetes cluster (in server1, server2 &amp; server3 at this point):</p>
-<div class="highlight"><pre><span></span><code>$ sudo kubectl get pods -A
-NAMESPACE     NAME                                      READY   STATUS    RESTARTS   AGE
-kube-system   coredns-6799fbcd5-7jhcx                   1/1     Running   0          3h15m
-kube-system   kube-loxilb-5d99c445f7-j4x6k              1/1     Running   0          3h6m
-kube-system   local-path-provisioner-6c86858495-pjn9j   1/1     Running   0          3h15m
-kube-system   loxilb-lb-8bddf                           1/1     Running   0          3h6m
-kube-system   loxilb-lb-nsrr9                           1/1     Running   0          3h6m
-kube-system   loxilb-lb-fp2z6                           1/1     Running   0          3h6m
-kube-system   metrics-server-54fd9b65b-g5lfn            1/1     Running   0          3h15m
-</code></pre></div>
-<h4 id="in-k3s-agent1-node-">In k3s-agent1 node -</h4>
-<p>The following steps need to be followed to install k3s in the agent nodes:</p>
-<p><div class="highlight"><pre><span></span><code>$ curl -sfL https://get.k3s.io | K3S_TOKEN=${NODE_TOKEN} sh -s - agent --server https://192.168.80.80:6443 --node-ip=${WORKER_ADDR} --node-external-ip=${WORKER_ADDR} -t ${NODE_TOKEN}
-</code></pre></div>
-where WORKER_ADDR is the IP  address of the agent node itself (in this case 192.168.80.101) and NODE_TOKEN has contents of /var/lib/rancher/k3s/server/node-token from server1. </p>
-<p>It is also to be noted that we use VIP - 192.168.80.80 provided by loxilb to access the server(master) K3s nodes and not the actual private node addresses.</p>
-<p>For rest of the agent nodes, we can follow the same set of steps as outlined above for k3s-agent1.</p>
-<h3 id="validation">Validation</h3>
-<p>After setting up all the k3s-server and k3s-agents, we should be able to see all nodes up and running </p>
-<div class="highlight"><pre><span></span><code>$ sudo kubectl get nodes -A
-NAME      STATUS   ROLES                       AGE   VERSION
-master1   Ready    control-plane,etcd,master   4h    v1.29.3+k3s1
-master2   Ready    control-plane,etcd,master   4h    v1.29.3+k3s1
-master3   Ready    control-plane,etcd,master   4h    v1.29.3+k3s1 
-worker1   Ready    &lt;none&gt;                      4h    v1.29.3+k3s1
-worker2   Ready    &lt;none&gt;                      4h    v1.29.3+k3s1
-worker3   Ready    &lt;none&gt;                      4h    v1.29.3+k3s1
-</code></pre></div>
-<p>To verify, let's shutdown master1 k3s-server. </p>
-<div class="highlight"><pre><span></span><code>## Run shutdown the master1 node
-$ sudo shutdown -t now
-</code></pre></div>
-<p>And try to access cluster information from other master nodes or worker nodes :
-<div class="highlight"><pre><span></span><code>$ sudo kubectl get nodes -A
-NAME      STATUS     ROLES                       AGE      VERSION
-master1   NotReady   control-plane,etcd,master   4h10m    v1.29.3+k3s1
-master2   Ready      control-plane,etcd,master   4h10m    v1.29.3+k3s1
-master3   Ready      control-plane,etcd,master   4h10m    v1.29.3+k3s1
-worker1   Ready      &lt;none&gt;                      4h10m    v1.29.3+k3s1
-worker2   Ready      &lt;none&gt;                      4h10m    v1.29.3+k3s1
+    - port: 57002
+      targetPort: 80
+  type: LoadBalancer
 </code></pre></div></p>
-<p>Also, we can confirm pods getting rescheduled to other "ready" nodes : 
-<div class="highlight"><pre><span></span><code>$ sudo kubectl get pods -A -o wide
-NAMESPACE     NAME                                      READY   STATUS        RESTARTS   AGE     IP              NODE      NOMINATED NODE   READINESS GATES
-kube-system   coredns-6799fbcd5-6dvm7                   1/1     Running       0          27m     10.42.2.2       master3   &lt;none&gt;           &lt;none&gt;
-kube-system   coredns-6799fbcd5-mrjgt                   1/1     Terminating   0          3h58m   10.42.0.4       master1   &lt;none&gt;           &lt;none&gt;
-kube-system   kube-loxilb-5d99c445f7-x7qd6              1/1     Running       0          3h58m   192.168.80.11   master2   &lt;none&gt;           &lt;none&gt;
-kube-system   local-path-provisioner-6c86858495-6f8rz   1/1     Terminating   0          3h58m   10.42.0.2       master1   &lt;none&gt;           &lt;none&gt;
-kube-system   local-path-provisioner-6c86858495-z2p6m   1/1     Running       0          27m     10.42.3.2       worker1   &lt;none&gt;           &lt;none&gt;
-kube-system   loxilb-lb-65jnz                           1/1     Running       0          3h58m   192.168.80.10   master1   &lt;none&gt;           &lt;none&gt;
-kube-system   loxilb-lb-pfkf8                           1/1     Running       0          3h58m   192.168.80.12   master3   &lt;none&gt;           &lt;none&gt;
-kube-system   loxilb-lb-xhr95                           1/1     Running       0          3h58m   192.168.80.11   master2   &lt;none&gt;           &lt;none&gt;
-kube-system   metrics-server-54fd9b65b-l5pqz            1/1     Running       0          27m     10.42.4.2       worker2   &lt;none&gt;           &lt;none&gt;
-kube-system   metrics-server-54fd9b65b-x9bd7            1/1     Terminating   0          3h58m   10.42.0.3       master1   &lt;none&gt;           &lt;none&gt;
-</code></pre></div></p>
-<p>If the above set of command works fine in any of the "ready" nodes, it indicates that the api server is available even when one of k3s server (master) goes down. The same can be followed if need be for any services apart from K8s/K3s apiserver as well. </p>
+<h2 id="how-to-verify-proxy-protocol-v2">How to verify Proxy Protocol v2</h2>
+<p>Proxy protocol v2 can be checked using tools like <a href="https://www.wireshark.org/docs/man-pages/tshark.html">tshark</a>. For example :</p>
+<p><div class="highlight"><pre><span></span><code>tshark --disable-protocol http -VY proxy.v2.protocol==0x01
+</code></pre></div>
+<img alt="Screenshot 2024-11-27 at 3 04 11 PM" src="https://github.com/user-attachments/assets/d58aa3f5-39dc-48aa-992b-36b1a3edf90a" /></p>
+<h3 id="limitations">Limitations</h3>
+<p>Currently, loxilb supports proxy protocol v2 with only Ipv4 and TCP payloads. Support for more combinations of protocols is in progress.</p>
 
 
 
@@ -2980,44 +2332,6 @@ kube-system   metrics-server-54fd9b65b-x9bd7            1/1     Terminating   0 
       
         <footer class="md-footer">
   
-    
-      
-      <nav class="md-footer__inner md-grid" aria-label="Footer" >
-        
-          
-          <a href="../ext-ep/" class="md-footer__link md-footer__link--prev" aria-label="Previous: How-To - access end-points outside K8s">
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
-            </div>
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              <div class="md-ellipsis">
-                How-To - access end-points outside K8s
-              </div>
-            </div>
-          </a>
-        
-        
-          
-          <a href="../aws-multi-az/" class="md-footer__link md-footer__link--next" aria-label="Next: How-To - Deploy loxilb with multi-AZ HA support in AWS">
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              <div class="md-ellipsis">
-                How-To - Deploy loxilb with multi-AZ HA support in AWS
-              </div>
-            </div>
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
     
   
   <div class="md-footer-meta md-typeset">
