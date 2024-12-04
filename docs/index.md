@@ -108,8 +108,8 @@ Telco-cloud requires load-balancing and communication across various interfaces/
 - [RedHat OCP : loxilb in-cluster mode](rhocp-quickstart-incluster.md)     
 
 #### loxilb as service-proxy
-- [K3s : loxilb service-proxy with flannel](service-proxy-flannel.md)
-- [K3s : loxilb service-proxy with calico](service-proxy-calico.md)
+- [loxilb service-proxy plugin with flannel](service-proxy-flannel.md)
+- [loxilb service-proxy plugin with calico](service-proxy-calico.md)
 
 #### loxilb as Kubernetes Ingress
 - [K3s: How to run loxilb-ingress](loxilb-ingress.md)
