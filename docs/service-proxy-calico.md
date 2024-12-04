@@ -1,4 +1,4 @@
-## Quick Start Guide -  K3s, LoxiLB "service-proxy" and Calico 
+## Quick Start Guide - LoxiLB "service-proxy" and Calico 
 
 This document will explain how to install a K3s cluster with loxilb in "service-proxy" mode alongside calico networking. 
 
@@ -18,7 +18,7 @@ For quickly bringing up loxilb "service-proxy" in K3s with Calico, we will be de
 
 loxilb and kube-loxilb components run as pods managed by kubernetes in this scenario.
 
-## Setup K3s
+## Setup K3s as Kubernetes Distro
 ### Configure K3s node
 ```
 $ curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--disable traefik \
