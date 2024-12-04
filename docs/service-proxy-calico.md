@@ -34,6 +34,17 @@ K3s uses by default flannel for networking but here we are using calico to provi
 sudo kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.1/manifests/tigera-operator.yaml
 sudo kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.1/manifests/custom-resources.yaml
 ```
+Finally we need to configure the following (yaml) in Calico for loxilb service-proxy compatibility:
+
+```
+# This section configures the Calico Felix configuration .
+apiVersion: projectcalico.org/v3
+kind: FelixConfiguration
+metadata:
+  name: default
+spec:
+  vxlanPort: 8472
+```
 
 ### Deploy kube-loxilb and loxilb ?
 [kube-loxilb](https://github.com/loxilb-io/kube-loxilb) is used as an operator to manage loxilb. We need to deploy both kube-loxilb and loxilb components in your kubernetes cluster
