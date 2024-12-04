@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../photos/loxilb-logo.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.46">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.47">
     
     
       
@@ -2496,7 +2496,16 @@ loxilb <b><i>"service-proxy"</i></b> mode works with Flannel/Calico and kube-pro
 <p>K3s uses by default flannel for networking but here we are using calico to provide the same:
 <div class="highlight"><pre><span></span><code>sudo kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.1/manifests/tigera-operator.yaml
 sudo kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.1/manifests/custom-resources.yaml
-</code></pre></div></p>
+</code></pre></div>
+Finally we need to configure the following (yaml) in Calico for loxilb service-proxy compatibility:</p>
+<div class="highlight"><pre><span></span><code># This section configures the Calico Felix configuration .
+apiVersion: projectcalico.org/v3
+kind: FelixConfiguration
+metadata:
+  name: default
+spec:
+  vxlanPort: 8472
+</code></pre></div>
 <h3 id="deploy-kube-loxilb-and-loxilb">Deploy kube-loxilb and loxilb ?</h3>
 <p><a href="https://github.com/loxilb-io/kube-loxilb">kube-loxilb</a> is used as an operator to manage loxilb. We need to deploy both kube-loxilb and loxilb components in your kubernetes cluster
 <div class="highlight"><pre><span></span><code>sudo kubectl apply -f https://raw.githubusercontent.com/loxilb-io/kube-loxilb/main/manifest/service-proxy/kube-loxilb.yml
