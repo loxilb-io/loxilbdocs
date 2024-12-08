@@ -83,6 +83,8 @@ The results are as follows :
 
 ### Watch the video
 
+Also, available on [youtube](https://www.youtube.com/watch?v=MJXcM0x6IeQ)
+
 https://github.com/loxilb-io/loxilbdocs/assets/106566094/6cf85c4e-7cb4-4d23-b5f6-a7854e07cd7b
 
 
