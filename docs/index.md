@@ -34,7 +34,8 @@ loxilb works as a L4 load-balancer/service-proxy by default. Although L4 load-ba
 Additionally, loxilb also supports:   
 - [x] kube-proxy replacement with eBPF(full cluster-mesh implementation for Kubernetes)   
 - [x] Ingress Support   
-- [x] Kubernetes Gateway API   
+- [x] Kubernetes Gateway API
+- [x] HA capable Egress for Kubernetes
 - [ ] Kubernetes Network Policies (in-progress)  
 
 ## Telco-Cloud with loxilb
@@ -130,6 +131,7 @@ Telco-cloud requires load-balancing and communication across various interfaces/
 - [How-To : Kubernetes service sharding with loxilb](service-sharding.md)
 - [How-To : loxilb L4/L7 Load-Balancing with Kubernetes Gateway API](gw-api.md)
 - [How-To : Use proxy protocol v2 with loxilb](proxy-protocol-v2.md)
+- [How-To : HA egress with loxilb](loxilb-egress.md)
 
 ## Knowledge-Base   
 - [What is eBPF](ebpf.md)
