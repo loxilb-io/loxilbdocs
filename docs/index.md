@@ -165,7 +165,8 @@ Telco-cloud requires load-balancing and communication across various interfaces/
 - [Getting started with loxilb on Amazon EKS](https://www.loxilb.io/post/loxilb-load-balancer-setup-on-eks)   
 - [K8s - Deploying "hitless" Load-balancing](https://www.loxilb.io/post/k8s-deploying-hitless-and-ha-load-balancing)   
 - [Oracle Cloud - Hitless HA load balancing](https://www.loxilb.io/post/oracle-cloud-bring-your-own-lb-for-self-managed-clusters)
-- [Ipv6 migration in Kubernetes made easy](https://www.loxilb.io/post/k8s-exposing-ipv4-services-externally-as-ipv6)   
+- [Ipv6 migration in Kubernetes made easy](https://www.loxilb.io/post/k8s-exposing-ipv4-services-externally-as-ipv6)
+- [Measuring Performance in L4-L7 Load Balancing](https://dev.to/nikhilmalik/l4-l7-performance-comparing-loxilb-metallb-nginx-haproxy-1eh0)
 
 ## Community Posts
 - [5G SCTP LoadBalancer Using loxilb](https://futuredon.medium.com/5g-sctp-loadbalancer-using-loxilb-b525198a9103)   
