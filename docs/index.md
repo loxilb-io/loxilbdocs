@@ -115,6 +115,9 @@ Telco-cloud requires load-balancing and communication across various interfaces/
 
 #### loxilb as Kubernetes Ingress
 - [K3s: How to run loxilb-ingress](loxilb-ingress.md)
+
+#### loxilb as Kubernetes Egress
+- [How-To : HA egress with loxilb](loxilb-egress.md)
   
 #### loxilb in standalone mode
 - [Run loxilb standalone](standalone.md)
@@ -131,7 +134,6 @@ Telco-cloud requires load-balancing and communication across various interfaces/
 - [How-To : Kubernetes service sharding with loxilb](service-sharding.md)
 - [How-To : loxilb L4/L7 Load-Balancing with Kubernetes Gateway API](gw-api.md)
 - [How-To : Use proxy protocol v2 with loxilb](proxy-protocol-v2.md)
-- [How-To : HA egress with loxilb](loxilb-egress.md)
 
 ## Knowledge-Base   
 - [What is eBPF](ebpf.md)
@@ -167,6 +169,7 @@ Telco-cloud requires load-balancing and communication across various interfaces/
 - [Oracle Cloud - Hitless HA load balancing](https://www.loxilb.io/post/oracle-cloud-bring-your-own-lb-for-self-managed-clusters)
 - [Ipv6 migration in Kubernetes made easy](https://www.loxilb.io/post/k8s-exposing-ipv4-services-externally-as-ipv6)
 - [Measuring Performance in L4-L7 Load Balancing](https://dev.to/nikhilmalik/l4-l7-performance-comparing-loxilb-metallb-nginx-haproxy-1eh0)
+- [Setup K8s with HA capable egress](https://dev.to/trekkiecoder/setup-a-multi-node-k3s-setup-with-ha-capable-egress-1h4m)
 
 ## Community Posts
 - [5G SCTP LoadBalancer Using loxilb](https://futuredon.medium.com/5g-sctp-loadbalancer-using-loxilb-b525198a9103)   
@@ -176,6 +179,7 @@ Telco-cloud requires load-balancing and communication across various interfaces/
 - [5G SCTP LoadBalancer Using LoxiLB on free5GC](https://medium.com/@ben0978327139/5g-sctp-loadbalancer-using-loxilb-applying-on-free5gc-b5c05bb723f0)
 - [Kubernetes Services: Achieving optimal performance is elusive](https://cloudybytes.medium.com/kubernetes-services-achieving-optimal-performance-is-elusive-5def5183c281)
 - [LoxiLB: Another Load Balancer](https://blog.devgenius.io/loxilb-another-load-balancer-aabf4a29d810)
+- [LoxiLB eBPF deep-dive](https://free5gc.org/blog/20241203/20241203)
 
 ## Research Papers (featuring loxilb)
 - [Mitigating Spectre-PHT using Speculation Barriers in Linux BPF](https://arxiv.org/pdf/2405.00078)   
