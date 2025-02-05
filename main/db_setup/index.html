@@ -8,13 +8,9 @@
       
       
       
-        <link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/main/k8s-flannel-ext/">
+        <link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/main/db_setup/">
       
       
-        <link rel="prev" href="../ha-deploy/">
-      
-      
-        <link rel="next" href="../k3s_quick_start_flannel/">
       
       
       <link rel="icon" href="../photos/loxilb-logo.png">
@@ -22,7 +18,7 @@
     
     
       
-        <title>K8s/loxilb external mode - LoxiLB</title>
+        <title>MySQL Database Deployment Manual - LoxiLB</title>
       
     
     
@@ -76,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#quick-start-guide-with-k8s-and-loxilb-ext-mode" class="md-skip">
+        <a href="#mysql-database-deployment-manual" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              K8s/loxilb external mode
+              MySQL Database Deployment Manual
             
           </span>
         </div>
@@ -370,10 +366,8 @@
       
   
   
-    
   
   
-  
     
     
       
@@ -392,11 +386,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -411,7 +405,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Getting Started
@@ -422,10 +416,8 @@
                 
   
   
-    
   
   
-  
     
     
       
@@ -444,11 +436,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
         
           
           <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
@@ -463,7 +455,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3_1">
             <span class="md-nav__icon md-icon"></span>
             External Cluster Mode
@@ -474,29 +466,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    K8s/loxilb external mode
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../k8s-flannel-ext/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -506,245 +479,6 @@
   
 
       </a>
-      
-        
-
-  
-
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#quick-start-guide-with-k8s-and-loxilb-ext-mode" class="md-nav__link">
-    <span class="md-ellipsis">
-      Quick Start Guide with K8s and LoxiLB ext-mode
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Quick Start Guide with K8s and LoxiLB ext-mode">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#pre-requisite" class="md-nav__link">
-    <span class="md-ellipsis">
-      Pre-requisite
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#topology" class="md-nav__link">
-    <span class="md-ellipsis">
-      Topology
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#setup-loxilb-node" class="md-nav__link">
-    <span class="md-ellipsis">
-      Setup loxilb node
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Setup loxilb node">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#install-docker-runtime" class="md-nav__link">
-    <span class="md-ellipsis">
-      Install docker runtime
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#run-loxilb" class="md-nav__link">
-    <span class="md-ellipsis">
-      Run loxilb
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#setup-k8s-node" class="md-nav__link">
-    <span class="md-ellipsis">
-      Setup K8s node
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Setup K8s node">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#prepare-the-node" class="md-nav__link">
-    <span class="md-ellipsis">
-      Prepare the node
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#install-docker-container-runtime-or-any-runtime-as-per-user-preference" class="md-nav__link">
-    <span class="md-ellipsis">
-      Install docker container runtime (or any runtime as per user preference)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#install-kubernetes-dependencies" class="md-nav__link">
-    <span class="md-ellipsis">
-      Install Kubernetes dependencies
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#install-kubernetes-with-kubeadm" class="md-nav__link">
-    <span class="md-ellipsis">
-      Install Kubernetes with kubeadm
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Install Kubernetes with kubeadm">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#first-create-a-kubeadm-configyaml-with-following-contents" class="md-nav__link">
-    <span class="md-ellipsis">
-      First create a kubeadm-config.yaml with following contents :
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#run-kubeadm-to-complete-installation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Run kubeadm to complete installation:
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#setup-kubeconfig-for-running-kubectl-conveniently-optional" class="md-nav__link">
-    <span class="md-ellipsis">
-      Setup kubeconfig for running kubectl conveniently (optional)
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#label-the-node-and-remove-taints-to-make-sure-pods-are-scheduled-properly-since-it-is-a-single-node-setup" class="md-nav__link">
-    <span class="md-ellipsis">
-      Label the node and remove taints to make sure pods are scheduled properly (since it is a single node setup)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#deploying-kube-loxilb-in-k8s" class="md-nav__link">
-    <span class="md-ellipsis">
-      Deploying kube-loxilb in K8s
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#spawn-a-test-pod-and-create-a-lb-service" class="md-nav__link">
-    <span class="md-ellipsis">
-      Spawn a test pod and create a LB service
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#check-the-status" class="md-nav__link">
-    <span class="md-ellipsis">
-      Check the status
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Check the status">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#in-kubernetes-node" class="md-nav__link">
-    <span class="md-ellipsis">
-      In Kubernetes node:
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#in-loxilb-node" class="md-nav__link">
-    <span class="md-ellipsis">
-      In loxilb node:
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#connect-from-hostclient" class="md-nav__link">
-    <span class="md-ellipsis">
-      Connect from host/client
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2627,6 +2361,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -2635,28 +2371,46 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#quick-start-guide-with-k8s-and-loxilb-ext-mode" class="md-nav__link">
+  <a href="#1-overview" class="md-nav__link">
     <span class="md-ellipsis">
-      Quick Start Guide with K8s and LoxiLB ext-mode
+      1. Overview
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Quick Start Guide with K8s and LoxiLB ext-mode">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-preparing-the-mysql-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Preparing the MySQL Environment
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Preparing the MySQL Environment">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#pre-requisite" class="md-nav__link">
+  <a href="#21-using-an-existing-mysql-server" class="md-nav__link">
     <span class="md-ellipsis">
-      Pre-requisite
+      2.1 Using an Existing MySQL Server
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#topology" class="md-nav__link">
+  <a href="#22-setting-up-a-new-mysql-server-optional" class="md-nav__link">
     <span class="md-ellipsis">
-      Topology
+      2.2 Setting Up a New MySQL Server (Optional)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-deploying-mysql-using-docker-easy" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 Deploying MySQL Using Docker (Easy)
     </span>
   </a>
   
@@ -2668,28 +2422,55 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#setup-loxilb-node" class="md-nav__link">
+  <a href="#3-creating-the-database-and-tables" class="md-nav__link">
     <span class="md-ellipsis">
-      Setup loxilb node
+      3. Creating the Database and Tables
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Setup loxilb node">
+    <nav class="md-nav" aria-label="3. Creating the Database and Tables">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#install-docker-runtime" class="md-nav__link">
+  <a href="#31-creating-the-database" class="md-nav__link">
     <span class="md-ellipsis">
-      Install docker runtime
+      3.1 Creating the Database
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#run-loxilb" class="md-nav__link">
+  <a href="#32-using-the-database" class="md-nav__link">
     <span class="md-ellipsis">
-      Run loxilb
+      3.2 Using the Database
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-creating-the-users-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 Creating the users Table
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-creating-the-token-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4 Creating the token Table
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-complete-sql-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.5 Complete SQL Script
     </span>
   </a>
   
@@ -2701,97 +2482,37 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#setup-k8s-node" class="md-nav__link">
+  <a href="#4-verifying-the-database" class="md-nav__link">
     <span class="md-ellipsis">
-      Setup K8s node
+      4. Verifying the Database
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Setup K8s node">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Troubleshooting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Troubleshooting">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#prepare-the-node" class="md-nav__link">
+  <a href="#51-mysql-connection-errors" class="md-nav__link">
     <span class="md-ellipsis">
-      Prepare the node
+      5.1 MySQL Connection Errors
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#install-docker-container-runtime-or-any-runtime-as-per-user-preference" class="md-nav__link">
+  <a href="#52-database-creation-issues" class="md-nav__link">
     <span class="md-ellipsis">
-      Install docker container runtime (or any runtime as per user preference)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#install-kubernetes-dependencies" class="md-nav__link">
-    <span class="md-ellipsis">
-      Install Kubernetes dependencies
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#install-kubernetes-with-kubeadm" class="md-nav__link">
-    <span class="md-ellipsis">
-      Install Kubernetes with kubeadm
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Install Kubernetes with kubeadm">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#first-create-a-kubeadm-configyaml-with-following-contents" class="md-nav__link">
-    <span class="md-ellipsis">
-      First create a kubeadm-config.yaml with following contents :
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#run-kubeadm-to-complete-installation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Run kubeadm to complete installation:
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#setup-kubeconfig-for-running-kubectl-conveniently-optional" class="md-nav__link">
-    <span class="md-ellipsis">
-      Setup kubeconfig for running kubectl conveniently (optional)
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#label-the-node-and-remove-taints-to-make-sure-pods-are-scheduled-properly-since-it-is-a-single-node-setup" class="md-nav__link">
-    <span class="md-ellipsis">
-      Label the node and remove taints to make sure pods are scheduled properly (since it is a single node setup)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#deploying-kube-loxilb-in-k8s" class="md-nav__link">
-    <span class="md-ellipsis">
-      Deploying kube-loxilb in K8s
+      5.2 Database Creation Issues
     </span>
   </a>
   
@@ -2803,51 +2524,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#spawn-a-test-pod-and-create-a-lb-service" class="md-nav__link">
+  <a href="#6-conclusion" class="md-nav__link">
     <span class="md-ellipsis">
-      Spawn a test pod and create a LB service
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#check-the-status" class="md-nav__link">
-    <span class="md-ellipsis">
-      Check the status
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Check the status">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#in-kubernetes-node" class="md-nav__link">
-    <span class="md-ellipsis">
-      In Kubernetes node:
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#in-loxilb-node" class="md-nav__link">
-    <span class="md-ellipsis">
-      In loxilb node:
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#connect-from-hostclient" class="md-nav__link">
-    <span class="md-ellipsis">
-      Connect from host/client
+      6. Conclusion
     </span>
   </a>
   
@@ -2872,291 +2551,123 @@
   
 
 
-  <h1>K8s/loxilb external mode</h1>
-
-<h2 id="quick-start-guide-with-k8s-and-loxilb-ext-mode">Quick Start Guide with K8s and LoxiLB ext-mode</h2>
-<p>This guide will explain how to:</p>
+<h1 id="mysql-database-deployment-manual">MySQL Database Deployment Manual</h1>
+<h2 id="1-overview">1. Overview</h2>
+<p>This document explains how to quickly deploy the <code>loxilb_db</code> database and related tables. If an existing MySQL server is available, use that server. If a new MySQL instance needs to be set up, follow the additional instructions provided. This database is essential for the userservice.</p>
+<hr />
+<h2 id="2-preparing-the-mysql-environment">2. Preparing the MySQL Environment</h2>
+<h3 id="21-using-an-existing-mysql-server">2.1 Using an Existing MySQL Server</h3>
+<p>If a MySQL server is already running, verify the following information:</p>
 <ul>
-<li>Deploy a single-node K8s cluster with flannel networking</li>
-<li>Run loxilb in ext-mode</li>
-<li>Expose services with loxilb as provider of serviceLB      </li>
+<li>MySQL server address (<code>hostname</code> or <code>IP</code>)</li>
+<li>Accessible account information (e.g., <code>root</code> user or a user with appropriate privileges)</li>
 </ul>
-<h3 id="pre-requisite">Pre-requisite</h3>
+<h3 id="22-setting-up-a-new-mysql-server-optional">2.2 Setting Up a New MySQL Server (Optional)</h3>
+<p>If MySQL is not installed, choose one of the following installation methods:</p>
 <ul>
-<li>Two nodes with Linux - one for running K8s and another for running loxilb</li>
-<li>For loxilb, the linux kernel version should be &gt;= 5.15</li>
-<li>Bastion or Host node to consume the services</li>
+<li><strong>Linux</strong>: <code>apt install mysql-server</code> or <code>yum install mysql-server</code></li>
 </ul>
-<h3 id="topology">Topology</h3>
-<p>For quickly bringing up loxilb with K8s, we will be deploying all components in a single node :   </p>
-<p><img alt="image" src="https://github.com/user-attachments/assets/96dd024d-7480-42be-8272-be047485aa43" /></p>
-<p>loxilb is run as a docker in its own node in external mode. loxilb can be used in more complex <a href="https://www.loxilb.io/post/k8s-nuances-of-in-cluster-external-service-lb-with-loxilb">in-cluster</a> mode as well with various <a href="https://docs.loxilb.io/latest/ha-deploy/">HA</a> options as well, but skipped here for simplicity.   </p>
-<h2 id="setup-loxilb-node">Setup loxilb node</h2>
-<h3 id="install-docker-runtime">Install docker runtime</h3>
-<div class="highlight"><pre><span></span><code>apt-get update
-apt-get install -y software-properties-common
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-add-apt-repository -y &quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu  $(lsb_release -cs)  stable&quot;
-apt-get update
-apt-get install -y docker-ce
+<p>After installation, start MySQL:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>mysql<span class="w">  </span><span class="c1"># Linux</span>
 </code></pre></div>
-<h3 id="run-loxilb">Run loxilb</h3>
-<div class="highlight"><pre><span></span><code>sudo docker run -u root --cap-add SYS_ADMIN --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --net=host --name loxilb ghcr.io/loxilb-io/loxilb:latest
+<p>By default, you can connect using the <code>root</code> user:</p>
+<div class="highlight"><pre><span></span><code>mysql<span class="w"> </span>-u<span class="w"> </span>root<span class="w"> </span>-p
 </code></pre></div>
-<h2 id="setup-k8s-node">Setup K8s node</h2>
-<p>We  will setup the single node Kubernetes setup using kubeadm. </p>
-<h3 id="prepare-the-node">Prepare the node</h3>
-<div class="highlight"><pre><span></span><code># disable swap
-sudo swapoff -a
-
-# keeps the swap off during reboot
-(crontab -l 2&gt;/dev/null; echo &quot;@reboot /sbin/swapoff -a&quot;) | crontab - || true
-sudo apt-get update -y
-
-# Kernel Forwarding 
-cat &lt;&lt;EOF | sudo tee /etc/modules-load.d/k8s.conf
-br_netfilter
-EOF
-
-# Set up required sysctl params, these persist across reboots.
-cat &lt;&lt;EOF | sudo tee /etc/sysctl.d/99-kubernetes-cri.conf
-net.bridge.bridge-nf-call-iptables  = 1
-net.ipv4.ip_forward                 = 1
-net.bridge.bridge-nf-call-ip6tables = 1
-EOF
-
-sudo sysctl --system
-
-# Install docker to be used as container-runtime by Kubernetes
-sudo apt install -y docker.io
-sudo usermod -aG docker vagrant
+<h3 id="23-deploying-mysql-using-docker-easy">2.3 Deploying MySQL Using Docker (Easy)</h3>
+<p>To deploy MySQL in a Docker environment, follow these steps:</p>
+<ol>
+<li>Run the MySQL container:</li>
+</ol>
+<div class="highlight"><pre><span></span><code>docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=secure_password -e MYSQL_DATABASE=loxilb_db -p 3306:3306 -d mysql:latest
 </code></pre></div>
-<h3 id="install-docker-container-runtime-or-any-runtime-as-per-user-preference">Install docker container runtime (or any runtime as per user preference)</h3>
-<div class="highlight"><pre><span></span><code># cri-docker Install
-VER=$(curl -s https://api.github.com/repos/Mirantis/cri-dockerd/releases/latest|grep tag_name | cut -d &#39;&quot;&#39; -f 4|sed &#39;s/v//g&#39;)
-echo $VER
-wget -q https://github.com/Mirantis/cri-dockerd/releases/download/v${VER}/cri-dockerd-${VER}.amd64.tgz --retry-connrefused  --waitretry=1 --read-timeout=20 --timeout=15 --tries=5 --continue
-tar xvf cri-dockerd-${VER}.amd64.tgz
-sudo mv cri-dockerd/cri-dockerd /usr/local/bin/
+<ol>
+<li>Check if the container is running correctly:</li>
+</ol>
+<div class="highlight"><pre><span></span><code>docker ps
+</code></pre></div>
+<ol>
+<li>Access the MySQL container:</li>
+</ol>
+<div class="highlight"><pre><span></span><code>docker exec -it mysql-container mysql -u root -p
+</code></pre></div>
+<hr />
+<h2 id="3-creating-the-database-and-tables">3. Creating the Database and Tables</h2>
+<p>After connecting to MySQL, execute the following SQL commands to create the database and tables.</p>
+<h3 id="31-creating-the-database">3.1 Creating the Database</h3>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">loxilb_db</span><span class="p">;</span>
+</code></pre></div>
+<h3 id="32-using-the-database">3.2 Using the Database</h3>
+<div class="highlight"><pre><span></span><code><span class="n">USE</span><span class="w"> </span><span class="n">loxilb_db</span><span class="p">;</span>
+</code></pre></div>
+<h3 id="33-creating-the-users-table">3.3 Creating the <code>users</code> Table</h3>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">username</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">password</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">created_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span><span class="p">,</span>
+<span class="w">    </span><span class="k">role</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;viewer&#39;</span>
+<span class="p">);</span>
+</code></pre></div>
+<h3 id="34-creating-the-token-table">3.4 Creating the <code>token</code> Table</h3>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">token</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">token_value</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">512</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">username</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">expires_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">created_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span><span class="p">,</span>
+<span class="w">    </span><span class="k">role</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span>
+<span class="p">);</span>
+</code></pre></div>
+<h3 id="35-complete-sql-script">3.5 Complete SQL Script</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">-- Create the database</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">loxilb_db</span><span class="p">;</span>
 
-wget -q https://raw.githubusercontent.com/Mirantis/cri-dockerd/master/packaging/systemd/cri-docker.service --retry-connrefused  --waitretry=1 --read-timeout=20 --timeout=15 --tries=5 --continue
-wget -q https://raw.githubusercontent.com/Mirantis/cri-dockerd/master/packaging/systemd/cri-docker.socket --retry-connrefused  --waitretry=1 --read-timeout=20 --timeout=15 --tries=5 --continue
-sudo mv cri-docker.socket cri-docker.service /etc/systemd/system/
-sudo sed -i -e &#39;s,/usr/bin/cri-dockerd,/usr/local/bin/cri-dockerd,&#39; /etc/systemd/system/cri-docker.service
+<span class="c1">-- Use the database</span>
+<span class="n">USE</span><span class="w"> </span><span class="n">loxilb_db</span><span class="p">;</span>
 
-sudo systemctl daemon-reload
-sudo systemctl enable cri-docker.service
-sudo systemctl enable --now cri-docker.socket
+<span class="c1">-- Create the users table</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">username</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">password</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">created_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span><span class="p">,</span>
+<span class="w">    </span><span class="k">role</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;viewer&#39;</span>
+<span class="p">);</span>
 
-# cri-docker Active Check
-sudo systemctl restart docker &amp;&amp; sudo systemctl restart cri-docker
-sudo systemctl status cri-docker.socket --no-pager
-
-# Docker cgroup Change Require to Systemd
-sudo mkdir -p /etc/docker || true
-cat &lt;&lt;EOF | sudo tee /etc/docker/daemon.json
-{
-  &quot;exec-opts&quot;: [&quot;native.cgroupdriver=systemd&quot;],
-  &quot;log-driver&quot;: &quot;json-file&quot;,
-  &quot;log-opts&quot;: {
-    &quot;max-size&quot;: &quot;100m&quot;
-  },
-  &quot;storage-driver&quot;: &quot;overlay2&quot;
-}
-EOF
-
-sudo systemctl restart docker &amp;&amp; sudo systemctl restart cri-docker
+<span class="c1">-- Create the token table</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">token</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">token_value</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">512</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">username</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">expires_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">created_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span><span class="p">,</span>
+<span class="w">    </span><span class="k">role</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span>
+<span class="p">);</span>
 </code></pre></div>
-<h3 id="install-kubernetes-dependencies">Install Kubernetes dependencies</h3>
-<div class="highlight"><pre><span></span><code>sudo apt-get install -y apt-transport-https ca-certificates curl gpg
-curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.29.2/deb/Release.key | sudo gpg --no-tty --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
-echo &#39;deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.29.2/deb/ /&#39; | sudo tee /etc/apt/sources.list.d/kubernetes.list
-
-sudo apt-get update -y
-sudo apt-get install -y kubelet kubectl kubeadm
-sudo apt-get update -y
-sudo apt-get install -y jq
-sudo apt-get install -y ipvsadm
+<hr />
+<h2 id="4-verifying-the-database">4. Verifying the Database</h2>
+<p>To verify that the tables have been created correctly, execute the following command:</p>
+<div class="highlight"><pre><span></span><code><span class="k">SHOW</span><span class="w"> </span><span class="n">TABLES</span><span class="p">;</span>
 </code></pre></div>
-<h3 id="install-kubernetes-with-kubeadm">Install Kubernetes with kubeadm</h3>
-<h4 id="first-create-a-kubeadm-configyaml-with-following-contents">First create a kubeadm-config.yaml with following contents :</h4>
-<p>(Note that 192.168.80.250 is the nodeIP of the Kubernetes node)
-<div class="highlight"><pre><span></span><code>apiVersion: kubeadm.k8s.io/v1beta3
-bootstrapTokens:
-- groups:
-  - system:bootstrappers:kubeadm:default-node-token
-  ttl: 24h0m0s
-  usages:
-  - signing
-  - authentication
-kind: InitConfiguration
-localAPIEndpoint:
-  advertiseAddress: 192.168.80.250
-  bindPort: 6443
-nodeRegistration:
-  imagePullPolicy: IfNotPresent
-  name: master
-  taints: null
-  kubeletExtraArgs:
-    node-ip: 192.168.80.250
-  criSocket: unix:///var/run/cri-dockerd.sock
----
-apiVersion: kubeadm.k8s.io/v1beta3
-certificatesDir: /etc/kubernetes/pki
-kind: ClusterConfiguration
-apiServer:
-  timeoutForControlPlane: 4m0s
-  certSANs:
-  - 192.168.80.250
-controlPlaneEndpoint: 192.168.80.250:6443
-clusterName: kubernetes
-controllerManager: {}
-dns: {}
-etcd:
-  local:
-    dataDir: /var/lib/etcd
-imageRepository: registry.k8s.io
-kubernetesVersion: v1.29.2
-networking:
-  dnsDomain: cluster.local
-  podSubnet: 10.244.0.0/16
-  serviceSubnet: 10.245.0.0/18
-scheduler: {}
---
-apiVersion: kubeproxy.config.k8s.io/v1alpha1
-bindAddress: 0.0.0.0
-clientConnection:
-  acceptContentTypes: &quot;&quot;
-  burst: 10
-  contentType: application/vnd.kubernetes.protobuf
-  kubeconfig: /var/lib/kube-proxy/kubeconfig.conf
-  qps: 5
-clusterCIDR: &quot;&quot;
-configSyncPeriod: 15m0s
-#featureGates: &quot;SupportIPVSProxyMode=true&quot;
-enableProfiling: false
-healthzBindAddress: 0.0.0.0:10256
-hostnameOverride: &quot;&quot;
-iptables:
-  masqueradeAll: false
-  masqueradeBit: 14
-  minSyncPeriod: 0s
-  syncPeriod: 30s
-ipvs:
-  excludeCIDRs: null
-  minSyncPeriod: 0s
-  scheduler: &quot;&quot;
-  syncPeriod: 30s
-kind: KubeProxyConfiguration
-metricsBindAddress: 127.0.0.1:10249
-nodePortAddresses: null
-oomScoreAdj: -999
-portRange: &quot;&quot;
----
-kind: KubeletConfiguration
-apiVersion: kubelet.config.k8s.io/v1beta1
-cgroupDriver: systemd
-</code></pre></div></p>
-<h4 id="run-kubeadm-to-complete-installation">Run kubeadm to complete installation:</h4>
-<div class="highlight"><pre><span></span><code>sudo kubeadm init --ignore-preflight-errors Swap --config kubeadm-config.yaml
+<p>To check the structure of each table:</p>
+<div class="highlight"><pre><span></span><code><span class="k">DESC</span><span class="w"> </span><span class="n">users</span><span class="p">;</span>
+<span class="k">DESC</span><span class="w"> </span><span class="n">token</span><span class="p">;</span>
 </code></pre></div>
-<h4 id="setup-kubeconfig-for-running-kubectl-conveniently-optional">Setup kubeconfig for running kubectl conveniently (optional)</h4>
-<div class="highlight"><pre><span></span><code>mkdir -p &quot;$HOME&quot;/.kube
-sudo cp -i /etc/kubernetes/admin.conf &quot;$HOME&quot;/.kube/config
-sudo chown &quot;$(id -u)&quot;:&quot;$(id -g)&quot; &quot;$HOME&quot;/.kube/config
-</code></pre></div>
-<h3 id="label-the-node-and-remove-taints-to-make-sure-pods-are-scheduled-properly-since-it-is-a-single-node-setup">Label the node and remove taints to make sure pods are scheduled properly (since it is a single node setup)</h3>
-<div class="highlight"><pre><span></span><code>kubectl label node $(hostname -s) node-role.kubernetes.io/worker=&#39;&#39;
-kubectl label node $(hostname -s) node.kubernetes.io/exclude-from-external-load-balancers-
-kubectl taint nodes --all node-role.kubernetes.io/control-plane-
-</code></pre></div>
-<h3 id="deploying-kube-loxilb-in-k8s">Deploying kube-loxilb in K8s</h3>
-<p><a href="https://github.com/loxilb-io/kube-loxilb">kube-loxilb</a> is used to deploy loxilb with Kubernetes.
-<div class="highlight"><pre><span></span><code>wget https://raw.githubusercontent.com/loxilb-io/kube-loxilb/main/manifest/ext-cluster/kube-loxilb.yaml
-</code></pre></div></p>
-<p>Change the contents of kube-loxilb.yaml to the following (leaving others commented) : 
-<div class="highlight"><pre><span></span><code>        args:
-            - --loxiURL=http://192.168.80.10:11111
-            - --cidrPools=defaultPool=192.168.80.100/32
-            - --setRoles=0.0.0.0
-</code></pre></div>
-In the above snippet, loxiURL uses nodeIP of loxilb node, which can be different for each setup. The CIDR is set to any unused IP/subnet in the local network.</p>
-<p>Apply the yaml contents :
-<div class="highlight"><pre><span></span><code>kubectl apply -f kube-loxilb.yaml
-</code></pre></div></p>
-<h2 id="spawn-a-test-pod-and-create-a-lb-service">Spawn a test pod and create a LB service</h2>
-<p><div class="highlight"><pre><span></span><code>cat &lt;&lt; EOF | kubectl apply -f -
-apiVersion: v1
-kind: Service
-metadata:
-  name: tcp-lb-onearm
-  annotations:
-    loxilb.io/liveness: &quot;yes&quot;
-    loxilb.io/lbmode: &quot;onearm&quot;
-spec:
-  externalTrafficPolicy: Local
-  loadBalancerClass: loxilb.io/loxilb
-  selector:
-    what: tcp-onearm-test
-  ports:
-    - port: 55002
-      targetPort: 80 
-  type: LoadBalancer
----
-apiVersion: v1
-kind: Pod
-metadata:
-  name: tcp-onearm-test
-  labels:
-    what: tcp-onearm-test
-spec:
-  containers:
-    - name: tcp-onearm-test
-      image: ghcr.io/loxilb-io/nginx:stable
-      ports:
-        - containerPort: 80
-EOF
-</code></pre></div>
-For detailed explanation of various annotations, please check <a href="https://docs.loxilb.io/latest/kube-loxilb/#how-to-deploy-kube-loxilb">this</a> guide.</p>
-<h2 id="check-the-status">Check the status</h2>
-<h3 id="in-kubernetes-node">In Kubernetes node:</h3>
-<div class="highlight"><pre><span></span><code>kubectl get svc
-NAME            TYPE           CLUSTER-IP    EXTERNAL-IP          PORT(S)           AGE
-kubernetes      ClusterIP      10.245.0.1    &lt;none&gt;               443/TCP           31m
-tcp-lb-onearm   LoadBalancer   10.245.2.83   llb-192.168.80.100   55002:32057/TCP   45s
-</code></pre></div>
-<h3 id="in-loxilb-node">In loxilb node:</h3>
-<div class="highlight"><pre><span></span><code>$ sudo docker exec -it loxilb loxicmd get lb -o wide
-|     EXT IP     | SEC IPS | HOST | PORT  | PROTO |         NAME          | MARK | SEL |  MODE  |    ENDPOINT    | EPORT | WEIGHT | STATE  | COUNTERS |
-|----------------|---------|------|-------|-------|-----------------------|------|-----|--------|----------------|-------|--------|--------|----------|
-| 192.168.80.100 |         |      | 55002 | tcp   | default_tcp-lb-onearm |    0 | rr  | onearm | 192.168.80.250 | 32057 |      1 | active | 0:0      |
-</code></pre></div>
-<h2 id="connect-from-hostclient">Connect from host/client</h2>
-<div class="highlight"><pre><span></span><code>$ curl http://192.168.80.100:55002
-&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-&lt;title&gt;Welcome to nginx!&lt;/title&gt;
-&lt;style&gt;
-html { color-scheme: light dark; }
-body { width: 35em; margin: 0 auto;
-font-family: Tahoma, Verdana, Arial, sans-serif; }
-&lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;h1&gt;Welcome to nginx!&lt;/h1&gt;
-&lt;p&gt;If you see this page, the nginx web server is successfully installed and
-working. Further configuration is required.&lt;/p&gt;
-
-&lt;p&gt;For online documentation and support please refer to
-&lt;a href=&quot;http://nginx.org/&quot;&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;
-Commercial support is available at
-&lt;a href=&quot;http://nginx.com/&quot;&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Thank you for using nginx.&lt;/em&gt;&lt;/p&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre></div>
+<hr />
+<h2 id="5-troubleshooting">5. Troubleshooting</h2>
+<h3 id="51-mysql-connection-errors">5.1 MySQL Connection Errors</h3>
+<ul>
+<li>If you encounter the error <code>ERROR 1045 (28000): Access denied for user</code>, check the user account privileges.</li>
+<li>Log in using <code>mysql -u root -p</code>, then create and grant privileges to the required account if necessary.</li>
+</ul>
+<h3 id="52-database-creation-issues">5.2 Database Creation Issues</h3>
+<ul>
+<li>Run <code>SHOW DATABASES;</code> to check if the database exists.</li>
+<li>If necessary, drop the existing database and recreate it using <code>DROP DATABASE loxilb_db;</code> and <code>CREATE DATABASE loxilb_db;</code>.</li>
+</ul>
+<hr />
+<h2 id="6-conclusion">6. Conclusion</h2>
+<p>The <code>loxilb_db</code> database and <code>users</code> and <code>token</code> tables are now successfully set up. If additional data input or application integration is required, execute the appropriate queries to manage them.</p>
 
 
 
@@ -3187,44 +2698,6 @@ Commercial support is available at
       
         <footer class="md-footer">
   
-    
-      
-      <nav class="md-footer__inner md-grid" aria-label="Footer" >
-        
-          
-          <a href="../ha-deploy/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Understanding High-availability with loxilb">
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
-            </div>
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              <div class="md-ellipsis">
-                Understanding High-availability with loxilb
-              </div>
-            </div>
-          </a>
-        
-        
-          
-          <a href="../k3s_quick_start_flannel/" class="md-footer__link md-footer__link--next" aria-label="Next: K3s/loxilb with default flannel">
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              <div class="md-ellipsis">
-                K3s/loxilb with default flannel
-              </div>
-            </div>
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
     
   
   <div class="md-footer-meta md-typeset">

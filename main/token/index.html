@@ -8,13 +8,9 @@
       
       
       
-        <link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/main/k8s-flannel-ext/">
+        <link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/main/token/">
       
       
-        <link rel="prev" href="../ha-deploy/">
-      
-      
-        <link rel="next" href="../k3s_quick_start_flannel/">
       
       
       <link rel="icon" href="../photos/loxilb-logo.png">
@@ -22,7 +18,7 @@
     
     
       
-        <title>K8s/loxilb external mode - LoxiLB</title>
+        <title>Token - LoxiLB</title>
       
     
     
@@ -76,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#quick-start-guide-with-k8s-and-loxilb-ext-mode" class="md-skip">
+        <a href="#1-overview" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              K8s/loxilb external mode
+              Token
             
           </span>
         </div>
@@ -370,10 +366,8 @@
       
   
   
-    
   
   
-  
     
     
       
@@ -392,11 +386,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -411,7 +405,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Getting Started
@@ -422,10 +416,8 @@
                 
   
   
-    
   
   
-  
     
     
       
@@ -444,11 +436,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
         
           
           <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
@@ -463,7 +455,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3_1">
             <span class="md-nav__icon md-icon"></span>
             External Cluster Mode
@@ -474,29 +466,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    K8s/loxilb external mode
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../k8s-flannel-ext/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -506,245 +479,6 @@
   
 
       </a>
-      
-        
-
-  
-
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#quick-start-guide-with-k8s-and-loxilb-ext-mode" class="md-nav__link">
-    <span class="md-ellipsis">
-      Quick Start Guide with K8s and LoxiLB ext-mode
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Quick Start Guide with K8s and LoxiLB ext-mode">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#pre-requisite" class="md-nav__link">
-    <span class="md-ellipsis">
-      Pre-requisite
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#topology" class="md-nav__link">
-    <span class="md-ellipsis">
-      Topology
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#setup-loxilb-node" class="md-nav__link">
-    <span class="md-ellipsis">
-      Setup loxilb node
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Setup loxilb node">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#install-docker-runtime" class="md-nav__link">
-    <span class="md-ellipsis">
-      Install docker runtime
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#run-loxilb" class="md-nav__link">
-    <span class="md-ellipsis">
-      Run loxilb
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#setup-k8s-node" class="md-nav__link">
-    <span class="md-ellipsis">
-      Setup K8s node
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Setup K8s node">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#prepare-the-node" class="md-nav__link">
-    <span class="md-ellipsis">
-      Prepare the node
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#install-docker-container-runtime-or-any-runtime-as-per-user-preference" class="md-nav__link">
-    <span class="md-ellipsis">
-      Install docker container runtime (or any runtime as per user preference)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#install-kubernetes-dependencies" class="md-nav__link">
-    <span class="md-ellipsis">
-      Install Kubernetes dependencies
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#install-kubernetes-with-kubeadm" class="md-nav__link">
-    <span class="md-ellipsis">
-      Install Kubernetes with kubeadm
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Install Kubernetes with kubeadm">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#first-create-a-kubeadm-configyaml-with-following-contents" class="md-nav__link">
-    <span class="md-ellipsis">
-      First create a kubeadm-config.yaml with following contents :
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#run-kubeadm-to-complete-installation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Run kubeadm to complete installation:
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#setup-kubeconfig-for-running-kubectl-conveniently-optional" class="md-nav__link">
-    <span class="md-ellipsis">
-      Setup kubeconfig for running kubectl conveniently (optional)
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#label-the-node-and-remove-taints-to-make-sure-pods-are-scheduled-properly-since-it-is-a-single-node-setup" class="md-nav__link">
-    <span class="md-ellipsis">
-      Label the node and remove taints to make sure pods are scheduled properly (since it is a single node setup)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#deploying-kube-loxilb-in-k8s" class="md-nav__link">
-    <span class="md-ellipsis">
-      Deploying kube-loxilb in K8s
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#spawn-a-test-pod-and-create-a-lb-service" class="md-nav__link">
-    <span class="md-ellipsis">
-      Spawn a test pod and create a LB service
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#check-the-status" class="md-nav__link">
-    <span class="md-ellipsis">
-      Check the status
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Check the status">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#in-kubernetes-node" class="md-nav__link">
-    <span class="md-ellipsis">
-      In Kubernetes node:
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#in-loxilb-node" class="md-nav__link">
-    <span class="md-ellipsis">
-      In loxilb node:
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#connect-from-hostclient" class="md-nav__link">
-    <span class="md-ellipsis">
-      Connect from host/client
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2635,28 +2369,28 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#quick-start-guide-with-k8s-and-loxilb-ext-mode" class="md-nav__link">
+  <a href="#1-overview" class="md-nav__link">
     <span class="md-ellipsis">
-      Quick Start Guide with K8s and LoxiLB ext-mode
+      1. Overview
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Quick Start Guide with K8s and LoxiLB ext-mode">
+    <nav class="md-nav" aria-label="1. Overview">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#pre-requisite" class="md-nav__link">
+  <a href="#differences-from-the-previous-api" class="md-nav__link">
     <span class="md-ellipsis">
-      Pre-requisite
+      Differences from the Previous API
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#topology" class="md-nav__link">
+  <a href="#key-changes" class="md-nav__link">
     <span class="md-ellipsis">
-      Topology
+      Key Changes
     </span>
   </a>
   
@@ -2668,28 +2402,37 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#setup-loxilb-node" class="md-nav__link">
+  <a href="#2-token-authentication-overview" class="md-nav__link">
     <span class="md-ellipsis">
-      Setup loxilb node
+      2. Token Authentication Overview
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Setup loxilb node">
+    <nav class="md-nav" aria-label="2. Token Authentication Overview">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#install-docker-runtime" class="md-nav__link">
+  <a href="#user-role-management" class="md-nav__link">
     <span class="md-ellipsis">
-      Install docker runtime
+      User Role Management
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#run-loxilb" class="md-nav__link">
+  <a href="#token-issuance-and-storage-method" class="md-nav__link">
     <span class="md-ellipsis">
-      Run loxilb
+      Token Issuance and Storage Method
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#token-expiry-and-renewal-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Token Expiry and Renewal Policy
     </span>
   </a>
   
@@ -2701,97 +2444,46 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#setup-k8s-node" class="md-nav__link">
+  <a href="#3-token-issuance-method" class="md-nav__link">
     <span class="md-ellipsis">
-      Setup K8s node
+      3. Token Issuance Method
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Setup K8s node">
+    <nav class="md-nav" aria-label="3. Token Issuance Method">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#prepare-the-node" class="md-nav__link">
+  <a href="#loxilb-execution-options-and-example" class="md-nav__link">
     <span class="md-ellipsis">
-      Prepare the node
+      LoxiLB Execution Options and Example
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#install-docker-container-runtime-or-any-runtime-as-per-user-preference" class="md-nav__link">
+  <a href="#execution-example" class="md-nav__link">
     <span class="md-ellipsis">
-      Install docker container runtime (or any runtime as per user preference)
+      Execution Example
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#install-kubernetes-dependencies" class="md-nav__link">
+  <a href="#database-initialization" class="md-nav__link">
     <span class="md-ellipsis">
-      Install Kubernetes dependencies
+      Database Initialization
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#install-kubernetes-with-kubeadm" class="md-nav__link">
+  <a href="#token-issuance-process" class="md-nav__link">
     <span class="md-ellipsis">
-      Install Kubernetes with kubeadm
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Install Kubernetes with kubeadm">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#first-create-a-kubeadm-configyaml-with-following-contents" class="md-nav__link">
-    <span class="md-ellipsis">
-      First create a kubeadm-config.yaml with following contents :
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#run-kubeadm-to-complete-installation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Run kubeadm to complete installation:
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#setup-kubeconfig-for-running-kubectl-conveniently-optional" class="md-nav__link">
-    <span class="md-ellipsis">
-      Setup kubeconfig for running kubectl conveniently (optional)
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#label-the-node-and-remove-taints-to-make-sure-pods-are-scheduled-properly-since-it-is-a-single-node-setup" class="md-nav__link">
-    <span class="md-ellipsis">
-      Label the node and remove taints to make sure pods are scheduled properly (since it is a single node setup)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#deploying-kube-loxilb-in-k8s" class="md-nav__link">
-    <span class="md-ellipsis">
-      Deploying kube-loxilb in K8s
+      Token Issuance Process
     </span>
   </a>
   
@@ -2803,37 +2495,19 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#spawn-a-test-pod-and-create-a-lb-service" class="md-nav__link">
+  <a href="#4-using-the-token-in-api-calls" class="md-nav__link">
     <span class="md-ellipsis">
-      Spawn a test pod and create a LB service
+      4. Using the Token in API Calls
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#check-the-status" class="md-nav__link">
-    <span class="md-ellipsis">
-      Check the status
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Check the status">
+    <nav class="md-nav" aria-label="4. Using the Token in API Calls">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#in-kubernetes-node" class="md-nav__link">
+  <a href="#request-header-explanation" class="md-nav__link">
     <span class="md-ellipsis">
-      In Kubernetes node:
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#in-loxilb-node" class="md-nav__link">
-    <span class="md-ellipsis">
-      In loxilb node:
+      Request Header Explanation
     </span>
   </a>
   
@@ -2845,11 +2519,173 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#connect-from-hostclient" class="md-nav__link">
+  <a href="#5-token-expiry-and-renewal-policy" class="md-nav__link">
     <span class="md-ellipsis">
-      Connect from host/client
+      5. Token Expiry and Renewal Policy
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="5. Token Expiry and Renewal Policy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#token-expiry-duration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Token Expiry Duration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no-token-renewal-mechanism" class="md-nav__link">
+    <span class="md-ellipsis">
+      No Token Renewal Mechanism
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#automatic-logout-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Automatic Logout Policy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recommendations-for-token-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recommendations for Token Management
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-security-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Security Considerations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Security Considerations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#use-of-https" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use of HTTPS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secure-token-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Secure Token Storage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preventing-token-theft" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preventing Token Theft
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#role-based-access-control-rbac" class="md-nav__link">
+    <span class="md-ellipsis">
+      Role-Based Access Control (RBAC)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#protection-against-brute-force-attacks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Protection Against Brute-Force Attacks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#token-expiration-and-revocation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Token Expiration and Revocation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Troubleshooting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#token-not-provided-in-api-request" class="md-nav__link">
+    <span class="md-ellipsis">
+      Token Not Provided in API Request
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unauthorized-user-trying-to-access-a-restricted-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unauthorized User Trying to Access a Restricted API
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expired-or-invalid-token-used" class="md-nav__link">
+    <span class="md-ellipsis">
+      Expired or Invalid Token Used
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#additional-troubleshooting-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Additional Troubleshooting Steps
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2872,291 +2708,278 @@
   
 
 
-  <h1>K8s/loxilb external mode</h1>
+  <h1>Token</h1>
 
-<h2 id="quick-start-guide-with-k8s-and-loxilb-ext-mode">Quick Start Guide with K8s and LoxiLB ext-mode</h2>
-<p>This guide will explain how to:</p>
+<h2 id="1-overview">1. Overview</h2>
+<p>Due to continuous requests for authentication in the LoxiLB REST API, a token-based authentication feature has been added to enhance security. With this update, authentication is now mandatory for API requests, improving the overall security of LoxiLB operations.</p>
+<h3 id="differences-from-the-previous-api">Differences from the Previous API</h3>
+<p>Previously, the LoxiLB API could be used without authentication. However, with this update, authentication has been introduced. The new authentication method requires users to go through a login process to obtain a token, which must be used for API requests. This feature can be enabled using an option, and if not activated, the API can be used as before.</p>
+<h3 id="key-changes">Key Changes</h3>
 <ul>
-<li>Deploy a single-node K8s cluster with flannel networking</li>
-<li>Run loxilb in ext-mode</li>
-<li>Expose services with loxilb as provider of serviceLB      </li>
+<li><strong>New API Endpoints Added</strong>:<ul>
+<li><code>POST /auth/login</code>: Logs in and issues a token</li>
+<li><code>POST /auth/logout</code>: Logs out and revokes the token</li>
+<li><code>GET /auth/users</code>: Retrieves the list of users</li>
+<li><code>POST /auth/users</code>: Adds a new user</li>
+<li><code>DELETE /auth/users/{id}</code>: Deletes a specific user</li>
+<li><code>PUT /auth/users/{id}</code>: Modifies a specific user's information</li>
 </ul>
-<h3 id="pre-requisite">Pre-requisite</h3>
+</li>
+<li><strong>API requests requiring authentication must include the token in the <code>Authorization</code> header</strong></li>
+<li><strong>Authentication can be enabled/disabled through an option when running LoxiLB</strong></li>
+</ul>
+<h2 id="2-token-authentication-overview">2. Token Authentication Overview</h2>
+<p>LoxiLB REST API uses <strong>JWT (JSON Web Token)</strong> for token generation, while authentication is based on values stored in the database. To use authentication, users must first create an account using the <code>/auth/users</code> API. Then, they can log in by providing their user ID and password in the request body of the <code>POST /auth/login</code> API, which returns a token. The issued token is stored in both the database and cache, and after authentication, API requests are processed accordingly.</p>
+<h3 id="user-role-management">User Role Management</h3>
+<p>Each user account has a specific <strong>role</strong>, with two types available: <code>admin</code> and <code>viewer</code>.</p>
 <ul>
-<li>Two nodes with Linux - one for running K8s and another for running loxilb</li>
-<li>For loxilb, the linux kernel version should be &gt;= 5.15</li>
-<li>Bastion or Host node to consume the services</li>
+<li><strong><code>admin</code> Role</strong>: Has full administrative privileges and can perform all API requests.</li>
+<li><strong><code>viewer</code> Role</strong>: Can only perform <code>GET</code> requests and is restricted from making configuraion.</li>
 </ul>
-<h3 id="topology">Topology</h3>
-<p>For quickly bringing up loxilb with K8s, we will be deploying all components in a single node :   </p>
-<p><img alt="image" src="https://github.com/user-attachments/assets/96dd024d-7480-42be-8272-be047485aa43" /></p>
-<p>loxilb is run as a docker in its own node in external mode. loxilb can be used in more complex <a href="https://www.loxilb.io/post/k8s-nuances-of-in-cluster-external-service-lb-with-loxilb">in-cluster</a> mode as well with various <a href="https://docs.loxilb.io/latest/ha-deploy/">HA</a> options as well, but skipped here for simplicity.   </p>
-<h2 id="setup-loxilb-node">Setup loxilb node</h2>
-<h3 id="install-docker-runtime">Install docker runtime</h3>
-<div class="highlight"><pre><span></span><code>apt-get update
-apt-get install -y software-properties-common
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-add-apt-repository -y &quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu  $(lsb_release -cs)  stable&quot;
-apt-get update
-apt-get install -y docker-ce
+<p>Role-Based Access Control (RBAC) is implemented to enhance security by segmenting user permissions.</p>
+<h3 id="token-issuance-and-storage-method">Token Issuance and Storage Method</h3>
+<ul>
+<li>Upon successful login, a JWT token is issued.</li>
+<li>The issued token is stored in <strong>both the database and cache</strong>, along with its creation timestamp.</li>
+<li>When making API requests, the <code>Authorization</code> header must include the token, which is validated against the database or cache.</li>
+</ul>
+<h3 id="token-expiry-and-renewal-policy">Token Expiry and Renewal Policy</h3>
+<ul>
+<li>The default validity period of an issued token is <strong>1 hour</strong>.</li>
+<li>There is <strong>no refresh mechanism</strong>, and once a token expires, users must <strong>log in again</strong> to obtain a new one.</li>
+</ul>
+<h2 id="3-token-issuance-method">3. Token Issuance Method</h2>
+<p>To obtain a token, the <code>--userservice</code> option must be enabled when running LoxiLB. When activated, the user authentication and token issuance features will function.</p>
+<p>LoxiLB uses <strong>MySQL</strong> to store and manage user information. The database must be properly connected, and the following execution options can be used to configure database connection details.</p>
+<h3 id="loxilb-execution-options-and-example">LoxiLB Execution Options and Example</h3>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+<th>Example</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--userservice</code></td>
+<td>Enable user authentication service</td>
+<td><code>--userservice</code></td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>--databasehost</code></td>
+<td>Database host address</td>
+<td><code>--databasehost="127.0.0.1"</code></td>
+<td><code>127.0.0.1</code></td>
+</tr>
+<tr>
+<td><code>--databaseport</code></td>
+<td>Database port number</td>
+<td><code>--databaseport=3306</code></td>
+<td><code>3306</code></td>
+</tr>
+<tr>
+<td><code>--databaseuser</code></td>
+<td>Database username</td>
+<td><code>--databaseuser="root"</code></td>
+<td><code>root</code></td>
+</tr>
+<tr>
+<td><code>--databasepasswordpath</code></td>
+<td>Path to database password</td>
+<td><code>--databasepasswordpath="/etc/loxilb/mysql_password"</code></td>
+<td><code>/etc/loxilb/mysql_password</code></td>
+</tr>
+<tr>
+<td><code>--databasename</code></td>
+<td>Database name</td>
+<td><code>--databasename="loxilb_db"</code></td>
+<td><code>loxilb_db</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="execution-example">Execution Example</h3>
+<p>To enable the user authentication service and configure MySQL database connection, run LoxiLB as follows:</p>
+<p><div class="highlight"><pre><span></span><code>./loxilb --userservice \
+         --databasehost=&quot;127.0.0.1&quot; \
+         --databaseport=3306 \
+         --databaseuser=&quot;root&quot; \
+         --databasepasswordpath=&quot;/etc/loxilb/mysql_password&quot; \
+         --databasename=&quot;loxilb_db&quot;
 </code></pre></div>
-<h3 id="run-loxilb">Run loxilb</h3>
-<div class="highlight"><pre><span></span><code>sudo docker run -u root --cap-add SYS_ADMIN --restart unless-stopped --privileged -dit -v /dev/log:/dev/log --net=host --name loxilb ghcr.io/loxilb-io/loxilb:latest
+Note: The databasepasswordpath option reads the plain text value from the specified file as the password. Please be cautious about file security and potential leaks. It is recommended to set the file permissions to 600 using <code>chmod 600 /etc/loxilb/mysql_password</code>. </p>
+<h3 id="database-initialization">Database Initialization</h3>
+<p>To use LoxiLB's authentication feature, the necessary database and tables must be set up in MySQL. Execute the SQL script provided <a href="docs/db_setup.md">here</a> to initialize the database.</p>
+<h3 id="token-issuance-process">Token Issuance Process</h3>
+<ol>
+<li><strong>Enable <code>-userservice</code> option when running LoxiLB and configure database connection</strong></li>
+<li><strong>Create a user account</strong> (<code>POST /auth/users</code> API call)</li>
+</ol>
+<p>Example request:</p>
+<div class="highlight"><pre><span></span><code>curl -X POST &quot;http://&lt;loxilb-ip&gt;:&lt;port&gt;/netlox/v1/auth/users&quot; \
+     -H &quot;Content-Type: application/json&quot; \
+     -d &#39;{&quot;username&quot;: &quot;loxilb&quot;, &quot;password&quot;: &quot;securepassword&quot;, &quot;role&quot;: &quot;admin&quot;}&#39;
 </code></pre></div>
-<h2 id="setup-k8s-node">Setup K8s node</h2>
-<p>We  will setup the single node Kubernetes setup using kubeadm. </p>
-<h3 id="prepare-the-node">Prepare the node</h3>
-<div class="highlight"><pre><span></span><code># disable swap
-sudo swapoff -a
-
-# keeps the swap off during reboot
-(crontab -l 2&gt;/dev/null; echo &quot;@reboot /sbin/swapoff -a&quot;) | crontab - || true
-sudo apt-get update -y
-
-# Kernel Forwarding 
-cat &lt;&lt;EOF | sudo tee /etc/modules-load.d/k8s.conf
-br_netfilter
-EOF
-
-# Set up required sysctl params, these persist across reboots.
-cat &lt;&lt;EOF | sudo tee /etc/sysctl.d/99-kubernetes-cri.conf
-net.bridge.bridge-nf-call-iptables  = 1
-net.ipv4.ip_forward                 = 1
-net.bridge.bridge-nf-call-ip6tables = 1
-EOF
-
-sudo sysctl --system
-
-# Install docker to be used as container-runtime by Kubernetes
-sudo apt install -y docker.io
-sudo usermod -aG docker vagrant
-</code></pre></div>
-<h3 id="install-docker-container-runtime-or-any-runtime-as-per-user-preference">Install docker container runtime (or any runtime as per user preference)</h3>
-<div class="highlight"><pre><span></span><code># cri-docker Install
-VER=$(curl -s https://api.github.com/repos/Mirantis/cri-dockerd/releases/latest|grep tag_name | cut -d &#39;&quot;&#39; -f 4|sed &#39;s/v//g&#39;)
-echo $VER
-wget -q https://github.com/Mirantis/cri-dockerd/releases/download/v${VER}/cri-dockerd-${VER}.amd64.tgz --retry-connrefused  --waitretry=1 --read-timeout=20 --timeout=15 --tries=5 --continue
-tar xvf cri-dockerd-${VER}.amd64.tgz
-sudo mv cri-dockerd/cri-dockerd /usr/local/bin/
-
-wget -q https://raw.githubusercontent.com/Mirantis/cri-dockerd/master/packaging/systemd/cri-docker.service --retry-connrefused  --waitretry=1 --read-timeout=20 --timeout=15 --tries=5 --continue
-wget -q https://raw.githubusercontent.com/Mirantis/cri-dockerd/master/packaging/systemd/cri-docker.socket --retry-connrefused  --waitretry=1 --read-timeout=20 --timeout=15 --tries=5 --continue
-sudo mv cri-docker.socket cri-docker.service /etc/systemd/system/
-sudo sed -i -e &#39;s,/usr/bin/cri-dockerd,/usr/local/bin/cri-dockerd,&#39; /etc/systemd/system/cri-docker.service
-
-sudo systemctl daemon-reload
-sudo systemctl enable cri-docker.service
-sudo systemctl enable --now cri-docker.socket
-
-# cri-docker Active Check
-sudo systemctl restart docker &amp;&amp; sudo systemctl restart cri-docker
-sudo systemctl status cri-docker.socket --no-pager
-
-# Docker cgroup Change Require to Systemd
-sudo mkdir -p /etc/docker || true
-cat &lt;&lt;EOF | sudo tee /etc/docker/daemon.json
-{
-  &quot;exec-opts&quot;: [&quot;native.cgroupdriver=systemd&quot;],
-  &quot;log-driver&quot;: &quot;json-file&quot;,
-  &quot;log-opts&quot;: {
-    &quot;max-size&quot;: &quot;100m&quot;
-  },
-  &quot;storage-driver&quot;: &quot;overlay2&quot;
+<p>Example response:</p>
+<div class="highlight"><pre><span></span><code>{
+  &quot;Result&quot;: &quot;Success&quot;
 }
-EOF
-
-sudo systemctl restart docker &amp;&amp; sudo systemctl restart cri-docker
 </code></pre></div>
-<h3 id="install-kubernetes-dependencies">Install Kubernetes dependencies</h3>
-<div class="highlight"><pre><span></span><code>sudo apt-get install -y apt-transport-https ca-certificates curl gpg
-curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.29.2/deb/Release.key | sudo gpg --no-tty --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
-echo &#39;deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.29.2/deb/ /&#39; | sudo tee /etc/apt/sources.list.d/kubernetes.list
-
-sudo apt-get update -y
-sudo apt-get install -y kubelet kubectl kubeadm
-sudo apt-get update -y
-sudo apt-get install -y jq
-sudo apt-get install -y ipvsadm
+<ol>
+<li><strong>Login Request</strong> (<code>POST /auth/login</code> API call with user ID and password)</li>
+<li><strong>JWT Token Issuance and Response Return</strong></li>
+<li><strong>Include the token in the <code>Authorization</code> header for subsequent API requests</strong></li>
+</ol>
+<p>Example request:</p>
+<div class="highlight"><pre><span></span><code>curl -X POST &quot;http://&lt;loxilb-ip&gt;:&lt;port&gt;/netlox/v1/auth/login&quot; \
+     -H &quot;Content-Type: application/json&quot; \
+     -d &#39;{&quot;username&quot;: &quot;loxilb&quot;, &quot;password&quot;: &quot;securepassword&quot;}&#39;
 </code></pre></div>
-<h3 id="install-kubernetes-with-kubeadm">Install Kubernetes with kubeadm</h3>
-<h4 id="first-create-a-kubeadm-configyaml-with-following-contents">First create a kubeadm-config.yaml with following contents :</h4>
-<p>(Note that 192.168.80.250 is the nodeIP of the Kubernetes node)
-<div class="highlight"><pre><span></span><code>apiVersion: kubeadm.k8s.io/v1beta3
-bootstrapTokens:
-- groups:
-  - system:bootstrappers:kubeadm:default-node-token
-  ttl: 24h0m0s
-  usages:
-  - signing
-  - authentication
-kind: InitConfiguration
-localAPIEndpoint:
-  advertiseAddress: 192.168.80.250
-  bindPort: 6443
-nodeRegistration:
-  imagePullPolicy: IfNotPresent
-  name: master
-  taints: null
-  kubeletExtraArgs:
-    node-ip: 192.168.80.250
-  criSocket: unix:///var/run/cri-dockerd.sock
----
-apiVersion: kubeadm.k8s.io/v1beta3
-certificatesDir: /etc/kubernetes/pki
-kind: ClusterConfiguration
-apiServer:
-  timeoutForControlPlane: 4m0s
-  certSANs:
-  - 192.168.80.250
-controlPlaneEndpoint: 192.168.80.250:6443
-clusterName: kubernetes
-controllerManager: {}
-dns: {}
-etcd:
-  local:
-    dataDir: /var/lib/etcd
-imageRepository: registry.k8s.io
-kubernetesVersion: v1.29.2
-networking:
-  dnsDomain: cluster.local
-  podSubnet: 10.244.0.0/16
-  serviceSubnet: 10.245.0.0/18
-scheduler: {}
---
-apiVersion: kubeproxy.config.k8s.io/v1alpha1
-bindAddress: 0.0.0.0
-clientConnection:
-  acceptContentTypes: &quot;&quot;
-  burst: 10
-  contentType: application/vnd.kubernetes.protobuf
-  kubeconfig: /var/lib/kube-proxy/kubeconfig.conf
-  qps: 5
-clusterCIDR: &quot;&quot;
-configSyncPeriod: 15m0s
-#featureGates: &quot;SupportIPVSProxyMode=true&quot;
-enableProfiling: false
-healthzBindAddress: 0.0.0.0:10256
-hostnameOverride: &quot;&quot;
-iptables:
-  masqueradeAll: false
-  masqueradeBit: 14
-  minSyncPeriod: 0s
-  syncPeriod: 30s
-ipvs:
-  excludeCIDRs: null
-  minSyncPeriod: 0s
-  scheduler: &quot;&quot;
-  syncPeriod: 30s
-kind: KubeProxyConfiguration
-metricsBindAddress: 127.0.0.1:10249
-nodePortAddresses: null
-oomScoreAdj: -999
-portRange: &quot;&quot;
----
-kind: KubeletConfiguration
-apiVersion: kubelet.config.k8s.io/v1beta1
-cgroupDriver: systemd
-</code></pre></div></p>
-<h4 id="run-kubeadm-to-complete-installation">Run kubeadm to complete installation:</h4>
-<div class="highlight"><pre><span></span><code>sudo kubeadm init --ignore-preflight-errors Swap --config kubeadm-config.yaml
+<p>Example response:</p>
+<div class="highlight"><pre><span></span><code>{
+  &quot;token&quot;: &quot;eyJhbGciOiJIUzI1...&quot;
+}
 </code></pre></div>
-<h4 id="setup-kubeconfig-for-running-kubectl-conveniently-optional">Setup kubeconfig for running kubectl conveniently (optional)</h4>
-<div class="highlight"><pre><span></span><code>mkdir -p &quot;$HOME&quot;/.kube
-sudo cp -i /etc/kubernetes/admin.conf &quot;$HOME&quot;/.kube/config
-sudo chown &quot;$(id -u)&quot;:&quot;$(id -g)&quot; &quot;$HOME&quot;/.kube/config
+<h2 id="4-using-the-token-in-api-calls">4. Using the Token in API Calls</h2>
+<p>To make authenticated API requests, include the token in the <code>Authorization</code> header. After obtaining the token from the login response, attach it to API requests as follows:</p>
+<p>Example request:</p>
+<div class="highlight"><pre><span></span><code>curl -X GET &quot;http://&lt;loxilb-ip&gt;:&lt;port&gt;/netlox/v1/config/loadbalancer/all&quot; \
+     -H &quot;Authorization: &lt;your-token&gt;&quot;
 </code></pre></div>
-<h3 id="label-the-node-and-remove-taints-to-make-sure-pods-are-scheduled-properly-since-it-is-a-single-node-setup">Label the node and remove taints to make sure pods are scheduled properly (since it is a single node setup)</h3>
-<div class="highlight"><pre><span></span><code>kubectl label node $(hostname -s) node-role.kubernetes.io/worker=&#39;&#39;
-kubectl label node $(hostname -s) node.kubernetes.io/exclude-from-external-load-balancers-
-kubectl taint nodes --all node-role.kubernetes.io/control-plane-
+<h3 id="request-header-explanation">Request Header Explanation</h3>
+<table>
+<thead>
+<tr>
+<th>Header</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Authorization</code></td>
+<td>The token obtained after login</td>
+</tr>
+</tbody>
+</table>
+<p>If an incorrect or expired token is used, the server will respond with an error message indicating that authentication has failed. Ensure that the token is valid and has not expired before making API requests.</p>
+<h2 id="5-token-expiry-and-renewal-policy">5. Token Expiry and Renewal Policy</h2>
+<h3 id="token-expiry-duration">Token Expiry Duration</h3>
+<ul>
+<li>By default, the issued token is <strong>valid for 1 hour</strong>.</li>
+<li>After 1 hour, the token automatically expires and cannot be used for authentication.</li>
+<li>If an expired token is used for an API request, an error response will be returned indicating authentication failure.</li>
+</ul>
+<h3 id="no-token-renewal-mechanism">No Token Renewal Mechanism</h3>
+<ul>
+<li>LoxiLB <strong>does not provide a refresh mechanism</strong> for tokens.</li>
+<li>Once a token expires, the user <strong>must log in again</strong> to obtain a new token.</li>
+<li>This design enhances security by requiring users to periodically authenticate.</li>
+</ul>
+<h3 id="automatic-logout-policy">Automatic Logout Policy</h3>
+<ul>
+<li>LoxiLB <strong>does not automatically log out users</strong> when their token expires.</li>
+<li>However, expired tokens will no longer be valid for API requests, effectively requiring re-authentication.</li>
+</ul>
+<h3 id="recommendations-for-token-management">Recommendations for Token Management</h3>
+<ul>
+<li><strong>Monitor Token Expiry:</strong> Ensure applications using LoxiLB APIs handle token expiration correctly and obtain a new token when necessary.</li>
+<li><strong>Handle Expired Token Errors Gracefully:</strong> If a <code>401 Unauthorized</code> response is received, prompt the user to log in again.</li>
+<li><strong>Use Secure Storage:</strong> Store tokens securely and avoid exposing them in logs or front-end applications.</li>
+<li><strong>Implement Periodic Re-authentication:</strong> To minimize authentication failures due to token expiry, consider implementing automatic re-authentication processes in applications using LoxiLB APIs.</li>
+</ul>
+<p>LoxiLB’s token-based authentication system is designed to improve security while maintaining simplicity in user management. Future updates may include additional security enhancements such as token refresh mechanisms or stricter session management.</p>
+<h2 id="6-security-considerations">6. Security Considerations</h2>
+<h3 id="use-of-https">Use of HTTPS</h3>
+<ul>
+<li>Always use <strong>HTTPS</strong> for login and API requests to prevent data interception and man-in-the-middle attacks.</li>
+<li>Avoid using HTTP, as authentication credentials can be exposed.</li>
+</ul>
+<h3 id="secure-token-storage">Secure Token Storage</h3>
+<ul>
+<li>Tokens should be securely stored and <strong>never hardcoded in source code</strong>.</li>
+<li>Avoid storing tokens in local storage or session storage in browsers, as they can be accessed by malicious scripts.</li>
+<li>Prefer storing tokens in <strong>HTTP-only, secure cookies</strong> when applicable.</li>
+</ul>
+<h3 id="preventing-token-theft">Preventing Token Theft</h3>
+<ul>
+<li>Tokens should <strong>only be sent over secure connections (HTTPS)</strong>.</li>
+<li>Implement <strong>short-lived tokens</strong> and refresh them periodically.</li>
+<li>Consider binding tokens to a user’s IP address or device fingerprint to prevent misuse.</li>
+</ul>
+<h3 id="role-based-access-control-rbac">Role-Based Access Control (RBAC)</h3>
+<ul>
+<li>LoxiLB enforces <strong>Role-Based Access Control (RBAC)</strong> to restrict unauthorized actions.</li>
+<li>The <code>admin</code> role allows all operations, while the <code>viewer</code> role only permits <code>GET</code> requests.</li>
+<li>Ensure users have the minimum necessary privileges.</li>
+</ul>
+<h3 id="protection-against-brute-force-attacks">Protection Against Brute-Force Attacks</h3>
+<ul>
+<li>Implement <strong>rate limiting</strong> on authentication endpoints to prevent brute-force attacks.</li>
+<li>Consider adding <strong>account lockout mechanisms</strong> after multiple failed login attempts.</li>
+<li>Encourage the use of <strong>strong passwords</strong> and multi-factor authentication (MFA).</li>
+</ul>
+<h3 id="token-expiration-and-revocation">Token Expiration and Revocation</h3>
+<ul>
+<li>Tokens expire <strong>after 1 hour</strong> by default to minimize security risks.</li>
+<li>If a token is compromised, <strong>invalidate and regenerate</strong> it immediately.</li>
+<li>Provide a logout mechanism (<code>POST /auth/logout</code>) to manually revoke a token.</li>
+</ul>
+<h2 id="7-troubleshooting">7. Troubleshooting</h2>
+<h3 id="token-not-provided-in-api-request">Token Not Provided in API Request</h3>
+<ul>
+<li><strong>Error Code:</strong> <code>401 Unauthorized</code></li>
+<li><strong>Response Example:</strong></li>
+</ul>
+<div class="highlight"><pre><span></span><code>{
+  &quot;code&quot;: 401,
+  &quot;message&quot;: &quot;unauthenticated for invalid credentials&quot;
+}
 </code></pre></div>
-<h3 id="deploying-kube-loxilb-in-k8s">Deploying kube-loxilb in K8s</h3>
-<p><a href="https://github.com/loxilb-io/kube-loxilb">kube-loxilb</a> is used to deploy loxilb with Kubernetes.
-<div class="highlight"><pre><span></span><code>wget https://raw.githubusercontent.com/loxilb-io/kube-loxilb/main/manifest/ext-cluster/kube-loxilb.yaml
-</code></pre></div></p>
-<p>Change the contents of kube-loxilb.yaml to the following (leaving others commented) : 
-<div class="highlight"><pre><span></span><code>        args:
-            - --loxiURL=http://192.168.80.10:11111
-            - --cidrPools=defaultPool=192.168.80.100/32
-            - --setRoles=0.0.0.0
+<ul>
+<li><strong>Cause:</strong> The API request did not include the <code>Authorization</code> header with a valid token.</li>
+<li><strong>Solution:</strong> Ensure that you have logged in and obtained a valid token. Include the token in the <code>Authorization</code> header of your request.</li>
+</ul>
+<hr />
+<h3 id="unauthorized-user-trying-to-access-a-restricted-api">Unauthorized User Trying to Access a Restricted API</h3>
+<ul>
+<li><strong>Error Code:</strong> <code>403 Forbidden</code></li>
+<li><strong>Response Example:</strong></li>
+</ul>
+<div class="highlight"><pre><span></span><code>{
+  &quot;code&quot;: 403,
+  &quot;message&quot;: &quot;Permission denied&quot;
+}
 </code></pre></div>
-In the above snippet, loxiURL uses nodeIP of loxilb node, which can be different for each setup. The CIDR is set to any unused IP/subnet in the local network.</p>
-<p>Apply the yaml contents :
-<div class="highlight"><pre><span></span><code>kubectl apply -f kube-loxilb.yaml
-</code></pre></div></p>
-<h2 id="spawn-a-test-pod-and-create-a-lb-service">Spawn a test pod and create a LB service</h2>
-<p><div class="highlight"><pre><span></span><code>cat &lt;&lt; EOF | kubectl apply -f -
-apiVersion: v1
-kind: Service
-metadata:
-  name: tcp-lb-onearm
-  annotations:
-    loxilb.io/liveness: &quot;yes&quot;
-    loxilb.io/lbmode: &quot;onearm&quot;
-spec:
-  externalTrafficPolicy: Local
-  loadBalancerClass: loxilb.io/loxilb
-  selector:
-    what: tcp-onearm-test
-  ports:
-    - port: 55002
-      targetPort: 80 
-  type: LoadBalancer
----
-apiVersion: v1
-kind: Pod
-metadata:
-  name: tcp-onearm-test
-  labels:
-    what: tcp-onearm-test
-spec:
-  containers:
-    - name: tcp-onearm-test
-      image: ghcr.io/loxilb-io/nginx:stable
-      ports:
-        - containerPort: 80
-EOF
+<ul>
+<li><strong>Cause:</strong> A user with insufficient privileges (<code>viewer</code> role) attempted to perform an action requiring <code>admin</code> privileges.</li>
+<li><strong>Solution:</strong> Verify that the logged-in user has the necessary permissions. If elevated permissions are needed, log in with an <code>admin</code> account and obtain a new token.</li>
+</ul>
+<hr />
+<h3 id="expired-or-invalid-token-used">Expired or Invalid Token Used</h3>
+<ul>
+<li><strong>Error Code:</strong> <code>500 Internal Server Error</code></li>
+<li><strong>Response Example:</strong></li>
+</ul>
+<div class="highlight"><pre><span></span><code>{
+  &quot;code&quot;: 500,
+  &quot;message&quot;: &quot;Token not found&quot;
+}
 </code></pre></div>
-For detailed explanation of various annotations, please check <a href="https://docs.loxilb.io/latest/kube-loxilb/#how-to-deploy-kube-loxilb">this</a> guide.</p>
-<h2 id="check-the-status">Check the status</h2>
-<h3 id="in-kubernetes-node">In Kubernetes node:</h3>
-<div class="highlight"><pre><span></span><code>kubectl get svc
-NAME            TYPE           CLUSTER-IP    EXTERNAL-IP          PORT(S)           AGE
-kubernetes      ClusterIP      10.245.0.1    &lt;none&gt;               443/TCP           31m
-tcp-lb-onearm   LoadBalancer   10.245.2.83   llb-192.168.80.100   55002:32057/TCP   45s
-</code></pre></div>
-<h3 id="in-loxilb-node">In loxilb node:</h3>
-<div class="highlight"><pre><span></span><code>$ sudo docker exec -it loxilb loxicmd get lb -o wide
-|     EXT IP     | SEC IPS | HOST | PORT  | PROTO |         NAME          | MARK | SEL |  MODE  |    ENDPOINT    | EPORT | WEIGHT | STATE  | COUNTERS |
-|----------------|---------|------|-------|-------|-----------------------|------|-----|--------|----------------|-------|--------|--------|----------|
-| 192.168.80.100 |         |      | 55002 | tcp   | default_tcp-lb-onearm |    0 | rr  | onearm | 192.168.80.250 | 32057 |      1 | active | 0:0      |
-</code></pre></div>
-<h2 id="connect-from-hostclient">Connect from host/client</h2>
-<div class="highlight"><pre><span></span><code>$ curl http://192.168.80.100:55002
-&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-&lt;title&gt;Welcome to nginx!&lt;/title&gt;
-&lt;style&gt;
-html { color-scheme: light dark; }
-body { width: 35em; margin: 0 auto;
-font-family: Tahoma, Verdana, Arial, sans-serif; }
-&lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;h1&gt;Welcome to nginx!&lt;/h1&gt;
-&lt;p&gt;If you see this page, the nginx web server is successfully installed and
-working. Further configuration is required.&lt;/p&gt;
-
-&lt;p&gt;For online documentation and support please refer to
-&lt;a href=&quot;http://nginx.org/&quot;&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;
-Commercial support is available at
-&lt;a href=&quot;http://nginx.com/&quot;&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Thank you for using nginx.&lt;/em&gt;&lt;/p&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre></div>
+<ul>
+<li><strong>Cause:</strong> The token used in the request is either expired or incorrect.</li>
+<li><strong>Solution:</strong> Log in again using the <code>POST /auth/login</code> API to obtain a new token. Ensure that the correct token is included in API requests.</li>
+</ul>
+<hr />
+<h3 id="additional-troubleshooting-steps">Additional Troubleshooting Steps</h3>
+<ul>
+<li><strong>Verify HTTP Headers:</strong> Check whether the HTTP request header is correctly set when making an API call (<code>H 'Authorization: &lt;token&gt;'</code>).</li>
+<li><strong>Check Token Expiry:</strong> If the token has expired, log in again to obtain a new token.</li>
+<li><strong>Review LoxiLB Logs:</strong> Check the LoxiLB logs for authentication-related error messages.</li>
+<li><strong>Confirm Database Connection:</strong> Ensure that the authentication service can connect to the database where tokens are stored.</li>
+</ul>
+<p>Following these steps will help resolve most authentication-related issues in LoxiLB.</p>
 
 
 
@@ -3187,44 +3010,6 @@ Commercial support is available at
       
         <footer class="md-footer">
   
-    
-      
-      <nav class="md-footer__inner md-grid" aria-label="Footer" >
-        
-          
-          <a href="../ha-deploy/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Understanding High-availability with loxilb">
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
-            </div>
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              <div class="md-ellipsis">
-                Understanding High-availability with loxilb
-              </div>
-            </div>
-          </a>
-        
-        
-          
-          <a href="../k3s_quick_start_flannel/" class="md-footer__link md-footer__link--next" aria-label="Next: K3s/loxilb with default flannel">
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              <div class="md-ellipsis">
-                K3s/loxilb with default flannel
-              </div>
-            </div>
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
     
   
   <div class="md-footer-meta md-typeset">
