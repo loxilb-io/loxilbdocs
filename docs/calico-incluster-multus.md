@@ -12,7 +12,7 @@ This document uses a K3s single-node setup for Kubernetes. However, this is not 
 
 Overall we will deploy a topology as follows :
 
-![loxilb-k8s-arch-loxilb-calico-multus.jpg](docs/photos/loxilb-k8s-arch-loxilb-calico-multus.drawio.svg)
+![loxilb-k8s-arch-loxilb-calico-multus.jpg](photos/loxilb-k8s-arch-loxilb-calico-multus.drawio.svg)
 
 ## Install K3s
 
