@@ -107,7 +107,8 @@ Telco-cloud requires load-balancing and communication across various interfaces/
 - [K0s : loxilb in-cluster mode](k0s_quick_start_incluster.md)
 - [MicroK8s : loxilb in-cluster mode](microk8s_quick_start_incluster.md)
 - [EKS : loxilb in-cluster mode](eks-incluster.md)
-- [RedHat OCP : loxilb in-cluster mode](rhocp-quickstart-incluster.md)     
+- [RedHat OCP : loxilb in-cluster mode](rhocp-quickstart-incluster.md)
+- [K8s : loxilb in-cluster with calico/multus](calico-incluster-multus.md)
 
 #### loxilb as service-proxy
 - [loxilb service-proxy plugin with flannel](service-proxy-flannel.md)
