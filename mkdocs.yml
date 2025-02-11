@@ -53,6 +53,8 @@ nav:
           - MicroK8s/loxilb in-cluster mode: microk8s_quick_start_incluster.md
           - EKS/loxilb in-cluster mode: eks-incluster.md
           - RedHat OCP/loxilb in-cluster mode: rhocp-quickstart-incluster.md
+          - K8s/loxilb in-cluster with calico & multus: calico-incluster-multus.md
+
       - Service-Proxy Mode:
           - loxilb service-proxy plugin with flannel: service-proxy-flannel.md
           - loxilb service-proxy plugin with calico: service-proxy-calico.md
