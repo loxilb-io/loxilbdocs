@@ -150,7 +150,7 @@ EOF
 Deploy LoxiLB as a DaemonSet with Promtail for log forwarding:
 
 ```bash
-kubectl apply -f https://raw.githubusercontent.com/NLX-SeokHwanKong/kube-loxilb/main/manifest/in-cluster-grafana/loxilb.yaml
+kubectl apply -f https://raw.githubusercontent.com/loxilb-io/kube-loxilb/blob/main/manifest/in-cluster-grafana/loxilb.yaml
 ```
 
 ### Kube-LoxiLB Deployment
@@ -158,7 +158,7 @@ kubectl apply -f https://raw.githubusercontent.com/NLX-SeokHwanKong/kube-loxilb/
 Deploy Kube-LoxiLB with the following command:
 
 ```bash
-kubectl apply -f https://raw.githubusercontent.com/NLX-SeokHwanKong/kube-loxilb/main/manifest/in-cluster-grafana/kube-loxilb.yaml
+kubectl apply -f https://raw.githubusercontent.com/loxilb-io/kube-loxilb/blob/main/manifest/in-cluster-grafana/kube-loxilb.yaml
 ```
 
 ### Prometheus and Loki Setup
