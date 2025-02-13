@@ -17,11 +17,10 @@
   - [LoxiLB Configuration](#loxilb-configuration)
   - [Prometheus Configuration](#prometheus-configuration)
   - [Grafana Configuration](#grafana-configuration)
-- [Monitoring Dashboards](#monitoring-dashboards)
-  - [LB Rule Count](#lb-rule-count)
-  - [Healthy/Unhealthy Endpoint Metrics](#healthyunhealthy-endpoint-metrics)
-  - [Traffic and Throughput Metrics](#traffic-and-throughput-metrics)
-  - [Session and Connection Metrics](#session-and-connection-metrics)
+- [Grafana Dashboards](#grafana-dashboards)
+  - [Home Dashboard](#home-dashboard)
+  - [Network Dashboard](#network-dashboard)
+  - [LoxiLB Traffic Management Dashboard](#loxilb-traffic-management-dashboard)
 - [Troubleshooting](#troubleshooting)
 
 ## Overview
@@ -294,29 +293,127 @@ datasources:
     url: http://loki:3100
 ```
 
-## Monitoring Dashboards
+### Grafana Credentials Configuration
 
-### LB Rule Count
+Grafana credentials are specified in `loxilb-grafana.yml` as a Secret
+named `grafana-admin-secret` as shown below. Please also make the corresponding
+changes.
 
-This dashboard displays the total number of load balancing rules currently active in LoxiLB. It provides insight into the configuration and load distribution.
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: grafana-admin-secret
+  namespace: monitoring
+type: Opaque
+data:
+  admin-password: cGFzc3dvcmQ=  # Base64-encoded password (e.g., 'password')
+```
 
-### Healthy/Unhealthy Endpoint Metrics
+## Grafana Dashboards
 
-This dashboard monitors the number of healthy and unhealthy backend endpoints. It helps identify potential issues with backend services.
+### Home Dashboard
 
-### Traffic and Throughput Metrics
+Home dashboard is the LoxiLB dashboard in the general folder. You will see it after logging into Grafana. It provides an overview of the monitored LoxiLB cluster.
 
-This dashboard provides an overview of network traffic processed by LoxiLB, including:
-- Total bytes and packets processed.
-- Breakdown of TCP, UDP, and SCTP traffic.
-- Load distribution across backend endpoints.
+#### Traffic Throughput & Requests Metrics
+![setup](photos/loxilb-dashboard-1.png)
 
-### Session and Connection Metrics
+This section displays the total traffic processed by LoxiLB across different protocols, along with request rate statistics.
 
-This dashboard tracks:
-- Active and new connections.
-- Concurrent flow counts (TCP, UDP, SCTP).
-- Connection lifecycle states.
+##### Panels:
+- **TCP Throughput (BPS)**: Tracks TCP traffic processed by LoxiLB in bytes per second.
+- **UDP Throughput (BPS)**: Tracks UDP traffic processed by LoxiLB.
+- **SCTP Throughput (BPS)**: Displays SCTP traffic throughput, useful in telecom and specialized workloads.
+- **Total Requests**: Shows the request rate over time.
+- **Requests Per Service**: Breaks down request volume per service, identifying load distribution across multiple services.
+
+#### Connection & Flow Metrics
+
+This section provides insights into active and new connections.
+
+![setup](photos/loxilb-dashboard-3.png)
+
+##### Panels:
+- **New Flow Count**: Displays the rate of new connections initiated.
+- **Active Flow Count (TCP, UDP, SCTP)**: Monitors the number of ongoing TCP, UDP, and SCTP flows.
+- **Firewall Drops (Top 5 Rules)**: Shows the top firewall rules that resulted in dropped packets.
+- **Total Firewall Drops**: Summarizes all packet drops due to firewall rules.
+
+#### Traffic Distribution by Endpoints & Services
+
+These panels analyze traffic distribution across services and endpoints.
+
+![setup](photos/loxilb-dashboard-2.png)
+
+##### Panels:
+- **Top 5 Endpoints by Traffic**: Displays the five backend endpoints handling the most traffic.
+- **Top 5 Endpoint Distribution (Pie Chart)**: Graphical representation of traffic distribution among the top endpoints.
+- **Top 5 Services by Traffic**: Shows which services are consuming the most bandwidth.
+- **Traffic Distribution by Service (Pie Chart)**: Breaks down service-level traffic in a pie chart.
+
+#### Load Balancer Health & Session Metrics
+
+This section tracks the health of load balancer rules and active session counts.
+
+![setup](photos/loxilb-dashboard-4.png)
+
+##### Panels:
+- **LB Rule Count**: Shows the number of active load balancing rules.
+- **Healthy Endpoint Count**: Displays the number of healthy backend services.
+- **Unhealthy Endpoint Count**: Alerts when backend services become unhealthy.
+- **Active TCP, UDP, SCTP Session Count**: Monitors active sessions for each protocol.
+- **Total Processed Traffic (BPS)**: Measures the aggregate traffic handled by LoxiLB.
+- **Total Processed Packets (PPS)**: Displays total packet processing rate.
+
+### Network Dashboard
+
+The Network Dashboard provides a real-time overview of LoxiLB's network state, including interface statistics, ARP tables, routing information, and high availability (HA) status.
+
+![setup](photos/loxilb-dashboard-network-1.png)
+
+![setup](photos/loxilb-dashboard-network-2.png)
+
+#### Network Table information
+
+##### Panels:
+- **Number of Ports**: Displays the total number of network ports managed by LoxiLB.
+- **Number of Interfaces**: Shows the total network interfaces available.
+- **Number of ARP Tables**: Indicates the count of ARP (Address Resolution Protocol) entries being tracked.
+- **Number of VLAN Tables**: Displays the number of VLAN configurations present in the system.
+- **Number of BGP Neighbors**: Shows the total count of configured BGP neighbors.
+- **Number of ACL Tables**: Displays the total ACL (Access Control List) rules applied.
+
+##### Additional Tables:
+- **ARP Table**: Displays the real-time ARP cache, mapping IP addresses to MAC addresses.
+- **Route Table**: Lists active routes, including destination addresses, route flags, and packet/byte counters.
+- **Port Table**: Provides details on network interfaces, including MAC addresses, MTU settings, and port activity.
+- **HA State Table**: Displays high availability status, indicating whether the LoxiLB instance is operating in MASTER or BACKUP mode.
+
+This dashboard is essential for network administrators to monitor LoxiLB’s network configuration and troubleshoot connectivity issues efficiently.
+
+### LoxiLB Traffic Management Dashboard
+
+The LoxiLB Traffic Management Dashboard focuses on policies, load balancing rules, and endpoint monitoring. It provides insights into active LB policies, endpoint states, and high-availability configurations.
+
+#### LoxiLB Configuration & Monitoring information
+
+##### Panels:
+
+- **Number of LB Policies**: Displays the count of active load balancer policies.
+- **Number of LB Endpoints**: Shows the total number of backend endpoints.
+- **Number of Healthy Endpoints**: Displays the count of healthy endpoints.
+- **Number of Unhealthy Endpoints**: Indicates any failed or unhealthy endpoints.
+- **Number of QoS Rules**: Displays the number of QoS policies applied.
+- **Number of Mirror Rules**: Shows the active mirroring policies.
+![setup](photos/loxilb-dashboard-llb-1.png)
+
+- **HA State Table**: Displays the High Availability (HA) status of LoxiLB instances.
+- **LB Configuration Parameters**: Displays key configuration settings for LoxiLB.
+- **Traffic Pair Analysis**: Shows the top traffic pairs between source and destination.
+- **Service Graph**: A network graph representation of LoxiLB traffic distribution.
+![setup](photos/loxilb-dashboard-llb-2.png)
+
 
 ## Troubleshooting
 
