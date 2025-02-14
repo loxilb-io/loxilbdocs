@@ -1,6 +1,6 @@
 ## 1. Overview
 
-Due to continuous requests for Oauth2 authentication in the LoxiLB REST API, a Oauth2 token-based authentication feature has been added to enhance security. With this update, authentication is now mandatory for API requests, improving the overall security of LoxiLB operations.
+LoxiLB REST API now supports OAuth2 token-based authentication feature to enhance security. With this update, authentication is now mandatory for API requests, improving the overall security of LoxiLB operations.
 
 ### Differences from the Previous API & Token based API
 
