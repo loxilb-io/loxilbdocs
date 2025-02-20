@@ -11,6 +11,10 @@
         <link rel="canonical" href="https://loxilb-io.github.io/loxilbdocs/main/oauth2/">
       
       
+        <link rel="prev" href="../https/">
+      
+      
+        <link rel="next" href="../api/">
       
       
       <link rel="icon" href="../photos/loxilb-logo.png">
@@ -18,7 +22,7 @@
     
     
       
-        <title>Oauth2 - LoxiLB</title>
+        <title>OAuth2 guide for loxilb API - LoxiLB</title>
       
     
     
@@ -111,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Oauth2
+              OAuth2 guide for loxilb API
             
           </span>
         </div>
@@ -1416,8 +1420,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -1457,14 +1463,16 @@
       
         
       
+        
+      
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
@@ -1479,7 +1487,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             Knowledge Base
@@ -1739,12 +1747,253 @@
         
   
   <span class="md-ellipsis">
-    HTTPS guide for loxilb
+    HTTPS guide for loxilb APi
     
   </span>
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    OAuth2 guide for loxilb API
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    OAuth2 guide for loxilb API
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Overview
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#differences-from-the-previous-api-token-based-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      Differences from the Previous API &amp; Token based API
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Changes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-prerequisiteseg-google" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Prerequisites(e.g. google)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Prerequisites(e.g. google)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-google-cloud-account-and-project-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Google Cloud Account and Project Setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-google-cloud-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating a Google Cloud Account
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-new-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating a New Project
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#selecting-the-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      Selecting the Project
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-creating-an-oauth-20-client-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Creating an OAuth 2.0 Client ID
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-the-oauth-consent-screen" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setting Up the OAuth Consent Screen
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-an-oauth-20-client-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating an OAuth 2.0 Client ID
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#saving-the-client-id-and-secret" class="md-nav__link">
+    <span class="md-ellipsis">
+      Saving the Client ID and Secret
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-oauth2-authentication-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. OAuth2 Authentication Overview
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. OAuth2 Authentication Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-oauth2-authentication-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      How OAuth2 Authentication Works
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enabling-oauth2-authentication-in-loxilb" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enabling OAuth2 Authentication in LoxiLB
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-api-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example API Usage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#token-expiry-renewal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Token Expiry &amp; Renewal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advantages-of-oauth2-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advantages of OAuth2 Authentication
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -2591,7 +2840,7 @@
   
 
 
-  <h1>Oauth2</h1>
+  <h1>OAuth2 guide for loxilb API</h1>
 
 <h2 id="1-overview">1. Overview</h2>
 <p>LoxiLB REST API now supports OAuth2 token-based authentication feature to enhance security. With this update, authentication is now mandatory for API requests, improving the overall security of LoxiLB operations.</p>
@@ -2735,6 +2984,44 @@ export OAUTH2_GITHUB_REDIRECT_URL=&lt;your_github_redirect_url&gt;
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../https/" class="md-footer__link md-footer__link--prev" aria-label="Previous: HTTPS guide for loxilb APi">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                HTTPS guide for loxilb APi
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../api/" class="md-footer__link md-footer__link--next" aria-label="Next: loxilb api-reference">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                loxilb api-reference
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">
