@@ -56,7 +56,7 @@ To use Google OAuth with Loxilb, you need an **OAuth 2.0 Client ID**. Below are 
 2. Select **Application Type**: **Web Application**.
 3. Enter a **Client Name** (e.g., `loxilb-oauth-client`).
 4. Add an **Authorized Redirect URI**:
-    - Input the reditect URL
+    - Input the redirect URL
     - e.g. `http://localhost:11111/netlox/v1/oauth/google/callback`.
 5. Click **Create** to generate the **Client ID** and **Client Secret**.
 
