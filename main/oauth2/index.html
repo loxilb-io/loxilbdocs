@@ -14,7 +14,7 @@
       
       
       <link rel="icon" href="../photos/loxilb-logo.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.4">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.5">
     
     
       
@@ -2426,13 +2426,100 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-oauth2-authentication-overview" class="md-nav__link">
+  <a href="#2-prerequisiteseg-google" class="md-nav__link">
     <span class="md-ellipsis">
-      2. OAuth2 Authentication Overview
+      2. Prerequisites(e.g. google)
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2. OAuth2 Authentication Overview">
+    <nav class="md-nav" aria-label="2. Prerequisites(e.g. google)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-google-cloud-account-and-project-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Google Cloud Account and Project Setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-google-cloud-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating a Google Cloud Account
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-new-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating a New Project
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#selecting-the-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      Selecting the Project
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-creating-an-oauth-20-client-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Creating an OAuth 2.0 Client ID
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-the-oauth-consent-screen" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setting Up the OAuth Consent Screen
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-an-oauth-20-client-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating an OAuth 2.0 Client ID
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#saving-the-client-id-and-secret" class="md-nav__link">
+    <span class="md-ellipsis">
+      Saving the Client ID and Secret
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-oauth2-authentication-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. OAuth2 Authentication Overview
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. OAuth2 Authentication Overview">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2524,13 +2611,63 @@
 </li>
 <li><strong>Authentication can be enabled/disabled through an option when running LoxiLB</strong></li>
 </ul>
-<h2 id="2-oauth2-authentication-overview">2. OAuth2 Authentication Overview</h2>
+<h2 id="2-prerequisiteseg-google">2. Prerequisites(e.g. google)</h2>
+<h3 id="21-google-cloud-account-and-project-setup"><strong>2.1 Google Cloud Account and Project Setup</strong></h3>
+<p>To use Google OAuth, you need a <strong>Google Cloud Platform (GCP) account</strong> and a <strong>project</strong>.</p>
+<h3 id="creating-a-google-cloud-account"><strong>Creating a Google Cloud Account</strong></h3>
+<ul>
+<li>Go to Google Cloud Console.</li>
+</ul>
+<h3 id="creating-a-new-project"><strong>Creating a New Project</strong></h3>
+<ul>
+<li>In <strong>Google Cloud Console</strong>, click <strong>Select a project</strong> → <strong>New Project</strong>.</li>
+<li>Enter a <strong>Project Name</strong>, select the <strong>Organization</strong> and <strong>Location</strong>, then click <strong>Create</strong>.</li>
+</ul>
+<h3 id="selecting-the-project"><strong>Selecting the Project</strong></h3>
+<ul>
+<li>In the top-left <strong>Select a project</strong> menu, choose the newly created project.</li>
+</ul>
+<hr />
+<h3 id="22-creating-an-oauth-20-client-id"><strong>2.2 Creating an OAuth 2.0 Client ID</strong></h3>
+<p>To use Google OAuth with Loxilb, you need an <strong>OAuth 2.0 Client ID</strong>. Below are the steps to create it in Google Cloud.</p>
+<h3 id="setting-up-the-oauth-consent-screen"><strong>Setting Up the OAuth Consent Screen</strong></h3>
+<ol>
+<li>In <strong>Google Cloud Console</strong>, go to <strong>APIs &amp; Services</strong> → <strong>Credentials</strong>.</li>
+<li>Click the <strong>OAuth consent screen</strong> tab.</li>
+<li>Choose the <strong>Application Type</strong>:<ul>
+<li><strong>Internal</strong>: Only Google Workspace users can authenticate.</li>
+<li><strong>External</strong>: Any Google account user can authenticate.</li>
+</ul>
+</li>
+<li>Enter the <strong>Application Name</strong> and click <strong>Save and Continue</strong>.</li>
+</ol>
+<h3 id="creating-an-oauth-20-client-id"><strong>Creating an OAuth 2.0 Client ID</strong></h3>
+<ol>
+<li>On the <strong>Credentials</strong> page, click <strong>Create Credentials</strong> → <strong>OAuth Client ID</strong>.</li>
+<li>Select <strong>Application Type</strong>: <strong>Web Application</strong>.</li>
+<li>Enter a <strong>Client Name</strong> (e.g., <code>loxilb-oauth-client</code>).</li>
+<li>Add an <strong>Authorized Redirect URI</strong>:<ul>
+<li>Input the reditect URL</li>
+<li>e.g. <code>http://localhost:11111/netlox/v1/oauth/google/callback</code>.</li>
+</ul>
+</li>
+<li>Click <strong>Create</strong> to generate the <strong>Client ID</strong> and <strong>Client Secret</strong>.</li>
+</ol>
+<h3 id="saving-the-client-id-and-secret"><strong>Saving the Client ID and Secret</strong></h3>
+<ul>
+<li>Once the <strong>Client ID</strong> and <strong>Client Secret</strong> are generated, copy and save them securely.</li>
+<li>These credentials will be used in the <strong>Loxilb configuration</strong>.</li>
+</ul>
+<p>If there is already a project in Google Cloud and you plan to use it, there is no issue with using the existing project and simply adding the application to it.</p>
+<h2 id="3-oauth2-authentication-overview">3. OAuth2 Authentication Overview</h2>
 <p>OAuth2 authentication in LoxiLB enables seamless authentication using external identity providers such as <strong>Google</strong> and <strong>GitHub</strong>. Users authenticate through OAuth2 providers, which issue a token that must be included in API requests.</p>
 <h3 id="how-oauth2-authentication-works">How OAuth2 Authentication Works</h3>
 <ol>
-<li><strong>User initiates authentication</strong> by accessing <code>GET /oauth/{provider}</code> (e.g., <code>GET /oauth/google</code>).</li>
+<li><strong>Turn on LoxiLB using credentials</strong></li>
+<li><strong>User initiates authentication</strong> by accessing <code>GET /oauth/{provider}</code> (e.g., <code>GET http://localhost:11111/netlox/v1/oauth/google</code>).</li>
 <li><strong>User is redirected</strong> to the chosen provider (Google/GitHub) for login.</li>
-<li><strong>Upon successful authentication</strong>, the provider returns an authorization code to LoxiLB.</li>
+<li><strong>Upon successful authentication</strong>, the provider returns an authorization code to LoxiLB.
+   If the redirect URL is set to the callback API as shown in the example above, the following process will be handled automatically, and a JSON-formatted token will be issued.</li>
 <li><strong>LoxiLB exchanges the authorization code</strong> for an access token.</li>
 <li><strong>LoxiLB issues an OAuth2 token</strong> for the user, which is used for API authentication.</li>
 <li><strong>Users include the token in the <code>Authorization</code> header</strong> for subsequent API requests.</li>
@@ -2538,9 +2675,9 @@
 <h3 id="enabling-oauth2-authentication-in-loxilb">Enabling OAuth2 Authentication in LoxiLB</h3>
 <p>To enable OAuth2 authentication, use the following flags when running LoxiLB:
 <div class="highlight"><pre><span></span><code>./loxilb --oauth2 --oauth2provider=google \
-        --oauth2clientid=&lt;CLIENT_ID&gt; \
-        --oauth2clientsecret=&lt;CLIENT_SECRET&gt; \
-        --oauth2redirecturl=&lt;REDIRECT_URL&gt;
+        --oauth2google-clientid=&lt;CLIENT_ID&gt; \
+        --oauth2google-clientsecret=&lt;CLIENT_SECRET&gt; \
+        --oauth2google-redirecturl=&lt;REDIRECT_URL&gt;
 </code></pre></div>
 Alternatively, environment variables can be set:
 <div class="highlight"><pre><span></span><code>export OAUTH2_GOOGLE_CLIENT_ID=&lt;your_google_client_id&gt;
@@ -2554,7 +2691,7 @@ export OAUTH2_GITHUB_REDIRECT_URL=&lt;your_github_redirect_url&gt;
 <h3 id="example-api-usage">Example API Usage</h3>
 <p>After obtaining the OAuth2 token, use it in API requests as follows:
 <div class="highlight"><pre><span></span><code>curl -X GET &quot;http://&lt;loxilb-ip&gt;:&lt;port&gt;/netlox/v1/config/loadbalancer/all&quot; \
-     -H &quot;Authorization: Bearer &lt;your-token&gt;&quot;
+     -H &quot;Authorization: &lt;your-token&gt;&quot;
 </code></pre></div></p>
 <h3 id="token-expiry-renewal">Token Expiry &amp; Renewal</h3>
 <ul>
