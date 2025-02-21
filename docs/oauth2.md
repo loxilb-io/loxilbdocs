@@ -6,7 +6,37 @@ LoxiLB REST API now supports OAuth2 token-based authentication feature to enhanc
 
 Previously, the LoxiLB API could be used with user/password based authentication or non-authentication. However, with this update, Oauth2 authentication has been introduced. The new authentication method requires users to go through a Oauth2 login process(currently google+ and github supports) to obtain a token, which must be used for API requests. This feature can be enabled using an option(`--oauth2, --oauth2provider=google,github`) and environment variables (`OAUTH2_GOOGLE_CLIENT_ID, OAUTH2_GOOGLE_CLIENT_SECRET, OAUTH2_GOOGLE_REDIRECT_URL, OAUTH2_GITHUB_CLIENT_ID, OAUTH2_GITHUB_CLIENT_SECRET, OAUTH2_GITHUB_REDIRECT_URL`) for Oauth2 authentication, and if not activated, the API can be used as before.
 
-OAuth2 authentication-based LoxiLB does not need a separate database like the token-based approach. It seamlessly utilizes OAuth2 authentication tokens.
+OAuth2 authentication-based LoxiLB does not need a separate database like the token-based approach. It seamlessly utilizes OAuth2 authentication tokens. The following is a sequence diagram for applications using OAuth2 - 
+
+```
++-------------+       +-----------------+       +--------------+            
+|  User       |       | Client App      |       | Auth Server  |            
++-------------+       +-----------------+       +--------------+            
+       |                      |                         |                   
+       | 1. Request Access    |                         |                   
+       |--------------------->|                         |                   
+       |                      | 2. Redirect to Auth     |                   
+       |                      |-----------------------> |                   
+       |                      |                         |                   
+       |                      | 3. User Logs In         |                   
+       |                      |<------------------------|                   
+       |                      |                         |                   
+       |                      | 4. Auth Code Issued     |                   
+       |                      |<------------------------|                   
+       |                      |                         |                   
+       |                      | 5. Exchange Code for Token |                
+       |                      |-----------------------> |                   
+       |                      |                         |                   
+       |                      | 6. Access Token Issued  |                   
+       |                      |<------------------------|                   
+       |                      |                         |                   
+       |                      | 7. Request Resource     |                   
+       |                      |-----------------------> | (Resource Server) 
+       |                      |                         |                   
+       |                      | 8. Resource Granted     |                   
+       |                      |<------------------------|           
+```
+```
 
 ### Key Changes
 
