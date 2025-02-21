@@ -36,7 +36,6 @@ OAuth2 authentication-based LoxiLB does not need a separate database like the to
        |                      | 8. Resource Granted     |                   
        |                      |<------------------------|           
 ```
-```
 
 ### Key Changes
 
