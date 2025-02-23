@@ -184,7 +184,8 @@ Telco-cloud requires load-balancing and communication across various interfaces/
 - [LoxiLB eBPF deep-dive](https://free5gc.org/blog/20241203/20241203)
 
 ## Research Papers (featuring loxilb)
-- [Mitigating Spectre-PHT using Speculation Barriers in Linux BPF](https://arxiv.org/pdf/2405.00078)   
+- [Mitigating Spectre-PHT using Speculation Barriers in Linux BPF](https://arxiv.org/pdf/2405.00078)
+- [A Scalable and Fault-Tolerant 5G Core on Kubernetes](https://www.cse.iitb.ac.in/~mythili/research/papers/2025-5gcore-k8s.pdf)   
 
 ## Latest CICD Status
 <div class="grid cards" markdown>
