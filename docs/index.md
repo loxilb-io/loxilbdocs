@@ -34,9 +34,9 @@ loxilb works as a L4 load-balancer/service-proxy by default. Although L4 load-ba
 Additionally, loxilb also supports:   
 - [x] kube-proxy replacement with eBPF(full cluster-mesh implementation for Kubernetes)   
 - [x] Ingress Support   
-- [x] Kubernetes Gateway API
-- [x] HA capable Egress for Kubernetes
-- [ ] Kubernetes Network Policies (in-progress)  
+- [x] Kubernetes Gateway API    
+- [x] HA capable Egress for Kubernetes    
+- [ ] Kubernetes Network Policies (in-progress)    
 
 ## Telco-Cloud with loxilb
 For deploying telco-cloud with cloud-native functions, loxilb can be used as a SCP(service communication proxy). SCP is a communication proxy defined by [3GPP](https://www.etsi.org/deliver/etsi_ts/129500_129599/129500/16.04.00_60/ts_129500v160400p.pdf) and aimed at optimizing telco micro-services running in cloud-native environment. Read more about it [here](https://dev.to/nikhilmalik/5g-service-communication-proxy-with-loxilb-4242).    
