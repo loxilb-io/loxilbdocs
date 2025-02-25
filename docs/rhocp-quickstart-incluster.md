@@ -44,6 +44,14 @@ Now apply the loxilb manifest file :
 oc apply -f loxilb-nobgp.yaml
 ```
 
+The description of important loxilb args in the manifest file are as follows -    
+```
+--bgp : Indicates that loxilb will be running with bgp instance and will be advertising the service IP to the external peer or loxilb-peer.
+--egr-hooks: It is required for those cases in which workloads can be scheduled in the same nodes as loxilb nodes (most of the cases).
+--blacklist=cni[0-9a-z]|veth.|flannel.|cali.|tunl.|vxlan[.]calico: It is mandatory for running in in-cluster mode. As loxilb attaches it's ebpf programs on all the interfaces but since we running it in the default namespace then all the interfaces including CNI interfaces will be exposed and loxilb will attach it's ebpf program in those interfaces which is definitely not desired. So, user needs to mention a regex for  excluding all those interfaces.
+--fallback: It is an optional argument and ensures that egress traffic from the cluster to the internet or external destinations defaults to system masquerade rules if no other rules apply. LoxiLB can also be used as a HA capable egress on its own.
+```
+
 ### Deploying kube-loxilb in OCP
 [kube-loxilb](https://github.com/loxilb-io/kube-loxilb) is used as loxilb's operator with Kubernetes. Get the manifest file :
 ```
