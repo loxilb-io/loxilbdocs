@@ -136,9 +136,27 @@ curl -X GET "http://<loxilb-ip>:<port>/netlox/v1/config/loadbalancer/all" \
      -H "Authorization: <your-token>"
 ```
 
+### kube-loxilb usage
+When using [kube-loxilb](https://github.com/loxilb-io/kube-loxilb), the tokens can be passed to kube-loxilb using environment variables in its manifest file as follows -
+
+```
+env:
+        - name: REFRESH_TOKEN_192.168_80_9_8091
+          value: "example-refresh-token"
+        - name: ACCESS_TOKEN_192_168_80_9_8091
+          value: "another_value_seeed"
+        - name: LOXI_OAUTH_PROVIDER
+          value: "google"
+        - name: EXPIRY_TIME_SECONDS_192_168_80_9_8091
+          value: "3600"
+```
+
+where 192.168_80_9_8091 represents a sample loxiURL argument of kube-loxilb representing a loxilb instance.
+
 ### Token Expiry & Renewal
 - OAuth2 tokens are managed by the provider (Google/GitHub), and their expiry policies depend on the provider's settings.
 - When an OAuth2 token expires, users must reauthenticate through the provider.
+- By refresh token, a client authenticating with loxilb can reissue access tokens as long as user does not logout from a particular session. 
 
 ### Advantages of OAuth2 Authentication
 - No need for LoxiLB to manage user credentials.
