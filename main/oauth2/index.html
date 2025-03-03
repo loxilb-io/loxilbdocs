@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../photos/loxilb-logo.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.5">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
     
     
       
@@ -1968,6 +1968,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#kube-loxilb-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      kube-loxilb usage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#token-expiry-renewal" class="md-nav__link">
     <span class="md-ellipsis">
       Token Expiry &amp; Renewal
@@ -2799,6 +2808,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#kube-loxilb-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      kube-loxilb usage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#token-expiry-renewal" class="md-nav__link">
     <span class="md-ellipsis">
       Token Expiry &amp; Renewal
@@ -2969,10 +2987,24 @@ export OAUTH2_GITHUB_REDIRECT_URL=&lt;your_github_redirect_url&gt;
 <div class="highlight"><pre><span></span><code>curl -X GET &quot;http://&lt;loxilb-ip&gt;:&lt;port&gt;/netlox/v1/config/loadbalancer/all&quot; \
      -H &quot;Authorization: &lt;your-token&gt;&quot;
 </code></pre></div></p>
+<h3 id="kube-loxilb-usage">kube-loxilb usage</h3>
+<p>When using <a href="https://github.com/loxilb-io/kube-loxilb">kube-loxilb</a>, the tokens can be passed to kube-loxilb using environment variables in its manifest file as follows -</p>
+<div class="highlight"><pre><span></span><code>env:
+        - name: REFRESH_TOKEN_192.168_80_9_8091
+          value: &quot;example-refresh-token&quot;
+        - name: ACCESS_TOKEN_192_168_80_9_8091
+          value: &quot;another_value_seeed&quot;
+        - name: LOXI_OAUTH_PROVIDER
+          value: &quot;google&quot;
+        - name: EXPIRY_TIME_SECONDS_192_168_80_9_8091
+          value: &quot;3600&quot;
+</code></pre></div>
+<p>where 192.168_80_9_8091 represents a sample loxiURL argument of kube-loxilb representing a loxilb instance.</p>
 <h3 id="token-expiry-renewal">Token Expiry &amp; Renewal</h3>
 <ul>
 <li>OAuth2 tokens are managed by the provider (Google/GitHub), and their expiry policies depend on the provider's settings.</li>
 <li>When an OAuth2 token expires, users must reauthenticate through the provider.</li>
+<li>By refresh token, a client authenticating with loxilb can reissue access tokens as long as user does not logout from a particular session. </li>
 </ul>
 <h3 id="advantages-of-oauth2-authentication">Advantages of OAuth2 Authentication</h3>
 <ul>
@@ -3115,7 +3147,7 @@ export OAUTH2_GITHUB_REDIRECT_URL=&lt;your_github_redirect_url&gt;
     <script id="__config" type="application/json">{"base": "..", "features": ["navigation.path", "navigation.instant", "navigation.tracking", "navigation.indexes", "navigation.top", "navigation.footer", "search.suggest"], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": "latest", "provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.f1b6f286.min.js"></script>
+      <script src="../assets/javascripts/bundle.c8b220af.min.js"></script>
       
     
   </body>
