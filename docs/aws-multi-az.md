@@ -2,7 +2,7 @@
 
 LoxiLB supports stateful HA configuration in various cloud environments such as AWS. Especially for AWS, one can configure HA using the Floating IP [pattern](https://docs.aws.amazon.com/whitepapers/latest/real-time-communication-on-aws/floating-ip-pattern-for-ha-between-activestandby-stateful-servers.html), together with [LoxiLB](https://github.com/loxilb-io/loxilb).
 
-The HA configuration described in the above [document](https://docs.aws.amazon.com/whitepapers/latest/real-time-communication-on-aws/floating-ip-pattern-for-ha-between-activestandby-stateful-servers.html) has certain limitations. It could only be configured within a single Availability-Zone(AZ). The HA instances need to share the VIP of the same subnet in order to provide a single access point to users, but this configuration was so far not possible in a multi-AZ environment. This blog explains how to deploy LoxiLB in a multi-AZ environment and configure HA.
+The HA configuration described in the above [document](https://docs.aws.amazon.com/whitepapers/latest/real-time-communication-on-aws/floating-ip-pattern-for-ha-between-activestandby-stateful-servers.html) has certain limitations. It could only be configured within a single Availability-Zone(AZ). In real world, the HA instances need to share the VIP of the same subnet in order to provide a single access point to users, but this configuration was so far not possible in a multi-AZ environment. This blog explains how to deploy LoxiLB in a multi-AZ environment with single VIP and configure HA.
 
 ### Overall Scenario
 
