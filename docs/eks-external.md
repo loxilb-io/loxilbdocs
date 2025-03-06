@@ -58,7 +58,6 @@ aws ec2 modify-network-interface-attribute --network-interface-id eni-02e1cbfa02
 - Create a file kube-loxilb.yml with the following contents
 ```
 ---
----
 apiVersion: v1
 kind: ServiceAccount
 metadata:
