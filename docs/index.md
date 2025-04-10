@@ -91,19 +91,28 @@ loxilb’s deep protocol awareness and ability to operate efficiently in Kuberne
 
 ## Why choose loxilb?
 
-- **Performs** exceptionally well across different architectures and environments  
-  * [Single-Node Performance](https://loxilb-io.github.io/loxilbdocs/perf-single/)  
-  * [Multi-Node Performance](https://loxilb-io.github.io/loxilbdocs/perf-multi/)  
-  * [Performance on ARM](https://www.loxilb.io/post/running-loxilb-on-aws-graviton2-based-ec2-instance)  
-  * [Short Demo on Performance](https://www.youtube.com/watch?v=MJXcM0x6IeQ)
+- **Performs exceptionally well** across different architectures and environments  
+  - [Single-Node Performance](https://loxilb-io.github.io/loxilbdocs/perf-single/)  
+  - [Multi-Node Performance](https://loxilb-io.github.io/loxilbdocs/perf-multi/)  
+  - [Performance on ARM](https://www.loxilb.io/post/running-loxilb-on-aws-graviton2-based-ec2-instance)  
+  - [Short Demo on Performance](https://www.youtube.com/watch?v=MJXcM0x6IeQ)
+
 - Utilizes **eBPF**, making it both **flexible** and **customizable**
-- Offers advanced **Quality of Service** controls  (per load balancer, per endpoint, or per client)
+
+- Offers advanced **Quality of Service** controls  
+  (per load balancer, per endpoint, or per client)
+
 - Compatible with **any** Kubernetes distribution or CNI  
   (K8s / K3s / K0s / KIND / OpenShift + Calico, Flannel, Cilium, Weave, Multus, etc.)
+
 - Extensive support for **SCTP workloads** (including multi-homing) on Kubernetes
+
 - Built-in dual-stack support with **NAT66** and **NAT64** for Kubernetes environments
-- Planned support for **multi-cluster Kubernetes**
-- Deployable in **any** environment - public cloud, on-prem, or **standalone**
+
+- Planned support for **multi-cluster Kubernetes** 🚧
+
+- Deployable in **any** environment: public cloud, on-prem, or standalone
+
 
 ## Overall features of loxilb
 - **L4/NAT Stateful Load Balancer**
