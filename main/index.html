@@ -3132,75 +3132,55 @@
 <li>Supports NAT44, NAT66, NAT64  </li>
 <li>Operates in One-ARM, FullNAT, and DSR modes  </li>
 <li>Protocol support includes TCP, UDP, SCTP (with multi-homing), QUIC, FTP, TFTP</li>
-</ul>
-</li>
 <li>
 <p>High-availability support</p>
-<ul>
-<li>Supports hitless failover  </li>
-<li>Clustering with Maglev and CGNAT-style redundancy</li>
-</ul>
 </li>
+<li>
+<p>Supports hitless failover  </p>
+</li>
+<li>Clustering with Maglev and CGNAT-style redundancy</li>
 <li>
 <p>Scalable end-point health checks</p>
-<ul>
-<li>Designed for cloud-native workloads  </li>
-<li>Efficient and extensive liveness probes for dynamic environments</li>
-</ul>
 </li>
+<li>
+<p>Designed for cloud-native workloads  </p>
+</li>
+<li>Efficient and extensive liveness probes for dynamic environments</li>
 <li>
 <p>Built-in firewall and security</p>
-<ul>
-<li>Stateful firewalling  </li>
-<li>IPsec and WireGuard tunnel support</li>
-</ul>
 </li>
+<li>
+<p>Stateful firewalling  </p>
+</li>
+<li>IPsec and WireGuard tunnel support</li>
 <li>
 <p>Optimized kernel networking</p>
-<ul>
-<li>High-performance <code>conntrack</code>, QoS, and other key Linux networking features  </li>
-<li><a href="https://thermalcircle.de/doku.php?id=blog:linux:connection_tracking_1_modules_and_hooks">Learn more</a></li>
-</ul>
 </li>
 <li>
+<p>High-performance <code>conntrack</code>, QoS, and other key Linux networking features  </p>
+</li>
+<li><a href="https://thermalcircle.de/doku.php?id=blog:linux:connection_tracking_1_modules_and_hooks">Learn more</a></li>
+<li>
 <p><code>IPVS</code> compatibility</p>
-<ul>
-<li>Automatically inherits and supports IPVS-based policies</li>
-</ul>
+</li>
+<li>
+<p>Automatically inherits and supports IPVS-based policies</p>
 </li>
 <li>
 <p>L7 proxy capabilities </p>
-<ul>
-<li>Policy-driven HTTP proxy support (HTTP/1.0, 1.1, 2.0)</li>
+</li>
+<li>
+<p>Policy-driven HTTP proxy support (HTTP/1.0, 1.1, 2.0)</p>
+</li>
 </ul>
 </li>
 </ul>
 <h2 id="components-of-loxilb">Components of loxilb</h2>
 <ul>
-<li>
-<p><strong>Control Plane (Go)</strong></p>
-<ul>
-<li>Control plane built in Go for reliability and modularity</li>
-</ul>
-</li>
-<li>
-<p><strong>Data-Path (eBPF)</strong></p>
-<ul>
-<li>High-performance, scalable datapath powered by <a href="https://ebpf.io/">eBPF</a></li>
-</ul>
-</li>
-<li>
-<p><strong>Routing Stack</strong></p>
-<ul>
-<li>Integrated BGP support using a built-in <a href="https://github.com/osrg/gobgp">GoBGP</a> based implementation</li>
-</ul>
-</li>
-<li>
-<p><strong>Kubernetes Integration</strong></p>
-<ul>
-<li>A native Kubernetes agent, <a href="https://github.com/loxilb-io/kube-loxilb">kube-loxilb</a>, written in Go for seamless service discovery and synchronization</li>
-</ul>
-</li>
+<li><strong>Control Plane (Go)</strong> — Control plane built in Go for reliability and modularity  </li>
+<li><strong>Data-Path (eBPF)</strong> — High-performance, scalable datapath powered by <a href="https://ebpf.io/">eBPF</a>  </li>
+<li><strong>Routing Stack</strong> — Integrated BGP support using a built-in <a href="https://github.com/osrg/gobgp">GoBGP</a> based implementation  </li>
+<li><strong>Kubernetes Integration</strong> — A native Kubernetes agent, <a href="https://github.com/loxilb-io/kube-loxilb">kube-loxilb</a>, written in Go for seamless service discovery and synchronization</li>
 </ul>
 <h2 id="architectural-considerations">Architectural Considerations</h2>
 <ul>
