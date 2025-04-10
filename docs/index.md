@@ -9,15 +9,23 @@
 [stars-url]: https://github.com/loxilb-io/loxilb/stargazers
 
 ## Background 
-loxilb started as a project to ease deployments of cloud-native/kubernetes workloads for the edge. When we deploy services in public clouds like AWS/GCP, the services becomes easily accessible or exported to the outside world. The public cloud providers, usually by default, associate load-balancer instances for incoming requests to these services to ensure everything is quite smooth.    
 
-However, for on-prem and edge deployments, there is no *service type - external load balancer* provider by default. For a long time, MetalLB was the only choice for the needy. But edge services are a different ball game altogether due to the fact that there are so many exotic protocols in play like GTP, SCTP, SRv6 etc and integrating everything into a seamlessly working solution has been quite difficult.   
+**loxilb** began as a project to simplify the deployment of cloud-native and Kubernetes workloads at the edge. In public cloud environments like AWS or GCP, exposing services to the outside world is often effortless. These platforms typically provide external load balancers by default, ensuring smooth and efficient handling of inbound traffic.
 
-loxilb dev team was approached by many people who wanted to solve this problem. As a first step to solve the problem, it became apparent that networking stack provided by Linux kernel, although very solid,  really lacked the development process agility to quickly provide support for a wide variety of permutations and combinations of protocols and stateful load-balancing on them. Our search led us to the awesome tech developed by the Linux community - eBPF. The flexibility to introduce new functionality into the OS Kernel as a safe sandbox program was a complete fit to our design philosophy. It also does not need any dedicated CPU cores which makes it perfect for designing energy-efficient edge architectures.    
+In contrast, on-premise and edge deployments face a different challenge. There’s no native equivalent of the `ServiceType=LoadBalancer` in these environments. For a long time, **MetalLB** was the only practical option. However, edge workloads come with their own unique set of complexities. They often rely on diverse and less common protocols such as **GTP**, **SCTP**, and **SRv6**, and they have far more stringent latency and resource requirements. Creating a seamless solution under these constraints is anything but straightforward.
+
+As more users approached us to solve these challenges, it became clear that the traditional Linux networking stack, while mature and reliable, lacked the agility to rapidly support the wide variety of protocols and stateful load-balancing scenarios needed at the edge.
+
+This led us to adopt **eBPF**, a powerful technology from the Linux community. eBPF enables safely running sandboxed programs within the kernel, allowing us to extend system functionality without altering kernel source code or introducing performance overhead. It provides the flexibility and performance essential for modern networking use cases — without requiring dedicated CPU cores — making it an ideal foundation for lightweight, energy-efficient edge architectures.
+
 
 ## What is loxilb
 
-loxilb is an open source cloud-native load-balancer based on GoLang/eBPF with the goal of achieving cross-compatibity across a wide range of on-prem, public-cloud or hybrid K8s environments. loxilb is being developed to support the adoption of cloud-native tech in telco, mobility, and edge computing.   
+**loxilb** is an open-source, cloud-native load balancer built using **Go** and **eBPF**, designed to offer seamless cross-compatibility across on-premise, public cloud, and hybrid Kubernetes environments.
+
+Its primary goal is to enable efficient and flexible load balancing for next-generation workloads, especially in complex deployment scenarios. Whether it's telecom, mobility, or edge computing, loxilb is built to support the growing adoption of cloud-native technologies in these demanding sectors.
+
+By leveraging the power of eBPF, loxilb delivers high-performance networking with deep protocol awareness, minimal resource overhead, and a modern, extensible design. This makes it an ideal fit for both traditional and emerging infrastructure needs.
 
 ## Kubernetes with loxilb
 
