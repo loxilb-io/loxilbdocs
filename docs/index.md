@@ -39,10 +39,11 @@ The `LoadBalancer` service type is usually managed by public cloud providers as 
 
 This need becomes even more critical in domains like 5G telco and edge computing, where protocols such as **GTP**, **SCTP**, **SRv6**, **SEPP**, and **DTLS** are involved. These use cases introduce complex requirements that demand flexibility and high performance. loxilb is designed to meet these challenges, with support for the `LoadBalancer` service type as a core capability. It can be deployed either within the cluster or externally, depending on user requirements.
 
-By default, loxilb acts as a Layer 4 load balancer and service proxy. While L4 load balancing offers high performance and broad protocol coverage, Kubernetes also benefits from robust Layer 7 capabilities. loxilb supports L7 load balancing through its Ingress controller implementation, which is enhanced using eBPF `sockmap` helpers. This makes it a strong option for users who need both L4 and L7 load balancing in a unified solution.
+By default, loxilb acts as a Layer 4 load balancer and service proxy. While L4 load balancing offers high performance and broad protocol coverage, Kubernetes also benefits from robust Layer 7 capabilities. loxilb supports L7 load balancing through its Ingress implementation, which is enhanced using eBPF `sockmap` helpers. This makes it a strong option for users who need both L4 and L7 load balancing in a unified solution.
 
 ### Current Kubernetes Integrations
 
+- [x] service type LoadBalancer   
 - [x] kube-proxy replacement with eBPF   
 - [x] Ingress Support   
 - [x] Kubernetes Gateway API    
@@ -57,18 +58,35 @@ When deploying telco-cloud environments using cloud-native network functions (CN
 
 Telco-cloud workloads require load balancing and protocol-aware communication across a wide range of interfaces and standards such as **N2**, **N4**, **E2 (ORAN)**, **S6x**, **5GLAN**, **GTP**, and others. Each interface brings its own set of challenges, which loxilb is designed to address. Examples include:
 
-- **N4**: Requires session-aware intelligence at the PFCP layer  
+- **N4**: Requires session-aware intelligence at the PFCP layer
 - **N2**: Requires NGAP protocol parsing  
-  - Related blogs: [NGAP LB with loxilb](https://www.loxilb.io/post/ngap-load-balancing-with-loxilb), [SCTP LB](https://futuredon.medium.com/5g-sctp-loadbalancer-using-loxilb-b525198a9103), [Free5GC integration](https://medium.com/@ben0978327139/5g-sctp-loadbalancer-using-loxilb-applying-on-free5gc-b5c05bb723f0)
+  <details>
+    <summary>Related Blogs</summary>
+    <ul>
+      <li><a href="https://www.loxilb.io/post/ngap-load-balancing-with-loxilb">NGAP LB with loxilb</a></li>
+      <li><a href="https://futuredon.medium.com/5g-sctp-loadbalancer-using-loxilb-b525198a9103">SCTP LB</a></li>
+      <li><a href="https://medium.com/@ben0978327139/5g-sctp-loadbalancer-using-loxilb-applying-on-free5gc-b5c05bb723f0">Free5GC integration</a></li>
+    </ul>
+  </details>
 - **S6x**: Requires Diameter protocol load balancing with SCTP multi-homing  
-  - Related blog: [SCTP Multi-Homing Support](https://www.loxilb.io/post/k8s-introducing-sctp-multihoming-functionality-with-loxilb)
+  <details>
+    <summary>Related Blog</summary>
+    <ul>
+      <li><a href="https://www.loxilb.io/post/k8s-introducing-sctp-multihoming-functionality-with-loxilb">SCTP Multi-Homing Support</a></li>
+    </ul>
+  </details>
 - **MEC (Multi-access Edge Computing)**: May require uplink classifier (UL-CL) support  
-  - Related blog: [5G UL-CL with loxilb](https://futuredon.medium.com/5g-uplink-classifier-using-loxilb-7593a4d66f4c)
-- **Mission-critical apps**: May require hitless failover and zero-downtime behavior  
-- **E2 (ORAN)**: May require SCTP load balancing integrated with OpenVPN  
-- **SIP (Session Initiation Protocol)**: Needed for enabling cloud-native VoIP  
+  <details>
+    <summary>Related Blog</summary>
+    <ul>
+      <li><a href="https://futuredon.medium.com/5g-uplink-classifier-using-loxilb-7593a4d66f4c">5G UL-CL with loxilb</a></li>
+    </ul>
+  </details>
+- **Mission-critical apps**: May require hitless failover and zero-downtime behavior
+- **E2 (ORAN)**: May require SCTP load balancing integrated with OpenVPN
+- **SIP (Session Initiation Protocol)**: Needed for enabling cloud-native VoIP
 - **N32**: Requires support for SEPP (Security Edge Protection Proxy)
-
+  
 loxilb’s deep protocol awareness and ability to operate efficiently in Kubernetes environments make it a strong fit for modern telco-cloud deployments.
 
 ## Why choose loxilb?
@@ -111,7 +129,7 @@ loxilb’s deep protocol awareness and ability to operate efficiently in Kuberne
 - **Data-Path (eBPF)**
   - High-performance, scalable datapath powered by [eBPF](https://ebpf.io/)
 - **Routing Stack**
-  - Integrated BGP support using a built-in [GoBGP](https://github.com/osrg/gobgp) implementation
+  - Integrated BGP support using a built-in [GoBGP](https://github.com/osrg/gobgp) based implementation
 - **Kubernetes Integration**
   - A native Kubernetes agent, [kube-loxilb](https://github.com/loxilb-io/kube-loxilb), written in Go for seamless service discovery and synchronization
 
