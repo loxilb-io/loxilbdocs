@@ -117,34 +117,61 @@ loxilb’s deep protocol awareness and ability to operate efficiently in Kuberne
 - Runs in `any` cloud (public cloud / on-prem) or `standalone` environments
 
 
+## Overall Features of loxilb
 
-## Overall features of loxilb
-- **L4/NAT Stateful Load Balancer**    
-  - Supports NAT44, NAT66, NAT64 with One-ARM, FullNAT, DSR, and more
-  - Protocol support includes TCP, UDP, SCTP (with multi-homing), QUIC, FTP, TFTP, and others
-- **High Availability**   
-  - Built-in clustering with support for hitless failover, Maglev, and CGNAT-style redundancy
-- **Scalable Endpoint Health Probes**   
-  - Extensive and cloud-native-friendly liveness checks for service endpoints
-- **Integrated Security**   
-  - Stateful firewall capabilities with support for IPsec and WireGuard tunnels
-- **Optimized Kernel Features**   
-  - High-performance implementations for Conntrack, QoS, and related networking functions     
-    - Learn more: [Connection Tracking in Linux](https://thermalcircle.de/doku.php?id=blog:linux:connection_tracking_1_modules_and_hooks)
-- **IPVS Compatibility**   
-  - Full support for IPVS-based policies, with automatic policy inheritance
-- **Layer 7 Proxy Support**   
-  - Policy-driven HTTP proxying with planned support for HTTP/1.0, 1.1, and 2.0
+- `L4/NAT` stateful load balancer
 
-## Components of loxilb 
-- **Control Plane (Go)**   
-  - Control plane built in Go for reliability and modularity
-- **Data-Path (eBPF)**   
-  - High-performance, scalable datapath powered by [eBPF](https://ebpf.io/)
-- **Routing Stack**   
-  - Integrated BGP support using a built-in [GoBGP](https://github.com/osrg/gobgp) based implementation
-- **Kubernetes Integration**   
-  - A native Kubernetes agent, [kube-loxilb](https://github.com/loxilb-io/kube-loxilb), written in Go for seamless service discovery and synchronization
+    - Supports NAT44, NAT66, NAT64  
+    - Operates in One-ARM, FullNAT, and DSR modes  
+    - Protocol support includes TCP, UDP, SCTP (with multi-homing), QUIC, FTP, TFTP
+
+- High-availability support
+
+    - Supports hitless failover  
+    - Clustering with Maglev and CGNAT-style redundancy
+
+- Scalable end-point health checks
+
+    - Designed for cloud-native workloads  
+    - Efficient and extensive liveness probes for dynamic environments
+
+- Built-in firewall and security
+
+    - Stateful firewalling  
+    - IPsec and WireGuard tunnel support
+
+- Optimized kernel networking
+
+    - High-performance `conntrack`, QoS, and other key Linux networking features  
+    - [Learn more](https://thermalcircle.de/doku.php?id=blog:linux:connection_tracking_1_modules_and_hooks)
+
+- `IPVS` compatibility
+
+    - Automatically inherits and supports IPVS-based policies
+
+- L7 proxy capabilities 
+
+    - Policy-driven HTTP proxy support (HTTP/1.0, 1.1, 2.0)
+
+
+## Components of loxilb
+
+- **Control Plane (Go)**
+
+    - Control plane built in Go for reliability and modularity
+
+- **Data-Path (eBPF)**
+
+    - High-performance, scalable datapath powered by [eBPF](https://ebpf.io/)
+
+- **Routing Stack**
+
+    - Integrated BGP support using a built-in [GoBGP](https://github.com/osrg/gobgp) based implementation
+
+- **Kubernetes Integration**
+
+    - A native Kubernetes agent, [kube-loxilb](https://github.com/loxilb-io/kube-loxilb), written in Go for seamless service discovery and synchronization
+
 
 ## Architectural Considerations   
 - [Understanding loxilb modes and deployment in Kubernetes with kube-loxilb](kube-loxilb.md)  
