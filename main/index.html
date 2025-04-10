@@ -379,7 +379,7 @@
         <li class="md-nav__item">
   <a href="#overall-features-of-loxilb" class="md-nav__link">
     <span class="md-ellipsis">
-      Overall features of loxilb
+      Overall Features of loxilb
     </span>
   </a>
   
@@ -2842,7 +2842,7 @@
         <li class="md-nav__item">
   <a href="#overall-features-of-loxilb" class="md-nav__link">
     <span class="md-ellipsis">
-      Overall features of loxilb
+      Overall Features of loxilb
     </span>
   </a>
   
@@ -3124,37 +3124,83 @@
 <p>Runs in <code>any</code> cloud (public cloud / on-prem) or <code>standalone</code> environments</p>
 </li>
 </ul>
-<h2 id="overall-features-of-loxilb">Overall features of loxilb</h2>
+<h2 id="overall-features-of-loxilb">Overall Features of loxilb</h2>
 <ul>
-<li><strong>L4/NAT Stateful Load Balancer</strong>    </li>
-<li>Supports NAT44, NAT66, NAT64 with One-ARM, FullNAT, DSR, and more</li>
-<li>Protocol support includes TCP, UDP, SCTP (with multi-homing), QUIC, FTP, TFTP, and others</li>
-<li><strong>High Availability</strong>   </li>
-<li>Built-in clustering with support for hitless failover, Maglev, and CGNAT-style redundancy</li>
-<li><strong>Scalable Endpoint Health Probes</strong>   </li>
-<li>Extensive and cloud-native-friendly liveness checks for service endpoints</li>
-<li><strong>Integrated Security</strong>   </li>
-<li>Stateful firewall capabilities with support for IPsec and WireGuard tunnels</li>
-<li><strong>Optimized Kernel Features</strong>   </li>
-<li>High-performance implementations for Conntrack, QoS, and related networking functions     <ul>
-<li>Learn more: <a href="https://thermalcircle.de/doku.php?id=blog:linux:connection_tracking_1_modules_and_hooks">Connection Tracking in Linux</a></li>
+<li>
+<p><code>L4/NAT</code> stateful load balancer</p>
+<ul>
+<li>Supports NAT44, NAT66, NAT64  </li>
+<li>Operates in One-ARM, FullNAT, and DSR modes  </li>
+<li>Protocol support includes TCP, UDP, SCTP (with multi-homing), QUIC, FTP, TFTP</li>
 </ul>
 </li>
-<li><strong>IPVS Compatibility</strong>   </li>
-<li>Full support for IPVS-based policies, with automatic policy inheritance</li>
-<li><strong>Layer 7 Proxy Support</strong>   </li>
-<li>Policy-driven HTTP proxying with planned support for HTTP/1.0, 1.1, and 2.0</li>
+<li>
+<p>High-availability support</p>
+<ul>
+<li>Supports hitless failover  </li>
+<li>Clustering with Maglev and CGNAT-style redundancy</li>
+</ul>
+</li>
+<li>
+<p>Scalable end-point health checks</p>
+<ul>
+<li>Designed for cloud-native workloads  </li>
+<li>Efficient and extensive liveness probes for dynamic environments</li>
+</ul>
+</li>
+<li>
+<p>Built-in firewall and security</p>
+<ul>
+<li>Stateful firewalling  </li>
+<li>IPsec and WireGuard tunnel support</li>
+</ul>
+</li>
+<li>
+<p>Optimized kernel networking</p>
+<ul>
+<li>High-performance <code>conntrack</code>, QoS, and other key Linux networking features  </li>
+<li><a href="https://thermalcircle.de/doku.php?id=blog:linux:connection_tracking_1_modules_and_hooks">Learn more</a></li>
+</ul>
+</li>
+<li>
+<p><code>IPVS</code> compatibility</p>
+<ul>
+<li>Automatically inherits and supports IPVS-based policies</li>
+</ul>
+</li>
+<li>
+<p>L7 proxy capabilities </p>
+<ul>
+<li>Policy-driven HTTP proxy support (HTTP/1.0, 1.1, 2.0)</li>
+</ul>
+</li>
 </ul>
 <h2 id="components-of-loxilb">Components of loxilb</h2>
 <ul>
-<li><strong>Control Plane (Go)</strong>   </li>
+<li>
+<p><strong>Control Plane (Go)</strong></p>
+<ul>
 <li>Control plane built in Go for reliability and modularity</li>
-<li><strong>Data-Path (eBPF)</strong>   </li>
+</ul>
+</li>
+<li>
+<p><strong>Data-Path (eBPF)</strong></p>
+<ul>
 <li>High-performance, scalable datapath powered by <a href="https://ebpf.io/">eBPF</a></li>
-<li><strong>Routing Stack</strong>   </li>
+</ul>
+</li>
+<li>
+<p><strong>Routing Stack</strong></p>
+<ul>
 <li>Integrated BGP support using a built-in <a href="https://github.com/osrg/gobgp">GoBGP</a> based implementation</li>
-<li><strong>Kubernetes Integration</strong>   </li>
+</ul>
+</li>
+<li>
+<p><strong>Kubernetes Integration</strong></p>
+<ul>
 <li>A native Kubernetes agent, <a href="https://github.com/loxilb-io/kube-loxilb">kube-loxilb</a>, written in Go for seamless service discovery and synchronization</li>
+</ul>
+</li>
 </ul>
 <h2 id="architectural-considerations">Architectural Considerations</h2>
 <ul>
