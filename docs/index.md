@@ -29,53 +29,63 @@ By leveraging the power of eBPF, loxilb delivers high-performance networking wit
 
 ## Kubernetes with loxilb
 
-Kubernetes defines many service constructs like cluster-ip, node-port, load-balancer, ingress etc for pod to pod, pod to service and outside-world to service communication.    
+Kubernetes defines several service constructs such as `ClusterIP`, `NodePort`, `LoadBalancer`, and `Ingress` to handle different types of communication — from pod-to-pod and pod-to-service, to service access from the outside world.
 
 ![loxilb cover](photos/loxilb-cover.png)
 
-All these services are provided by load-balancers/proxies operating at Layer4/Layer7. Since Kubernetes's is highly modular, these services can be provided by different software modules. For example, kube-proxy is used by default to provide cluster-ip and node-port services. For some services like LB and Ingress, no default is usually provided.
+All of these service types rely on load balancers or proxies operating at Layer 4 or Layer 7. Thanks to Kubernetes’ modular architecture, these services can be delivered by different software components. For instance, `kube-proxy` is commonly used to provide `ClusterIP` and `NodePort` functionality. However, for services like `LoadBalancer` and `Ingress`, Kubernetes typically does not include a default provider.
 
-Service type load-balancer is usually provided by public cloud-provider(s) as a managed entity. But for on-prem and self-managed clusters, there are only a few good options available. Even for provider-managed K8s like EKS, there are many who would want to bring their own LB to clusters running anywhere. Additionally, Telco 5G and edge services introduce unique challenges due to the variety of exotic protocols involved, including GTP, SCTP, SRv6, SEPP and DTLS, making seamless integration particularly challenging. loxilb provides service type load-balancer as its main use-case. loxilb can be run in-cluster or ext-to-cluster as per user need.
+The `LoadBalancer` service type is usually managed by public cloud providers as part of their infrastructure. In on-premise or self-managed clusters, there are limited options available. Even in managed Kubernetes environments like Amazon EKS, many users prefer to bring their own load balancer for more control, customization, or advanced protocol support.
 
-loxilb works as a L4 load-balancer/service-proxy by default. Although L4 load-balancing provides great performance and functionality, an equally performant L7 load-balancer is also necessary in K8s for various use-cases. loxilb also supports L7 load-balancing in the form of Kubernetes Ingress implementation which is enhanced with eBPF sockmap helpers. This also benefit users who need L4 and L7 load-balancing under the same hood.
+This need becomes even more critical in domains like 5G telco and edge computing, where protocols such as **GTP**, **SCTP**, **SRv6**, **SEPP**, and **DTLS** are involved. These use cases introduce complex requirements that demand flexibility and high performance. loxilb is designed to meet these challenges, with support for the `LoadBalancer` service type as a core capability. It can be deployed either within the cluster or externally, depending on user requirements.
 
-Additionally, loxilb also supports:   
-- [x] kube-proxy replacement with eBPF(full cluster-mesh implementation for Kubernetes)   
+By default, loxilb acts as a Layer 4 load balancer and service proxy. While L4 load balancing offers high performance and broad protocol coverage, Kubernetes also benefits from robust Layer 7 capabilities. loxilb supports L7 load balancing through its Ingress controller implementation, which is enhanced using eBPF `sockmap` helpers. This makes it a strong option for users who need both L4 and L7 load balancing in a unified solution.
+
+### Current Kubernetes Integrations
+
+- [x] kube-proxy replacement with eBPF   
 - [x] Ingress Support   
 - [x] Kubernetes Gateway API    
 - [x] HA capable Egress for Kubernetes    
 - [ ] Kubernetes Network Policies (in-progress)    
 
 ## Telco-Cloud with loxilb
-For deploying telco-cloud with cloud-native functions, loxilb can be used as a SCP(service communication proxy). SCP is a communication proxy defined by [3GPP](https://www.etsi.org/deliver/etsi_ts/129500_129599/129500/16.04.00_60/ts_129500v160400p.pdf) and aimed at optimizing telco micro-services running in cloud-native environment. Read more about it [here](https://dev.to/nikhilmalik/5g-service-communication-proxy-with-loxilb-4242).    
 
-![loxilb svc](photos/scp.svg)   
+When deploying telco-cloud environments using cloud-native network functions (CNFs), **loxilb** can serve as a **Service Communication Proxy (SCP)**. SCP is a component defined by [3GPP](https://www.etsi.org/deliver/etsi_ts/129500_129599/129500/16.04.00_60/ts_129500v160400p.pdf) to optimize communication between telco microservices in cloud-native deployments. You can read more about this use case [here](https://dev.to/nikhilmalik/5g-service-communication-proxy-with-loxilb-4242).
 
-Telco-cloud requires load-balancing and communication across various interfaces/standards like N2, N4, E2(ORAN), S6x, 5GLAN, GTP etc. Each of these present its own unique challenges which loxilb aims to solve e.g.:
+![loxilb svc](photos/scp.svg)
 
-- N4 requires PFCP level session-intelligence   
-- N2 requires NGAP parsing capability(Related Blogs - [Blog-1](https://www.loxilb.io/post/ngap-load-balancing-with-loxilb), [Blog-2](https://futuredon.medium.com/5g-sctp-loadbalancer-using-loxilb-b525198a9103), [Blog-3](https://medium.com/@ben0978327139/5g-sctp-loadbalancer-using-loxilb-applying-on-free5gc-b5c05bb723f0))   
-- S6x requires Diameter/SCTP multi-homing LB support(Related [Blog](https://www.loxilb.io/post/k8s-introducing-sctp-multihoming-functionality-with-loxilb))   
-- MEC use-cases might require UL-CL understanding(Related [Blog](https://futuredon.medium.com/5g-uplink-classifier-using-loxilb-7593a4d66f4c))   
-- Hitless failover support might be essential for mission-critical applications   
-- E2 might require SCTP-LB with OpenVPN bundled together   
-- SIP support is needed to enable cloud-native VOIP
-- N32 requires support for Security Edge Protection Proxy(SEPP)   
+Telco-cloud workloads require load balancing and protocol-aware communication across a wide range of interfaces and standards such as **N2**, **N4**, **E2 (ORAN)**, **S6x**, **5GLAN**, **GTP**, and others. Each interface brings its own set of challenges, which loxilb is designed to address. Examples include:
+
+- **N4**: Requires session-aware intelligence at the PFCP layer  
+- **N2**: Requires NGAP protocol parsing  
+  - Related blogs: [NGAP LB with loxilb](https://www.loxilb.io/post/ngap-load-balancing-with-loxilb), [SCTP LB](https://futuredon.medium.com/5g-sctp-loadbalancer-using-loxilb-b525198a9103), [Free5GC integration](https://medium.com/@ben0978327139/5g-sctp-loadbalancer-using-loxilb-applying-on-free5gc-b5c05bb723f0)
+- **S6x**: Requires Diameter protocol load balancing with SCTP multi-homing  
+  - Related blog: [SCTP Multi-Homing Support](https://www.loxilb.io/post/k8s-introducing-sctp-multihoming-functionality-with-loxilb)
+- **MEC (Multi-access Edge Computing)**: May require uplink classifier (UL-CL) support  
+  - Related blog: [5G UL-CL with loxilb](https://futuredon.medium.com/5g-uplink-classifier-using-loxilb-7593a4d66f4c)
+- **Mission-critical apps**: May require hitless failover and zero-downtime behavior  
+- **E2 (ORAN)**: May require SCTP load balancing integrated with OpenVPN  
+- **SIP (Session Initiation Protocol)**: Needed for enabling cloud-native VoIP  
+- **N32**: Requires support for SEPP (Security Edge Protection Proxy)
+
+loxilb’s deep protocol awareness and ability to operate efficiently in Kubernetes environments make it a strong fit for modern telco-cloud deployments.
 
 ## Why choose loxilb?
-   
-- ```Performs``` much better compared to its competitors across various architectures   
-    * [Single-Node Performance](https://loxilb-io.github.io/loxilbdocs/perf-single/)  
-    * [Multi-Node Performance](https://loxilb-io.github.io/loxilbdocs/perf-multi/) 
-    * [Performance on ARM](https://www.loxilb.io/post/running-loxilb-on-aws-graviton2-based-ec2-instance)
-    * [Short Demo on Performance](https://www.youtube.com/watch?v=MJXcM0x6IeQ)
-- Utitlizes ebpf which makes it ```flexible``` as well as ```customizable```
-- Advanced ```quality of service``` for workloads (per LB, per end-point or per client)
-- Works with ```any``` Kubernetes distribution/CNI - k8s/k3s/k0s/kind/OpenShift + Calico/Flannel/Cilium/Weave/Multus etc
-- Extensive support for ```SCTP workloads``` (with multi-homing) on k8s
-- Dual stack with ```NAT66, NAT64``` support for k8s
-- k8s ```multi-cluster``` support (planned 🚧)
-- Runs in ```any``` cloud (public cloud/on-prem) or ```standalone``` environments
+
+- **Performs** exceptionally well across different architectures and environments  
+  * [Single-Node Performance](https://loxilb-io.github.io/loxilbdocs/perf-single/)  
+  * [Multi-Node Performance](https://loxilb-io.github.io/loxilbdocs/perf-multi/)  
+  * [Performance on ARM](https://www.loxilb.io/post/running-loxilb-on-aws-graviton2-based-ec2-instance)  
+  * [Short Demo on Performance](https://www.youtube.com/watch?v=MJXcM0x6IeQ)
+- Utilizes **eBPF**, making it both **flexible** and **customizable**
+- Offers advanced **Quality of Service** controls  (per load balancer, per endpoint, or per client)
+- Compatible with **any** Kubernetes distribution or CNI  
+  (K8s / K3s / K0s / KIND / OpenShift + Calico, Flannel, Cilium, Weave, Multus, etc.)
+- Extensive support for **SCTP workloads** (including multi-homing) on Kubernetes
+- Built-in dual-stack support with **NAT66** and **NAT64** for Kubernetes environments
+- Planned support for **multi-cluster Kubernetes**
+- Deployable in **any** environment - public cloud, on-prem, or **standalone**
 
 ## Overall features of loxilb
 - L4/NAT stateful loadbalancer
