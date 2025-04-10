@@ -91,8 +91,6 @@ loxilb’s deep protocol awareness and ability to operate efficiently in Kuberne
 
 ## Why choose loxilb?
 
-## Why choose loxilb?
-
 - **Performs** much better compared to its competitors across various architectures — [Single-Node Performance](https://loxilb-io.github.io/loxilbdocs/perf-single/), [Multi-Node Performance](https://loxilb-io.github.io/loxilbdocs/perf-multi/), [Performance on ARM](https://www.loxilb.io/post/running-loxilb-on-aws-graviton2-based-ec2-instance), [Short Demo on Performance](https://www.youtube.com/watch?v=MJXcM0x6IeQ)  
 - Utilizes **eBPF**, making it both `flexible` and `customizable`  
 - Advanced `quality of service` for workloads (per LB, per endpoint, or per client)  
