@@ -3017,7 +3017,7 @@
 
 <h2 id="background">Background</h2>
 <p><strong>loxilb</strong> began as a project to simplify the deployment of cloud-native and Kubernetes workloads at the edge. In public cloud environments like AWS or GCP, exposing services to the outside world is often effortless. These platforms typically provide external load balancers by default, ensuring smooth and efficient handling of inbound traffic.</p>
-<p>In contrast, on-premise and edge deployments face a different challenge. There’s no native equivalent of the <code>ServiceType=LoadBalancer</code> in these environments. For a long time, <strong>MetalLB</strong> was the only practical option. However, edge workloads come with their own unique set of complexities. They often rely on diverse and less common protocols such as <strong>GTP</strong>, <strong>SCTP</strong>, and <strong>SRv6</strong>, and they have far more stringent latency and resource requirements. Creating a seamless solution under these constraints is anything but straightforward.</p>
+<p>In contrast, on-premise and edge deployments face a different challenge. There’s no native equivalent of the <code>ServiceType=LoadBalancer</code> in these environments. For a long time, <strong>MetalLB</strong> was the only practical option. However, edge workloads come with their own unique set of complexities. These workloads frequently rely on specialized protocols like QUIC, SCTP, and SRv6, and they operate under tighter latency budgets and stricter resource constraints. Building a seamless and reliable solution in such an environment requires deep protocol awareness and careful design.</p>
 <p>As more users approached us to solve these challenges, it became clear that the traditional Linux networking stack, while mature and reliable, lacked the agility to rapidly support the wide variety of protocols and stateful load-balancing scenarios needed at the edge.</p>
 <p>This led us to adopt <strong>eBPF</strong>, a powerful technology from the Linux community. eBPF enables safely running sandboxed programs within the kernel, allowing us to extend system functionality without altering kernel source code or introducing performance overhead. It provides the flexibility and performance essential for modern networking use cases — without requiring dedicated CPU cores — making it an ideal foundation for lightweight, energy-efficient edge architectures.</p>
 <h2 id="what-is-loxilb">What is loxilb</h2>
@@ -3075,24 +3075,35 @@
 </ul>
 <h2 id="overall-features-of-loxilb">Overall features of loxilb</h2>
 <ul>
-<li>L4/NAT stateful loadbalancer<ul>
-<li>NAT44, NAT66, NAT64 with One-ARM, FullNAT, DSR etc</li>
-<li>Support for TCP, UDP, SCTP (w/ multi-homing), QUIC, FTP, TFTP etc</li>
+<li><strong>L4/NAT Stateful Load Balancer</strong></li>
+<li>Supports NAT44, NAT66, NAT64 with One-ARM, FullNAT, DSR, and more</li>
+<li>Protocol support includes TCP, UDP, SCTP (with multi-homing), QUIC, FTP, TFTP, and others</li>
+<li><strong>High Availability</strong></li>
+<li>Built-in clustering with support for hitless failover, Maglev, and CGNAT-style redundancy</li>
+<li><strong>Scalable Endpoint Health Probes</strong></li>
+<li>Extensive and cloud-native-friendly liveness checks for service endpoints</li>
+<li><strong>Integrated Security</strong></li>
+<li>Stateful firewall capabilities with support for IPsec and WireGuard tunnels</li>
+<li><strong>Optimized Kernel Features</strong></li>
+<li>High-performance implementations for Conntrack, QoS, and related networking functions  <ul>
+<li>Learn more: <a href="https://thermalcircle.de/doku.php?id=blog:linux:connection_tracking_1_modules_and_hooks">Connection Tracking in Linux</a></li>
 </ul>
 </li>
-<li>High-availability support with hitless/maglev/cgnat clustering</li>
-<li>Extensive and scalable end-point liveness probes for cloud-native environments</li>
-<li>Stateful firewalling and IPSEC/Wireguard support</li>
-<li>Optimized implementation for features like <a href="https://thermalcircle.de/doku.php?id=blog:linux:connection_tracking_1_modules_and_hooks">Conntrack</a>, QoS etc</li>
-<li>Full compatibility for ipvs (ipvs policies can be auto inherited)</li>
-<li>Policy oriented L7 proxy support - HTTP1.0, 1.1, 2.0 etc (planned 🚧)   </li>
+<li><strong>IPVS Compatibility</strong></li>
+<li>Full support for IPVS-based policies, with automatic policy inheritance</li>
+<li><strong>Layer 7 Proxy Support</strong></li>
+<li>Policy-driven HTTP proxying with planned support for HTTP/1.0, 1.1, and 2.0</li>
 </ul>
 <h2 id="components-of-loxilb">Components of loxilb</h2>
 <ul>
-<li>GoLang based control plane components</li>
-<li>A scalable/efficient <a href="https://ebpf.io/">eBPF</a> based data-path implementation</li>
-<li>Integrated goBGP based routing stack</li>
-<li>A kubernetes agent <a href="https://github.com/loxilb-io/kube-loxilb">kube-loxilb</a> written in Go</li>
+<li><strong>Control Plane (Go)</strong></li>
+<li>Control plane built in Go for reliability and modularity</li>
+<li><strong>Data-Path (eBPF)</strong></li>
+<li>High-performance, scalable datapath powered by <a href="https://ebpf.io/">eBPF</a></li>
+<li><strong>Routing Stack</strong></li>
+<li>Integrated BGP support using a built-in <a href="https://github.com/osrg/gobgp">GoBGP</a> implementation</li>
+<li><strong>Kubernetes Integration</strong></li>
+<li>A native Kubernetes agent, <a href="https://github.com/loxilb-io/kube-loxilb">kube-loxilb</a>, written in Go for seamless service discovery and synchronization</li>
 </ul>
 <h2 id="architectural-considerations">Architectural Considerations</h2>
 <ul>
