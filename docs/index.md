@@ -91,61 +91,27 @@ loxilb’s deep protocol awareness and ability to operate efficiently in Kuberne
 
 ## Why choose loxilb?
 
-- `Performs` much better compared to its competitors across various architectures  
+## Why choose loxilb?
 
-    - [Single-Node Performance](https://loxilb-io.github.io/loxilbdocs/perf-single/)  
-    - [Multi-Node Performance](https://loxilb-io.github.io/loxilbdocs/perf-multi/)  
-    - [Performance on ARM](https://www.loxilb.io/post/running-loxilb-on-aws-graviton2-based-ec2-instance)  
-    - [Short Demo on Performance](https://www.youtube.com/watch?v=MJXcM0x6IeQ)
-
-- Utilizes eBPF which makes it `flexible` as well as `customizable`
-
-- Advanced `quality of service` for workloads (per LB, per end-point or per client)
-
-- Works with `any` Kubernetes distribution/CNI  
-  (k8s / k3s / k0s / kind / OpenShift + Calico, Flannel, Cilium, Weave, Multus, etc)
-
-- Kube-proxy replacement with loxilb allows `simple plug-in`  
-  with any existing/deployed pod-networking software
-
-- Extensive support for `SCTP workloads` (with multi-homing) on K8s
-
-- Dual stack with `NAT66, NAT64` support for K8s
-
-- K8s `multi-cluster` support *(planned 🚧)*
-
+- **Performs** much better compared to its competitors across various architectures — [Single-Node Performance](https://loxilb-io.github.io/loxilbdocs/perf-single/), [Multi-Node Performance](https://loxilb-io.github.io/loxilbdocs/perf-multi/), [Performance on ARM](https://www.loxilb.io/post/running-loxilb-on-aws-graviton2-based-ec2-instance), [Short Demo on Performance](https://www.youtube.com/watch?v=MJXcM0x6IeQ)  
+- Utilizes **eBPF**, making it both `flexible` and `customizable`  
+- Advanced `quality of service` for workloads (per LB, per endpoint, or per client)  
+- Works with `any` Kubernetes distribution/CNI (k8s / k3s / k0s / kind / OpenShift + Calico, Flannel, Cilium, Weave, Multus, etc)  
+- Kube-proxy replacement with loxilb allows `simple plug-in` with any existing or deployed pod-networking software  
+- Extensive support for `SCTP workloads` (with multi-homing) on Kubernetes  
+- Dual stack with `NAT66, NAT64` support for Kubernetes  
+- Kubernetes `multi-cluster` support *(planned 🚧)*  
 - Runs in `any` cloud (public cloud / on-prem) or `standalone` environments
-
 
 ## Overall Features of loxilb
 
-- `L4/NAT` stateful load balancer
-
-    - Supports NAT44, NAT66, NAT64  
-    - Operates in One-ARM, FullNAT, and DSR modes  
-    - Protocol support includes TCP, UDP, SCTP (with multi-homing), QUIC, FTP, TFTP
-- High-availability support
-
-    - Supports hitless failover  
-    - Clustering with Maglev and CGNAT-style redundancy
-- Scalable end-point health checks
-
-    - Designed for cloud-native workloads  
-    - Efficient and extensive liveness probes for dynamic environments
-- Built-in firewall and security
-
-    - Stateful firewalling  
-    - IPsec and WireGuard tunnel support
-- Optimized kernel networking
-
-    - High-performance `conntrack`, QoS, and other key Linux networking features  
-    - [Learn more](https://thermalcircle.de/doku.php?id=blog:linux:connection_tracking_1_modules_and_hooks)
-- `IPVS` compatibility
-
-    - Automatically inherits and supports IPVS-based policies
-- L7 proxy capabilities 
-
-    - Policy-driven HTTP proxy support (HTTP/1.0, 1.1, 2.0)
+- **L4/NAT Stateful Load Balancer** — Supports NAT44, NAT66, NAT64 with One-ARM, FullNAT, DSR, and more. Protocol support includes TCP, UDP, SCTP (with multi-homing), QUIC, FTP, TFTP  
+- **High Availability** — Built-in clustering with support for hitless failover, Maglev, and CGNAT-style redundancy  
+- **Scalable Endpoint Health Probes** — Cloud-native friendly liveness checks for large-scale workloads  
+- **Integrated Security** — Stateful firewall capabilities with support for IPsec and WireGuard tunnels  
+- **Optimized Kernel Features** — High-performance implementations for conntrack, QoS, and other Linux networking functions. [Learn more](https://thermalcircle.de/doku.php?id=blog:linux:connection_tracking_1_modules_and_hooks)  
+- **IPVS Compatibility** — Full support for IPVS-based policies with automatic inheritance  
+- **Layer 7 Proxy Support** — Policy-driven HTTP proxying for HTTP/1.0, 1.1, and 2.0
 
 ## Components of loxilb
 
