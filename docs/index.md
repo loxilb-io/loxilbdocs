@@ -134,8 +134,11 @@ loxilb’s deep protocol awareness and ability to operate efficiently in Kuberne
   - A native Kubernetes agent, [kube-loxilb](https://github.com/loxilb-io/kube-loxilb), written in Go for seamless service discovery and synchronization
 
 ## Architectural Considerations   
-- [Understanding loxilb modes and deployment in K8s with kube-loxilb](kube-loxilb.md)
-- [Understanding High-availability with loxilb](ha-deploy.md)
+- [Understanding loxilb modes and deployment in Kubernetes with kube-loxilb](kube-loxilb.md)  
+  A deep dive into how loxilb operates in different deployment modes, and how the `kube-loxilb` agent enables seamless integration with Kubernetes.
+
+- [Understanding High-Availability with loxilb](ha-deploy.md)  
+  Covers clustering options, failover strategies, and how loxilb ensures resilient service delivery in high-availability environments.
 
 ## Getting started with different K8s distributions & tools   
 
