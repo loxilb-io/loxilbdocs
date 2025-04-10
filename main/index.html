@@ -3088,67 +3088,51 @@
 <p>loxilb’s deep protocol awareness and ability to operate efficiently in Kubernetes environments make it a strong fit for modern telco-cloud deployments.</p>
 <h2 id="why-choose-loxilb">Why choose loxilb?</h2>
 <ul>
-<li><strong>Performs exceptionally well</strong> across different architectures and environments  </li>
+<li><code>Performs</code> much better compared to its competitors across various architectures    </li>
 <li><a href="https://loxilb-io.github.io/loxilbdocs/perf-single/">Single-Node Performance</a>  </li>
 <li><a href="https://loxilb-io.github.io/loxilbdocs/perf-multi/">Multi-Node Performance</a>  </li>
 <li><a href="https://www.loxilb.io/post/running-loxilb-on-aws-graviton2-based-ec2-instance">Performance on ARM</a>  </li>
-<li>
-<p><a href="https://www.youtube.com/watch?v=MJXcM0x6IeQ">Short Demo on Performance</a></p>
-</li>
-<li>
-<p>Utilizes <strong>eBPF</strong>, making it both <strong>flexible</strong> and <strong>customizable</strong></p>
-</li>
-<li>
-<p>Offers advanced <strong>Quality of Service</strong> controls<br />
-  (per load balancer, per endpoint, or per client)</p>
-</li>
-<li>
-<p>Compatible with <strong>any</strong> Kubernetes distribution or CNI<br />
-  (K8s / K3s / K0s / KIND / OpenShift + Calico, Flannel, Cilium, Weave, Multus, etc.)</p>
-</li>
-<li>
-<p>Extensive support for <strong>SCTP workloads</strong> (including multi-homing) on Kubernetes</p>
-</li>
-<li>
-<p>Built-in dual-stack support with <strong>NAT66</strong> and <strong>NAT64</strong> for Kubernetes environments</p>
-</li>
-<li>
-<p>Planned support for <strong>multi-cluster Kubernetes</strong> 🚧</p>
-</li>
-<li>
-<p>Deployable in <strong>any</strong> environment: public cloud, on-prem, or standalone</p>
-</li>
+<li><a href="https://www.youtube.com/watch?v=MJXcM0x6IeQ">Short Demo on Performance</a></li>
+<li>Utilizes ebpf which makes it <code>flexible</code> as well as <code>customizable</code></li>
+<li>Advanced <code>quality of service</code> for workloads  (per LB, per end-point or per client)</li>
+<li>Works with <code>any</code> Kubernetes distribution/CNI<br />
+  (k8s / k3s / k0s / kind / OpenShift + Calico, Flannel, Cilium, Weave, Multus, etc)</li>
+<li>Kube-proxy replacement with loxilb allows <code>simple plug-in</code>  with any existing/deployed pod-networking software</li>
+<li>Extensive support for <code>SCTP workloads</code> (with multi-homing) on K8s</li>
+<li>Dual stack with <code>NAT66, NAT64</code> support for K8s</li>
+<li>K8s <code>multi-cluster</code> support <em>(planned 🚧)</em></li>
+<li>Runs in <code>any</code> cloud (public cloud / on-prem) or <code>standalone</code> environments</li>
 </ul>
 <h2 id="overall-features-of-loxilb">Overall features of loxilb</h2>
 <ul>
-<li><strong>L4/NAT Stateful Load Balancer</strong></li>
+<li><strong>L4/NAT Stateful Load Balancer</strong>    </li>
 <li>Supports NAT44, NAT66, NAT64 with One-ARM, FullNAT, DSR, and more</li>
 <li>Protocol support includes TCP, UDP, SCTP (with multi-homing), QUIC, FTP, TFTP, and others</li>
-<li><strong>High Availability</strong></li>
+<li><strong>High Availability</strong>   </li>
 <li>Built-in clustering with support for hitless failover, Maglev, and CGNAT-style redundancy</li>
-<li><strong>Scalable Endpoint Health Probes</strong></li>
+<li><strong>Scalable Endpoint Health Probes</strong>   </li>
 <li>Extensive and cloud-native-friendly liveness checks for service endpoints</li>
-<li><strong>Integrated Security</strong></li>
+<li><strong>Integrated Security</strong>   </li>
 <li>Stateful firewall capabilities with support for IPsec and WireGuard tunnels</li>
-<li><strong>Optimized Kernel Features</strong></li>
-<li>High-performance implementations for Conntrack, QoS, and related networking functions  <ul>
+<li><strong>Optimized Kernel Features</strong>   </li>
+<li>High-performance implementations for Conntrack, QoS, and related networking functions     <ul>
 <li>Learn more: <a href="https://thermalcircle.de/doku.php?id=blog:linux:connection_tracking_1_modules_and_hooks">Connection Tracking in Linux</a></li>
 </ul>
 </li>
-<li><strong>IPVS Compatibility</strong></li>
+<li><strong>IPVS Compatibility</strong>   </li>
 <li>Full support for IPVS-based policies, with automatic policy inheritance</li>
-<li><strong>Layer 7 Proxy Support</strong></li>
+<li><strong>Layer 7 Proxy Support</strong>   </li>
 <li>Policy-driven HTTP proxying with planned support for HTTP/1.0, 1.1, and 2.0</li>
 </ul>
 <h2 id="components-of-loxilb">Components of loxilb</h2>
 <ul>
-<li><strong>Control Plane (Go)</strong></li>
+<li><strong>Control Plane (Go)</strong>   </li>
 <li>Control plane built in Go for reliability and modularity</li>
-<li><strong>Data-Path (eBPF)</strong></li>
+<li><strong>Data-Path (eBPF)</strong>   </li>
 <li>High-performance, scalable datapath powered by <a href="https://ebpf.io/">eBPF</a></li>
-<li><strong>Routing Stack</strong></li>
+<li><strong>Routing Stack</strong>   </li>
 <li>Integrated BGP support using a built-in <a href="https://github.com/osrg/gobgp">GoBGP</a> based implementation</li>
-<li><strong>Kubernetes Integration</strong></li>
+<li><strong>Kubernetes Integration</strong>   </li>
 <li>A native Kubernetes agent, <a href="https://github.com/loxilb-io/kube-loxilb">kube-loxilb</a>, written in Go for seamless service discovery and synchronization</li>
 </ul>
 <h2 id="architectural-considerations">Architectural Considerations</h2>
