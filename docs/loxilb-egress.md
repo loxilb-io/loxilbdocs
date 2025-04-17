@@ -46,7 +46,7 @@ kubectl apply -f https://raw.githubusercontent.com/loxilb-io/kube-loxilb/refs/he
 ##### Use kube-loxilb with egress CRD permissions  
 
 ```
-kubectl apply -f https://github.com/loxilb-io/kube-loxilb/blob/main/manifest/in-cluster/kube-loxilb-nobgp.yaml
+kubectl apply -f https://raw.githubusercontent.com/loxilb-io/kube-loxilb/refs/heads/main/manifest/in-cluster/kube-loxilb-nobgp.yaml
 ```
 
 Please note that there are new ClusterRoles introduced in the above yaml for egress CRD support :
