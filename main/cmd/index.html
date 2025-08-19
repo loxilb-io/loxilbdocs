@@ -3665,9 +3665,11 @@ Get info in json
 <p>Simple NAT44 tcp (round-robin) load-balancer
 <div class="highlight"><pre><span></span><code>loxicmd create lb 1.1.1.1 --tcp=1828:1920 --endpoints=2.2.3.4:1
 </code></pre></div>
-<strong><em>Note:</em></strong> <br />
-- Round-robin is default mode in loxilb  <br />
-- End-point format is specified as &lt;CIDR:weight&gt;. For round-robin, weight(1) has no significance.</p>
+<strong><em>Note:</em></strong></p>
+<ul>
+<li>Round-robin is default mode in loxilb    </li>
+<li>End-point format is specified as &lt;CIDR:weight&gt;. For round-robin, weight(1) has no significance.</li>
+</ul>
 <p>NAT66 (round-robin) load-balancer
 <div class="highlight"><pre><span></span><code>loxicmd create lb  2001::1 --tcp=2020:8080 --endpoints=4ffe::1:1,5ffe::1:1,6ffe::1:1
 </code></pre></div></p>
@@ -3688,40 +3690,44 @@ Get info in json
 </code></pre></div></p>
 <p>Load-balancer with fullnat mode
 <div class="highlight"><pre><span></span><code>loxicmd create lb 88.88.88.1 --sctp=38412:38412 --endpoints=192.168.70.3:1 --mode=fullnat
-</code></pre></div>
-- For more information on  one-arm and full-nat mode, please check this <a href="https://github.com/loxilb-io/loxilbdocs/blob/main/docs/nat.md">post</a></p>
+</code></pre></div></p>
+<ul>
+<li>For more information on  one-arm and full-nat mode, please check this <a href="https://github.com/loxilb-io/loxilbdocs/blob/main/docs/nat.md">post</a></li>
+</ul>
 <p>Load-balancer config in DSR(direct-server return) mode
 <div class="highlight"><pre><span></span><code>loxicmd create lb 20.20.20.1 --tcp=2020:8080 --endpoints=31.31.31.1:1,32.32.32.1:1 --mode=dsr
 </code></pre></div></p>
 <p>Load-balancer config with active endpoint monitoring
 <div class="highlight"><pre><span></span><code>loxicmd create lb 20.20.20.1 --tcp=2020:8080 --endpoints=31.31.31.1:1,32.32.32.1:1 --monitor
 </code></pre></div>
-<strong><em>Note:</em></strong>  <br />
-- By default loxilb does not do active endpoint monitoring i.e it will continue to select end-points which might be inactive <br />
-- This is due to the fact kubernetes also has its own service monitoring mechanism and it can notify loxilb of any such endpoint health state  <br />
-- Based on user's requirements, one can specify active endpoint checks using "--monitor" flag <br />
-- loxilb has extensive endpoint monitoring methods. Further details can be found in endpoint <a href="&quot;https://github.com/loxilb-io/loxilbdocs/edit/main/docs/cmd.md#endpoint">section</a>   </p>
+<strong><em>Note:</em></strong></p>
+<ul>
+<li>By default loxilb does not do active endpoint monitoring i.e it will continue to select end-points which might be inactive   </li>
+<li>This is due to the fact kubernetes also has its own service monitoring mechanism and it can notify loxilb of any such endpoint health state    </li>
+<li>Based on user's requirements, one can specify active endpoint checks using "--monitor" flag   </li>
+<li>loxilb has extensive endpoint monitoring methods. Further details can be found in endpoint <a href="&quot;https://github.com/loxilb-io/loxilbdocs/edit/main/docs/cmd.md#endpoint">section</a>   </li>
+</ul>
 <h5 id="load-balancer-yaml-example">Load-balancer yaml example</h5>
-<div class="highlight"><pre><span></span><code>apiVersion: netlox/v1
-kind: Loadbalancer
-metadata:
-  name: test
-spec:
-  serviceArguments:
-    externalIP: 1.2.3.1
-    port: 80
-    protocol: tcp
-    sel: 0
-  endpoints:
-  - endpointIP: 4.3.2.1
-    weight: 1
-    targetPort: 8080
-  - endpointIP: 4.3.2.2
-    weight: 1
-    targetPort: 8080
-  - endpointIP: 4.3.2.3
-    weight: 1
-    targetPort: 8080
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netlox/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Loadbalancer</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">serviceArguments</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">externalIP</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.2.3.1</span>
+<span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+<span class="w">    </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tcp</span>
+<span class="w">    </span><span class="nt">sel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="w">  </span><span class="nt">endpoints</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">endpointIP</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4.3.2.1</span>
+<span class="w">    </span><span class="nt">weight</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">    </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">endpointIP</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4.3.2.2</span>
+<span class="w">    </span><span class="nt">weight</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">    </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">endpointIP</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4.3.2.3</span>
+<span class="w">    </span><span class="nt">weight</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">    </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
 </code></pre></div>
 <h4 id="delete-a-load-balancer-rule">Delete a load-balancer rule</h4>
 <h2 id="loxicmd-delete-lb-1111-tcp1828"><div class="highlight"><pre><span></span><code>loxicmd delete lb 1.1.1.1 --tcp=1828 
@@ -3731,27 +3737,31 @@ spec:
 <div class="highlight"><pre><span></span><code>loxicmd get ep
 </code></pre></div>
 <h4 id="create-end-point-for-health-probing">Create end-point for health probing</h4>
-<p><div class="highlight"><pre><span></span><code># loxicmd create endpoint IP [--name=&lt;id&gt;] [--probetype=&lt;probetype&gt;] [--probereq=&lt;probereq&gt;] [--proberesp=&lt;proberesp&gt;] [--probeport=&lt;port&gt;] [--period=&lt;period&gt;] [--retries=&lt;retries&gt;]
+<div class="highlight"><pre><span></span><code># loxicmd create endpoint IP [--name=&lt;id&gt;] [--probetype=&lt;probetype&gt;] [--probereq=&lt;probereq&gt;] [--proberesp=&lt;proberesp&gt;] [--probeport=&lt;port&gt;] [--period=&lt;period&gt;] [--retries=&lt;retries&gt;]
 loxicmd create endpoint 32.32.32.1 --probetype=http --probeport=8080 --period=60 --retries=2
 </code></pre></div>
-IP(string) : Endpoint target IPaddress <br />
-name(string) : Endpoint Identifier <br />
-probetype(string): Probe-type:ping,http,https,udp,tcp,sctp,none <br />
-probereq(string): If probe is http/https, one can specify additional uri path <br />
-proberesp(string): If probe is http/https, one can specify custom response string <br />
-probeport(int): If probe is http,https,tcp,udp,sctp one can specify custom l4port to use <br />
-period(int): Period of probing <br />
-retries(int): Number of retries before marking endPoint inactive   </p>
-<p><strong><em>Notes:</em></strong> <br />
-- "name" is not required when endpoint is created initially. loxilb will allocate the name which can be checked with "loxicmd get ep". "name" can be given as an Identifier when user wants to modify endpoint probe parameters  <br />
-- Initial state of endpoint will be decided within 15 seconds of rule addition (We cant be sure if service is immediately up so this is the init liveness check timeout. It is not configurable at this time)  <br />
-- After init liveness check, probes will be done as per default (60s) or whatever value is set by the user  <br />
-- When endpoint is inactive we have internal logic and timeouts to minimize blocking calls and maintain stability. Only when endpoint is active, we use probe timeout given by user  <br />
-- For UDP end-points and probe-type, there are two ways to check end-point health currently:  <br />
-  - If the service can respond to probe requests with pre-defined responses sent over UDP, we can use the following :  <br />
+<ul>
+<li>IP(string) : Endpoint target IPaddress   </li>
+<li>name(string) : Endpoint Identifier   </li>
+<li>probetype(string): Probe-type:ping,http,https,udp,tcp,sctp,none   </li>
+<li>probereq(string): If probe is http/https, one can specify additional uri path   </li>
+<li>proberesp(string): If probe is http/https, one can specify custom response string   </li>
+<li>probeport(int): If probe is http,https,tcp,udp,sctp one can specify custom l4port to use   </li>
+<li>period(int): Period of probing   </li>
+<li>retries(int): Number of retries before marking endPoint inactive   </li>
+</ul>
+<p><strong><em>Notes:</em></strong></p>
+<ul>
+<li>"name" is not required when endpoint is created initially. loxilb will allocate the name which can be checked with "loxicmd get ep". "name" can be given as an Identifier when user wants to modify endpoint probe parameters    </li>
+<li>Initial state of endpoint will be decided within 15 seconds of rule addition (We cant be sure if service is immediately up so this is the init liveness check timeout. It is not configurable at this time)    </li>
+<li>After init liveness check, probes will be done as per default (60s) or whatever value is set by the user    </li>
+<li>When endpoint is inactive we have internal logic and timeouts to minimize blocking calls and maintain stability. Only when endpoint is active, we use probe timeout given by user    </li>
+<li>For UDP end-points and probe-type, there are two ways to check end-point health currently:    </li>
+<li>If the service can respond to probe requests with pre-defined responses sent over UDP, we can use the following :  <br />
     <div class="highlight"><pre><span></span><code>loxicmd create endpoint 172.1.217.133 --name=&quot;udpep1&quot; --probetype=udp --probeport=32031 --period=60 --retries=2 --probereq=&quot;probe&quot; --proberesp=&quot;hello&quot;
-</code></pre></div>
-  - If the services cannot support the above mechanism, loxilb will try to check for "ICMP Port unreachable" after sending UDP probes. If an "ICMP Port unreachable" is received, it means the endpoint is not up. </p>
+</code></pre></div></li>
+<li>If the services cannot support the above mechanism, loxilb will try to check for "ICMP Port unreachable" after sending UDP probes. If an "ICMP Port unreachable" is received, it means the endpoint is not up. </li>
+</ul>
 <h5 id="examples">Examples :</h5>
 <div class="highlight"><pre><span></span><code>loxicmd create endpoint 32.32.32.1 --probetype=http --probeport=8080 --period=60 --retries=2
 
@@ -3776,18 +3786,18 @@ loxicmd create endpoint 32.32.32.1 --probetype=https --probeport=8080 --probereq
 <strong><em>Note:</em></strong> loxilb requires CA certificate for TLS connection and private certificate and private key for mTLS connection. Admin can keep a common(default) CA certificate for all the endpoints at "/opt/loxilb/cert/rootCA.crt" or per-endpoint certificates can be kept as "/opt/loxilb/cert/\&lt;IP&gt;/rootCA.crt", private key must be kept at "/opt/loxilb/cert/server.key" and private certificate at "/opt/loxilb/cert/server.crt".
 Please see <a href="https://github.com/jsha/minica">Minica</a> or <a href="https://github.com/square/certstrap">Certstrap</a> or <a href="https://github.com/loxilb-io/loxilb/tree/main/cicd/httpsep">this</a> CICD test case to know how to generate certificates.</p>
 <h5 id="endpoint-yaml-example">Endpoint yaml example</h5>
-<div class="highlight"><pre><span></span><code>apiVersion: netlox/v1
-kind: Endpoint
-metadata:
-  name: test
-spec:
-  hostName: &quot;Test&quot;
-  description: string
-  inactiveReTries: 0
-  probeType: string
-  probeReqUrl: string
-  probeDuration: 0
-  probePort: 0
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netlox/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Endpoint</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">hostName</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Test&quot;</span>
+<span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">  </span><span class="nt">inactiveReTries</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="w">  </span><span class="nt">probeType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">  </span><span class="nt">probeReqUrl</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">  </span><span class="nt">probeDuration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="w">  </span><span class="nt">probePort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
 </code></pre></div>
 <h4 id="delete-end-point-informtion">Delete end-point informtion</h4>
 <h2 id="loxicmd-delete-endpoint-31313131"><div class="highlight"><pre><span></span><code>loxicmd delete endpoint 31.31.31.31
@@ -3797,65 +3807,73 @@ spec:
 <div class="highlight"><pre><span></span><code>loxicmd get bfd
 </code></pre></div>
 <h4 id="create-bfd-session">Create BFD Session</h4>
-<p><div class="highlight"><pre><span></span><code>#loxicmd create bfd &lt;remoteIP&gt; --sourceIP=&lt;sourceIP&gt; --interval=&lt;time in usecs&gt; --retryCount=&lt;count&gt;
+<div class="highlight"><pre><span></span><code>#loxicmd create bfd &lt;remoteIP&gt; --sourceIP=&lt;sourceIP&gt; --interval=&lt;time in usecs&gt; --retryCount=&lt;count&gt;
 loxicmd create bfd 192.168.80.253 --sourceIP=192.168.80.252 --interval=500000 --retryCount=3
 </code></pre></div>
-remoteIP(string): Remote IP address <br />
-sourceIP(string): Source IP address for binding <br />
-interval(int): BFD packet Tx Interval Time in microseconds <br />
-retryCount(int): Number of retry counts to detect failure.  </p>
+<ul>
+<li>remoteIP(string): Remote IP address   </li>
+<li>sourceIP(string): Source IP address for binding   </li>
+<li>interval(int): BFD packet Tx Interval Time in microseconds   </li>
+<li>retryCount(int): Number of retry counts to detect failure.</li>
+</ul>
 <h4 id="set-bfd-session">Set BFD Session</h4>
-<p><div class="highlight"><pre><span></span><code>#loxicmd set bfd &lt;remoteIP&gt; --interval=&lt;time in usecs&gt; --retryCount=&lt;count&gt;
+<div class="highlight"><pre><span></span><code>#loxicmd set bfd &lt;remoteIP&gt; --interval=&lt;time in usecs&gt; --retryCount=&lt;count&gt;
 loxicmd set bfd 192.168.80.253 --interval=400000 --retryCount=5
 </code></pre></div>
-interval(int): BFD packet Tx Interval Time in microseconds <br />
-retryCount(int): Number of retry counts to detect failure.  </p>
+<ul>
+<li>interval(int): BFD packet Tx Interval Time in microseconds   </li>
+<li>retryCount(int): Number of retry counts to detect failure.</li>
+</ul>
 <h4 id="delete-bfd-session">Delete BFD Session</h4>
-<p><div class="highlight"><pre><span></span><code>#loxicmd delete bfd &lt;remoteIP&gt;
+<div class="highlight"><pre><span></span><code>#loxicmd delete bfd &lt;remoteIP&gt;
 loxicmd delete bfd 192.168.80.253
 </code></pre></div>
-remoteIP(string): Remote IP address <br />
-sourceIP(string): Source IP address for binding <br />
-interval(int): BFD packet Tx Interval Time in microseconds <br />
-retryCount(int): Number of retry counts to detect failure.</p>
+<ul>
+<li>remoteIP(string): Remote IP address   </li>
+<li>sourceIP(string): Source IP address for binding   </li>
+<li>interval(int): BFD packet Tx Interval Time in microseconds   </li>
+<li>retryCount(int): Number of retry counts to detect failure.</li>
+</ul>
 <h4 id="bfd-yaml-example">BFD yaml example</h4>
-<div class="highlight"><pre><span></span><code>apiVersion: netlox/v1
-kind: BFD
-metadata:
-  name: test
-spec:
-  instance: &quot;default&quot;
-  remoteIp: &quot;192.168.80.253&quot;
-  sourceIp: &quot;192.168.80.252&quot;
-  interval: 300000
-  retryCount: 4
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netlox/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BFD</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">instance</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;default&quot;</span>
+<span class="w">  </span><span class="nt">remoteIp</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;192.168.80.253&quot;</span>
+<span class="w">  </span><span class="nt">sourceIp</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;192.168.80.252&quot;</span>
+<span class="w">  </span><span class="nt">interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">300000</span>
+<span class="w">  </span><span class="nt">retryCount</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4</span>
 </code></pre></div>
 <h3 id="session">Session</h3>
 <h4 id="get-session-information">Get Session information</h4>
 <div class="highlight"><pre><span></span><code>loxicmd get session
 </code></pre></div>
 <h4 id="create-session-information">Create Session information</h4>
-<p><div class="highlight"><pre><span></span><code>#loxicmd create session &lt;userID&gt; &lt;sessionIP&gt; --accessNetworkTunnel=&lt;TeID&gt;:&lt;TunnelIP&gt; --coreNetworkTunnel=&lt;TeID&gt;:&lt;TunnelIP&gt;
+<div class="highlight"><pre><span></span><code>#loxicmd create session &lt;userID&gt; &lt;sessionIP&gt; --accessNetworkTunnel=&lt;TeID&gt;:&lt;TunnelIP&gt; --coreNetworkTunnel=&lt;TeID&gt;:&lt;TunnelIP&gt;
 loxicmd create session user1 192.168.20.1 --accessNetworkTunnel=1:1.232.16.1 coreNetworkTunnel=1:1.233.16.1
 </code></pre></div>
-userID(string): User Identifier <br />
-sessionIP(string): Session IP address <br />
-accessNetworkTunnel(string): accessNetworkTunnel has pairs that can be specified as 'TeID:IP' <br />
-coreNetworkTunnel(string): coreNetworkTunnel has pairs that can be specified as 'TeID:IP'   </p>
+<ul>
+<li>userID(string): User Identifier   </li>
+<li>sessionIP(string): Session IP address   </li>
+<li>accessNetworkTunnel(string): accessNetworkTunnel has pairs that can be specified as 'TeID:IP'   </li>
+<li>coreNetworkTunnel(string): coreNetworkTunnel has pairs that can be specified as 'TeID:IP'   </li>
+</ul>
 <h5 id="session-yaml-example">Session yaml example</h5>
-<div class="highlight"><pre><span></span><code>apiVersion: netlox/v1
-kind: Session
-metadata:
-  name: test
-spec:
-  ident: user1
-  sessionIP: 88.88.88.88
-  accessNetworkTunnel:
-    TeID: 1
-    tunnelIP: 11.11.11.11
-  coreNetworkTunnel:
-    TeID: 1
-    tunnelIP: 22.22.22.22
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netlox/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Session</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">ident</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">user1</span>
+<span class="w">  </span><span class="nt">sessionIP</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">88.88.88.88</span>
+<span class="w">  </span><span class="nt">accessNetworkTunnel</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">TeID</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">    </span><span class="nt">tunnelIP</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">11.11.11.11</span>
+<span class="w">  </span><span class="nt">coreNetworkTunnel</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">TeID</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">    </span><span class="nt">tunnelIP</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">22.22.22.22</span>
 </code></pre></div>
 <h4 id="delete-session-information">Delete Session information</h4>
 <h2 id="loxicmd-delete-session-user1"><div class="highlight"><pre><span></span><code>loxicmd delete session user1
@@ -3865,45 +3883,49 @@ spec:
 <div class="highlight"><pre><span></span><code>loxicmd get sessionulcl
 </code></pre></div>
 <h4 id="create-sessionulcl-information">Create SessionUlCl information</h4>
-<p><div class="highlight"><pre><span></span><code>#loxicmd create sessionulcl &lt;userID&gt; --ulclArgs=&lt;QFI&gt;:&lt;ulclIP&gt;,...
+<div class="highlight"><pre><span></span><code>#loxicmd create sessionulcl &lt;userID&gt; --ulclArgs=&lt;QFI&gt;:&lt;ulclIP&gt;,...
 loxicmd create sessionulcl user1 --ulclArgs=16:192.33.125.1
 </code></pre></div>
-userID(string): User Identifier <br />
-ulclArgs(string): Port pairs can be specified as 'QFI:UlClIP'   </p>
+<ul>
+<li>userID(string): User Identifier   </li>
+<li>ulclArgs(string): Port pairs can be specified as 'QFI:UlClIP'   </li>
+</ul>
 <h5 id="sessionulcl-yaml-example">SessionUlCl yaml example</h5>
-<div class="highlight"><pre><span></span><code>apiVersion: netlox/v1
-kind: SessionULCL
-metadata:
-  name: test
-spec:
-  ulclIdent: user1
-  ulclArgument:
-    qfi: 11
-    ulclIP: 8.8.8.8
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netlox/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SessionULCL</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">ulclIdent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">user1</span>
+<span class="w">  </span><span class="nt">ulclArgument</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">qfi</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">11</span>
+<span class="w">    </span><span class="nt">ulclIP</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8.8.8.8</span>
 </code></pre></div>
 <h4 id="delete-sessionulcl-information">Delete SessionUlCl information</h4>
 <p><div class="highlight"><pre><span></span><code>loxicmd delete sessionulcl --ulclArgs=192.33.125.1
 </code></pre></div>
-ulclArgs(string): UlCl IP address can be specified as 'UlClIP'. It don't need QFI.</p>
+- ulclArgs(string): UlCl IP address can be specified as 'UlClIP'. It don't need QFI.</p>
 <hr />
 <h3 id="ipaddress">IPaddress</h3>
 <h4 id="get-ipaddress-information">Get IPaddress information</h4>
 <div class="highlight"><pre><span></span><code>loxicmd get ip
 </code></pre></div>
 <h4 id="create-ipaddress-information">Create IPaddress information</h4>
-<p><div class="highlight"><pre><span></span><code>#loxicmd create ip &lt;DeviceIPNet&gt; &lt;device&gt;
+<div class="highlight"><pre><span></span><code>#loxicmd create ip &lt;DeviceIPNet&gt; &lt;device&gt;
 loxicmd create ip 192.168.0.1/24 eno7
 </code></pre></div>
-DeviceIPNet(string): Actual IP address with mask <br />
-device(string): name of the related device   </p>
+<ul>
+<li>DeviceIPNet(string): Actual IP address with mask   </li>
+<li>device(string): name of the related device   </li>
+</ul>
 <h5 id="ipaddress-yaml-example">IPaddress yaml example</h5>
-<div class="highlight"><pre><span></span><code>apiVersion: netlox/v1
-kind: IPaddress
-metadata:
-  name: test
-spec:
-  dev: eno8
-  ipAddress: 192.168.23.1/32
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netlox/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IPaddress</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">dev</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eno8</span>
+<span class="w">  </span><span class="nt">ipAddress</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.23.1/32</span>
 </code></pre></div>
 <h4 id="delete-ipaddress-information">Delete IPaddress information</h4>
 <h2 id="loxicmd-delete-ip-deviceipnet-device-loxicmd-delete-ip-1921680124-eno7"><div class="highlight"><pre><span></span><code>#loxicmd delete ip &lt;DeviceIPNet&gt; &lt;device&gt;
@@ -3914,19 +3936,21 @@ loxicmd delete ip 192.168.0.1/24 eno7
 <div class="highlight"><pre><span></span><code>loxicmd get fdb
 </code></pre></div>
 <h4 id="create-fdb-information">Create FDB information</h4>
-<p><div class="highlight"><pre><span></span><code>#loxicmd create fdb &lt;MacAddress&gt; &lt;DeviceName&gt;
+<div class="highlight"><pre><span></span><code>#loxicmd create fdb &lt;MacAddress&gt; &lt;DeviceName&gt;
 loxicmd create fdb aa:aa:aa:aa:bb:bb eno7
 </code></pre></div>
-MacAddress(string): mac address <br />
-DeviceName(string): name of the related device   </p>
+<ul>
+<li>MacAddress(string): mac address   </li>
+<li>DeviceName(string): name of the related device   </li>
+</ul>
 <h5 id="fdb-yaml-example">FDB yaml example</h5>
-<div class="highlight"><pre><span></span><code>apiVersion: netlox/v1
-kind: FDB
-metadata:
-  name: test
-spec:
-  dev: eno8
-  macAddress: aa:aa:aa:aa:aa:aa
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netlox/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">FDB</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">dev</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eno8</span>
+<span class="w">  </span><span class="nt">macAddress</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">aa:aa:aa:aa:aa:aa</span>
 </code></pre></div>
 <h4 id="delete-fdb-information">Delete FDB information</h4>
 <div class="highlight"><pre><span></span><code>#loxicmd delete fdb &lt;MacAddress&gt; &lt;DeviceName&gt;
@@ -3938,19 +3962,21 @@ loxicmd delete fdb aa:aa:aa:aa:bb:bb eno7
 <div class="highlight"><pre><span></span><code>loxicmd get route
 </code></pre></div>
 <h4 id="create-route-information">Create Route information</h4>
-<p><div class="highlight"><pre><span></span><code>#loxicmd create route &lt;DestinationIPNet&gt; &lt;gateway&gt;
+<div class="highlight"><pre><span></span><code>#loxicmd create route &lt;DestinationIPNet&gt; &lt;gateway&gt;
 loxicmd create route 192.168.212.0/24 172.17.0.254
 </code></pre></div>
-DestinationIPNet(string): Actual IP address route with mask <br />
-gateway(string): gateway information if any   </p>
+<ul>
+<li>DestinationIPNet(string): Actual IP address route with mask   </li>
+<li>gateway(string): gateway information if any   </li>
+</ul>
 <h5 id="route-yaml-example">Route yaml example</h5>
-<div class="highlight"><pre><span></span><code>apiVersion: netlox/v1
-kind: Route
-metadata:
-  name: test
-spec:
-  destinationIPNet: 192.168.30.0/24
-  gateway: 172.17.0.1
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netlox/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Route</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">destinationIPNet</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.30.0/24</span>
+<span class="w">  </span><span class="nt">gateway</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">172.17.0.1</span>
 </code></pre></div>
 <h4 id="delete-route-information">Delete Route information</h4>
 <h2 id="loxicmd-delete-route-destinationipnet-loxicmd-delete-route-192168212024"><div class="highlight"><pre><span></span><code>#loxicmd delete route &lt;DestinationIPNet&gt;
@@ -3961,21 +3987,23 @@ loxicmd delete route 192.168.212.0/24
 <div class="highlight"><pre><span></span><code>loxicmd get neighbor
 </code></pre></div>
 <h4 id="create-neighbor-information">Create Neighbor information</h4>
-<p><div class="highlight"><pre><span></span><code>#loxicmd create neighbor &lt;DeviceIP&gt; &lt;DeviceName&gt; [--macAddress=aa:aa:aa:aa:aa:aa]
+<div class="highlight"><pre><span></span><code>#loxicmd create neighbor &lt;DeviceIP&gt; &lt;DeviceName&gt; [--macAddress=aa:aa:aa:aa:aa:aa]
 loxicmd create neighbor 192.168.0.1 eno7 --macAddress=aa:aa:aa:aa:aa:aa
 </code></pre></div>
-DeviceIP(string): The IP address <br />
-DeviceName(string): name of the related device <br />
-macAddress(string): resolved hardware address if any   </p>
+<ul>
+<li>DeviceIP(string): The IP address   </li>
+<li>DeviceName(string): name of the related device   </li>
+<li>macAddress(string): resolved hardware address if any   </li>
+</ul>
 <h5 id="neighbor-yaml-example">Neighbor yaml example</h5>
-<div class="highlight"><pre><span></span><code>apiVersion: netlox/v1
-kind: Neighbor
-metadata:
-  name: test
-spec:
-  dev: eno8
-  macAddress: aa:aa:aa:aa:aa:aa
-  ipAddress: 192.168.23.21
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netlox/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Neighbor</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">dev</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eno8</span>
+<span class="w">  </span><span class="nt">macAddress</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">aa:aa:aa:aa:aa:aa</span>
+<span class="w">  </span><span class="nt">ipAddress</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.23.21</span>
 </code></pre></div>
 <h4 id="delete-neighbor-information">Delete Neighbor information</h4>
 <div class="highlight"><pre><span></span><code>#loxicmd delete neighbor &lt;DeviceIP&gt; &lt;device&gt;
@@ -3989,34 +4017,38 @@ loxicmd delete neighbor 192.168.0.1 eno7
 <div class="highlight"><pre><span></span><code>loxicmd get vlanmember
 </code></pre></div></p>
 <h4 id="create-vlan-and-vlan-member-information">Create Vlan and Vlan Member information</h4>
-<p><div class="highlight"><pre><span></span><code>#loxicmd create vlan &lt;Vid&gt;
+<div class="highlight"><pre><span></span><code>#loxicmd create vlan &lt;Vid&gt;
 loxicmd create vlan 100
 </code></pre></div>
-Vid(int): vlan identifier
+<ul>
+<li>Vid(int): vlan identifier</li>
+</ul>
 <div class="highlight"><pre><span></span><code>#loxicmd create vlanmember &lt;Vid&gt; &lt;DeviceName&gt; --tagged=&lt;Tagged&gt;
 loxicmd create vlanmember 100 eno7 --tagged=true
 loxicmd create vlanmember 100 eno7
 </code></pre></div>
-Vid(int): vlan identifier <br />
-DeviceName(string): name of the related device <br />
-tagged(boolean): tagged or not (default is false)   </p>
+<ul>
+<li>Vid(int): vlan identifier   </li>
+<li>DeviceName(string): name of the related device   </li>
+<li>tagged(boolean): tagged or not (default is false)   </li>
+</ul>
 <h5 id="vlan-yaml-example">Vlan yaml example</h5>
-<div class="highlight"><pre><span></span><code>apiVersion: netlox/v1
-kind: Vlan
-metadata:
-  name: test
-spec:
-  vid: 100
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netlox/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Vlan</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">vid</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100</span>
 </code></pre></div>
 <h5 id="vlan-member-yaml-example">Vlan Member yaml example</h5>
-<div class="highlight"><pre><span></span><code>apiVersion: netlox/v1
-kind: VlanMember
-metadata:
-  name: test
-  vid: 100
-spec:
-  dev: eno8
-  Tagged: true
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netlox/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VlanMember</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test</span>
+<span class="w">  </span><span class="nt">vid</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">dev</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eno8</span>
+<span class="w">  </span><span class="nt">Tagged</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
 <h4 id="delete-vlan-and-vlan-member-information">Delete Vlan and Vlan Member information</h4>
 <p><div class="highlight"><pre><span></span><code>#loxicmd delete vlan &lt;Vid&gt;
@@ -4034,33 +4066,37 @@ loxicmd delete vlanmember 100 eno7
 <div class="highlight"><pre><span></span><code>loxicmd get vxlanpeer
 </code></pre></div></p>
 <h4 id="create-vxlan-and-vxlan-peer-information">Create Vxlan and Vxlan Peer information</h4>
-<p><div class="highlight"><pre><span></span><code>#loxicmd create vxlan &lt;VxlanID&gt; &lt;EndpointDeviceName&gt;
+<div class="highlight"><pre><span></span><code>#loxicmd create vxlan &lt;VxlanID&gt; &lt;EndpointDeviceName&gt;
 loxicmd create vxlan 100 eno7
 </code></pre></div>
-VxlanID(int): Vxlan Identifier <br />
-EndpointDeviceName(string): VTEP Device name(It must have own IP address for peering)   </p>
-<p><div class="highlight"><pre><span></span><code>#loxicmd create vxlanpeer &lt;VxlanID&gt; &lt;PeerIP&gt;
+<ul>
+<li>VxlanID(int): Vxlan Identifier   </li>
+<li>EndpointDeviceName(string): VTEP Device name(It must have own IP address for peering)   </li>
+</ul>
+<div class="highlight"><pre><span></span><code>#loxicmd create vxlanpeer &lt;VxlanID&gt; &lt;PeerIP&gt;
 loxicmd create vxlan-peer 100 30.1.3.1
 </code></pre></div>
-VxlanID(int):  Vxlan Identifier <br />
-PeerIP(string): Vxlan peer device IP address   </p>
+<ul>
+<li>VxlanID(int):  Vxlan Identifier   </li>
+<li>PeerIP(string): Vxlan peer device IP address   </li>
+</ul>
 <h5 id="vxlan-yaml-example">Vxlan yaml example</h5>
-<div class="highlight"><pre><span></span><code>apiVersion: netlox/v1
-kind: Vxlan
-metadata:
-  name: test
-spec:
-  epIntf: eno8
-  vxlanID: 100
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netlox/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Vxlan</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">epIntf</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eno8</span>
+<span class="w">  </span><span class="nt">vxlanID</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100</span>
 </code></pre></div>
 <h5 id="vxlan-peer-yaml-example">Vxlan Peer yaml example</h5>
-<div class="highlight"><pre><span></span><code>apiVersion: netlox/v1
-kind: VxlanPeer
-metadata:
-  name: test
-  vxlanID: 100
-spec:
-  peerIP: 21.21.21.1
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netlox/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VxlanPeer</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test</span>
+<span class="w">  </span><span class="nt">vxlanID</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">peerIP</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">21.21.21.1</span>
 </code></pre></div>
 <h4 id="delete-vxlan-and-vxlan-peer-information">Delete Vxlan and Vxlan Peer  information</h4>
 <p><div class="highlight"><pre><span></span><code>#loxicmd delete vxlan &lt;VxlanID&gt;
@@ -4082,28 +4118,30 @@ loxicmd create firewall --firewallRule=&quot;sourceIP:1.2.3.2/32,destinationIP:2
 loxicmd create firewall --firewallRule=&quot;sourceIP:1.2.3.2/32,destinationIP:2.3.1.2/32,preference:200&quot; --trap
 loxicmd create firewall --firewallRule=&quot;sourceIP:1.2.3.2/32,destinationIP:2.3.1.2/32,preference:200&quot; --redirect=ensp0
 </code></pre></div>
-<strong>firewallRule</strong>
-sourceIP(string) - Source IP in CIDR notation <br />
-destinationIP(string) - Destination IP in CIDR notation <br />
-minSourcePort(int) - Minimum source port range <br />
-maxSourcePort(int) - Maximum source port range <br />
-minDestinationPort(int) - Minimum destination port range <br />
-maxDestinationPort(int) - Maximum source port range <br />
-protocol(int) - the protocol <br />
-portName(string) - the incoming port <br />
-preference(int) - User preference for ordering   </p>
+<strong>firewallRule</strong></p>
+<ul>
+<li>sourceIP(string) - Source IP in CIDR notation   </li>
+<li>destinationIP(string) - Destination IP in CIDR notation   </li>
+<li>minSourcePort(int) - Minimum source port range   </li>
+<li>maxSourcePort(int) - Maximum source port range   </li>
+<li>minDestinationPort(int) - Minimum destination port range   </li>
+<li>maxDestinationPort(int) - Maximum source port range   </li>
+<li>protocol(int) - the protocol   </li>
+<li>portName(string) - the incoming port   </li>
+<li>preference(int) - User preference for ordering   </li>
+</ul>
 <h5 id="firewall-yaml-example">Firewall yaml example</h5>
-<div class="highlight"><pre><span></span><code>apiVersion: netlox/v1
-kind: Firewall
-metadata:
-  name: test
-spec:
-  ruleArguments:
-    sourceIP: 192.169.1.2/24
-    destinationIP: 192.169.2.1/24
-    preference: 200
-  opts:
-    allow: true
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netlox/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Firewall</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">ruleArguments</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">sourceIP</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.169.1.2/24</span>
+<span class="w">    </span><span class="nt">destinationIP</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.169.2.1/24</span>
+<span class="w">    </span><span class="nt">preference</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">200</span>
+<span class="w">  </span><span class="nt">opts</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">allow</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
 <h4 id="delete-firewall-information">Delete Firewall information</h4>
 <h2 id="loxicmd-delete-firewall-firewallrulerulekeyrulevalue-loxicmd-delete-firewall-firewallrulesourceip123232destinationip231232preference200"><div class="highlight"><pre><span></span><code>#loxicmd delete firewall --firewallRule=&lt;ruleKey&gt;:&lt;ruleValue&gt;
@@ -4114,29 +4152,31 @@ loxicmd delete firewall --firewallRule=&quot;sourceIP:1.2.3.2/32,destinationIP:2
 <div class="highlight"><pre><span></span><code>loxicmd get mirror
 </code></pre></div>
 <h4 id="create-mirror-information">Create Mirror information</h4>
-<p><div class="highlight"><pre><span></span><code>#loxicmd create mirror &lt;mirrorIdent&gt; --mirrorInfo=&lt;InfoOption&gt;:&lt;InfoValue&gt;,... --targetObject=attachement:&lt;port1,rule2&gt;,mirrObjName:&lt;ObjectName&gt;
+<div class="highlight"><pre><span></span><code>#loxicmd create mirror &lt;mirrorIdent&gt; --mirrorInfo=&lt;InfoOption&gt;:&lt;InfoValue&gt;,... --targetObject=attachement:&lt;port1,rule2&gt;,mirrObjName:&lt;ObjectName&gt;
 loxicmd create mirror mirr-1 --mirrorInfo=&quot;type:0,port:ensp0&quot; --targetObject=&quot;attachement:1,mirrObjName:ensp1
 </code></pre></div>
-mirrorIdent(string): Mirror identifier <br />
-type(int) : Mirroring type as like 0 == SPAN, 1 == RSPAN, 2 == ERSPAN  <br />
-port(string) : The port where mirrored traffic needs to be sent <br />
-vlan(int) : for RSPAN we may need to send tagged mirror traffic <br />
-remoteIP(string) : For ERSPAN we may need to send tunnelled mirror traffic <br />
-sourceIP(string): For ERSPAN we may need to send tunnelled mirror traffic <br />
-tunnelID(int): For ERSPAN we may need to send tunnelled mirror traffic   </p>
+<ul>
+<li>mirrorIdent(string): Mirror identifier   </li>
+<li>type(int) : Mirroring type as like 0 == SPAN, 1 == RSPAN, 2 == ERSPAN    </li>
+<li>port(string) : The port where mirrored traffic needs to be sent   </li>
+<li>vlan(int) : for RSPAN we may need to send tagged mirror traffic   </li>
+<li>remoteIP(string) : For ERSPAN we may need to send tunnelled mirror traffic   </li>
+<li>sourceIP(string): For ERSPAN we may need to send tunnelled mirror traffic   </li>
+<li>tunnelID(int): For ERSPAN we may need to send tunnelled mirror traffic   </li>
+</ul>
 <h5 id="mirror-yaml-example">Mirror yaml example</h5>
-<div class="highlight"><pre><span></span><code>apiVersion: netlox/v1
-kind: Mirror
-metadata:
-  name: test
-spec:
-  mirrorIdent: mirr-1
-  mirrorInfo:
-    type: 0
-    port: eno1
-  targetObject:
-    attachment: 1
-    mirrObjName: eno2
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netlox/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Mirror</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">mirrorIdent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mirr-1</span>
+<span class="w">  </span><span class="nt">mirrorInfo</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eno1</span>
+<span class="w">  </span><span class="nt">targetObject</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">attachment</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">    </span><span class="nt">mirrObjName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eno2</span>
 </code></pre></div>
 <h4 id="delete-mirror-information">Delete Mirror information</h4>
 <div class="highlight"><pre><span></span><code>#loxicmd delete mirror &lt;mirrorIdent&gt;
@@ -4148,32 +4188,34 @@ loxicmd delete mirror mirr-1
 <div class="highlight"><pre><span></span><code>loxicmd get policy
 </code></pre></div>
 <h4 id="create-policy-information">Create Policy information</h4>
-<p><div class="highlight"><pre><span></span><code>#loxicmd create policy IDENT --rate=&lt;Peak&gt;:&lt;Commited&gt; --target=&lt;ObjectName&gt;:&lt;Attachment&gt; [--block-size=&lt;Excess&gt;:&lt;Committed&gt;] [--color] [--pol-type=&lt;policy type&gt;]
+<div class="highlight"><pre><span></span><code>#loxicmd create policy IDENT --rate=&lt;Peak&gt;:&lt;Commited&gt; --target=&lt;ObjectName&gt;:&lt;Attachment&gt; [--block-size=&lt;Excess&gt;:&lt;Committed&gt;] [--color] [--pol-type=&lt;policy type&gt;]
 loxicmd create policy pol-0 --rate=100:100 --target=ensp0:1
 loxicmd create policy pol-1 --rate=100:100 --target=ensp0:1 --block-size=12000:6000
 loxicmd create policy pol-1 --rate=100:100 --target=ensp0:1 --color
 loxicmd create policy pol-1 --rate=100:100 --target=ensp0:1 --color --pol-type 0
 </code></pre></div>
-rate(string): Rate pairs can be specified as 'Peak:Commited'. <em>rate unit : Mbps <br />
-block-size(string): Block Size pairs can be specified as 'Excess:Committed'. </em>block-size unit : bps <br />
-target(string): Target Interface pairs can be specified as 'ObjectName:Attachment' <br />
-color(boolean): Policy color enbale or not <br />
-pol-type(int): Policy traffic control type. 0 : TrTCM, 1 : SrTCM   </p>
+<ul>
+<li>rate(string): Rate pairs can be specified as 'Peak:Commited'. *rate unit : Mbps   </li>
+<li>block-size(string): Block Size pairs can be specified as 'Excess:Committed'. *block-size unit : bps   </li>
+<li>target(string): Target Interface pairs can be specified as 'ObjectName:Attachment'   </li>
+<li>color(boolean): Policy color enbale or not   </li>
+<li>pol-type(int): Policy traffic control type. 0 : TrTCM, 1 : SrTCM   </li>
+</ul>
 <h5 id="policy-yaml-example">Policy yaml example</h5>
-<div class="highlight"><pre><span></span><code>apiVersion: netlox/v1
-kind: Policy
-metadata:
-  name: test
-spec:
-  policyIdent: pol-eno8
-  policyInfo:
-    type: 0
-    colorAware: false
-    committedInfoRate: 100
-    peakInfoRate: 100
-  targetObject:
-    attachment: 1
-    polObjName: eno8
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netlox/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Policy</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">policyIdent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pol-eno8</span>
+<span class="w">  </span><span class="nt">policyInfo</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="w">    </span><span class="nt">colorAware</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">    </span><span class="nt">committedInfoRate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100</span>
+<span class="w">    </span><span class="nt">peakInfoRate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100</span>
+<span class="w">  </span><span class="nt">targetObject</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">attachment</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">    </span><span class="nt">polObjName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eno8</span>
 </code></pre></div>
 <h4 id="delete-policy-information">Delete Policy information</h4>
 <h2 id="loxicmd-delete-policy-polident-loxicmd-delete-policy-pol-1"><div class="highlight"><pre><span></span><code>#loxicmd delete policy &lt;Polident&gt;
@@ -4208,26 +4250,26 @@ loxicmd apply -f lb.yaml
 loxicmd delete -f lb.yaml
 </code></pre></div>
 <h4 id="file-examplelbyaml">File example(lb.yaml)</h4>
-<p><div class="highlight"><pre><span></span><code>apiVersion: netlox/v1
-kind: Loadbalancer
-metadata:
-  name: load
-spec:
-  serviceArguments:
-    externalIP: 123.123.123.1
-    port: 80
-    protocol: tcp
-    sel: 0
-  endpoints:
-  - endpointIP: 4.3.2.1
-    weight: 1
-    targetPort: 8080
-  - endpointIP: 4.3.2.2
-    weight: 1
-    targetPort: 8080
-  - endpointIP: 4.3.2.3
-    weight: 1
-    targetPort: 8080
+<p><div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netlox/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Loadbalancer</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">load</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">serviceArguments</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">externalIP</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">123.123.123.1</span>
+<span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+<span class="w">    </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tcp</span>
+<span class="w">    </span><span class="nt">sel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="w">  </span><span class="nt">endpoints</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">endpointIP</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4.3.2.1</span>
+<span class="w">    </span><span class="nt">weight</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">    </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">endpointIP</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4.3.2.2</span>
+<span class="w">    </span><span class="nt">weight</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">    </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">endpointIP</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4.3.2.3</span>
+<span class="w">    </span><span class="nt">weight</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">    </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
 </code></pre></div>
 It reuse API's json body as a "Spec". If the API URL has no param, it don't need to use "metadata". For example, The body of load Balancer rule is shown below.</p>
 <p><div class="highlight"><pre><span></span><code>{
@@ -4273,24 +4315,24 @@ This json format can be converted Yaml format as shown below.
     targetPort: 8080
 </code></pre></div>
 Finally, this is located in the Spec of the entire configuration file as <a href="https://github.com/loxilb-io/loxilbdocs/edit/main/docs/cmd.md#file-examplelbyaml">File example(lb.yaml)</a></p>
-<p>If you want to add Vlan bridge, IPaddress or something else. Just change the Kind value from Loadbalancer to VlanBridge, IPaddress as like below example. 
-<div class="highlight"><pre><span></span><code>apiVersion: netlox/v1
-kind: IPaddress
-metadata:
-  name: test
-spec:
-  dev: eno8
-  ipAddress: 192.168.23.1/32
-</code></pre></div></p>
-<p>If the URL has param such as adding vlan-member, it must have <code>metadata</code>. 
-<div class="highlight"><pre><span></span><code>apiVersion: netlox/v1
-kind: VlanMember
-metadata:
-  name: test
-  vid: 100
-spec:
-  dev: eno8
-  Tagged: true
+<p>If you want to add Vlan bridge, IPaddress or something else. Just change the Kind value from Loadbalancer to VlanBridge, IPaddress as like below example. </p>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netlox/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IPaddress</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">dev</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eno8</span>
+<span class="w">  </span><span class="nt">ipAddress</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.23.1/32</span>
+</code></pre></div>
+<p>If the URL has param such as adding vlan-member, it must have <code>metadata</code>. </p>
+<p><div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netlox/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VlanMember</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test</span>
+<span class="w">  </span><span class="nt">vid</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">dev</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eno8</span>
+<span class="w">  </span><span class="nt">Tagged</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
 The example of all the settings below, so please refer to it.</p>
 <h3 id="more-information">More information</h3>
